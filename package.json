@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "ol": "^6.5.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
