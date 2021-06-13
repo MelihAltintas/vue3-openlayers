@@ -16,7 +16,6 @@ import 'ol/ol.css'
 //import useMap from '@/composables/useMap'
 
 import Map from "ol/Map";
-import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ';
 
@@ -36,11 +35,7 @@ export default {
                     })
                 })
             ],
-            view: new View({
-                zoom: 0,
-                center: [0, 0],
-                constrainResolution: true,
-            }),
+  
         })
 
         onMounted(() => {
