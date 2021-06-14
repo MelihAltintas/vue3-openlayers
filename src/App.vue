@@ -3,22 +3,22 @@
 <button @click="() => zoom = zoom - 1">Zoom Out</button>
 
 <div>
-    center : {{center}}
+    center : {{currentCenter}}
 </div>
 <div>
-    zoom : {{zoom}}
+    zoom : {{currentZoom}}
 </div>
 <div>
-    resolution : {{resolution}}
+    resolution : {{currentResolution}}
 </div>
 
 <div>
-    rotation : <input type="number" v-model.number="rotation" />
+    rotation : {{currentRotation}}
 </div>
 
 <ol-map style="height:400px">
 
-    <ol-view v-model:center="center" v-model:rotation="rotation" v-model:resolution="resolution" v-model:projection="projection" v-model:zoom="zoom" />
+    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" @zoomChanged="zoomChanged" @centerChanged="centerChanged" @resolutionChanged="resolutionChanged" @rotationChanged="rotationChanged" />
 
     <ol-fullscreen-control />
 
@@ -28,6 +28,7 @@
 <script>
 import {
     ref,
+    onMounted,
     watchEffect
 } from 'vue'
 export default {
@@ -37,19 +38,46 @@ export default {
         const center = ref([40, 40])
         const projection = ref('EPSG:4326')
         const zoom = ref(8)
-        const resolution = ref(0)
         const rotation = ref(0)
 
         watchEffect(() => console.log("zoom changed", zoom.value));
+        onMounted(() => {
+
+            const view = ref(null);
+            console.log("view", view);
+        });
 
         return {
             center,
             projection,
             zoom,
-            resolution,
             rotation
         }
     },
+    data() {
+        return {
+            currentCenter: this.center,
+            currentZoom: this.zoom,
+            currentResolution: this.resolution,
+            currentRotation: this.rotation
+        }
+
+    },
+    methods: {
+        zoomChanged(currentZoom) {
+
+            this.currentZoom = currentZoom
+        },
+        resolutionChanged(resolution) {
+            this.currentResolution = resolution
+        },
+        centerChanged(center) {
+            this.currentCenter = center
+        },
+        rotationChanged(rotation) {
+            this.currentRotation = rotation
+        }
+    }
 }
 </script>
 

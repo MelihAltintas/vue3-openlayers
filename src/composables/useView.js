@@ -1,7 +1,7 @@
 import {
     toRefs,
-    watchEffect,
     inject,
+    watchEffect
 } from 'vue'
 
 import View from 'ol/View'
@@ -105,23 +105,36 @@ export default function useView(props, emit) {
     const setRotation = (rotation) => view.setRotation(rotation);
     const setZoom = (zoom) => view.setZoom(zoom);
 
-    view.on('change', () => {
-        emit('update:zoom', getZoom());
+
+    view.on('change:center', () => {
+        emit('centerChanged', getCenter())
+        emit('zoomChanged', getZoom())
     });
 
-    view.on('change:center', () => emit('update:center', getCenter()));
+    view.on('change:resolution', () => emit('resolutionChanged', getResolution()));
 
-    view.on('change:resolution', () => emit('update:resolution', getResolution()));
+    view.on('change:rotation', () => emit('rotationChanged', getRotation()));
 
-    view.on('change:rotation', () => emit('update:rotation', getRotation()));
 
-    watchEffect(() => {
-        setZoom(zoom.value)
-    });
-    watchEffect(() => {
+    watchEffect(async () => {
         setRotation(rotation.value)
     });
-
+    watchEffect(async () => {
+        setCenter(center.value)
+    });
+    watchEffect(async () => {
+        setMaxZoom(maxZoom.value)
+    });
+    watchEffect(async () => {
+        setMinZoom(minZoom.value)
+    });
+    watchEffect(async () => {
+        setResolution(resolution.value)
+    });
+    watchEffect(async () => {       
+        setZoom(zoom.value)
+   });
+   
     return {
         view,
 
