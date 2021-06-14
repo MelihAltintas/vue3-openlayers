@@ -13,13 +13,12 @@
 </div>
 
 <div>
-    rotation : {{rotation}}
+    rotation : <input type="number" v-model.number="rotation" />
 </div>
 
 <ol-map style="height:400px">
 
-    <ol-view v-model:center="center" v-model:rotation="rotation" v-model:resolution="resolution" 
-    v-model:projection="projection" v-model:zoom="zoom" />
+    <ol-view v-model:center="center" v-model:rotation="rotation" v-model:resolution="resolution" v-model:projection="projection" v-model:zoom="zoom" />
 
     <ol-fullscreen-control />
 

@@ -5,13 +5,7 @@
 </template>
 
 <script>
-import {
-    inject,
-    toRefs,
-    watchEffect
-} from 'vue'
-
-import View from 'ol/View'
+import useView from '@/composables/useView'
 
 export default {
     name: 'ol-view',
@@ -19,84 +13,92 @@ export default {
         emit
     }) {
 
-        const {
-            zoom,
-            resolution,
-            center,
-            projection,
-            rotation
-        } = toRefs(props);
-
-        const map = inject('map');
-
-        const view = new View({
-            zoom: zoom.value,
-            projection: projection.value,
-            center: center.value,
-            resolution: resolution.value,
-            rotation: rotation.value,
-            constrainResolution: true,
-        });
-
-        map.setView(view);
-
-        view.on('change', () => {
-
-            emit('update:zoom', getZoom());
-
-        });
-
-        view.on('change:center', () => emit('update:center', getCenter()));
-
-        view.on('change:resolution', () => emit('update:resolution', getResolution()));
-
-        view.on('change:rotation', () => emit('update:rotation', getRotation()));
-
-        const getCenter = () => view.getCenter();
-        const setZoom = (zoom) => view.setZoom(zoom);
-        const getZoom = () => view.getZoom();
-        const adjustCenter = (deltaCoordinates) => view.adjustCenter(deltaCoordinates);
-        const getRotation = () => view.getRotation();
-        const setRotation = (rotation) => view.setRotation(rotation);
-        const setResolution = (resolution) => view.setResolution(resolution);
-        const getResolution = () => view.getResolution();
-
-        watchEffect(() => {
-            setZoom(zoom.value)
-
-        });
+        const view = useView(props, emit);
 
         return {
-            view,
-            setZoom,
-            getZoom,
-            adjustCenter,
-            getRotation,
-            setRotation,
-            getResolution,
-            setResolution
+            ...view
         }
     },
     props: {
-
+        center: {
+            type: Array,
+            default: () => [0, 0],
+        },
+        constrainRotation: {
+            type: Boolean,
+            default: true
+        },
+        enableRotation: {
+            type: Boolean,
+            default: true
+        },
+        extent: {
+            type: Array,
+        },
+        constrainOnlyCenter: {
+            type: Boolean,
+            default: false
+        },
+        smoothExtentConstraint: {
+            type: Boolean,
+            default: true
+        },
+        maxResolution: {
+            type: Number,
+        },
+        minResolution: {
+            type: Number,
+        },
+        maxZoom: {
+            type: Number,
+            default: 28
+        },
+        minZoom: {
+            type: Number,
+            default: 0
+        },
+        multiWorld: {
+            type: Boolean,
+            default: false
+        },
+        constrainResolution: {
+            type: Boolean,
+            default: false
+        },
+        smoothResolutionConstraint: {
+            type: Boolean,
+            default: true
+        },
+        showFullExtent: {
+            type: Boolean,
+            default: false
+        },
         projection: {
             type: String,
             default: 'EPSG:3857'
         },
-        center: {
+        resolution: {
+            type: Number,
+        },
+        resolutions: {
             type: Array,
-            default: () => [0, 0]
+
+        },
+        rotation: {
+            type: Number,
+
         },
         zoom: {
             type: Number,
             default: 0
         },
-        resolution: {
+        zoomFactor: {
             type: Number,
+            default: 2
         },
-        rotation: {
-            type: Number,
-
+        padding: {
+            type: Array,
+            default: () => [0, 0, 0, 0],
         },
 
     }
