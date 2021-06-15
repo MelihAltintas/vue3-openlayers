@@ -16,8 +16,6 @@ import 'ol/ol.css'
 //import useMap from '@/composables/useMap'
 
 import Map from "ol/Map";
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ';
 
 export default {
     name:'ol-map',
@@ -27,15 +25,7 @@ export default {
         const mapRef = ref(null);
 
         const map = new Map({
-            controls:[],
-            layers: [
-                new TileLayer({
-                    source: new XYZ({
-                        url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    })
-                })
-            ],
-  
+            controls:[]
         })
 
         onMounted(() => {
