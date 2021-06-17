@@ -1,5 +1,5 @@
 <template lang="">
-<div>
+<div v-if="false">
 
 </div>
 </template>

@@ -19,10 +19,20 @@
 <ol-map style="height:400px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" @zoomChanged="zoomChanged" @centerChanged="centerChanged" @resolutionChanged="resolutionChanged" @rotationChanged="rotationChanged" />
-    <ol-tile-layer>
-        <ol-source-xyz :url="tileUrl" />
-    </ol-tile-layer>
     <ol-fullscreen-control />
+
+    <ol-tile-layer>
+        <ol-source-osm />
+    </ol-tile-layer>
+
+    <ol-overlay :position="[40,40]">
+        <template v-slot="slotProps">
+            <div class="overlay-content">
+                Hello world!<br>
+                Position: {{ slotProps.position }}
+            </div>
+        </template>
+    </ol-overlay>
 
 </ol-map>
 </template>
@@ -58,7 +68,6 @@ export default {
     },
     data() {
         return {
-            tileUrl:'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             currentCenter: this.center,
             currentZoom: this.zoom,
             currentResolution: this.resolution,
@@ -85,5 +94,10 @@ export default {
 </script>
 
 <style>
-
+.overlay-content {
+    background: #efefef;
+    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+    padding: 10px 20px;
+    font-size: 16px;
+}
 </style>

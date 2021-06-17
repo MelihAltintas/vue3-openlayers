@@ -1,5 +1,7 @@
 import Map from './Map.vue'
 import View from './View.vue'
+import Feature from './Feature.vue'
+import Overlay from './Overlay.vue'
 
 function install (app) {
 
@@ -11,6 +13,8 @@ function install (app) {
   
     app.component(Map.name, Map)
     app.component(View.name, View)
+    app.component(Feature.name, Feature)
+    app.component(Overlay.name, Overlay)
   }
   
   export default install
