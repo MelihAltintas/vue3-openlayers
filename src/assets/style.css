@@ -11,11 +11,12 @@
 }
 
 .ol-mouse-position {
-    top: unset;
-    bottom: 20px !important;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 70%;
     position: absolute;
-    background-color: rgba(0,60,136,0.5);
-    color: white;
+    text-align: center;
 }
 
 .ol-rotate {

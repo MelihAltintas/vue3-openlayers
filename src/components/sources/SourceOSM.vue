@@ -1,14 +1,32 @@
-<template lang="">
-<SourceXYZ url="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+<template>
+<div v-if="false">
+
+</div>
 </template>
 
 <script>
-import SourceXYZ from '@/components/sources/SourceXYZ.vue'
+import OSM from 'ol/source/OSM';
+import {
+    inject
+} from 'vue'
+
 export default {
     name: 'ol-source-osm',
-    components: {
-        SourceXYZ
+    setup() {
+
+        const layer = inject('layer');
+     
+
+        const source = new OSM();
+
+        layer.setSource(source)
+
+        return {
+            layer,
+            source
+        }
     }
+   
 }
 </script>
 

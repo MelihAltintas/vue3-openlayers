@@ -62,7 +62,7 @@ A control is a visible widget with a DOM element in a fixed position on the scre
     <ol-rotate-control v-if="rotatecontrol" />
     <ol-zoom-control v-if="zoomcontrol" />
     <ol-zoomslider-control v-if="zoomslidercontrol" />
-    <ol-zoomtoextent-control v-if="zoomtoextentcontrol" :extent="[23.906,42.812,46.934,34.597]"/>
+    <ol-zoomtoextent-control v-if="zoomtoextentcontrol" :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey"/>
 
     <ol-tile-layer>
       <ol-source-osm />
