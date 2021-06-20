@@ -1,0 +1,25 @@
+.ol-zoomslider {
+    top: 7.5em;
+    left: .5em;
+    height: 240px;
+    border: 2px solid rgba(0,60,136,0.5);
+}
+
+.ol-overviewmap {
+    left: 3.5em;
+    bottom: 2.5em;
+}
+
+.ol-mouse-position {
+    top: unset;
+    bottom: 20px !important;
+    position: absolute;
+    background-color: rgba(0,60,136,0.5);
+    color: white;
+}
+
+.ol-rotate {
+    top: .5em;
+    right: 2.5em;
+    transition: opacity .25s linear, visibility 0s linear;
+}

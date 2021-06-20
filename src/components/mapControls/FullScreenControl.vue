@@ -7,7 +7,8 @@
 <script>
 import {
     inject,
-    onMounted
+    onMounted,
+    onUnmounted
 } from 'vue'
 
 import {
@@ -15,12 +16,18 @@ import {
 } from 'ol/control';
 
 export default {
-    name:'ol-fullscreen-control',
+    name: 'ol-fullscreen-control',
     setup() {
+        const fullscreen = new FullScreen();
+        const map = inject('map');
 
         onMounted(() => {
-            const map = inject('map');
-            map.addControl(new FullScreen());
+
+            map.addControl(fullscreen);
+        });
+
+        onUnmounted(() => {
+            map.removeControl(fullscreen);
         });
 
     },

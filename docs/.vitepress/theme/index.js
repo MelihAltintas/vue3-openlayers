@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-
+import './theme.css'
 
 import OpenLayersMap from '../../../src'
 

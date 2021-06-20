@@ -5,6 +5,10 @@ import {
     MapControls
 } from './components'
 
+
+import 'ol/ol.css'
+import './assets/style.css'
+
 export default function install(app) {
     
     if (install.installed) {
