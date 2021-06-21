@@ -8,7 +8,8 @@
 import {
     inject,
     onMounted,
-    onUnmounted
+    onUnmounted,
+
 } from 'vue'
 
 import {
@@ -29,6 +30,8 @@ export default {
         onUnmounted(() => {
             map.removeControl(fullscreen);
         });
+
+
 
     },
     props: {

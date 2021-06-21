@@ -36,7 +36,7 @@ export default function useView(props, emit) {
     } = toRefs(props);
 
 
-    const view = new View({
+    let view = new View({
         center: center.value,
         constrainRotation: constrainRotation.value,
         enableRotation: enableRotation.value,
@@ -51,7 +51,9 @@ export default function useView(props, emit) {
         constrainResolution: constrainResolution.value,
         smoothResolutionConstraint: smoothResolutionConstraint.value,
         showFullExtent: showFullExtent.value,
-        projection: typeof projection.value == "string" ? projection.value : new Projection({...projection.value}),
+        projection: typeof projection.value == "string" ? projection.value : new Projection({
+            ...projection.value
+        }),
         resolution: resolution.value,
         resolutions: resolutions.value,
         rotation: rotation.value,
@@ -105,7 +107,6 @@ export default function useView(props, emit) {
     const setRotation = (rotation) => view.setRotation(rotation);
     const setZoom = (zoom) => view.setZoom(zoom);
 
-
     view.on('change:center', () => {
         emit('centerChanged', getCenter())
         emit('zoomChanged', getZoom())
@@ -115,26 +116,38 @@ export default function useView(props, emit) {
 
     view.on('change:rotation', () => emit('rotationChanged', getRotation()));
 
+    watchEffect(async () => {
+        var properties = view.getProperties();
+ 
+        properties["center"] = center.value;
+        properties["constrainRotation"] = constrainRotation.value;
+        properties["enableRotation"] = enableRotation.value;
+        properties["extent"] = extent.value;
+        properties["constrainOnlyCenter"] = constrainOnlyCenter.value;
+        properties["smoothExtentConstraint"] = smoothExtentConstraint.value;
+        properties["maxResolution"] = maxResolution.value;
+        properties["minResolution"] = minResolution.value;
+        properties["maxZoom"] = maxZoom.value;
+        properties["minZoom"] = minZoom.value;
+        properties["multiWorld"] = multiWorld.value;
+        properties["constrainResolution"] = constrainResolution.value;
+        properties["smoothResolutionConstraint"] = smoothResolutionConstraint.value;
+        properties["showFullExtent"] = showFullExtent.value;
+        properties["projection"] = typeof projection.value == "string" ? projection.value : new Projection({
+            ...projection.value
+        });
+        properties["resolution"] = resolution.value;
 
-    watchEffect(async () => {
-        setRotation(rotation.value)
+        properties["resolutions"] = resolutions.value;
+        properties["rotation"] = rotation.value;
+        properties["zoom"] = zoom.value;
+        properties["zoomFactor"] = zoomFactor.value;
+        properties["padding"] = padding.value;
+
+        view.setProperties(properties);
+        view.applyOptions_(properties);
     });
-    watchEffect(async () => {
-        setCenter(center.value)
-    });
-    watchEffect(async () => {
-        setMaxZoom(maxZoom.value)
-    });
-    watchEffect(async () => {
-        setMinZoom(minZoom.value)
-    });
-    watchEffect(async () => {
-        setResolution(resolution.value)
-    });
-    watchEffect(async () => {       
-        setZoom(zoom.value)
-   });
-   
+
     return {
         view,
 

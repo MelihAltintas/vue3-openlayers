@@ -9,10 +9,10 @@ import {
     ref,
     provide,
     onMounted,
-    toRefs
+    toRefs,
+    onUnmounted,
+    watchEffect
 } from "vue";
-
-
 
 import Map from "ol/Map";
 
@@ -30,7 +30,7 @@ export default {
         } = toRefs(props);
         const mapRef = ref(null);
 
-        const map = new Map({
+        let map = new Map({
             controls: [],
             loadTilesWhileAnimating: loadTilesWhileAnimating.value,
             loadTilesWhileInteracting: loadTilesWhileInteracting.value,
@@ -43,7 +43,20 @@ export default {
             map.setTarget(mapRef.value);
         });
 
+        onUnmounted(() => {
+            map.setTarget(null);
+            map = null;
+        });
+
         provide('map', map);
+
+        const focus = () => map.focus();
+        const forEachFeatureAtPixel = (pixel, callback, options = {}) => map.forEachFeatureAtPixel(pixel, callback, options)
+        const forEachLayerAtPixel = (pixel, callback, layerFilter) => map.forEachLayerAtPixel(pixel, callback, layerFilter)
+        const getCoordinateFromPixel = (pixel) => map.getCoordinateFromPixel(pixel);
+        const refresh = () => map.refresh();
+        const render = () => map.render();
+        const updateSize = () => map.updateSize();
 
         map.on('click', (event) => emit('click', event));
         map.on('dblclick', (event) => emit('dblclick', event));
@@ -57,13 +70,17 @@ export default {
         map.on('precompose', (event) => emit('precompose', event));
         map.on('postcompose', (event) => emit('postcompose', event));
 
-        const focus = () => map.focus();
-        const forEachFeatureAtPixel = (pixel, callback, options = {}) => map.forEachFeatureAtPixel(pixel, callback, options)
-        const forEachLayerAtPixel = (pixel, callback, layerFilter) => map.forEachLayerAtPixel(pixel, callback, layerFilter)
-        const getCoordinateFromPixel = (pixel) => map.getCoordinateFromPixel(pixel);
-        const refresh = () => map.refresh();
-        const render = () => map.render();
-        const updateSize = () => map.updateSize();
+        watchEffect(async () => {
+            var properties = map.getProperties();
+
+            properties["loadTilesWhileAnimating"] = loadTilesWhileAnimating.value;
+            properties["loadTilesWhileInteracting"] = loadTilesWhileInteracting.value;
+            properties["moveTolerance"] = moveTolerance.value;
+            properties["pixelRatio"] = pixelRatio.value;
+
+            map.setProperties(properties);
+
+        });
 
         return {
             map,

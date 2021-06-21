@@ -9,7 +9,8 @@ import {
     inject,
     toRefs,
     onMounted,
-    onUnmounted
+    onUnmounted,
+    watchEffect
 } from 'vue'
 
 import Zoom from 'ol/control/Zoom';
@@ -30,8 +31,10 @@ export default {
             delta,
             target
         } = toRefs(props)
+
+
         
-        const zoom = new Zoom({
+        let zoom = new Zoom({
             duration: duration.value,
             className: className.value,
             zoomInClassName: zoomInClassName.value,
@@ -43,6 +46,7 @@ export default {
             delta: delta.value,
             target: target.value
         });
+
         onMounted(() => {
 
             map.addControl(zoom);
@@ -50,6 +54,26 @@ export default {
 
         onUnmounted(() => {
             map.removeControl(zoom);
+        });
+
+        watchEffect(async () => {
+
+            map.removeControl(zoom);
+
+            zoom = new Zoom({
+                duration: duration.value,
+                className: className.value,
+                zoomInClassName: zoomInClassName.value,
+                zoomOutClassName: zoomOutClassName.value,
+                zoomInLabel: zoomInLabel.value,
+                zoomOutLabel: zoomOutLabel.value,
+                zoomInTipLabel: zoomInTipLabel.value,
+                zoomOutTipLabel: zoomOutTipLabel.value,
+                delta: delta.value,
+                target: target.value
+            });
+
+            map.addControl(zoom)
         });
 
     },

@@ -28,7 +28,7 @@
     <ol-overviewmap-control  v-if="overviewmapcontrol"/>
     <ol-scaleline-control v-if="scalelinecontrol"/>
     <ol-rotate-control v-if="rotatecontrol"/>
-    <ol-zoom-control v-if="zoomcontrol"/>
+    <ol-zoom-control v-if="zoomcontrol" :zoomInLabel="zoomInLabel"/>
     <ol-zoomslider-control v-if="zoomslidercontrol"/>
     <ol-zoomtoextent-control  v-if="zoomtoextentcontrol" :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey"/>
 
@@ -51,11 +51,14 @@ export default {
         const zoom = ref(8)
         const rotation = ref(0)
 
+        const zoomInLabel = ref('0')
+        zoomInLabel.value = '3';
         return {
             center,
             projection,
             zoom,
-            rotation
+            rotation,
+            zoomInLabel
         }
     },
     data(){
