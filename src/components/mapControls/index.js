@@ -6,6 +6,7 @@ import ScaleLineControl from './ScaleLineControl.vue'
 import ZoomControl from './ZoomControl.vue'
 import ZoomSliderControl from './ZoomSliderControl.vue'
 import ZoomToExtentControl from './ZoomToExtentControl.vue'
+import RotateControl from './RotateControl.vue'
 function install (app) {
 
     if (install.installed) {
@@ -22,6 +23,7 @@ function install (app) {
     app.component(ZoomControl.name, ZoomControl)
     app.component(ZoomSliderControl.name, ZoomSliderControl)
     app.component(ZoomToExtentControl.name, ZoomToExtentControl)
+    app.component(RotateControl.name, RotateControl)
   }
   
   export default install
