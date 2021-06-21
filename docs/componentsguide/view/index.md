@@ -128,7 +128,7 @@ Resolutions to determine the resolution constraint. If set the `max-resolution`,
 
 # projection
 
-- **Type**: `string`
+- **Type**: `string` or `object (options projection)`
 - **Default**: `EPSG:3857`
 
 The view internal projection. This is the projection with which OpenLayers component

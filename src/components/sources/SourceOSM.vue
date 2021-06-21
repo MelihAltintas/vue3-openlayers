@@ -14,7 +14,7 @@ export default {
     name: 'ol-source-osm',
     setup() {
 
-        const layer = inject('layer');
+        const layer = inject('tileLayer');
      
 
         const source = new OSM();

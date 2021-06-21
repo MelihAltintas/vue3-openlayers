@@ -1,5 +1,5 @@
 import TileLayer from './TileLayer.vue'
-
+import ImageLayer from './ImageLayer.vue'
 
 function install (app) {
 
@@ -10,6 +10,7 @@ function install (app) {
     install.installed = true
   
     app.component(TileLayer.name, TileLayer)
+    app.component(ImageLayer.name, ImageLayer)
 
   }
   

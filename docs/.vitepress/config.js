@@ -31,7 +31,27 @@ module.exports = {
                                 link: '/componentsguide/layers/imagelayer/'
                             }
                         ]
-                    }, {
+                    },
+                    {
+                        text: 'Sources',
+                        children: [{
+                                text: 'ol-source-image-static',
+                                link: '/componentsguide/sources/imagestatic/'
+                            },
+                            {
+                                text: 'ol-source-osm',
+                                link: '/componentsguide/sources/osm/'
+                            },{
+                                text: 'ol-source-xyz',
+                                link: '/componentsguide/sources/xyz/'
+                            },
+                            {
+                                text: 'ol-source-wmts',
+                                link: '/componentsguide/sources/wmts/'
+                            }
+                        ]
+                    },
+                    {
                         text: 'Map Controls',
                         link: '/componentsguide/mapcontrols/'
                         

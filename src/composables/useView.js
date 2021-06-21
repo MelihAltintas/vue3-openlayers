@@ -3,7 +3,7 @@ import {
     inject,
     watchEffect
 } from 'vue'
-
+import Projection from 'ol/proj/Projection';
 import View from 'ol/View'
 
 export default function useView(props, emit) {
@@ -51,7 +51,7 @@ export default function useView(props, emit) {
         constrainResolution: constrainResolution.value,
         smoothResolutionConstraint: smoothResolutionConstraint.value,
         showFullExtent: showFullExtent.value,
-        projection: projection.value,
+        projection: typeof projection.value == "string" ? projection.value : new Projection({...projection.value}),
         resolution: resolution.value,
         resolutions: resolutions.value,
         rotation: rotation.value,

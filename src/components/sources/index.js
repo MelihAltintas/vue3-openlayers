@@ -1,6 +1,7 @@
 import SourceXYZ from './SourceXYZ.vue'
 import SourceOSM from './SourceOSM.vue'
-
+import SourceImageStatic from './SourceImageStatic.vue'
+import SourceWMTS from './SourceWMTS.vue'
 function install (app) {
 
     if (install.installed) {
@@ -11,7 +12,8 @@ function install (app) {
   
     app.component(SourceXYZ.name, SourceXYZ)
     app.component(SourceOSM.name, SourceOSM)
-
+    app.component(SourceImageStatic.name, SourceImageStatic)
+    app.component(SourceWMTS.name, SourceWMTS)
   }
   
   export default install
@@ -19,5 +21,7 @@ function install (app) {
   export {
     install,
     SourceXYZ,
-    SourceOSM
+    SourceOSM,
+    SourceImageStatic,
+    SourceWMTS
   }

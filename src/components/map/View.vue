@@ -74,7 +74,7 @@ export default {
             default: false
         },
         projection: {
-            type: String,
+            type: [String,Object],
             default: 'EPSG:3857'
         },
         resolution: {

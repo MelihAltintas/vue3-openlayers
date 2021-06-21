@@ -13,12 +13,11 @@ import {
     toRefs
 } from 'vue'
 
-import TileLayer from 'ol/layer/Tile';
+import ImageLayer from 'ol/layer/Image';
 
 export default {
-    name: 'ol-tile-layer',
+    name: 'ol-image-layer',
     setup(props) {
-        
         const map = inject('map');
 
         const {
@@ -31,10 +30,9 @@ export default {
             maxResolution,
             minZoom,
             maxZoom,
-            preload,
         } = toRefs(props)
 
-        const tileLayer = new TileLayer({
+        const imageLayer = new ImageLayer({
             className: className.value,
             opacity: opacity.value,
             visible: visible.value,
@@ -44,21 +42,20 @@ export default {
             maxResolution: maxResolution.value,
             minZoom: minZoom.value,
             maxZoom: maxZoom.value,
-            preload: preload.value,
         });
 
         onMounted(() => {
-            map.addLayer(tileLayer);
+            map.addLayer(imageLayer);
         });
 
         onUnmounted(() => {
-            map.removeLayer(tileLayer)
+            map.removeLayer(imageLayer)
         });
 
-        provide('tileLayer', tileLayer);
+        provide('imageLayer', imageLayer);
 
         return {
-            tileLayer
+            imageLayer
         }
     },
     props: {
@@ -91,11 +88,7 @@ export default {
         },
         maxZoom: {
             type: Number
-        },
-        preload: {
-            type: Number,
-            default: 1
-        },
+        }
     }
 }
 </script>

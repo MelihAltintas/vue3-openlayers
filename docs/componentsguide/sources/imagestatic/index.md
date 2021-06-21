@@ -1,6 +1,6 @@
-# ol-image-layer
+# ol-source-image-static
 
-ol-image-layer components can render any server-rendered image, it is a container for raster source, like ol-source-image-static
+A layer source for displaying a single, static image.
 
 ## Usage
 
@@ -66,61 +66,47 @@ import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
 ## Properties
 
 
-# className
+# attributions
+
+- **Type**: `string`
+	
+Attributions
+
+# crossOrigin
 
 - **Type**: `string`
 - **Default**: `ol-layer`
-	
-A CSS class name to set to the layer element.
-
-# opacity
-
-- **Type**: `number `
-- **Default**: `1`
-	
-Opacity (0, 1).
-
-
-# visible
-
-- **Type**: `boolean  `
-- **Default**: `true`
 		
-Visibility.
+The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer. 
 
-# extent
+# imageExtent
 
 - **Type**: `Array`
 		
-The bounding extent for layer rendering. The layer will not be rendered outside of this extent.
+Extent of the image in map coordinates. This is the [left, bottom, right, top] map coordinates of your image. 
 
-# zIndex
+# imageSmoothing
 
-- **Type**: `number`
+- **Type**: `boolean`
+- **Default**: `true`
 		
-The z-index for layer rendering. At rendering time, the layers will be ordered, first by Z-index and then by position. 
+Enable image smoothing.
 
-# minResolution
+# projection
 
-- **Type**: `number`
+- **Type**: `string or object (options projection)`
+- **Default**: `Projection. Default is the view projection.`
 		
-The minimum resolution (inclusive) at which this layer will be visible.
+The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer. 
 
-# maxResolution
+# imageSize
 
-- **Type**: `number`
+- **Type**: `Array`
 		
-The maximum resolution (exclusive) below which this layer will be visible.
+Size of the image in pixels. Usually the image size is auto-detected, so this only needs to be set if auto-detection fails for some reason.
 
-# minZoom
+# url
 
-- **Type**: `number`
+- **Type**: `string`
 		
-The minimum view zoom level (exclusive) above which this layer will be visible.
-
-# maxZoom
-
-- **Type**: `number`
-		
-The maximum view zoom level (inclusive) at which this layer will be visible.
-
+Image URL.
