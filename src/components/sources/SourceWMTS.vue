@@ -17,42 +17,23 @@ import {
 } from 'ol/extent';
 import {
     inject,
-    toRefs,
     onMounted,
     onUnmounted,
-    computed
-
+    watch
 } from 'vue'
-
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-source-wmts',
     setup(props) {
 
         const tileLayer = inject('tileLayer');
-
         const {
-            cacheSize,
-            crossOrigin,
-            imageSmoothing,
-            projection,
-            reprojectionErrorThreshold,
-            tilePixelRatio,
-            format,
-            version,
-            matrixSet,
-            dimensions,
-            url,
-            urls,
-            wrapX,
-            transition,
-            layer,
-            style
+            properties
+        } = usePropsAsObjectProperties(props);
 
-        } = toRefs(props);
+        const getTileGrid = () => {
 
-        const tileGrid = computed(() => {
-
-            const extent = getProjection(projection.value).getExtent();
+            const extent = getProjection(properties.projection).getExtent();
             const origin = getTopLeft(extent);
             const size = getWidth(extent) / 256;
             const resolutions = new Array(14);
@@ -62,36 +43,31 @@ export default {
                 resolutions[z] = size / Math.pow(2, z);
                 matrixIds[z] = z;
             }
+
             return new WMTSTileGrid({
                 origin,
                 resolutions,
                 matrixIds
             });
+        };
+        const createSource = () => {
+            return new WMTS({
+                ...properties,
+                projection: typeof properties.projection == "string" ? properties.projection : new Projection({
+                    ...properties.projection
+                }),
+                tileGrid: getTileGrid()
+            });
+        };
+
+        let source = createSource();
+
+        watch(properties, () => {
+            tileLayer.setSource(null)
+            source = createSource();
+            tileLayer.setSource(source)
 
         });
-
-        const source = new WMTS({
-            cacheSize: cacheSize.value,
-            crossOrigin: crossOrigin.value,
-            imageSmoothing: imageSmoothing.value,
-            reprojectionErrorThreshold: reprojectionErrorThreshold.value,
-            tilePixelRatio: tilePixelRatio.value,
-            format: format.value,
-            version: version.value,
-            matrixSet: matrixSet.value,
-            dimensions: dimensions.value,
-            url: url.value,
-            urls: urls.value,
-            wrapX: wrapX.value,
-            transition: transition.value,
-            layer: layer.value,
-            style: style.value,
-            projection: typeof projection.value == "string" ? projection.value : new Projection({
-                ...projection.value
-            }),
-            tileGrid: tileGrid.value
-        });
-        console.log(source);
         onMounted(() => {
             tileLayer.setSource(source)
         });

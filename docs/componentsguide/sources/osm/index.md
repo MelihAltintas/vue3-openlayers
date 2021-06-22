@@ -89,6 +89,11 @@ Enable image smoothing.
 - **Default**: 19
 Max zoom.
 
+# minZoom
+
+- **Type**: `number`
+- **Default**: 0
+Min zoom.
 
 # opaque
 

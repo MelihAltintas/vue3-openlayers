@@ -10,38 +10,38 @@ import Projection from 'ol/proj/Projection';
 
 import {
     inject,
-    toRefs,
     onMounted,
-    onUnmounted
+    onUnmounted,
+    watch
 } from 'vue'
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
     name: 'ol-source-image-static',
     setup(props) {
 
         const layer = inject('imageLayer');
-
         const {
-            attributions,
-            crossOrigin,
-            url,
-            imageExtent,
-            projection,
-            imageSmoothing,
-            imageSize 
+            properties
+        } = usePropsAsObjectProperties(props);
 
-        } = toRefs(props);
+        const createSource = () => {
+            return new Static({
+                ...properties,
+                projection: typeof properties.projection == "string" ? properties.projection : new Projection({
+                    ...properties.projection
+                })
+            });
+        };
 
-        const source = new Static({
-            attributions: attributions.value,
-            crossOrigin: crossOrigin.value,
-            url: url.value,
-            imageExtent: imageExtent.value,
-            projection: typeof projection.value == "string" ? projection.value : new Projection({...projection.value}),
-            imageSmoothing: imageSmoothing.value,
-            imageSize: imageSize.value
+        let source = createSource();
+
+        watch(properties, () => {
+            layer.setSource(null)
+            source = createSource();
+            layer.setSource(source)
+
         });
-
         onMounted(() => {
             layer.setSource(source)
         });
@@ -66,7 +66,7 @@ export default {
             type: Array
         },
         projection: {
-            type: [String,Object]
+            type: [String, Object]
         },
         imageSmoothing: {
             type: Boolean,

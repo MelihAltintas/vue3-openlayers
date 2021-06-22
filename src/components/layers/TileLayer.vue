@@ -10,42 +10,27 @@ import {
     provide,
     onUnmounted,
     onMounted,
-    toRefs
+    watch
 } from 'vue'
 
 import TileLayer from 'ol/layer/Tile';
-
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-tile-layer',
     setup(props) {
 
         const map = inject('map');
-        const overViewMap = inject('overviewMap');
-
+        const overViewMap = inject('overviewMap', null);
         const {
-            className,
-            opacity,
-            visible,
-            extent,
-            zIndex,
-            minResolution,
-            maxResolution,
-            minZoom,
-            maxZoom,
-            preload,
-        } = toRefs(props)
+            properties
+        } = usePropsAsObjectProperties(props);
 
-        const tileLayer = new TileLayer({
-            className: className.value,
-            opacity: opacity.value,
-            visible: visible.value,
-            extent: extent.value,
-            zIndex: zIndex.value,
-            minResolution: minResolution.value,
-            maxResolution: maxResolution.value,
-            minZoom: minZoom.value,
-            maxZoom: maxZoom.value,
-            preload: preload.value,
+        const tileLayer = new TileLayer(properties);
+
+        watch(properties, () => {
+
+            tileLayer.setProperties(properties);
+
         });
 
         onMounted(() => {

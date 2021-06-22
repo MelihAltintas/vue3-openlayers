@@ -10,38 +10,23 @@ import {
     provide,
     onUnmounted,
     onMounted,
-    toRefs
+    watch
 } from 'vue'
 
 import ImageLayer from 'ol/layer/Image';
-
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-image-layer',
     setup(props) {
         const map = inject('map');
-
         const {
-            className,
-            opacity,
-            visible,
-            extent,
-            zIndex,
-            minResolution,
-            maxResolution,
-            minZoom,
-            maxZoom,
-        } = toRefs(props)
+            properties
+        } = usePropsAsObjectProperties(props);
 
-        const imageLayer = new ImageLayer({
-            className: className.value,
-            opacity: opacity.value,
-            visible: visible.value,
-            extent: extent.value,
-            zIndex: zIndex.value,
-            minResolution: minResolution.value,
-            maxResolution: maxResolution.value,
-            minZoom: minZoom.value,
-            maxZoom: maxZoom.value,
+        const imageLayer = new ImageLayer(properties);
+
+        watch(properties, () => {
+            imageLayer.setProperties(properties);
         });
 
         onMounted(() => {

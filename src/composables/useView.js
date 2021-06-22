@@ -1,70 +1,51 @@
 import {
-    toRefs,
     inject,
-    watchEffect
+    watch,
+    onMounted
 } from 'vue'
 import Projection from 'ol/proj/Projection';
 import View from 'ol/View'
+
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default function useView(props, emit) {
 
 
     const map = inject('map');
-
     const {
-        rotation,
-        zoom,
-        center,
-        constrainRotation,
-        enableRotation,
-        extent,
-        constrainOnlyCenter,
-        smoothExtentConstraint,
-        maxResolution,
-        minResolution,
-        maxZoom,
-        minZoom,
-        multiWorld,
-        constrainResolution,
-        smoothResolutionConstraint,
-        showFullExtent,
-        projection,
-        resolution,
-        resolutions,
-        zoomFactor,
-        padding
-    } = toRefs(props);
+        properties
+    } = usePropsAsObjectProperties(props);
 
+    const createProp = () => {
 
-    let view = new View({
-        center: center.value,
-        constrainRotation: constrainRotation.value,
-        enableRotation: enableRotation.value,
-        extent: extent.value,
-        constrainOnlyCenter: constrainOnlyCenter.value,
-        smoothExtentConstraint: smoothExtentConstraint.value,
-        maxResolution: maxResolution.value,
-        minResolution: minResolution.value,
-        maxZoom: maxZoom.value,
-        minZoom: minZoom.value,
-        multiWorld: multiWorld.value,
-        constrainResolution: constrainResolution.value,
-        smoothResolutionConstraint: smoothResolutionConstraint.value,
-        showFullExtent: showFullExtent.value,
-        projection: typeof projection.value == "string" ? projection.value : new Projection({
-            ...projection.value
-        }),
-        resolution: resolution.value,
-        resolutions: resolutions.value,
-        rotation: rotation.value,
-        zoom: zoom.value,
-        zoomFactor: zoomFactor.value,
-        padding: padding.value
+        return {
+            ...properties,
+            projection: typeof properties.projection == "string" ? properties.projection : new Projection({
+                ...properties.projection
+            })
+        };
+    };
+    let view = new View(createProp());
+
+    onMounted(() => {
+        map.setView(view);
     });
 
-    map.setView(view);
+    view.on('change:center', () => {
+        emit('centerChanged', getCenter())
+        emit('zoomChanged', getZoom())
+    });
 
+    view.on('change:resolution', () => emit('resolutionChanged', getResolution()));
 
+    view.on('change:rotation', () => emit('rotationChanged', getRotation()));
+
+    watch(properties, () => {
+        let pr = createProp();
+        view.setProperties(pr);
+        view.applyOptions_(pr);
+
+    });
 
     const adjustCenter = (deltaCoordinates) => view.adjustCenter(deltaCoordinates);
     const adjustResolution = (ratio, opt_anchor) => view.adjustResolution(ratio, opt_anchor);
@@ -107,46 +88,7 @@ export default function useView(props, emit) {
     const setRotation = (rotation) => view.setRotation(rotation);
     const setZoom = (zoom) => view.setZoom(zoom);
 
-    view.on('change:center', () => {
-        emit('centerChanged', getCenter())
-        emit('zoomChanged', getZoom())
-    });
 
-    view.on('change:resolution', () => emit('resolutionChanged', getResolution()));
-
-    view.on('change:rotation', () => emit('rotationChanged', getRotation()));
-
-    watchEffect(async () => {
-        var properties = view.getProperties();
- 
-        properties["center"] = center.value;
-        properties["constrainRotation"] = constrainRotation.value;
-        properties["enableRotation"] = enableRotation.value;
-        properties["extent"] = extent.value;
-        properties["constrainOnlyCenter"] = constrainOnlyCenter.value;
-        properties["smoothExtentConstraint"] = smoothExtentConstraint.value;
-        properties["maxResolution"] = maxResolution.value;
-        properties["minResolution"] = minResolution.value;
-        properties["maxZoom"] = maxZoom.value;
-        properties["minZoom"] = minZoom.value;
-        properties["multiWorld"] = multiWorld.value;
-        properties["constrainResolution"] = constrainResolution.value;
-        properties["smoothResolutionConstraint"] = smoothResolutionConstraint.value;
-        properties["showFullExtent"] = showFullExtent.value;
-        properties["projection"] = typeof projection.value == "string" ? projection.value : new Projection({
-            ...projection.value
-        });
-        properties["resolution"] = resolution.value;
-
-        properties["resolutions"] = resolutions.value;
-        properties["rotation"] = rotation.value;
-        properties["zoom"] = zoom.value;
-        properties["zoomFactor"] = zoomFactor.value;
-        properties["padding"] = padding.value;
-
-        view.setProperties(properties);
-        view.applyOptions_(properties);
-    });
 
     return {
         view,

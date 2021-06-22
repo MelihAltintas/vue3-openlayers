@@ -9,12 +9,12 @@ import {
     ref,
     provide,
     onMounted,
-    toRefs,
     onUnmounted,
-    watchEffect
+    watch
 } from "vue";
 
 import Map from "ol/Map";
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
     name: 'ol-map',
@@ -23,21 +23,18 @@ export default {
     }) {
 
         const {
-            loadTilesWhileAnimating,
-            loadTilesWhileInteracting,
-            moveTolerance,
-            pixelRatio
-        } = toRefs(props);
+            properties
+        } = usePropsAsObjectProperties(props);
+
         const mapRef = ref(null);
 
-        let map = new Map({
-            controls: [],
-            loadTilesWhileAnimating: loadTilesWhileAnimating.value,
-            loadTilesWhileInteracting: loadTilesWhileInteracting.value,
-            moveTolerance: moveTolerance.value,
-            pixelRatio: pixelRatio.value
+        let map = new Map(properties);
 
-        })
+        watch(properties, () => {
+
+            map.setProperties(properties);
+
+        });
 
         onMounted(() => {
             map.setTarget(mapRef.value);
@@ -69,18 +66,6 @@ export default {
         map.on('postrender', (event) => emit('postrender', event));
         map.on('precompose', (event) => emit('precompose', event));
         map.on('postcompose', (event) => emit('postcompose', event));
-
-        watchEffect(async () => {
-            var properties = map.getProperties();
-
-            properties["loadTilesWhileAnimating"] = loadTilesWhileAnimating.value;
-            properties["loadTilesWhileInteracting"] = loadTilesWhileInteracting.value;
-            properties["moveTolerance"] = moveTolerance.value;
-            properties["pixelRatio"] = pixelRatio.value;
-
-            map.setProperties(properties);
-
-        });
 
         return {
             map,

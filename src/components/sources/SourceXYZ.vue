@@ -8,61 +8,38 @@
 import XYZ from 'ol/source/XYZ';
 import {
     inject,
-    toRefs,
+    watch,
     onMounted,
-    onUnmounted,
-    watchEffect
+    onUnmounted
 } from 'vue'
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
     name: 'ol-source-xyz',
     setup(props) {
 
         const layer = inject('tileLayer');
-
         const {
-            url,
-            cacheSize,
-            crossOrigin,
-            maxZoom,
-            minZoom,
-            opaque,
-            projection,
-            reprojectionErrorThreshold,
-            tileSize,
-            tilePixelRatio,
-            tileKey,
-            transition
-        } = toRefs(props);
+            properties
+        } = usePropsAsObjectProperties(props);
+        const createSource = () => {
+            return new  XYZ(properties);
+        };
+        let source = createSource();
 
-        const source = new XYZ({
-            url: url.value,
-            cacheSize: cacheSize.value,
-            crossOrigin: crossOrigin.value,
-            maxZoom: maxZoom.value,
-            minZoom: minZoom.value,
-            opaque: opaque.value,
-            projection: projection.value,
-            reprojectionErrorThreshold: reprojectionErrorThreshold.value,
-            tileSize: tileSize.value,
-            tilePixelRatio: tilePixelRatio.value,
-            tileKey: tileKey.value,
-            transition: transition.value,
+        watch(properties, () => {
+            layer.setSource(null)
+            source = createSource();
+            layer.setSource(source)
+
         });
-
         onMounted(() => {
             layer.setSource(source)
         });
+
         onUnmounted(() => {
             layer.setSource(null)
         });
-
-        watchEffect(() => {
-            console.log("url change")
-            source.setUrl(url.value)
-        }, {
-            flush: 'post'
-        })
 
         return {
             layer,

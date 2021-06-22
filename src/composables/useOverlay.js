@@ -2,11 +2,13 @@ import Overlay from 'ol/Overlay';
 import {
     inject,
     ref,
-    toRefs,
-    watchEffect
+    watchEffect,
+    watch,
+    onMounted,
+    onUnmounted
 } from 'vue'
 
-
+import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default function useOverlay(props, emit) {
 
     const map = inject('map');
@@ -14,28 +16,25 @@ export default function useOverlay(props, emit) {
     const htmlContent = ref(null)
 
     const {
-        position,
-        offset,
-        positioning,
-        stopEvent,
-        insertFirst,
-        autoPan,
-        autoPanMargin,
-        autoPanAnimation
-    } = toRefs(props);
+        properties
+    } = usePropsAsObjectProperties(props);
 
-    const overlay = new Overlay({
-        position: position.value,
-        offset: offset.value,
-        positioning: positioning.value,
-        stopEvent: stopEvent.value,
-        insertFirst: insertFirst.value,
-        autoPan: autoPan.value,
-        autoPanAnimation: autoPanAnimation.value,
-        autoPanMargin: autoPanMargin.value
+    let overlay = new Overlay(properties);
+
+    onMounted(() => {
+        map.addOverlay(overlay);
     });
 
-    map.addOverlay(overlay);
+    onUnmounted(() => {
+        map.removeOverlay(overlay);
+    });
+
+    watch(properties, () => {
+        map.removeOverlay(overlay);
+        overlay = new Overlay(properties);
+        map.addOverlay(overlay);
+
+    });
 
     watchEffect(() => {
 
