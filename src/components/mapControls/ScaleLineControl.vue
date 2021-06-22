@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import {
-    inject,
-    toRefs,
-    onMounted,
-    onUnmounted
-} from 'vue'
+import useControl from '@/composables/useControl'
 
 import {
     ScaleLine
@@ -19,38 +14,12 @@ import {
 export default {
     name: 'ol-scaleline-control',
     setup(props) {
-        const map = inject('map');
         const {
-            className,
-            minWidth,
-            render,
-            target,
-            units,
-            bar,
-            steps,
-            text,
-            dpi
-        } = toRefs(props)
-        const scaleLine = new ScaleLine({
-            className: className.value,
-            minWidth: minWidth.value,
-            render: render.value,
-            target: target.value,
-            units: units.value,
-            bar: bar.value,
-            steps: steps.value,
-            text: text.value,
-            dpi: dpi.value,
-        });
-        onMounted(() => {
-
-            map.addControl(scaleLine);
-        });
-
-        onUnmounted(() => {
-
-            map.removeControl(scaleLine);
-        });
+            control
+        } = useControl(ScaleLine, props);
+        return {
+            control
+        }
 
     },
     props: {

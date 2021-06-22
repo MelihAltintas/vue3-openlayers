@@ -5,37 +5,19 @@
 </template>
 
 <script>
-import {
-    inject,
-    toRefs,
-    onMounted,
-    onUnmounted
-} from 'vue'
-
+import useControl from '@/composables/useControl'
 import ZoomSlider from 'ol/control/ZoomSlider';
 
 export default {
     name: 'ol-zoomslider-control',
     setup(props) {
-        const map = inject('map');
+
         const {
-            duration,
-            className,
-            render
-        } = toRefs(props)
-        const zoomSlider = new ZoomSlider({
-            duration: duration.value,
-            className: className.value,
-            render: render.value,
-        });
-        onMounted(() => {
-
-            map.addControl(zoomSlider);
-        });
-
-        onUnmounted(() => {
-            map.removeControl(zoomSlider);
-        });
+            control
+        } = useControl(ZoomSlider, props);
+        return {
+            control
+        }
 
     },
     props: {

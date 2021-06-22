@@ -5,49 +5,18 @@
 </template>
 
 <script>
-import {
-    inject,
-    toRefs,
-    onMounted,
-    onUnmounted
-} from 'vue'
-
+import useControl from '@/composables/useControl'
 import Rotate from 'ol/control/Rotate';
 
 export default {
     name: 'ol-rotate-control',
     setup(props) {
-        const map = inject('map');
         const {
-            className,
-            label,
-            tipLabel,
-            compassClassName,
-            duration,
-            autoHide,
-            render,
-            resetNorth,
-            target,
-        } = toRefs(props)
-        const rotate = new Rotate({
-            className:className.value,
-            label:label.value,
-            tipLabel:tipLabel.value,
-            compassClassName:compassClassName.value,
-            duration:duration.value,
-            autoHide:autoHide.value,
-            render:render.value,
-            resetNorth:resetNorth.value,
-            target:target.value,
-        });
-        onMounted(() => {
-
-            map.addControl(rotate);
-        });
-
-        onUnmounted(() => {
-            map.removeControl(rotate);
-        });
+            control
+        } = useControl(Rotate, props);
+        return {
+            control
+        }
 
     },
     props: {

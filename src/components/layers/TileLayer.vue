@@ -18,8 +18,9 @@ import TileLayer from 'ol/layer/Tile';
 export default {
     name: 'ol-tile-layer',
     setup(props) {
-        
+
         const map = inject('map');
+        const overViewMap = inject('overviewMap');
 
         const {
             className,
@@ -48,11 +49,21 @@ export default {
         });
 
         onMounted(() => {
-            map.addLayer(tileLayer);
+
+            if (overViewMap != null) {
+
+                overViewMap.getOverviewMap().addLayer(tileLayer);
+            } else {
+                map.addLayer(tileLayer);
+            }
         });
 
         onUnmounted(() => {
-            map.removeLayer(tileLayer)
+            if (overViewMap != null) {
+                overViewMap.getOverviewMap().removeLayer(tileLayer);
+            } else {
+                map.removeLayer(tileLayer);
+            }
         });
 
         provide('tileLayer', tileLayer);

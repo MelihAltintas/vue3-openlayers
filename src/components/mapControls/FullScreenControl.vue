@@ -5,33 +5,22 @@
 </template>
 
 <script>
-import {
-    inject,
-    onMounted,
-    onUnmounted,
-
-} from 'vue'
 
 import {
     FullScreen
 } from 'ol/control';
+import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-fullscreen-control',
-    setup() {
-        const fullscreen = new FullScreen();
-        const map = inject('map');
+    setup(props) {
 
-        onMounted(() => {
-
-            map.addControl(fullscreen);
-        });
-
-        onUnmounted(() => {
-            map.removeControl(fullscreen);
-        });
-
-
+        const {
+            control
+        } = useControl(FullScreen, props);
+        return {
+            control
+        }
 
     },
     props: {

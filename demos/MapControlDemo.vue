@@ -18,20 +18,25 @@
 <input type="checkbox" id="rotatecontrol" v-model="rotatecontrol">
 <label for="rotatecontrol">rotatecontrol</label>
 
-<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
+<ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
 
-    <ol-fullscreen-control v-if="fullscreencontrol"/>
+    <ol-fullscreen-control v-if="fullscreencontrol" />
     <ol-mouseposition-control v-if="mousepositioncontrol" />
-    <ol-attribution-control v-if="attributioncontrol"/>
-    <ol-overviewmap-control  v-if="overviewmapcontrol"/>
-    <ol-scaleline-control v-if="scalelinecontrol"/>
-    <ol-rotate-control v-if="rotatecontrol"/>
-    <ol-zoom-control v-if="zoomcontrol"/>
-    <ol-zoomslider-control v-if="zoomslidercontrol"/>
-    <ol-zoomtoextent-control  v-if="zoomtoextentcontrol" :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey"/>
+    <ol-attribution-control v-if="attributioncontrol" />
 
+    <ol-overviewmap-control v-if="overviewmapcontrol">
+        <ol-tile-layer>
+            <ol-source-osm />
+        </ol-tile-layer>
+    </ol-overviewmap-control>
+
+    <ol-scaleline-control v-if="scalelinecontrol" />
+    <ol-rotate-control v-if="rotatecontrol" />
+    <ol-zoom-control v-if="zoomcontrol" />
+    <ol-zoomslider-control v-if="zoomslidercontrol" />
+    <ol-zoomtoextent-control v-if="zoomtoextentcontrol" :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
 
     <ol-tile-layer>
         <ol-source-osm />
@@ -43,6 +48,7 @@
 <script>
 import {
     ref
+
 } from 'vue'
 export default {
     setup() {
@@ -50,25 +56,26 @@ export default {
         const projection = ref('EPSG:4326')
         const zoom = ref(8)
         const rotation = ref(0)
-
+        const zoomInLabel = ref('a')
         return {
             center,
             projection,
             zoom,
-            rotation,
+            rotation
         }
     },
-    data(){
-        return{
-            fullscreencontrol:true,
-            attributioncontrol:true,
-            zoomcontrol:true,
-            zoomslidercontrol:true,
-            zoomtoextentcontrol:true,
-            scalelinecontrol:true,
-            overviewmapcontrol:true,
-            mousepositioncontrol:true,
-            rotatecontrol:true
+
+    data() {
+        return {
+            fullscreencontrol: true,
+            attributioncontrol: true,
+            zoomcontrol: true,
+            zoomslidercontrol: true,
+            zoomtoextentcontrol: true,
+            scalelinecontrol: true,
+            overviewmapcontrol: true,
+            mousepositioncontrol: true,
+            rotatecontrol: true,
         }
     }
 }

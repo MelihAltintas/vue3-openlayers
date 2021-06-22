@@ -5,48 +5,21 @@
 </template>
 
 <script>
-import {
-    inject,
-    toRefs,
-    onMounted,
-    onUnmounted
-} from 'vue'
 
 import {
     MousePosition
 } from 'ol/control';
+import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-mouseposition-control',
     setup(props) {
-        const map = inject('map');
         const {
-            className,
-            coordinateFormat,
-            projection,
-            render,
-            target,
-            undefinedHTML
-        } = toRefs(props)
-        const mouseposition = new MousePosition({
-            className: className.value,
-            coordinateFormat: coordinateFormat.value,
-            projection: projection.value,
-            render: render.value,
-            target: target.value,
-            undefinedHTML: undefinedHTML.value,
-        });
-
-        onMounted(() => {
-
-            map.addControl(mouseposition);
-        });
-
-        onUnmounted(() => {
-
-            map.removeControl(mouseposition);
-        });
-
+            control
+        } = useControl(MousePosition, props);
+        return {
+            control
+        }
     },
     props: {
         className: {
