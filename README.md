@@ -21,7 +21,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 # install Vue
 npm install vue
 
-# install current VueLayers version 
+# install current vue3-openlayers version 
 npm install vue3-openlayers
 ```
 
