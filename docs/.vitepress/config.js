@@ -78,9 +78,6 @@ module.exports = {
                             },       {
                                 text: 'ol-geom-multi-polygon',
                                 link: '/componentsguide/geometries/geommultipolygon/'
-                            },       {
-                                text: 'ol-geom-circle',
-                                link: '/componentsguide/geometries/geomcircle/'
                             }
                         ]
                     },

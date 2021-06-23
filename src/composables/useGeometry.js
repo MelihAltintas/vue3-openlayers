@@ -15,11 +15,12 @@ export default function useGeometry(GeometryType, props) {
         properties
     } = usePropsAsObjectProperties(props);
 
-
+    
     let geometry = computed(()=>new GeometryType(...Object.values(properties)));
 
     watch(properties, () => {
         feature.value.setGeometry(geometry.value);
+        feature.value.changed();
     });
 
     watch(feature, () => {

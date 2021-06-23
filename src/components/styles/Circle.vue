@@ -64,6 +64,7 @@ export default {
         });
 
         provide("circle", circle)
+         provide("styledObj", styledObj)
 
     },
     props: {

@@ -60,7 +60,10 @@ export default {
         }
     },
     props: {
-       
+       projection:{
+           type:String,
+           default:'EPSG:3857'
+       }
 
     }
 
