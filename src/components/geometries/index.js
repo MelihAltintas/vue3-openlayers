@@ -3,6 +3,7 @@ import LineString from './LineString.vue'
 import Polygon from './Polygon.vue'
 import MultiPoint from './MultiPoint.vue'
 import MultiLineString from './MultiLineString.vue'
+import MultiPolygon from './MultiPolygon.vue'
 function install (app) {
 
     if (install.installed) {
@@ -16,6 +17,7 @@ function install (app) {
     app.component(Polygon.name, Polygon)
     app.component(MultiPoint.name, MultiPoint)
     app.component(MultiLineString.name, MultiLineString)
+    app.component(MultiPolygon.name, MultiPolygon)
   }
   
   export default install
@@ -24,5 +26,7 @@ function install (app) {
     install,
     Point,
     LineString,
-    Polygon
+    Polygon,
+    MultiPoint,
+    MultiLineString
   }

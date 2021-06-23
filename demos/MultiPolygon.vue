@@ -1,9 +1,3 @@
-# ol-geom-multi-polygon
-ol-geom-multi-polygon can be used inside a ol-feature to draw multiple polygons at once on the map.
-
-## Usage
-
-```html
 <template>
 <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
 
@@ -28,9 +22,8 @@ ol-geom-multi-polygon can be used inside a ol-feature to draw multiple polygons 
 
 </ol-map>
 </template>
-```
 
-```js
+<script>
 import {
     ref
 } from 'vue'
@@ -55,20 +48,4 @@ export default {
         }
     },
 }
-```
-
-# Output
-
-<script setup>
-import MultiPolygon from "@demos/MultiPolygon.vue"
 </script>
-<MultiPolygon /> 
-
-## Properties
-
-
-# coordinates
-
-- **Type**: `number[][][][]`
-An array of polygons with coordinates in the map's projection.
-	
