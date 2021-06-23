@@ -96,6 +96,10 @@ export default {
             type: Number,
             default: 1
         },
+        controls:{
+            type:Array,
+            default:()=>[]
+        }
 
     },
 

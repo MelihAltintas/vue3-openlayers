@@ -28,7 +28,7 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let source = computed(()=> new VectorSource(properties));
+        let source = computed(() => new VectorSource(properties));
 
         const applySource = () => {
             layer.value.setSource(null)
@@ -52,7 +52,7 @@ export default {
             layer.value.setSource(null)
         });
 
-        provide("vectorSource",source);
+        provide("vectorSource", source);
 
         return {
             layer,
@@ -60,10 +60,49 @@ export default {
         }
     },
     props: {
-       projection:{
-           type:String,
-           default:'EPSG:3857'
-       }
+        attributions: {
+            type: [String, Array],
+            default: 'EPSG:3857'
+        },
+        features: {
+            type: Array,
+            default: () => []
+        },
+        format: {
+            type: Object
+
+        },
+        loader: {
+            type: Function
+
+        },
+        overlaps: {
+            type: Boolean,
+            default: true
+
+        },
+        projection: {
+            type: String,
+            default: 'EPSG:3857'
+        },
+        strategy: {
+            type: Function
+
+        },
+        url: {
+            type: [String, Function]
+
+        },
+        useSpatialIndex: {
+            type: Boolean,
+            default: true
+
+        },
+        wrapX: {
+            type: Boolean,
+            default: true
+
+        }
 
     }
 

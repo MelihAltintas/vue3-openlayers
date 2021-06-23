@@ -8,16 +8,24 @@ ol-vector-layer can render vector from various backend services. It should be us
 
 Example below shows how you can use ol-vector-layer and ol-source-vector to render some vector features from remote backend.
 
+Load features simply by providing url value and format GeoJSON
+
 ```html
 <template>
 <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
-    <ol-zoom-control />
-    <ol-attribution-control/>
-    <ol-image-layer>
-        <ol-source-image-static :url="imgUrl" :imageSize="size" :imageExtent="extent" :projection="projection" :attributions="imgCopyright"></ol-source-image-static>
-    </ol-image-layer>
+
+    <ol-tile-layer>
+        <ol-source-osm />
+    </ol-tile-layer>
+
+    <ol-vector-layer>
+        <ol-source-vector :url="url" :format="geoJson">
+
+        </ol-source-vector>
+
+    </ol-vector-layer>
 
 </ol-map>
 </template>
@@ -26,33 +34,29 @@ Example below shows how you can use ol-vector-layer and ol-source-vector to rend
 ```js
 import {
     ref,
-    reactive
+    inject
 } from 'vue'
 export default {
     setup() {
-
-        const zoom = ref(2)
+        const center = ref([0, 0])
+        const projection = ref('EPSG:4326')
+        const zoom = ref(3)
         const rotation = ref(0)
 
-        const size = ref([1024, 968])
-        const center = ref([size.value[0] / 2, size.value[1] / 2])
-        const extent = ref([0, 0, ...size.value])
-        const projection = reactive({
-            code: 'xkcd-image',
-            units: 'pixels',
-            extent: extent,
-        });
-        const imgUrl = ref('https://imgs.xkcd.com/comics/online_communities.png');
-        const imgCopyright = ref('© <a href="http://xkcd.com/license.html">xkcd</a>');
+        const url = ref("https://openlayers.org/en/latest/examples/data/geojson/countries.geojson")
+
+        const format = inject('ol-format');
+        console.log(format)
+        const geoJson = new format.GeoJSON();
+
+
         return {
             center,
             projection,
             zoom,
             rotation,
-            size,
-            extent,
-            imgUrl,
-            imgCopyright
+            url,
+            geoJson
         }
     },
 }
@@ -60,10 +64,10 @@ export default {
 
 # Output
 
-<!-- <script setup>
-import VectorLayerDemo from "@demos/VectorLayerDemo.vue"
+<script setup>
+import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 </script>
-<VectorLayerDemo /> -->
+<VectorSourceDemo1 /> 
 
 ## Properties
 

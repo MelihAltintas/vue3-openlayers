@@ -52,6 +52,10 @@ module.exports = {
                             {
                                 text: 'ol-source-wmts',
                                 link: '/componentsguide/sources/wmts/'
+                            },
+                            {
+                                text: 'ol-source-vector',
+                                link: '/componentsguide/sources/vector/'
                             }
                         ]
                     },
