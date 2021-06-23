@@ -29,6 +29,10 @@ module.exports = {
                             {
                                 text: 'ol-image-layer',
                                 link: '/componentsguide/layers/imagelayer/'
+                            },
+                            {
+                                text: 'ol-vector-layer',
+                                link: '/componentsguide/layers/vectorlayer/'
                             }
                         ]
                     },
@@ -48,6 +52,35 @@ module.exports = {
                             {
                                 text: 'ol-source-wmts',
                                 link: '/componentsguide/sources/wmts/'
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Geometries',
+                        children: [{
+                                text: 'ol-geom-point',
+                                link: '/componentsguide/geometries/geompoint/'
+                            },
+                            {
+                                text: 'ol-geom-line-string',
+                                link: '/componentsguide/geometries/geomlinestring/'
+                            },{
+                                text: 'ol-geom-polygon',
+                                link: '/componentsguide/geometries/geompolygon/'
+                            },
+                            {
+                                text: 'ol-geom-multi-point',
+                                link: '/componentsguide/geometries/geommultipoint/'
+                            },
+                            {
+                                text: 'ol-geom-multi-line-string',
+                                link: '/componentsguide/geometries/geommultilinestring/'
+                            },       {
+                                text: 'ol-geom-multi-polygon',
+                                link: '/componentsguide/geometries/geommultipolygon/'
+                            },       {
+                                text: 'ol-geom-circle',
+                                link: '/componentsguide/geometries/geomcircle/'
                             }
                         ]
                     },

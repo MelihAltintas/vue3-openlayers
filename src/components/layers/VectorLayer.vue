@@ -10,50 +10,42 @@ import {
     provide,
     onUnmounted,
     onMounted,
-    watch
+    watch,
+    computed
 } from 'vue'
 
-import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+
 export default {
-    name: 'ol-tile-layer',
+    name: 'ol-vector-layer',
     setup(props) {
 
         const map = inject('map');
-        const overViewMap = inject('overviewMap', null);
+
         const {
             properties
         } = usePropsAsObjectProperties(props);
 
-        const tileLayer = new TileLayer(properties);
+        const vectorLayer = computed(()=>new VectorLayer(properties));
 
         watch(properties, () => {
-
-            tileLayer.setProperties(properties);
-
+            vectorLayer.value.setProperties(properties);
         });
 
         onMounted(() => {
-
-            if (overViewMap != null) {
-                overViewMap.getOverviewMap().addLayer(tileLayer);
-            } else {
-                map.addLayer(tileLayer);
-            }
+            map.addLayer(vectorLayer.value);
+           
         });
 
         onUnmounted(() => {
-            if (overViewMap != null) {
-                overViewMap.getOverviewMap().removeLayer(tileLayer);
-            } else {
-                map.removeLayer(tileLayer);
-            }
+            map.removeLayer(vectorLayer.value)
         });
 
-        provide('tileLayer', tileLayer);
+        provide('vectorLayer', vectorLayer);
 
         return {
-            tileLayer
+            vectorLayer
         }
     },
     props: {
@@ -87,10 +79,18 @@ export default {
         maxZoom: {
             type: Number
         },
-        preload: {
+        renderBuffer: {
             type: Number,
-            default: 1
+            default: 100
         },
+        updateWhileAnimating: {
+            type: Boolean,
+            default: false
+        },
+        updateWhileInteracting: {
+            type: Boolean,
+            default: false
+        }
     }
 }
 </script>

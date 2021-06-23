@@ -2,7 +2,9 @@ import {
     Map,
     Layers,
     Sources,
-    MapControls
+    MapControls,
+    Geometries,
+    Styles
 } from './components'
 
 
@@ -21,6 +23,8 @@ export default function install(app) {
     app.use(Layers)
     app.use(Sources)
     app.use(MapControls)
+    app.use(Geometries)
+    app.use(Styles);
 }
 
 export {
