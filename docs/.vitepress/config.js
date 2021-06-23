@@ -3,6 +3,12 @@ module.exports = {
     description: 'Vue3 OpenLayers',
     themeConfig: {
         displayAllHeaders: true,
+        nav: [
+            {
+                text: 'Github',
+                link: 'https://github.com/vuejs/vitepress/releases'
+            }
+        ],
         sidebar: {
             '/': [{
                 text: 'Introduction',
@@ -45,7 +51,7 @@ module.exports = {
                             {
                                 text: 'ol-source-osm',
                                 link: '/componentsguide/sources/osm/'
-                            },{
+                            }, {
                                 text: 'ol-source-xyz',
                                 link: '/componentsguide/sources/xyz/'
                             },
@@ -68,7 +74,7 @@ module.exports = {
                             {
                                 text: 'ol-geom-line-string',
                                 link: '/componentsguide/geometries/geomlinestring/'
-                            },{
+                            }, {
                                 text: 'ol-geom-polygon',
                                 link: '/componentsguide/geometries/geompolygon/'
                             },
@@ -79,7 +85,7 @@ module.exports = {
                             {
                                 text: 'ol-geom-multi-line-string',
                                 link: '/componentsguide/geometries/geommultilinestring/'
-                            },       {
+                            }, {
                                 text: 'ol-geom-multi-polygon',
                                 link: '/componentsguide/geometries/geommultipolygon/'
                             }
@@ -88,7 +94,7 @@ module.exports = {
                     {
                         text: 'Map Controls',
                         link: '/componentsguide/mapcontrols/'
-                        
+
                     }
                 ]
             }, ]
