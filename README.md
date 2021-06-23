@@ -7,7 +7,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 ## Links
 
-- [Documentation](https://vue3-openlayers.github.io/)
+- [Documentation](https://vue3openlayers.netlify.app)
 
 
 ## Requirements
