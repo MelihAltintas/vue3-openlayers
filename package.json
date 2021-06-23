@@ -1,12 +1,12 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
     "url": "https://github.com/MelihAltintas/vue3-openlayers"
   },
-  "homepage": "",
+  "homepage": "https://github.com/MelihAltintas/vue3-openlayers",
   "bugs": {
     "url": "https://github.com/MelihAltintas/vue3-openlayers/issues"
   },
@@ -15,16 +15,17 @@
   ],
   "author": "Melih Altıntaş",
   "license": "MIT",
-  "private": true,
-
+  "private": false,
+  "main": "dist/vue3-openlayers.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name vue3-openlayers src/index.js",
     "lint": "vue-cli-service lint",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:dev": "vitepress dev docs"
   },
+  "files": [  "dist/*",  "src/*",  "public/*",  "*.json",  "*.js"],
   "dependencies": {
     "core-js": "^3.6.5",
     "ol": "^6.5.0",
