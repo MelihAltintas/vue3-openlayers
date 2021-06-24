@@ -27,7 +27,7 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        const vectorLayer = computed(()=>new VectorLayer(properties));
+        const vectorLayer = computed(() => new VectorLayer(properties));
 
         watch(properties, () => {
             vectorLayer.value.setProperties(properties);
@@ -35,7 +35,7 @@ export default {
 
         onMounted(() => {
             map.addLayer(vectorLayer.value);
-           
+
         });
 
         onUnmounted(() => {
@@ -43,6 +43,7 @@ export default {
         });
 
         provide('vectorLayer', vectorLayer);
+        provide('stylable', vectorLayer);
 
         return {
             vectorLayer

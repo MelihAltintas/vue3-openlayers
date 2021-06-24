@@ -4,7 +4,8 @@ import {
     Sources,
     MapControls,
     Geometries,
-    Styles
+    Styles,
+    Interactions
 } from './components'
 
 
@@ -13,7 +14,7 @@ import './assets/style.css'
 
 import * as format from 'ol/format';
 import * as loadingstrategy from 'ol/loadingstrategy';
-
+import * as selectconditions from 'ol/events/condition';
 export default function install(app) {
     
     if (install.installed) {
@@ -28,9 +29,11 @@ export default function install(app) {
     app.use(MapControls)
     app.use(Geometries)
     app.use(Styles);
+    app.use(Interactions);
 
     app.provide('ol-format',format)
     app.provide('ol-loadingstrategy',loadingstrategy)
+    app.provide('ol-selectconditions',selectconditions)
 }
 
 export {

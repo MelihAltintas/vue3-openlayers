@@ -22,10 +22,7 @@ export default {
     name: 'ol-style',
     setup(props) {
 
-        const vectorLayer = inject('vectorLayer', null);
-        const feature = inject('feature', null);
-
-        const styledObj = feature != null ? feature : vectorLayer;
+        const styledObj = inject('stylable', null);
 
         const {
             properties
@@ -33,19 +30,25 @@ export default {
 
         let style = computed(() => new Style(properties));
 
+        const setStyle = (val) => {
+            try {
+                styledObj.value.setStyle(val)
+                styledObj.value.changed()
+            } catch (error) {
+                styledObj.value.set('style', val)
+                styledObj.value.changed()
+            }
+        };
         watch(properties, () => {
-
-            styledObj.value.setStyle(null)
-            styledObj.value.setStyle(style.value)
-            styledObj.value.changed()
+            setStyle(style.value);
         })
 
         onMounted(() => {
-            styledObj.value.setStyle(style.value)
+             setStyle(style.value);
         });
 
         onUnmounted(() => {
-            styledObj.value.setStyle(null)
+              setStyle(null);
         });
 
         provide("style", style)
