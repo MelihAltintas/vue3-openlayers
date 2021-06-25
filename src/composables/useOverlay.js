@@ -5,7 +5,8 @@ import {
     watchEffect,
     watch,
     onMounted,
-    onUnmounted
+    onUnmounted,
+    computed
 } from 'vue'
 
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
@@ -19,20 +20,19 @@ export default function useOverlay(props, emit) {
         properties
     } = usePropsAsObjectProperties(props);
 
-    let overlay = new Overlay(properties);
+    let overlay = computed(()=>new Overlay(properties));
 
     onMounted(() => {
-        map.addOverlay(overlay);
+        map.addOverlay(overlay.value);
     });
 
     onUnmounted(() => {
-        map.removeOverlay(overlay);
+        map.removeOverlay(overlay.value);
     });
 
-    watch(properties, () => {
-        map.removeOverlay(overlay);
-        overlay = new Overlay(properties);
-        map.addOverlay(overlay);
+    watch(overlay, (newVal,oldVal) => {
+        map.removeOverlay(oldVal.value);
+        map.addOverlay(overlay.value);
 
     });
 
@@ -43,22 +43,22 @@ export default function useOverlay(props, emit) {
         flush: 'post'
     })
 
-    overlay.on('change:element', () => emit('elementChanged', getElement()));
-    overlay.on('change:offset', () => emit('offsetChanged', getOffset()));
-    overlay.on('change:position', () => emit('positionChanged', getPosition()));
-    overlay.on('change:positioning', () => emit('positioningChanged', getPositioning()));
+    overlay.value.on('change:element', () => emit('elementChanged', getElement()));
+    overlay.value.on('change:offset', () => emit('offsetChanged', getOffset()));
+    overlay.value.on('change:position', () => emit('positionChanged', getPosition()));
+    overlay.value.on('change:positioning', () => emit('positioningChanged', getPositioning()));
 
-    const getElement = () => overlay.getElement();
-    const getOffset = () => overlay.getOffset();
-    const getPosition = () => overlay.getPosition();
-    const getPositioning = () => overlay.getPositioning();
+    const getElement = () => overlay.value.getElement();
+    const getOffset = () => overlay.value.getOffset();
+    const getPosition = () => overlay.value.getPosition();
+    const getPositioning = () => overlay.value.getPositioning();
 
-    const panIntoView = (opt_panIntoViewOptions) => overlay.panIntoView(opt_panIntoViewOptions);
+    const panIntoView = (opt_panIntoViewOptions) => overlay.value.panIntoView(opt_panIntoViewOptions);
 
-    const setElement = (element) => overlay.setElement(element);
-    const setOffset = (offset) => overlay.setOffset(offset);
-    const setPosition = (position) => overlay.setPosition(position);
-    const setPositioning = (positioning) => overlay.setPositioning(positioning);
+    const setElement = (element) => overlay.value.setElement(element);
+    const setOffset = (offset) => overlay.value.setOffset(offset);
+    const setPosition = (position) => overlay.value.setPosition(position);
+    const setPositioning = (positioning) => overlay.value.setPositioning(positioning);
 
     return {
         overlay,

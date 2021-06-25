@@ -15,6 +15,8 @@ import './assets/style.css'
 import * as format from 'ol/format';
 import * as loadingstrategy from 'ol/loadingstrategy';
 import * as selectconditions from 'ol/events/condition';
+import * as extent from 'ol/extent';
+
 export default function install(app) {
     
     if (install.installed) {
@@ -34,6 +36,7 @@ export default function install(app) {
     app.provide('ol-format',format)
     app.provide('ol-loadingstrategy',loadingstrategy)
     app.provide('ol-selectconditions',selectconditions)
+    app.provide('ol-extent',extent)
 }
 
 export {
