@@ -23,7 +23,7 @@ export default {
     setup(props) {
 
         const styledObj = inject('stylable', null);
-
+       
         const {
             properties
         } = usePropsAsObjectProperties(props);
@@ -35,8 +35,12 @@ export default {
                 styledObj.value.setStyle(val)
                 styledObj.value.changed()
             } catch (error) {
-                styledObj.value.set('style', val)
+     
+                styledObj.value.style_ = val
+                styledObj.value.values_.style = val
+                
                 styledObj.value.changed()
+                
             }
         };
         watch(properties, () => {

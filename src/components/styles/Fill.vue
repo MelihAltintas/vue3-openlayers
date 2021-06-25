@@ -37,6 +37,8 @@ export default {
                 style.value.setFill(null);
                 fill = new Fill(properties);
                 style.value.setFill(fill);
+
+               
             };
             watch(properties, () => {
 

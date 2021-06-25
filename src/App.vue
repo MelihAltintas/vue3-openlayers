@@ -29,7 +29,11 @@
     </ol-tile-layer>
 
     <ol-interaction-select @select="featureSelected" :condition="selectCondition">
-
+        <ol-style>
+            <ol-style-stroke color="green" :width="4"></ol-style-stroke>
+            <ol-style-fill color="rgba(0,0,0,0.3)"></ol-style-fill>
+            <ol-style-icon :src="markerIcon" :scale="0.2"></ol-style-icon>
+        </ol-style>
     </ol-interaction-select>
 
     <ol-vector-layer>
@@ -38,6 +42,7 @@
         </ol-source-vector>
         <ol-style>
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(0,0,0,0.3)"></ol-style-fill>
             <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
         </ol-style>
     </ol-vector-layer>
@@ -53,7 +58,6 @@
         </ol-style>
     </ol-vector-layer>
 
-
     <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !=''">
         <template v-slot="slotProps">
             <div class="overlay-content">
@@ -63,7 +67,6 @@
     </ol-overlay>
 
 </ol-map>
-
 </template>
 
 <script>
@@ -97,7 +100,7 @@ export default {
         const featureSelected = (event) => {
             if (event.selected.length == 1) {
 
-                selectedCityPosition.value =  extent.getCenter(event.selected[0].getGeometry().extent_)
+                selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
                 selectedCityName.value = event.selected[0].values_.name;
             } else {
                 selectedCityName.value = '';

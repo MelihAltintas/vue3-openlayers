@@ -42,7 +42,7 @@ export default {
 
         const strategy = inject('ol-loadingstrategy');
         const bbox = strategy.bbox;
-        console.log(bbox)
+
         const format = inject('ol-format');
         const GeoJSON = new format.GeoJSON();
 

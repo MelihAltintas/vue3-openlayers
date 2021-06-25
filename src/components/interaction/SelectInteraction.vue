@@ -15,6 +15,7 @@ import {
 } from 'vue'
 
 import Select from 'ol/interaction/Select';
+import Style from 'ol/style/Style';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
@@ -31,10 +32,14 @@ export default {
         } = usePropsAsObjectProperties(props);
 
         let select = computed(() => {
-            let s = new Select(properties);
+            let s = new Select({
+                ...properties,
+                style : new Style()
+            });
             s.on('select', (event) => {
                 emit('select', event)
             })
+
             return s;
         });
 
@@ -54,7 +59,7 @@ export default {
         onUnmounted(() => {
             map.removeInteraction(select.value);
         });
-        console.log(select)
+
         provide('stylable', select)
     },
     props: {

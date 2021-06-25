@@ -29,7 +29,7 @@ export default {
 
         let icon = computed(() => new Icon(properties));
 
-        console.log(icon.value)
+
         const applyStyle = () => {
             style.value.setImage(null);
             style.value.setImage(icon.value);
@@ -47,7 +47,6 @@ export default {
 
         onMounted(() => {
             style.value.setImage(icon.value);
-              console.log(style.value)
         });
 
         onUnmounted(() => {
