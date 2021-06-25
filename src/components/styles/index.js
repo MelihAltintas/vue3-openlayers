@@ -2,6 +2,7 @@ import Style from './Style.vue'
 import Circle from './Circle.vue'
 import Stroke from './Stroke.vue'
 import Fill from './Fill.vue'
+import Icon from './Icon.vue'
 
 function install (app) {
 
@@ -15,7 +16,7 @@ function install (app) {
     app.component(Circle.name, Circle)
     app.component(Stroke.name, Stroke)
     app.component(Fill.name, Fill)
-
+    app.component(Icon.name, Icon)
   }
   
   export default install
