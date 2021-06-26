@@ -23,7 +23,7 @@ export default {
     setup(props) {
 
         const styledObj = inject('stylable', null);
-       
+
         const {
             properties
         } = usePropsAsObjectProperties(props);
@@ -35,24 +35,35 @@ export default {
                 styledObj.value.setStyle(val)
                 styledObj.value.changed()
             } catch (error) {
-     
+
                 styledObj.value.style_ = val
                 styledObj.value.values_.style = val
-                
+
                 styledObj.value.changed()
-                
+
             }
         };
+
+        const styleFunc = computed(() => {
+            return (feature) => {
+                if (properties.overrideStyleFunction != null) {
+                    properties.overrideStyleFunction(feature,style.value)
+                }
+                return style.value
+            }
+        });
+
         watch(properties, () => {
-            setStyle(style.value);
+
+            setStyle(styleFunc.value);
         })
 
         onMounted(() => {
-             setStyle(style.value);
+            setStyle(styleFunc.value);
         });
 
         onUnmounted(() => {
-              setStyle(null);
+            setStyle(null);
         });
 
         provide("style", style)
@@ -65,6 +76,9 @@ export default {
     props: {
         zIndex: {
             type: Number
+        },
+        overrideStyleFunction: {
+            type: Function
         },
 
     }

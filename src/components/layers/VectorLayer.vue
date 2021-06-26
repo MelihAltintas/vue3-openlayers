@@ -88,6 +88,10 @@ export default {
             type: Boolean,
             default: false
         },
+        style: {
+            type: Function,
+
+        },
         updateWhileInteracting: {
             type: Boolean,
             default: false

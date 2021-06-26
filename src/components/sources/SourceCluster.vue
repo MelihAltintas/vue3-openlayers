@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import VectorSource from 'ol/source/Vector';
+import {
+    Cluster
+} from 'ol/source';
 
 import {
     inject,
@@ -19,7 +21,7 @@ import {
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
-    name: 'ol-source-vector',
+    name: 'ol-source-cluster',
     setup(props) {
 
         const layer = inject('vectorLayer');
@@ -28,7 +30,11 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let source = computed(() => new VectorSource(properties));
+        let source = computed(() =>{
+            let c=new Cluster(properties);
+            return c;
+
+        } );
 
         const applySource = () => {
             layer.value.setSource(null)
@@ -52,7 +58,7 @@ export default {
             layer.value.setSource(null)
         });
 
-        provide("vectorSource", source);
+        provide("vectorLayer", source);
 
         return {
             layer,
@@ -63,44 +69,18 @@ export default {
         attributions: {
             type: [String, Array],
         },
-        features: {
-            type: Array,
-            default: () => []
-        },
-        format: {
-            type: Object
+        distance: {
+            type: Number,
+            default: 20
 
         },
-        loader: {
-            type: Function
-
-        },
-        overlaps: {
-            type: Boolean,
-            default: true
-
-        },
-        projection: {
-            type: String,
-            default: 'EPSG:3857'
-        },
-        strategy: {
-            type: Function
-
-        },
-        url: {
-            type: [String, Function]
-
-        },
-        useSpatialIndex: {
-            type: Boolean,
-            default: true
-
+        geometryFunction: {
+            type: Function,
+            default: (feature)  => feature.getGeometry()
         },
         wrapX: {
             type: Boolean,
             default: true
-
         }
 
     }
