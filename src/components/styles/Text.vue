@@ -113,9 +113,9 @@ export default {
             type: String,
             default: 'middle'
         },
-                padding: {
+        padding: {
             type: Array,
-            default: ()=> [0,0,0,0]
+            default: () => [0, 0, 0, 0]
         },
     }
 

@@ -1,9 +1,8 @@
 <template>
-<select v-model="selectedXyzUrl">
-    <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">OSM</option>
-    <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">GOOGLE</option>
-</select>
-{{selectedXyzUrl}}
+<button @click="()=> selectedXyzUrl = 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'" style="height:70px">OPENSTREETMAP</button>
+<button @click="()=> selectedXyzUrl = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'" style="height:70px">GOOGLE</button>
+<button @click="()=> selectedXyzUrl = 'https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ'" style="height:70px">JAWG</button>
+
 
 <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
 
@@ -42,7 +41,7 @@
         </ol-source-vector>
         <ol-style>
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(0,0,0,0.3)"></ol-style-fill>
+            <ol-style-fill color="rgba(0,0,0,0.1)"></ol-style-fill>
             <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
         </ol-style>
     </ol-vector-layer>
@@ -53,18 +52,18 @@
         </ol-source-vector>
         <ol-style>
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(0,0,0,0.3)"></ol-style-fill>
+            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
             <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
         </ol-style>
     </ol-vector-layer>
 
     <ol-vector-layer>
 
-        <ol-source-cluster :distance="100">
+        <ol-source-cluster :distance="40">
 
             <ol-source-vector>
                 <ol-feature v-for="index in 1000" :key="index">
-                    <ol-geom-point :coordinates="[getRandomInRange(24,45),getRandomInRange(35,41)]"></ol-geom-point>
+                    <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
                 </ol-feature>
             </ol-source-vector>
 
@@ -72,9 +71,9 @@
 
         <ol-style :overrideStyleFunction="overrideStyleFunction">
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(0,0,0,0.3)"></ol-style-fill>
+            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
 
-            <ol-style-circle :radius="15">
+            <ol-style-circle :radius="10">
                 <ol-style-fill color="#3399CC"></ol-style-fill>
                 <ol-style-stroke color="#fff" :width="1"></ol-style-stroke>
 
@@ -137,11 +136,12 @@ export default {
         }
 
         const overrideStyleFunction = (feature, style) => {
-            console.log(feature)
+ 
             let clusteredFeatures = feature.get('features');
             let size = clusteredFeatures.length;
 
             style.getText().setText(size.toString());
+ 
         }
 
         const getRandomInRange = (from, to, fixed) => {

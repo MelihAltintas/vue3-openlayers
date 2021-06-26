@@ -6,6 +6,10 @@
   </a>
 </p>
 
+<p align="center">
+    <img width="100%" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/genel.png"><br />
+</p>
+
 > Web map [Vue](https://vuejs.org/ "Vue Homepage") components with the power of [OpenLayers](https://openlayers.org/ "OpenLayers Homepage")
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b6f6de51-4532-40a6-bca2-28e7e3ef2c8a/deploy-status)](https://app.netlify.com/sites/vue3openlayers/deploys)
