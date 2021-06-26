@@ -1,15 +1,5 @@
 # vue3-openlayers
 
-<p align="center">
-  <a href="https://vue3openlayers.netlify.app/" target="_blank" title="Vue OpenLayers Homepage">
-    <img width="100" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/logo.png"><br />
-  </a>
-</p>
-
-<p align="center">
-    <img width="100%" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/genel.png"><br />
-</p>
-
 > Web map [Vue](https://vuejs.org/ "Vue Homepage") components with the power of [OpenLayers](https://openlayers.org/ "OpenLayers Homepage")
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b6f6de51-4532-40a6-bca2-28e7e3ef2c8a/deploy-status)](https://app.netlify.com/sites/vue3openlayers/deploys)
@@ -18,6 +8,12 @@
 [![Github Issiues](https://img.shields.io/github/issues/MelihAltintas/vue3-openlayers)]()
 [![GitHub forks](https://img.shields.io/github/forks/MelihAltintas/vue3-openlayers)]()
 [![GitHub Stars](https://img.shields.io/github/stars/MelihAltintas/vue3-openlayers)]()
+
+<p align="center">
+  <a href="https://vue3openlayers.netlify.app/" target="_blank" title="Vue OpenLayers Homepage">
+    <img width="100" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/logo.png"><br />
+  </a>
+</p>
 
 ## Overview
 
@@ -33,6 +29,13 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 - [Vue](https://vuejs.org/) version **^3.0.0**
 - [OpenLayers](https://openlayers.org/) version **^6.5.0**
+
+<p align="center">
+    <img width="100%" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/genel.png"><br />
+</p>
+
+
+
 
 ## Install
 
