@@ -24,7 +24,7 @@
     <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
 
     <ol-tile-layer>
-        <ol-source-xyz :url="selectedXyzUrl" />
+        <ol-source-bingmaps apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI" imagerySet="AerialWithLabels"/>
     </ol-tile-layer>
 
     <ol-interaction-select @select="featureSelected" :condition="selectCondition">

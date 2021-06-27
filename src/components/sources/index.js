@@ -4,6 +4,7 @@ import SourceImageStatic from './SourceImageStatic.vue'
 import SourceWMTS from './SourceWMTS.vue'
 import SourceVector from './SourceVector.vue'
 import SourceCluster from './SourceCluster.vue'
+import SourceBingMaps from './SourceBingMaps.vue'
 
 function install (app) {
 
@@ -19,6 +20,7 @@ function install (app) {
     app.component(SourceWMTS.name, SourceWMTS)
     app.component(SourceVector.name, SourceVector)
     app.component(SourceCluster.name, SourceCluster)
+    app.component(SourceBingMaps.name, SourceBingMaps)
   }
   
   export default install
