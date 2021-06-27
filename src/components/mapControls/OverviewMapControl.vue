@@ -1,5 +1,5 @@
 <template lang="">
-<div >
+<div>
     <slot></slot>
 </div>
 </template>
@@ -10,15 +10,28 @@ import {
 } from 'ol/control';
 import useControl from '@/composables/useControl'
 import {
-    provide
+    provide,
+    inject,
+    onMounted,
+    onUnmounted
 } from 'vue'
 export default {
     name: 'ol-overviewmap-control',
     setup(props) {
 
+        const map = inject('map');
+
         const {
             control
         } = useControl(OverviewMap, props);
+
+        onMounted(() => {
+            control.value.setMap(map);
+        });
+
+        onUnmounted(() => {
+            control.value.setMap(null);
+        });
 
         provide("overviewMap", control)
 

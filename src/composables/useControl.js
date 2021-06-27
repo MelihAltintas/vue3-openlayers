@@ -3,6 +3,7 @@ import {
     onMounted,
     onUnmounted,
     watch,
+    computed
 
 } from 'vue'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
@@ -15,21 +16,23 @@ export default function useControl(ControlType, props) {
         properties
     } = usePropsAsObjectProperties(props);
 
-    let control = new ControlType({...properties});
+    let control = computed(()=>new ControlType({...properties}));
 
-    watch(properties, () => {
-        map.removeControl(control);
-        control = new ControlType({...properties});
-        map.addControl(control)
+    watch(control, (newVal,oldVal) => {
+        map.removeControl(oldVal);
+        map.addControl(newVal);
+        map.changed()
     });
 
     onMounted(() => {
 
-        map.addControl(control);
+        map.addControl(control.value);
+        map.changed();
     });
 
     onUnmounted(() => {
-        map.removeControl(control);
+        map.removeControl(control.value);
+        map.changed();
     });
 
     return {

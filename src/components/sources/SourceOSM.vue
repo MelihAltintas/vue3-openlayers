@@ -10,7 +10,8 @@ import {
     inject,
     watch,
     onMounted,
-    onUnmounted
+    onUnmounted,
+    computed
 } from 'vue'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
@@ -19,26 +20,29 @@ export default {
     setup(props) {
 
         const layer = inject('tileLayer');
+
         const {
             properties
         } = usePropsAsObjectProperties(props);
-        const createSource = () => {
-            return new OSM(properties);
-        };
-        let source = createSource();
 
-        watch(properties, () => {
-            layer.setSource(null)
-            source = createSource();
-            layer.setSource(source)
+        let source = computed(() => new OSM(properties))
+
+        watch(source, () => {
+            layer.value.setSource(source.value)
 
         });
+
+        watch(layer, () => {
+            layer.value.setSource(source.value)
+
+        });
+
         onMounted(() => {
-            layer.setSource(source)
+            layer.value.setSource(source.value)
         });
 
         onUnmounted(() => {
-            layer.setSource(null)
+            layer.value.setSource(null)
         });
 
         return {

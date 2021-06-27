@@ -45,8 +45,8 @@ export default {
 
         watch(select, (newVal, oldVal) => {
 
-            map.removeInteraction(oldVal.value);
-            map.addInteraction(newVal.value);
+            map.removeInteraction(oldVal);
+            map.addInteraction(newVal);
 
             map.changed()
         })

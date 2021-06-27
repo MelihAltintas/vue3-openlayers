@@ -10,7 +10,8 @@ import {
     provide,
     onUnmounted,
     onMounted,
-    watch
+    watch,
+    computed
 } from 'vue'
 
 import TileLayer from 'ol/layer/Tile';
@@ -21,33 +22,47 @@ export default {
 
         const map = inject('map');
         const overViewMap = inject('overviewMap', null);
+
         const {
             properties
         } = usePropsAsObjectProperties(props);
 
-        const tileLayer = new TileLayer(properties);
+        const tileLayer = computed(() => new TileLayer(properties));
 
-        watch(properties, () => {
-
-            tileLayer.setProperties(properties);
-
-        });
-
-        onMounted(() => {
+        const applyTileLayer = () => {
 
             if (overViewMap != null) {
-                overViewMap.getOverviewMap().addLayer(tileLayer);
+                overViewMap.value.getOverviewMap().addLayer(tileLayer.value);
+                overViewMap.value.changed();
             } else {
-                map.addLayer(tileLayer);
+                map.addLayer(tileLayer.value);
             }
+        };
+
+        const removeTileLayer = () => {
+
+            if (overViewMap != null) {
+                overViewMap.value.getOverviewMap().removeLayer(tileLayer.value);
+                overViewMap.value.changed();
+            } else {
+                map.removeLayer(tileLayer.value);
+            }
+        };
+
+        if (overViewMap != null) {
+            watch(overViewMap, () => {
+                removeTileLayer();
+                applyTileLayer();
+
+            });
+        }
+
+        onMounted(() => {
+            applyTileLayer();
         });
 
         onUnmounted(() => {
-            if (overViewMap != null) {
-                overViewMap.getOverviewMap().removeLayer(tileLayer);
-            } else {
-                map.removeLayer(tileLayer);
-            }
+            removeTileLayer();
         });
 
         provide('tileLayer', tileLayer);

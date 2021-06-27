@@ -28,15 +28,15 @@ export default {
         let feature = computed(() => new Feature(properties));
 
         watch(feature, (newVal, oldVal) => {
-            vectorSource.value.removeFeature(oldVal.value);
-            vectorSource.value.addFeature(newVal.value);
+            vectorSource.value.removeFeature(oldVal);
+            vectorSource.value.addFeature(newVal);
             vectorSource.value.changed()
         })
 
         watch(vectorSource, (newVal, oldVal) => {
-            oldVal.value.removeFeature(feature.value);
-            newVal.value.addFeature(feature.value);
-            newVal.value.changed()
+            oldVal.removeFeature(feature.value);
+            newVal.addFeature(feature.value);
+            newVal.changed()
         })
 
         onMounted(() => {

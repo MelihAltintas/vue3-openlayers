@@ -28,5 +28,7 @@ function install (app) {
     SourceXYZ,
     SourceOSM,
     SourceImageStatic,
-    SourceWMTS
+    SourceWMTS,
+    SourceVector,
+    SourceCluster
   }

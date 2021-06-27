@@ -11,7 +11,7 @@
     <ol-fullscreen-control />
     <ol-mouseposition-control />
 
-    <ol-overviewmap-control>
+    <ol-overviewmap-control :collapsed="false">
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>

@@ -19,7 +19,8 @@ import {
     inject,
     onMounted,
     onUnmounted,
-    watch
+    watch,
+    computed
 } from 'vue'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
@@ -31,49 +32,56 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        const getTileGrid = () => {
+        const extent = computed(() => getProjection(properties.projection).getExtent());
+        const origin = computed(() => getTopLeft(extent.value));
+        const size = computed(() => getWidth(extent.value) / 256);
 
-            const extent = getProjection(properties.projection).getExtent();
-            const origin = getTopLeft(extent);
-            const size = getWidth(extent) / 256;
+
+        const getTileGrid = computed(() => {
+      
             const resolutions = new Array(14);
             const matrixIds = new Array(14);
+
             for (var z = 0; z < 14; ++z) {
 
-                resolutions[z] = size / Math.pow(2, z);
+                resolutions[z] = size.value / Math.pow(2, z);
                 matrixIds[z] = z;
             }
 
             return new WMTSTileGrid({
-                origin,
+                origin:origin.value,
                 resolutions,
                 matrixIds
             });
-        };
-        const createSource = () => {
-            return new WMTS({
-                ...properties,
-                projection: typeof properties.projection == "string" ? properties.projection : new Projection({
-                    ...properties.projection
-                }),
-                tileGrid: getTileGrid()
-            });
-        };
+        });
 
-        let source = createSource();
+        const source = computed(() => new WMTS({
+            ...properties,
+            projection: typeof properties.projection == "string" ? properties.projection : new Projection({
+                ...properties.projection
+            }),
+            tileGrid: getTileGrid.value
+        }));
 
-        watch(properties, () => {
-            tileLayer.setSource(null)
-            source = createSource();
-            tileLayer.setSource(source)
+        watch(source, () => {
+
+            tileLayer.value.setSource(source.value)
 
         });
+
+        watch(tileLayer, () => {
+
+            tileLayer.value.setSource(source.value)
+
+        });
+
         onMounted(() => {
-            tileLayer.setSource(source)
+            tileLayer.value.setSource(source.value)
+     
         });
 
         onUnmounted(() => {
-            tileLayer.setSource(null)
+            tileLayer.value.setSource(null)
         });
 
         return {

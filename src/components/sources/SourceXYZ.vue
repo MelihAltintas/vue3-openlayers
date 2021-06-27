@@ -10,7 +10,8 @@ import {
     inject,
     watch,
     onMounted,
-    onUnmounted
+    onUnmounted,
+    computed
 } from 'vue'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
@@ -22,23 +23,24 @@ export default {
         const {
             properties
         } = usePropsAsObjectProperties(props);
-        const createSource = () => {
-            return new  XYZ(properties);
-        };
-        let source = createSource();
 
-        watch(properties, () => {
-            layer.setSource(null)
-            source = createSource();
-            layer.setSource(source)
+        let source = computed(() => new XYZ(properties))
+
+        watch(source, () => {
+            layer.value.setSource(source.value)
+
+        });
+
+        watch(layer, () => {
+            layer.value.setSource(source.value)
 
         });
         onMounted(() => {
-            layer.setSource(source)
+            layer.value.setSource(source.value)
         });
 
         onUnmounted(() => {
-            layer.setSource(null)
+            layer.value.setSource(null)
         });
 
         return {

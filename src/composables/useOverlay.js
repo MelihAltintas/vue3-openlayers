@@ -31,8 +31,8 @@ export default function useOverlay(props, emit) {
     });
 
     watch(overlay, (newVal,oldVal) => {
-        map.removeOverlay(oldVal.value);
-        map.addOverlay(overlay.value);
+        map.removeOverlay(oldVal);
+        map.addOverlay(newVal);
 
     });
 
