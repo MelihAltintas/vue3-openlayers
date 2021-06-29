@@ -3,7 +3,6 @@
 <button @click="()=> selectedXyzUrl = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'" style="height:70px">GOOGLE</button>
 <button @click="()=> selectedXyzUrl = 'https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ'" style="height:70px">JAWG</button>
 
-
 <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
@@ -11,7 +10,7 @@
     <ol-fullscreen-control />
     <ol-mouseposition-control />
 
-    <ol-overviewmap-control :collapsed="false">
+    <ol-overviewmap-control>
         <ol-tile-layer>
             <ol-source-osm />
         </ol-tile-layer>
@@ -23,8 +22,24 @@
     <ol-zoomslider-control />
     <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
 
+    <ol-geolocation :projection="projection">
+        <template v-slot="slotProps">
+            <ol-vector-layer :zIndex="2">
+                <ol-source-vector>
+                    <ol-feature>
+                        <ol-geom-point :coordinates="slotProps.position"></ol-geom-point>
+                        <ol-style>
+                            <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
+                        </ol-style>
+                    </ol-feature>
+                </ol-source-vector>
+
+            </ol-vector-layer>
+        </template>
+    </ol-geolocation>
+
     <ol-tile-layer>
-        <ol-source-bingmaps apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI" imagerySet="AerialWithLabels"/>
+        <ol-source-osm />
     </ol-tile-layer>
 
     <ol-interaction-select @select="featureSelected" :condition="selectCondition">
@@ -101,7 +116,7 @@ import {
     ref,
     inject
 } from 'vue'
-
+import hereIcon from '@/assets/here.png'
 import markerIcon from '@/assets/marker.png'
 export default {
     setup() {
@@ -136,12 +151,12 @@ export default {
         }
 
         const overrideStyleFunction = (feature, style) => {
- 
+
             let clusteredFeatures = feature.get('features');
             let size = clusteredFeatures.length;
 
             style.getText().setText(size.toString());
- 
+
         }
 
         const getRandomInRange = (from, to, fixed) => {
@@ -161,6 +176,7 @@ export default {
             selectedCityName,
             selectedCityPosition,
             markerIcon,
+            hereIcon,
             overrideStyleFunction,
             getRandomInRange
 

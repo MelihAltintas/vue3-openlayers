@@ -14,6 +14,7 @@ import {
     computed
 } from 'vue'
 import Feature from 'ol/Feature';
+import Geometry from 'ol/geom/Geometry';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-feature',
@@ -50,6 +51,11 @@ export default {
 
         provide('feature', feature)
         provide('stylable', feature)
+    },
+    props:{
+        geometryOrProperties:{
+            type:[Geometry,Object,Array]
+        }
     }
 
 }
