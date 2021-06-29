@@ -30,6 +30,8 @@ export default {
 
         });
 
+         emit("geoLoc", geoLoc.value);
+
         const position = ref([]);
         const accuracy = ref(0);
         const altitude = ref(0);
