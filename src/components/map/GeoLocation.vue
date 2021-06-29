@@ -46,12 +46,12 @@ export default {
             altitude.value = geoLoc.value.getAltitude();
             altitudeAccuracy.value = geoLoc.value.getAltitudeAccuracy();
             accuracyGeometry.value = geoLoc.value.getAccuracyGeometry();
+            emit("geoLoc", geoLoc.value);
         }
-        
+
         watch(geoLoc, (newVal, oldVal) => {
             oldVal.un('change', changeEvt);
             newVal.on('change', changeEvt);
-            emit("geoLoc", newVal);
         })
 
         return {
