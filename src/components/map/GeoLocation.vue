@@ -14,7 +14,10 @@ import Geolocation from 'ol/Geolocation';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-geolocation',
-    setup(props) {
+    emits: ["geoLoc"],
+    setup(props, {
+        emit
+    }) {
 
         const {
             properties
@@ -44,9 +47,11 @@ export default {
             altitudeAccuracy.value = geoLoc.value.getAltitudeAccuracy();
             accuracyGeometry.value = geoLoc.value.getAccuracyGeometry();
         }
+        
         watch(geoLoc, (newVal, oldVal) => {
             oldVal.un('change', changeEvt);
             newVal.on('change', changeEvt);
+            emit("geoLoc", newVal);
         })
 
         return {
