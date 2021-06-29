@@ -7,7 +7,7 @@
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-geolocation :projection="projection" @geoLoc="geoLocChange">
+    <ol-geolocation :projection="projection" @positionChanged="geoLocChange">
         <template v-slot="slotProps">
             <ol-vector-layer :zIndex="2">
                 <ol-source-vector>
@@ -42,8 +42,10 @@ export default {
         const map = ref(null)
 
         const geoLocChange = (loc) => {
-            if(view.value != null)
-            view.value.fit(loc.getAccuracyGeometry())
+            console.log(loc);
+            view.value.fit([loc[0], loc[1], loc[0], loc[1]], {
+                maxZoom: 14
+            })
         }
 
         return {

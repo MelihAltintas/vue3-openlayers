@@ -14,7 +14,7 @@ import Geolocation from 'ol/Geolocation';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 export default {
     name: 'ol-geolocation',
-    emits: ["geoLoc"],
+    emits: ["positionChanged", "speedChanged", "headingChanged", "altitudeChanged", "altitudeAccuracyChanged", "accuracyGeometryChanged"],
     setup(props, {
         emit
     }) {
@@ -30,8 +30,6 @@ export default {
 
         });
 
-  
-
         const position = ref([]);
         const accuracy = ref(0);
         const altitude = ref(0);
@@ -39,6 +37,30 @@ export default {
         const speed = ref(0);
         const heading = ref(0);
         const accuracyGeometry = ref({});
+
+        watch(position, () => {
+            emit("positionChanged", position.value);
+        });
+
+        watch(speed, () => {
+            emit("speedChanged", speed.value);
+        });
+
+        watch(heading, () => {
+            emit("headingChanged", heading.value);
+        });
+
+        watch(altitude, () => {
+            emit("altitudeChanged", altitude.value);
+        });
+
+        watch(altitudeAccuracy, () => {
+            emit("altitudeAccuracyChanged", altitudeAccuracy.value);
+        });
+
+        watch(accuracyGeometry, () => {
+            emit("accuracyGeometryChanged", accuracyGeometry.value);
+        })
 
         const changeEvt = () => {
             position.value = geoLoc.value.getPosition();
@@ -48,13 +70,12 @@ export default {
             altitude.value = geoLoc.value.getAltitude();
             altitudeAccuracy.value = geoLoc.value.getAltitudeAccuracy();
             accuracyGeometry.value = geoLoc.value.getAccuracyGeometry();
-            emit("geoLoc", geoLoc.value);
+
         }
 
         watch(geoLoc, (newVal, oldVal) => {
             oldVal.un('change', changeEvt);
             newVal.on('change', changeEvt);
-             emit("geoLoc", geoLoc.value);
         })
 
         return {
