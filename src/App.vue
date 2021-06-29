@@ -1,32 +1,17 @@
 <template>
-<button @click="()=> selectedXyzUrl = 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'" style="height:70px">OPENSTREETMAP</button>
-<button @click="()=> selectedXyzUrl = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'" style="height:70px">GOOGLE</button>
-<button @click="()=> selectedXyzUrl = 'https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ'" style="height:70px">JAWG</button>
-
-<ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
+<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px" ref="map">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
 
-    <ol-fullscreen-control />
-    <ol-mouseposition-control />
+    <ol-tile-layer>
+        <ol-source-osm />
+    </ol-tile-layer>
 
-    <ol-overviewmap-control>
-        <ol-tile-layer>
-            <ol-source-osm />
-        </ol-tile-layer>
-    </ol-overviewmap-control>
-
-    <ol-scaleline-control />
-    <ol-rotate-control />
-    <ol-zoom-control />
-    <ol-zoomslider-control />
-    <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
-
-    <ol-geolocation :projection="projection">
+    <ol-geolocation :projection="projection" @geoLoc="geoLocChange">
         <template v-slot="slotProps">
             <ol-vector-layer :zIndex="2">
                 <ol-source-vector>
-                    <ol-feature>
+                    <ol-feature ref="positionFeature">
                         <ol-geom-point :coordinates="slotProps.position"></ol-geom-point>
                         <ol-style>
                             <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
@@ -38,130 +23,27 @@
         </template>
     </ol-geolocation>
 
-    <ol-tile-layer>
-        <ol-source-osm />
-    </ol-tile-layer>
-
-    <ol-interaction-select @select="featureSelected" :condition="selectCondition">
-        <ol-style>
-            <ol-style-stroke color="green" :width="10"></ol-style-stroke>
-            <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
-            <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
-        </ol-style>
-    </ol-interaction-select>
-
-    <ol-vector-layer>
-        <ol-source-vector url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-kktc.json" :format="geoJson" :projection="projection">
-
-        </ol-source-vector>
-        <ol-style>
-            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(0,0,0,0.1)"></ol-style-fill>
-            <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
-        </ol-style>
-    </ol-vector-layer>
-
-    <ol-vector-layer>
-        <ol-source-vector url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
-
-        </ol-source-vector>
-        <ol-style>
-            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-            <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
-        </ol-style>
-    </ol-vector-layer>
-
-    <ol-vector-layer>
-
-        <ol-source-cluster :distance="40">
-
-            <ol-source-vector>
-                <ol-feature v-for="index in 1000" :key="index">
-                    <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
-                </ol-feature>
-            </ol-source-vector>
-
-        </ol-source-cluster>
-
-        <ol-style :overrideStyleFunction="overrideStyleFunction">
-            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-
-            <ol-style-circle :radius="10">
-                <ol-style-fill color="#3399CC"></ol-style-fill>
-                <ol-style-stroke color="#fff" :width="1"></ol-style-stroke>
-
-            </ol-style-circle>
-            <ol-style-text>
-                <ol-style-fill color="#fff"></ol-style-fill>
-            </ol-style-text>
-        </ol-style>
-
-    </ol-vector-layer>
-
-    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !=''">
-        <template v-slot="slotProps">
-            <div class="overlay-content">
-                {{selectedCityName}} {{slotProps}}
-            </div>
-        </template>
-    </ol-overlay>
-
 </ol-map>
 </template>
 
 <script>
-import {
-    ref,
-    inject
-} from 'vue'
 import hereIcon from '@/assets/here.png'
-import markerIcon from '@/assets/marker.png'
+import {
+    ref
+} from 'vue'
 export default {
     setup() {
-        const center = ref([34, 39.13])
+        const center = ref([40, 40])
         const projection = ref('EPSG:4326')
-        const zoom = ref(6.8)
+        const zoom = ref(8)
         const rotation = ref(0)
 
-        const format = inject('ol-format');
+        const view = ref(null)
+        const map = ref(null)
 
-        const geoJson = new format.GeoJSON();
-        const selectedXyzUrl = ref('https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-
-        const selectConditions = inject('ol-selectconditions')
-
-        const selectCondition = selectConditions.pointerMove;
-
-        const selectedCityName = ref('')
-        const selectedCityPosition = ref([])
-
-        const extent = inject('ol-extent');
-
-        const featureSelected = (event) => {
-            if (event.selected.length == 1) {
-
-                selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
-                selectedCityName.value = event.selected[0].values_.name;
-            } else {
-                selectedCityName.value = '';
-            }
-
-        }
-
-        const overrideStyleFunction = (feature, style) => {
-
-            let clusteredFeatures = feature.get('features');
-            let size = clusteredFeatures.length;
-
-            style.getText().setText(size.toString());
-
-        }
-
-        const getRandomInRange = (from, to, fixed) => {
-            return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-
+        const geoLocChange = (loc) => {
+            if(view.value != null)
+            view.value.fit(loc.getAccuracyGeometry())
         }
 
         return {
@@ -169,28 +51,11 @@ export default {
             projection,
             zoom,
             rotation,
-            geoJson,
-            selectedXyzUrl,
-            featureSelected,
-            selectCondition,
-            selectedCityName,
-            selectedCityPosition,
-            markerIcon,
             hereIcon,
-            overrideStyleFunction,
-            getRandomInRange
-
+            view,
+            map,
+            geoLocChange
         }
     },
 }
 </script>
-
-<style>
-.overlay-content {
-    background: red !important;
-    color: white;
-    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
-    padding: 10px 20px;
-    font-size: 16px;
-}
-</style>

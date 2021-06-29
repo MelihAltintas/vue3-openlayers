@@ -30,7 +30,7 @@ export default {
 
         });
 
-         emit("geoLoc", geoLoc.value);
+  
 
         const position = ref([]);
         const accuracy = ref(0);
@@ -54,6 +54,7 @@ export default {
         watch(geoLoc, (newVal, oldVal) => {
             oldVal.un('change', changeEvt);
             newVal.on('change', changeEvt);
+             emit("geoLoc", geoLoc.value);
         })
 
         return {
