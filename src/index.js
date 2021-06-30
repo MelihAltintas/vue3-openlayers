@@ -10,6 +10,7 @@ import {
 
 
 import 'ol/ol.css'
+import 'ol-contextmenu/dist/ol-contextmenu.css'
 import './assets/style.css'
 
 import * as format from 'ol/format';

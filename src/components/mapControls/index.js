@@ -7,6 +7,8 @@ import ZoomControl from './ZoomControl.vue'
 import ZoomSliderControl from './ZoomSliderControl.vue'
 import ZoomToExtentControl from './ZoomToExtentControl.vue'
 import RotateControl from './RotateControl.vue'
+import ContextMenuControl from './ContextMenuControl.vue'
+
 function install (app) {
 
     if (install.installed) {
@@ -24,6 +26,7 @@ function install (app) {
     app.component(ZoomSliderControl.name, ZoomSliderControl)
     app.component(ZoomToExtentControl.name, ZoomToExtentControl)
     app.component(RotateControl.name, RotateControl)
+    app.component(ContextMenuControl.name, ContextMenuControl)
   }
   
   export default install
@@ -37,5 +40,6 @@ function install (app) {
     ScaleLineControl,
     ZoomControl,
     ZoomSliderControl,
-    ZoomToExtentControl
+    ZoomToExtentControl,
+    ContextMenuControl
   }

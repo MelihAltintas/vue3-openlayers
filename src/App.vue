@@ -3,6 +3,8 @@
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
 
+    <ol-context-menu />
+    
     <ol-tile-layer>
         <ol-source-osm />
     </ol-tile-layer>
