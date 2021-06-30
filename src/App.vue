@@ -1,38 +1,33 @@
 <template>
 <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px" ref="map">
 
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
+    <ol-view :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" ref="view" />
 
-    <ol-context-menu />
-    
     <ol-tile-layer>
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-geolocation :projection="projection" @positionChanged="geoLocChange">
-        <template v-slot="slotProps">
-            <ol-vector-layer :zIndex="2">
-                <ol-source-vector>
-                    <ol-feature ref="positionFeature">
-                        <ol-geom-point :coordinates="slotProps.position"></ol-geom-point>
-                        <ol-style>
-                            <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
-                        </ol-style>
-                    </ol-feature>
-                </ol-source-vector>
+    <ol-context-menu :items="contextMenuItems" />
 
-            </ol-vector-layer>
-        </template>
-    </ol-geolocation>
+    <ol-vector-layer>
+        <ol-source-vector ref="markers">
+
+        </ol-source-vector>
+        <ol-style>
+            <ol-style-icon :src="marker" :scale="0.1"></ol-style-icon>
+        </ol-style>
+    </ol-vector-layer>
 
 </ol-map>
 </template>
 
 <script>
-import hereIcon from '@/assets/here.png'
 import {
-    ref
+    ref,
+    inject
 } from 'vue'
+
+import marker from "@/assets/marker.png"
 export default {
     setup() {
         const center = ref([40, 40])
@@ -40,25 +35,48 @@ export default {
         const zoom = ref(8)
         const rotation = ref(0)
 
-        const view = ref(null)
-        const map = ref(null)
+        const contextMenuItems = ref([])
 
-        const geoLocChange = (loc) => {
-            console.log(loc);
-            view.value.fit([loc[0], loc[1], loc[0], loc[1]], {
-                maxZoom: 14
-            })
-        }
+        const markers = ref(null);
+        const view = ref(null);
+
+        const Feature = inject('ol-feature')
+        const Geom = inject('ol-geom')
+
+
+        contextMenuItems.value = [{
+                text: 'Center map here',
+                classname: 'some-style-class', // add some CSS rules
+                callback: (val) => {
+                    view.value.setCenter(val.coordinate)
+
+                } // `center` is your callback function
+            },
+            {
+                text: 'Add a Marker',
+                classname: 'some-style-class', // you can add this icon with a CSS class
+                // instead of `icon` property (see next line)
+                icon: marker, // this can be relative or absolute
+                callback: (val) => {
+                    console.log(val)
+                    let feature = new Feature({
+                        geometry: new Geom.Point(val.coordinate),
+                    });
+                    markers.value.source.addFeature(feature)
+                }
+            },
+            '-' // this is a separator
+        ]
 
         return {
             center,
             projection,
             zoom,
             rotation,
-            hereIcon,
-            view,
-            map,
-            geoLocChange
+            contextMenuItems,
+            marker,
+            markers,
+            view
         }
     },
 }

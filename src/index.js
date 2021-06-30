@@ -13,6 +13,8 @@ import 'ol/ol.css'
 import 'ol-contextmenu/dist/ol-contextmenu.css'
 import './assets/style.css'
 
+import feature from 'ol/Feature';
+import * as geom from 'ol/geom/';
 import * as format from 'ol/format';
 import * as loadingstrategy from 'ol/loadingstrategy';
 import * as selectconditions from 'ol/events/condition';
@@ -34,6 +36,8 @@ export default function install(app) {
     app.use(Styles);
     app.use(Interactions);
 
+    app.provide('ol-feature',feature)
+    app.provide('ol-geom',geom)
     app.provide('ol-format',format)
     app.provide('ol-loadingstrategy',loadingstrategy)
     app.provide('ol-selectconditions',selectconditions)
