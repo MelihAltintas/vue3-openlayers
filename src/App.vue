@@ -70,10 +70,14 @@
         <ol-style :overrideStyleFunction="overrideStyleFunction">
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-            <ol-style-icon :src="markerIcon" :scale="0.08"></ol-style-icon>
+
+            <ol-style-circle :radius="20">
+                <ol-style-stroke color="black" :width="15" :lineDash="[]" lineCap="butt"></ol-style-stroke>
+                <ol-style-fill color="black"></ol-style-fill>
+            </ol-style-circle>
 
             <ol-style-text>
-                <ol-style-fill color="blue"></ol-style-fill>
+                <ol-style-fill color="#fff"></ol-style-fill>
             </ol-style-text>
         </ol-style>
 
@@ -101,13 +105,13 @@ export default {
     setup() {
         const center = ref([34, 39.13])
         const projection = ref('EPSG:4326')
-        const zoom = ref(6.8)
+        const zoom = ref(6)
         const rotation = ref(0)
 
         const format = inject('ol-format');
 
         const geoJson = new format.GeoJSON();
-        const selectedXyzUrl = ref('https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        const selectedXyzUrl = ref('https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ')
 
         const selectConditions = inject('ol-selectconditions')
 
@@ -163,6 +167,17 @@ export default {
 
             let clusteredFeatures = feature.get('features');
             let size = clusteredFeatures.length;
+            let color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+            var radius = Math.max(8, Math.min(size, 20));
+            let dash = 2 * Math.PI * radius / 6;
+            let calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+
+            style.getImage().getStroke().setLineDash(dash);
+            style.getImage().getStroke().setColor("rgba(" + color + ",0.5)");
+            style.getImage().getStroke().setLineDash(calculatedDash);
+            style.getImage().getFill().setColor("rgba(" + color + ",1)");
+
+            style.getImage().setRadius(radius)
 
             style.getText().setText(size.toString());
 

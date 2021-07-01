@@ -30,11 +30,8 @@ It can display maps with tiled, raster or vector layers loaded from different so
 - [Vue](https://vuejs.org/) version **^3.0.0**
 - [OpenLayers](https://openlayers.org/) version **^6.5.0**
 
-<p align="center">
-    <img width="100%" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/genel.png"><br />
-</p>
 
-
+![Alt Text](https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/vue3-openlayers.gif)
 
 
 ## Install
