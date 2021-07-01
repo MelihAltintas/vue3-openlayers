@@ -19,6 +19,7 @@ import * as format from 'ol/format';
 import * as loadingstrategy from 'ol/loadingstrategy';
 import * as selectconditions from 'ol/events/condition';
 import * as extent from 'ol/extent';
+import * as animations from 'ol/easing'
 
 export default function install(app) {
     
@@ -38,6 +39,7 @@ export default function install(app) {
 
     app.provide('ol-feature',feature)
     app.provide('ol-geom',geom)
+    app.provide('ol-animations',animations)
     app.provide('ol-format',format)
     app.provide('ol-loadingstrategy',loadingstrategy)
     app.provide('ol-selectconditions',selectconditions)

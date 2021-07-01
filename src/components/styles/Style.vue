@@ -32,8 +32,10 @@ export default {
 
         const setStyle = (val) => {
             try {
+
                 styledObj.value.setStyle(val)
                 styledObj.value.changed()
+
             } catch (error) {
 
                 styledObj.value.style_ = val
@@ -47,7 +49,7 @@ export default {
         const styleFunc = computed(() => {
             return (feature) => {
                 if (properties.overrideStyleFunction != null) {
-                    properties.overrideStyleFunction(feature,style.value)
+                    properties.overrideStyleFunction(feature, style.value)
                 }
                 return style.value
             }

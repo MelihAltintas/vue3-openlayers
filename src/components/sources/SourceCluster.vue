@@ -30,11 +30,11 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let source = computed(() =>{
-            let c=new Cluster(properties);
+        let source = computed(() => {
+            let c = new Cluster(properties);
             return c;
 
-        } );
+        });
 
         const applySource = () => {
             layer.value.setSource(null)
@@ -52,6 +52,7 @@ export default {
 
         onMounted(() => {
             layer.value.setSource(source.value)
+            layer.value.changed()
         });
 
         onUnmounted(() => {
@@ -76,7 +77,7 @@ export default {
         },
         geometryFunction: {
             type: Function,
-            default: (feature)  => feature.getGeometry()
+            default: (feature) => feature.getGeometry()
         },
         wrapX: {
             type: Boolean,
