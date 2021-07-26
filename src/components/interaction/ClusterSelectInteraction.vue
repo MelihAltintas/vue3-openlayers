@@ -14,12 +14,12 @@ import {
     computed
 } from 'vue'
 
-import Select from 'ol/interaction/Select';
+import Select from 'ol-ext//interaction/SelectCluster';
 import Style from 'ol/style/Style';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
-    name: 'ol-interaction-select',
+    name: 'ol-interaction-clusterselect',
     emits: ["select"],
     setup(props, {
         emit
@@ -34,7 +34,7 @@ export default {
         let select = computed(() => {
             let s = new Select({
                 ...properties,
-                style : new Style()
+                style: new Style()
             });
             s.on('select', (event) => {
                 emit('select', event)
@@ -72,9 +72,27 @@ export default {
             type: Function,
 
         },
-        filter:{
-            type:Function
-        }
+        filter: {
+            type: Function
+        },
+        pointRadius: {
+            type: Number,
+            default: 7
+
+        },
+        animate: {
+            type: Boolean,
+            default: true
+
+        },
+        featureStyle: {
+            type: Function,
+
+        },
+        style: {
+            type: Function,
+
+        },
     }
 
 }

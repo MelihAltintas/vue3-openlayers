@@ -1,5 +1,5 @@
 import SelectInteraction from './SelectInteraction.vue'
-
+import ClusterSelectInteraction from './ClusterSelectInteraction.vue'
 function install (app) {
 
     if (install.installed) {
@@ -9,6 +9,7 @@ function install (app) {
     install.installed = true
   
     app.component(SelectInteraction.name, SelectInteraction)
+    app.component(ClusterSelectInteraction.name, ClusterSelectInteraction)
 
   }
   
@@ -16,5 +17,6 @@ function install (app) {
   
   export {
     install,
-    SelectInteraction
+    SelectInteraction,
+    ClusterSelectInteraction
   }

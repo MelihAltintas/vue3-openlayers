@@ -2,7 +2,7 @@
 <button @click="()=> selectedXyzUrl = 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'" style="height:70px">OPENSTREETMAP</button>
 <button @click="()=> selectedXyzUrl = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'" style="height:70px">GOOGLE</button>
 <button @click="()=> selectedXyzUrl = 'https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ'" style="height:70px">JAWG</button>
-
+Click clustered features for expand
 <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
@@ -28,11 +28,19 @@
         <ol-source-xyz :url="selectedXyzUrl" />
     </ol-tile-layer>
 
-    <ol-interaction-select @select="featureSelected" :condition="selectCondition">
+    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20" >
         <ol-style>
+            <ol-style-stroke color="green" :width="5"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
+            <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
+        </ol-style>
+    </ol-interaction-clusterselect>
+
+    <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
+        <ol-style >
             <ol-style-stroke color="green" :width="10"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
-            <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
+            <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
         </ol-style>
     </ol-interaction-select>
 
@@ -153,6 +161,7 @@ export default {
         ]
 
         const featureSelected = (event) => {
+     
             if (event.selected.length == 1) {
 
                 selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
@@ -167,6 +176,7 @@ export default {
 
             let clusteredFeatures = feature.get('features');
             let size = clusteredFeatures.length;
+
             let color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
             var radius = Math.max(8, Math.min(size, 20));
             let dash = 2 * Math.PI * radius / 6;
@@ -182,6 +192,10 @@ export default {
             style.getText().setText(size.toString());
 
         }
+
+        const selectInteactionFilter = (feature) => {
+            return feature.values_.name != undefined;
+        };
 
         const getRandomInRange = (from, to, fixed) => {
             return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
@@ -204,7 +218,8 @@ export default {
             getRandomInRange,
             contextMenuItems,
             vectorsource,
-            view
+            view,
+            selectInteactionFilter
 
         }
     },
