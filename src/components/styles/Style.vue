@@ -23,7 +23,7 @@ export default {
     setup(props) {
 
         const styledObj = inject('stylable', null);
-
+  
         const {
             properties
         } = usePropsAsObjectProperties(props);

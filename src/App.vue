@@ -3,6 +3,17 @@
 <button @click="()=> selectedXyzUrl = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'" style="height:70px">GOOGLE</button>
 <button @click="()=> selectedXyzUrl = 'https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ'" style="height:70px">JAWG</button>
 Click clustered features for expand
+
+<input type="checkbox" id="checkbox" v-model="drawEnable">
+<label for="checkbox">Draw Enable</label>
+
+<select id="type" v-model="drawType">
+    <option value="Point">Point</option>
+    <option value="LineString">LineString</option>
+    <option value="Polygon">Polygon</option>
+    <option value="Circle">Circle</option>
+</select>
+
 <ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
 
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
@@ -28,7 +39,7 @@ Click clustered features for expand
         <ol-source-xyz :url="selectedXyzUrl" />
     </ol-tile-layer>
 
-    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20" >
+    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
         <ol-style>
             <ol-style-stroke color="green" :width="5"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
@@ -37,7 +48,7 @@ Click clustered features for expand
     </ol-interaction-clusterselect>
 
     <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
-        <ol-style >
+        <ol-style>
             <ol-style-stroke color="green" :width="10"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
             <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
@@ -56,14 +67,32 @@ Click clustered features for expand
     </ol-vector-layer>
 
     <ol-vector-layer>
-        <ol-source-vector url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
+        <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
+
+            <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
+
+            </ol-interaction-modify>
+
+            <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart">
+                <ol-style>
+                    <ol-style-stroke color="yellow" :width="5"></ol-style-stroke>
+                    <ol-style-fill color="rgba(0,0,0,0.1)"></ol-style-fill>
+                    <ol-style-circle :radius="7">
+                        <ol-style-fill color="blue"></ol-style-fill>
+                    </ol-style-circle>
+                </ol-style>
+            </ol-interaction-draw>
+
+            <ol-interaction-snap v-if="drawEnable" />
 
         </ol-source-vector>
 
         <ol-style>
             <ol-style-stroke color="red" :width="2"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-
+            <ol-style-circle :radius="7">
+                <ol-style-fill color="blue"></ol-style-fill>
+            </ol-style-circle>
         </ol-style>
     </ol-vector-layer>
 
@@ -136,6 +165,10 @@ export default {
         const contextMenuItems = ref([])
         const vectorsource = ref(null)
         const view = ref(null);
+
+        const drawEnable = ref(true)
+        const drawType = ref("Point")
+
         contextMenuItems.value = [{
                 text: 'Center map here',
                 classname: 'some-style-class', // add some CSS rules
@@ -161,7 +194,7 @@ export default {
         ]
 
         const featureSelected = (event) => {
-     
+
             if (event.selected.length == 1) {
 
                 selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
@@ -202,6 +235,24 @@ export default {
 
         }
 
+        const drawstart = (event) => {
+            console.log(event)
+
+        }
+
+        const drawend = (event) => {
+            console.log(event)
+        }
+
+        const modifystart = (event) => {
+            console.log(event)
+
+        }
+
+        const modifyend = (event) => {
+            console.log(event)
+        }
+
         return {
             center,
             projection,
@@ -219,7 +270,13 @@ export default {
             contextMenuItems,
             vectorsource,
             view,
-            selectInteactionFilter
+            selectInteactionFilter,
+            drawstart,
+            drawend,
+            modifystart,
+            modifyend,
+            drawEnable,
+            drawType
 
         }
     },
