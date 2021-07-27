@@ -74,13 +74,7 @@ Click clustered features for expand
             </ol-interaction-modify>
 
             <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart">
-                <ol-style>
-                    <ol-style-stroke color="yellow" :width="5"></ol-style-stroke>
-                    <ol-style-fill color="rgba(0,0,0,0.1)"></ol-style-fill>
-                    <ol-style-circle :radius="7">
-                        <ol-style-fill color="blue"></ol-style-fill>
-                    </ol-style-circle>
-                </ol-style>
+
             </ol-interaction-draw>
 
             <ol-interaction-snap v-if="drawEnable" />
@@ -166,7 +160,7 @@ export default {
         const vectorsource = ref(null)
         const view = ref(null);
 
-        const drawEnable = ref(true)
+        const drawEnable = ref(false)
         const drawType = ref("Point")
 
         contextMenuItems.value = [{
