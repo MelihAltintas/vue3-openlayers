@@ -6,17 +6,19 @@
 
 <script>
 import {
-   // provide,
+    // provide,
     inject,
     watch,
     onMounted,
     onUnmounted,
-    computed
+    toRefs
+    // computed
 } from 'vue'
 
+import Collection from 'ol/Collection';
 import Modify from 'ol/interaction/Modify';
 //import Style from 'ol/style/Style';
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+//import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
     name: 'ol-interaction-modify',
@@ -29,45 +31,67 @@ export default {
         const source = inject("vectorSource");
 
         const {
-            properties
-        } = usePropsAsObjectProperties(props);
+            features,
+            condition,
+            deleteCondition,
+            insertVertexCondition,
+            pixelTolerance,
+            wrapX,
+            hitDetection
+        } = toRefs(props);
 
-        let modify = computed(() => {
+        let createModify = () => {
 
-            let s = new Modify({
-                ...properties,
-              //  style: new Style(),
-                source: source.value
+            let modify = new Modify({
+                source: source.value,
+                features: features.value,
+                condition: condition.value,
+                deleteCondition: deleteCondition.value,
+                insertVertexCondition: insertVertexCondition.value,
+                pixelTolerance: pixelTolerance.value,
+                wrapX: wrapX.value,
+                hitDetection: hitDetection.value,
             });
 
-            s.on('modifystart', (event) => {
+            modify.on('modifystart', (event) => {
                 emit('modifystart', event)
             })
 
-            s.on('modifyend', (event) => {
+            modify.on('modifyend', (event) => {
                 emit('modifyend', event)
             })
 
-            return s;
-        });
+            return modify;
 
-        watch(modify, (newVal, oldVal) => {
+        };
 
-            map.removeInteraction(oldVal);
-            map.addInteraction(newVal);
+        let modify = createModify();
+
+        watch([condition,
+            deleteCondition,
+            insertVertexCondition,
+            pixelTolerance,
+            wrapX,
+            hitDetection
+        ], () => {
+            map.removeInteraction(modify);
+            modify = createModify();
+            map.addInteraction(modify);
+            modify.changed()
+
             map.changed()
         })
 
         onMounted(() => {
-            map.addInteraction(modify.value);
+            map.addInteraction(modify);
 
         });
 
         onUnmounted(() => {
-            map.removeInteraction(modify.value);
+            map.removeInteraction(modify);
         });
 
-       // provide('stylable', modify)
+        // provide('stylable', modify)
     },
     props: {
 
@@ -96,6 +120,9 @@ export default {
         hitDetection: {
             type: Boolean,
         },
+        features: {
+            type: Collection
+        }
 
     }
 

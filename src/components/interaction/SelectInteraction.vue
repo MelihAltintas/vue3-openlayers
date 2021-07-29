@@ -17,7 +17,7 @@ import {
 import Select from 'ol/interaction/Select';
 import Style from 'ol/style/Style';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-
+import Collection from 'ol/Collection';
 export default {
     name: 'ol-interaction-select',
     emits: ["select"],
@@ -34,7 +34,7 @@ export default {
         let select = computed(() => {
             let s = new Select({
                 ...properties,
-                style : new Style()
+                style: new Style()
             });
             s.on('select', (event) => {
                 emit('select', event)
@@ -72,8 +72,11 @@ export default {
             type: Function,
 
         },
-        filter:{
-            type:Function
+        filter: {
+            type: Function
+        },
+        features: {
+            type: Collection
         }
     }
 

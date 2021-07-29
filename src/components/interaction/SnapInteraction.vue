@@ -8,7 +8,7 @@ import {
     watch,
     onMounted,
     onUnmounted,
-    computed
+
 } from 'vue'
 
 import Snap from 'ol/interaction/Snap';
@@ -21,35 +21,36 @@ export default {
         const map = inject("map");
         const source = inject("vectorSource");
 
-     
         const {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let snap = computed(() => {
-           
+        let createSnap = () => {
             let s = new Snap({
                 ...properties,
-                source:source.value
+                source: source.value
             });
-    
+
             return s;
-        });
 
-        watch(snap, (newVal, oldVal) => {
+        };
+        let snap = createSnap();
 
-            map.removeInteraction(oldVal);
-            map.addInteraction(newVal);
+        watch(properties, () => {
+
+            map.removeInteraction(snap);
+            snap = createSnap();
+            map.addInteraction(snap);
             map.changed()
         })
 
         onMounted(() => {
-            map.addInteraction(snap.value);
+            map.addInteraction(snap);
 
         });
 
         onUnmounted(() => {
-            map.removeInteraction(snap.value);
+            map.removeInteraction(snap);
         });
 
     },
