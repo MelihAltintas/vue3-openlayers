@@ -121,7 +121,7 @@ export default {
             type: Boolean,
         },
         features: {
-            type: Collection
+            type: [Collection,Object]
         }
 
     }
