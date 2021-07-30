@@ -1,9 +1,10 @@
 <template>
+  <button @click="drawEnabled = !drawEnabled">Draw</button>
   <ol-map
     ref="map"
     :load-tiles-while-animating="true"
     :load-tiles-while-interacting="true"
-    style="height: 400px"
+    style="height: 350px"
   >
     <ol-view
       ref="view"
@@ -19,19 +20,27 @@
 
     <ol-vector-layer :style="vectorStyle">
       <ol-source-vector :features="zones">
+        <!-- <ol-source-vector
+        :url="'https://openlayers.org/en/latest/examples/data/geojson/countries.geojson'"
+        :format="geoJsonFormat"
+      > -->
         <ol-interaction-modify
           v-if="modifyEnabled"
           :features="selectedFeatures"
         >
         </ol-interaction-modify>
+        <ol-interaction-draw
+          v-if="drawEnabled"
+          :stopClick="true"
+          type="Polygon"
+          @drawend="drawend"
+        />
         <ol-interaction-snap v-if="modifyEnabled" />
       </ol-source-vector>
     </ol-vector-layer>
     <ol-interaction-select
-      :multi="true"
       @select="featureSelected"
       :condition="selectCondition"
-      :features="selectedFeatures"
     >
       <ol-style>
         <ol-style-stroke :color="'red'" :width="2"></ol-style-stroke>
@@ -45,7 +54,6 @@
 import { ref, inject } from "vue"
 import { GeoJSON } from "ol/format"
 import { Fill, Stroke, Style } from "ol/style"
-import { Collection } from "ol"
 
 export default {
   setup() {
@@ -54,9 +62,7 @@ export default {
     const zoom = ref(5)
     const rotation = ref(0)
     const modifyEnabled = ref(false)
-    const selectedFeatures = ref({})
-
-    selectedFeatures.value = new Collection([])
+    const drawEnabled = ref(false)
 
     const geojsonObject = {
       type: "FeatureCollection",
@@ -101,6 +107,10 @@ export default {
     }
 
     const zones = ref([])
+    const selectedFeatures = ref([])
+    const drawend = (event) => {
+      zones.value.push(event.feature)
+    }
 
     zones.value = new GeoJSON().readFeatures(geojsonObject)
 
@@ -122,14 +132,14 @@ export default {
     const selectCondition = selectConditions.click
 
     function featureSelected(event) {
-      if (event.deselected.length > 0) {
-        modifyEnabled.value = false
-      }
+      modifyEnabled.value = false
       if (event.selected.length > 0) {
         modifyEnabled.value = true
       }
-      console.log(selectedFeatures.value)
+      selectedFeatures.value = event.target.getFeatures()
+   
     }
+
 
     return {
       vectorStyle,
@@ -142,7 +152,10 @@ export default {
       zoom,
       rotation,
       modifyEnabled,
-      selectedFeatures
+      drawEnabled,
+      drawend,
+      selectedFeatures,
+
     }
   }
 }

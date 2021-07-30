@@ -6,7 +6,7 @@
 
 <script>
 import {
-   // provide,
+    // provide,
     inject,
     watch,
     onMounted,
@@ -31,8 +31,6 @@ export default {
         const {
             properties
         } = usePropsAsObjectProperties(props);
-    
-       
 
         let draw = computed(() => {
 
@@ -50,11 +48,9 @@ export default {
                 emit('drawend', event)
             })
 
-           
             return s;
         });
 
-     
         watch(draw, (newVal, oldVal) => {
 
             map.removeInteraction(oldVal);
@@ -71,7 +67,7 @@ export default {
             map.removeInteraction(draw.value);
         });
 
-     //   provide('stylable', draw)
+        //   provide('stylable', draw)
     },
     props: {
 
