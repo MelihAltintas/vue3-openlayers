@@ -76,7 +76,7 @@ export default {
             type: Function
         },
         features: {
-            type: Collection
+            type: [Collection,Object]
         }
     }
 
