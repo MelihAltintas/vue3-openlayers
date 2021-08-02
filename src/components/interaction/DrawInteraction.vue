@@ -11,12 +11,12 @@ import {
     watch,
     onMounted,
     onUnmounted,
-    computed
+    toRefs
+    //computed
 } from 'vue'
 
 import Draw from 'ol/interaction/Draw';
 //import Style from 'ol/style/Style';
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
     name: 'ol-interaction-draw',
@@ -29,42 +29,88 @@ export default {
         const source = inject("vectorSource");
 
         const {
-            properties
-        } = usePropsAsObjectProperties(props);
+            type,
+            clickTolerance,
+            dragVertexDelay,
+            snapTolerance,
+            stopClick,
+            maxPoints,
+            minPoints,
+            finishCondition,
+            geometryFunction,
+            geometryName,
+            condition,
+            freehand,
+            freehandCondition,
+            wrapX
+        } = toRefs(props);
 
-        let draw = computed(() => {
+        let createDraw = () => {
 
-            let s = new Draw({
-                ...properties,
-                //style: new Style(),
-                source: source.value
+            let draw = new Draw({
+                source: source.value,
+                type: type.value,
+                clickTolerance: clickTolerance.value,
+                dragVertexDelay: dragVertexDelay.value,
+                snapTolerance: snapTolerance.value,
+                stopClick: stopClick.value,
+                maxPoints: maxPoints.value,
+                minPoints: minPoints.value,
+                finishCondition: finishCondition.value,
+                geometryFunction: geometryFunction.value,
+                geometryName: geometryName.value,
+                condition: condition.value,
+                freehand: freehand.value,
+                freehandCondition: freehandCondition.value,
+                wrapX: wrapX.value,
+
             });
 
-            s.on('drawstart', (event) => {
+            draw.on('drawstart', (event) => {
                 emit('drawstart', event)
             })
 
-            s.on('drawend', (event) => {
+            draw.on('drawend', (event) => {
                 emit('drawend', event)
             })
 
-            return s;
-        });
+            return draw;
 
-        watch(draw, (newVal, oldVal) => {
+        };
 
-            map.removeInteraction(oldVal);
-            map.addInteraction(newVal);
+        let draw = createDraw();
+
+        watch([type,
+            clickTolerance,
+            dragVertexDelay,
+            snapTolerance,
+            stopClick,
+            maxPoints,
+            minPoints,
+            finishCondition,
+            geometryFunction,
+            geometryName,
+            condition,
+            freehand,
+            freehandCondition,
+            wrapX
+        ], () => {
+
+            map.removeInteraction(draw);
+            draw = createDraw();
+            map.addInteraction(draw);
+            draw.changed()
+
             map.changed()
         })
 
         onMounted(() => {
-            map.addInteraction(draw.value);
+            map.addInteraction(draw);
 
         });
 
         onUnmounted(() => {
-            map.removeInteraction(draw.value);
+            map.removeInteraction(draw);
         });
 
         //   provide('stylable', draw)
