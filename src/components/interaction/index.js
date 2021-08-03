@@ -3,6 +3,7 @@ import ClusterSelectInteraction from './ClusterSelectInteraction.vue'
 import DrawInteraction from './DrawInteraction.vue'
 import SnapInteraction from './SnapInteraction.vue'
 import ModifyInteraction from './ModifyInteraction.vue'
+import TransformInteraction from './TransformInteraction.vue'
 function install (app) {
 
     if (install.installed) {
@@ -16,6 +17,7 @@ function install (app) {
     app.component(DrawInteraction.name, DrawInteraction)
     app.component(SnapInteraction.name, SnapInteraction)
     app.component(ModifyInteraction.name, ModifyInteraction)
+    app.component(TransformInteraction.name, TransformInteraction)
 
   }
   
@@ -27,5 +29,6 @@ function install (app) {
     ClusterSelectInteraction,
     DrawInteraction,
     SnapInteraction,
-    ModifyInteraction
+    ModifyInteraction,
+    TransformInteraction
   }
