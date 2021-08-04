@@ -25,7 +25,6 @@ export default function useControl(ControlType, props) {
     });
 
     onMounted(() => {
-
         map.addControl(control.value);
         map.changed();
     });
@@ -36,6 +35,7 @@ export default function useControl(ControlType, props) {
     });
 
     return {
+        map,
         control
     }
 }

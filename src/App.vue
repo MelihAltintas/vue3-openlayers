@@ -4,17 +4,23 @@
 <ol-map ref="map" :load-tiles-while-animating="true" :load-tiles-while-interacting="true" style="height: 350px">
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
 
-    <ol-tile-layer>
+    <ol-swipe-control ref="swipeControl" v-if="layerList.length > 0" :layerList="layerList" />
+
+    <ol-tile-layer ref="osmLayer">
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-vector-layer :style="vectorStyle">
+    <ol-tile-layer ref="googleLayer">
+        <ol-source-xyz url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" />
+    </ol-tile-layer>
+
+    <ol-vector-layer>
         <ol-source-vector :features="zones">
             <ol-interaction-draw v-if="drawEnabled" :stopClick="true" type="Polygon" @drawend="drawend" />
-                    <ol-style>
-            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
-        </ol-style>
+            <ol-style>
+                <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
+                <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
+            </ol-style>
         </ol-source-vector>
     </ol-vector-layer>
 
@@ -26,12 +32,12 @@
 
 <script>
 import {
-    ref
+    ref,
+    onMounted
 } from "vue"
 import {
     GeoJSON
 } from "ol/format"
-
 
 export default {
     setup() {
@@ -43,6 +49,17 @@ export default {
 
         const drawEnabled = ref(false)
 
+        const swipeControl = ref(null)
+        const googleLayer = ref(null)
+        const osmLayer = ref(null)
+        const layerList = ref([])
+        onMounted(() => {
+
+
+            layerList.value.push(googleLayer.value.tileLayer);
+             layerList.value.push(osmLayer.value.tileLayer);
+       
+        });
         const geojsonObject = {
             type: "FeatureCollection",
             crs: {
@@ -86,7 +103,6 @@ export default {
 
         const zones = ref([])
 
-
         const drawend = (event) => {
 
             zones.value.push(event.feature)
@@ -96,11 +112,7 @@ export default {
 
         zones.value = new GeoJSON().readFeatures(geojsonObject)
 
-
-
         const geoJsonFormat = new GeoJSON()
-
-
 
         return {
             map,
@@ -112,6 +124,10 @@ export default {
             rotation,
             drawEnabled,
             drawend,
+            layerList,
+            googleLayer,
+            swipeControl,
+            osmLayer
         }
     }
 }

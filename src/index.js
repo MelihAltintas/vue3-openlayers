@@ -10,6 +10,8 @@ import {
 
 
 import 'ol/ol.css'
+import 'ol-ext/dist/ol-ext.css'
+
 import 'ol-contextmenu/dist/ol-contextmenu.css'
 import './assets/style.css'
 
