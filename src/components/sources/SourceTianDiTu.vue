@@ -38,8 +38,8 @@ export class Tianditu extends WMTSSource {
       ter: 14,
       img: 18,
     };
-    var options = opt_options || {};
-    // var attributions = options.attributions || new ol.Attribution({
+    let options = opt_options || {};
+    // let attributions = options.attributions || new ol.Attribution({
     //     html: "Map Data <a href='http://www.tianditu.com' target='_blank'><img style='background-color:transparent;bottom:2px;opacity:1;' " +
     //         "src='http://api.tianditu.com/img/map/logo.png' width='53px' height='22px' opacity='0'></a> with " +
     //         "<span>© <a href='http://iclient.supermap.io' target='_blank'>SuperMap iClient</a></span>"
@@ -63,14 +63,14 @@ export class Tianditu extends WMTSSource {
     options.url = options.url
       .replace("{layer}", options.layerType)
       .replace("{proj}", options.matrixSet);
-    var tileGrid =
+    let tileGrid =
       options.tileGrid ||
       Tianditu.getTileGrid(options.projection || "EPSG:3857");
 
-    var crossOrigin =
+    let crossOrigin =
       options.crossOrigin !== undefined ? options.crossOrigin : "anonymous";
 
-    var superOptions = {
+    let superOptions = {
       version: options.version || "1.0.0",
       format: options.format || "tiles",
       dimensions: options.dimensions || {},
@@ -91,16 +91,16 @@ export class Tianditu extends WMTSSource {
     };
     console.log(superOptions);
     //需要代理时走自定义 tileLoadFunction，否则走默认的tileLoadFunction
-    // if (options.tileProxy) {
-    //     superOptions.tileLoadFunction = tileLoadFunction;
-    // }
+    if (options.tileProxy) {
+      superOptions.tileLoadFunction = tileLoadFunction;
+    }
     super(superOptions);
 
     if (options.tileProxy) {
       this.tileProxy = options.tileProxy;
     }
     //需要代理时，走以下代码
-    var me = this;
+    let me = this;
 
     function tileLoadFunction(imageTile, src) {
       //支持代理
@@ -127,13 +127,13 @@ export class Tianditu extends WMTSSource {
    * @returns {ol.tilegrid.WMTS} 返回默认 4326 网格瓦片对象。
    */
   static default4326TileGrid() {
-    var tdt_WGS84_resolutions = [];
-    var matrixIds = [];
-    for (var i = 1; i < 19; i++) {
+    let tdt_WGS84_resolutions = [];
+    let matrixIds = [];
+    for (let i = 1; i < 19; i++) {
       tdt_WGS84_resolutions.push((0.703125 * 2) / Math.pow(2, i));
       matrixIds.push(i);
     }
-    var tileGird = new TileGridWMTS({
+    let tileGird = new TileGridWMTS({
       extent: [-180, -90, 180, 90],
       resolutions: tdt_WGS84_resolutions,
       origin: [-180, 90],
@@ -149,15 +149,17 @@ export class Tianditu extends WMTSSource {
    * @returns {ol.tilegrid.WMTS} 返回默认 3857 网格瓦片对象。
    */
   static default3857TileGrid() {
-    var tdt_Mercator_resolutions = [];
-    var matrixIds = [];
-    for (var i = 1; i < 19; i++) {
+    let tdt_Mercator_resolutions = [];
+    let matrixIds = [];
+    for (let i = 1; i < 19; i++) {
       tdt_Mercator_resolutions.push((78271.5169640203125 * 2) / Math.pow(2, i));
       matrixIds.push(i);
     }
-    var tileGird = new TileGridWMTS({
+    let tileGird = new TileGridWMTS({
       extent: [
-        -20037508.3427892, -20037508.3427892, 20037508.3427892,
+        -20037508.3427892,
+        -20037508.3427892,
+        20037508.3427892,
         20037508.3427892,
       ],
       resolutions: tdt_Mercator_resolutions,
