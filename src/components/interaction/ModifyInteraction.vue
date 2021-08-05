@@ -6,7 +6,7 @@
 
 <script>
 import {
-    // provide,
+     provide,
     inject,
     watch,
     onMounted,
@@ -91,7 +91,7 @@ export default {
             map.removeInteraction(modify);
         });
 
-        // provide('stylable', modify)
+         provide('stylable', modify)
     },
     props: {
 

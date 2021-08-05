@@ -63,7 +63,11 @@ export default {
                 circle.value.getStroke().setWidth(properties.width)
 
                 circle.value.setRadius(circle.value.getRadius());
-                styledObj.value.changed();
+                try {
+                    styledObj.value.changed();
+                } catch (error) {
+                    styledObj.changed();
+                }
 
             };
 

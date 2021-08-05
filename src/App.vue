@@ -16,7 +16,24 @@
 
     <ol-vector-layer>
         <ol-source-vector :features="zones">
-            <ol-interaction-draw v-if="drawEnabled" :stopClick="true" type="Polygon" @drawend="drawend" />
+            <ol-interaction-draw v-if="drawEnabled" :stopClick="true" type="Polygon" @drawend="drawend">
+                <ol-style>
+                    <ol-style-stroke color="yellow" :width="2"></ol-style-stroke>
+                    <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
+                    <ol-style-circle radius="10">
+                        <ol-style-fill color="white"></ol-style-fill>
+                        <ol-style-stroke color="red" :width="10"></ol-style-stroke>
+                    </ol-style-circle>
+                </ol-style>
+            </ol-interaction-draw>
+            <ol-interaction-modify>
+                <ol-style>
+                    <ol-style-circle radius="10">
+                        <ol-style-fill color="white"></ol-style-fill>
+                        <ol-style-stroke color="red" :width="10"></ol-style-stroke>
+                    </ol-style-circle>
+                </ol-style>
+            </ol-interaction-modify>
             <ol-style>
                 <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
                 <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
@@ -24,9 +41,6 @@
         </ol-source-vector>
     </ol-vector-layer>
 
-    <ol-interaction-transform>
-
-    </ol-interaction-transform>
 </ol-map>
 </template>
 
@@ -55,10 +69,9 @@ export default {
         const layerList = ref([])
         onMounted(() => {
 
-
             layerList.value.push(googleLayer.value.tileLayer);
-             layerList.value.push(osmLayer.value.tileLayer);
-       
+            layerList.value.push(osmLayer.value.tileLayer);
+
         });
         const geojsonObject = {
             type: "FeatureCollection",

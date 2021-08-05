@@ -63,7 +63,11 @@ export default {
                 circle.value.getFill().setColor(color)
 
                 circle.value.setRadius(circle.value.getRadius()); // force render
+                try{
                 styledObj.value.changed();
+                }catch(error){
+                     styledObj.changed();
+                }
 
             };
 

@@ -15,7 +15,8 @@ import {
 } from 'vue'
 
 import Style from 'ol/style/Style';
-
+import Draw from 'ol/interaction/Draw';
+import Modify from 'ol/interaction/Modify';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
@@ -31,6 +32,12 @@ export default {
         let style = computed(() => new Style(properties));
 
         const setStyle = (val) => {
+
+            if(styledObj instanceof Draw || styledObj instanceof Modify){
+            
+                styledObj.getOverlay().setStyle(val)
+                return;
+            }
             try {
 
                 styledObj.value.setStyle(val)
