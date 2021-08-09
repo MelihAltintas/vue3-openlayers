@@ -30,6 +30,7 @@ export default {
 
         let map = new Map(properties);
 
+
         watch(properties, () => {
 
             map.setProperties(properties);

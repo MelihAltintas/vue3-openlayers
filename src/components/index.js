@@ -5,6 +5,7 @@ import * as MapControls from './mapControls'
 import * as Geometries from './geometries'
 import * as Styles from './styles'
 import * as Interactions from './interaction'
+import * as Animations from './animations'
 export {
     Map,
     Layers,
@@ -12,5 +13,6 @@ export {
     MapControls,
     Geometries,
     Styles,
-    Interactions
+    Interactions,
+    Animations
 }

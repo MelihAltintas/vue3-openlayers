@@ -27,14 +27,17 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let icon = computed(() => new Icon(properties));
-
+        let icon = computed(() => {
+            let ic = new Icon(properties)
+            ic.load()
+            return ic;
+        });
 
         const applyStyle = () => {
             style.value.setImage(null);
             style.value.setImage(icon.value);
             styledObj.value.changed()
-          
+
         };
 
         watch(properties, () => {

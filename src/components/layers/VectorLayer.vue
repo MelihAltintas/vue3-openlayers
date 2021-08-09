@@ -11,7 +11,7 @@ import {
     onUnmounted,
     onMounted,
     watch,
-    computed
+    computed,
 } from 'vue'
 
 import VectorLayer from 'ol/layer/Vector';
@@ -35,7 +35,6 @@ export default {
 
         onMounted(() => {
             map.addLayer(vectorLayer.value);
-
         });
 
         onUnmounted(() => {

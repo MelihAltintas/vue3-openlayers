@@ -21,12 +21,18 @@ export default {
     setup(props) {
 
         const vectorSource = inject("vectorSource");
+        const vectorLayer = inject("vectorLayer");
+        const animation = inject("animation", null);
 
         const {
             properties
         } = usePropsAsObjectProperties(props);
 
-        let feature = computed(() => new Feature(properties));
+        let feature = computed(() => {
+            let f = new Feature(properties)
+
+            return f;
+        });
 
         watch(feature, (newVal, oldVal) => {
             vectorSource.value.removeFeature(oldVal);
@@ -41,7 +47,13 @@ export default {
         })
 
         onMounted(() => {
+
             vectorSource.value.addFeature(feature.value);
+            if (animation != null) {
+
+                vectorLayer.value.animateFeature(feature.value, animation.value)
+
+            }
 
         });
 
@@ -50,11 +62,12 @@ export default {
         });
 
         provide('feature', feature)
+
         provide('stylable', feature)
     },
-    props:{
-        geometryOrProperties:{
-            type:[Geometry,Object,Array]
+    props: {
+        geometryOrProperties: {
+            type: [Geometry, Object, Array]
         }
     }
 

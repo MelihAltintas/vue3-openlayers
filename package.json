@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "core-js": "^3.6.5",
     "ol": "^6.6.1",
     "ol-contextmenu": "^4.1.0",
-    "ol-ext": "^3.2.3",
+    "ol-ext": "^3.2.4",
     "vue": "^3.0.0"
   },
   "devDependencies": {

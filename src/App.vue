@@ -1,7 +1,16 @@
 <template>
-<button @click="drawEnabled = !drawEnabled">Draw</button>
-{{drawEnabled}}
-<ol-map ref="map" :load-tiles-while-animating="true" :load-tiles-while-interacting="true" style="height: 350px">
+<input type="checkbox" id="checkbox" v-model="drawEnable">
+<label for="checkbox">Draw Enable</label>
+
+<select id="type" v-model="drawType">
+    <option value="Point">Point</option>
+    <option value="LineString">LineString</option>
+    <option value="Polygon">Polygon</option>
+    <option value="Circle">Circle</option>
+</select>
+
+<ol-map ref="map" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:800px">
+
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
 
     <ol-swipe-control ref="swipeControl" v-if="layerList.length > 0" :layerList="layerList" />
@@ -10,36 +19,128 @@
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-tile-layer ref="googleLayer">
-        <ol-source-xyz url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" />
+    <ol-tile-layer ref="jawgLayer">
+        <ol-source-xyz url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ" />
     </ol-tile-layer>
 
+    <ol-fullscreen-control />
+    <ol-mouseposition-control />
+
+    <ol-overviewmap-control>
+        <ol-tile-layer>
+            <ol-source-osm />
+        </ol-tile-layer>
+    </ol-overviewmap-control>
+
+    <ol-scaleline-control />
+    <ol-rotate-control />
+    <ol-zoom-control />
+    <ol-zoomslider-control />
+    <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
+
+    <ol-context-menu :items="contextMenuItems" />
+
+    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
+        <ol-style>
+            <ol-style-stroke color="green" :width="5"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
+            <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
+        </ol-style>
+    </ol-interaction-clusterselect>
+
+    <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
+        <ol-style>
+            <ol-style-stroke color="green" :width="10"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
+            <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
+        </ol-style>
+    </ol-interaction-select>
+
     <ol-vector-layer>
-        <ol-source-vector :features="zones">
-            <ol-interaction-draw v-if="drawEnabled" :stopClick="true" type="Polygon" @drawend="drawend">
-                <ol-style>
-                    <ol-style-stroke color="yellow" :width="2"></ol-style-stroke>
-                    <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
-                    <ol-style-circle radius="10">
-                        <ol-style-fill color="white"></ol-style-fill>
-                        <ol-style-stroke color="red" :width="10"></ol-style-stroke>
-                    </ol-style-circle>
-                </ol-style>
-            </ol-interaction-draw>
-            <ol-interaction-modify>
-                <ol-style>
-                    <ol-style-circle radius="10">
-                        <ol-style-fill color="white"></ol-style-fill>
-                        <ol-style-stroke color="red" :width="10"></ol-style-stroke>
-                    </ol-style-circle>
-                </ol-style>
-            </ol-interaction-modify>
-            <ol-style>
-                <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-                <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
-            </ol-style>
+        <ol-source-vector url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-kktc.json" :format="geoJson" :projection="projection">
+
         </ol-source-vector>
+        <ol-style>
+            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(0,0,0,0.1)"></ol-style-fill>
+            <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
+        </ol-style>
     </ol-vector-layer>
+
+    <ol-vector-layer>
+        <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
+
+            <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
+
+            </ol-interaction-modify>
+
+            <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart">
+
+            </ol-interaction-draw>
+
+            <ol-interaction-snap v-if="drawEnable" />
+
+        </ol-source-vector>
+
+        <ol-style>
+            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
+            <ol-style-circle :radius="7">
+                <ol-style-fill color="blue"></ol-style-fill>
+            </ol-style-circle>
+        </ol-style>
+    </ol-vector-layer>
+
+    <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true">
+        <ol-source-vector ref="vectorsource">
+
+            <ol-animation-drop :duration="2000" >
+                <ol-feature v-for="index in 20" :key="index">
+                    <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
+
+                    <ol-style>
+                        <ol-style-icon :src="starIcon" :scale="0.1"></ol-style-icon>
+                    </ol-style>
+                </ol-feature>
+            </ol-animation-drop>
+
+      
+        </ol-source-vector>
+
+    </ol-vector-layer>
+
+    <ol-animated-clusterlayer :animationDuration="500" :distance="40">
+
+        <ol-source-vector ref="vectorsource">
+            <ol-feature v-for="index in 1000" :key="index">
+                <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
+
+            </ol-feature>
+        </ol-source-vector>
+
+        <ol-style :overrideStyleFunction="overrideStyleFunction">
+            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
+
+            <ol-style-circle :radius="20">
+                <ol-style-stroke color="black" :width="15" :lineDash="[]" lineCap="butt"></ol-style-stroke>
+                <ol-style-fill color="black"></ol-style-fill>
+            </ol-style-circle>
+
+            <ol-style-text>
+                <ol-style-fill color="white"></ol-style-fill>
+            </ol-style-text>
+        </ol-style>
+
+    </ol-animated-clusterlayer>
+
+    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !=''">
+        <template v-slot="slotProps">
+            <div class="overlay-content">
+                {{selectedCityName}} {{slotProps}}
+            </div>
+        </template>
+    </ol-overlay>
 
 </ol-map>
 </template>
@@ -47,101 +148,168 @@
 <script>
 import {
     ref,
+    inject,
     onMounted
-} from "vue"
-import {
-    GeoJSON
-} from "ol/format"
+} from 'vue'
 
+import markerIcon from '@/assets/marker.png'
+import starIcon from '@/assets/star.png'
 export default {
     setup() {
-        const map = ref("")
-        const center = ref([-102.13121, 40.2436])
-        const projection = ref("EPSG:4326")
-        const zoom = ref(5)
+        const center = ref([34, 39.13])
+        const projection = ref('EPSG:4326')
+        const zoom = ref(6)
         const rotation = ref(0)
 
-        const drawEnabled = ref(false)
+        const format = inject('ol-format');
+
+        const geoJson = new format.GeoJSON();
+
+        const selectConditions = inject('ol-selectconditions')
+
+        const selectCondition = selectConditions.pointerMove;
+
+        const selectedCityName = ref('')
+        const selectedCityPosition = ref([])
+
+        const extent = inject('ol-extent');
+
+        const Feature = inject('ol-feature')
+        const Geom = inject('ol-geom')
+
+        const contextMenuItems = ref([])
+        const vectorsource = ref(null)
+        const view = ref(null);
+
+        const drawEnable = ref(false)
+        const drawType = ref("Point")
+
+        contextMenuItems.value = [{
+                text: 'Center map here',
+                classname: 'some-style-class', // add some CSS rules
+                callback: (val) => {
+                    view.value.setCenter(val.coordinate)
+
+                } // `center` is your callback function
+            },
+            {
+                text: 'Add a Marker',
+                classname: 'some-style-class', // you can add this icon with a CSS class
+                // instead of `icon` property (see next line)
+                icon: markerIcon, // this can be relative or absolute
+                callback: (val) => {
+                    console.log(val)
+                    let feature = new Feature({
+                        geometry: new Geom.Point(val.coordinate),
+                    });
+                    vectorsource.value.source.addFeature(feature)
+                }
+            },
+            '-' // this is a separator
+        ]
+
+        const featureSelected = (event) => {
+
+            if (event.selected.length == 1) {
+
+                selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
+                selectedCityName.value = event.selected[0].values_.name;
+            } else {
+                selectedCityName.value = '';
+            }
+
+        }
+
+        const overrideStyleFunction = (feature, style) => {
+
+            let clusteredFeatures = feature.get('features');
+            let size = clusteredFeatures.length;
+
+            let color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+            var radius = Math.max(8, Math.min(size, 20));
+            let dash = 2 * Math.PI * radius / 6;
+            let calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+
+            style.getImage().getStroke().setLineDash(dash);
+            style.getImage().getStroke().setColor("rgba(" + color + ",0.5)");
+            style.getImage().getStroke().setLineDash(calculatedDash);
+            style.getImage().getFill().setColor("rgba(" + color + ",1)");
+
+            style.getImage().setRadius(radius)
+
+            style.getText().setText(size.toString());
+
+        }
+
+        const selectInteactionFilter = (feature) => {
+            return feature.values_.name != undefined;
+        };
+
+        const getRandomInRange = (from, to, fixed) => {
+            return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+
+        }
+
+        const drawstart = (event) => {
+            console.log(event)
+
+        }
+
+        const drawend = (event) => {
+            console.log(event)
+        }
+
+        const modifystart = (event) => {
+            console.log(event)
+
+        }
+
+        const modifyend = (event) => {
+            console.log(event)
+        }
 
         const swipeControl = ref(null)
-        const googleLayer = ref(null)
+        const jawgLayer = ref(null)
         const osmLayer = ref(null)
         const layerList = ref([])
         onMounted(() => {
 
-            layerList.value.push(googleLayer.value.tileLayer);
+            layerList.value.push(jawgLayer.value.tileLayer);
             layerList.value.push(osmLayer.value.tileLayer);
+            console.log(layerList.value)
 
         });
-        const geojsonObject = {
-            type: "FeatureCollection",
-            crs: {
-                type: "name",
-                properties: {
-                    name: "EPSG:4326"
-                }
-            },
-            features: [{
-                    type: "Feature",
-                    geometry: {
-                        type: "Polygon",
-                        coordinates: [
-                            [
-                                [-103.86923852630616, 43.45599322423934],
-                                [-103.90891107984544, 39.34240191087722],
-                                [-98.76630637117387, 39.558687199211114],
-                                [-98.89435771175386, 43.945405844902986],
-                                [-103.86923852630616, 43.45599322423934]
-                            ]
-                        ]
-                    }
-                },
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "Polygon",
-                        coordinates: [
-                            [
-                                [-103.85636392303468, 38.10970692739486],
-                                [-103.86770698495866, 33.218572724914544],
-                                [-98.20654544301988, 33.6532810221672],
-                                [-98.4408283538437, 38.31894739375114],
-                                [-103.85636392303468, 38.10970692739486]
-                            ]
-                        ]
-                    }
-                }
-            ]
-        }
-
-        const zones = ref([])
-
-        const drawend = (event) => {
-
-            zones.value.push(event.feature)
-            drawEnabled.value = false
-
-        }
-
-        zones.value = new GeoJSON().readFeatures(geojsonObject)
-
-        const geoJsonFormat = new GeoJSON()
 
         return {
-            map,
-            geoJsonFormat,
-            zones,
             center,
             projection,
             zoom,
             rotation,
-            drawEnabled,
+            geoJson,
+            featureSelected,
+            selectCondition,
+            selectedCityName,
+            selectedCityPosition,
+            markerIcon,
+            overrideStyleFunction,
+            getRandomInRange,
+            contextMenuItems,
+            vectorsource,
+            view,
+            selectInteactionFilter,
+            drawstart,
             drawend,
+            modifystart,
+            modifyend,
+            drawEnable,
+            drawType,
             layerList,
-            googleLayer,
+            jawgLayer,
             swipeControl,
-            osmLayer
+            osmLayer,
+            starIcon
+
         }
-    }
+    },
 }
 </script>

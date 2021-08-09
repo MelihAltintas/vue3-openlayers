@@ -5,7 +5,8 @@ import {
     MapControls,
     Geometries,
     Styles,
-    Interactions
+    Interactions,
+    Animations
 } from './components'
 
 
@@ -38,7 +39,9 @@ export default function install(app) {
     app.use(Geometries)
     app.use(Styles);
     app.use(Interactions);
+    app.use(Animations);
 
+    
     app.provide('ol-feature',feature)
     app.provide('ol-geom',geom)
     app.provide('ol-animations',animations)

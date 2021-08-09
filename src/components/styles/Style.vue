@@ -11,7 +11,8 @@ import {
     watch,
     onUnmounted,
     onMounted,
-    computed
+    computed,
+
 } from 'vue'
 
 import Style from 'ol/style/Style';
@@ -24,7 +25,7 @@ export default {
     setup(props) {
 
         const styledObj = inject('stylable', null);
-  
+
         const {
             properties
         } = usePropsAsObjectProperties(props);
@@ -33,15 +34,17 @@ export default {
 
         const setStyle = (val) => {
 
-            if(styledObj instanceof Draw || styledObj instanceof Modify){
-            
+            if (styledObj instanceof Draw || styledObj instanceof Modify) {
+
                 styledObj.getOverlay().setStyle(val)
+                styledObj.value.dispatchEvent("styleChanged")
                 return;
             }
             try {
 
                 styledObj.value.setStyle(val)
                 styledObj.value.changed()
+                styledObj.value.dispatchEvent("styleChanged")
 
             } catch (error) {
 
@@ -49,6 +52,7 @@ export default {
                 styledObj.value.values_.style = val
 
                 styledObj.value.changed()
+                styledObj.value.dispatchEvent("styleChanged")
 
             }
         };
@@ -64,11 +68,22 @@ export default {
 
         watch(properties, () => {
 
-            setStyle(styleFunc.value);
+            if (properties.overrideStyleFunction == null) {
+                setStyle(style.value);
+            } else {
+                setStyle(styleFunc.value);
+            }
+
         })
 
         onMounted(() => {
-            setStyle(styleFunc.value);
+
+            if (properties.overrideStyleFunction == null) {
+                setStyle(style.value);
+            } else {
+
+                setStyle(styleFunc.value);
+            }
         });
 
         onUnmounted(() => {
