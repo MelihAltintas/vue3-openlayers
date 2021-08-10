@@ -21,10 +21,10 @@ export default {
 
         control.value.on(['print','error'], function (e) {
 
-            console.log(e)
+      
             // Print success
             if (e.image) {
-                console.log(e.image)
+            
                 if (e.pdf) {
                     // Export pdf using the print info
                     var pdf = new jsPDF({
@@ -46,7 +46,7 @@ export default {
             }
         });
 
-        console.log(control.value)
+      
 
 
         return {

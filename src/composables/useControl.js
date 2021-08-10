@@ -22,7 +22,8 @@ export default function useControl(ControlType, props) {
     let control = computed(()=>new ControlType({...properties}));
 
     watch(control, (newVal,oldVal) => {
-        parent.removeControl(oldVal);
+        if(parent.removeControl)
+            parent.removeControl(oldVal);
         parent.addControl(newVal);
         map.changed()
     });
@@ -33,7 +34,8 @@ export default function useControl(ControlType, props) {
     });
 
     onUnmounted(() => {
-        parent.removeControl(control.value);
+        if(parent.removeControl)
+            parent.removeControl(oldVal);
         map.changed();
     });
 
