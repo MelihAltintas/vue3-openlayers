@@ -9,6 +9,9 @@ import ZoomToExtentControl from './ZoomToExtentControl.vue'
 import RotateControl from './RotateControl.vue'
 import ContextMenuControl from './ContextMenuControl.vue'
 import SwipeControl from './SwipeControl.vue'
+import ControlBar from './ControlBar.vue'
+import ToggleControl from './ToggleControl.vue'
+import PrintDialog from './PrintDialog.vue'
 function install (app) {
 
     if (install.installed) {
@@ -28,6 +31,9 @@ function install (app) {
     app.component(RotateControl.name, RotateControl)
     app.component(ContextMenuControl.name, ContextMenuControl)
     app.component(SwipeControl.name, SwipeControl)
+    app.component(ControlBar.name, ControlBar)
+    app.component(ToggleControl.name, ToggleControl)
+    app.component(PrintDialog.name, PrintDialog)
   }
   
   export default install
@@ -42,5 +48,9 @@ function install (app) {
     ZoomControl,
     ZoomSliderControl,
     ZoomToExtentControl,
-    ContextMenuControl
+    ContextMenuControl,
+    SwipeControl,
+    ControlBar,
+    ToggleControl,
+    PrintDialog
   }
