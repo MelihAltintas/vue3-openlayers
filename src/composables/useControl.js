@@ -11,7 +11,7 @@ import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties
 export default function useControl(ControlType, props) {
 
     const map = inject('map');
-    const controlBar = inject('controlBar',null);
+    const controlBar = inject('controlBar', null);
 
     const parent = controlBar != null ? controlBar.value : map;
 
@@ -19,11 +19,14 @@ export default function useControl(ControlType, props) {
         properties
     } = usePropsAsObjectProperties(props);
 
-    let control = computed(()=>new ControlType({...properties}));
+    let control = computed(() => new ControlType({
+        ...properties
+    }));
 
-    watch(control, (newVal,oldVal) => {
-        if(parent.removeControl)
+    watch(control, (newVal, oldVal) => {
+        if (parent.removeControl) {
             parent.removeControl(oldVal);
+        }
         parent.addControl(newVal);
         map.changed()
     });
@@ -34,8 +37,9 @@ export default function useControl(ControlType, props) {
     });
 
     onUnmounted(() => {
-        if(parent.removeControl)
-            parent.removeControl(oldVal);
+        if (parent.removeControl) {
+            parent.removeControl(control.value);
+        }
         map.changed();
     });
 
