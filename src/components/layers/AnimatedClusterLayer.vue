@@ -38,7 +38,7 @@ export default {
                 ...properties,
                 source: new Cluster({
                     distance: properties.distance,
-
+                    geometryFunction:(feature) => feature.getGeometry()
                 })
             });
 
