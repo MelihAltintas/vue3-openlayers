@@ -12,6 +12,8 @@ import SwipeControl from './SwipeControl.vue'
 import ControlBar from './ControlBar.vue'
 import ToggleControl from './ToggleControl.vue'
 import PrintDialog from './PrintDialog.vue'
+import VideoRecorderControl from './VideoRecorderControl.vue'
+
 function install (app) {
 
     if (install.installed) {
@@ -34,6 +36,7 @@ function install (app) {
     app.component(ControlBar.name, ControlBar)
     app.component(ToggleControl.name, ToggleControl)
     app.component(PrintDialog.name, PrintDialog)
+    app.component(VideoRecorderControl.name, VideoRecorderControl)
   }
   
   export default install
@@ -52,5 +55,6 @@ function install (app) {
     SwipeControl,
     ControlBar,
     ToggleControl,
-    PrintDialog
+    PrintDialog,
+    VideoRecorderControl
   }

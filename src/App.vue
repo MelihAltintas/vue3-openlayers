@@ -18,7 +18,9 @@
         <ol-control-toggle html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon" :onToggle="(active)=>changeDrawType(active,'Polygon')" />
         <ol-control-toggle html="<i class='fas fa-circle'></i>" className="edit" title="Circle" :onToggle="(active)=>changeDrawType(active,'Circle')" />
         <ol-control-toggle html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString" :onToggle="(active)=>changeDrawType(active,'LineString')" />
+        <ol-control-videorecorder @stop="videoStopped">
 
+        </ol-control-videorecorder>
         <ol-control-printdialog />
     </ol-control-bar>
 
@@ -140,6 +142,7 @@
     </ol-overlay>
 
 </ol-map>
+
 </template>
 
 <script>
@@ -180,6 +183,7 @@ export default {
 
         const drawEnable = ref(false)
         const drawType = ref("Point")
+
 
         const changeDrawType = (active, draw) => {
             drawEnable.value = active
@@ -310,7 +314,7 @@ export default {
             swipeControl,
             osmLayer,
             starIcon,
-            changeDrawType
+            changeDrawType,
 
         }
     },
