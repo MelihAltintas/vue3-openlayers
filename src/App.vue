@@ -48,7 +48,7 @@
         </ol-style>
     </ol-interaction-clusterselect>
 
-    <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
+    <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter" v-if="!drawEnable">
         <ol-style>
             <ol-style-stroke color="green" :width="10"></ol-style-stroke>
             <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
@@ -94,7 +94,7 @@
     <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true">
         <ol-source-vector ref="vectorsource">
 
-            <ol-animation-drop :duration="2000">
+            <ol-animation-shake :duration="2000" :repeat="5">
                 <ol-feature v-for="index in 20" :key="index">
                     <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
 
@@ -102,7 +102,7 @@
                         <ol-style-icon :src="starIcon" :scale="0.1"></ol-style-icon>
                     </ol-style>
                 </ol-feature>
-            </ol-animation-drop>
+            </ol-animation-shake>
 
         </ol-source-vector>
 
@@ -111,7 +111,7 @@
     <ol-animated-clusterlayer :animationDuration="500" :distance="40">
 
         <ol-source-vector ref="vectorsource">
-            <ol-feature v-for="index in 1000" :key="index">
+            <ol-feature v-for="index in 500" :key="index">
                 <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
 
             </ol-feature>
@@ -133,7 +133,7 @@
 
     </ol-animated-clusterlayer>
 
-    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !=''">
+    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable">
         <template v-slot="slotProps">
             <div class="overlay-content">
                 {{selectedCityName}} {{slotProps}}
@@ -320,3 +320,13 @@ export default {
     },
 }
 </script>
+<style>
+
+.overlay-content {
+    background: red !important;
+    color: white;
+    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+    padding: 10px 20px;
+    font-size: 16px;
+}
+</style>
