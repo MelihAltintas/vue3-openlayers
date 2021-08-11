@@ -24,6 +24,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 - [Documentation](https://vue3openlayers.netlify.app)
 
+![Alt Text](https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/vue3-openlayers.gif)
 
 ## Requirements
 
@@ -31,7 +32,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 - [OpenLayers](https://openlayers.org/) version **^6.5.0**
 
 
-![Alt Text](https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/vue3-openlayers.gif)
+
 
 
 ## Install
