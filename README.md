@@ -16,14 +16,18 @@
   </a>
 </p>
 
+## Links
+
+- [Documentation](https://vue3openlayers.netlify.app)
+
+[![Stargazers repo roster for @MelihAltintas/vue3-openlayers](https://reporoster.com/stars/MelihAltintas/vue3-openlayers)](https://github.com/MelihAltintas/vue3-openlayers/stargazers)
+
 ## Overview
 
 **vue3-openlayers** is components library that brings the powerful **OpenLayers API** to the **Vue3** reactive world. 
 It can display maps with tiled, raster or vector layers loaded from different sources.
 
-## Links
 
-- [Documentation](https://vue3openlayers.netlify.app)
 
 ![Alt Text](https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/vue3-openlayers.gif)
 
