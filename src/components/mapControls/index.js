@@ -13,7 +13,8 @@ import ControlBar from './ControlBar.vue'
 import ToggleControl from './ToggleControl.vue'
 import PrintDialog from './PrintDialog.vue'
 import VideoRecorderControl from './VideoRecorderControl.vue'
-
+import LayerSwitcherControl from './LayerSwitcherControl.vue'
+import LayerSwitcherImageControl from './LayerSwitcherImageControl.vue'
 function install (app) {
 
     if (install.installed) {
@@ -37,6 +38,8 @@ function install (app) {
     app.component(ToggleControl.name, ToggleControl)
     app.component(PrintDialog.name, PrintDialog)
     app.component(VideoRecorderControl.name, VideoRecorderControl)
+    app.component(LayerSwitcherControl.name, LayerSwitcherControl)
+    app.component(LayerSwitcherImageControl.name, LayerSwitcherImageControl)
   }
   
   export default install
@@ -56,5 +59,7 @@ function install (app) {
     ControlBar,
     ToggleControl,
     PrintDialog,
-    VideoRecorderControl
+    VideoRecorderControl,
+    LayerSwitcherControl,
+    LayerSwitcherImageControl
   }

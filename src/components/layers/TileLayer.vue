@@ -106,6 +106,14 @@ export default {
             type: Number,
             default: 1
         },
+        title: {
+            type: String,
+
+        },
+        name: {
+            type: String,
+
+        },
     }
 }
 </script>

@@ -24,3 +24,7 @@
     right: 2.5em;
     transition: opacity .25s linear, visibility 0s linear;
 }
+
+.ol-layerswitcher-image li.ol-layer-hidden{
+    opacity:1 !important;
+}

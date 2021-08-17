@@ -38,7 +38,7 @@ export default {
                 ...properties,
                 source: new Cluster({
                     distance: properties.distance,
-                    geometryFunction:(feature) => feature.getGeometry()
+                    geometryFunction: (feature) => feature.getGeometry()
                 })
             });
 
@@ -46,8 +46,6 @@ export default {
         });
 
         const source = computed(() => vectorLayer.value.getSource());
-
-
 
         watch(properties, () => {
 
@@ -96,7 +94,18 @@ export default {
             type: Boolean,
             default: false
         },
+        title: {
+            type: String,
 
+        },
+        name: {
+            type: String,
+
+        },
+        preview: {
+            type: String,
+
+        }
     }
 }
 </script>

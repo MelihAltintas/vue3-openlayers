@@ -73,6 +73,18 @@ export default {
         },
         maxZoom: {
             type: Number
+        },
+        title: {
+            type: String,
+
+        },
+        name: {
+            type: String,
+
+        },
+        preview: {
+            type: String,
+
         }
     }
 }

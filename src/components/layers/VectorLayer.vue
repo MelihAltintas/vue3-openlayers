@@ -94,7 +94,19 @@ export default {
         updateWhileInteracting: {
             type: Boolean,
             default: false
-        }
+        },
+        title: {
+            type: String,
+
+        },
+        name: {
+            type: String,
+
+        },
+        preview: {
+            type: String,
+
+        },
     }
 }
 </script>
