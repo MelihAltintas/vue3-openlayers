@@ -114,6 +114,10 @@ export default {
             type: String,
 
         },
+        preview: {
+            type: String,
+
+        }
     }
 }
 </script>

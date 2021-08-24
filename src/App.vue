@@ -57,9 +57,8 @@
             <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
         </ol-style>
     </ol-interaction-select>
-    {{require('@/assets/star.png')}}
 
-    <ol-vector-layer title="AIRPORTS" :preview="require('@/assets/tr.png')">
+    <ol-vector-layer title="AIRPORTS" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/tr.png">
         <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection" >
 
             <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
@@ -83,7 +82,7 @@
         </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true" title="STAR" :preview="require('@/assets/star.png')">
+    <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true" title="STAR" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/star.png">
         <ol-source-vector ref="vectorsource">
 
             <ol-animation-shake :duration="2000" :repeat="5">
@@ -100,7 +99,7 @@
 
     </ol-vector-layer>
 
-    <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" :preview="require('@/assets/cluster.png')">
+    <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
 
         <ol-source-vector ref="vectorsource">
             <ol-feature v-for="index in 500" :key="index">

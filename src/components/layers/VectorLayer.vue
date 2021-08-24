@@ -106,7 +106,7 @@ export default {
         preview: {
             type: String,
 
-        },
+        }
     }
 }
 </script>
