@@ -18,8 +18,8 @@
 
 ## Links
 
-- [Documentation](https://vue3openlayers.netlify.app)
-- [Documentation Mirror](https://vue3openlayers.github.io/)
+- [Documentation Netlify](https://vue3openlayers.netlify.app)
+- [Documentation Github.io](https://vue3openlayers.github.io/)
 
 [![Stargazers repo roster for @MelihAltintas/vue3-openlayers](https://reporoster.com/stars/MelihAltintas/vue3-openlayers)](https://github.com/MelihAltintas/vue3-openlayers/stargazers)
 
