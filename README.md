@@ -4,6 +4,11 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b6f6de51-4532-40a6-bca2-28e7e3ef2c8a/deploy-status)](https://app.netlify.com/sites/vue3openlayers/deploys)
 [![NPM version](https://img.shields.io/npm/v/vue3-openlayers.svg)](https://www.npmjs.com/package/vue3-openlayers)
+[![NPM Minified Size](https://img.shields.io/bundlephobia/min/vue3-openlayers?label=package%20minified%20size)](https://www.npmjs.com/package/vue3-openlayers)
+[![NPM Minified Size](https://img.shields.io/bundlephobia/min/vue3-openlayers?label=package%20minified%20size)](https://www.npmjs.com/package/vue3-openlayers)
+[![NPM Minzipped Size](https://img.shields.io/bundlephobia/minzip/vue3-openlayers?label=package%20minzipped%20size)](https://www.npmjs.com/package/vue3-openlayers)
+
+
 [![Downloads](https://img.shields.io/npm/dt/vue3-openlayers)](https://npmcharts.com/compare/vue3-openlayers?minimal=true)
 [![Github Open Issiues](https://img.shields.io/github/issues/MelihAltintas/vue3-openlayers)]()
 [![Github Closed Issiues](https://img.shields.io/github/issues-closed-raw/melihaltintas/vue3-openlayers)]()
