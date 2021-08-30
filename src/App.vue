@@ -86,7 +86,7 @@
         <ol-source-vector ref="vectorsource">
 
             <ol-animation-shake :duration="2000" :repeat="5">
-                <ol-feature v-for="index in 20" :key="index">
+                <ol-feature v-for="index in 20" :key="index" :properties="{'id':index}">
                     <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
 
                     <ol-style>
@@ -102,7 +102,7 @@
     <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
 
         <ol-source-vector ref="vectorsource">
-            <ol-feature v-for="index in 500" :key="index">
+            <ol-feature v-for="index in 500" :key="index" >
                 <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
 
             </ol-feature>
@@ -206,7 +206,6 @@ export default {
         ]
 
         const featureSelected = (event) => {
-
             if (event.selected.length == 1) {
 
                 selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)

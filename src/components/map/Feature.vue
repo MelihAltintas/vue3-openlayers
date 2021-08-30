@@ -29,7 +29,7 @@ export default {
         } = usePropsAsObjectProperties(props);
 
         let feature = computed(() => {
-            let f = new Feature(properties)
+            let f = new Feature({...properties.properties})
 
             return f;
         });
@@ -66,7 +66,7 @@ export default {
         provide('stylable', feature)
     },
     props: {
-        geometryOrProperties: {
+        properties: {
             type: [Geometry, Object, Array]
         }
     }
