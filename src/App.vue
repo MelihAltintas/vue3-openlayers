@@ -41,7 +41,7 @@
     <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey" />
 
     <ol-context-menu :items="contextMenuItems" />
-
+    <ol-interaction-dragrotatezoom />
     <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
         <ol-style>
             <ol-style-stroke color="green" :width="5"></ol-style-stroke>
