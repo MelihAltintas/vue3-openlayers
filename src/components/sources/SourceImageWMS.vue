@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Static from 'ol/source/ImageWMS';
+import ImageWMS from 'ol/source/ImageWMS';
 import Projection from 'ol/proj/Projection';
 
 import {
     inject,
     onMounted,
     onUnmounted,
-    watch
+    watch,
 } from 'vue'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
@@ -25,8 +25,10 @@ export default {
             properties
         } = usePropsAsObjectProperties(props);
 
+
+
         const createSource = () => {
-            return new Static({
+            return new ImageWMS({
                 ...properties,
                 projection: typeof properties.projection == "string" ? properties.projection : new Projection({
                     ...properties.projection
@@ -66,11 +68,37 @@ export default {
             type: Array
         },
         projection: {
-            type: [String, Object]
+            type: [String, Object],
+            default: 'EPSG:3857'
+        },
+        reprojectionErrorThreshold: {
+            type: Number,
+            default: 0.5
+        },
+        format: {
+            type: String,
+            default: 'image/png'
+        },
+        version: {
+            type: String,
+            default: '1.3.0'
+        },
+        matrixSet: {
+            type: String
+        },
+        serverType: {
+            type: String,
+            default: 'mapserver'
         },
         imageSmoothing: {
             type: Boolean,
             default: true
+        },
+        params: {
+            layers: {
+            type: [String,Array],
+            default: 'hffs'
+            }
         },
         imageSize: {
             type: Array
