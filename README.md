@@ -25,6 +25,15 @@
 - [Documentation Netlify](https://vue3openlayers.netlify.app)
 - [Documentation Github.io](https://vue3openlayers.github.io/)
 
+## Install
+
+```bash
+# install current vue3-openlayers version 
+npm install vue3-openlayers
+or
+yarn add vue3-openlayers
+```
+
 [![Stargazers repo roster for @MelihAltintas/vue3-openlayers](https://reporoster.com/stars/MelihAltintas/vue3-openlayers)](https://github.com/MelihAltintas/vue3-openlayers/stargazers)
 
 ## Overview
@@ -51,15 +60,7 @@ Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 
 
-## Install
 
-```bash
-# install Vue
-npm install vue
-
-# install current vue3-openlayers version 
-npm install vue3-openlayers
-```
 
 ## License
 
