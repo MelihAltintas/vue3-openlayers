@@ -6,6 +6,7 @@ import ZoomAnimation from './ZoomAnimation.vue'
 import TeleportAnimation from './TeleportAnimation.vue'
 import FadeAnimation from './FadeAnimation.vue'
 import SlideAnimation from './SlideAnimation.vue'
+import PathAnimation from './PathAnimation.vue'
 function install (app) {
 
     if (install.installed) {
@@ -21,6 +22,7 @@ function install (app) {
     app.component(TeleportAnimation.name, TeleportAnimation)
     app.component(FadeAnimation.name, FadeAnimation)
     app.component(SlideAnimation.name, SlideAnimation)
+    app.component(PathAnimation.name, PathAnimation)
   }
   
   export default install
@@ -32,5 +34,8 @@ function install (app) {
     ShakeAnimation,
     ZoomAnimation,
     TeleportAnimation,
-    FadeAnimation
+    FadeAnimation,
+    PathAnimation,
+    SlideAnimation
+
   }

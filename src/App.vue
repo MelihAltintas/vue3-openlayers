@@ -11,7 +11,7 @@
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-tile-layer ref="jawgLayer" title ="JAWG">
+    <ol-tile-layer ref="jawgLayer" title="JAWG">
         <ol-source-xyz crossOrigin='anonymous' url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ" />
     </ol-tile-layer>
 
@@ -59,7 +59,7 @@
     </ol-interaction-select>
 
     <ol-vector-layer title="AIRPORTS" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/tr.png">
-        <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection" >
+        <ol-source-vector ref="cities" url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json" :format="geoJson" :projection="projection">
 
             <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
 
@@ -102,7 +102,7 @@
     <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER" preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
 
         <ol-source-vector ref="vectorsource">
-            <ol-feature v-for="index in 500" :key="index" >
+            <ol-feature v-for="index in 500" :key="index">
                 <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
 
             </ol-feature>
@@ -132,8 +132,32 @@
         </template>
     </ol-overlay>
 
-</ol-map>
+    <ol-vector-layer>
+        <ol-source-vector>
+            <ol-feature ref="animationPath">
+                <ol-geom-line-string :coordinates="path"></ol-geom-line-string>
+                <ol-style>
+                    <ol-style-stroke color="red" width="7"></ol-style-stroke>
+                </ol-style>
+            </ol-feature>
+            <ol-animation-path v-if="animationPath" :path="animationPath.feature" :duration="4000" :repeat="10">
 
+                <ol-feature>
+                    <ol-geom-point :coordinates="path[0]"></ol-geom-point>
+                    <ol-style>
+                        <ol-style-circle :radius="10">
+                            <ol-style-fill color="blue"></ol-style-fill>
+                            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
+                        </ol-style-circle>
+                    </ol-style>
+
+                </ol-feature>
+            </ol-animation-path>
+        </ol-source-vector>
+
+    </ol-vector-layer>
+
+</ol-map>
 </template>
 
 <script>
@@ -174,7 +198,6 @@ export default {
 
         const drawEnable = ref(false)
         const drawType = ref("Point")
-
 
         const changeDrawType = (active, draw) => {
             drawEnable.value = active
@@ -268,12 +291,37 @@ export default {
         const jawgLayer = ref(null)
         const osmLayer = ref(null)
         const layerList = ref([])
+        const path = ref([
+            [
+                25.6064453125,
+                44.73302734375001
+            ],
+            [
+                27.759765625,
+                44.75500000000001
+            ],
+            [
+                28.287109375,
+                43.32677734375001
+            ],
+            [
+                30.55029296875,
+                46.40294921875001
+            ],
+            [
+                31.69287109375,
+                43.04113281250001
+            ]
+
+        ])
+        const animationPath = ref(null);
+
         onMounted(() => {
 
             layerList.value.push(jawgLayer.value.tileLayer);
             layerList.value.push(osmLayer.value.tileLayer);
             console.log(layerList.value)
-
+            console.log(animationPath.value)
         });
 
         return {
@@ -305,13 +353,14 @@ export default {
             osmLayer,
             starIcon,
             changeDrawType,
-
+            path,
+            animationPath
         }
     },
 }
 </script>
-<style>
 
+<style>
 .overlay-content {
     background: red !important;
     color: white;
