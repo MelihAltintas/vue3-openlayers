@@ -30,6 +30,7 @@ export default {
         const createSource = () => {
             return new ImageWMS({
                 ...properties,
+                params: {'LAYERS': props.layers},
                 projection: typeof properties.projection == "string" ? properties.projection : new Projection({
                     ...properties.projection
                 })
@@ -94,17 +95,26 @@ export default {
             type: Boolean,
             default: true
         },
-        params: {
-            layers: {
+        layers: {
             type: [String,Array],
-            default: 'hffs'
-            }
+            required: true
+        },
+        styles: {
+            type: [String,Array],
+            default: ''
+        },
+        ratio: {
+            type: Number,
+            default: 1
         },
         imageSize: {
             type: Array
         },
         url: {
             type: String
+        },
+        params: {
+            type: Object
         }
     }
 }
