@@ -64,6 +64,10 @@ export default {
         provide('feature', feature)
 
         provide('stylable', feature)
+
+        return{
+            feature
+        }
     },
     props: {
         properties: {
