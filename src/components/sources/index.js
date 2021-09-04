@@ -39,4 +39,4 @@ function install (app) {
     SourceCluster,
     SourceTianDiTu,
     SourceImageWMS,
-  };
+  }
