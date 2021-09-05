@@ -6,6 +6,8 @@ import SourceVector from './SourceVector.vue'
 import SourceCluster from './SourceCluster.vue'
 import SourceBingMaps from './SourceBingMaps.vue'
 import SourceTianDiTu from './SourceTianDiTu.vue'
+import SourceImageWMS from './SourceImageWMS.vue'
+
 function install (app) {
 
     if (install.installed) {
@@ -22,6 +24,7 @@ function install (app) {
     app.component(SourceCluster.name, SourceCluster)
     app.component(SourceBingMaps.name, SourceBingMaps)
     app.component(SourceTianDiTu.name, SourceTianDiTu)
+    app.component(SourceImageWMS.name, SourceImageWMS)
   }
   
   export default install
@@ -34,5 +37,6 @@ function install (app) {
     SourceWMTS,
     SourceVector,
     SourceCluster,
-    SourceTianDiTu
+    SourceTianDiTu,
+    SourceImageWMS,
   }
