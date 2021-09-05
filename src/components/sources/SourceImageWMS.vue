@@ -30,7 +30,10 @@ export default {
         const createSource = () => {
             return new ImageWMS({
                 ...properties,
-                params: {'LAYERS': props.layers},
+                params: {
+                    'LAYERS': props.layers,
+                    'STYLES': props.styles
+                    },
                 projection: typeof properties.projection == "string" ? properties.projection : new Projection({
                     ...properties.projection
                 })
