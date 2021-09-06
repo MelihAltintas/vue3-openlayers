@@ -28,3 +28,16 @@
 .ol-layerswitcher-image li.ol-layer-hidden{
     opacity:1 !important;
 }
+
+.ol-overviewmap.ol-collapsed .ol-overviewmap-map, .ol-overviewmap.ol-uncollapsible button {
+     display: block; 
+     opacity:0
+}
+
+.ol-collapsed {
+    background-color: rgba(255,255,255,0);
+}
+
+.ol-collapsed:hover {
+    background-color: rgba(255,255,255,0);
+}

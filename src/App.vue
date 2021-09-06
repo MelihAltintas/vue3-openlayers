@@ -137,7 +137,7 @@
             <ol-feature ref="animationPath">
                 <ol-geom-line-string :coordinates="path"></ol-geom-line-string>
                 <ol-style>
-                    <ol-style-stroke color="red" width="7"></ol-style-stroke>
+                    <ol-style-stroke color="red" :width="7"></ol-style-stroke>
                 </ol-style>
             </ol-feature>
             <ol-animation-path v-if="animationPath" :path="animationPath.feature" :duration="4000" :repeat="10">
@@ -287,6 +287,10 @@ export default {
             console.log(event)
         }
 
+        const videoStopped = (event) => {
+            console.log(event)
+        }
+
         const swipeControl = ref(null)
         const jawgLayer = ref(null)
         const osmLayer = ref(null)
@@ -345,6 +349,7 @@ export default {
             drawend,
             modifystart,
             modifyend,
+            videoStopped,
             drawEnable,
             drawType,
             layerList,
