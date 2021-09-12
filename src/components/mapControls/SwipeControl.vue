@@ -12,10 +12,10 @@ import {
 } from "vue"
 export default {
     name: 'ol-swipe-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Swipe, props);
+        } = useControl(Swipe, props,context);
 
         const {
             layerList

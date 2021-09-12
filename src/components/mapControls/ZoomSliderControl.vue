@@ -10,11 +10,11 @@ import ZoomSlider from 'ol/control/ZoomSlider';
 
 export default {
     name: 'ol-zoomslider-control',
-    setup(props) {
+    setup(props,context) {
 
         const {
             control
-        } = useControl(ZoomSlider, props);
+        } = useControl(ZoomSlider, props,context);
         return {
             control
         }

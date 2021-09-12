@@ -10,10 +10,10 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-zoom-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Zoom, props);
+        } = useControl(Zoom, props,context);
         return {
             control
         }

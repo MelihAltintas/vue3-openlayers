@@ -14,10 +14,10 @@ import { jsPDF } from "jspdf";
 
 export default {
     name: 'ol-control-printdialog',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(PrintDialog, props);
+        } = useControl(PrintDialog, props,context);
 
         control.value.on(['print','error'], function (e) {
 

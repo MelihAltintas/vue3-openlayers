@@ -13,10 +13,10 @@ import {
 
 export default {
     name: 'ol-scaleline-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(ScaleLine, props);
+        } = useControl(ScaleLine, props,context);
         return {
             control
         }

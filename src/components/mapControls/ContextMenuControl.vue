@@ -12,10 +12,10 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-context-menu',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(ContextMenu, props);
+        } = useControl(ContextMenu, props,context);
         return {
             control
         }

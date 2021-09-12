@@ -11,10 +11,10 @@ import ZoomToExtent from 'ol/control/ZoomToExtent';
 
 export default {
     name: 'ol-zoomtoextent-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(ZoomToExtent, props);
+        } = useControl(ZoomToExtent, props,context);
         return {
             control
         }

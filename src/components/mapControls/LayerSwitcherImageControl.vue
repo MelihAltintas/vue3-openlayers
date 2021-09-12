@@ -11,10 +11,10 @@ import LayerSwitcherControl from './LayerSwitcherControl'
 export default {
     name: 'ol-layerswitcherimage-control',
     extends: LayerSwitcherControl,
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(LayerSwitcherImage, props);
+        } = useControl(LayerSwitcherImage, props,context);
         return {
             control
         }

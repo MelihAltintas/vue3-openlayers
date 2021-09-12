@@ -10,10 +10,10 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-layerswitcher-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(LayerSwitcher, props);
+        } = useControl(LayerSwitcher, props,context);
         return {
             control
         }

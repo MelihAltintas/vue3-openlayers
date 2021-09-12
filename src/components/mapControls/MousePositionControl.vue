@@ -13,10 +13,10 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-mouseposition-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(MousePosition, props);
+        } = useControl(MousePosition, props,context);
         return {
             control
         }

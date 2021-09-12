@@ -17,13 +17,13 @@ import {
 } from 'vue'
 export default {
     name: 'ol-overviewmap-control',
-    setup(props) {
+    setup(props,context) {
 
         const map = inject('map');
 
         const {
             control
-        } = useControl(OverviewMap, props);
+        } = useControl(OverviewMap, props,context);
 
         onMounted(() => {
             control.value.setMap(map);

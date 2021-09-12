@@ -8,13 +8,12 @@
 import Toggle from 'ol-ext/control/Toggle'
 
 import useControl from '@/composables/useControl'
-
 export default {
     name: 'ol-control-toggle',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Toggle, props);
+        } = useControl(Toggle, props,context);
 
         return {
             control
@@ -37,7 +36,6 @@ export default {
         onToggle: {
             type: Function,
         },
-
     }
 }
 </script>

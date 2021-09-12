@@ -10,10 +10,10 @@ import Rotate from 'ol/control/Rotate';
 
 export default {
     name: 'ol-rotate-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Rotate, props);
+        } = useControl(Rotate, props,context);
         return {
             control
         }

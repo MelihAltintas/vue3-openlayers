@@ -105,7 +105,11 @@ export default {
         preview: {
             type: String,
 
-        }
+        },
+        baseLayer: {
+            type: Boolean,
+
+        },
     }
 }
 </script>

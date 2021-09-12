@@ -12,10 +12,10 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-attribution-control',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Attribution, props);
+        } = useControl(Attribution, props,context);
         return {
             control
         }

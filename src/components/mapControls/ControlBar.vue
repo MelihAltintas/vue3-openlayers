@@ -10,10 +10,10 @@ import useControl from '@/composables/useControl'
 import {provide} from "vue"
 export default {
     name: 'ol-control-bar',
-    setup(props) {
+    setup(props,context) {
         const {
             control
-        } = useControl(Bar, props);
+        } = useControl(Bar, props,context);
 
         provide('controlBar',control)
         return {

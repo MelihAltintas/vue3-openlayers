@@ -13,11 +13,11 @@ import useControl from '@/composables/useControl'
 
 export default {
     name: 'ol-fullscreen-control',
-    setup(props) {
+    setup(props,context) {
 
         const {
             control
-        } = useControl(FullScreen, props);
+        } = useControl(FullScreen, props,context);
         return {
             control
         }

@@ -14,24 +14,22 @@ import {toRefs} from 'vue'
 export default {
     name: 'ol-control-videorecorder',
     emits: ['start', 'stop'],
-    setup(props, {
-        emit
-    }) {
+    setup(props, context) {
 
         const {
             control
         } =
-        useControl(VideoRecorder, props);
+        useControl(VideoRecorder, props,context);
 
         const{downloadName} = toRefs(props)
 
         control.value.on("start", (event) => {
-            emit('start', event)
+            context.emit('start', event)
 
         })
 
         control.value.on("stop", (event) => {
-            emit('stop', event)
+            context.emit('stop', event)
             saveAs(event.videoURL, downloadName.value);
         })
         return {

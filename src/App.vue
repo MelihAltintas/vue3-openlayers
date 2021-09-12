@@ -15,15 +15,15 @@
         <ol-source-xyz crossOrigin='anonymous' url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ" />
     </ol-tile-layer>
 
-    <ol-control-bar>
-        <ol-control-toggle html="<i class='fas fa-map-marker'></i>" className="edit" title="Point" :onToggle="(active)=>changeDrawType(active,'Point')" />
-        <ol-control-toggle html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon" :onToggle="(active)=>changeDrawType(active,'Polygon')" />
-        <ol-control-toggle html="<i class='fas fa-circle'></i>" className="edit" title="Circle" :onToggle="(active)=>changeDrawType(active,'Circle')" />
-        <ol-control-toggle html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString" :onToggle="(active)=>changeDrawType(active,'LineString')" />
-        <ol-control-videorecorder @stop="videoStopped">
+    <ol-control-bar >
+        <ol-control-toggle :order="0" html="<i class='fas fa-map-marker'></i>" className="edit" title="Point" :onToggle="(active)=>changeDrawType(active,'Point')" />
+        <ol-control-toggle :order="1" html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon" :onToggle="(active)=>changeDrawType(active,'Polygon')" />
+        <ol-control-toggle :order="2" html="<i class='fas fa-circle'></i>" className="edit" title="Circle" :onToggle="(active)=>changeDrawType(active,'Circle')" />
+        <ol-control-toggle :order="3" html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString" :onToggle="(active)=>changeDrawType(active,'LineString')" />
+        <ol-control-videorecorder  :order="4" @stop="videoStopped">
 
         </ol-control-videorecorder>
-        <ol-control-printdialog />
+        <ol-control-printdialog :order="5" />
     </ol-control-bar>
 
     <ol-mouseposition-control />
@@ -175,7 +175,6 @@ export default {
         const projection = ref('EPSG:4326')
         const zoom = ref(6)
         const rotation = ref(0)
-
         const format = inject('ol-format');
 
         const geoJson = new format.GeoJSON();
@@ -326,9 +325,11 @@ export default {
             layerList.value.push(osmLayer.value.tileLayer);
             console.log(layerList.value)
             console.log(animationPath.value)
+
         });
 
         return {
+
             center,
             projection,
             zoom,
