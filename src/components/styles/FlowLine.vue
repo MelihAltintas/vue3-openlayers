@@ -95,19 +95,22 @@ export default {
     },
     props: {
         color: {
-            type: String
+            type: [String,Function]
         },
         color2: {
             type: String
         },
         width: {
-            type: Number
+            type: [Number,Function]
         },
         width2: {
             type: Number
         },
         arrow: {
             type: Number
+        },
+        arrowColor: {
+            type: String
         },
 
     }
