@@ -15,12 +15,12 @@
         <ol-source-xyz crossOrigin='anonymous' url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ" />
     </ol-tile-layer>
 
-    <ol-control-bar >
+    <ol-control-bar>
         <ol-control-toggle :order="0" html="<i class='fas fa-map-marker'></i>" className="edit" title="Point" :onToggle="(active)=>changeDrawType(active,'Point')" />
         <ol-control-toggle :order="1" html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon" :onToggle="(active)=>changeDrawType(active,'Polygon')" />
         <ol-control-toggle :order="2" html="<i class='fas fa-circle'></i>" className="edit" title="Circle" :onToggle="(active)=>changeDrawType(active,'Circle')" />
         <ol-control-toggle :order="3" html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString" :onToggle="(active)=>changeDrawType(active,'LineString')" />
-        <ol-control-videorecorder  :order="4" @stop="videoStopped">
+        <ol-control-videorecorder :order="4" @stop="videoStopped">
 
         </ol-control-videorecorder>
         <ol-control-printdialog :order="5" />
@@ -136,9 +136,7 @@
         <ol-source-vector>
             <ol-feature ref="animationPath">
                 <ol-geom-line-string :coordinates="path"></ol-geom-line-string>
-                <ol-style>
-                    <ol-style-stroke color="red" :width="7"></ol-style-stroke>
-                </ol-style>
+                <ol-style-flowline color="red" color2="yellow" :width="10" :width2="10" :arrow="1" arrowColor="red" />
             </ol-feature>
             <ol-animation-path v-if="animationPath" :path="animationPath.feature" :duration="4000" :repeat="10">
 

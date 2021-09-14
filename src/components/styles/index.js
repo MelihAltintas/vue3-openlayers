@@ -4,7 +4,7 @@ import Stroke from './Stroke.vue'
 import Fill from './Fill.vue'
 import Icon from './Icon.vue'
 import Text from './Text.vue'
-
+import FlowLine from './FlowLine.vue'
 function install (app) {
 
     if (install.installed) {
@@ -19,6 +19,7 @@ function install (app) {
     app.component(Fill.name, Fill)
     app.component(Icon.name, Icon)
     app.component(Text.name, Text)
+    app.component(FlowLine.name, FlowLine)
   }
   
   export default install
@@ -29,5 +30,6 @@ function install (app) {
     Stroke,
     Fill,
     Icon,
-    Text
+    Text,
+    FlowLine
   }

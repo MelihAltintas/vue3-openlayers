@@ -27,6 +27,7 @@ import * as animations from 'ol/easing'
 export default function install(app) {
     
     if (install.installed) {
+        console.error("OPENLAYERS MAP ALREADY INSTALLED")
         return
     }
 
