@@ -129,6 +129,10 @@ export default {
         dimensions: {
             type: Object
         },
+        requestEncoding: {
+            type: String,
+            default: "KVP",
+        },
         url: {
             type: String
         },
