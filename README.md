@@ -38,6 +38,7 @@ yarn add vue3-openlayers
     <img src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/contributors.png"><br />
   </a>
 </p>
+
 [![Stargazers repo roster for @MelihAltintas/vue3-openlayers](https://reporoster.com/stars/MelihAltintas/vue3-openlayers)](https://github.com/MelihAltintas/vue3-openlayers/stargazers)
 
 ## Overview
