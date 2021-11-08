@@ -41,3 +41,20 @@
 .ol-collapsed:hover {
     background-color: rgba(255,255,255,0);
 }
+
+.ol-control.ol-mapzone {
+    top: 12.5em !important;
+}
+
+.ol-control.ol-mapzone button {
+
+ margin-top: 0em !important; 
+}
+
+.ol-layerswitcher-image button {
+    background-color: transparent !important;
+}
+
+.ol-mapzone > div p {
+    background-color: black !important;
+}

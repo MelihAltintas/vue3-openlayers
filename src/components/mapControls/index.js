@@ -15,6 +15,7 @@ import PrintDialog from './PrintDialog.vue'
 import VideoRecorderControl from './VideoRecorderControl.vue'
 import LayerSwitcherControl from './LayerSwitcherControl.vue'
 import LayerSwitcherImageControl from './LayerSwitcherImageControl.vue'
+import ZoneControl from './ZoneControl.vue'
 function install (app) {
 
     if (install.installed) {
@@ -40,6 +41,7 @@ function install (app) {
     app.component(VideoRecorderControl.name, VideoRecorderControl)
     app.component(LayerSwitcherControl.name, LayerSwitcherControl)
     app.component(LayerSwitcherImageControl.name, LayerSwitcherImageControl)
+    app.component(ZoneControl.name, ZoneControl)
   }
   
   export default install
@@ -61,5 +63,6 @@ function install (app) {
     PrintDialog,
     VideoRecorderControl,
     LayerSwitcherControl,
-    LayerSwitcherImageControl
+    LayerSwitcherImageControl,
+    ZoneControl
   }
