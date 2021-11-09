@@ -11,6 +11,7 @@ import ContextMenuControl from './ContextMenuControl.vue'
 import SwipeControl from './SwipeControl.vue'
 import ControlBar from './ControlBar.vue'
 import ToggleControl from './ToggleControl.vue'
+import ButtonControl from './ButtonControl.vue'
 import PrintDialog from './PrintDialog.vue'
 import VideoRecorderControl from './VideoRecorderControl.vue'
 import LayerSwitcherControl from './LayerSwitcherControl.vue'
@@ -37,6 +38,7 @@ function install (app) {
     app.component(SwipeControl.name, SwipeControl)
     app.component(ControlBar.name, ControlBar)
     app.component(ToggleControl.name, ToggleControl)
+    app.component(ButtonControl.name, ButtonControl)
     app.component(PrintDialog.name, PrintDialog)
     app.component(VideoRecorderControl.name, VideoRecorderControl)
     app.component(LayerSwitcherControl.name, LayerSwitcherControl)
@@ -60,6 +62,7 @@ function install (app) {
     SwipeControl,
     ControlBar,
     ToggleControl,
+    ButtonControl,
     PrintDialog,
     VideoRecorderControl,
     LayerSwitcherControl,
