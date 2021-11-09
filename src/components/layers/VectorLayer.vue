@@ -109,7 +109,10 @@ export default {
         },
         baseLayer: {
             type: Boolean,
-
+        },
+        properties: {
+            type: Object,
+            default: () => { }
         },
     }
 }

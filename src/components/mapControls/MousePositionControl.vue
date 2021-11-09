@@ -27,7 +27,7 @@ export default {
             default: 'ol-mouse-position'
         },
         coordinateFormat: {
-            type: String,
+            type: [String, Function],
         },
         projection: {
             type: String,
