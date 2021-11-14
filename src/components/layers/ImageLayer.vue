@@ -15,7 +15,9 @@ import {
 
 import ImageLayer from 'ol/layer/Image';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import BaseLayer from "./BaseLayer"
 export default {
+    extends: BaseLayer,
     name: 'ol-image-layer',
     setup(props) {
         const map = inject('map');
@@ -43,54 +45,6 @@ export default {
             imageLayer
         }
     },
-    props: {
-        className: {
-            type: String,
-            default: 'ol-layer'
-        },
-        opacity: {
-            type: Number,
-            default: 1
-        },
-        visible: {
-            type: Boolean,
-            default: true
-        },
-        extent: {
-            type: Array
-        },
-        zIndex: {
-            type: Number
-        },
-        minResolution: {
-            type: Number
-        },
-        maxResolution: {
-            type: Number
-        },
-        minZoom: {
-            type: Number
-        },
-        maxZoom: {
-            type: Number
-        },
-        title: {
-            type: String,
-
-        },
-        name: {
-            type: String,
-
-        },
-        preview: {
-            type: String,
-
-        },
-        baseLayer: {
-            type: Boolean,
-
-        },
-    }
 }
 </script>
 

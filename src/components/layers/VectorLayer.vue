@@ -17,7 +17,9 @@ import {
 import VectorLayer from 'ol/layer/Vector';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
+import BaseLayer from "./BaseLayer"
 export default {
+    extends: BaseLayer,
     name: 'ol-vector-layer',
     setup(props) {
 
@@ -49,36 +51,6 @@ export default {
         }
     },
     props: {
-        className: {
-            type: String,
-            default: 'ol-layer'
-        },
-        opacity: {
-            type: Number,
-            default: 1
-        },
-        visible: {
-            type: Boolean,
-            default: true
-        },
-        extent: {
-            type: Array
-        },
-        zIndex: {
-            type: Number
-        },
-        minResolution: {
-            type: Number
-        },
-        maxResolution: {
-            type: Number
-        },
-        minZoom: {
-            type: Number
-        },
-        maxZoom: {
-            type: Number
-        },
         renderBuffer: {
             type: Number,
             default: 100
@@ -94,26 +66,8 @@ export default {
         updateWhileInteracting: {
             type: Boolean,
             default: false
-        },
-        title: {
-            type: String,
+        }
 
-        },
-        name: {
-            type: String,
-
-        },
-        preview: {
-            type: String,
-
-        },
-        baseLayer: {
-            type: Boolean,
-        },
-        properties: {
-            type: Object,
-            default: () => { }
-        },
     }
 }
 </script>

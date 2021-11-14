@@ -16,7 +16,9 @@ import {
 
 import TileLayer from 'ol/layer/Tile';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import BaseLayer from "./BaseLayer"
 export default {
+    extends: BaseLayer,
     name: 'ol-tile-layer',
     setup(props) {
 
@@ -71,56 +73,10 @@ export default {
             tileLayer
         }
     },
-    props: {
-        className: {
-            type: String,
-            default: 'ol-layer'
-        },
-        opacity: {
-            type: Number,
-            default: 1
-        },
-        visible: {
-            type: Boolean,
-            default: true
-        },
-        extent: {
-            type: Array
-        },
-        zIndex: {
-            type: Number
-        },
-        minResolution: {
-            type: Number
-        },
-        maxResolution: {
-            type: Number
-        },
-        minZoom: {
-            type: Number
-        },
-        maxZoom: {
-            type: Number
-        },
+    props: {  
         preload: {
             type: Number,
             default: 1
-        },
-        title: {
-            type: String,
-
-        },
-        name: {
-            type: String,
-
-        },
-        preview: {
-            type: String,
-
-        },
-        baseLayer:{
-            type: Boolean,
-
         },
     }
 }

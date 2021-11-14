@@ -22,9 +22,11 @@ import {
 
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-
+import BaseLayer from "./BaseLayer"
 export default {
+    extends: BaseLayer,
     name: 'ol-animated-clusterlayer',
+
     setup(props) {
 
         const map = inject('map');
@@ -93,22 +95,6 @@ export default {
         updateWhileInteracting: {
             type: Boolean,
             default: false
-        },
-        title: {
-            type: String,
-
-        },
-        name: {
-            type: String,
-
-        },
-        preview: {
-            type: String,
-
-        },
-        baseLayer: {
-            type: Boolean,
-
         },
     }
 }
