@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.51",
+  "version": "0.1.53",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -11,7 +11,17 @@
     "url": "https://github.com/MelihAltintas/vue3-openlayers/issues"
   },
   "keywords": [
-    "vue3-openlayers,openlayers vue,vuejs,vue3js,openlayers,front-end,gis,map,vue map"
+    "front-end",
+    "web",
+    "vue",
+    "vuejs",
+    "vue-js",
+    "openlayers",
+    "vue3-openlayers",
+    "map",
+    "gis",
+    "vuelayers",
+    "vue-openlayers"
   ],
   "author": "Melih Altıntaş",
   "license": "MIT",
