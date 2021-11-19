@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.53",
+  "version": "0.1.54",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -30,17 +30,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vue3-openlayers src/index.js",
+    "build-report": "vue-cli-service build --report",
     "lint": "vue-cli-service lint",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:dev": "vitepress dev docs"
   },
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "dependencies": {
     "core-js": "^3.6.5",
