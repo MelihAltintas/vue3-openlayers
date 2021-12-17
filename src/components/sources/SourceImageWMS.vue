@@ -32,7 +32,8 @@ export default {
                 ...properties,
                 params: {
                     'LAYERS': props.layers,
-                    'STYLES': props.styles
+                    'STYLES': props.styles,
+                    'TIME': props.time
                     },
                 projection: typeof properties.projection == "string" ? properties.projection : new Projection({
                     ...properties.projection
@@ -105,6 +106,9 @@ export default {
         styles: {
             type: [String,Array],
             default: ''
+        },
+        time: {
+            type: String
         },
         ratio: {
             type: Number,
