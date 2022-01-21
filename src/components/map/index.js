@@ -3,6 +3,8 @@ import View from './View.vue'
 import Feature from './Feature.vue'
 import Overlay from './Overlay.vue'
 import GeoLocation from './GeoLocation.vue'
+import Projection from './Projection.vue'
+
 function install (app) {
 
     if (install.installed) {
@@ -16,6 +18,7 @@ function install (app) {
     app.component(Feature.name, Feature)
     app.component(Overlay.name, Overlay)
     app.component(GeoLocation.name, GeoLocation)
+    app.component(Projection.name, Projection)
   }
   
   export default install
@@ -26,5 +29,6 @@ function install (app) {
     View,
     Feature,
     Overlay,
-    GeoLocation
+    GeoLocation,
+    Projection
   }
