@@ -49,6 +49,9 @@ export default {
         }
     },
     props: {
+        attributions: {
+            type: [String, Array],
+        },
         url: {
             type: String
         },
