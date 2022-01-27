@@ -31,10 +31,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vue3-openlayers src/index.js",
     "build-report": "vue-cli-service build --report",
-    "lint": "vue-cli-service lint",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "docs:dev": "vitepress dev docs"
+    "lint": "vue-cli-service lint"
   },
   "files": [
     "dist/*"
@@ -56,8 +53,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.11.1",
-    "vitepress": "^0.15.3"
+    "eslint-plugin-vue": "^7.0.0"
   },
   "eslintConfig": {
     "root": true,
