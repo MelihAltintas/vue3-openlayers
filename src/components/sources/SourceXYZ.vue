@@ -94,7 +94,10 @@ export default {
         },
         transition: {
             type: Number
-        }
+        },
+        tileGrid: {
+            type: Object,
+        },
     }
 }
 </script>
