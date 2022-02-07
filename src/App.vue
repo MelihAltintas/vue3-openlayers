@@ -157,6 +157,11 @@
             </ol-animation-path>
         </ol-source-vector>
 
+      <ol-webglpoints-layer
+        :style="webglPointsStyle"
+      >
+        <ol-source-webglpoints :format="geoJson" url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson" />
+      </ol-webglpoints-layer>
     </ol-vector-layer>
 
 </ol-map>
@@ -342,6 +347,32 @@ export default {
             extent: [-120.32,22.76,17.67,-47.52]
         }]
 
+        const webglPointsStyle = {
+            symbol: {
+            symbolType: 'circle',
+            size: [
+                'interpolate',
+                ['linear'],
+                ['get', 'population'],
+                40000,
+                8,
+                2000000,
+                28,
+            ],
+            color: '#ffed02',
+            rotateWithView: false,
+            offset: [0, 0],
+            opacity: [
+                'interpolate',
+                ['linear'],
+                ['get', 'population'],
+                40000,
+                0.6,
+                2000000,
+                0.92,
+            ],
+            },
+        }
         return {
 
             center,
@@ -375,7 +406,8 @@ export default {
             changeDrawType,
             path,
             animationPath,
-            zones
+            zones,
+            webglPointsStyle
         }
     },
 }
