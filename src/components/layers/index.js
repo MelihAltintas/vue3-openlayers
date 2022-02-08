@@ -2,26 +2,30 @@ import TileLayer from './TileLayer.vue'
 import ImageLayer from './ImageLayer.vue'
 import VectorLayer from './VectorLayer.vue'
 import AnimatedClusterLayer from './AnimatedClusterLayer'
-function install (app) {
+import WebglPointsLayer from './WebglPointsLayer'
 
-    if (install.installed) {
-      return
-    }
+function install(app) {
 
-    install.installed = true
-  
-    app.component(TileLayer.name, TileLayer)
-    app.component(ImageLayer.name, ImageLayer)
-    app.component(VectorLayer.name, VectorLayer)
-    app.component(AnimatedClusterLayer.name, AnimatedClusterLayer)
+  if (install.installed) {
+    return
   }
-  
-  export default install
-  
-  export {
-    install,
-    TileLayer,
-    ImageLayer,
-    VectorLayer,
-    AnimatedClusterLayer
-  }
+
+  install.installed = true
+
+  app.component(TileLayer.name, TileLayer)
+  app.component(ImageLayer.name, ImageLayer)
+  app.component(VectorLayer.name, VectorLayer)
+  app.component(AnimatedClusterLayer.name, AnimatedClusterLayer)
+  app.component(WebglPointsLayer.name, WebglPointsLayer)
+}
+
+export default install
+
+export {
+  install,
+  TileLayer,
+  ImageLayer,
+  VectorLayer,
+  AnimatedClusterLayer,
+  WebglPointsLayer
+}
