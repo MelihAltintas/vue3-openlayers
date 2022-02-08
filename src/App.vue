@@ -158,10 +158,8 @@
         </ol-source-vector>
 
     </ol-vector-layer>
-    <ol-webglpoints-layer
-        :style="webglPointsStyle"
-      >
-      <ol-source-webglpoints :format="geoJson" url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson" />
+    <ol-webglpoints-layer :style="webglPointsStyle">
+        <ol-source-webglpoints :format="geoJson" url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson" />
     </ol-webglpoints-layer>
 
 </ol-map>
@@ -336,16 +334,17 @@ export default {
         });
 
         const zones = [{
-            title: "Turkey",
-            extent: [17.952,46.241,52.449,31.222]
-        },
-        {
-            title: "Cyprus",
-            extent: [31.2836,36.1623,35.5957,34.1823]
-        }, {
-            title: "Brazil",
-            extent: [-120.32,22.76,17.67,-47.52]
-        }]
+                title: "Turkey",
+                extent: [17.952, 46.241, 52.449, 31.222]
+            },
+            {
+                title: "Cyprus",
+                extent: [31.2836, 36.1623, 35.5957, 34.1823]
+            }, {
+                title: "Brazil",
+                extent: [-120.32, 22.76, 17.67, -47.52]
+            }
+        ]
 
         const webglPointsStyle = {
             symbol: {
