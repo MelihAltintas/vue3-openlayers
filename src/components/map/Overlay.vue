@@ -26,7 +26,7 @@ export default {
             type: Array
         },
         positioning: {
-            type: Array
+            type: String
         },
         stopEvent: {
             type: Boolean,

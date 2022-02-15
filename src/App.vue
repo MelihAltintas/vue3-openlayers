@@ -128,7 +128,7 @@
 
     </ol-animated-clusterlayer>
 
-    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable">
+    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable" positioning="bottom-right">
         <template v-slot="slotProps">
             <div class="overlay-content">
                 {{selectedCityName}} {{slotProps}}
