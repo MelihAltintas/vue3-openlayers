@@ -1,4 +1,5 @@
 import TileLayer from './TileLayer.vue'
+import WebGLTileLayer from './WebGLTileLayer.vue'
 import ImageLayer from './ImageLayer.vue'
 import VectorLayer from './VectorLayer.vue'
 import AnimatedClusterLayer from './AnimatedClusterLayer'
@@ -13,6 +14,7 @@ function install(app) {
   install.installed = true
 
   app.component(TileLayer.name, TileLayer)
+  app.component(WebGLTileLayer.name, WebGLTileLayer)
   app.component(ImageLayer.name, ImageLayer)
   app.component(VectorLayer.name, VectorLayer)
   app.component(AnimatedClusterLayer.name, AnimatedClusterLayer)
@@ -24,6 +26,7 @@ export default install
 export {
   install,
   TileLayer,
+  WebGLTileLayer,
   ImageLayer,
   VectorLayer,
   AnimatedClusterLayer,
