@@ -61,6 +61,10 @@ export default {
         });
 
         provide('stylable', select)
+
+        return {
+            select
+        }
     },
     props: {
 
