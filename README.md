@@ -24,8 +24,8 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 
 ## Links
 
-- [Documentation Netlify](https://vue3openlayers.netlify.app)
-- [Documentation Github.io](https://vue3openlayers.github.io/)
+##- [Documentation Netlify](https://vue3openlayers.netlify.app)
+
 
 ## Install
 
