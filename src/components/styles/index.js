@@ -31,5 +31,6 @@ function install (app) {
     Fill,
     Icon,
     Text,
-    FlowLine
+    FlowLine,
+    Circle
   }

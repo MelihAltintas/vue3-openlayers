@@ -60,5 +60,7 @@ export {
     MapControls,
     Geometries,
     Styles,
+    Interactions,
+    Animations
   
 }
