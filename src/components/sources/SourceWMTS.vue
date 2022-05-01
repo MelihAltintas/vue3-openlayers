@@ -39,10 +39,10 @@ export default {
 
         const getTileGrid = computed(() => {
       
-            const resolutions = new Array(14);
-            const matrixIds = new Array(14);
+            const resolutions = new Array(20);
+            const matrixIds = new Array(20);
 
-            for (var z = 0; z < 14; ++z) {
+            for (var z = 0; z < 20; ++z) {
 
                 resolutions[z] = size.value / Math.pow(2, z);
                 matrixIds[z] = z;
