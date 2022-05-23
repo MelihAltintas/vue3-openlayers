@@ -48,7 +48,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 ## Requirements
 
 - [Vue](https://vuejs.org/) version **^3.0.0**
-- [OpenLayers](https://openlayers.org/) version **^6.5.0**
+- [OpenLayers](https://openlayers.org/) version **^6.14.1**
 
 ## License
 
