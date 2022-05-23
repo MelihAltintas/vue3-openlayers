@@ -24,6 +24,7 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 
 ## Links
 
+6 hours of debugging can save you 5 minutes of reading documentation :) please read the doc :) 
 ## - [Documentation Netlify](https://vue3openlayers.netlify.app)
 
 
