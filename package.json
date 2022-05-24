@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.64",
+  "version": "0.1.65",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -26,39 +26,38 @@
   "author": "Melih Altıntaş",
   "license": "MIT",
   "private": false,
-  "main": "dist/vue3-openlayers.common.js",
+  "main": "./dist/vue3-openlayers.umd.js",
+  "module": "./dist/vue3-openlayers.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-openlayers.es.js",
+      "require": "./dist/vue3-openlayers.umd.js"
+    },
+    "./dist/vue3-openlayers.css": {
+      "import": "./dist/vue3-openlayers.css",
+      "require": "./dist/vue3-openlayers.css"
+    }
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vue3-openlayers src/index.js",
-    "build-report": "vue-cli-service build --report",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "files": [
     "dist/*"
   ],
   "dependencies": {
-    "core-js": "^3.6.5",
     "file-saver": "^2.0.5",
     "jspdf": "^2.3.1",
     "ol": "^6.14.1",
     "ol-contextmenu": "^4.1.0",
     "ol-ext": "^3.2.24",
-    "proj4": "^2.7.5",
-    "vue": "^3.0.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "proj4": "^2.7.5"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "es2021": true
     },
     "extends": [
       "plugin:vue/vue3-essential",
@@ -73,5 +72,11 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "vite": "^2.9.9",
+    "vue": "^3.2.36"
+  }
 }

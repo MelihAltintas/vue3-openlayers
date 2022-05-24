@@ -41,5 +41,6 @@ export {
   SourceCluster,
   SourceTianDiTu,
   SourceImageWMS,
-  SourceWebglPoints
+  SourceWebglPoints,
+  SourceBingMaps
 }

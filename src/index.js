@@ -17,7 +17,7 @@ import 'ol-contextmenu/dist/ol-contextmenu.css'
 import './assets/style.css'
 
 import feature from 'ol/Feature';
-import * as geom from 'ol/geom/';
+import * as geom from 'ol/geom';
 import * as format from 'ol/format';
 import * as loadingstrategy from 'ol/loadingstrategy';
 import * as selectconditions from 'ol/events/condition';
