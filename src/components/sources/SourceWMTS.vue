@@ -1,7 +1,7 @@
 <template>
-<div v-if="false">
+    <div v-if="false">
 
-</div>
+    </div>
 </template>
 
 <script>
@@ -38,18 +38,18 @@ export default {
 
 
         const getTileGrid = computed(() => {
-      
-            const resolutions = new Array(14);
-            const matrixIds = new Array(14);
 
-            for (var z = 0; z < 14; ++z) {
+            const resolutions = new Array(properties.tileZoomLevel);
+            const matrixIds = new Array(properties.tileZoomLevel);
+
+            for (var z = 0; z < properties.tileZoomLevel; ++z) {
 
                 resolutions[z] = size.value / Math.pow(2, z);
                 matrixIds[z] = z;
             }
 
             return new WMTSTileGrid({
-                origin:origin.value,
+                origin: origin.value,
                 resolutions,
                 matrixIds
             });
@@ -77,7 +77,7 @@ export default {
 
         onMounted(() => {
             tileLayer.value.setSource(source.value)
-     
+
         });
 
         onUnmounted(() => {
@@ -90,6 +90,10 @@ export default {
         }
     },
     props: {
+        tileZoomLevel: {
+            type: Number,
+            default: 30
+        },
         attributions: {
             type: String
         },
