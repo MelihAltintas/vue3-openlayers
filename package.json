@@ -44,8 +44,10 @@
     "serve": "vite preview"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "index.d.ts"
   ],
+  "types": "index.d.ts",
   "dependencies": {
     "file-saver": "^2.0.5",
     "jspdf": "^2.3.1",
