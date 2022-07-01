@@ -11,6 +11,11 @@
 
     </ol-zone-control>
 
+    <ol-heatmap-layer title="heatmap" :blur="20" :radius="20" :weight="heatmapWeight" zIndex="1">
+        <ol-source-vector ref="earthquakes" url="https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/kml/2012_Earthquakes_Mag5.kml" :format="kml">
+        </ol-source-vector>
+    </ol-heatmap-layer>
+
     <ol-tile-layer ref="osmLayer" title="OSM">
         <ol-source-osm />
     </ol-tile-layer>
@@ -183,6 +188,7 @@ export default {
         const format = inject('ol-format');
 
         const geoJson = new format.GeoJSON();
+        const kml = new format.KML({ extractStyles: false,});
 
         const selectConditions = inject('ol-selectconditions')
 
@@ -372,8 +378,17 @@ export default {
                 ],
             },
         }
-        return {
 
+        const heatmapWeight = function (feature) {
+            // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
+            // standards-violating <magnitude> tag in each Placemark.  We extract it from
+            // the Placemark's name instead.
+            const name = feature.get('name');
+            const magnitude = parseFloat(name.substr(2));
+            return magnitude - 5;
+        }
+
+        return {
             center,
             projection,
             zoom,
@@ -406,7 +421,9 @@ export default {
             path,
             animationPath,
             zones,
-            webglPointsStyle
+            webglPointsStyle,
+            heatmapWeight,
+            kml
         }
     },
 }
