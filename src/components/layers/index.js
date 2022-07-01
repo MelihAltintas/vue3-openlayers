@@ -4,6 +4,7 @@ import ImageLayer from './ImageLayer.vue'
 import VectorLayer from './VectorLayer.vue'
 import AnimatedClusterLayer from './AnimatedClusterLayer'
 import WebglPointsLayer from './WebglPointsLayer'
+import HeatmapLayer from './HeatmapLayer.vue'
 
 function install(app) {
 
@@ -19,6 +20,7 @@ function install(app) {
   app.component(VectorLayer.name, VectorLayer)
   app.component(AnimatedClusterLayer.name, AnimatedClusterLayer)
   app.component(WebglPointsLayer.name, WebglPointsLayer)
+  app.component(HeatmapLayer.name, HeatmapLayer)
 }
 
 export default install
@@ -30,5 +32,6 @@ export {
   ImageLayer,
   VectorLayer,
   AnimatedClusterLayer,
-  WebglPointsLayer
+  WebglPointsLayer,
+  HeatmapLayer,
 }
