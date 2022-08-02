@@ -95,6 +95,9 @@ export default {
             type: String,
             default: 'mapserver'
         },
+        imageLoadFunction: {
+            type: Function
+        },
         imageSmoothing: {
             type: Boolean,
             default: true
