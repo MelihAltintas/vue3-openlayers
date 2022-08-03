@@ -41,7 +41,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepare": "npm run build"
   },
   "files": [
     "dist/*",
