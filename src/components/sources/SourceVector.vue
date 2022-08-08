@@ -22,7 +22,7 @@ export default {
     name: 'ol-source-vector',
     setup(props) {
 
-        const layer = inject('vectorLayer');
+        const layer = inject('vectorLayer') || inject('heatmapLayer')
 
         const {
             properties
