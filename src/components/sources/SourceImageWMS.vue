@@ -122,7 +122,10 @@ export default {
         },
         params: {
             type: Object
-        }
+        },
+        imageLoadFunction: {
+            type: Function
+        },
     }
 }
 </script>
