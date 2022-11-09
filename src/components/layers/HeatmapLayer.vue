@@ -31,7 +31,7 @@ export default {
         const heatmapLayer = computed(() => new HeatmapLayer(properties));
 
         watch(properties, () => {
-            hetmapLayer.value.setProperties(properties);
+            heatmapLayer.value.setProperties(properties);
         });
 
         onMounted(() => {
