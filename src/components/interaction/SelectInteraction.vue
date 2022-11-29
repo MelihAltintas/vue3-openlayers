@@ -81,7 +81,12 @@ export default {
         },
         features: {
             type: [Collection,Object]
-        }
+        },
+        hitTolerance: {
+            type: Number,
+            default: 0,
+            validator: value => value >= 0,
+        },
     }
 
 }
