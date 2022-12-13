@@ -87,6 +87,9 @@ export default {
             default: 0,
             validator: value => value >= 0,
         },
+        removeCondition: {
+            type: Function,
+        }
     }
 
 }
