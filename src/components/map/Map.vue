@@ -15,7 +15,7 @@ import {
 
 import Map from "ol/Map";
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-
+import { defaults } from "ol/interaction/defaults"
 export default {
     name: 'ol-map',
     setup(props, {
@@ -28,12 +28,20 @@ export default {
 
         const mapRef = ref(null);
 
-        let map = new Map(properties);
+        let map = new Map({
+            ...properties, interactions: defaults({
+                ...properties
+            })
+        });
 
 
         watch(properties, () => {
 
-            map.setProperties(properties);
+            map.setProperties({
+                ...properties, interactions: defaults({
+                    ...properties
+                })
+            });
 
         });
 
@@ -97,9 +105,45 @@ export default {
             type: Number,
             default: 1
         },
-        controls:{
-            type:Array,
-            default:()=>[]
+        controls: {
+            type: Array,
+            default: () => []
+        },
+        altShiftDragRotate: {
+            type: Boolean,
+            default: true
+        },
+        onFocusOnly: {
+            type: Boolean,
+            default: true
+        },
+        doubleClickZoom: {
+            type: Boolean,
+            default: true
+        },
+        keyboard: {
+            type: Boolean,
+            default: true
+        },
+        mouseWheelZoom: {
+            type: Boolean,
+            default: true
+        },
+        shiftDragZoom: {
+            type: Boolean,
+            default: true
+        },
+        dragPan: {
+            type: Boolean,
+            default: true
+        },
+        pinchRotate: {
+            type: Boolean,
+            default: true
+        },
+        pinchZoom: {
+            type: Boolean,
+            default: true
         }
 
     },
