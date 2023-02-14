@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.70",
+  "version": "0.1.72",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -50,11 +50,11 @@
   "types": "index.d.ts",
   "dependencies": {
     "file-saver": "^2.0.5",
-    "jspdf": "^2.3.1",
-    "ol": "^6.14.1",
-    "ol-contextmenu": "^4.1.0",
-    "ol-ext": "^3.2.24",
-    "proj4": "^2.7.5"
+    "jspdf": "^2.5.1",
+    "ol": "^7.2.2",
+    "ol-contextmenu": "^5.1.4",
+    "ol-ext": "^4.0.4",
+    "proj4": "^2.8.1"
   },
   "eslintConfig": {
     "root": true,
