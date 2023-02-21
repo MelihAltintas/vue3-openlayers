@@ -62,6 +62,9 @@ export default {
         radius: {
             type: Number
         },
+        gradient: {
+            type: Array
+        },
     }
 }
 </script>
