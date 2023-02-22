@@ -11,7 +11,7 @@
 
     </ol-zone-control>
 
-    <ol-heatmap-layer title="heatmap" :blur="20" :radius="20" :weight="heatmapWeight" zIndex="1">
+    <ol-heatmap-layer title="heatmap" :blur="20" :radius="20" :weight="heatmapWeight" :gradient="['purple', '#89CFF0', '#93C572', '#FFBF00', 'pink']" zIndex="1">
         <ol-source-vector ref="earthquakes" url="https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/kml/2012_Earthquakes_Mag5.kml" :format="kml">
         </ol-source-vector>
     </ol-heatmap-layer>

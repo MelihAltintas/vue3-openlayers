@@ -53,7 +53,7 @@ export default {
             type: Boolean,
 
         },
-                properties: {
+        properties: {
             type: Object,
             default: () => { }
         },
