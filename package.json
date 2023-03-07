@@ -41,7 +41,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "files": [
     "dist/*",
@@ -79,6 +82,8 @@
     "@types/node": "^17.0.35",
     "@vitejs/plugin-vue": "^2.3.3",
     "vite": "^2.9.9",
-    "vue": "^3.2.36"
+    "vitepress": "^1.0.0-alpha.50",
+    "vue": "^3.2.36",
+    "vue3-openlayers": "^0.1.74"
   }
 }

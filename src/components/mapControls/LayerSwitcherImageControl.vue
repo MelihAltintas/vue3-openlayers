@@ -7,7 +7,7 @@
 <script>
 import LayerSwitcherImage from 'ol-ext/control/LayerSwitcherImage';
 import useControl from '@/composables/useControl'
-import LayerSwitcherControl from './LayerSwitcherControl'
+import LayerSwitcherControl from './LayerSwitcherControl.vue'
 export default {
     name: 'ol-layerswitcherimage-control',
     extends: LayerSwitcherControl,

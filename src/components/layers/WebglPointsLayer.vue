@@ -17,7 +17,7 @@ import {
 import WebGLPointsLayer from 'ol/layer/WebGLPoints'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
-import BaseLayer from "./BaseLayer"
+import BaseLayer from "./BaseLayer.vue"
 export default {
     extends: BaseLayer,
     name: 'ol-webglpoints-layer',

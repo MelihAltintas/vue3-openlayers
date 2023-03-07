@@ -2,8 +2,8 @@ import TileLayer from './TileLayer.vue'
 import WebGLTileLayer from './WebGLTileLayer.vue'
 import ImageLayer from './ImageLayer.vue'
 import VectorLayer from './VectorLayer.vue'
-import AnimatedClusterLayer from './AnimatedClusterLayer'
-import WebglPointsLayer from './WebglPointsLayer'
+import AnimatedClusterLayer from './AnimatedClusterLayer.vue'
+import WebglPointsLayer from './WebglPointsLayer.vue'
 import HeatmapLayer from './HeatmapLayer.vue'
 
 function install(app) {

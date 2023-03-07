@@ -17,7 +17,7 @@ import {
 import VectorLayer from 'ol/layer/Vector';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
-import BaseLayer from "./BaseLayer"
+import BaseLayer from "./BaseLayer.vue"
 export default {
     extends: BaseLayer,
     name: 'ol-vector-layer',

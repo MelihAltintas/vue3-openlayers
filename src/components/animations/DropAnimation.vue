@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation';
+import FeatureAnimation from './FeatureAnimation.vue';
 import Drop from 'ol-ext/featureanimation/Drop';
 import useAnimation from "@/composables/useAnimation";
 export default {

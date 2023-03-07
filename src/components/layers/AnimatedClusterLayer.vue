@@ -22,7 +22,7 @@ import {
 
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-import BaseLayer from "./BaseLayer"
+import BaseLayer from "./BaseLayer.vue"
 export default {
     extends: BaseLayer,
     name: 'ol-animated-clusterlayer',

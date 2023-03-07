@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation';
+import FeatureAnimation from './FeatureAnimation.vue';
 import Zoom from 'ol-ext/featureanimation/Zoom';
 import useAnimation from "@/composables/useAnimation";
 export default {
@@ -29,7 +29,7 @@ export default {
             type: Boolean,
             default: false
         }
-       
+
     }
 }
 </script>

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation';
+import FeatureAnimation from './FeatureAnimation.vue';
 import Teleport from 'ol-ext/featureanimation/Teleport';
 import useAnimation from "@/composables/useAnimation";
 export default {
@@ -25,8 +25,8 @@ export default {
 
     },
     props: {
-    
-       
+
+
     }
 }
 </script>

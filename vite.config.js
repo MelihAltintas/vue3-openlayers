@@ -18,7 +18,7 @@ export default defineConfig({
       name: 'vue3-openlayers',
 
       fileName: (format) => `vue3-openlayers.${format}.js`,
-    
+
     },
     rollupOptions: {
       external: ['vue'],
