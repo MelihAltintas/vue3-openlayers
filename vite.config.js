@@ -14,7 +14,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: './src/index.js',
+      entry: './src/index.ts',
       name: 'vue3-openlayers',
 
       fileName: format => `vue3-openlayers.${format}.js`,
