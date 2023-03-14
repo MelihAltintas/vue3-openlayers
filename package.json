@@ -52,12 +52,12 @@
   ],
   "types": "index.d.ts",
   "dependencies": {
-    "file-saver": "^2.0.5",
-    "jspdf": "^2.5.1",
-    "ol": "^7.3.0",
-    "ol-contextmenu": "^5.2.0",
-    "ol-ext": "^4.0.6",
-    "proj4": "^2.9.0"
+    "file-saver": "2.0.5",
+    "jspdf": "2.5.1",
+    "ol": "7.3.0",
+    "ol-contextmenu": "5.2.0",
+    "ol-ext": "4.0.6",
+    "proj4": "2.9.0"
   },
   "eslintConfig": {
     "root": true,
@@ -83,8 +83,7 @@
     "@types/node": "^18.15.9",
     "@vitejs/plugin-vue": "^4.1.0",
     "vite": "^4.2.1",
+    "vue": "3.2.47",
     "vitepress": "^1.0.0-alpha.62",
-    "vue": "^3.2.47",
-    "vue3-openlayers": "^0.1.74"
   }
 }
