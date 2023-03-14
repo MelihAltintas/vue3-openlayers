@@ -5,31 +5,29 @@ import MultiPoint from './MultiPoint.vue'
 import MultiLineString from './MultiLineString.vue'
 import MultiPolygon from './MultiPolygon.vue'
 
-function install (app) {
-
-    if (install.installed) {
-      return
-    }
-
-    install.installed = true
-  
-    app.component(Point.name, Point)
-    app.component(LineString.name, LineString)
-    app.component(Polygon.name, Polygon)
-    app.component(MultiPoint.name, MultiPoint)
-    app.component(MultiLineString.name, MultiLineString)
-    app.component(MultiPolygon.name, MultiPolygon)
-
+function install(app) {
+  if (install.installed) {
+    return
   }
-  
-  export default install
-  
-  export {
-    install,
-    Point,
-    LineString,
-    Polygon,
-    MultiPoint,
-    MultiLineString,
-    MultiPolygon
-  }
+
+  install.installed = true
+
+  app.component(Point.name, Point)
+  app.component(LineString.name, LineString)
+  app.component(Polygon.name, Polygon)
+  app.component(MultiPoint.name, MultiPoint)
+  app.component(MultiLineString.name, MultiLineString)
+  app.component(MultiPolygon.name, MultiPolygon)
+}
+
+export default install
+
+export {
+  install,
+  Point,
+  LineString,
+  Polygon,
+  MultiPoint,
+  MultiLineString,
+  MultiPolygon,
+}

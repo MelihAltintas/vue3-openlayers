@@ -3,34 +3,34 @@
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation.vue';
-import Zoom from 'ol-ext/featureanimation/Zoom';
-import useAnimation from "@/composables/useAnimation";
+import Zoom from 'ol-ext/featureanimation/Zoom'
+import FeatureAnimation from './FeatureAnimation.vue'
+import useAnimation from '@/composables/useAnimation'
+
 export default {
-    name: 'ol-animation-zoom',
-    extends: FeatureAnimation,
+  name: 'ol-animation-zoom',
+  extends: FeatureAnimation,
 
-    setup(props) {
-        const {
-            map,
-            vectorLayer,
-            properties
-        } = useAnimation(Zoom, props);
+  setup(props) {
+    const {
+      map,
+      vectorLayer,
+      properties,
+    } = useAnimation(Zoom, props)
 
-        return {
-            map,
-            vectorLayer,
-            properties
-        }
-
-    },
-    props: {
-        zoomOut: {
-            type: Boolean,
-            default: false
-        }
-
+    return {
+      map,
+      vectorLayer,
+      properties,
     }
+  },
+  props: {
+    zoomOut: {
+      type: Boolean,
+      default: false,
+    },
+
+  },
 }
 </script>
 

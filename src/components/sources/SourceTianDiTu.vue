@@ -3,113 +3,111 @@
 </template>
 
 <script>
-import WMTSSource from "ol/source/WMTS";
-import TileGridWMTS from "ol/tilegrid/WMTS";
-import { inject, watch, onMounted, onUnmounted, computed } from "vue";
-import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
+import WMTSSource from 'ol/source/WMTS'
+import TileGridWMTS from 'ol/tilegrid/WMTS'
+import {
+  inject, watch, onMounted, onUnmounted, computed,
+} from 'vue'
+import usePropsAsObjectProperties from '../../composables/usePropsAsObjectProperties'
 
 export class Tianditu extends WMTSSource {
   constructor(opt_options) {
     Tianditu.layerLabelMap = {
-      vec: "cva",
-      ter: "cta",
-      img: "cia",
-    };
+      vec: 'cva',
+      ter: 'cta',
+      img: 'cia',
+    }
     Tianditu.layerZoomMap = {
       vec: 18,
       ter: 14,
       img: 18,
-    };
-    let options = opt_options || {};
+    }
+    const options = opt_options || {}
 
-    options.layerType = options.layerType || "vec";
+    options.layerType = options.layerType || 'vec'
     options.layerType = options.isLabel
       ? Tianditu.layerLabelMap[options.layerType]
-      : options.layerType;
-    options.matrixSet =
-      options.projection === "EPSG:4326" || options.projection === "EPSG:4490"
-        ? "c"
-        : "w";
+      : options.layerType
+    options.matrixSet = options.projection === 'EPSG:4326' || options.projection === 'EPSG:4490'
+      ? 'c'
+      : 'w'
     if (!options.url && !options.urls) {
-      options.url = "https://t{0-7}.tianditu.gov.cn/{layer}_{proj}/wmts?";
+      options.url = 'https://t{0-7}.tianditu.gov.cn/{layer}_{proj}/wmts?'
     }
     if (options.tk) {
-      options.url = `${options.url}tk=${options.tk}`;
+      options.url = `${options.url}tk=${options.tk}`
     }
     options.url = options.url
-      .replace("{layer}", options.layerType)
-      .replace("{proj}", options.matrixSet);
-    let tileGrid =
-      options.tileGrid ||
-      Tianditu.getTileGrid(options.projection || "EPSG:3857");
-    let crossOrigin =
-      options.crossOrigin !== undefined ? options.crossOrigin : "anonymous";
-    let superOptions = {
-      version: options.version || "1.0.0",
-      format: options.format || "tiles",
+      .replace('{layer}', options.layerType)
+      .replace('{proj}', options.matrixSet)
+    const tileGrid = options.tileGrid
+      || Tianditu.getTileGrid(options.projection || 'EPSG:3857')
+    const crossOrigin = options.crossOrigin !== undefined ? options.crossOrigin : 'anonymous'
+    const superOptions = {
+      version: options.version || '1.0.0',
+      format: options.format || 'tiles',
       dimensions: options.dimensions || {},
       layer: options.layerType,
       matrixSet: options.matrixSet,
-      tileGrid: tileGrid,
-      style: options.style || "default",
+      tileGrid,
+      style: options.style || 'default',
       cacheSize: options.cacheSize,
-      crossOrigin: crossOrigin,
+      crossOrigin,
       opaque: options.opaque === undefined ? true : options.opaque,
       maxZoom: Tianditu.layerZoomMap[options.layerType],
       reprojectionErrorThreshold: options.reprojectionErrorThreshold,
       url: options.url,
       urls: options.urls,
-      projection: options.projection || "EPSG:3857",
+      projection: options.projection || 'EPSG:3857',
       wrapX: options.wrapX,
-    };
-  
-
-    if (options.tileProxy) {
-      superOptions.tileLoadFunction = tileLoadFunction;
-    }
-    super(superOptions);
-    if (options.tileProxy) {
-      this.tileProxy = options.tileProxy;
     }
 
-    let me = this;
+    if (options.tileProxy) {
+      superOptions.tileLoadFunction = tileLoadFunction
+    }
+    super(superOptions)
+    if (options.tileProxy) {
+      this.tileProxy = options.tileProxy
+    }
+
+    const me = this
     function tileLoadFunction(imageTile, src) {
-      imageTile.getImage().src = me.tileProxy + encodeURIComponent(src);
+      imageTile.getImage().src = me.tileProxy + encodeURIComponent(src)
     }
   }
 
   static getTileGrid(projection) {
-    if (projection === "EPSG:4326" || projection === "EPSG:4490") {
-      return Tianditu.default4326TileGrid();
+    if (projection === 'EPSG:4326' || projection === 'EPSG:4490') {
+      return Tianditu.default4326TileGrid()
     }
-    return Tianditu.default3857TileGrid();
+    return Tianditu.default3857TileGrid()
   }
 
   static default4326TileGrid() {
-    let tdt_WGS84_resolutions = [];
-    let matrixIds = [];
+    const tdt_WGS84_resolutions = []
+    const matrixIds = []
     for (let i = 1; i < 19; i++) {
-      tdt_WGS84_resolutions.push((0.703125 * 2) / Math.pow(2, i));
-      matrixIds.push(i);
+      tdt_WGS84_resolutions.push((0.703125 * 2) / 2 ** i)
+      matrixIds.push(i)
     }
-    let tileGird = new TileGridWMTS({
+    const tileGird = new TileGridWMTS({
       extent: [-180, -90, 180, 90],
       resolutions: tdt_WGS84_resolutions,
       origin: [-180, 90],
-      matrixIds: matrixIds,
+      matrixIds,
       minZoom: 1,
-    });
-    return tileGird;
+    })
+    return tileGird
   }
 
   static default3857TileGrid() {
-    let tdt_Mercator_resolutions = [];
-    let matrixIds = [];
+    const tdt_Mercator_resolutions = []
+    const matrixIds = []
     for (let i = 1; i < 19; i++) {
-      tdt_Mercator_resolutions.push((78271.5169640203125 * 2) / Math.pow(2, i));
-      matrixIds.push(i);
+      tdt_Mercator_resolutions.push((78271.5169640203125 * 2) / 2 ** i)
+      matrixIds.push(i)
     }
-    let tileGird = new TileGridWMTS({
+    const tileGird = new TileGridWMTS({
       extent: [
         -20037508.3427892,
         -20037508.3427892,
@@ -117,42 +115,42 @@ export class Tianditu extends WMTSSource {
         20037508.3427892,
       ],
       resolutions: tdt_Mercator_resolutions,
-      matrixIds: matrixIds,
+      matrixIds,
       origin: [-20037508.3427892, 20037508.3427892],
       minZoom: 1,
-    });
-    return tileGird;
+    })
+    return tileGird
   }
 }
 export default {
-  name: "ol-source-tianditu",
+  name: 'ol-source-tianditu',
   setup(props) {
-    const layer = inject("tileLayer");
-    const { properties } = usePropsAsObjectProperties(props);
-    let source = computed(() => {
-      return new Tianditu(properties);
-    });
+    const layer = inject('tileLayer')
+    const { properties } = usePropsAsObjectProperties(props)
+    const source = computed(() => {
+      return new Tianditu(properties)
+    })
     watch(source, () => {
-      layer.value.setSource(source.value);
-    });
+      layer.value.setSource(source.value)
+    })
     watch(layer, () => {
-      layer.value.setSource(source.value);
-    });
+      layer.value.setSource(source.value)
+    })
     onMounted(() => {
-      layer.value.setSource(source.value);
-    });
+      layer.value.setSource(source.value)
+    })
     onUnmounted(() => {
-      layer.value.setSource(null);
-    });
+      layer.value.setSource(null)
+    })
     return {
       layer,
       source,
-    };
+    }
   },
   props: {
     layerType: {
       type: String,
-      default: "img", 
+      default: 'img',
     },
     tk: {
       type: String,
@@ -169,7 +167,7 @@ export default {
     },
     projection: {
       Type: String,
-      default: "EPSG:3857",
+      default: 'EPSG:3857',
     },
     hidpi: {
       type: Boolean,
@@ -177,18 +175,18 @@ export default {
     },
     requestEncoding: {
       type: String,
-      default: "KVP",
+      default: 'KVP',
     },
     format: {
       type: String,
     },
     version: {
       type: String,
-      default: "1.0.0",
+      default: '1.0.0',
     },
     culture: {
       type: String,
-      default: "en-us",
+      default: 'en-us',
     },
     matrixSet: {
       type: String,
@@ -220,7 +218,7 @@ export default {
       type: Number,
     },
   },
-};
+}
 </script>
 
 <style lang=""></style>

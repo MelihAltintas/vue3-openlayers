@@ -6,94 +6,91 @@
 
 <script>
 import {
-    provide,
-    inject,
-    watch,
-    onMounted,
-    onUnmounted,
-    computed
+  provide,
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  computed,
 } from 'vue'
 
-import Select from 'ol-ext/interaction/SelectCluster';
-import Style from 'ol/style/Style';
+import Select from 'ol-ext/interaction/SelectCluster'
+import Style from 'ol/style/Style'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
-    name: 'ol-interaction-clusterselect',
-    emits: ["select"],
-    setup(props, {
-        emit
-    }) {
+  name: 'ol-interaction-clusterselect',
+  emits: ['select'],
+  setup(props, {
+    emit,
+  }) {
+    const map = inject('map')
 
-        const map = inject("map");
+    const {
+      properties,
+    } = usePropsAsObjectProperties(props)
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const select = computed(() => {
+      const s = new Select({
+        ...properties,
+        style: new Style(),
+      })
+      s.on('select', event => {
+        emit('select', event)
+      })
 
-        let select = computed(() => {
-            let s = new Select({
-                ...properties,
-                style: new Style()
-            });
-            s.on('select', (event) => {
-                emit('select', event)
-            })
+      return s
+    })
 
-            return s;
-        });
+    watch(select, (newVal, oldVal) => {
+      map.removeInteraction(oldVal)
+      map.addInteraction(newVal)
 
-        watch(select, (newVal, oldVal) => {
+      map.changed()
+    })
 
-            map.removeInteraction(oldVal);
-            map.addInteraction(newVal);
+    onMounted(() => {
+      map.addInteraction(select.value)
+    })
 
-            map.changed()
-        })
+    onUnmounted(() => {
+      map.removeInteraction(select.value)
+    })
 
-        onMounted(() => {
-            map.addInteraction(select.value);
+    provide('stylable', select)
+  },
+  props: {
 
-        });
-
-        onUnmounted(() => {
-            map.removeInteraction(select.value);
-        });
-
-        provide('stylable', select)
+    multi: {
+      type: Boolean,
+      default: false,
     },
-    props: {
+    condition: {
+      type: Function,
 
-        multi: {
-            type: Boolean,
-            default: false
-        },
-        condition: {
-            type: Function,
+    },
+    filter: {
+      type: Function,
+    },
+    pointRadius: {
+      type: Number,
+      default: 7,
 
-        },
-        filter: {
-            type: Function
-        },
-        pointRadius: {
-            type: Number,
-            default: 7
+    },
+    animate: {
+      type: Boolean,
+      default: true,
 
-        },
-        animate: {
-            type: Boolean,
-            default: true
+    },
+    featureStyle: {
+      type: Function,
 
-        },
-        featureStyle: {
-            type: Function,
+    },
+    style: {
+      type: Function,
 
-        },
-        style: {
-            type: Function,
-
-        },
-    }
+    },
+  },
 
 }
 </script>

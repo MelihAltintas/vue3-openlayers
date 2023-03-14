@@ -11,34 +11,33 @@ import ContextMenu from 'ol-contextmenu'
 import useControl from '@/composables/useControl'
 
 export default {
-    name: 'ol-context-menu',
-    setup(props,context) {
-        const {
-            control
-        } = useControl(ContextMenu, props,context);
-        return {
-            control
-        }
-
-    },
-    props: {
-        eventType: {
-            type: String,
-            default: 'contextmenu'
-        },
-        defaultItems: {
-            type: Boolean,
-            default:true
-        },
-        width: {
-            type: Number,
-            default:150
-        },
-        items: {
-            type: Array,
-            default: ()=>[]
-        }
+  name: 'ol-context-menu',
+  setup(props, context) {
+    const {
+      control,
+    } = useControl(ContextMenu, props, context)
+    return {
+      control,
     }
+  },
+  props: {
+    eventType: {
+      type: String,
+      default: 'contextmenu',
+    },
+    defaultItems: {
+      type: Boolean,
+      default: true,
+    },
+    width: {
+      type: Number,
+      default: 150,
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
 }
 </script>
 

@@ -6,97 +6,94 @@
 
 <script>
 import {
-    inject,
-    provide,
-    onUnmounted,
-    onMounted,
-    watch,
-    computed
+  inject,
+  provide,
+  onUnmounted,
+  onMounted,
+  watch,
+  computed,
 } from 'vue'
 import {
-    Cluster
-} from 'ol/source';
+  Cluster,
+} from 'ol/source'
 import {
-    easeOut
+  easeOut,
 } from 'ol/easing'
 
-import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
+import AnimatedCluster from 'ol-ext/layer/AnimatedCluster'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 import BaseLayer from "./BaseLayer.vue"
+
 export default {
-    extends: BaseLayer,
-    name: 'ol-animated-clusterlayer',
+  extends: BaseLayer,
+  name: 'ol-animated-clusterlayer',
 
-    setup(props) {
+  setup(props) {
+    const map = inject('map')
 
-        const map = inject('map');
+    const {
+      properties,
+    } = usePropsAsObjectProperties(props)
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const vectorLayer = computed(() => {
+      const ac = new AnimatedCluster({
+        ...properties,
+        source: new Cluster({
+          distance: properties.distance,
+          geometryFunction: feature => feature.getGeometry(),
+        }),
+      })
 
-        const vectorLayer = computed(() => {
-            let ac = new AnimatedCluster({
-                ...properties,
-                source: new Cluster({
-                    distance: properties.distance,
-                    geometryFunction: (feature) => feature.getGeometry()
-                })
-            });
+      return ac
+    })
 
-            return ac;
-        });
+    const source = computed(() => vectorLayer.value.getSource())
 
-        const source = computed(() => vectorLayer.value.getSource());
+    watch(properties, () => {
+      vectorLayer.value.setProperties(properties)
+      vectorLayer.value.changed()
+    })
 
-        watch(properties, () => {
+    onMounted(() => {
+      map.addLayer(vectorLayer.value)
+      vectorLayer.value.changed()
+      map.changed()
+    })
 
-            vectorLayer.value.setProperties(properties);
-            vectorLayer.value.changed();
+    onUnmounted(() => {
+      map.removeLayer(vectorLayer.value)
+    })
 
-        });
+    provide('vectorLayer', source)
+    provide('stylable', vectorLayer)
 
-        onMounted(() => {
-
-            map.addLayer(vectorLayer.value);
-            vectorLayer.value.changed();
-            map.changed();
-        });
-
-        onUnmounted(() => {
-            map.removeLayer(vectorLayer.value)
-        });
-
-        provide('vectorLayer', source);
-        provide('stylable', vectorLayer);
-
-        return {
-            vectorLayer,
-            map
-        }
-    },
-    props: {
-        animationDuration: {
-            type: Number,
-            default: 700
-        },
-        distance: {
-            type: Number,
-            default: 20
-        },
-        animationMethod: {
-            type: Function,
-            default: easeOut
-        },
-        updateWhileAnimating: {
-            type: Boolean,
-            default: false
-        },
-        updateWhileInteracting: {
-            type: Boolean,
-            default: false
-        },
+    return {
+      vectorLayer,
+      map,
     }
+  },
+  props: {
+    animationDuration: {
+      type: Number,
+      default: 700,
+    },
+    distance: {
+      type: Number,
+      default: 20,
+    },
+    animationMethod: {
+      type: Function,
+      default: easeOut,
+    },
+    updateWhileAnimating: {
+      type: Boolean,
+      default: false,
+    },
+    updateWhileInteracting: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 

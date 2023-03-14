@@ -17,55 +17,55 @@ import VideoRecorderControl from './VideoRecorderControl.vue'
 import LayerSwitcherControl from './LayerSwitcherControl.vue'
 import LayerSwitcherImageControl from './LayerSwitcherImageControl.vue'
 import ZoneControl from './ZoneControl.vue'
-function install (app) {
 
-    if (install.installed) {
-      return
-    }
+function install(app) {
+  if (install.installed) {
+    return
+  }
 
-    install.installed = true
-  
-    app.component(FullScreenControl.name, FullScreenControl)
-    app.component(MousePositionControl.name, MousePositionControl)
-    app.component(AttributionControl.name, AttributionControl)
-    app.component(OverviewMapControl.name, OverviewMapControl)
-    app.component(ScaleLineControl.name, ScaleLineControl)
-    app.component(ZoomControl.name, ZoomControl)
-    app.component(ZoomSliderControl.name, ZoomSliderControl)
-    app.component(ZoomToExtentControl.name, ZoomToExtentControl)
-    app.component(RotateControl.name, RotateControl)
-    app.component(ContextMenuControl.name, ContextMenuControl)
-    app.component(SwipeControl.name, SwipeControl)
-    app.component(ControlBar.name, ControlBar)
-    app.component(ToggleControl.name, ToggleControl)
-    app.component(ButtonControl.name, ButtonControl)
-    app.component(PrintDialog.name, PrintDialog)
-    app.component(VideoRecorderControl.name, VideoRecorderControl)
-    app.component(LayerSwitcherControl.name, LayerSwitcherControl)
-    app.component(LayerSwitcherImageControl.name, LayerSwitcherImageControl)
-    app.component(ZoneControl.name, ZoneControl)
-  }
-  
-  export default install
-  
-  export {
-    install,
-    FullScreenControl,
-    MousePositionControl,
-    AttributionControl,
-    OverviewMapControl,
-    ScaleLineControl,
-    ZoomControl,
-    ZoomSliderControl,
-    ZoomToExtentControl,
-    ContextMenuControl,
-    SwipeControl,
-    ControlBar,
-    ToggleControl,
-    ButtonControl,
-    PrintDialog,
-    VideoRecorderControl,
-    LayerSwitcherControl,
-    LayerSwitcherImageControl,
-    ZoneControl
-  }
+  install.installed = true
+
+  app.component(FullScreenControl.name, FullScreenControl)
+  app.component(MousePositionControl.name, MousePositionControl)
+  app.component(AttributionControl.name, AttributionControl)
+  app.component(OverviewMapControl.name, OverviewMapControl)
+  app.component(ScaleLineControl.name, ScaleLineControl)
+  app.component(ZoomControl.name, ZoomControl)
+  app.component(ZoomSliderControl.name, ZoomSliderControl)
+  app.component(ZoomToExtentControl.name, ZoomToExtentControl)
+  app.component(RotateControl.name, RotateControl)
+  app.component(ContextMenuControl.name, ContextMenuControl)
+  app.component(SwipeControl.name, SwipeControl)
+  app.component(ControlBar.name, ControlBar)
+  app.component(ToggleControl.name, ToggleControl)
+  app.component(ButtonControl.name, ButtonControl)
+  app.component(PrintDialog.name, PrintDialog)
+  app.component(VideoRecorderControl.name, VideoRecorderControl)
+  app.component(LayerSwitcherControl.name, LayerSwitcherControl)
+  app.component(LayerSwitcherImageControl.name, LayerSwitcherImageControl)
+  app.component(ZoneControl.name, ZoneControl)
+}
+
+export default install
+
+export {
+  install,
+  FullScreenControl,
+  MousePositionControl,
+  AttributionControl,
+  OverviewMapControl,
+  ScaleLineControl,
+  ZoomControl,
+  ZoomSliderControl,
+  ZoomToExtentControl,
+  ContextMenuControl,
+  SwipeControl,
+  ControlBar,
+  ToggleControl,
+  ButtonControl,
+  PrintDialog,
+  VideoRecorderControl,
+  LayerSwitcherControl,
+  LayerSwitcherImageControl,
+  ZoneControl,
+}

@@ -10,7 +10,6 @@ import SourceImageWMS from './SourceImageWMS.vue'
 import SourceWebglPoints from './SourceWebglPoints.vue'
 
 function install(app) {
-
   if (install.installed) {
     return
   }
@@ -42,5 +41,5 @@ export {
   SourceTianDiTu,
   SourceImageWMS,
   SourceWebglPoints,
-  SourceBingMaps
+  SourceBingMaps,
 }

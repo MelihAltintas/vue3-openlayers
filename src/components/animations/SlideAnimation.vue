@@ -3,34 +3,34 @@
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation.vue';
-import Slide from 'ol-ext/featureanimation/Slide';
-import useAnimation from "@/composables/useAnimation";
+import Slide from 'ol-ext/featureanimation/Slide'
+import FeatureAnimation from './FeatureAnimation.vue'
+import useAnimation from '@/composables/useAnimation'
+
 export default {
-    name: 'ol-animation-slide',
-    extends: FeatureAnimation,
+  name: 'ol-animation-slide',
+  extends: FeatureAnimation,
 
-    setup(props) {
-        const {
-            map,
-            vectorLayer,
-            properties
-        } = useAnimation(Slide, props);
+  setup(props) {
+    const {
+      map,
+      vectorLayer,
+      properties,
+    } = useAnimation(Slide, props)
 
-        return {
-            map,
-            vectorLayer,
-            properties
-        }
-
-    },
-    props: {
-        speed: {
-            type: Number,
-            default: 0
-        }
-
+    return {
+      map,
+      vectorLayer,
+      properties,
     }
+  },
+  props: {
+    speed: {
+      type: Number,
+      default: 0,
+    },
+
+  },
 }
 </script>
 

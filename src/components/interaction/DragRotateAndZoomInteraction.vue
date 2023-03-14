@@ -7,68 +7,63 @@
 <script>
 import {
 
-    inject,
-    watch,
-    onMounted,
-    onUnmounted,
-    computed
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  computed,
 } from 'vue'
 
-import DragRotateAndZoom from 'ol/interaction/DragRotateAndZoom';
+import DragRotateAndZoom from 'ol/interaction/DragRotateAndZoom'
 
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 export default {
-    name: 'ol-interaction-dragrotatezoom',
+  name: 'ol-interaction-dragrotatezoom',
 
-    setup(props) {
+  setup(props) {
+    const map = inject('map')
 
-        const map = inject("map");
+    const {
+      properties,
+    } = usePropsAsObjectProperties(props)
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const dragrotatezoom = computed(() => {
+      const s = new DragRotateAndZoom({
+        ...properties,
 
-        let dragrotatezoom = computed(() => {
-            let s = new DragRotateAndZoom({
-                ...properties,
+      })
 
-            });
+      return s
+    })
 
-            return s;
-        });
+    watch(dragrotatezoom, (newVal, oldVal) => {
+      map.removeInteraction(oldVal)
+      map.addInteraction(newVal)
 
-        watch(dragrotatezoom, (newVal, oldVal) => {
+      map.changed()
+    })
 
-            map.removeInteraction(oldVal);
-            map.addInteraction(newVal);
+    onMounted(() => {
+      map.addInteraction(dragrotatezoom.value)
+    })
 
-            map.changed()
-        })
+    onUnmounted(() => {
+      map.removeInteraction(dragrotatezoom.value)
+    })
+  },
+  props: {
 
-        onMounted(() => {
-            map.addInteraction(dragrotatezoom.value);
-
-        });
-
-        onUnmounted(() => {
-            map.removeInteraction(dragrotatezoom.value);
-        });
-
+    condition: {
+      type: Function,
 
     },
-    props: {
+    duration: {
+      type: Number,
+      default: 400,
+    },
 
-        condition: {
-            type: Function,
-
-        },
-        duration: {
-            type: Number,
-            default:400
-        },
-
-    }
+  },
 
 }
 </script>

@@ -7,7 +7,6 @@ import WebglPointsLayer from './WebglPointsLayer.vue'
 import HeatmapLayer from './HeatmapLayer.vue'
 
 function install(app) {
-
   if (install.installed) {
     return
   }

@@ -4,56 +4,52 @@
 
 <script>
 import {
-    inject
+  inject,
 } from 'vue'
 
 import {
-    easeOut
+  easeOut,
 } from 'ol/easing'
 
 export default {
 
-    setup() {
+  setup() {
+    const map = inject('map')
+    const vectorLayer = inject('vectorLayer')
 
-        const map = inject('map');
-        const vectorLayer = inject('vectorLayer');
+    return {
 
-   
-        return {
-
-            map,
-            vectorLayer
-
-        }
-
-    },
-    props: {
-
-        duration: {
-            type: Number,
-            default: 1000
-        },
-        revers: {
-            type: Boolean,
-            default: false
-        },
-        repeat: {
-            type: Number,
-            default: 0
-        },
-
-        fade: {
-            type: Function,
-      
-
-        },
-        easing: {
-            type: Function,
-            default: easeOut
-
-        }
+      map,
+      vectorLayer,
 
     }
+  },
+  props: {
+
+    duration: {
+      type: Number,
+      default: 1000,
+    },
+    revers: {
+      type: Boolean,
+      default: false,
+    },
+    repeat: {
+      type: Number,
+      default: 0,
+    },
+
+    fade: {
+      type: Function,
+
+    },
+    easing: {
+      type: Function,
+      default: easeOut,
+
+    },
+
+  },
 }
 </script>
 
