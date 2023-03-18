@@ -1,9 +1,7 @@
 import 'ol/ol.css'
 import 'ol-ext/dist/ol-ext.css'
-
 import 'ol-contextmenu/ol-contextmenu.css'
 import './assets/style.css'
-
 import type Vue from 'vue'
 import feature from 'ol/Feature'
 import * as geom from 'ol/geom'
