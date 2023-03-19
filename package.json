@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -49,10 +49,10 @@
     "docs:preview": "vitepress preview docs"
   },
   "files": [
-    "dist"
+    "./*"
   ],
   "type": "module",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
     "file-saver": "2.0.5",
     "jspdf": "2.5.1",
