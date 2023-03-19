@@ -20,9 +20,9 @@ import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties
 
 const props = withDefaults(defineProps<{
   preload: number,
-  className: 'ol-layer',
-  opacity: 1,
-  visible: true,
+  className?: 'ol-layer',
+  opacity?: 1,
+  visible?: true,
 }>(), {
   preload: 1,
 })

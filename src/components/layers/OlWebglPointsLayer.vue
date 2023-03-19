@@ -31,9 +31,9 @@ type StyleType = {
 const props = withDefaults(defineProps<{
   disableHitDetection?: boolean,
   style: StyleType,
-  className: 'ol-layer',
-  opacity: 1,
-  visible: true,
+  className?: 'ol-layer',
+  opacity?: 1,
+  visible?: true,
 }>(), {
   disableHitDetection: false,
   style: () => ({

@@ -22,9 +22,9 @@ const props = withDefaults(defineProps<{
   updateWhileAnimating?: boolean,
   style?: () => unknown,
   updateWhileInteracting?: boolean,
-  className: 'ol-layer',
-  opacity: 1,
-  visible: true,
+  className?: 'ol-layer',
+  opacity?: 1,
+  visible?: true,
 }>(), {
   className: 'ol-layer',
   opacity: 1,

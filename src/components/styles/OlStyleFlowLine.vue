@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<{
   width2?: number,
   arrow?: number,
   arrowColor?: string,
-  lineCap: CanvasLineCap,
+  lineCap?: CanvasLineCap,
   overrideStyleFunction?: (...args: unknown[]) => unknown,
 }>(), {})
 
@@ -37,6 +37,7 @@ const styledObj = inject<Draw|Modify|Style|null>('stylable', null)
 
 const { properties } = usePropsAsObjectProperties(props)
 
+// @ts-ignore
 const style = computed(() => new FlowLine(properties))
 
 const setStyle = (val: Style | null) => {

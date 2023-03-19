@@ -17,9 +17,9 @@ import type Map from 'ol/Map'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 const props = withDefaults(defineProps<{
-  className: 'ol-layer',
-  opacity: 1,
-  visible: true,
+  className?: 'ol-layer',
+  opacity?: 1,
+  visible?: true,
 }>(), {
   className: 'ol-layer',
   opacity: 1,

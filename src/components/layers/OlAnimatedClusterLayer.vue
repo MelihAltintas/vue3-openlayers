@@ -25,9 +25,9 @@ const props = withDefaults(defineProps<{
   animationMethod?: (t: number) => number,
   updateWhileAnimating?: boolean,
   updateWhileInteracting?: boolean,
-  className: 'ol-layer',
-  opacity: 1,
-  visible: true,
+  className?: 'ol-layer',
+  opacity?: 1,
+  visible?: true,
 }>(), {
   className: 'ol-layer',
   opacity: 1,

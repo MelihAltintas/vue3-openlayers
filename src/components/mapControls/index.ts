@@ -9,7 +9,7 @@ import OlZoomSliderControl from './OlZoomSliderControl.vue'
 import OlZoomToExtentControl from './OlZoomToExtentControl.vue'
 import OlRotateControl from './OlRotateControl.vue'
 import OlContextMenu from './OlContextMenu.vue'
-import SwipeControl from './OlSwipeControl.vue'
+import OlSwipeControl from './OlSwipeControl.vue'
 import OlControlBar from './OlControlBar.vue'
 import OlControlToggle from './OlControlToggle.vue'
 import OlControlButton from './OlControlButton.vue'
@@ -35,7 +35,7 @@ function install(app: App) {
   app.component('OlZoomToExtentControl', OlZoomToExtentControl)
   app.component('OlRotateControl', OlRotateControl)
   app.component('OlContextMenu', OlContextMenu)
-  app.component('SwipeControl', SwipeControl)
+  app.component('OlSwipeControl', OlSwipeControl)
   app.component('OlControlBar', OlControlBar)
   app.component('OlControlToggle', OlControlToggle)
   app.component('OlControlButton', OlControlButton)
@@ -59,7 +59,8 @@ export {
   OlZoomSliderControl,
   OlZoomToExtentControl,
   OlContextMenu,
-  SwipeControl,
+  OlSwipeControl,
+  OlRotateControl,
   OlControlBar,
   OlControlToggle,
   OlControlButton,

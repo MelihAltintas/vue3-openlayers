@@ -5,92 +5,118 @@
 
     <ol-swipe-control ref="swipeControl" v-if="layerList.length > 0" :layerList="layerList"/>
 
-    <ol-layerswitcherimage-control/>
+    <OlLayerSwitcherImageControl/>
 
-    <ol-zone-control :zones="zones" :projection="projection" :layer="jawgLayer.tileLayer" v-if="jawgLayer != null">
+    <ol-zone-control :zones="zones" :projection="projection" :layer="jawgLayer.tileLayer" v-if="jawgLayer != null"/>
 
-    </ol-zone-control>
-
-    <ol-heatmap-layer title="heatmap" :blur="20" :radius="20" :weight="heatmapWeight"
-                      :gradient="['purple', '#89CFF0', '#93C572', '#FFBF00', 'pink']" zIndex="1">
-      <ol-source-vector ref="earthquakes"
-                        url="https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/kml/2012_Earthquakes_Mag5.kml"
-                        :format="kml">
+    <OlHeatmapLayer
+        title="heatmap"
+        :blur="20"
+        :radius="20"
+        :weight="heatmapWeight"
+        :gradient="['purple', '#89CFF0', '#93C572', '#FFBF00', 'pink']" zIndex="1"
+    >
+      <ol-source-vector
+          ref="earthquakes"
+          url="https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/kml/2012_Earthquakes_Mag5.kml"
+          :format="kml"
+      >
       </ol-source-vector>
-    </ol-heatmap-layer>
+    </OlHeatmapLayer>
 
     <ol-tile-layer ref="osmLayer" title="OSM">
-      <ol-source-osm/>
+      <OlSourceOSM/>
     </ol-tile-layer>
 
     <ol-tile-layer ref="jawgLayer" title="JAWG">
-      <ol-source-xyz crossOrigin='anonymous'
-                     url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ"/>
+      <OlSourceXYZ
+          crossOrigin='anonymous'
+          url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ"
+      />
     </ol-tile-layer>
 
     <ol-control-bar>
-      <ol-control-toggle :order="0" html="<i class='fas fa-map-marker'></i>" className="edit" title="Point"
-                         :onToggle="(active)=>changeDrawType(active,'Point')"/>
-      <ol-control-toggle :order="1" html="<i class='fas fa-draw-polygon'></i>" className="edit" title="Polygon"
-                         :onToggle="(active)=>changeDrawType(active,'Polygon')"/>
-      <ol-control-toggle :order="2" html="<i class='fas fa-circle'></i>" className="edit" title="Circle"
-                         :onToggle="(active)=>changeDrawType(active,'Circle')"/>
-      <ol-control-toggle :order="3" html="<i class='fas fa-grip-lines'></i>" className="edit" title="LineString"
-                         :onToggle="(active)=>changeDrawType(active,'LineString')"/>
-      <ol-control-videorecorder :order="4" @stop="videoStopped">
-
-      </ol-control-videorecorder>
-      <ol-control-printdialog :order="5"/>
+      <ol-control-toggle
+          :order="0"
+          html="<i class='fas fa-map-marker'></i>"
+          className="edit"
+          title="Point"
+          :onToggle="(active)=>changeDrawType(active,'Point')"
+      />
+      <ol-control-toggle
+          :order="1"
+          html="<i class='fas fa-draw-polygon'></i>"
+          className="edit"
+          title="Polygon"
+          :onToggle="(active)=>changeDrawType(active,'Polygon')"
+      />
+      <ol-control-toggle
+          :order="2" html="<i class='fas fa-circle'></i>"
+          className="edit"
+          title="Circle"
+          :onToggle="(active)=>changeDrawType(active,'Circle')"
+      />
+      <ol-control-toggle
+          :order="3"
+          html="<i class='fas fa-grip-lines'></i>"
+          className="edit"
+          title="LineString"
+          :onToggle="(active)=>changeDrawType(active,'LineString')"
+      />
+      <OlControlVideoRecorder :order="4" @stop="videoStopped"/>
+      <ol-control-print-dialog :order="5"/>
     </ol-control-bar>
 
-    <ol-mouseposition-control/>
-    <ol-fullscreen-control/>
-    <ol-overviewmap-control>
+    <OlMousePositionControl />
+    <OlFullScreenControl />
+    <OlOverviewMapControl>
       <ol-tile-layer>
-        <ol-source-osm/>
+        <OlSourceOSM />
       </ol-tile-layer>
-    </ol-overviewmap-control>
+    </OlOverviewMapControl>
 
-    <ol-scaleline-control/>
-    <ol-rotate-control/>
-    <ol-zoom-control/>
-    <ol-zoomslider-control/>
-    <ol-zoomtoextent-control :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey"/>
+    <OlZoomToExtentControl />
+    <ol-rotate-control />
+    <ol-zoom-control />
+    <OlZoomSliderControl />
+    <OlZoomToExtentControl :extent="[23.906,42.812,46.934,34.597]" tipLabel="Fit to Turkey"/>
 
     <ol-context-menu :items="contextMenuItems"/>
-    <ol-interaction-dragrotatezoom/>
-    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
+    <OlInteractionDragRotateZoom />
+    <ol-interaction-cluster-select @select="featureSelected" :pointRadius="20">
       <ol-style>
         <ol-style-stroke color="green" :width="5"></ol-style-stroke>
         <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
         <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
       </ol-style>
-    </ol-interaction-clusterselect>
+    </ol-interaction-cluster-select>
 
-    <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter"
-                           v-if="!drawEnable">
+    <OlInteractionSelect
+        v-if="!drawEnable"
+        @select="featureSelected"
+        :condition="selectCondition"
+        :filter="selectInteactionFilter"
+    >
       <ol-style>
         <ol-style-stroke color="green" :width="10"></ol-style-stroke>
         <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
         <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
       </ol-style>
-    </ol-interaction-select>
+    </OlInteractionSelect>
 
-    <ol-vector-layer title="AIRPORTS"
-                     preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/tr.png">
-      <ol-source-vector ref="cities"
-                        url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json"
-                        :format="geoJson" :projection="projection">
+    <ol-vector-layer
+        title="AIRPORTS"
+        preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/tr.png"
+    >
+      <ol-source-vector
+          ref="cities"
+          url="https://raw.githubusercontent.com/alpers/Turkey-Maps-GeoJSON/master/tr-cities-airports.json"
+          :format="geoJson" :projection="projection"
+      >
 
-        <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart">
-
-        </ol-interaction-modify>
-
-        <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart">
-
-        </ol-interaction-draw>
-
-        <ol-interaction-snap v-if="drawEnable"/>
+        <ol-interaction-modify v-if="drawEnable" @modifyend="modifyend" @modifystart="modifystart" />
+        <ol-interaction-draw v-if="drawEnable" :type="drawType" @drawend="drawend" @drawstart="drawstart" />
+        <ol-interaction-snap v-if="drawEnable" />
 
       </ol-source-vector>
 
@@ -103,8 +129,12 @@
       </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer :updateWhileAnimating="true" :updateWhileInteracting="true" title="STAR"
-                     preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/star.png">
+    <ol-vector-layer
+        :updateWhileAnimating="true"
+        :updateWhileInteracting="true"
+        title="STAR"
+        preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/star.png"
+    >
       <ol-source-vector ref="vectorsource">
 
         <ol-animation-shake :duration="2000" :repeat="5">
@@ -121,13 +151,18 @@
 
     </ol-vector-layer>
 
-    <ol-animated-clusterlayer :animationDuration="500" :distance="40" title="CLUSTER"
-                              preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png">
+    <OlAnimatedClusterLayer
+        :animationDuration="500"
+        :distance="40"
+        title="CLUSTER"
+        preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png"
+    >
 
       <ol-source-vector ref="vectorsource">
         <ol-feature v-for="index in 500" :key="index">
-          <ol-geom-point :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"></ol-geom-point>
-
+          <ol-geom-point
+              :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"
+          />
         </ol-feature>
       </ol-source-vector>
 
@@ -136,18 +171,22 @@
         <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
 
         <ol-style-circle :radius="20">
-          <ol-style-stroke color="black" :width="15" :lineDash="[]" lineCap="butt"></ol-style-stroke>
-          <ol-style-fill color="black"></ol-style-fill>
+          <ol-style-stroke color="black" :width="15" :lineDash="[]" lineCap="butt"/>
+          <ol-style-fill color="black"/>
         </ol-style-circle>
 
         <ol-style-text>
-          <ol-style-fill color="white"></ol-style-fill>
+          <ol-style-fill color="white"/>
         </ol-style-text>
       </ol-style>
 
-    </ol-animated-clusterlayer>
+    </OlAnimatedClusterLayer>
 
-    <ol-overlay :position="selectedCityPosition" v-if="selectedCityName !='' && !drawEnable" positioning="bottom-right">
+    <ol-overlay
+        v-if="selectedCityName !== '' && !drawEnable"
+        :position="selectedCityPosition"
+        positioning="bottom-right"
+    >
       <template v-slot="slotProps">
         <div class="overlay-content">
           {{ selectedCityName }} {{ slotProps }}
@@ -158,30 +197,30 @@
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature ref="animationPath">
-          <ol-geom-line-string :coordinates="path"></ol-geom-line-string>
-          <ol-style-flowline color="red" color2="yellow" :width="10" :width2="10" :arrow="1" arrowColor="red"/>
+          <OlGeomLineString :coordinates="path" />
+          <OlStyleFlowLine color="red" color2="yellow" :width="10" :width2="10" :arrow="1" arrowColor="red"/>
         </ol-feature>
         <ol-animation-path v-if="animationPath" :path="animationPath.feature" :duration="4000" :repeat="10">
 
           <ol-feature>
-            <ol-geom-point :coordinates="path[0]"></ol-geom-point>
+            <ol-geom-point :coordinates="path[0]" />
             <ol-style>
               <ol-style-circle :radius="10">
-                <ol-style-fill color="blue"></ol-style-fill>
-                <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
+                <ol-style-fill color="blue" />
+                <ol-style-stroke color="blue" :width="2" />
               </ol-style-circle>
             </ol-style>
 
           </ol-feature>
         </ol-animation-path>
       </ol-source-vector>
-
     </ol-vector-layer>
-    <ol-webglpoints-layer :style="webglPointsStyle">
-      <ol-source-webglpoints :format="geoJson"
-                             url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"/>
-    </ol-webglpoints-layer>
-
+    <OlWebglPointsLayer :style="webglPointsStyle">
+      <OlSourceWebglPoints
+          :format="geoJson"
+          url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
+      />
+    </OlWebglPointsLayer>
   </ol-map>
 </template>
 
@@ -191,8 +230,56 @@ import {
   inject,
   onMounted,
 } from 'vue'
+import type Geometry from 'ol/geom/Geometry'
+import type { Coordinate } from 'ol/coordinate'
+import Style from 'ol/style/Style'
 import markerIcon from '@/assets/marker.png'
 import starIcon from '@/assets/star.png'
+import {
+  Map, Layers, Sources, Interactions, Styles, MapControls, Geometries, Animations,
+} from './index'
+
+const {
+  OlAnimationPath, OlAnimationShake,
+} = Animations
+const {
+  OlMap, OlView, OlFeature, OlOverlay,
+} = Map.OlMap
+const {
+  OlTileLayer, OlHeatmapLayer, OlAnimatedClusterLayer, OlWebglPointsLayer, OlVectorLayer,
+} = Layers
+const {
+  OlSourceOSM, OlSourceVector, OlSourceXYZ, OlSourceWebglPoints,
+} = Sources
+const {
+  OlInteractionDragRotateZoom,
+  OlInteractionClusterSelect,
+  OlInteractionDraw,
+  OlInteractionSnap,
+  OlInteractionModify,
+  OlInteractionSelect,
+} = Interactions
+const {
+  OlStyle, OlStyleFill, OlStyleStroke, OlStyleIcon, OlStyleCircle, OlStyleText, OlStyleFlowLine,
+} = Styles
+const {
+  OlZoomControl,
+  OlSwipeControl,
+  OlLayerSwitcherImageControl,
+  OlZoneControl,
+  OlControlBar,
+  OlControlToggle,
+  OlControlVideoRecorder,
+  OlZoomSliderControl,
+  OlZoomToExtentControl,
+  OlContextMenu,
+  OlRotateControl,
+  OlMousePositionControl,
+  OlFullScreenControl,
+  OlOverviewMapControl,
+  OlControlPrintDialog,
+} = MapControls
+const { OlGeomPoint, OlGeomLineString } = Geometries
 
 const center = ref([34, 39.13])
 const projection = ref('EPSG:4326')
@@ -208,21 +295,21 @@ const selectConditions = inject('ol-selectconditions')
 const selectCondition = selectConditions.pointerMove
 
 const selectedCityName = ref('')
-const selectedCityPosition = ref([])
+const selectedCityPosition = ref<Coordinate>([])
 
 const extent = inject('ol-extent')
 
 const Feature = inject('ol-feature')
 const Geom = inject('ol-geom')
 
-const contextMenuItems = ref([])
+const contextMenuItems = ref<unknown[]>([])
 const vectorsource = ref(null)
 const view = ref(null)
 
 const drawEnable = ref(false)
 const drawType = ref('Point')
 
-const changeDrawType = (active, draw) => {
+const changeDrawType = (active: boolean, draw: string) => {
   drawEnable.value = active
   drawType.value = draw
 }
@@ -230,8 +317,9 @@ const changeDrawType = (active, draw) => {
 contextMenuItems.value = [{
   text: 'Center map here',
   classname: 'some-style-class', // add some CSS rules
-  callback: val => {
-    view.value.setCenter(val.coordinate)
+  callback: (val: any) => {
+    // @ts-ignore
+    view.value?.setCenter(val.coordinate)
   }, // `center` is your callback function
 },
 {
@@ -239,18 +327,20 @@ contextMenuItems.value = [{
   classname: 'some-style-class', // you can add this icon with a CSS class
   // instead of `icon` property (see next line)
   icon: markerIcon, // this can be relative or absolute
-  callback: val => {
+  callback: (val: any) => {
     console.log(val)
+    // @ts-ignore
     const feature = new Feature({
       geometry: new Geom.Point(val.coordinate),
     })
-    vectorsource.value.source.addFeature(feature)
+    // @ts-ignore
+    vectorsource.value?.source.addFeature(feature)
   },
 },
 '-', // this is a separator
 ]
 
-const featureSelected = event => {
+const featureSelected = (event: any) => {
   if (event.selected.length === 1) {
     selectedCityPosition.value = extent.getCenter(event.selected[0].getGeometry().extent_)
     selectedCityName.value = event.selected[0].values_.name
@@ -259,7 +349,7 @@ const featureSelected = event => {
   }
 }
 
-const overrideStyleFunction = (feature, style) => {
+const overrideStyleFunction = (feature: typeof Feature, style: any) => {
   const clusteredFeatures = feature.get('features')
   const size = clusteredFeatures.length
 
@@ -279,31 +369,32 @@ const overrideStyleFunction = (feature, style) => {
   style.getText().setText(size.toString())
 }
 
-const selectInteactionFilter = feature => {
+const selectInteactionFilter = (feature: typeof Feature): boolean => {
+  // @ts-ignore
   return feature.values_.name !== undefined
 }
 
-const getRandomInRange = (from, to, fixed) => {
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1
+const getRandomInRange = (from: number, to: number, fixed: number):number => {
+  return Number((Math.random() * (to - from) + from).toFixed(fixed))
 }
 
-const drawstart = event => {
+const drawstart = (event: any) => {
   console.log(event)
 }
 
-const drawend = event => {
+const drawend = (event: any) => {
   console.log(event)
 }
 
-const modifystart = event => {
+const modifystart = (event: any) => {
   console.log(event)
 }
 
-const modifyend = event => {
+const modifyend = (event: any) => {
   console.log(event)
 }
 
-const videoStopped = event => {
+const videoStopped = (event: any) => {
   console.log(event)
 }
 
@@ -337,7 +428,9 @@ const path = ref([
 const animationPath = ref(null)
 
 onMounted(() => {
+  // @ts-ignore
   layerList.value.push(jawgLayer.value.tileLayer)
+  // @ts-ignore
   layerList.value.push(osmLayer.value.tileLayer)
   console.log(layerList.value)
   console.log(animationPath.value)
@@ -383,7 +476,7 @@ const webglPointsStyle = {
   },
 }
 
-const heatmapWeight = function (feature) {
+const heatmapWeight = function (feature: typeof Feature) {
   // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
   // standards-violating <magnitude> tag in each Placemark.  We extract it from
   // the Placemark's name instead.

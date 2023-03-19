@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<{
   filter?: () => boolean,
   features?: Collection<Feature<Geometry>>,
   hitTolerance?: number,
-  removeCondition: Condition,
+  removeCondition?: Condition,
 }>(), {
   multi: false,
   hitTolerance: 0,
