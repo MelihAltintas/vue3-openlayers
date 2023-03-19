@@ -2,6 +2,11 @@
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "declaration": true,
+    "outDir": "dist",
+    "declarationDir": "dist",
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
     "allowJs": false,
     // `baseUrl` must be placed on the extending configuration in devland, or paths won't be recognized
     "esModuleInterop": true,

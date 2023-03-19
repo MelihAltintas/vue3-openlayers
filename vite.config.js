@@ -1,27 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url'
-import typescript2 from 'rollup-plugin-typescript2'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   plugins: [
     vue(),
     dts({
+      outputDir: 'dist/types',
       insertTypesEntry: true,
-    }),
-    typescript2({
-      check: false,
-      include: ['src/components/**/*.vue', 'src/composables/*'],
-      tsconfigOverride: {
-        compilerOptions: {
-          outDir: 'types',
-          sourceMap: true,
-          declaration: true,
-          declarationMap: true,
-        },
-      },
-      exclude: ['vite.config.ts'],
     }),
   ],
   resolve: {
@@ -54,7 +41,7 @@ export default defineConfig({
           vue: 'Vue',
         },
         assetFileNames: assetInfo => {
-          if (assetInfo.name === 'style.css') return 'vue3-openlayers.css'
+          if (assetInfo.name === 'index.css') return 'vue3-openlayers.css'
 
           return assetInfo.name
         },

@@ -32,7 +32,7 @@ const createVue3OpenLayersPlugin = (): Vue.Plugin => ({
     app.use(Interactions)
     app.use(Animations)
 
-    app.provide('ol-feature', feature)
+    app.provide<typeof feature>('ol-feature', feature)
     app.provide('ol-geom', geom)
     app.provide('ol-animations', animations)
     app.provide('ol-format', format)
@@ -41,6 +41,23 @@ const createVue3OpenLayersPlugin = (): Vue.Plugin => ({
     app.provide('ol-extent', extent)
   },
 })
+
+// import * as geom from 'ol/geom'
+// import * as format from 'ol/format'
+// import * as loadingstrategy from 'ol/loadingstrategy'
+// import * as selectconditions from 'ol/events/condition'
+// import * as extent from 'ol/extent'
+// import * as animations from 'ol/easing'
+
+declare module '@vue/runtime-core' {
+  export function inject(key: 'ol-feature'): feature
+  export function inject(key: 'ol-geom'): typeof geom
+  export function inject(key: 'ol-animations'): typeof animations
+  export function inject(key: 'ol-format'): typeof format
+  export function inject(key: 'ol-loadingstrategy'): typeof loadingstrategy
+  export function inject(key: 'ol-selectconditions'): typeof selectconditions
+  export function inject(key: 'ol-extent'): typeof extent
+}
 
 export default createVue3OpenLayersPlugin
 

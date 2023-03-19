@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.74",
+  "version": "0.2.1",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue3-openlayers.es.js",
-      "require": "./dist/vue3-openlayers.umd.js"
+      "require": "./dist/vue3-openlayers.umd.js",
+      "types": "./dist/index.d.ts"
     },
     "./dist/vue3-openlayers.css": {
       "import": "./dist/vue3-openlayers.css",
@@ -42,14 +43,15 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "prepare-npm": "vite build && rm -rf ./npm && cp -r dist ./npm && cp package.json ./npm/ && cp README.md ./npm/ && cp LICENSE ./npm/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "files": [
-    "dist/*",
-    "index.d.ts"
+    "dist"
   ],
+  "type": "module",
   "types": "index.d.ts",
   "dependencies": {
     "file-saver": "2.0.5",
@@ -79,7 +81,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^9.9.0",
-    "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.9.5",
     "vite": "^4.2.1",
     "vite-plugin-dts": "^2.1.0",
