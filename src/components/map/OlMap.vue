@@ -1,5 +1,5 @@
 <template>
-  <div :ref="mapRef">
+  <div ref="mapRef">
     <slot></slot>
   </div>
 </template>

@@ -41,7 +41,7 @@ const {
 const tileLayer = computed(() => new TileLayer(properties))
 
 const applyTileLayer = () => {
-  if (overViewMap !== null) {
+  if (overViewMap?.value) {
     overViewMap.value?.getOverviewMap().addLayer(tileLayer.value)
     overViewMap.value?.changed()
   } else {
@@ -50,7 +50,7 @@ const applyTileLayer = () => {
 }
 
 const removeTileLayer = () => {
-  if (overViewMap != null) {
+  if (overViewMap?.value) {
     overViewMap.value?.getOverviewMap().removeLayer(tileLayer.value)
     overViewMap.value?.changed()
   } else {
@@ -58,7 +58,7 @@ const removeTileLayer = () => {
   }
 }
 
-if (overViewMap != null) {
+if (overViewMap?.value) {
   watch(overViewMap, () => {
     removeTileLayer()
     applyTileLayer()

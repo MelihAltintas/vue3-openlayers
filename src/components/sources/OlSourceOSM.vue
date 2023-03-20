@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false" />
+  <div v-if="false"></div>
 </template>
 <script setup lang="ts">
 import OSM from 'ol/source/OSM'
@@ -52,7 +52,7 @@ watch(source, () => {
   layer?.value?.setSource(source.value)
 })
 
-watch(() => layer, () => {
+watch(() => layer?.value, () => {
   layer?.value?.setSource(source.value)
 })
 
