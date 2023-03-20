@@ -1,7 +1,9 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import Fill from 'ol/style/Fill'
 import type CircleStyle from 'ol/style/Circle'
 
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -15,21 +17,21 @@ const props = withDefaults(defineProps<{
   color?: string,
 }>(), {})
 
-const style = inject<Style|null>('style', null)
-const circle = inject<CircleStyle|null>('circle', null)
-const styledObj = inject<Style|null>('styledObj', null)
+const style = inject<Ref<Style | null>|null>('style', null)
+const circle = inject<Ref<CircleStyle | null>|null>('circle', null)
+const styledObj = inject<Ref<Style | null>|null>('styledObj', null)
 
 const { properties } = usePropsAsObjectProperties(props)
 
 if (style != null && circle == null) { // in style object
   let fill = new Fill(properties)
-  style?.setFill(fill)
+  style?.value?.setFill(fill)
 
   const applyFill = () => {
     // @ts-ignore
-    style?.setFill(null)
+    style?.value?.setFill(null)
     fill = new Fill(properties)
-    style?.setFill(fill)
+    style?.value?.setFill(fill)
   }
   watch(properties, () => {
     applyFill()
@@ -40,24 +42,24 @@ if (style != null && circle == null) { // in style object
   })
 
   onMounted(() => {
-    style?.setFill(fill)
+    style?.value?.setFill(fill)
   })
 
   onUnmounted(() => {
     // @ts-ignore
-    style?.setFill(null)
+    style?.value?.setFill(null)
   })
 } else if (circle != null) { // in circle
   const applyFilltoCircle = (color: any) => {
-    circle?.getFill().setColor(color)
+    circle?.value?.getFill().setColor(color)
 
-    circle?.setRadius(circle?.getRadius()) // force render
+    circle?.value?.setRadius(circle?.value.getRadius()) // force render
     try {
       // @ts-ignore
-      styledObj?.changed()
+      styledObj?.value?.changed()
     } catch (error) {
       // @ts-ignore
-      styledObj?.changed()
+      styledObj?.value.changed()
     }
   }
 

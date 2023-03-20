@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -33,7 +34,7 @@ const props = withDefaults(defineProps<{
   overrideStyleFunction?: (...args: unknown[]) => unknown,
 }>(), {})
 
-const styledObj = inject<Draw|Modify|Style|null>('stylable', null)
+const styledObj = inject<Ref<Draw | Modify | Style | null>|null>('stylable', null)
 
 const { properties } = usePropsAsObjectProperties(props)
 
@@ -41,28 +42,28 @@ const { properties } = usePropsAsObjectProperties(props)
 const style = computed(() => new FlowLine(properties))
 
 const setStyle = (val: Style | null) => {
-  if (styledObj instanceof Draw || styledObj instanceof Modify) {
-    styledObj.getOverlay().setStyle(val)
-    styledObj.dispatchEvent('styleChanged')
+  if (styledObj?.value instanceof Draw || styledObj?.value instanceof Modify) {
+    styledObj?.value?.getOverlay().setStyle(val)
+    styledObj?.value?.dispatchEvent('styleChanged')
     return
   }
   try {
     // @ts-ignore
-    styledObj?.setStyle(val)
+    styledObj?.value?.setStyle(val)
     // @ts-ignore
-    styledObj?.changed()
+    styledObj?.value?.changed()
     // @ts-ignore
-    styledObj?.dispatchEvent('styleChanged')
+    styledObj?.value?.dispatchEvent('styleChanged')
   } catch (error) {
-    if (styledObj) {
+    if (styledObj?.value) {
       // @ts-ignore
-      styledObj.style_ = val
+      styledObj.value.style_ = val
       // @ts-ignore
-      styledObj.values_.style = val
+      styledObj.value.values_.style = val
       // @ts-ignore
-      styledObj.changed()
+      styledObj.value?.changed()
       // @ts-ignore
-      styledObj.dispatchEvent('styleChanged')
+      styledObj.value?.dispatchEvent('styleChanged')
     }
   }
 }

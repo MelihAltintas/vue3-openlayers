@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import MultiPolygon from 'ol/geom/MultiPolygon'
 import useGeometry from '@/composables/useGeometry'

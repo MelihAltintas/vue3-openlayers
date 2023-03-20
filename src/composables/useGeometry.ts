@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import {
   inject,
   onMounted,
@@ -13,7 +14,7 @@ export default function useGeometry(
   GeometryType: Class,
   props: Record<string, unknown>,
 ) {
-  const feature = inject<featureType>('feature')
+  const feature = inject<Ref<featureType>>('feature')
 
   const {
     properties,
@@ -22,20 +23,20 @@ export default function useGeometry(
   const geometry = computed(() => new GeometryType(...Object.values(properties)))
 
   watch(properties, () => {
-    feature?.setGeometry(geometry.value)
-    feature?.changed()
+    feature?.value?.setGeometry(geometry.value)
+    feature?.value?.changed()
   })
 
   watch(() => feature, () => {
-    feature?.setGeometry(geometry.value)
+    feature?.value?.setGeometry(geometry.value)
   })
 
   onMounted(() => {
-    feature?.setGeometry(geometry.value)
+    feature?.value?.setGeometry(geometry.value)
   })
 
   onUnmounted(() => {
-    feature?.setGeometry(undefined)
+    feature?.value?.setGeometry(undefined)
   })
 
   return {

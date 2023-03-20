@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -18,12 +19,14 @@ import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties
 import type { FeatureAnimation } from '@/composables/AnimationTypes'
 
 const props = withDefaults(defineProps<{
-  properties: [Geometry, Record<string, unknown>, unknown[]],
-}>(), {})
+  properties?: Geometry | Record<string, unknown> | unknown[],
+}>(), {
+  properties: () => [] as unknown[],
+})
 
-const vectorSource = inject<VectorSource>('vectorSource')
-const vectorLayer = inject<VectorSource<Geometry>>('vectorLayer')
-const animation = inject<FeatureAnimation|null>('animation', null)
+const vectorSource = inject<Ref<VectorSource>|null>('vectorSource')
+const vectorLayer = inject<Ref<VectorSource<Geometry>>|null>('vectorLayer')
+const animation = inject<Ref<FeatureAnimation | null>|null>('animation', null)
 
 const { properties } = usePropsAsObjectProperties(props)
 
@@ -34,27 +37,27 @@ const feature = computed(() => {
 })
 
 watch(feature, (newVal, oldVal) => {
-  vectorSource?.removeFeature(oldVal)
-  vectorSource?.addFeature(newVal)
-  vectorSource?.changed()
+  vectorSource?.value?.removeFeature(oldVal)
+  vectorSource?.value?.addFeature(newVal)
+  vectorSource?.value?.changed()
 })
 
 watch(() => vectorSource, (newVal, oldVal) => {
-  oldVal?.removeFeature(feature.value)
-  newVal?.addFeature(feature.value)
-  newVal?.changed()
+  oldVal?.value?.removeFeature(feature.value)
+  newVal?.value?.addFeature(feature.value)
+  newVal?.value?.changed()
 })
 
 onMounted(() => {
-  vectorSource?.addFeature(feature.value)
-  if (animation !== null) {
+  vectorSource?.value?.addFeature(feature.value)
+  if (animation?.value) {
     // @ts-ignore
-    vectorLayer?.animateFeature(feature.value, animation)
+    vectorLayer?.value?.animateFeature(feature.value, animation.value)
   }
 })
 
 onUnmounted(() => {
-  vectorSource?.removeFeature(feature.value)
+  vectorSource?.value?.removeFeature(feature.value)
 })
 
 provide('feature', feature)

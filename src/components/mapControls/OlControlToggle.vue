@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import Toggle from 'ol-ext/control/Toggle'
 

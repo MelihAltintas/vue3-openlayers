@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -40,7 +41,7 @@ const props = withDefaults(defineProps<{
   stretch: true,
 })
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 
 const { properties } = usePropsAsObjectProperties(props)
 
@@ -54,18 +55,18 @@ const transform = computed(() => {
 })
 
 watch(transform, (newVal, oldVal) => {
-  map?.removeInteraction(oldVal)
-  map?.addInteraction(newVal)
+  map?.value?.removeInteraction(oldVal)
+  map?.value?.addInteraction(newVal)
 
-  map?.changed()
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(transform.value)
+  map?.value?.addInteraction(transform.value)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(transform.value)
+  map?.value?.removeInteraction(transform.value)
 })
 
 provide('stylable', transform)

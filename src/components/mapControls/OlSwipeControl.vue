@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import Swipe from 'ol-ext/control/Swipe'
 import { useAttrs } from 'vue'

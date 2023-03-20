@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -24,8 +25,8 @@ const props = withDefaults(defineProps<{
   pixelTolerance: 10,
 })
 
-const map = inject<Map>('map')
-const source = inject<VectorSource>('vectorSource')
+const map = inject<Ref<Map> | null>('map')
+const source = inject<Ref<VectorSource>|null>('vectorSource')
 
 const {
   properties,
@@ -34,7 +35,7 @@ const {
 const createSnap = () => {
   const olSnap = new Snap({
     ...properties,
-    source,
+    source: source?.value,
   })
 
   return olSnap
@@ -42,17 +43,17 @@ const createSnap = () => {
 let snap = createSnap()
 
 watch(properties, () => {
-  map?.removeInteraction(snap)
+  map?.value?.removeInteraction(snap)
   snap = createSnap()
-  map?.addInteraction(snap)
-  map?.changed()
+  map?.value?.addInteraction(snap)
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(snap)
+  map?.value?.addInteraction(snap)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(snap)
+  map?.value?.removeInteraction(snap)
 })
 </script>

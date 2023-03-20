@@ -1,7 +1,9 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import Static from 'ol/source/ImageStatic'
 import type { Options as ProjectionOptions } from 'ol/proj/Projection'
 import Projection from 'ol/proj/Projection'
+import type { Ref } from 'vue'
 import {
   inject,
   onMounted,
@@ -25,7 +27,7 @@ const props = withDefaults(defineProps<{
   imageSmoothing: true,
 })
 
-const layer = inject<ImageLayer<ImageSource>>('imageLayer')
+const layer = inject<Ref<ImageLayer<ImageSource>>|null>('imageLayer')
 const { properties } = usePropsAsObjectProperties(props)
 
 const createSource = () => {
@@ -42,16 +44,16 @@ const createSource = () => {
 let source = createSource()
 
 watch(properties, () => {
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
   source = createSource()
-  layer?.setSource(source)
+  layer?.value?.setSource(source)
 })
 onMounted(() => {
-  layer?.setSource(source)
+  layer?.value?.setSource(source)
 })
 
 onUnmounted(() => {
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 defineExpose({

@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   provide,
@@ -27,8 +28,8 @@ const props = withDefaults(defineProps<{
   preload: 1,
 })
 
-const map = inject<Map>('map')
-const overViewMap = inject<OverviewMap|null>('overviewMap', null)
+const map = inject<Ref<Map>|null>('map')
+const overViewMap = inject<Ref<OverviewMap | null>|null>('overviewMap', null)
 
 const {
   properties,
@@ -38,19 +39,19 @@ const tileLayer = computed(() => new TileLayer(properties))
 
 const applyTileLayer = () => {
   if (overViewMap !== null) {
-    overViewMap.getOverviewMap().addLayer(tileLayer.value)
-    overViewMap.changed()
+    overViewMap.value?.getOverviewMap().addLayer(tileLayer.value)
+    overViewMap.value?.changed()
   } else {
-    map?.addLayer(tileLayer.value)
+    map?.value?.addLayer(tileLayer.value)
   }
 }
 
 const removeTileLayer = () => {
   if (overViewMap != null) {
-    overViewMap.getOverviewMap().removeLayer(tileLayer.value)
-    overViewMap.changed()
+    overViewMap.value?.getOverviewMap().removeLayer(tileLayer.value)
+    overViewMap.value?.changed()
   } else {
-    map?.removeLayer(tileLayer.value)
+    map?.value?.removeLayer(tileLayer.value)
   }
 }
 

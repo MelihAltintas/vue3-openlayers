@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import { useAttrs } from 'vue'

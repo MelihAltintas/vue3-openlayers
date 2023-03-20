@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import {
   inject,
   onMounted,
@@ -86,12 +87,12 @@ export default function useControl<T extends InnerControlType>(
   properties: InnerControlProperties,
   attrs: Record<string, unknown>,
 ) {
-  const map = inject<ExtentedMap>('map')
-  const controlBar = inject<InnerControlType|null>('controlBar', null)
+  const map = inject<Ref<ExtentedMap>>('map')
+  const controlBar = inject<Ref<InnerControlType|null>|null>('controlBar', null)
 
   const parent = controlBar !== null
-    ? controlBar
-    : map
+    ? controlBar?.value
+    : map?.value
 
   const control = computed(() => new ControlType({
     ...properties,
@@ -103,7 +104,7 @@ export default function useControl<T extends InnerControlType>(
     if (parent && parent instanceof Map) {
       parent.removeControl(oldVal)
       parent.addControl(newVal)
-      map?.changed()
+      map?.value?.changed()
     }
   })
 
@@ -127,7 +128,7 @@ export default function useControl<T extends InnerControlType>(
       parent.changed()
     }
 
-    map?.changed()
+    map?.value?.changed()
   })
 
   onUnmounted(() => {
@@ -142,7 +143,7 @@ export default function useControl<T extends InnerControlType>(
       }
       control.value.dispose()
     }
-    map?.changed()
+    map?.value?.changed()
   })
 
   return {

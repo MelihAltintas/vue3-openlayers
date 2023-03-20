@@ -1,6 +1,8 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import type { Options } from 'ol/source/XYZ'
 import XYZ from 'ol/source/XYZ'
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -39,25 +41,25 @@ const props = withDefaults(defineProps<{
   tilePixelRatio: 1,
 })
 
-const layer = inject<TileLayer<TileSource>>('tileLayer')
+const layer = inject<Ref<TileLayer<TileSource>>|null>('tileLayer')
 const { properties } = usePropsAsObjectProperties(props)
 
 // @ts-ignore
 const source = computed(() => new XYZ(properties as Options))
 
 watch(source, () => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 watch(() => layer, () => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 onMounted(() => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 onUnmounted(() => {
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 defineExpose({

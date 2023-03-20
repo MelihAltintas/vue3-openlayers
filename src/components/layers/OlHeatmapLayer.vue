@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   provide,
@@ -37,7 +38,7 @@ const props = withDefaults(defineProps<{
   visible: true,
 })
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 const { properties } = usePropsAsObjectProperties(props)
 // @ts-ignore
 const heatmapLayer = computed(() => new HeatmapLayer(properties))
@@ -47,11 +48,11 @@ watch(properties, () => {
 })
 
 onMounted(() => {
-  map?.addLayer(heatmapLayer.value)
+  map?.value?.addLayer(heatmapLayer.value)
 })
 
 onUnmounted(() => {
-  map?.removeLayer(heatmapLayer.value)
+  map?.value?.removeLayer(heatmapLayer.value)
 })
 
 provide('heatmapLayer', heatmapLayer)

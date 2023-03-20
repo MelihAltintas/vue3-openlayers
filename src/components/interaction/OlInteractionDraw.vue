@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -44,8 +45,8 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['drawstart', 'drawend'])
 
-const map = inject<Map>('map')
-const source = inject<VectorSource>('vectorSource')
+const map = inject<Ref<Map>|null>('map')
+const source = inject<Ref<VectorSource>|null>('vectorSource')
 
 const {
   type,
@@ -66,7 +67,7 @@ const {
 
 const createDraw = () => {
   const draw = new Draw({
-    source,
+    source: source?.value,
     type: type.value,
     clickTolerance: clickTolerance.value,
     dragVertexDelay: dragVertexDelay.value,
@@ -112,19 +113,19 @@ watch([
   freehandCondition,
   wrapX,
 ], () => {
-  map?.removeInteraction(draw)
+  map?.value?.removeInteraction(draw)
   draw = createDraw()
-  map?.addInteraction(draw)
+  map?.value?.addInteraction(draw)
   draw.changed()
-  map?.changed()
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(draw)
+  map?.value?.addInteraction(draw)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(draw)
+  map?.value?.removeInteraction(draw)
 })
 
 provide('stylable', draw)

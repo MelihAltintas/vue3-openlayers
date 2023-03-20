@@ -8,10 +8,10 @@ import { easeOut } from 'ol/easing'
 import useAnimation from '@/composables/useAnimation'
 
 const props = withDefaults(defineProps<{
-  duration: number,
-  revers: boolean,
-  repeat: number,
-  easing: (t: number) => unknown,
+  duration?: number,
+  revers?: boolean,
+  repeat?: number,
+  easing?: (t: number) => unknown,
 }>(), {
   duration: 1000,
   revers: false,

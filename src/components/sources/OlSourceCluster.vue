@@ -9,6 +9,7 @@ import {
   Cluster,
 } from 'ol/source'
 
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -36,7 +37,7 @@ const props = withDefaults(defineProps<{
   wrapX: true,
 })
 
-const layer = inject<VectorSource<Geometry>>('vectorLayer')
+const layer = inject<Ref<VectorSource<Geometry>>|null>('vectorLayer')
 
 const { properties } = usePropsAsObjectProperties(props)
 
@@ -47,11 +48,11 @@ const source = computed(() => {
 
 const applySource = () => {
   // @ts-ignore
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
   // @ts-ignore
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 
-  layer?.changed()
+  layer?.value?.changed()
 }
 watch(properties, () => {
   applySource()
@@ -63,14 +64,14 @@ watch(() => layer, () => {
 
 onMounted(() => {
   // @ts-ignore
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
   // @ts-ignore
-  layer?.changed()
+  layer?.value?.changed()
 })
 
 onUnmounted(() => {
   // @ts-ignore
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 provide('vectorLayer', source)

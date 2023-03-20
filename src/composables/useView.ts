@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -21,7 +22,7 @@ export default function useView(
   },
   emit: (ev: ('centerChanged' | 'zoomChanged' | 'resolutionChanged' | 'rotationChanged'), ...args: any[]) => void,
 ) {
-  const map = inject<Map>('map')
+  const map = inject<Ref<Map>>('map')
 
   const createProp = () => {
     return {
@@ -93,7 +94,7 @@ export default function useView(
   const setZoom = (zoom: number) => view.setZoom(zoom)
 
   onMounted(() => {
-    map?.setView(view)
+    map?.value?.setView(view)
   })
 
   view.on('change:center', () => {

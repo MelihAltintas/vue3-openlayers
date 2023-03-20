@@ -8,7 +8,7 @@ module.exports = {
   // Must use parserOptions instead of "parser" to allow vue-eslint-parser to keep working
   // `parser: 'vue-eslint-parser'` is already included with any 'plugin:vue/**' config and should be omitted
   parserOptions: {
-    parser: require.resolve('@typescript-eslint/parser'),
+    parser: '@typescript-eslint/parser',
     extraFileExtensions: ['.vue'],
   },
 
@@ -84,7 +84,7 @@ module.exports = {
     // this rule, if on, would require explicit return type on the `render` function
     '@typescript-eslint/explicit-function-return-type': 'off',
 
-    // in plain CommonJS modules, you can't use `import foo = require('foo')` to pass this rule, so it has to be disabled
+    // in plain CommonJS modules, you can't use `import foo = to pass this rule, so it has to be disabled
     '@typescript-eslint/no-var-requires': 'off',
 
     // The core 'no-unused-vars' rules (in the eslint:recommended ruleset)

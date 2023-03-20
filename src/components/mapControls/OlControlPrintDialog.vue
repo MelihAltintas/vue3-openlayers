@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import PrintDialog from 'ol-ext/control/PrintDialog'
 
@@ -8,7 +9,7 @@ import useControl from '@/composables/useControl'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 const props = withDefaults(defineProps<{
-  lang: string,
+  lang?: string,
 }>(), {})
 
 const attrs = useAttrs()

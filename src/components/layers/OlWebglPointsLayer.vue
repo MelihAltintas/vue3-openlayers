@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   provide,
@@ -46,7 +47,7 @@ const props = withDefaults(defineProps<{
   }),
 })
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 const { properties } = usePropsAsObjectProperties(props)
 const webglPointsLayer = computed(() => new WebGLPointsLayer(properties))
 
@@ -54,10 +55,10 @@ watch(properties, () => {
   webglPointsLayer.value.setProperties(properties)
 })
 onMounted(() => {
-  map?.addLayer(webglPointsLayer.value)
+  map?.value?.addLayer(webglPointsLayer.value)
 })
 onUnmounted(() => {
-  map?.removeLayer(webglPointsLayer.value)
+  map?.value?.removeLayer(webglPointsLayer.value)
 })
 provide('webglPointsLayer', webglPointsLayer)
 

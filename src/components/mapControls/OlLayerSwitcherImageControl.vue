@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import LayerSwitcherImage from 'ol-ext/control/LayerSwitcherImage'
 import { useAttrs } from 'vue'

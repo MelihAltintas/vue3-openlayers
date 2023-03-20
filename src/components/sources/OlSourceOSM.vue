@@ -1,5 +1,9 @@
+<template>
+  <div v-if="false" />
+</template>
 <script setup lang="ts">
 import OSM from 'ol/source/OSM'
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -36,7 +40,7 @@ const props = withDefaults(defineProps<{
   wrapX: true,
 })
 
-const layer = inject<TileLayer<TileSource>>('tileLayer')
+const layer = inject<Ref<TileLayer<TileSource>>|null>('tileLayer')
 
 const {
   properties,
@@ -45,19 +49,19 @@ const {
 const source = computed(() => new OSM(properties))
 
 watch(source, () => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 watch(() => layer, () => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 onMounted(() => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 onUnmounted(() => {
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 defineExpose({

@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import LineString from 'ol/geom/LineString'
 import useGeometry from '@/composables/useGeometry'

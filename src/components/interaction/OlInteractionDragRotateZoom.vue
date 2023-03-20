@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -21,7 +22,7 @@ const props = withDefaults(defineProps<{
   duration: 400,
 })
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 const { properties } = usePropsAsObjectProperties(props)
 const dragRotateZoom = computed(() => {
   const OlDragRotateAndZoom = new DragRotateAndZoom({
@@ -32,17 +33,17 @@ const dragRotateZoom = computed(() => {
 })
 
 watch(dragRotateZoom, (newVal, oldVal) => {
-  map?.removeInteraction(oldVal)
-  map?.addInteraction(newVal)
+  map?.value?.removeInteraction(oldVal)
+  map?.value?.addInteraction(newVal)
 
-  map?.changed()
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(dragRotateZoom.value)
+  map?.value?.addInteraction(dragRotateZoom.value)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(dragRotateZoom.value)
+  map?.value?.removeInteraction(dragRotateZoom.value)
 })
 </script>

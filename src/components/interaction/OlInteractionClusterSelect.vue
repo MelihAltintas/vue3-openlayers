@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -32,7 +33,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['select'])
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 
 const {
   properties,
@@ -53,18 +54,18 @@ const select = computed(() => {
 })
 
 watch(select, (newVal, oldVal) => {
-  map?.removeInteraction(oldVal)
-  map?.addInteraction(newVal)
+  map?.value?.removeInteraction(oldVal)
+  map?.value?.addInteraction(newVal)
 
-  map?.changed()
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(select.value)
+  map?.value?.addInteraction(select.value)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(select.value)
+  map?.value?.removeInteraction(select.value)
 })
 
 provide('stylable', select)

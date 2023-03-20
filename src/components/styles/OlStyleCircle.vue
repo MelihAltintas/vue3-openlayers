@@ -10,6 +10,7 @@ import CircleStyle from 'ol/style/Circle'
 import Fill from 'ol/style/Fill'
 import Stroke from 'ol/style/Stroke'
 
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -28,8 +29,8 @@ const props = withDefaults(defineProps<{
   scale?: number
 }>(), {})
 
-const style = inject<Style|null>('style', null)
-const styledObj = inject<Draw|Modify|Style|null>('styledObj', null)
+const style = inject<Ref<Style | null>|null>('style', null)
+const styledObj = inject<Ref<Draw | Modify | Style | null>|null>('styledObj', null)
 
 const { properties } = usePropsAsObjectProperties(props)
 
@@ -45,10 +46,10 @@ const circle = computed(() => createCircleStyle(properties))
 
 const applyStyle = () => {
   // @ts-ignore
-  style?.setImage(null)
-  style?.setImage(circle.value)
+  style?.value?.setImage(null)
+  style?.value?.setImage(circle.value)
   // @ts-ignore
-  styledObj?.changed()
+  styledObj?.value?.changed()
 }
 watch(properties, () => {
   applyStyle()
@@ -59,12 +60,12 @@ watch(() => style, () => {
 })
 
 onMounted(() => {
-  style?.setImage(circle.value)
+  style?.value?.setImage(circle.value)
 })
 
 onUnmounted(() => {
   // @ts-ignore
-  style?.setImage(null)
+  style?.value?.setImage(null)
 })
 
 provide('circle', circle)

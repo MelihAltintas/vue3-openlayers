@@ -23,6 +23,15 @@ import {
 
 const createVue3OpenLayersPlugin = (): Vue.Plugin => ({
   install(app) {
+    app.use(Map.install)
+    app.use(Layers.install)
+    app.use(Sources.install)
+    app.use(MapControls.install)
+    app.use(Geometries.install)
+    app.use(Styles.install)
+    app.use(Interactions.install)
+    app.use(Animations.install)
+
     app.provide('ol-feature', feature)
     app.provide('ol-geom', geom)
     app.provide('ol-animations', animations)

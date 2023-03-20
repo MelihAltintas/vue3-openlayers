@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   inject,
   provide,
@@ -39,7 +40,7 @@ const props = withDefaults(defineProps<{
   updateWhileInteracting: false,
 })
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 const { properties } = usePropsAsObjectProperties(props)
 
 const vectorLayer = computed(() => {
@@ -63,13 +64,13 @@ watch(properties, () => {
 })
 
 onMounted(() => {
-  map?.addLayer(vectorLayer.value)
+  map?.value?.addLayer(vectorLayer.value)
   vectorLayer.value.changed()
-  map?.changed()
+  map?.value?.changed()
 })
 
 onUnmounted(() => {
-  map?.removeLayer(vectorLayer.value)
+  map?.value?.removeLayer(vectorLayer.value)
 })
 
 provide('vectorLayer', vectorLayerSource)

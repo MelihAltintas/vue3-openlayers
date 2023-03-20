@@ -1,7 +1,7 @@
 <template>
-<div :ref="el => mapRef = el">
+  <div :ref="mapRef">
     <slot></slot>
-</div>
+  </div>
 </template>
 
 <script setup lang="ts">

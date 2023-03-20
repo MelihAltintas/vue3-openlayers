@@ -1,8 +1,4 @@
-<template>
-    <div v-if="false">
-
-    </div>
-</template>
+<template><div v-if="false"></div></template>
 
 <script setup lang="ts">
 import type { RequestEncoding } from 'ol/source/WMTS'
@@ -19,6 +15,7 @@ import {
   getTopLeft,
   getWidth,
 } from 'ol/extent'
+import type { Ref } from 'vue'
 import {
   inject,
   onMounted,
@@ -63,7 +60,7 @@ const props = withDefaults(defineProps<{
   wrapX: false,
 })
 
-const tileLayer = inject<TileLayer<TileSource>>('tileLayer')
+const tileLayer = inject<Ref<TileLayer<TileSource>>|null>('tileLayer')
 const { properties } = usePropsAsObjectProperties(props)
 
 const extent = computed(():Extent | null => {
@@ -109,19 +106,19 @@ const source = computed(() => new WMTS({
 }))
 
 watch(source, () => {
-  tileLayer?.setSource(source.value)
+  tileLayer?.value?.setSource(source.value)
 })
 
 watch(() => tileLayer, () => {
-  tileLayer?.setSource(source.value)
+  tileLayer?.value?.setSource(source.value)
 })
 
 onMounted(() => {
-  tileLayer?.setSource(source.value)
+  tileLayer?.value?.setSource(source.value)
 })
 
 onUnmounted(() => {
-  tileLayer?.setSource(null)
+  tileLayer?.value?.setSource(null)
 })
 
 defineExpose({

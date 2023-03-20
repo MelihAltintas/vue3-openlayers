@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { OverviewMap } from 'ol/control'
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -39,12 +40,12 @@ const props = withDefaults(defineProps<{
 const attrs = useAttrs()
 const { properties } = usePropsAsObjectProperties(props)
 
-const map = inject<Map>('map')
+const map = inject<Ref<Map>|null>('map')
 
 const { control } = useControl(OverviewMap, properties, attrs)
 
 onMounted(() => {
-  control.value.setMap(map || null)
+  control.value.setMap(map?.value || null)
 })
 
 onUnmounted(() => {

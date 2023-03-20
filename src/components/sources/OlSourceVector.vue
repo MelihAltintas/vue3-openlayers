@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import type { LoadingStrategy, Options } from 'ol/source/Vector'
 import VectorSource from 'ol/source/Vector'
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -41,17 +42,17 @@ const props = withDefaults(defineProps<{
   wrapX: true,
 })
 
-const layer = inject<VectorSource<Geometry>>('vectorLayer') || inject('heatmapLayer')
+const layer = inject<Ref<VectorSource<Geometry>>|null>('vectorLayer') || inject('heatmapLayer')
 const { properties } = usePropsAsObjectProperties(props)
 
 const source = computed(() => new VectorSource(properties as Options<Geometry>))
 
 const applySource = () => {
   // @ts-ignore
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
   // @ts-ignore
-  layer?.setSource(source.value)
-  layer?.changed()
+  layer?.value?.setSource(source.value)
+  layer?.value?.changed()
 }
 watch(properties, () => {
   applySource()
@@ -63,12 +64,12 @@ watch(() => layer, () => {
 
 onMounted(() => {
   // @ts-ignore
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 onUnmounted(() => {
   // @ts-ignore
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 provide('vectorSource', source)

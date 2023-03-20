@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import {
   provide,
   inject,
@@ -34,8 +35,8 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['modifystart', 'modifyend'])
 
-const map = inject<Map>('map')
-const source = inject<VectorSource>('vectorSource')
+const map = inject<Ref<Map>|null>('map')
+const source = inject<Ref<VectorSource>|null>('vectorSource')
 
 const {
   features,
@@ -49,7 +50,7 @@ const {
 
 const createModify = () => {
   const modify = new Modify({
-    source,
+    source: source?.value,
     features: features?.value,
     condition: condition?.value,
     deleteCondition: deleteCondition?.value,
@@ -80,20 +81,20 @@ watch([condition,
   wrapX,
   hitDetection,
 ], () => {
-  map?.removeInteraction(modify)
+  map?.value?.removeInteraction(modify)
   modify = createModify()
-  map?.addInteraction(modify)
+  map?.value?.addInteraction(modify)
   modify.changed()
 
-  map?.changed()
+  map?.value?.changed()
 })
 
 onMounted(() => {
-  map?.addInteraction(modify)
+  map?.value?.addInteraction(modify)
 })
 
 onUnmounted(() => {
-  map?.removeInteraction(modify)
+  map?.value?.removeInteraction(modify)
 })
 
 provide('stylable', modify)

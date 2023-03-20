@@ -1,5 +1,6 @@
 import type { PanIntoViewOptions, Positioning } from 'ol/Overlay'
 import Overlay from 'ol/Overlay'
+import type { Ref } from 'vue'
 import {
   inject,
   ref,
@@ -17,18 +18,18 @@ export default function useOverlay(
   properties: Record<string, unknown>,
   emit: (ev: ('elementChanged'|'offsetChanged'|'positionChanged'|'positioningChanged'), ...args: any[]) => void,
 ) {
-  const map = inject<Map>('map')
+  const map = inject<Ref<Map>>('map')
 
   const htmlContent = ref<HTMLElement|undefined>(undefined)
 
   const overlay = computed(() => new Overlay(properties))
 
   onMounted(() => {
-    map?.addOverlay(overlay.value)
+    map?.value?.addOverlay(overlay.value)
   })
 
   onUnmounted(() => {
-    map?.removeOverlay(overlay.value)
+    map?.value?.removeOverlay(overlay.value)
   })
 
   const getElement = () => overlay.value.getElement()
@@ -47,8 +48,8 @@ export default function useOverlay(
   overlay.value.on('change:positioning', () => emit('positioningChanged', getPositioning()))
 
   watch(overlay, (newVal, oldVal) => {
-    map?.removeOverlay(oldVal)
-    map?.addOverlay(newVal)
+    map?.value?.removeOverlay(oldVal)
+    map?.value?.addOverlay(newVal)
   })
 
   watchEffect(() => {

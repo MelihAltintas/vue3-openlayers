@@ -9,8 +9,8 @@ import useControl from '@/composables/useControl'
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
 const props = withDefaults(defineProps<{
-  toggleOne: boolean,
-  group: boolean,
+  toggleOne?: boolean,
+  group?: boolean,
 }>(), {
   toggleOne: true,
   group: true,

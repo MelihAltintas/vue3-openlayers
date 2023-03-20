@@ -1,3 +1,4 @@
+<template><div v-if="false"></div></template>
 <script setup lang="ts">
 import type { Extent } from 'ol/extent'
 import type { Options } from 'ol/proj/Projection'

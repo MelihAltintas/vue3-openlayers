@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import type { LoadingStrategy, Options } from 'ol/source/Vector'
 import VectorSource from 'ol/source/Vector'
+import type { Ref } from 'vue'
 import {
   inject,
   watch,
@@ -43,16 +44,16 @@ const props = withDefaults(defineProps<{
   wrapX: true,
 })
 
-const layer = inject<WebGLPointsLayer<VectorSource<Point>>>('webglPointsLayer')
+const layer = inject<Ref<WebGLPointsLayer<VectorSource<Point>>>|null>('webglPointsLayer')
 
 const { properties } = usePropsAsObjectProperties(props)
 
 const source = computed(() => new VectorSource(properties as Options<Point>))
 
 const applySource = () => {
-  layer?.setSource(null)
-  layer?.setSource(source.value || null)
-  layer?.changed()
+  layer?.value?.setSource(null)
+  layer?.value?.setSource(source.value || null)
+  layer?.value?.changed()
 }
 watch(properties, () => {
   applySource()
@@ -63,11 +64,11 @@ watch(() => layer, () => {
 })
 
 onMounted(() => {
-  layer?.setSource(source.value)
+  layer?.value?.setSource(source.value)
 })
 
 onUnmounted(() => {
-  layer?.setSource(null)
+  layer?.value?.setSource(null)
 })
 
 provide('vectorSource', source)

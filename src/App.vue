@@ -230,56 +230,9 @@ import {
   inject,
   onMounted,
 } from 'vue'
-import type Geometry from 'ol/geom/Geometry'
 import type { Coordinate } from 'ol/coordinate'
-import Style from 'ol/style/Style'
 import markerIcon from '@/assets/marker.png'
 import starIcon from '@/assets/star.png'
-import {
-  Map, Layers, Sources, Interactions, Styles, MapControls, Geometries, Animations,
-} from './index'
-
-const {
-  OlAnimationPath, OlAnimationShake,
-} = Animations
-const {
-  OlMap, OlView, OlFeature, OlOverlay,
-} = Map.OlMap
-const {
-  OlTileLayer, OlHeatmapLayer, OlAnimatedClusterLayer, OlWebglPointsLayer, OlVectorLayer,
-} = Layers
-const {
-  OlSourceOSM, OlSourceVector, OlSourceXYZ, OlSourceWebglPoints,
-} = Sources
-const {
-  OlInteractionDragRotateZoom,
-  OlInteractionClusterSelect,
-  OlInteractionDraw,
-  OlInteractionSnap,
-  OlInteractionModify,
-  OlInteractionSelect,
-} = Interactions
-const {
-  OlStyle, OlStyleFill, OlStyleStroke, OlStyleIcon, OlStyleCircle, OlStyleText, OlStyleFlowLine,
-} = Styles
-const {
-  OlZoomControl,
-  OlSwipeControl,
-  OlLayerSwitcherImageControl,
-  OlZoneControl,
-  OlControlBar,
-  OlControlToggle,
-  OlControlVideoRecorder,
-  OlZoomSliderControl,
-  OlZoomToExtentControl,
-  OlContextMenu,
-  OlRotateControl,
-  OlMousePositionControl,
-  OlFullScreenControl,
-  OlOverviewMapControl,
-  OlControlPrintDialog,
-} = MapControls
-const { OlGeomPoint, OlGeomLineString } = Geometries
 
 const center = ref([34, 39.13])
 const projection = ref('EPSG:4326')
@@ -298,7 +251,6 @@ const selectedCityName = ref('')
 const selectedCityPosition = ref<Coordinate>([])
 
 const extent = inject('ol-extent')
-
 const Feature = inject('ol-feature')
 const Geom = inject('ol-geom')
 
@@ -429,9 +381,9 @@ const animationPath = ref(null)
 
 onMounted(() => {
   // @ts-ignore
-  layerList.value.push(jawgLayer.value.tileLayer)
+  layerList.value.push(jawgLayer.value?.tileLayer)
   // @ts-ignore
-  layerList.value.push(osmLayer.value.tileLayer)
+  layerList.value.push(osmLayer.value?.tileLayer)
   console.log(layerList.value)
   console.log(animationPath.value)
 })

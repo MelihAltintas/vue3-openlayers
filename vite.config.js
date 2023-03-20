@@ -27,6 +27,7 @@ export default defineConfig({
       formats: ['es', 'cjs', 'umd'],
       fileName: format => `vue3-openlayers.${format}.js`,
     },
+    minify: false,
     rollupOptions: {
       // make sure to externalize deps that should not be bundled
       // into your library
