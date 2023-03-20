@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "prepare-npm": "vite build && rm -rf ./npm && cp -r dist ./npm && cp package.json ./npm/ && cp README.md ./npm/ && cp LICENSE ./npm/",
+    "prepare-npm": "vite build && rm -rf ./npm && cp -r dist ./npm && mkdir ./npm/src/ && mkdir ./npm/src/components && cp -r ./src/components ./npm/src/components/  && cp components.d.ts ./npm/ && cp package.json ./npm/ && cp README.md ./npm/ && cp LICENSE ./npm/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -82,7 +82,8 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^9.9.0",
     "typescript": "^4.9.5",
-    "vite": "^4.2.1",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "4.1.4",
     "vite-plugin-dts": "^2.1.0",
     "vue": "3.2.47",
     "vitepress": "^1.0.0-alpha.62",

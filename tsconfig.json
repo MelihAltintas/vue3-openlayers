@@ -34,6 +34,7 @@
   // to be evaluated by TS when their original files has been updated
   "exclude": ["node_modules"],
   "include": [
+    "components.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
