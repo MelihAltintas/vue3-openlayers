@@ -84,28 +84,29 @@ const emit = defineEmits([
   'precompose',
   'postcompose',
 ])
-onMounted(() => {
-  map.value = new Map({
-    ...(properties as MapOptions),
-    interactions: defaults({
-      ...properties,
-    }),
-  })
 
-  map.value.setTarget(mapRef.value)
-
-  map.value.on('click', event => emit('click', event))
-  map.value.on('dblclick', event => emit('dblclick', event))
-  map.value.on('singleclick', event => emit('singleclick', event))
-  map.value.on('pointerdrag', event => emit('pointerdrag', event))
-  map.value.on('pointermove', event => emit('pointermove', event))
-
-  map.value.on('movestart', event => emit('movestart', event))
-  map.value.on('moveend', event => emit('moveend', event))
-  map.value.on('postrender', event => emit('postrender', event))
-  map.value.on('precompose', event => emit('precompose', event))
-  map.value.on('postcompose', event => emit('postcompose', event))
+map.value = new Map({
+  ...(properties as MapOptions),
+  interactions: defaults({
+    ...properties,
+  }),
 })
+
+onMounted(() => {
+  map.value?.setTarget(mapRef.value)
+})
+
+map.value.on('click', event => emit('click', event))
+map.value.on('dblclick', event => emit('dblclick', event))
+map.value.on('singleclick', event => emit('singleclick', event))
+map.value.on('pointerdrag', event => emit('pointerdrag', event))
+map.value.on('pointermove', event => emit('pointermove', event))
+
+map.value.on('movestart', event => emit('movestart', event))
+map.value.on('moveend', event => emit('moveend', event))
+map.value.on('postrender', event => emit('postrender', event))
+map.value.on('precompose', event => emit('precompose', event))
+map.value.on('postcompose', event => emit('postcompose', event))
 
 onUnmounted(() => {
   map.value?.setTarget(undefined)
