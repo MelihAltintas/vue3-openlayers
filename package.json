@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.2.8",
+  "version": "0.2.14",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
     ".": {
       "import": "./vue3-openlayers.es.js",
       "require": "./vue3-openlayers.umd.js",
-      "types": "./index.d.ts"
+      "types": "./types/src/index.d.ts"
     },
     "./vue3-openlayers.css": {
       "import": "./vue3-openlayers.css",
@@ -43,7 +43,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "prepare-npm": "vite build && rm -rf ./npm && cp -r dist ./npm && mkdir ./npm/src/ && mkdir ./npm/src/components && cp -r ./src/components ./npm/src/components/  && cp components.d.ts ./npm/ && cp package.json ./npm/ && cp README.md ./npm/ && cp LICENSE ./npm/",
+    "prepare-npm": "rm -rf ./npm && cp -r dist ./npm && mkdir ./npm/src && mkdir ./npm/src/components && cp -r ./src/components ./npm/src/  && cp components.d.ts ./npm/ && cp package.json ./npm/ && cp README.md ./npm/ && cp LICENSE ./npm/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -52,7 +52,7 @@
     "./*"
   ],
   "type": "module",
-  "types": "types/index.d.ts",
+  "types": "./types/src/index.d.ts",
   "dependencies": {
     "file-saver": "2.0.5",
     "jspdf": "2.5.1",

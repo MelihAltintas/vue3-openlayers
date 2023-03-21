@@ -9,6 +9,7 @@ export default defineConfig({
     vue(),
     Components({
       dts: true,
+      types: [],
     }),
     dts({
       outputDir: 'dist/types',
