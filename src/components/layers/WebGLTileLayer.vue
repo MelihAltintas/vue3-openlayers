@@ -16,7 +16,7 @@ import {
 
 import TileLayer from 'ol/layer/WebGLTile';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-import BaseLayer from "./BaseLayer"
+import BaseLayer from "./BaseLayer.vue"
 export default {
     extends: BaseLayer,
     name: 'ol-webgl-tile-layer',
@@ -73,7 +73,7 @@ export default {
             tileLayer
         }
     },
-    props: {  
+    props: {
         preload: {
             type: Number,
             default: 1

@@ -17,7 +17,7 @@ import {
 import HeatmapLayer from 'ol/layer/Heatmap';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
-import BaseLayer from "./BaseLayer"
+import BaseLayer from "./BaseLayer.vue"
 export default {
     extends: BaseLayer,
     name: 'ol-heatmap-layer',

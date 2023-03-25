@@ -25,7 +25,7 @@ import * as extent from 'ol/extent';
 import * as animations from 'ol/easing'
 
 export default function install(app) {
-    
+
     if (install.installed) {
         console.error("OPENLAYERS MAP ALREADY INSTALLED")
         return
@@ -42,7 +42,8 @@ export default function install(app) {
     app.use(Interactions);
     app.use(Animations);
 
-    
+    console.log('installed!')
+
     app.provide('ol-feature',feature)
     app.provide('ol-geom',geom)
     app.provide('ol-animations',animations)
@@ -62,5 +63,5 @@ export {
     Styles,
     Interactions,
     Animations
-  
+
 }
