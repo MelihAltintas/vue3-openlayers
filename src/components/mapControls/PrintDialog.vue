@@ -9,7 +9,7 @@ import PrintDialog from 'ol-ext/control/PrintDialog'
 
 import useControl from '@/composables/useControl'
 
-import { saveAs } from 'file-saver';
+import FileSaver from 'file-saver';
 import { jsPDF } from "jspdf";
 
 export default {
@@ -21,10 +21,10 @@ export default {
 
         control.value.on(['print','error'], function (e) {
 
-      
+
             // Print success
             if (e.image) {
-            
+
                 if (e.pdf) {
                     // Export pdf using the print info
                     var pdf = new jsPDF({
@@ -38,7 +38,7 @@ export default {
                     // Save image as file
                     e.canvas.toBlob(function (blob) {
                         var name = (e.print.legend ? 'legend.' : 'map.') + e.imageType.replace('image/', '');
-                        saveAs(blob, name);
+                        FileSaver.saveAs(blob, name);
                     }, e.imageType, e.quality);
                 }
             } else {
@@ -46,7 +46,7 @@ export default {
             }
         });
 
-      
+
 
 
         return {
