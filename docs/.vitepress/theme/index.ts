@@ -1,7 +1,7 @@
 import DefaultTheme from 'vitepress/theme'
 
 import '@/assets/style.css'
-import Vue3Openlayers from '@'
+import Vue3Openlayers from '../../../src'
 
 export default {
   ...DefaultTheme,
