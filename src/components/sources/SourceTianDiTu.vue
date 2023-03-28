@@ -192,7 +192,7 @@ export default {
     },
     dimensions: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     imageSmoothing: {
       type: Boolean,
