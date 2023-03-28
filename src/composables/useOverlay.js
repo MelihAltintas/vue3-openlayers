@@ -17,7 +17,7 @@ export default function useOverlay(props, emit) {
 
   const { properties } = usePropsAsObjectProperties(props);
 
-  let overlay = computed(() => new Overlay(properties));
+  const overlay = computed(() => new Overlay(properties));
 
   onMounted(() => {
     map.addOverlay(overlay.value);

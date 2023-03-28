@@ -19,7 +19,7 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let style = computed(() => new Style(properties));
+    const style = computed(() => new Style(properties));
 
     const setStyle = (val) => {
       if (styledObj instanceof Draw || styledObj instanceof Modify) {

@@ -1,11 +1,11 @@
 # Demo
 
 <script setup>
-import Demo from "@demos/Demo.vue"
+import AppDemo from "@demos/AppDemo.vue"
 </script>
 
 <ClientOnly>
-<Demo />
+<AppDemo />
 </ClientOnly>
 
 ```html

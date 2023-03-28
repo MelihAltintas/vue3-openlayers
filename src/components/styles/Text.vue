@@ -28,7 +28,7 @@ export default {
       });
     };
 
-    let text = computed(() => createText(properties));
+    const text = computed(() => createText(properties));
 
     const applyStyle = () => {
       style.value.setText(null);

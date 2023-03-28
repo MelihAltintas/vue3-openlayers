@@ -41,8 +41,8 @@ export default {
     const rotation = ref(0);
 
     const urlFunction = (extent, resolution, projection) => {
-      var proj = projection.getCode();
-      let url =
+      const proj = projection.getCode();
+      const url =
         "https://ahocevar.com/geoserver/wfs?service=WFS&" +
         "version=1.1.0&request=GetFeature&typename=osm:water_areas&" +
         "outputFormat=application/json&srsname=" +

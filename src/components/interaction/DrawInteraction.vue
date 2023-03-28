@@ -40,8 +40,8 @@ export default {
       wrapX,
     } = toRefs(props);
 
-    let createDraw = () => {
-      let draw = new Draw({
+    const createDraw = () => {
+      const draw = new Draw({
         source: source.value,
         type: type.value,
         clickTolerance: clickTolerance.value,

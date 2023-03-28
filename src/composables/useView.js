@@ -19,7 +19,7 @@ export default function useView(props, emit) {
             }),
     };
   };
-  let view = new View(createProp());
+  const view = new View(createProp());
 
   onMounted(() => {
     map.setView(view);
@@ -37,7 +37,7 @@ export default function useView(props, emit) {
   view.on("change:rotation", () => emit("rotationChanged", getRotation()));
 
   watch(properties, () => {
-    let pr = createProp();
+    const pr = createProp();
     view.setProperties(pr);
     view.applyOptions_(pr);
   });

@@ -17,8 +17,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let dragrotatezoom = computed(() => {
-      let s = new DragRotateAndZoom({
+    const dragrotatezoom = computed(() => {
+      const s = new DragRotateAndZoom({
         ...properties,
       });
 

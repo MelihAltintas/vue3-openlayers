@@ -9,7 +9,7 @@ export default function useControl(ControlType, props, context) {
 
   const { properties } = usePropsAsObjectProperties(props);
 
-  let control = computed(
+  const control = computed(
     () =>
       new ControlType({
         ...properties,
@@ -32,7 +32,7 @@ export default function useControl(ControlType, props, context) {
   onMounted(() => {
     parent.addControl(control.value);
     if (parent.controls_ != undefined) {
-      let sortedControls = [...parent.controls_];
+      const sortedControls = [...parent.controls_];
       sortedControls.sort((a, b) => a.get("order") - b.get("order"));
 
       parent.controls_ = [];
@@ -52,7 +52,7 @@ export default function useControl(ControlType, props, context) {
       parent.removeControl(control.value);
     } else {
       // ol-ext controls
-      let index = parent.controls_.findIndex((a) => a == control.value);
+      const index = parent.controls_.findIndex((a) => a == control.value);
       parent.controls_.splice(index, 1);
       control.value.dispose();
     }

@@ -14,7 +14,7 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let source = computed(() => new OSM(properties));
+    const source = computed(() => new OSM(properties));
 
     watch(source, () => {
       layer.value.setSource(source.value);

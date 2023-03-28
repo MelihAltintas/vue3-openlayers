@@ -18,7 +18,7 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let source = computed(() => new VectorSource(properties));
+    const source = computed(() => new VectorSource(properties));
 
     const applySource = () => {
       layer.value.setSource(null);

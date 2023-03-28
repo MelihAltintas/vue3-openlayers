@@ -71,13 +71,13 @@ export default {
     const rotation = ref(0);
 
     const overrideStyleFunction = (feature, style) => {
-      let clusteredFeatures = feature.get("features");
-      let size = clusteredFeatures.length;
+      const clusteredFeatures = feature.get("features");
+      const size = clusteredFeatures.length;
 
-      let color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
-      var radius = Math.max(8, Math.min(size, 20));
-      let dash = (2 * Math.PI * radius) / 6;
-      let calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+      const color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+      const radius = Math.max(8, Math.min(size, 20));
+      const dash = (2 * Math.PI * radius) / 6;
+      const calculatedDash = [0, dash, dash, dash, dash, dash, dash];
 
       style.getImage().getStroke().setLineDash(dash);
       style

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
+import { ref } from "vue";
 export default {
   setup() {
     const center = ref([40, 40]);

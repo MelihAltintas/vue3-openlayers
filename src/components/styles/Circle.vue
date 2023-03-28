@@ -28,7 +28,7 @@ export default {
       });
     };
 
-    let circle = computed(() => createCircleStyle(properties));
+    const circle = computed(() => createCircleStyle(properties));
 
     const applyStyle = () => {
       style.value.setImage(null);

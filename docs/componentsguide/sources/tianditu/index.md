@@ -6,11 +6,11 @@
 this source you should get **API key** at https://console.tianditu.gov.cn/.
 
 <script setup>
-import Tianditu from "@demos/Tianditu.vue"
+import TiandituDemo from "@demos/TiandituDemo.vue"
 </script>
 
 <ClientOnly>
-<Tianditu />
+<TiandituDemo />
 </ClientOnly>
 
 ## Usage

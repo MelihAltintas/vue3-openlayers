@@ -13,7 +13,7 @@ export default {
     const layer = inject("tileLayer");
     const { properties } = usePropsAsObjectProperties(props);
 
-    let source = computed(() => new XYZ(properties));
+    const source = computed(() => new XYZ(properties));
 
     watch(source, () => {
       layer.value.setSource(source.value);

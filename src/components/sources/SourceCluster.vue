@@ -18,8 +18,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let source = computed(() => {
-      let c = new Cluster(properties);
+    const source = computed(() => {
+      const c = new Cluster(properties);
       return c;
     });
 

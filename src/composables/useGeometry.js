@@ -6,7 +6,9 @@ export default function useGeometry(GeometryType, props) {
 
   const { properties } = usePropsAsObjectProperties(props);
 
-  let geometry = computed(() => new GeometryType(...Object.values(properties)));
+  const geometry = computed(
+    () => new GeometryType(...Object.values(properties))
+  );
 
   watch(properties, () => {
     feature.value.setGeometry(geometry.value);
