@@ -1,14 +1,14 @@
+import { fileURLToPath, URL } from 'url';
+import { defineConfig } from 'vite';
 
-import path from 'path'
-
-export default{
+export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '../src'),
-      '@demos': path.resolve(__dirname, '../src/demos'),
+      '@': fileURLToPath(new URL('../src', import.meta.url)),
+      '@demos': fileURLToPath(new URL('../src/demos', import.meta.url)),
     },
     preserveSymlinks: false,
     dedupe: ['vue'],
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
-  }
-}
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+  },
+});
