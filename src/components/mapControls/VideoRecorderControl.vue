@@ -6,9 +6,8 @@
 
 <script>
 import VideoRecorder from 'ol-ext/control/VideoRecorder'
-import {
-    saveAs
-} from 'file-saver';
+import FileSaver from 'file-saver';
+
 import useControl from '@/composables/useControl'
 import {toRefs} from 'vue'
 export default {
@@ -30,7 +29,7 @@ export default {
 
         control.value.on("stop", (event) => {
             context.emit('stop', event)
-            saveAs(event.videoURL, downloadName.value);
+            FileSaver.saveAs(event.videoURL, downloadName.value);
         })
         return {
             control

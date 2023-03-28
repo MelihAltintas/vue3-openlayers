@@ -14,7 +14,7 @@ import {
     computed
 } from 'vue'
 
-import Select from 'ol-ext//interaction/SelectCluster';
+import Select from 'ol-ext/interaction/SelectCluster';
 import Style from 'ol/style/Style';
 import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
