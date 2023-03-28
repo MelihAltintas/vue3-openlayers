@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 // https://vitepress.vuejs.org/reference/site-config
 export default defineConfig({
   // https://MelihAltintas.github.com/vue3-openlayers
-  base: '/vue3-openlayers/',
+ // base: '/vue3-openlayers/',
   title: 'vue3-openlayers',
   description: 'Openlayers Wrapper for Vue3',
   lastUpdated: true,
