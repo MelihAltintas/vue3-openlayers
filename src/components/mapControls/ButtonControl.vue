@@ -1,45 +1,38 @@
 <template lang="">
-<div v-if="false">
-
-</div>
+  <div v-if="false"></div>
 </template>
 
 <script>
-import Button from 'ol-ext/control/Button'
+import Button from "ol-ext/control/Button";
 
-import useControl from '@/composables/useControl'
+import useControl from "@/composables/useControl";
 export default {
-    name: 'ol-control-button',
-    setup(props,context) {
-        const {
-            control
-        } = useControl(Button, props,context);
+  name: "ol-control-button",
+  setup(props, context) {
+    const { control } = useControl(Button, props, context);
 
-        return {
-            control
-        }
-
+    return {
+      control,
+    };
+  },
+  props: {
+    html: {
+      type: String,
     },
-    props: {
-        html: {
-            type: String,
-        },
-        name: {
-            type: String,
-        },
-        className: {
-            type: String,
-        },
-        title: {
-            type: String,
-        },
-        handleClick: {
-            type: Function,
-        },
-    }
-}
+    name: {
+      type: String,
+    },
+    className: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+    handleClick: {
+      type: Function,
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

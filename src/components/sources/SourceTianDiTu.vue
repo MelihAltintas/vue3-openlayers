@@ -62,7 +62,6 @@ export class Tianditu extends WMTSSource {
       projection: options.projection || "EPSG:3857",
       wrapX: options.wrapX,
     };
-  
 
     if (options.tileProxy) {
       superOptions.tileLoadFunction = tileLoadFunction;
@@ -111,9 +110,7 @@ export class Tianditu extends WMTSSource {
     }
     let tileGird = new TileGridWMTS({
       extent: [
-        -20037508.3427892,
-        -20037508.3427892,
-        20037508.3427892,
+        -20037508.3427892, -20037508.3427892, 20037508.3427892,
         20037508.3427892,
       ],
       resolutions: tdt_Mercator_resolutions,
@@ -152,7 +149,7 @@ export default {
   props: {
     layerType: {
       type: String,
-      default: "img", 
+      default: "img",
     },
     tk: {
       type: String,

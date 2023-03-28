@@ -2,14 +2,12 @@
 
 > A Zoom Slider control for OpenLayers.
 
-
 ## Properties
 
 # className
 
 - **Type**: `String`
 - **Default**: `ol-zoomslider`
-
 
 # duration
 

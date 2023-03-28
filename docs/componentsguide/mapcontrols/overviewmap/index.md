@@ -2,7 +2,6 @@
 
 > A Overview Map control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -10,18 +9,15 @@
 - **Type**: `String`
 - **Default**: `ol-overviewmap`
 
-
 # collapsed
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-
 # collapseLabel
 
 - **Type**: `String`
 - **Default**: `«`
-
 
 # collapsible
 
@@ -37,7 +33,6 @@
 
 - **Type**: `Function`
 
-
 # rotateWithView
 
 - **Type**: `Boolean`
@@ -46,7 +41,6 @@
 # target
 
 - **Type**: `HTMLElement`
-
 
 # tipLabel
 

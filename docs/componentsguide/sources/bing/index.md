@@ -19,49 +19,57 @@ Example of `ol-source-bingmaps` usage
 
 ```html
 <template>
-<select v-model="selected">
+  <select v-model="selected">
     <option value="AerialWithLabels">AerialWithLabels</option>
     <option value="RoadOnDemand">RoadOnDemand</option>
     <option value="CanvasDark">CanvasDark</option>
-</select>
-{{selected}}
+  </select>
+  {{selected}}
 
-<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
-
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height:400px"
+  >
+    <ol-view
+      ref="view"
+      :center="center"
+      :rotation="rotation"
+      :zoom="zoom"
+      :projection="projection"
+    />
 
     <ol-tile-layer>
-        <ol-source-bingmaps apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI" :imagerySet="selected" />
+      <ol-source-bingmaps
+        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
+        :imagerySet="selected"
+      />
     </ol-tile-layer>
-
-</ol-map>
+  </ol-map>
 </template>
 ```
 
 ```js
-import {
-    ref
-} from 'vue'
+import { ref } from "vue";
 export default {
-    setup() {
-        const center = ref([40, 40])
-        const projection = ref('EPSG:4326')
-        const zoom = ref(8)
-        const rotation = ref(0)
-        const selected = ref('AerialWithLabels')
-        return {
-            center,
-            projection,
-            zoom,
-            rotation,
-            selected
-        }
-    },
-}
+  setup() {
+    const center = ref([40, 40]);
+    const projection = ref("EPSG:4326");
+    const zoom = ref(8);
+    const rotation = ref(0);
+    const selected = ref("AerialWithLabels");
+    return {
+      center,
+      projection,
+      zoom,
+      rotation,
+      selected,
+    };
+  },
+};
 ```
 
 ## Properties
-
 
 # cacheSize
 
@@ -74,7 +82,6 @@ Initial tile cache size. Will auto-grow to hold at least the number of tiles in 
 - **Type**: `boolean`
 - **Default**: `false`
 
-	
 If true hidpi tiles will be requested.
 
 # culture
@@ -94,7 +101,6 @@ Bing Maps API key
 
 - **Type**: `String`
 
-	
 Type of imagery.
 
 # imageSmoothing
@@ -108,26 +114,25 @@ Enable image smoothing.
 
 - **Type**: `number`
 - **Default**: 21
-Max zoom.
-
+  Max zoom.
 
 # reprojectionErrorThreshold
 
 - **Type**: `number `
-- **Default**:  0.5
-	
+- **Default**: 0.5
+
 Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
 
 # tileLoadFunction
 
 - **Type**: `Function`
-- **Default**: 
-```js 
-(imageTile, src) => imageTile.getImage().src = src 
-```
-	
-Optional function to load a tile given a URL
+- **Default**:
 
+```js
+(imageTile, src) => (imageTile.getImage().src = src);
+```
+
+Optional function to load a tile given a URL
 
 # transition
 
@@ -135,9 +140,8 @@ Optional function to load a tile given a URL
 
 Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
 
-
 # wrapX
 
 - **Type**: `boolean `
-- **Default**:  true
-Whether to wrap the world horizontally.
+- **Default**: true
+  Whether to wrap the world horizontally.

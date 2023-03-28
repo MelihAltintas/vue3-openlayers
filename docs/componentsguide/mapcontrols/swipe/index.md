@@ -2,19 +2,15 @@
 
 > A Swipe control for OpenLayers.
 
-
 ## Properties
 
 # layerList
 
 - **Type**: `Array`
 
-
-
 # className
 
 - **Type**: `String`
-
 
 # position
 

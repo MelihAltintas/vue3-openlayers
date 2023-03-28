@@ -1,29 +1,28 @@
-import TileLayer from './TileLayer.vue'
-import WebGLTileLayer from './WebGLTileLayer.vue'
-import ImageLayer from './ImageLayer.vue'
-import VectorLayer from './VectorLayer.vue'
-import AnimatedClusterLayer from './AnimatedClusterLayer.vue'
-import WebglPointsLayer from './WebglPointsLayer.vue'
-import HeatmapLayer from './HeatmapLayer.vue'
+import TileLayer from "./TileLayer.vue";
+import WebGLTileLayer from "./WebGLTileLayer.vue";
+import ImageLayer from "./ImageLayer.vue";
+import VectorLayer from "./VectorLayer.vue";
+import AnimatedClusterLayer from "./AnimatedClusterLayer.vue";
+import WebglPointsLayer from "./WebglPointsLayer.vue";
+import HeatmapLayer from "./HeatmapLayer.vue";
 
 function install(app) {
-
   if (install.installed) {
-    return
+    return;
   }
 
-  install.installed = true
+  install.installed = true;
 
-  app.component(TileLayer.name, TileLayer)
-  app.component(WebGLTileLayer.name, WebGLTileLayer)
-  app.component(ImageLayer.name, ImageLayer)
-  app.component(VectorLayer.name, VectorLayer)
-  app.component(AnimatedClusterLayer.name, AnimatedClusterLayer)
-  app.component(WebglPointsLayer.name, WebglPointsLayer)
-  app.component(HeatmapLayer.name, HeatmapLayer)
+  app.component(TileLayer.name, TileLayer);
+  app.component(WebGLTileLayer.name, WebGLTileLayer);
+  app.component(ImageLayer.name, ImageLayer);
+  app.component(VectorLayer.name, VectorLayer);
+  app.component(AnimatedClusterLayer.name, AnimatedClusterLayer);
+  app.component(WebglPointsLayer.name, WebglPointsLayer);
+  app.component(HeatmapLayer.name, HeatmapLayer);
 }
 
-export default install
+export default install;
 
 export {
   install,
@@ -34,4 +33,4 @@ export {
   AnimatedClusterLayer,
   WebglPointsLayer,
   HeatmapLayer,
-}
+};

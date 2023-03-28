@@ -2,7 +2,6 @@
 
 > A Zoom to extent control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -13,7 +12,6 @@
 # target
 
 - **Type**: `HTMLElement`
-
 
 # label
 

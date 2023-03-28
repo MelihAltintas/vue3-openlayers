@@ -2,7 +2,6 @@
 
 > A Attribution control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -51,6 +50,3 @@
 # render
 
 - **Type**: `Function`
-
-
-

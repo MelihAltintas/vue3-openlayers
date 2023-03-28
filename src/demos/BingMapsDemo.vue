@@ -1,40 +1,49 @@
 <template>
-<select v-model="selected">
+  <select v-model="selected">
     <option value="AerialWithLabels">AerialWithLabels</option>
     <option value="RoadOnDemand">RoadOnDemand</option>
     <option value="CanvasDark">CanvasDark</option>
-</select>
-{{selected}}
+  </select>
+  {{ selected }}
 
-<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
-
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height: 400px"
+  >
+    <ol-view
+      ref="view"
+      :center="center"
+      :rotation="rotation"
+      :zoom="zoom"
+      :projection="projection"
+    />
 
     <ol-tile-layer>
-        <ol-source-bingmaps apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI" :imagerySet="selected" />
+      <ol-source-bingmaps
+        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
+        :imagerySet="selected"
+      />
     </ol-tile-layer>
-
-</ol-map>
+  </ol-map>
 </template>
 
 <script>
-import {
-    ref
-} from 'vue'
+import { ref } from "vue";
 export default {
-    setup() {
-        const center = ref([40, 40])
-        const projection = ref('EPSG:4326')
-        const zoom = ref(8)
-        const rotation = ref(0)
-        const selected = ref('AerialWithLabels')
-        return {
-            center,
-            projection,
-            zoom,
-            rotation,
-            selected
-        }
-    },
-}
+  setup() {
+    const center = ref([40, 40]);
+    const projection = ref("EPSG:4326");
+    const zoom = ref(8);
+    const rotation = ref(0);
+    const selected = ref("AerialWithLabels");
+    return {
+      center,
+      projection,
+      zoom,
+      rotation,
+      selected,
+    };
+  },
+};
 </script>
