@@ -86,6 +86,6 @@
     "vite": "4.1.4",
     "vite-plugin-dts": "^2.1.0",
     "vue": "3.2.47",
-    "vitepress": "^1.0.0-alpha.62",
+    "vitepress": "^1.0.0-alpha.62"
   }
 }
