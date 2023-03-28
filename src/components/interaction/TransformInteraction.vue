@@ -16,8 +16,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let transform = computed(() => {
-      let interaction = new Transform({
+    const transform = computed(() => {
+      const interaction = new Transform({
         ...properties,
       });
 

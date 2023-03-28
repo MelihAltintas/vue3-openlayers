@@ -62,7 +62,7 @@ export default {
         icon: marker, // this can be relative or absolute
         callback: (val) => {
           console.log(val);
-          let feature = new Feature({
+          const feature = new Feature({
             geometry: new Geom.Point(val.coordinate),
           });
           markers.value.source.addFeature(feature);

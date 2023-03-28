@@ -28,8 +28,8 @@ export default {
   setup(props, { emit }) {
     const { properties } = usePropsAsObjectProperties(props);
 
-    let geoLoc = computed(() => {
-      let g = new Geolocation(properties);
+    const geoLoc = computed(() => {
+      const g = new Geolocation(properties);
       g.on("change", changeEvt);
       return g;
     });

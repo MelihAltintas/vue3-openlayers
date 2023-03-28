@@ -16,8 +16,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let feature = computed(() => {
-      let f = new Feature({ ...properties.properties });
+    const feature = computed(() => {
+      const f = new Feature({ ...properties.properties });
 
       return f;
     });

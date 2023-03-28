@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
+import { ref } from "vue";
 
 export default {
   setup() {
@@ -58,8 +58,8 @@ export default {
     const rotation = ref(0);
 
     const overrideStyleFunction = (feature, style) => {
-      let clusteredFeatures = feature.get("features");
-      let size = clusteredFeatures.length;
+      const clusteredFeatures = feature.get("features");
+      const size = clusteredFeatures.length;
 
       style.getText().setText(size.toString());
     };

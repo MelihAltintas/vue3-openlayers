@@ -8,7 +8,7 @@ export default function useAnimation(AnimationType, props) {
   const { properties } = usePropsAsObjectProperties(props);
 
   const animation = computed(() => {
-    let anim = new AnimationType({
+    const anim = new AnimationType({
       ...properties,
     });
 

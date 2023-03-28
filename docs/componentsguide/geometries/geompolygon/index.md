@@ -3,10 +3,10 @@
 ol-geom-polygon can be used inside a ol-feature to draw a single polygon on the map. The polygon may contain holes in it, check the usage section for more info on this.
 
 <script setup>
-import Polygon from "@demos/Polygon.vue"
+import PolygonDemo from "@demos/PolygonDemo.vue"
 </script>
 <ClientOnly>
-<Polygon /> 
+<PolygonDemo />
 </ClientOnly>
 
 ## Usage

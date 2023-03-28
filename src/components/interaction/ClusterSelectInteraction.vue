@@ -17,8 +17,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let select = computed(() => {
-      let s = new Select({
+    const select = computed(() => {
+      const s = new Select({
         ...properties,
         style: new Style(),
       });

@@ -20,7 +20,7 @@ export default {
       if (e.image) {
         if (e.pdf) {
           // Export pdf using the print info
-          var pdf = new jsPDF({
+          const pdf = new jsPDF({
             orientation: e.print.orientation,
             unit: e.print.unit,
             format: e.print.size,
@@ -38,7 +38,7 @@ export default {
           // Save image as file
           e.canvas.toBlob(
             function (blob) {
-              var name =
+              const name =
                 (e.print.legend ? "legend." : "map.") +
                 e.imageType.replace("image/", "");
               FileSaver.saveAs(blob, name);

@@ -70,7 +70,6 @@ export default {
     const projection = ref("EPSG:4326");
     const zoom = ref(8);
     const rotation = ref(0);
-    const zoomInLabel = ref("a");
     return {
       center,
       projection,

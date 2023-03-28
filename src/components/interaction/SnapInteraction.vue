@@ -16,8 +16,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let createSnap = () => {
-      let s = new Snap({
+    const createSnap = () => {
+      const s = new Snap({
         ...properties,
         source: source.value,
       });

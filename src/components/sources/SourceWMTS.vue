@@ -26,7 +26,7 @@ export default {
       const resolutions = new Array(properties.tileZoomLevel);
       const matrixIds = new Array(properties.tileZoomLevel);
 
-      for (var z = 0; z < properties.tileZoomLevel; ++z) {
+      for (let z = 0; z < properties.tileZoomLevel; ++z) {
         resolutions[z] = size.value / Math.pow(2, z);
         matrixIds[z] = z;
       }

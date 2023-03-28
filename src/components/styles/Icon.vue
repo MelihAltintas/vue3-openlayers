@@ -16,8 +16,8 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let icon = computed(() => {
-      let ic = new Icon(properties);
+    const icon = computed(() => {
+      const ic = new Icon(properties);
       ic.load();
       return ic;
     });

@@ -14,7 +14,7 @@ export default {
 
     const { properties } = usePropsAsObjectProperties(props);
 
-    let source = computed(
+    const source = computed(
       () =>
         new BingMaps({
           ...properties,

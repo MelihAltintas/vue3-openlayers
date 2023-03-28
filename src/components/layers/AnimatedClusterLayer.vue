@@ -22,7 +22,7 @@ export default {
     const { properties } = usePropsAsObjectProperties(props);
 
     const vectorLayer = computed(() => {
-      let ac = new AnimatedCluster({
+      const ac = new AnimatedCluster({
         ...properties,
         source: new Cluster({
           distance: properties.distance,

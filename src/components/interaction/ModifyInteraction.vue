@@ -35,8 +35,8 @@ export default {
       hitDetection,
     } = toRefs(props);
 
-    let createModify = () => {
-      let modify = new Modify({
+    const createModify = () => {
+      const modify = new Modify({
         source: source.value,
         features: features.value,
         condition: condition.value,
