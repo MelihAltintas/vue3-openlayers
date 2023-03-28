@@ -2,7 +2,6 @@
 
 > A Scale Line control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -10,12 +9,10 @@
 - **Type**: `String`
 - **Default**: `ol-scale-line`
 
-
 # minWidth
 
 - **Type**: `Number`
 - **Default**: `64`
-
 
 # render
 

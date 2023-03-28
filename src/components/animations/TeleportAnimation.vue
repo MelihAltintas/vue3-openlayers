@@ -1,36 +1,26 @@
 <template lang="">
-<slot></slot>
+  <slot></slot>
 </template>
 
 <script>
-import FeatureAnimation from './FeatureAnimation.vue';
-import Teleport from 'ol-ext/featureanimation/Teleport';
+import FeatureAnimation from "./FeatureAnimation.vue";
+import Teleport from "ol-ext/featureanimation/Teleport";
 import useAnimation from "@/composables/useAnimation";
 export default {
-    name: 'ol-animation-teleport',
-    extends: FeatureAnimation,
+  name: "ol-animation-teleport",
+  extends: FeatureAnimation,
 
-    setup(props) {
-        const {
-            map,
-            vectorLayer,
-            properties
-        } = useAnimation(Teleport, props);
+  setup(props) {
+    const { map, vectorLayer, properties } = useAnimation(Teleport, props);
 
-        return {
-            map,
-            vectorLayer,
-            properties
-        }
-
-    },
-    props: {
-
-
-    }
-}
+    return {
+      map,
+      vectorLayer,
+      properties,
+    };
+  },
+  props: {},
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

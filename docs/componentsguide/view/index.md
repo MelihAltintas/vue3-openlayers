@@ -6,7 +6,6 @@ This is the object to act upon to change the center, resolution, and rotation of
 
 A View has a projection. The projection determines the coordinate system of the center, and its units determine the units of the resolution (projection units per pixel). The default projection is Spherical Mercator (EPSG:3857).
 
-
 <script setup>
 import ViewDemo from "@demos/ViewDemo.vue"
 </script>
@@ -87,8 +86,6 @@ export default {
   },
 };
 ```
-
-
 
 ## Properties
 
@@ -406,10 +403,8 @@ Get the resolution for a provided extent (in map units) and size (in pixels).
 - `size {module:ol/size~Size}`
   Box pixel size.
 
-
 Returns:
 The resolution at which the provided extent will render at the given size.
-
 
 # getResolutionForZoom(zoom)
 
@@ -417,7 +412,7 @@ Get the resolution for a zoom level.
 
 - **Arguments**:
 - `zoom {number}`
-    Zoom level.
+  Zoom level.
 
 Returns:
 The view resolution for the provided zoom level.
@@ -449,7 +444,7 @@ Get the zoom level for a resolution.
 
 - **Arguments**:
 - `resolution {number}`
-   	The resolution.
+  The resolution.
 
 Returns:
 The zoom level for the provided resolution.
@@ -460,7 +455,7 @@ Set the center of the current view. Any extent constraint will apply.
 
 - **Arguments**:
 - `center {	module:ol/coordinate~Coordinate | undefined}`
-   	The center of the view.
+  The center of the view.
 
 # setConstrainResolution(enabled)
 
@@ -468,7 +463,7 @@ Set whether the view shoud allow intermediary zoom levels.
 
 - **Arguments**:
 - `enabled {boolean}`
-   	Whether the resolution is constrained.    
+  Whether the resolution is constrained.
 
 # setMaxZoom(zoom)
 
@@ -476,7 +471,7 @@ Set a new maximum zoom level for the view.
 
 - **Arguments**:
 - `zoom {number}`
-   	The maximum zoom level.   
+  The maximum zoom level.
 
 # setMinZoom(zoom)
 
@@ -484,7 +479,7 @@ Set a new minimum zoom level for the view.
 
 - **Arguments**:
 - `zoom {number}`
-   	The minimum zoom level.    
+  The minimum zoom level.
 
 # setResolution(resolution)
 
@@ -492,7 +487,7 @@ Set the resolution for this view. Any resolution constraint will apply.
 
 - **Arguments**:
 - `resolution {number | undefined}`
-   	The resolution of the view.    
+  The resolution of the view.
 
 # setRotation(rotation)
 
@@ -500,7 +495,7 @@ Set the rotation for this view. Any rotation constraint will apply.
 
 - **Arguments**:
 - `rotation {number}`
-   	The rotation of the view in radians. 
+  The rotation of the view in radians.
 
 # setZoom(zoom)
 
@@ -508,9 +503,8 @@ Zoom to a specific zoom level. Any resolution constrain will apply.
 
 - **Arguments**:
 - `zoom {number}`
-   	Zoom level.    
+  Zoom level.
 
 # fit(geometryOrExtent, opt_options)
 
-Fit the given geometry or extent based on the given map size and border. The size is pixel dimensions of the box to fit the extent into. In most cases you will want to use the map size, that is map.getSize(). Takes care of the map angle.   
-
+Fit the given geometry or extent based on the given map size and border. The size is pixel dimensions of the box to fit the extent into. In most cases you will want to use the map size, that is map.getSize(). Takes care of the map angle.

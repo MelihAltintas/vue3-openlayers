@@ -20,48 +20,58 @@ Example of loading google maps satellite tiles. Notice that this is only allowed
 
 ```html
 <template>
-<select v-model="selected">
-    <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">OSM</option>
-    <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">GOOGLE</option>
-</select>
-{{selected}}
-<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
-
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
+  <select v-model="selected">
+    <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">
+      OSM
+    </option>
+    <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">
+      GOOGLE
+    </option>
+  </select>
+  {{selected}}
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height:400px"
+  >
+    <ol-view
+      ref="view"
+      :center="center"
+      :rotation="rotation"
+      :zoom="zoom"
+      :projection="projection"
+    />
 
     <ol-tile-layer>
-        <ol-source-xyz :url="selected" />
+      <ol-source-xyz :url="selected" />
     </ol-tile-layer>
-
-</ol-map>
+  </ol-map>
 </template>
 ```
 
 ```js
-import {
-    ref
-} from 'vue'
+import { ref } from "vue";
 export default {
-    setup() {
-        const center = ref([40, 40])
-        const projection = ref('EPSG:4326')
-        const zoom = ref(8)
-        const rotation = ref(0)
-        const selected = ref('https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-        return {
-            center,
-            projection,
-            zoom,
-            rotation,
-            selected
-        }
-    },
-}
+  setup() {
+    const center = ref([40, 40]);
+    const projection = ref("EPSG:4326");
+    const zoom = ref(8);
+    const rotation = ref(0);
+    const selected = ref(
+      "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    );
+    return {
+      center,
+      projection,
+      zoom,
+      rotation,
+      selected,
+    };
+  },
+};
 ```
 
-
 ## Properties
-
 
 # cacheSize
 
@@ -106,7 +116,6 @@ export default {
 - **Type**: `array`
 - **Default**: `[256, 256]`
 
-
 # tileKey
 
 - **Type**: `string`
@@ -123,4 +132,3 @@ URL template
 - **Type**: `number`
 
 Duration of the opacity transition for rendering. To disable the opacity transition, pass `0`.
-

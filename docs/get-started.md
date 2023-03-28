@@ -12,19 +12,17 @@ npm install vue3-openlayers
 
 ## Usage
 
-To use Vue3 OpenLayers  in your application, you can import all components or just what you really need.
+To use Vue3 OpenLayers in your application, you can import all components or just what you really need.
 
 ```js
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-import OpenLayersMap from 'vue3-openlayers'
-import 'vue3-openlayers/dist/vue3-openlayers.css'
+import OpenLayersMap from "vue3-openlayers";
+import "vue3-openlayers/dist/vue3-openlayers.css";
 
 const app = createApp(App);
-app.use(OpenLayersMap)
+app.use(OpenLayersMap);
 
-app.mount('#app')
+app.mount("#app");
 ```
-
-

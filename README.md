@@ -9,7 +9,6 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 [![NPM Minified Size](https://img.shields.io/bundlephobia/min/vue3-openlayers?label=package%20minified%20size)](https://www.npmjs.com/package/vue3-openlayers)
 [![NPM Minzipped Size](https://img.shields.io/bundlephobia/minzip/vue3-openlayers?label=package%20minzipped%20size)](https://www.npmjs.com/package/vue3-openlayers)
 
-
 [![Downloads](https://img.shields.io/npm/dt/vue3-openlayers)](https://npmcharts.com/compare/vue3-openlayers?minimal=true)
 [![Github Open Issiues](https://img.shields.io/github/issues/MelihAltintas/vue3-openlayers)]()
 [![Github Closed Issiues](https://img.shields.io/github/issues-closed-raw/melihaltintas/vue3-openlayers)]()
@@ -24,14 +23,14 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 
 ## Links
 
-6 hours of debugging can save you 5 minutes of reading documentation :) please read the doc :) 
-## - [Documentation Netlify](https://vue3openlayers.netlify.app)
+6 hours of debugging can save you 5 minutes of reading documentation :) please read the doc :)
 
+## - [Documentation Netlify](https://vue3openlayers.netlify.app)
 
 ## Install
 
 ```bash
-# install current vue3-openlayers version 
+# install current vue3-openlayers version
 npm install vue3-openlayers
 or
 yarn add vue3-openlayers
@@ -41,7 +40,7 @@ yarn add vue3-openlayers
 
 ## Overview
 
-**vue3-openlayers** is components library that brings the powerful **OpenLayers API** to the **Vue3** reactive world. 
+**vue3-openlayers** is components library that brings the powerful **OpenLayers API** to the **Vue3** reactive world.
 It can display maps with tiled, raster or vector layers loaded from different sources.
 
 ![Alt Text](https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/vue3-openlayers.gif)

@@ -49,24 +49,22 @@ Example of `ol-source-tianditu` usage
 ```
 
 ```js
-import {
-    ref
-} from 'vue'
+import { ref } from "vue";
 export default {
-    setup() {
-        const center = ref([116.41124529391394, 39.953530444730816]);
-        const projection = ref('EPSG:4326')
-        const zoom = ref(8)
-        const rotation = ref(0)
+  setup() {
+    const center = ref([116.41124529391394, 39.953530444730816]);
+    const projection = ref("EPSG:4326");
+    const zoom = ref(8);
+    const rotation = ref(0);
 
-        return {
-            center,
-            projection,
-            zoom,
-            rotation,
-        }
-    },
-}
+    return {
+      center,
+      projection,
+      zoom,
+      rotation,
+    };
+  },
+};
 ```
 
 ## Properties
@@ -130,12 +128,9 @@ api key
 
 - **Type**: `String`
 
-
-
 # dimensions
 
 - **Type**: `Object`
-
 
 # imageSmoothing
 
@@ -147,11 +142,9 @@ api key
 - **Type**: `Number`
 - **Default**: `21`
 
-
 # reprojectionErrorThreshold
 
 - **Type**: `Number`
-
 
 # tileLoadFunction
 
@@ -165,4 +158,3 @@ api key
 # transition
 
 - **Type**: `Number`
-

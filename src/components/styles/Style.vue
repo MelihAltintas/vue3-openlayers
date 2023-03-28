@@ -1,115 +1,90 @@
 <template>
-<div>
+  <div>
     <slot></slot>
-</div>
+  </div>
 </template>
 
 <script>
-import {
-    provide,
-    inject,
-    watch,
-    onUnmounted,
-    onMounted,
-    computed,
+import { provide, inject, watch, onUnmounted, onMounted, computed } from "vue";
 
-} from 'vue'
-
-import Style from 'ol/style/Style';
-import Draw from 'ol/interaction/Draw';
-import Modify from 'ol/interaction/Modify';
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import Style from "ol/style/Style";
+import Draw from "ol/interaction/Draw";
+import Modify from "ol/interaction/Modify";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
-    name: 'ol-style',
-    setup(props) {
+  name: "ol-style",
+  setup(props) {
+    const styledObj = inject("stylable", null);
 
-        const styledObj = inject('stylable', null);
+    const { properties } = usePropsAsObjectProperties(props);
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    let style = computed(() => new Style(properties));
 
-        let style = computed(() => new Style(properties));
+    const setStyle = (val) => {
+      if (styledObj instanceof Draw || styledObj instanceof Modify) {
+        styledObj.getOverlay().setStyle(val);
+        styledObj.value.dispatchEvent("styleChanged");
+        return;
+      }
+      try {
+        styledObj.value.setStyle(val);
+        styledObj.value.changed();
+        styledObj.value.dispatchEvent("styleChanged");
+      } catch (error) {
+        styledObj.value.style_ = val;
+        styledObj.value.values_.style = val;
 
-        const setStyle = (val) => {
+        styledObj.value.changed();
+        styledObj.value.dispatchEvent("styleChanged");
+      }
+    };
 
-            if (styledObj instanceof Draw || styledObj instanceof Modify) {
-
-                styledObj.getOverlay().setStyle(val)
-                styledObj.value.dispatchEvent("styleChanged")
-                return;
-            }
-            try {
-
-                styledObj.value.setStyle(val)
-                styledObj.value.changed()
-                styledObj.value.dispatchEvent("styleChanged")
-
-            } catch (error) {
-
-                styledObj.value.style_ = val
-                styledObj.value.values_.style = val
-
-                styledObj.value.changed()
-                styledObj.value.dispatchEvent("styleChanged")
-
-            }
-        };
-
-        const styleFunc = computed(() => {
-            return (feature) => {
-                if (properties.overrideStyleFunction != null) {
-                    properties.overrideStyleFunction(feature, style.value)
-                }
-                return style.value
-            }
-        });
-
-        watch(properties, () => {
-
-            if (properties.overrideStyleFunction == null) {
-                setStyle(style.value);
-            } else {
-                setStyle(styleFunc.value);
-            }
-
-        })
-
-        onMounted(() => {
-
-            if (properties.overrideStyleFunction == null) {
-                setStyle(style.value);
-            } else {
-
-                setStyle(styleFunc.value);
-            }
-        });
-
-        onUnmounted(() => {
-            setStyle(null);
-        });
-
-        provide("style", style)
-        provide("styledObj", styledObj)
-
-        return {
-            style
+    const styleFunc = computed(() => {
+      return (feature) => {
+        if (properties.overrideStyleFunction != null) {
+          properties.overrideStyleFunction(feature, style.value);
         }
+        return style.value;
+      };
+    });
+
+    watch(properties, () => {
+      if (properties.overrideStyleFunction == null) {
+        setStyle(style.value);
+      } else {
+        setStyle(styleFunc.value);
+      }
+    });
+
+    onMounted(() => {
+      if (properties.overrideStyleFunction == null) {
+        setStyle(style.value);
+      } else {
+        setStyle(styleFunc.value);
+      }
+    });
+
+    onUnmounted(() => {
+      setStyle(null);
+    });
+
+    provide("style", style);
+    provide("styledObj", styledObj);
+
+    return {
+      style,
+    };
+  },
+  props: {
+    zIndex: {
+      type: Number,
     },
-    props: {
-        zIndex: {
-            type: Number
-        },
-        overrideStyleFunction: {
-            type: Function
-        },
-
-    }
-
-}
+    overrideStyleFunction: {
+      type: Function,
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

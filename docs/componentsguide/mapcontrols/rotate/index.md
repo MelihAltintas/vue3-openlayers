@@ -2,7 +2,6 @@
 
 > A Rotate control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -10,18 +9,15 @@
 - **Type**: `String`
 - **Default**: `ol-rotate`
 
-
 # label
 
 - **Type**: `String`
 - **Default**: `⇧`
 
-
 # tipLabel
 
 - **Type**: `String`
 - **Default**: `Reset rotation`
-
 
 # compassClassName
 

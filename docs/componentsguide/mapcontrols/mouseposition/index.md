@@ -2,7 +2,6 @@
 
 > A Mouse Position control for OpenLayers.
 
-
 ## Properties
 
 # className
@@ -10,16 +9,13 @@
 - **Type**: `String`
 - **Default**: `ol-mouse-position`
 
-
 # coordinateFormat
 
 - **Type**: `String`
 
-
 # projection
 
 - **Type**: `String`
-
 
 # render
 
@@ -33,4 +29,3 @@
 
 - **Type**: `String`
 - **Default**: `&#160;`
-
