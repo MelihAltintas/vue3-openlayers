@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Map Controls
 
 A control is a visible widget with a DOM element in a fixed position on the screen. They can involve user input (buttons), or be informational only; the position is determined using CSS. By default these are placed in the container with CSS class name ol-overlaycontainer-stopevent, but can use any outside DOM element.
@@ -11,12 +15,14 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 
 # Control List
 
-- `ol-fullscreen-control`
 - `ol-attribution-control`
+- `ol-context-menu`
+- `ol-fullscreen-control`
 - `ol-mouseposition-control`
 - `ol-overviewmap-control`
 - `ol-rotate-control`
 - `ol-scaleline-control`
+- `ol-swipe-control`
 - `ol-zoom-control`
 - `ol-zoomslider-control`
 - `ol-zoomtoextent-control`
@@ -47,6 +53,8 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
   <label for="mousepositioncontrol">mousepositioncontrol</label>
   <input type="checkbox" id="rotatecontrol" v-model="rotatecontrol" />
   <label for="rotatecontrol">rotatecontrol</label>
+  <input type="checkbox" id="swipecontrol" v-model="showSwipeControl" />
+  <label for="swipecontrol">swipe-control</label>
 
   <ol-map
     ref="map"
@@ -82,7 +90,20 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
       tipLabel="Fit to Turkey"
     />
 
-    <ol-tile-layer>
+    <ol-swipe-control
+      ref="swipeControl"
+      v-if="showSwipeControl"
+      :layerList="layerList && layerList.length > 0"
+    />
+
+    <ol-tile-layer ref="jawgLayer" title="JAWG">
+      <ol-source-xyz
+        crossOrigin="anonymous"
+        url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ"
+      />
+    </ol-tile-layer>
+
+    <ol-tile-layer ref="osmLayer">
       <ol-source-osm />
     </ol-tile-layer>
   </ol-map>
@@ -90,19 +111,33 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 ```
 
 ```js
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 export default {
   setup() {
     const center = ref([40, 40]);
     const projection = ref("EPSG:4326");
     const zoom = ref(8);
     const rotation = ref(0);
+    const layerList = ref([]);
+    const jawgLayer = ref(null);
+    const osmLayer = ref(null);
+    const swipeControl = ref(null);
+
+    onMounted(() => {
+      layerList.value.push(jawgLayer.value.tileLayer);
+      layerList.value.push(osmLayer.value.tileLayer);
+      console.log(layerList.value);
+    });
 
     return {
       center,
       projection,
       zoom,
       rotation,
+      layerList,
+      jawgLayer,
+      osmLayer,
+      swipeControl,
     };
   },
   data() {
@@ -116,6 +151,7 @@ export default {
       overviewmapcontrol: true,
       mousepositioncontrol: true,
       rotatecontrol: true,
+      showSwipeControl: true,
     };
   },
 };
