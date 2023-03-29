@@ -1,8 +1,8 @@
 # ol-map
 
-> The core component of Vue3 OpenLayers
+> The core component of vue3-openlayers
 
-This is the main container for all other Vue3 OpenLayers components and has one `default`
+This is the main container for all other vue3-openlayers components and has one `default`
 slot to place them all. Usually you will use it together with `ol-view`
 component to setup `zoom`, `center`, `projection` and other view related propeties for the map.
 
@@ -16,7 +16,7 @@ import MapDemo from "@demos/MapDemo.vue"
 
 ## Usage
 
-Example of a simple map.  
+Example of a simple map.
 See also documentation of `ol-view` component.
 
 ```html
