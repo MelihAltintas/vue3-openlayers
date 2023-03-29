@@ -273,7 +273,7 @@ export default defineConfig({
               },
               {
                 text: "ol-swipe-control",
-                link: "/componentsguide/mapcontrols/swip/",
+                link: "/componentsguide/mapcontrols/swipe/",
               },
               {
                 text: "ol-zoom-control",
