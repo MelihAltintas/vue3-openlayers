@@ -1,7 +1,7 @@
 declare module "vue3-openlayers" {
   import { App } from "vue";
   import feature from "ol/Feature";
-  import * as geom from "ol/geom/";
+  import * as geom from "ol/geom";
   import * as format from "ol/format";
   import * as loadingstrategy from "ol/loadingstrategy";
   import * as selectconditions from "ol/events/condition";
