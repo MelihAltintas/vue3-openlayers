@@ -56,6 +56,10 @@ export default {
       type: String,
       default: "fraction",
     },
+    anchorYUnits: {
+      type: String,
+      default: "fraction",
+    },
     color: {
       type: String,
     },
