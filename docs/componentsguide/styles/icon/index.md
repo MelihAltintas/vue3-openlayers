@@ -9,7 +9,7 @@ import IconDemo from "@demos/IconDemo.vue"
 </script>
 
 <ClientOnly>
-<IconDemo /> 
+<IconDemo />
 </ClientOnly>
 
 ## Usage
@@ -90,6 +90,11 @@ export default {
 - **Default**: `top-left`
 
 # anchorXUnits
+
+- **Type**: `String`
+- **Default**: `fraction`
+
+# anchorYUnits
 
 - **Type**: `String`
 - **Default**: `fraction`
