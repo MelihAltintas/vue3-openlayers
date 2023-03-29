@@ -190,6 +190,10 @@ export default defineConfig({
                 link: "/componentsguide/interactions/draw/",
               },
               {
+                text: "ol-interaction-dragrotatezoom",
+                link: "/componentsguide/interactions/dragrotatezoom/",
+              },
+              {
                 text: "ol-interaction-modify",
                 link: "/componentsguide/interactions/modify/",
               },
