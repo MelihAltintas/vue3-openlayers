@@ -58,20 +58,20 @@ export default defineConfig({
             text: "Layers",
             items: [
               {
-                text: "ol-tile-layer",
-                link: "/componentsguide/layers/tilelayer/",
+                text: "ol-animated-clusterlayer",
+                link: "/componentsguide/layers/animatedclusterlayer/",
               },
               {
                 text: "ol-image-layer",
                 link: "/componentsguide/layers/imagelayer/",
               },
               {
-                text: "ol-vector-layer",
-                link: "/componentsguide/layers/vectorlayer/",
+                text: "ol-tile-layer",
+                link: "/componentsguide/layers/tilelayer/",
               },
               {
-                text: "ol-animated-clusterlayer",
-                link: "/componentsguide/layers/animatedclusterlayer/",
+                text: "ol-vector-layer",
+                link: "/componentsguide/layers/vectorlayer/",
               },
               {
                 text: "ol-webglpoints-layer",
@@ -87,6 +87,14 @@ export default defineConfig({
             text: "Sources",
             items: [
               {
+                text: "ol-source-bingmaps",
+                link: "/componentsguide/sources/bing/",
+              },
+              {
+                text: "ol-source-cluster",
+                link: "/componentsguide/sources/cluster/",
+              },
+              {
                 text: "ol-source-image-static",
                 link: "/componentsguide/sources/imagestatic/",
               },
@@ -99,28 +107,20 @@ export default defineConfig({
                 link: "/componentsguide/sources/osm/",
               },
               {
-                text: "ol-source-xyz",
-                link: "/componentsguide/sources/xyz/",
-              },
-              {
-                text: "ol-source-bingmaps",
-                link: "/componentsguide/sources/bing/",
-              },
-              {
                 text: "ol-source-tianditu",
                 link: "/componentsguide/sources/tianditu/",
-              },
-              {
-                text: "ol-source-wmts",
-                link: "/componentsguide/sources/wmts/",
               },
               {
                 text: "ol-source-vector",
                 link: "/componentsguide/sources/vector/",
               },
               {
-                text: "ol-source-cluster",
-                link: "/componentsguide/sources/cluster/",
+                text: "ol-source-wmts",
+                link: "/componentsguide/sources/wmts/",
+              },
+              {
+                text: "ol-source-xyz",
+                link: "/componentsguide/sources/xyz/",
               },
             ],
           },
@@ -128,24 +128,24 @@ export default defineConfig({
             text: "Geometries",
             items: [
               {
-                text: "ol-geom-point",
-                link: "/componentsguide/geometries/geompoint/",
-              },
-              {
                 text: "ol-geom-line-string",
                 link: "/componentsguide/geometries/geomlinestring/",
+              },
+              {
+                text: "ol-geom-point",
+                link: "/componentsguide/geometries/geompoint/",
               },
               {
                 text: "ol-geom-polygon",
                 link: "/componentsguide/geometries/geompolygon/",
               },
               {
-                text: "ol-geom-multi-point",
-                link: "/componentsguide/geometries/geommultipoint/",
-              },
-              {
                 text: "ol-geom-multi-line-string",
                 link: "/componentsguide/geometries/geommultilinestring/",
+              },
+              {
+                text: "ol-geom-multi-point",
+                link: "/componentsguide/geometries/geommultipoint/",
               },
               {
                 text: "ol-geom-multi-polygon",
@@ -186,16 +186,16 @@ export default defineConfig({
             text: "Interactions",
             items: [
               {
-                text: "ol-interaction-select",
-                link: "/componentsguide/interactions/select/",
-              },
-              {
                 text: "ol-interaction-draw",
                 link: "/componentsguide/interactions/draw/",
               },
               {
                 text: "ol-interaction-modify",
                 link: "/componentsguide/interactions/modify/",
+              },
+              {
+                text: "ol-interaction-select",
+                link: "/componentsguide/interactions/select/",
               },
               {
                 text: "ol-interaction-snap",
@@ -215,16 +215,16 @@ export default defineConfig({
                 link: "/componentsguide/animations/drop/",
               },
               {
+                text: "ol-animation-fade",
+                link: "/componentsguide/animations/fade/",
+              },
+              {
                 text: "ol-animation-shake",
                 link: "/componentsguide/animations/shake/",
               },
               {
                 text: "ol-animation-slide",
                 link: "/componentsguide/animations/slide/",
-              },
-              {
-                text: "ol-animation-fade",
-                link: "/componentsguide/animations/fade/",
               },
               {
                 text: "ol-animation-teleport",
@@ -240,16 +240,16 @@ export default defineConfig({
             text: "Map Controls",
             items: [
               {
-                text: "demo",
+                text: "Demo",
                 link: "/componentsguide/mapcontrols/",
-              },
-              {
-                text: "ol-context-menu",
-                link: "/componentsguide/mapcontrols/contextmenu/",
               },
               {
                 text: "ol-attribution-control",
                 link: "/componentsguide/mapcontrols/attribution/",
+              },
+              {
+                text: "ol-context-menu",
+                link: "/componentsguide/mapcontrols/contextmenu/",
               },
               {
                 text: "ol-fullscreen-control",
@@ -272,6 +272,10 @@ export default defineConfig({
                 link: "/componentsguide/mapcontrols/scaleline/",
               },
               {
+                text: "ol-swipe-control",
+                link: "/componentsguide/mapcontrols/swip/",
+              },
+              {
                 text: "ol-zoom-control",
                 link: "/componentsguide/mapcontrols/zoom/",
               },
@@ -282,10 +286,6 @@ export default defineConfig({
               {
                 text: "ol-zoomtoextent-control",
                 link: "/componentsguide/mapcontrols/zoomtoextent/",
-              },
-              {
-                text: "ol-swipe-control",
-                link: "/componentsguide/mapcontrols/swip/",
               },
             ],
           },
