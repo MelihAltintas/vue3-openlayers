@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Demo
 
 <script setup>
