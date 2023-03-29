@@ -2,6 +2,8 @@
 
 > A contextmenu extension for OpenLayers.
 
+Right click on the map to open the contextmenu.
+
 <script setup>
 import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 </script>

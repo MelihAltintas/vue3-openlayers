@@ -2,6 +2,10 @@
 
 > A Fullscreen control for OpenLayers.
 
+## Demo
+
+See [Demo page for all Map Controls](../index.md)
+
 ## Properties
 
 # className
