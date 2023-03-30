@@ -8,28 +8,28 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-mouse-position`
 
-# coordinateFormat
+### coordinateFormat
 
 - **Type**: `String`
 
-# projection
+### projection
 
 - **Type**: `String`
 
-# render
+### render
 
 - **Type**: `Function`
 
-# target
+### target
 
 - **Type**: `HTMLElement`
 
-# undefinedHTML
+### undefinedHTML
 
 - **Type**: `String`
 - **Default**: `&#160;`

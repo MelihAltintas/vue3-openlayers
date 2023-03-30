@@ -89,14 +89,14 @@ export default {
 
 ## Properties
 
-# center
+### center
 
 - **Type**: `number[]`
 - **Default**: `[0, 0]`
 
 The center coordinate of the map view in the provided `projection`.
 
-# zoom
+### zoom
 
 - **Type**: `number`
 - **Default**: `0`
@@ -104,14 +104,14 @@ The center coordinate of the map view in the provided `projection`.
 Zoom level used to calculate the resolution for the view as `int` value.
 Only used if `resolution` is not defined.
 
-# rotation
+### rotation
 
 - **Type**: `number`
 - **Default**: `0`
 
 The initial rotation for the view in **radians** (positive rotation clockwise).
 
-# resolution
+### resolution
 
 - **Type**: `number`
 - **Default**: `undefined`
@@ -119,7 +119,7 @@ The initial rotation for the view in **radians** (positive rotation clockwise).
 The initial resolution for the view. The units are projection units per pixel
 (e.g. meters per pixel). An alternative to setting this is to set `zoom`
 
-# resolutions
+### resolutions
 
 - **Type**: `number[]`
 - **Default**: `undefined`
@@ -127,42 +127,42 @@ The initial resolution for the view. The units are projection units per pixel
 Resolutions to determine the resolution constraint. If set the `max-resolution`,
 `min-resolution`, `min-zoom`, `max-zoom`, and `zoom-factor` options are ignored.
 
-# projection
+### projection
 
 - **Type**: `string` or `object (options projection)`
 - **Default**: `EPSG:3857`
 
 The view internal projection. This is the projection with which OpenLayers component
 
-# maxZoom
+### maxZoom
 
 - **Type**: `number`
 - **Default**: `28`
 
 The maximum zoom level used to determine the resolution constraint.
 
-# minZoom
+### minZoom
 
 - **Type**: `number`
 - **Default**: `0`
 
 The minimum zoom level used to determine the resolution constraint.
 
-# maxResolution
+### maxResolution
 
 - **Type**: `number`
 - **Default**: `undefined`
 
 The maximum resolution used to determine the resolution constraint.
 
-# minResolution
+### minResolution
 
 - **Type**: `number`
 - **Default**: `undefined`
 
 The minimum resolution used to determine the resolution constraint.
 
-# constrainRotation
+### constrainRotation
 
 - **Type**: `boolean | number`
 - **Default**: `true`
@@ -171,7 +171,7 @@ Rotation constraint. `false` means no constraint. `true` means no constraint, bu
 snap to zero near zero. A number constrains the rotation to that number of values.
 For example, `4` will constrain the rotation to `0`, `90`, `180`, and `270` degrees.
 
-# enableRotation
+### enableRotation
 
 - **Type**: `boolean`
 - **Default**: `true`
@@ -179,7 +179,7 @@ For example, `4` will constrain the rotation to `0`, `90`, `180`, and `270` degr
 Enable rotation. Default is `true`. If `false` a rotation constraint that
 always sets the rotation to zero is used.
 
-# extent
+### extent
 
 - **Type**: `number[leftBottomX, leftBottomY, rightTopX, rightTopY]`
 - **Default**: `undefined`
@@ -187,56 +187,56 @@ always sets the rotation to zero is used.
 The extent that constrains the `center` defined in the view projection, in other words,
 center cannot be set outside this extent.
 
-# zoomFactor
+### zoomFactor
 
 - **Type**: `number`
 - **Default**: `2`
 
 The zoom factor used to determine the resolution constraint.
 
-# constrainOnlyCenter
+### constrainOnlyCenter
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
 If true, the extent constraint will only apply to the view center and not the whole extent.
 
-# smoothExtentConstraint
+### smoothExtentConstraint
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
 If true, the extent constraint will be applied smoothly, i.e. allow the view to go slightly outside of the given extent.
 
-# multiWorld
+### multiWorld
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
 If false the view is constrained so only one world is visible, and you cannot pan off the edge. If true the map may show multiple worlds at low zoom levels. Only used if the projection is global. Note that if extent is also provided it is given precedence.
 
-# constrainResolution
+### constrainResolution
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
 If true, the view will always animate to the closest zoom level after an interaction; false means intermediary zoom levels are allowed.
 
-# smoothResolutionConstraint
+### smoothResolutionConstraint
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
 If true, the resolution min/max values will be applied smoothly, i. e. allow the view to exceed slightly the given resolution or zoom bounds.
 
-# showFullExtent
+### showFullExtent
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
 If true, the resolution min/max values will be applied smoothly, i. e. allow the view to exceed slightly the given resolution or zoom bounds.
 
-# padding
+### padding
 
 - **Type**: `Array`
 - **Default**: `() => [0, 0, 0, 0]`
@@ -252,7 +252,7 @@ If true, the resolution min/max values will be applied smoothly, i. e. allow the
 
 ## Methods
 
-# adjustCenter(deltaCoordinates)
+### adjustCenter(deltaCoordinates)
 
 Adds relative coordinates to the center of the view. Any extent constraint will apply.
 
@@ -260,7 +260,7 @@ Adds relative coordinates to the center of the view. Any extent constraint will 
 - `deltaCoordinates {module:ol/coordinate~Coordinate}`
   Relative value to add.
 
-# adjustResolution(ratio, opt_anchor)
+### adjustResolution(ratio, opt_anchor)
 
 Multiply the view resolution by a ratio, optionally using an anchor. Any resolution constraint will apply.
 
@@ -270,7 +270,7 @@ Multiply the view resolution by a ratio, optionally using an anchor. Any resolut
 - `anchor {module:ol/coordinate~Coordinate}`
   The origin of the transformation.
 
-# adjustRotation(delta, opt_anchor)
+### adjustRotation(delta, opt_anchor)
 
 Adds a value to the view rotation, optionally using an anchor. Any rotation constraint will apply.
 
@@ -280,7 +280,7 @@ Adds a value to the view rotation, optionally using an anchor. Any rotation cons
 - `anchor {module:ol/coordinate~Coordinate}`
   The rotation center.
 
-# adjustZoom(delta, opt_anchor)
+### adjustZoom(delta, opt_anchor)
 
 Adds a value to the view zoom level, optionally using an anchor. Any resolution constraint will apply.
 
@@ -290,11 +290,11 @@ Adds a value to the view zoom level, optionally using an anchor. Any resolution 
 - `anchor {module:ol/coordinate~Coordinate}`
   The origin of the transformation.
 
-# beginInteraction()
+### beginInteraction()
 
 Notify the View that an interaction has started. The view state will be resolved to a stable one if needed (depending on its constraints).
 
-# calculateExtent(opt_size)
+### calculateExtent(opt_size)
 
 Calculate the extent for the current view state and the passed size. The size is the pixel dimensions of the box into which the calculated extent should fit. In most cases you want to get the extent of the entire map, that is map.getSize().
 
@@ -302,11 +302,11 @@ Calculate the extent for the current view state and the passed size. The size is
 - `size {module:ol/size~Size}`
   Box pixel size. If not provided, the size of the map that uses this view will be used.
 
-# cancelAnimations()
+### cancelAnimations()
 
 Cancel any ongoing animations.
 
-# centerOn(coordinate, size, position)
+### centerOn(coordinate, size, position)
 
 Center on coordinate and view position.
 
@@ -318,7 +318,7 @@ Center on coordinate and view position.
 - `position {module:ol/pixel~Pixel}`
   Position on the view to center on.
 
-# endInteraction(opt_duration, opt_resolutionDirection, opt_anchor)
+### endInteraction(opt_duration, opt_resolutionDirection, opt_anchor)
 
 Notify the View that an interaction has ended. The view state will be resolved to a stable one if needed (depending on its constraints).
 
@@ -330,70 +330,70 @@ Notify the View that an interaction has ended. The view state will be resolved t
 - `anchor {module:ol/coordinate~Coordinate}}`
   The origin of the transformation.
 
-# getAnimating()
+### getAnimating()
 
 Determine if the view is being animated.
 
 Returns:
 The view is being animated.
 
-# getCenter()
+### getCenter()
 
 Get the view center.
 
 Returns:
 The center of the view.
 
-# getInteracting()
+### getInteracting()
 
 Determine if the user is interacting with the view, such as panning or zooming.
 
 Returns:
 The view is being interacted with.
 
-# getMaxResolution()
+### getMaxResolution()
 
 Get the maximum resolution of the view.
 
 Returns:
 The maximum resolution of the view.
 
-# getMaxZoom()
+### getMaxZoom()
 
 Get the maximum zoom level for the view.
 
 Returns:
 The maximum zoom level.
 
-# getMinResolution()
+### getMinResolution()
 
 Get the minimum resolution of the view.
 
 Returns:
 The minimum resolution of the view.
 
-# getMinZoom()
+### getMinZoom()
 
 Get the minimum zoom level for the view.
 
 Returns:
 The minimum zoom level.
 
-# getProjection()
+### getProjection()
 
 Get the view projection.
 
 Returns:
 The projection of the view.
 
-# getResolution()
+### getResolution()
 
 Get the view resolution.
 
 Returns:
 The resolution of the view.
 
-# getResolutionForExtent(extent, opt_size)
+### getResolutionForExtent(extent, opt_size)
 
 Get the resolution for a provided extent (in map units) and size (in pixels).
 
@@ -406,7 +406,7 @@ Get the resolution for a provided extent (in map units) and size (in pixels).
 Returns:
 The resolution at which the provided extent will render at the given size.
 
-# getResolutionForZoom(zoom)
+### getResolutionForZoom(zoom)
 
 Get the resolution for a zoom level.
 
@@ -417,28 +417,28 @@ Get the resolution for a zoom level.
 Returns:
 The view resolution for the provided zoom level.
 
-# getResolutions()
+### getResolutions()
 
 Get the resolutions for the view. This returns the array of resolutions passed to the constructor of the View, or undefined if none were given.
 
 Returns:
 The resolutions of the view.
 
-# getRotation()
+### getRotation()
 
 Get the view rotation.
 
 Returns:
 The rotation of the view in radians.
 
-# getZoom()
+### getZoom()
 
 Get the current zoom level. This method may return non-integer zoom levels if the view does not constrain the resolution, or if an interaction or animation is underway.
 
 Returns:
 Zoom.
 
-# getZoomForResolution(resolution)
+### getZoomForResolution(resolution)
 
 Get the zoom level for a resolution.
 
@@ -449,7 +449,7 @@ Get the zoom level for a resolution.
 Returns:
 The zoom level for the provided resolution.
 
-# setCenter(center)
+### setCenter(center)
 
 Set the center of the current view. Any extent constraint will apply.
 
@@ -457,7 +457,7 @@ Set the center of the current view. Any extent constraint will apply.
 - `center {	module:ol/coordinate~Coordinate | undefined}`
   The center of the view.
 
-# setConstrainResolution(enabled)
+### setConstrainResolution(enabled)
 
 Set whether the view shoud allow intermediary zoom levels.
 
@@ -465,7 +465,7 @@ Set whether the view shoud allow intermediary zoom levels.
 - `enabled {boolean}`
   Whether the resolution is constrained.
 
-# setMaxZoom(zoom)
+### setMaxZoom(zoom)
 
 Set a new maximum zoom level for the view.
 
@@ -473,7 +473,7 @@ Set a new maximum zoom level for the view.
 - `zoom {number}`
   The maximum zoom level.
 
-# setMinZoom(zoom)
+### setMinZoom(zoom)
 
 Set a new minimum zoom level for the view.
 
@@ -481,7 +481,7 @@ Set a new minimum zoom level for the view.
 - `zoom {number}`
   The minimum zoom level.
 
-# setResolution(resolution)
+### setResolution(resolution)
 
 Set the resolution for this view. Any resolution constraint will apply.
 
@@ -489,7 +489,7 @@ Set the resolution for this view. Any resolution constraint will apply.
 - `resolution {number | undefined}`
   The resolution of the view.
 
-# setRotation(rotation)
+### setRotation(rotation)
 
 Set the rotation for this view. Any rotation constraint will apply.
 
@@ -497,7 +497,7 @@ Set the rotation for this view. Any rotation constraint will apply.
 - `rotation {number}`
   The rotation of the view in radians.
 
-# setZoom(zoom)
+### setZoom(zoom)
 
 Zoom to a specific zoom level. Any resolution constrain will apply.
 
@@ -505,6 +505,6 @@ Zoom to a specific zoom level. Any resolution constrain will apply.
 - `zoom {number}`
   Zoom level.
 
-# fit(geometryOrExtent, opt_options)
+### fit(geometryOrExtent, opt_options)
 
 Fit the given geometry or extent based on the given map size and border. The size is pixel dimensions of the box to fit the extent into. In most cases you will want to use the map size, that is map.getSize(). Takes care of the map angle.

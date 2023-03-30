@@ -93,7 +93,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[][]`
   An array of pairs of coordinates as specified by the geojson spec in units of the map's projection.

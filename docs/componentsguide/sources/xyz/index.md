@@ -73,61 +73,61 @@ export default {
 
 ## Properties
 
-# cacheSize
+### cacheSize
 
 - **Type**: `number`
 - **Default**: `2048`
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 
-# maxZoom
+### maxZoom
 
 - **Type**: `number`
 - **Default**: `28`
 
-# minZoom
+### minZoom
 
 - **Type**: `number`
 - **Default**: `0`
 
-# opaque
+### opaque
 
 - **Type**: `boolean`
 
-# projection
+### projection
 
 - **Type**: `string`
 - **Default**: `EPSG:3857`
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `number`
 - **Default**: `0.5`
 
-# tilePixelRatio
+### tilePixelRatio
 
 - **Type**: `number`
 - **Default**: `1`
 
-# tileSize
+### tileSize
 
 - **Type**: `array`
 - **Default**: `[256, 256]`
 
-# tileKey
+### tileKey
 
 - **Type**: `string`
 
-# url
+### url
 
 - **Type**: `string`
 - **Required**: `true`
 
 URL template
 
-# transition
+### transition
 
 - **Type**: `number`
 

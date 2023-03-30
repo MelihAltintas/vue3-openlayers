@@ -80,80 +80,80 @@ export default {
 
 ## Properties
 
-# anchor
+### anchor
 
 - **Type**: `Array`
 
-# anchorOrigin
+### anchorOrigin
 
 - **Type**: `String`
 - **Default**: `top-left`
 
-# anchorXUnits
+### anchorXUnits
 
 - **Type**: `String`
 - **Default**: `fraction`
 
-# anchorYUnits
+### anchorYUnits
 
 - **Type**: `String`
 - **Default**: `fraction`
 
-# color
+### color
 
 - **Type**: `String`
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `String`
 
-# img
+### img
 
 - **Type**: `[HTMLImageElement, HTMLCanvasElement]`
 
-# offset
+### offset
 
 - **Type**: `Array`
 - **Default**: `() => [0, 0]`
 
-# displacement
+### displacement
 
 - **Type**: `Array`
 - **Default**: `() => [0, 0]`
 
-# offsetOrigin
+### offsetOrigin
 
 - **Type**: `String`
 - **Default**: `top-left`
 
-# opacity
+### opacity
 
 - **Type**: `Number`
 - **Default**: `1`
 
-# scale
+### scale
 
 - **Type**: `Number`
 - **Default**: `1`
 
-# rotateWithView
+### rotateWithView
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# rotation
+### rotation
 
 - **Type**: `Number`
 - **Default**: `0`
 
-# size
+### size
 
 - **Type**: `Array`
 
-  # imgSize
+  ### imgSize
 
 - **Type**: `Array`
 
-# src
+### src
 
 - **Type**: `String`

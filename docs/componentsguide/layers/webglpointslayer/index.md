@@ -91,12 +91,12 @@ export default {
 
 ## Properties
 
-# disableHitDetection
+### disableHitDetection
 
 - **Type**: `boolean`
 - **Default**: `false`
 
-# style
+### style
 
 - **Type**: `object`
 - **Default**: `() => ({

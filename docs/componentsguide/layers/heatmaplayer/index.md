@@ -86,27 +86,27 @@ export default {
 
 ## Properties
 
-# weight
+### weight
 
 - **Type**: `Function`
 - **Default**: `none`
 
 A function that returns a weight from a feature. Weight values should range from 0 to 1 (and values outside will be clamped to that range).
 
-# extent
+### extent
 
 - **Type**: `Array`
 
 The bounding extent for layer rendering. The layer will not be rendered outside of this extent.
 
-# blur
+### blur
 
 - **Type**: `Number`
 - **Default**: `15`
 
 The blur size in pixels.
 
-# radius
+### radius
 
 - **Type**: `Number`
 

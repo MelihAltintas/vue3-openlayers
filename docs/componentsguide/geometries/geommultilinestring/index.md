@@ -96,7 +96,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[][][]`
   An array of lines, each of which is a line string in units of the map's projection.

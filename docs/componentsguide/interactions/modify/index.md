@@ -181,32 +181,32 @@ export default {
 
 ## Properties
 
-# condition
+### condition
 
 - **Type**: `Function`
 
-# deleteCondition
+### deleteCondition
 
 - **Type**: `Function`
 
-# insertVertexCondition
+### insertVertexCondition
 
 - **Type**: `Function`
 
-# pixelTolerance
+### pixelTolerance
 
 - **Type**: `Number`
 - **Default**: `10`
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# hitDetection
+### hitDetection
 
 - **Type**: `Boolean`
 
-  # features
+  ### features
 
 - **Type**: `[Collection,Object]`

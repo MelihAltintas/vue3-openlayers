@@ -8,56 +8,56 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-zoom`
 
-# duration
+### duration
 
 - **Type**: `Number`
 - **Default**: `250`
 
-# zoomInClassName
+### zoomInClassName
 
 - **Type**: `String`
 - **Default**: `ol-zoom-in`
 
-# zoomOutClassName
+### zoomOutClassName
 
 - **Type**: `String`
 - **Default**: `ol-zoom-out`
 
-# zoomInLabel
+### zoomInLabel
 
 - **Type**: `String`
 - **Default**: `+`
 
-# zoomOutLabel
+### zoomOutLabel
 
 - **Type**: `String`
 - **Default**: `-`
 
-# zoomInTipLabel
+### zoomInTipLabel
 
 - **Type**: `String`
 - **Default**: `Zoom in`
 
-# zoomInTipLabel
+### zoomInTipLabel
 
 - **Type**: `String`
 - **Default**: `Zoom in`
 
-# zoomOutTipLabel
+### zoomOutTipLabel
 
 - **Type**: `String`
 - **Default**: `Zoom Out`
 
-# delta
+### delta
 
 - **Type**: `Number`
 - **Default**: `1`
 
-# target
+### target
 
 - **Type**: `HTMLElement`

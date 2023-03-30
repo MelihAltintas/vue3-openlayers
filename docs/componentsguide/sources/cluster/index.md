@@ -101,21 +101,21 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: ` [String, Array]`
 - **Default**: `EPSG:3857`
 
 Attributions.
 
-# distance
+### distance
 
 - **Type**: `number`
 - **Default**: `20`
 
 Minimum distance in pixels between clusters.
 
-# geometryFunction
+### geometryFunction
 
 - **Type**: `Function`
 - **Default**:
@@ -128,7 +128,7 @@ function(feature) {
 
 Function that takes an module:ol/Feature as argument and returns an module:ol/geom/Point as cluster calculation point for the feature. When a feature should not be considered for clustering, the function should return null. The default, which works when the underyling source contains point features only, is
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `true`

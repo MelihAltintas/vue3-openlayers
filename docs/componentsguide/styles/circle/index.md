@@ -73,10 +73,10 @@ export default {
 
 ## Properties
 
-# radius
+### radius
 
 - **Type**: `Number`
 
-# scale
+### scale
 
 - **Type**: `Number`

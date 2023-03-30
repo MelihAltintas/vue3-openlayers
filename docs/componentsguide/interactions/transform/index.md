@@ -138,57 +138,57 @@ export default {
 
 ## Properties
 
-# enableRotatedTransform
+### enableRotatedTransform
 
 - **Type**: `Function`
 
-# condition
+### condition
 
 - **Type**: `Function`
 
-# addCondition
+### addCondition
 
 - **Type**: `Function`
 
-# filter
+### filter
 
 - **Type**: `Function`
 
-# layers
+### layers
 
 - **Type**: `Array`
 
-# hitTolerance
+### hitTolerance
 
 - **Type**: `Number`
 - **Default**: `2`
 
-# translateFeature
+### translateFeature
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# scale
+### scale
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# rotate
+### rotate
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# keepAspectRatio
+### keepAspectRatio
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# translate
+### translate
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# stretch
+### stretch
 
 - **Type**: `Boolean`
 - **Default**: `true`

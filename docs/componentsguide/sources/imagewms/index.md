@@ -63,65 +63,65 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: `string`
 
 Attributions
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 - **Default**: `ol-layer`
 
 The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
 
-# hidpi
+### hidpi
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# serverType
+### serverType
 
 - **Type**: `string`
 
 The type of the remote WMS server: mapserver, geoserver or qgis. Only needed if hidpi is true.
 
-# imageLoadFunction
+### imageLoadFunction
 
 - **Type**: `Function`
 
 Optional function to load an image given a URL
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
 Enable image smoothing.
 
-# layers
+### layers
 
 - **Type**: `[String,Array]`
 
-# styles
+### styles
 
 - **Type**: `[String,Array]`
 
-# ratio
+### ratio
 
 - **Type**: `number`
 - **Default**: `1.5`
 
 Ratio. 1 means image requests are the size of the map viewport, 2 means twice the width and height of the map viewport, and so on. Must be 1 or higher.
 
-# resolutions
+### resolutions
 
 - **Type**: `Array<number>`
 
 Resolutions. If specified, requests will be made for these resolutions only.
 
-# url
+### url
 
 - **Type**: `string`
 

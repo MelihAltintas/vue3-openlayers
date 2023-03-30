@@ -57,69 +57,69 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: `string`
 
 Attributions.
 
-# cacheSize
+### cacheSize
 
 - **Type**: `number`
 - **Default**: `2048`
 
 Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 - **Default**: `anonymous`
 
 The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `boolean`
 - **Default**: `true`
   Enable image smoothing.
 
-# maxZoom
+### maxZoom
 
 - **Type**: `number`
 - **Default**: 19
   Max zoom.
 
-# minZoom
+### minZoom
 
 - **Type**: `number`
 - **Default**: 0
   Min zoom.
 
-# opaque
+### opaque
 
 - **Type**: `boolean`
 - **Default**: true
   Whether the layer is opaque.
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `number `
 - **Default**: 0.5
   Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
 
-# transition
+### transition
 
 - **Type**: `number`
 - **Default**: 250
   Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
 
-# url
+### url
 
 - **Type**: `string`
 - **Default**: `https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png`
   URL template. Must include {x}, {y} or {-y}, and {z} placeholders.
 
-# wrapX
+### wrapX
 
 - **Type**: `boolean `
 - **Default**: true

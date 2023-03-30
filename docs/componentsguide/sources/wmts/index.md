@@ -74,111 +74,111 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: `string`
 
 Attributions.
 
-# cacheSize
+### cacheSize
 
 - **Type**: `number`
 
 Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 - **Default**: `ol-layer`
 
 Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `boolean `
 - **Default**: true
 
 Enable image smoothing.
 
-# projection
+### projection
 
 - **Type**: `[String, Object]`
 - **Default**: true
 
 Projection. Default is the view projection.
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `Number`
 - **Default**: 0.5
 
 Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
 
-# tilePixelRatio
+### tilePixelRatio
 
 - **Type**: `Number`
 - **Default**: 1
 
 The pixel ratio used by the tile service. For example, if the tile service advertizes 256px by 256px tiles but actually sends 512px by 512px images (for retina/hidpi devices) then tilePixelRatio should be set to 2.
 
-# format
+### format
 
 - **Type**: `String`
 - **Default**: `image/jpeg`
 
 Image format. Only used when requestEncoding is 'KVP'.
 
-# version
+### version
 
 - **Type**: `String`
 - **Default**: `1.0.0`
 
 WMTS version.
 
-# matrixSet
+### matrixSet
 
 - **Type**: `String`
 
 Matrix set.
 
-# dimensions
+### dimensions
 
 - **Type**: `Object`
 
 Additional "dimensions" for tile requests. This is an object with properties named like the advertised WMTS dimensions.
 
-# url
+### url
 
 - **Type**: `string`
 
 A URL for the service. For the RESTful request encoding, this is a URL template. For KVP encoding, it is normal URL. A {?-?} template pattern, for example subdomain{a-f}.domain.com, may be used instead of defining each one separately in the urls option.
 
-# urls
+### urls
 
 - **Type**: `Array.<string>`
 
 An array of URLs. Requests will be distributed among the URLs in this array.
 
-# wrapX
+### wrapX
 
 - **Type**: `boolean `
 - **Default**: false
 
 Whether to wrap the world horizontally.
 
-# transition
+### transition
 
 - **Type**: `number`
 
 Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
 
-# layer
+### layer
 
 - **Type**: `string`
 
 Layer name as advertised in the WMTS capabilities.
 
-# style
+### style
 
 - **Type**: `string`
 

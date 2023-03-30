@@ -13,7 +13,7 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 <MapControlDemo />
 </ClientOnly>
 
-# Control List
+## Control List
 
 - `ol-attribution-control`
 - `ol-context-menu`
@@ -27,7 +27,7 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 - `ol-zoomslider-control`
 - `ol-zoomtoextent-control`
 
-# Usage
+## Usage
 
 ```vue
 <template>

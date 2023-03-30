@@ -78,46 +78,46 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: `string`
 
 Attributions
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 - **Default**: `ol-layer`
 
 The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
 
-# imageExtent
+### imageExtent
 
 - **Type**: `Array`
 
 Extent of the image in map coordinates. This is the [left, bottom, right, top] map coordinates of your image.
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `boolean`
 - **Default**: `true`
 
 Enable image smoothing.
 
-# projection
+### projection
 
 - **Type**: `string or object (options projection)`
 - **Default**: `Projection. Default is the view projection.`
 
 The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
 
-# imageSize
+### imageSize
 
 - **Type**: `Array`
 
 Size of the image in pixels. Usually the image size is auto-detected, so this only needs to be set if auto-detection fails for some reason.
 
-# url
+### url
 
 - **Type**: `string`
 

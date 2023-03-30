@@ -8,25 +8,25 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-zoom-extent`
 
-# target
+### target
 
 - **Type**: `HTMLElement`
 
-# label
+### label
 
 - **Type**: `String`
 - **Default**: `E`
 
-# tipLabel
+### tipLabel
 
 - **Type**: `String`
 - **Default**: `Fit to extent`
 
-# extent
+### extent
 
 - **Type**: `Array`
