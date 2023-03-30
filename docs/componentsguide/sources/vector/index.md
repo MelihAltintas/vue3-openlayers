@@ -6,9 +6,12 @@ ol-source-vector can be used together with ol-vector-layer to draw any vector da
 import GeomPoint from "@demos/GeomPoint.vue"
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 import VectorSourceDemo2 from "@demos/VectorSourceDemo2.vue"
+import VectorSourceDemo3 from "@demos/VectorSourceDemo3.vue"
 </script>
 
 ## Usage
+
+### GeoJSON
 
 Static features with the help of ol-feature, should be used only for tiny static layers.
 
@@ -147,27 +150,42 @@ export default {
 <VectorSourceDemo1 />
 </ClientOnly>
 
+### `urlFunction`
+
 Next example loads features from remote WFS service by viewport BBOX. With format and strategy you can define custom vector source format and loading strategy.
 
 ```html
-<ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
-
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" :projection="projection" />
+<template>
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height:400px"
+  >
+    <ol-view
+      ref="view"
+      :center="center"
+      :rotation="rotation"
+      :zoom="zoom"
+      :projection="projection"
+    />
 
     <ol-tile-layer>
-        <ol-source-osm />
+      <ol-source-osm />
     </ol-tile-layer>
 
     <ol-vector-layer>
-        <ol-source-vector :url="urlFunction" :strategy="bbox" :format="GeoJSON" :projection="projection">
-
-        </ol-source-vector>
-        <ol-style>
-            <ol-style-stroke color="red" :width="5"></ol-style-stroke>
-        </ol-style>
+      <ol-source-vector
+        :url="urlFunction"
+        :strategy="bbox"
+        :format="GeoJSON"
+        :projection="projection"
+      >
+      </ol-source-vector>
+      <ol-style>
+        <ol-style-stroke color="red" :width="5"></ol-style-stroke>
+      </ol-style>
     </ol-vector-layer>
-
-</ol-map>
+  </ol-map>
 </template>
 ```
 
@@ -218,6 +236,76 @@ export default {
 <VectorSourceDemo2/>
 </ClientOnly>
 
+### TopoJSON
+
+You can also use other Vector formats like TopoJSON.
+
+```html
+<template>
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height: 400px"
+  >
+    <ol-view
+      ref="view"
+      :center="center"
+      :rotation="rotation"
+      :zoom="zoom"
+      :projection="projection"
+    />
+
+    <ol-tile-layer>
+      <ol-source-osm />
+    </ol-tile-layer>
+
+    <ol-vector-layer>
+      <ol-source-vector :url="url" :format="TopoJSON" :projection="projection">
+      </ol-source-vector>
+      <ol-style>
+        <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+      </ol-style>
+    </ol-vector-layer>
+  </ol-map>
+</template>
+```
+
+```js
+import { TopoJSON } from "ol/format";
+import { ref, inject } from "vue";
+export default {
+  setup() {
+    const center = ref([4.4764595, 50.5010789]);
+    const projection = ref("EPSG:4326");
+    const zoom = ref(7.5);
+    const rotation = ref(0);
+
+    const url =
+      "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";
+
+    const format = inject("ol-format");
+    const TopoJSON = new format.TopoJSON({
+      // don't want to render the full world polygon (stored as 'land' layer),
+      // which repeats all countries
+      layers: ["arrondissements", "provinces"],
+    });
+
+    return {
+      center,
+      projection,
+      zoom,
+      rotation,
+      url,
+      TopoJSON,
+    };
+  },
+};
+```
+
+<ClientOnly>
+<VectorSourceDemo3/>
+</ClientOnly>
+
 ## Properties
 
 # attributions
@@ -234,7 +322,7 @@ export default {
 
 - **Type**: `Format`
 
-formats available with inject('ol-format')
+formats available with `inject('ol-format')`
 
 # loader
 
