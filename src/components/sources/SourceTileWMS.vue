@@ -3,26 +3,26 @@
 </template>
 
 <script>
-import ImageWMS from "ol/source/ImageWMS";
+import TileWMS from "ol/source/TileWMS";
 import Projection from "ol/proj/Projection";
 
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
-  name: "ol-source-image-wms",
+  name: "ol-source-tile-wms",
   setup(props) {
-    const layer = inject("imageLayer");
+    const layer = inject("tileLayer");
     const { properties } = usePropsAsObjectProperties(props);
 
     const createSource = () => {
-      return new ImageWMS({
+      return new TileWMS({
         ...properties,
         params: {
           ...props.params,
           LAYERS: props.layers,
           STYLES: props.styles,
-          TIME: props.time,
+          TILED: true,
         },
         projection:
           typeof properties.projection == "string"
@@ -36,16 +36,16 @@ export default {
     let source = createSource();
 
     watch(properties, () => {
-      layer.setSource(null);
+      layer.value.setSource(null);
       source = createSource();
-      layer.setSource(source);
+      layer.value.setSource(source);
     });
     onMounted(() => {
-      layer.setSource(source);
+      layer.value.setSource(source);
     });
 
     onUnmounted(() => {
-      layer.setSource(null);
+      layer.value.setSource(null);
     });
 
     return {
@@ -57,36 +57,13 @@ export default {
     attributions: {
       type: String,
     },
+    cacheSize: {
+      type: Number,
+    },
     crossOrigin: {
       type: String,
     },
-    imageExtent: {
-      type: Array,
-    },
-    projection: {
-      type: [String, Object],
-      default: "EPSG:3857",
-    },
-    reprojectionErrorThreshold: {
-      type: Number,
-      default: 0.5,
-    },
-    format: {
-      type: String,
-      default: "image/png",
-    },
-    version: {
-      type: String,
-      default: "1.3.0",
-    },
-    matrixSet: {
-      type: String,
-    },
-    serverType: {
-      type: String,
-      default: "mapserver",
-    },
-    imageSmoothing: {
+    interpolate: {
       type: Boolean,
       default: true,
     },
@@ -98,25 +75,45 @@ export default {
       type: [String, Array],
       default: "",
     },
-    time: {
-      type: String,
+    hidpi: {
+      type: Boolean,
+      default: false,
     },
-    ratio: {
+    projection: {
+      type: [String, Object],
+      default: "EPSG:3857",
+    },
+    reprojectionErrorThreshold: {
       type: Number,
-      default: 1,
+      default: 0.5,
     },
-    imageSize: {
-      type: Array,
+    tileGrid: {
+      type: Object,
+    },
+    serverType: {
+      type: String,
+      default: "mapserver",
+    },
+    tileLoadFunction: {
+      type: Function,
+      default: (imageTile, src) => (imageTile.getImage().src = src),
     },
     url: {
       type: String,
+    },
+    urls: {
+      type: Array,
     },
     params: {
       type: Object,
       default: () => ({}),
     },
-    imageLoadFunction: {
-      type: Function,
+    wrapX: {
+      type: Boolean,
+      default: true,
+    },
+    transition: {
+      type: Number,
     },
   },
 };
