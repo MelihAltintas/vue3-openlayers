@@ -8,45 +8,45 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-scale-line`
 
-# minWidth
+### minWidth
 
 - **Type**: `Number`
 - **Default**: `64`
 
-# render
+### render
 
 - **Type**: `Function`
 
-# target
+### target
 
 - **Type**: `HTMLElement`
 
-# units
+### units
 
 - **Type**: `String`
 - **Default**: `metric`
 
-# bar
+### bar
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# steps
+### steps
 
 - **Type**: `Number`
 - **Default**: `4`
 
-# text
+### text
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# dpi
+### dpi
 
 - **Type**: `Number`
 - **Default**: `undefined`

@@ -8,45 +8,45 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-full-screen`
 
-# label
+### label
 
 - **Type**: `String`
 - **Default**: `\u2922`
 
-# labelActive
+### labelActive
 
 - **Type**: `String`
 - **Default**: `\u00d7`
 
-# activeClassName
+### activeClassName
 
 - **Type**: `String`
 - **Default**: `ol-full-screen-true`
 
-# inactiveClassName
+### inactiveClassName
 
 - **Type**: `String`
 - **Default**: `ol-full-screen-false`
 
-# tipLabel
+### tipLabel
 
 - **Type**: `String`
 - **Default**: `Toggle full-screen`
 
-# keys
+### keys
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# target
+### target
 
 - **Type**: `Object`
 
-# source
+### source
 
 - **Type**: `Object`

@@ -101,7 +101,7 @@ export default {
 
 ## Properties
 
-# color
+### color
 
 - **Type**: `Number`
 

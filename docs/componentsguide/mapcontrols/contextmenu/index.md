@@ -106,28 +106,28 @@ export default {
 
 ## Properties
 
-# eventType
+### eventType
 
 - **Type**: `String`
 - **Default**: `contextmenu`
 
 The listening event type (You could use 'click', 'dblclick')
 
-# defaultItems
+### defaultItems
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
 Whether the default items (which are: Zoom In/Out) are enabled
 
-# width
+### width
 
 - **Type**: `Number`
 - **Default**: `150`
 
 The menu's width
 
-# items
+### items
 
 - **Type**: `Array`
 - **Default**: `[]`

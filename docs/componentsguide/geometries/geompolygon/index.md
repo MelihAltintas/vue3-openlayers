@@ -84,7 +84,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[][][]`
   A polygon with coordinates in the map's projection.

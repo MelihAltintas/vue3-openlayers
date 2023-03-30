@@ -181,17 +181,17 @@ export default {
 
 ## Properties
 
-# pixelTolerance
+### pixelTolerance
 
 - **Type**: `Number`
 - **Default**: `10`
 
-# edge
+### edge
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# vertex
+### vertex
 
 - **Type**: `Boolean`
 - **Default**: `false`

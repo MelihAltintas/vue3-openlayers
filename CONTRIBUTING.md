@@ -170,8 +170,8 @@ Here's some information that might be helpful while working on a Docs PR:
 
 We (usually the docs team, but sometimes GitHub product managers, engineers, or supportocats too!) review every single PR. The purpose of reviews is to create the best content we can for people who use GitHub.
 
-:yellow_heart: Reviews are always respectful, acknowledging that everyone did the best possible job with the knowledge they had at the time.  
-:yellow_heart: Reviews discuss content, not the person who created it.  
+:yellow_heart: Reviews are always respectful, acknowledging that everyone did the best possible job with the knowledge they had at the time.
+:yellow_heart: Reviews discuss content, not the person who created it.
 :yellow_heart: Reviews are constructive and start conversation around feedback.
 
 ### Self review

@@ -78,58 +78,58 @@ export default {
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `string`
 - **Default**: `ol-layer`
 
 A CSS class name to set to the layer element.
 
-# opacity
+### opacity
 
 - **Type**: `number `
 - **Default**: `1`
 
 Opacity (0, 1).
 
-# visible
+### visible
 
 - **Type**: `boolean  `
 - **Default**: `true`
 
 Visibility.
 
-# extent
+### extent
 
 - **Type**: `Array`
 
 The bounding extent for layer rendering. The layer will not be rendered outside of this extent.
 
-# zIndex
+### zIndex
 
 - **Type**: `number`
 
 The z-index for layer rendering. At rendering time, the layers will be ordered, first by Z-index and then by position.
 
-# minResolution
+### minResolution
 
 - **Type**: `number`
 
 The minimum resolution (inclusive) at which this layer will be visible.
 
-# maxResolution
+### maxResolution
 
 - **Type**: `number`
 
 The maximum resolution (exclusive) below which this layer will be visible.
 
-# minZoom
+### minZoom
 
 - **Type**: `number`
 
 The minimum view zoom level (exclusive) above which this layer will be visible.
 
-# maxZoom
+### maxZoom
 
 - **Type**: `number`
 

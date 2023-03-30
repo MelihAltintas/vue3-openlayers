@@ -8,20 +8,20 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# layerList
+### layerList
 
 - **Type**: `Array`
 
-# className
+### className
 
 - **Type**: `String`
 
-# position
+### position
 
 - **Type**: `Number`
 - **Default**: `0.5`
 
-# orientation
+### orientation
 
 - **Type**: `String`
 - **Default**: `vertical`

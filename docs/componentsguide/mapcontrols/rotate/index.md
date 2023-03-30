@@ -8,44 +8,44 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-rotate`
 
-# label
+### label
 
 - **Type**: `String`
 - **Default**: `⇧`
 
-# tipLabel
+### tipLabel
 
 - **Type**: `String`
 - **Default**: `Reset rotation`
 
-# compassClassName
+### compassClassName
 
 - **Type**: `String`
 - **Default**: `ol-compass`
 
-# duration
+### duration
 
 - **Type**: `Number`
 - **Default**: `250`
 
-# autoHide
+### autoHide
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# render
+### render
 
 - **Type**: `Function`
 
-# resetNorth
+### resetNorth
 
 - **Type**: `Function`
 
-# target
+### target
 
 - **Type**: `HTMLElement`

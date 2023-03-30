@@ -95,7 +95,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[][][][]`
   An array of polygons with coordinates in the map's projection.

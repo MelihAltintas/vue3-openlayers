@@ -138,11 +138,11 @@ export default {
 
 ## Properties
 
-# zIndex
+### zIndex
 
 - **Type**: `Number`
 
-# overrideStyleFunction
+### overrideStyleFunction
 
 - **Type**: `Function`
 

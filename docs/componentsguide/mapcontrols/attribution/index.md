@@ -8,49 +8,49 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-attribution`
 
-# target
+### target
 
 - **Type**: `HTMLElement`
 
-# collapsible
+### collapsible
 
 - **Type**: `Boolean`
 
-# collapsed
+### collapsed
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# tipLabel
+### tipLabel
 
 - **Type**: `String`
 - **Default**: `Attributions`
 
-# label
+### label
 
 - **Type**: `String`
 - **Default**: `i`
 
-# expandClassName
+### expandClassName
 
 - **Type**: `String`
 - **Default**: `ol-attribution-expand`
 
-# collapseLabel
+### collapseLabel
 
 - **Type**: `String`
 - **Default**: `»`
 
-# collapseClassName
+### collapseClassName
 
 - **Type**: `String`
 - **Default**: `ol-attribution-collapse`
 
-# render
+### render
 
 - **Type**: `Function`

@@ -75,21 +75,21 @@ export default {
 
 ## Properties
 
-# position
+### position
 
 - **Type**: `number[]`
 - **Required**
 
 Coordinate of the overlay position in view
 
-# offset
+### offset
 
 - **Type**: `number[]`
 - **Default**: `[0, 0]`
 
 XY axis offset in pixels used when positioning the overlay.
 
-# positioning
+### positioning
 
 - **Type**: `string`
 - **Default**: `top-left`
@@ -98,7 +98,7 @@ The overlay positioning relative to its Possible values: `bottom-left`,
 `bottom-center`, `bottom-right`, `center-left`, `center-center`, `center-right`, `top-left`, `top-center`,
 and `top-right`.
 
-# stopEvent
+### stopEvent
 
 - **Type**: `boolean`
 - **Default**: `true`
@@ -106,7 +106,7 @@ and `top-right`.
 Whether pointer event propagation from overlay element to the map viewport should be stopped. When set to `true`
 the overlay will be placed in the same container with map controls.
 
-# insertFirst
+### insertFirst
 
 - **Type**: `boolean`
 - **Default**: `true`
@@ -115,21 +115,21 @@ Determines whether the overlay will be prepended or appended in the overlay cont
 When `stop-event` is set to `true` you will probably set `insert-first` to `true`
 so the overlay is displayed below controls.
 
-# autoPan
+### autoPan
 
 - **Type**: `boolean`
 - **Default**: `false`
 
 Enables map panning when the overlay will be added, so the overlay will be visible in the current viewport.
 
-# autoPanMargin
+### autoPanMargin
 
 - **Type**: `boolean`
 - **Default**: `20`
 
 The margin (in pixels) between the overlay and the viewport borders.
 
-# autoPanAnimation
+### autoPanAnimation
 
 - **Type**: `Object`
 - **Default**: `undefined`

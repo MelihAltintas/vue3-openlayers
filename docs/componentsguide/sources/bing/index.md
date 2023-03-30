@@ -71,59 +71,59 @@ export default {
 
 ## Properties
 
-# cacheSize
+### cacheSize
 
 - **Type**: `number`
 
 Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
 
-# hidpi
+### hidpi
 
 - **Type**: `boolean`
 - **Default**: `false`
 
 If true hidpi tiles will be requested.
 
-# culture
+### culture
 
 - **Type**: `String`
 - **Default**: `en-us`
 
 Culture code.
 
-# apiKey
+### apiKey
 
 - **Type**: `String`
 
 Bing Maps API key
 
-# imagerySet
+### imagerySet
 
 - **Type**: `String`
 
 Type of imagery.
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `boolean`
 - **Default**: `TRUE`
 
 Enable image smoothing.
 
-# maxZoom
+### maxZoom
 
 - **Type**: `number`
 - **Default**: 21
   Max zoom.
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `number `
 - **Default**: 0.5
 
 Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
 
-# tileLoadFunction
+### tileLoadFunction
 
 - **Type**: `Function`
 - **Default**:
@@ -134,13 +134,13 @@ Maximum allowed reprojection error (in pixels). Higher values can increase repro
 
 Optional function to load a tile given a URL
 
-# transition
+### transition
 
 - **Type**: `number`
 
 Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
 
-# wrapX
+### wrapX
 
 - **Type**: `boolean `
 - **Default**: true

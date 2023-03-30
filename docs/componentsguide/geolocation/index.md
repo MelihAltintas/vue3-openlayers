@@ -63,21 +63,21 @@ geoLocChange, }; }, };
 
 ## Properties
 
-# tracking
+### tracking
 
 - **Type**: `boolean`
 - **Default**: `true`
 
 Enables / disables tracking.
 
-# tracking-options
+### tracking-options
 
 - **Type**: `Object`
 - **Default**: `undefined`
 
 Tracking options. See [PositionOptions](https://www.w3.org/TR/geolocation-API/#position_options_interface) documentation.
 
-# projection
+### projection
 
 - **Type**: `string`
 - **Default**: `EPSG:3857`

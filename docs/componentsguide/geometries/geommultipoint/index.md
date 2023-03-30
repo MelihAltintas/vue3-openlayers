@@ -97,7 +97,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[][]`
   An array of points in units of the map's projection.

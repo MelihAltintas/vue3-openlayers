@@ -85,7 +85,7 @@ export default {
 
 ## Properties
 
-# coordinates
+### coordinates
 
 - **Type**: `number[]`
   This point's coordinates in units of the map's projection.

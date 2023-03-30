@@ -54,11 +54,11 @@ export default {
 
 ## Properties
 
-# condition
+### condition
 
 - **Type**: `Function`
 
-# duration
+### duration
 
 - **Type**: `Number`
 - **Default**: `400`

@@ -107,18 +107,18 @@ export default {
 
 ## Properties
 
-# multi
+### multi
 
 - **Type**: `String`
 
-# features
+### features
 
 - **Type**: `Collection`
 
-# filter
+### filter
 
 - **Type**: `Function`
 
-# condition
+### condition
 
 - **Type**: `Function`

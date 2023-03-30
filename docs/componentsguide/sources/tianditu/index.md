@@ -69,92 +69,92 @@ export default {
 
 ## Properties
 
-# layerType
+### layerType
 
 - **Type**: `string`
 - **Default**: `img`
 
 options: img, vec, ter, eia, cta
 
-# tk
+### tk
 
 - **Type**: `string`
 
 api key
 
-# isLabel
+### isLabel
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# cacheSize
+### cacheSize
 
 - **Type**: `Number`
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `String`
 
-# projection
+### projection
 
 - **Type**: `String`
 - **Default**: `EPSG:3857`
 
-# hidpi
+### hidpi
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# requestEncoding
+### requestEncoding
 
 - **Type**: `String`
 - **Default**: `KVP`
 
-# format
+### format
 
 - **Type**: `String`
 
-# version
+### version
 
 - **Type**: `String`
 - **Default**: `1.0.0`
 
-# culture
+### culture
 
 - **Type**: `String`
 - **Default**: `en-us`
 
-# matrixSet
+### matrixSet
 
 - **Type**: `String`
 
-# dimensions
+### dimensions
 
 - **Type**: `Object`
 
-# imageSmoothing
+### imageSmoothing
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# maxZoom
+### maxZoom
 
 - **Type**: `Number`
 - **Default**: `21`
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `Number`
 
-# tileLoadFunction
+### tileLoadFunction
 
 - **Type**: `Function`
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# transition
+### transition
 
 - **Type**: `Number`

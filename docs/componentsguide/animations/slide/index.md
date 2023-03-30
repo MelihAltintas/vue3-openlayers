@@ -80,48 +80,48 @@ export default {
 
 ## Properties
 
-# duration
+### duration
 
 - **Type**: `Number`
 - **Default**: `1000`
 
 duration of the animation in ms, default 1000
 
-# revers
+### revers
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
 revers the animation direction
 
-# repeat
+### repeat
 
 - **Type**: `Number`
 - **Default**: `0`
 
 number of time to repeat the animation, default 0
 
-# hiddenStyle
+### hiddenStyle
 
 - **Type**: `ol.style.Style`
 
 a style to display the feature when playing the animation to be used to make the feature selectable when playing animation , default the feature will be hidden when playing (and not selectable)
 
-# fade
+### fade
 
 - **Type**: `function`
 - **Default**: `none`
 
 an easing function used to fade in the feature, default none
 
-# easing
+### easing
 
 - **Type**: `function`
 - **Default**: `0`
 
 an easing function for the animation, default ol.easing.linear
 
-# speed
+### speed
 
 - **Type**: `Number`
 

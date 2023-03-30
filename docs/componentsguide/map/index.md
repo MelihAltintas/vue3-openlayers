@@ -61,21 +61,21 @@ export default {
 
 ## Properties
 
-# loadTilesWhileAnimating
+### loadTilesWhileAnimating
 
 - **Type**: `boolean`
 - **Default**: `false`
 
 When set to `true`, tiles will be loaded during animations.
 
-# loadTilesWhileInteracting
+### loadTilesWhileInteracting
 
 - **Type**: `boolean`
 - **Default**: `false`
 
 When set to `true`, tiles will be loaded while interacting with the map.
 
-# moveTolerance
+### moveTolerance
 
 - **Type**: `number`
 - **Default**: `1`
@@ -83,7 +83,7 @@ When set to `true`, tiles will be loaded while interacting with the map.
 The minimum distance in pixels the cursor must move to be detected as a map move
 event instead of a click. Increasing this value can make it easier to click on the map.
 
-# pixelRatio
+### pixelRatio
 
 - **Type**: `number`
 - **Default**: `1`
@@ -110,11 +110,11 @@ Other events that emit [`ol.MapEvent`](http://openlayers.org/en/latest/apidoc/mo
 
 ## Methods
 
-# focus()
+### focus()
 
 Triggers focus on map container.
 
-# forEachFeatureAtPixel(pixel, callback, options = {})
+### forEachFeatureAtPixel(pixel, callback, options = {})
 
 - **Arguments**:
   - `pixel {number[]}`
@@ -132,7 +132,7 @@ Detect features that intersect a pixel on the viewport, and execute a callback
 with each intersecting feature. Layers included in the detection can be configured
 through the `layerFilter` option in `options`.
 
-# forEachLayerAtPixel(pixel, callback, layerFilter)
+### forEachLayerAtPixel(pixel, callback, layerFilter)
 
 - **Arguments**:
   - `pixel {number[]}`
@@ -146,7 +146,7 @@ Detect layers that have a color value at a pixel on the viewport, and execute
 a callback with each matching layer. Layers included in the detection can be
 configured through `layerFilter`.
 
-# getCoordinateFromPixel(pixel)
+### getCoordinateFromPixel(pixel)
 
 - **Arguments**:
   - `pixel {number[]}`
@@ -154,18 +154,18 @@ configured through `layerFilter`.
 
 Get the coordinate for a given pixel.
 
-# refresh()
+### refresh()
 
 - **Returns**: `{Promise<void>}`
 
 Updates map size and re-renders map.
 
-# render()
+### render()
 
 - **Returns**: `{Promise<void>}`
 
 Request a map rendering (at the next animation frame).
 
-# updateSize()
+### updateSize()
 
 Updates map size.

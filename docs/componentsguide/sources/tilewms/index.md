@@ -65,94 +65,94 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: `string`
 
 Attributions
 
-# cacheSize
+### cacheSize
 
 - **Type**: `Number`
 
-# crossOrigin
+### crossOrigin
 
 - **Type**: `string`
 - **Default**: `ol-layer`
 
 The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
 
-# interpolate
+### interpolate
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# styles
+### styles
 
 - **Type**: `[String,Array]`
 
-# layers
+### layers
 
 - **Type**: `[String,Array]`
 
-# hidpi
+### hidpi
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# projection
+### projection
 
 - **Type**: `string`
 - **Default**: `EPSG:3857`
 
-# reprojectionErrorThreshold
+### reprojectionErrorThreshold
 
 - **Type**: `number `
 - **Default**: 0.5
 
 Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
 
-# tileGrid
+### tileGrid
 
 - **Type**: `TileGrid|undefined`
 - **Default**: 0.5
 
 Tile grid. Base this on the resolutions, tilesize and extent supported by the server. If this is not defined, a default grid will be used: if there is a projection extent, the grid will be based on that; if not, a grid based on a global extent with origin at 0,0 will be used.
 
-# serverType
+### serverType
 
 - **Type**: `string`
 
 The type of the remote WMS server: mapserver, geoserver or qgis. Only needed if hidpi is true.
 
-# tileLoadFunction
+### tileLoadFunction
 
 - **Type**: `Function`
 
-# url
+### url
 
 - **Type**: `string`
 
 WMS service URL.
 
-# urls
+### urls
 
 - **Type**: `Array.<string>`
 
 An array of URLs. Requests will be distributed among the URLs in this array.
 
-# params
+### params
 
 - **Type**: `Object.<string, *>`
 
 WMS request parameters.
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# transition
+### transition
 
 - **Type**: `number`
 - **Default**: 250

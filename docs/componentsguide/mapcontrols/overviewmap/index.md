@@ -8,45 +8,45 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-overviewmap`
 
-# collapsed
+### collapsed
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# collapseLabel
+### collapseLabel
 
 - **Type**: `String`
 - **Default**: `«`
 
-# collapsible
+### collapsible
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# label
+### label
 
 - **Type**: `String`
 - **Default**: `»`
 
-# render
+### render
 
 - **Type**: `Function`
 
-# rotateWithView
+### rotateWithView
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# target
+### target
 
 - **Type**: `HTMLElement`
 
-# tipLabel
+### tipLabel
 
 - **Type**: `String`
 - **Default**: `Overview map`

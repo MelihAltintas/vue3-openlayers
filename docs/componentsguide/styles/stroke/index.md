@@ -95,47 +95,47 @@ export default {
 
 ## Properties
 
-# Color
+### color
 
 - **Type**: `array`, `string`
 
 Stroke color. Either in hexadecimal or as RGBA array with red, green, and blue values betweeen 0 and 255 and alpha value between 0 and 1 inclusive.
 
-# lineCap
+### lineCap
 
 - **Type**: `string`
 - **Default**: `round`,
 
 How to style the ends of the lines if any. Options are `round`, `butt`, and `square`.
 
-# lineJoin
+### lineJoin
 
 - **Type**: `string`
 - **Default**: `round`,
 
 How to style line segment joints. Choices are `round`, `bevel`, `miter`
 
-# lineDash
+### lineDash
 
 - **Type**: `array`
 
 An Array of numbers that specify distances to alternately draw a line and a gap.
 
-# lineDashOffset
+### lineDashOffset
 
 - **Type**: `number`
 - **Default**: `0`
 
 Offsets the starting point of the dash pattern by the given amount.
 
-# miterLimit
+### miterLimit
 
 - **Type**: `number`
 - **Default**: `10`
 
 When to cut corners on sharp angles. For reference check [this entry](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/miterLimit) on Mozilla Developer Network.
 
-# Width
+### width
 
 - **Type**: `Number`
 - **Default**: `1.25`

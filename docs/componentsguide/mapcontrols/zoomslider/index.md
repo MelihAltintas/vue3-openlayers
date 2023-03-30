@@ -8,16 +8,16 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-# className
+### className
 
 - **Type**: `String`
 - **Default**: `ol-zoomslider`
 
-# duration
+### duration
 
 - **Type**: `Number`
 - **Default**: `200`
 
-# render
+### render
 
 - **Type**: `Function`

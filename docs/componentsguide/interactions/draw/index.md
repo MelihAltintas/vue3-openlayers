@@ -102,64 +102,64 @@ export default {
 
 ## Properties
 
-# type
+### type
 
 - **Type**: `String`
 
-# clickTolerance
+### clickTolerance
 
 - **Type**: `Number`
 - **Default**: `6`
 
-# dragVertexDelay
+### dragVertexDelay
 
 - **Type**: `Number`
 - **Default**: `500`
 
-# snapTolerance
+### snapTolerance
 
 - **Type**: `Number`
 - **Default**: `12`
 
-# stopClick
+### stopClick
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# maxPoints
+### maxPoints
 
 - **Type**: `Number`
 
-# minPoints
+### minPoints
 
 - **Type**: `Number`
 
-# finishCondition
+### finishCondition
 
 - **Type**: `Function`
 
-# geometryFunction
+### geometryFunction
 
 - **Type**: `Function`
 
-# geometryName
+### geometryName
 
 - **Type**: `String`
 
-# condition
+### condition
 
 - **Type**: `Function`
 
-# freehand
+### freehand
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# freehandCondition
+### freehandCondition
 
 - **Type**: `Function`
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `false`

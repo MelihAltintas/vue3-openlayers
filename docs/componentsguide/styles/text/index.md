@@ -89,63 +89,63 @@ export default {
 
 ## Properties
 
-# font
+### font
 
 - **Type**: `String`
 
-# maxAngle
+### maxAngle
 
 - **Type**: `Number`
 - **Default**: `Math.PI / 4`
 
-# offsetX
+### offsetX
 
 - **Type**: `Number`
 - **Default**: `0`
 
-# offsetY
+### offsetY
 
 - **Type**: `Number`
 - **Default**: `0`
 
-# overflow
+### overflow
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# placement
+### placement
 
 - **Type**: `String`
 - **Default**: `point`
 
-# scale
+### scale
 
 - **Type**: `Number`
 
-# rotateWithView
+### rotateWithView
 
 - **Type**: `Boolean`
 - **Default**: `false`
 
-# rotation
+### rotation
 
 - **Type**: `Number`
 - **Default**: `0`
 
-# text
+### text
 
 - **Type**: `String`
 
-# textAlign
+### textAlign
 
 - **Type**: `String`
 
-# textBaseline
+### textBaseline
 
 - **Type**: `String`
 - **Default**: `middle`
 
-# padding
+### padding
 
 - **Type**: `Array`
 - **Default**: `() => [0, 0, 0, 0]`

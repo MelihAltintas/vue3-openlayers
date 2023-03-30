@@ -308,53 +308,53 @@ export default {
 
 ## Properties
 
-# attributions
+### attributions
 
 - **Type**: ` [String, Array]`
 - **Default**: `EPSG:3857`
 
-# features
+### features
 
 - **Type**: `Array`
 - **Default**: `() => []`
 
-# format
+### format
 
 - **Type**: `Format`
 
 formats available with `inject('ol-format')`
 
-# loader
+### loader
 
 - **Type**: `Function`
 
-# overlaps
+### overlaps
 
 - **Type**: `Boolean`
 - **Default**: `true`
 
-# projection
+### projection
 
 - **Type**: `String`
 - **Default**: 'EPSG:3857'
 
-# strategy
+### strategy
 
 - **Type**: `Function`
 
 strategy available with inject('ol-loadingstrategy');
 
-# url
+### url
 
 - **Type**: `[String, Function]`
 
-# useSpatialIndex
+### useSpatialIndex
 
 - **Type**: `Boolean`
 
 - **Default**: `true`
 
-# wrapX
+### wrapX
 
 - **Type**: `Boolean`
 - **Default**: `true`
