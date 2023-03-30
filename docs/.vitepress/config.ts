@@ -115,6 +115,10 @@ export default defineConfig({
                 link: "/componentsguide/sources/tianditu/",
               },
               {
+                text: "ol-source-tile-wms",
+                link: "/componentsguide/sources/tilewms/",
+              },
+              {
                 text: "ol-source-vector",
                 link: "/componentsguide/sources/vector/",
               },

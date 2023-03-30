@@ -7,6 +7,7 @@ import SourceCluster from "./SourceCluster.vue";
 import SourceBingMaps from "./SourceBingMaps.vue";
 import SourceTianDiTu from "./SourceTianDiTu.vue";
 import SourceImageWMS from "./SourceImageWMS.vue";
+import SourceTileWMS from "./SourceTileWMS.vue";
 import SourceWebglPoints from "./SourceWebglPoints.vue";
 
 function install(app) {
@@ -25,6 +26,7 @@ function install(app) {
   app.component(SourceBingMaps.name, SourceBingMaps);
   app.component(SourceTianDiTu.name, SourceTianDiTu);
   app.component(SourceImageWMS.name, SourceImageWMS);
+  app.component(SourceTileWMS.name, SourceTileWMS);
   app.component(SourceWebglPoints.name, SourceWebglPoints);
 }
 
@@ -40,6 +42,7 @@ export {
   SourceCluster,
   SourceTianDiTu,
   SourceImageWMS,
+  SourceTileWMS,
   SourceWebglPoints,
   SourceBingMaps,
 };
