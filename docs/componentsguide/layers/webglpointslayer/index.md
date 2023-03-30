@@ -9,7 +9,7 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -36,9 +36,8 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
     </ol-webglpoints-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -87,6 +86,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

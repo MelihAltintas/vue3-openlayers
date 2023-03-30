@@ -12,10 +12,10 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 <SnapModifyDemo/>
 </ClientOnly>
 
-```html
+```vue
 <template>
   <button @click="drawEnabled = !drawEnabled">Draw</button>
-  {{drawEnabled}}
+  {{ drawEnabled }}
   <ol-map
     ref="map"
     :load-tiles-while-animating="true"
@@ -62,9 +62,8 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
     </ol-interaction-select>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 import { GeoJSON } from "ol/format";
 import { Fill, Stroke, Style } from "ol/style";
@@ -177,6 +176,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

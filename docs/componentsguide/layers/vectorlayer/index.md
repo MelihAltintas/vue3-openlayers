@@ -7,7 +7,7 @@ import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 </script>
 
 <ClientOnly>
-<VectorSourceDemo1 /> 
+<VectorSourceDemo1 />
 </ClientOnly>
 
 ## Usage
@@ -16,7 +16,7 @@ Example below shows how you can use ol-vector-layer and ol-source-vector to rend
 
 Load features simply by providing url value and format GeoJSON
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -40,9 +40,8 @@ Load features simply by providing url value and format GeoJSON
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -69,6 +68,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

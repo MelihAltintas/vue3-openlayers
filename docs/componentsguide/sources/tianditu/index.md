@@ -17,7 +17,7 @@ import TiandituDemo from "@demos/TiandituDemo.vue"
 
 Example of `ol-source-tianditu` usage
 
-```html
+```vue
 <template>
 
 
@@ -46,9 +46,8 @@ Example of `ol-source-tianditu` usage
 
 </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -65,6 +64,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

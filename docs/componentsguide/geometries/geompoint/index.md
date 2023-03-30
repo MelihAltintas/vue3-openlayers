@@ -7,14 +7,14 @@ import GeomPoint from "@demos/GeomPoint.vue"
 </script>
 
 <ClientOnly>
-<GeomPoint /> 
+<GeomPoint />
 </ClientOnly>
 
 ## Usage
 
-```html
+```vue
 <template>
-  <button @click="()=> coordinate=coordinate.map(a=> a+0.01)">
+  <button @click="() => (coordinate = coordinate.map((a) => a + 0.01))">
     changecoor
   </button>
   <ol-map
@@ -52,9 +52,8 @@ import GeomPoint from "@demos/GeomPoint.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -81,6 +80,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

@@ -12,7 +12,7 @@ import DragRotateDemo from "@demos/DragRotateDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -33,9 +33,8 @@ import DragRotateDemo from "@demos/DragRotateDemo.vue"
     <ol-interaction-dragrotate />
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -50,6 +49,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

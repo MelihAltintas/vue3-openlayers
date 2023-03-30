@@ -6,12 +6,12 @@ ol-geom--multi-point can be used inside a ol-feature to draw multiple points at 
 import MultiPoint from "@demos/MultiPoint.vue"
 </script>
 <ClientOnly>
-<MultiPoint /> 
+<MultiPoint />
 </ClientOnly>
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -34,7 +34,24 @@ import MultiPoint from "@demos/MultiPoint.vue"
       <ol-source-vector>
         <ol-feature>
           <ol-geom-multi-point
-            :coordinates="[[116.544921,40.451633],[116.545264,40.451649],[116.545865,40.451698],[116.546144,40.451551],[116.546337,40.451274],[116.546788,40.451143],[116.547324,40.451078],[116.547539,40.450996],[116.547839,40.450719],[116.548440,40.450506],[116.548933,40.450604],[116.549448,40.450604],[116.550242,40.450376],[116.550865,40.450163],[116.551702,40.449935],[116.552581,40.449576]]"
+            :coordinates="[
+              [116.544921, 40.451633],
+              [116.545264, 40.451649],
+              [116.545865, 40.451698],
+              [116.546144, 40.451551],
+              [116.546337, 40.451274],
+              [116.546788, 40.451143],
+              [116.547324, 40.451078],
+              [116.547539, 40.450996],
+              [116.547839, 40.450719],
+              [116.54844, 40.450506],
+              [116.548933, 40.450604],
+              [116.549448, 40.450604],
+              [116.550242, 40.450376],
+              [116.550865, 40.450163],
+              [116.551702, 40.449935],
+              [116.552581, 40.449576],
+            ]"
           ></ol-geom-multi-point>
           <ol-style>
             <ol-style-circle :radius="radius">
@@ -50,9 +67,8 @@ import MultiPoint from "@demos/MultiPoint.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -76,6 +92,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

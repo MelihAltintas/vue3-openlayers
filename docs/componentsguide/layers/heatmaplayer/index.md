@@ -14,7 +14,7 @@ import HeatmapLayerDemo from "@demos/HeatmapLayerDemo.vue"
 
 Example below shows how you can use ol-heatmap-layer and ol-source-vector to render a heatmap from a backend source.
 
-```html
+```vue
 <template>
   <ol-map
     ref="map"
@@ -50,9 +50,8 @@ Example below shows how you can use ol-heatmap-layer and ol-source-vector to ren
     </ol-heatmap-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -82,6 +81,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

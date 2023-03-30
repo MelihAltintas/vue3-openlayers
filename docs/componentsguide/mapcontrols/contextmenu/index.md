@@ -15,7 +15,7 @@ import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 
 Add context menu to map
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -45,9 +45,8 @@ Add context menu to map
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 
 import marker from "@/assets/marker.png";
@@ -102,6 +101,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

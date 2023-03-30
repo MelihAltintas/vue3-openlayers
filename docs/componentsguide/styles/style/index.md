@@ -13,7 +13,7 @@ import StyleDemo from "@demos/StyleDemo.vue"
 import StyleDemo2 from "@demos/StyleDemo2.vue"
 </script>
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -35,7 +35,7 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>
-          <ol-geom-point :coordinates="[40,40]"></ol-geom-point>
+          <ol-geom-point :coordinates="[40, 40]"></ol-geom-point>
           <ol-style>
             <ol-style-circle radius="30">
               <ol-style-fill color="white"></ol-style-fill>
@@ -47,9 +47,8 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -66,6 +65,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>
@@ -74,7 +74,7 @@ export default {
 
 Styling the whole layer.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -102,9 +102,8 @@ Styling the whole layer.
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -130,6 +129,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>

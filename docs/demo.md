@@ -12,7 +12,7 @@ import AppDemo from "@demos/AppDemo.vue"
 <AppDemo />
 </ClientOnly>
 
-```html
+```vue
 <template>
   <ol-map
     ref="map"
@@ -60,25 +60,25 @@ import AppDemo from "@demos/AppDemo.vue"
         html="<i class='fas fa-map-marker'></i>"
         className="edit"
         title="Point"
-        :onToggle="(active)=>changeDrawType(active,'Point')"
+        :onToggle="(active) => changeDrawType(active, 'Point')"
       />
       <ol-control-toggle
         html="<i class='fas fa-draw-polygon'></i>"
         className="edit"
         title="Polygon"
-        :onToggle="(active)=>changeDrawType(active,'Polygon')"
+        :onToggle="(active) => changeDrawType(active, 'Polygon')"
       />
       <ol-control-toggle
         html="<i class='fas fa-circle'></i>"
         className="edit"
         title="Circle"
-        :onToggle="(active)=>changeDrawType(active,'Circle')"
+        :onToggle="(active) => changeDrawType(active, 'Circle')"
       />
       <ol-control-toggle
         html="<i class='fas fa-grip-lines'></i>"
         className="edit"
         title="LineString"
-        :onToggle="(active)=>changeDrawType(active,'LineString')"
+        :onToggle="(active) => changeDrawType(active, 'LineString')"
       />
       <ol-control-videorecorder @stop="videoStopped">
       </ol-control-videorecorder>
@@ -98,7 +98,7 @@ import AppDemo from "@demos/AppDemo.vue"
     <ol-zoom-control />
     <ol-zoomslider-control />
     <ol-zoomtoextent-control
-      :extent="[23.906,42.812,46.934,34.597]"
+      :extent="[23.906, 42.812, 46.934, 34.597]"
       tipLabel="Fit to Turkey"
     />
 
@@ -173,10 +173,13 @@ import AppDemo from "@demos/AppDemo.vue"
           <ol-feature
             v-for="index in 20"
             :key="index"
-            :properties="{'id':index}"
+            :properties="{ id: index }"
           >
             <ol-geom-point
-              :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"
+              :coordinates="[
+                getRandomInRange(24, 45, 3),
+                getRandomInRange(35, 41, 3),
+              ]"
             ></ol-geom-point>
 
             <ol-style>
@@ -196,7 +199,10 @@ import AppDemo from "@demos/AppDemo.vue"
       <ol-source-vector ref="vectorsource">
         <ol-feature v-for="index in 500" :key="index">
           <ol-geom-point
-            :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"
+            :coordinates="[
+              getRandomInRange(24, 45, 3),
+              getRandomInRange(35, 41, 3),
+            ]"
           ></ol-geom-point>
         </ol-feature>
       </ol-source-vector>
@@ -223,10 +229,12 @@ import AppDemo from "@demos/AppDemo.vue"
 
     <ol-overlay
       :position="selectedCityPosition"
-      v-if="selectedCityName !='' && !drawEnable"
+      v-if="selectedCityName != '' && !drawEnable"
     >
       <template v-slot="slotProps">
-        <div class="overlay-content">{{selectedCityName}} {{slotProps}}</div>
+        <div class="overlay-content">
+          {{ selectedCityName }} {{ slotProps }}
+        </div>
       </template>
     </ol-overlay>
 
@@ -269,9 +277,8 @@ import AppDemo from "@demos/AppDemo.vue"
     </ol-webglpoints-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject, onMounted } from "vue";
 
 import markerIcon from "@/assets/marker.png";
@@ -498,4 +505,5 @@ export default {
     };
   },
 };
+</script>
 ```

@@ -15,7 +15,7 @@ import ClusterDemo from "@demos/ClusterDemo.vue"
 
 This example shows how to do clustering on 1000 point features.
 
-```html
+```vue
 <template>
   <ol-map
     ref="map"
@@ -40,7 +40,10 @@ This example shows how to do clustering on 1000 point features.
         <ol-source-vector>
           <ol-feature v-for="index in 1000" :key="index">
             <ol-geom-point
-              :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"
+              :coordinates="[
+                getRandomInRange(24, 45, 3),
+                getRandomInRange(35, 41, 3),
+              ]"
             ></ol-geom-point>
           </ol-feature>
         </ol-source-vector>
@@ -61,9 +64,8 @@ This example shows how to do clustering on 1000 point features.
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 
 export default {
@@ -94,6 +96,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

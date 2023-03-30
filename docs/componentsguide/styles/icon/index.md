@@ -14,7 +14,7 @@ import IconDemo from "@demos/IconDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     ref="map"
@@ -49,9 +49,8 @@ import IconDemo from "@demos/IconDemo.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 
 import markerIcon from "@/assets/marker.png";
@@ -76,6 +75,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

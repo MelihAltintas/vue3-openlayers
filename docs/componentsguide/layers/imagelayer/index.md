@@ -14,7 +14,7 @@ import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
 
 Example below shows how to use ol-image-layer component together with ol-source-image-static to render custom image on the map. The map view is configured with a custom projection that translates image coordinates directly into map coordinates.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -41,9 +41,8 @@ Example below shows how to use ol-image-layer component together with ol-source-
     </ol-image-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, reactive } from "vue";
 export default {
   setup() {
@@ -74,6 +73,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

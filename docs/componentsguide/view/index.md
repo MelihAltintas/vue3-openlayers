@@ -19,7 +19,7 @@ import ViewDemo from "@demos/ViewDemo.vue"
 Example of simple map with view in EPSG:4326 projection.
 See also documentation of ol-map component
 
-```html
+```vue
 <template>
   <ol-map style="height:400px">
     <ol-view
@@ -40,13 +40,12 @@ See also documentation of ol-map component
   </ol-map>
 
   <div>
-    center : {{currentCenter}} zoom : {{currentZoom}} resolution :
-    {{currentResolution}} rotation : {{currentRotation}}
+    center : {{ currentCenter }} zoom : {{ currentZoom }} resolution :
+    {{ currentResolution }} rotation : {{ currentRotation }}
   </div>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -85,6 +84,7 @@ export default {
     },
   },
 };
+</script>
 ```
 
 ## Properties

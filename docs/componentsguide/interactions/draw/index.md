@@ -14,7 +14,7 @@ import DrawDemo from "@demos/DrawDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <input type="checkbox" id="checkbox" v-model="drawEnable" />
   <label for="checkbox">Draw Enable</label>
@@ -64,9 +64,8 @@ import DrawDemo from "@demos/DrawDemo.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -98,6 +97,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties
