@@ -16,7 +16,7 @@ import StyleDemo from "@demos/StyleDemo.vue"
 
 Styling a feature inside a vector layer.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -38,7 +38,7 @@ Styling a feature inside a vector layer.
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>
-          <ol-geom-point :coordinates="[40,40]"></ol-geom-point>
+          <ol-geom-point :coordinates="[40, 40]"></ol-geom-point>
           <ol-style>
             <ol-style-circle radius="30">
               <ol-style-fill color="white"></ol-style-fill>
@@ -50,9 +50,8 @@ Styling a feature inside a vector layer.
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -69,6 +68,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

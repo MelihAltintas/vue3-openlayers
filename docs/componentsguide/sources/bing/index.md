@@ -17,14 +17,14 @@ import BingMapsDemo from "@demos/BingMapsDemo.vue"
 
 Example of `ol-source-bingmaps` usage
 
-```html
+```vue
 <template>
   <select v-model="selected">
     <option value="AerialWithLabels">AerialWithLabels</option>
     <option value="RoadOnDemand">RoadOnDemand</option>
     <option value="CanvasDark">CanvasDark</option>
   </select>
-  {{selected}}
+  {{ selected }}
 
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -47,9 +47,8 @@ Example of `ol-source-bingmaps` usage
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -67,6 +66,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

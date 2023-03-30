@@ -29,7 +29,7 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 
 # Usage
 
-```html
+```vue
 <template>
   <input type="checkbox" id="fullscreencontrol" v-model="fullscreencontrol" />
   <label for="fullscreencontrol">fullscreencontrol</label>
@@ -86,7 +86,7 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
     <ol-zoomslider-control v-if="zoomslidercontrol" />
     <ol-zoomtoextent-control
       v-if="zoomtoextentcontrol"
-      :extent="[23.906,42.812,46.934,34.597]"
+      :extent="[23.906, 42.812, 46.934, 34.597]"
       tipLabel="Fit to Turkey"
     />
 
@@ -108,9 +108,8 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, onMounted } from "vue";
 export default {
   setup() {
@@ -155,4 +154,5 @@ export default {
     };
   },
 };
+</script>
 ```

@@ -18,7 +18,7 @@ import OverlayDemo from "@demos/OverlayDemo.vue"
 
 Example below shows how to add custom content on to the map.
 
-```html
+```vue
 <template>
   <ol-map style="height:400px">
     <ol-view
@@ -33,7 +33,7 @@ Example below shows how to add custom content on to the map.
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overlay :position="[40,40]">
+    <ol-overlay :position="[40, 40]">
       <template v-slot="slotProps">
         <div class="overlay-content">
           Hello world!<br />
@@ -45,16 +45,15 @@ Example below shows how to add custom content on to the map.
 </template>
 
 <style>
-  .overlay-content {
-    background: #efefef;
-    box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
-    padding: 10px 20px;
-    font-size: 16px;
-  }
+.overlay-content {
+  background: #efefef;
+  box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+  padding: 10px 20px;
+  font-size: 16px;
+}
 </style>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -71,6 +70,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

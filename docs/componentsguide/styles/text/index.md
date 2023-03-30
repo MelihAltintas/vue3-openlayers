@@ -14,7 +14,7 @@ import TextDemo from "@demos/TextDemo.vue"
 
 Add text to shapes
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -37,7 +37,15 @@ Add text to shapes
       <ol-source-vector>
         <ol-feature>
           <ol-geom-polygon
-            :coordinates="[[[-98.844959,19.691586],[-98.842749,19.690980],[-98.842170,19.693122],[-98.844358,19.693667],[-98.844959,19.691586]]]"
+            :coordinates="[
+              [
+                [-98.844959, 19.691586],
+                [-98.842749, 19.69098],
+                [-98.84217, 19.693122],
+                [-98.844358, 19.693667],
+                [-98.844959, 19.691586],
+              ],
+            ]"
           ></ol-geom-polygon>
           <ol-style>
             <ol-style-stroke
@@ -52,9 +60,8 @@ Add text to shapes
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -77,6 +84,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

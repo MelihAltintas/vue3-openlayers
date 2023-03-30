@@ -19,7 +19,7 @@ import MapDemo from "@demos/MapDemo.vue"
 Example of a simple map.
 See also documentation of `ol-view` component.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -39,9 +39,8 @@ See also documentation of `ol-view` component.
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -57,6 +56,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

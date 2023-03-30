@@ -18,7 +18,7 @@ Example of ol-source-xyz loading OSM tiles (Note that if you need an OSM layer y
 
 Example of loading google maps satellite tiles. Notice that this is only allowed in places that are publicly available to the internet (as opposed to being behind a password for example).
 
-```html
+```vue
 <template>
   <select v-model="selected">
     <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">
@@ -28,7 +28,7 @@ Example of loading google maps satellite tiles. Notice that this is only allowed
       GOOGLE
     </option>
   </select>
-  {{selected}}
+  {{ selected }}
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
@@ -47,9 +47,8 @@ Example of loading google maps satellite tiles. Notice that this is only allowed
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -69,6 +68,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

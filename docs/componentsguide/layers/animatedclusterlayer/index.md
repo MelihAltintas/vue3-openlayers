@@ -7,12 +7,12 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 </script>
 
 <ClientOnly>
-<AnimatedClusterDemo /> 
+<AnimatedClusterDemo />
 </ClientOnly>
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -43,7 +43,10 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
       <ol-source-vector ref="vectorsource">
         <ol-feature v-for="index in 500" :key="index">
           <ol-geom-point
-            :coordinates="[getRandomInRange(24, 45, 3), getRandomInRange(35, 41, 3)]"
+            :coordinates="[
+              getRandomInRange(24, 45, 3),
+              getRandomInRange(35, 41, 3),
+            ]"
           ></ol-geom-point>
         </ol-feature>
       </ol-source-vector>
@@ -69,9 +72,8 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
     </ol-animated-clusterlayer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 
 import markerIcon from "@/assets/marker.png";
@@ -128,6 +130,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

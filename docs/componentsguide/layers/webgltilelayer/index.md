@@ -11,7 +11,7 @@ import WebglTileLayerDemo from "@demos/WebglTileLayerDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -25,9 +25,8 @@ import WebglTileLayerDemo from "@demos/WebglTileLayerDemo.vue"
     </ol-webgl-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -42,6 +41,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

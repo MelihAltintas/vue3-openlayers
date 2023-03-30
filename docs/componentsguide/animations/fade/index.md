@@ -10,7 +10,7 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
 <FadeAnimation />
 </ClientOnly>
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -37,7 +37,10 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
         <ol-animation-fade :duration="4000">
           <ol-feature v-for="index in 20" :key="index">
             <ol-geom-point
-              :coordinates="[getRandomInRange(24,45,3),getRandomInRange(35,41,3)]"
+              :coordinates="[
+                getRandomInRange(24, 45, 3),
+                getRandomInRange(35, 41, 3),
+              ]"
             ></ol-geom-point>
 
             <ol-style>
@@ -49,9 +52,8 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 import starIcon from "@/assets/star.png";
 export default {
@@ -73,6 +75,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

@@ -12,10 +12,10 @@ import TransformDemo from "@demos/TransformDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <button @click="drawEnabled = !drawEnabled">Draw</button>
-  {{drawEnabled}}
+  {{ drawEnabled }}
   <ol-map
     ref="map"
     :load-tiles-while-animating="true"
@@ -52,9 +52,8 @@ import TransformDemo from "@demos/TransformDemo.vue"
     <ol-interaction-transform> </ol-interaction-transform>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 import { GeoJSON } from "ol/format";
 
@@ -134,6 +133,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

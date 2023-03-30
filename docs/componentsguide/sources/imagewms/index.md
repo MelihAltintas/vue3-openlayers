@@ -12,7 +12,7 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -42,9 +42,8 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
     </ol-image-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, reactive } from "vue";
 export default {
   setup() {
@@ -59,6 +58,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

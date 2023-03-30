@@ -12,7 +12,7 @@ import SelectDemo from "@demos/SelectDemo.vue"
 
 ## Usage
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -62,9 +62,8 @@ import SelectDemo from "@demos/SelectDemo.vue"
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import markerIcon from "@/assets/marker.png";
 import { ref, inject } from "vue";
 export default {
@@ -103,6 +102,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

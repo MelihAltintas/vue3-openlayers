@@ -15,9 +15,9 @@ import VectorSourceDemo3 from "@demos/VectorSourceDemo3.vue"
 
 Static features with the help of ol-feature, should be used only for tiny static layers.
 
-```html
+```vue
 <template>
-  <button @click="()=> coordinate=coordinate.map(a=> a+0.01)">
+  <button @click="() => (coordinate = coordinate.map((a) => a + 0.01))">
     changecoor
   </button>
   <ol-map
@@ -55,9 +55,8 @@ Static features with the help of ol-feature, should be used only for tiny static
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -84,6 +83,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>
@@ -92,7 +92,7 @@ export default {
 
 Load features simply by providing url value and format GeoJSON
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -116,9 +116,8 @@ Load features simply by providing url value and format GeoJSON
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -144,6 +143,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>
@@ -154,7 +154,7 @@ export default {
 
 Next example loads features from remote WFS service by viewport BBOX. With format and strategy you can define custom vector source format and loading strategy.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -187,9 +187,8 @@ Next example loads features from remote WFS service by viewport BBOX. With forma
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref, inject } from "vue";
 export default {
   setup() {
@@ -230,6 +229,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>
@@ -240,7 +240,7 @@ export default {
 
 You can also use other Vector formats like TopoJSON.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -268,9 +268,8 @@ You can also use other Vector formats like TopoJSON.
     </ol-vector-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { TopoJSON } from "ol/format";
 import { ref, inject } from "vue";
 export default {
@@ -300,6 +299,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 <ClientOnly>

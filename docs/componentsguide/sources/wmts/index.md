@@ -14,7 +14,7 @@ import TileLayerDemo from "@demos/TileLayerDemo.vue"
 
 Example below shows how to use ol-layer-tile component together with ol-source-wmts and with ol-source-osm.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -39,9 +39,8 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -70,6 +69,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties

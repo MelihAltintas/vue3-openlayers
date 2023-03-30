@@ -14,7 +14,7 @@ import MapDemo from "@demos/MapDemo.vue"
 
 Loading a simple OSM base layer.
 
-```html
+```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -34,9 +34,8 @@ Loading a simple OSM base layer.
     </ol-tile-layer>
   </ol-map>
 </template>
-```
 
-```js
+<script>
 import { ref } from "vue";
 export default {
   setup() {
@@ -53,6 +52,7 @@ export default {
     };
   },
 };
+</script>
 ```
 
 ## Properties
