@@ -1,79 +1,61 @@
 <template lang="">
-<slot></slot>
+  <slot></slot>
 </template>
 
 <script>
-import {
-    inject,
-    watch,
-    onMounted,
-    onUnmounted,
+import { inject, watch, onMounted, onUnmounted } from "vue";
 
-} from 'vue'
-
-import Snap from 'ol/interaction/Snap';
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import Snap from "ol/interaction/Snap";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
-    name: 'ol-interaction-snap',
-    setup(props) {
+  name: "ol-interaction-snap",
+  setup(props) {
+    const map = inject("map");
+    const source = inject("vectorSource");
 
-        const map = inject("map");
-        const source = inject("vectorSource");
+    const { properties } = usePropsAsObjectProperties(props);
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const createSnap = () => {
+      const s = new Snap({
+        ...properties,
+        source: source.value,
+      });
 
-        let createSnap = () => {
-            let s = new Snap({
-                ...properties,
-                source: source.value
-            });
+      return s;
+    };
+    let snap = createSnap();
 
-            return s;
+    watch(properties, () => {
+      map.removeInteraction(snap);
+      snap = createSnap();
+      map.addInteraction(snap);
+      map.changed();
+    });
 
-        };
-        let snap = createSnap();
+    onMounted(() => {
+      map.addInteraction(snap);
+    });
 
-        watch(properties, () => {
-
-            map.removeInteraction(snap);
-            snap = createSnap();
-            map.addInteraction(snap);
-            map.changed()
-        })
-
-        onMounted(() => {
-            map.addInteraction(snap);
-
-        });
-
-        onUnmounted(() => {
-            map.removeInteraction(snap);
-        });
-
+    onUnmounted(() => {
+      map.removeInteraction(snap);
+    });
+  },
+  props: {
+    vertex: {
+      type: Boolean,
+      default: true,
     },
-    props: {
-
-        vertex: {
-            type: Boolean,
-            default: true
-        },
-        edge: {
-            type: Boolean,
-            default: true
-        },
-        pixelTolerance: {
-            type: Number,
-            default: 10
-        },
-
-    }
-
-}
+    edge: {
+      type: Boolean,
+      default: true,
+    },
+    pixelTolerance: {
+      type: Number,
+      default: 10,
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

@@ -1,123 +1,99 @@
 <template>
-<div>
+  <div>
     <slot></slot>
-</div>
+  </div>
 </template>
 
 <script>
-import {
-    inject,
-    watch,
-    onUnmounted,
-    onMounted,
-    computed,
+import { inject, watch, onUnmounted, onMounted, computed } from "vue";
 
-} from 'vue'
-
-import FlowLine from 'ol-ext/style/FlowLine';
-import Draw from 'ol/interaction/Draw';
-import Modify from 'ol/interaction/Modify';
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import FlowLine from "ol-ext/style/FlowLine";
+import Draw from "ol/interaction/Draw";
+import Modify from "ol/interaction/Modify";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
-    name: 'ol-style-flowline',
-    setup(props) {
+  name: "ol-style-flowline",
+  setup(props) {
+    const styledObj = inject("stylable", null);
 
-        const styledObj = inject('stylable', null);
+    const { properties } = usePropsAsObjectProperties(props);
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const style = computed(() => new FlowLine(properties));
 
-        let style = computed(() => new FlowLine(properties));
+    const setStyle = (val) => {
+      if (styledObj instanceof Draw || styledObj instanceof Modify) {
+        styledObj.getOverlay().setStyle(val);
+        styledObj.value.dispatchEvent("styleChanged");
+        return;
+      }
+      try {
+        styledObj.value.setStyle(val);
+        styledObj.value.changed();
+        styledObj.value.dispatchEvent("styleChanged");
+      } catch (error) {
+        styledObj.value.style_ = val;
+        styledObj.value.values_.style = val;
 
-        const setStyle = (val) => {
+        styledObj.value.changed();
+        styledObj.value.dispatchEvent("styleChanged");
+      }
+    };
 
-            if (styledObj instanceof Draw || styledObj instanceof Modify) {
-
-                styledObj.getOverlay().setStyle(val)
-                styledObj.value.dispatchEvent("styleChanged")
-                return;
-            }
-            try {
-
-                styledObj.value.setStyle(val)
-                styledObj.value.changed()
-                styledObj.value.dispatchEvent("styleChanged")
-
-            } catch (error) {
-
-                styledObj.value.style_ = val
-                styledObj.value.values_.style = val
-
-                styledObj.value.changed()
-                styledObj.value.dispatchEvent("styleChanged")
-
-            }
-        };
-
-        const styleFunc = computed(() => {
-            return (feature) => {
-                if (properties.overrideStyleFunction != null) {
-                    properties.overrideStyleFunction(feature, style.value)
-                }
-                return style.value
-            }
-        });
-
-        watch(properties, () => {
-
-            if (properties.overrideStyleFunction == null) {
-                setStyle(style.value);
-            } else {
-                setStyle(styleFunc.value);
-            }
-
-        })
-
-        onMounted(() => {
-
-            if (properties.overrideStyleFunction == null) {
-                setStyle(style.value);
-            } else {
-
-                setStyle(styleFunc.value);
-            }
-        });
-
-        onUnmounted(() => {
-            setStyle(null);
-        });
-
-        return {
-            style
+    const styleFunc = computed(() => {
+      return (feature) => {
+        if (properties.overrideStyleFunction != null) {
+          properties.overrideStyleFunction(feature, style.value);
         }
+        return style.value;
+      };
+    });
+
+    watch(properties, () => {
+      if (properties.overrideStyleFunction == null) {
+        setStyle(style.value);
+      } else {
+        setStyle(styleFunc.value);
+      }
+    });
+
+    onMounted(() => {
+      if (properties.overrideStyleFunction == null) {
+        setStyle(style.value);
+      } else {
+        setStyle(styleFunc.value);
+      }
+    });
+
+    onUnmounted(() => {
+      setStyle(null);
+    });
+
+    return {
+      style,
+    };
+  },
+  props: {
+    color: {
+      type: [String, Function],
     },
-    props: {
-        color: {
-            type: [String,Function]
-        },
-        color2: {
-            type: String
-        },
-        width: {
-            type: [Number,Function]
-        },
-        width2: {
-            type: Number
-        },
-        arrow: {
-            type: Number
-        },
-        arrowColor: {
-            type: String
-        },
-
-    }
-
-}
+    color2: {
+      type: String,
+    },
+    width: {
+      type: [Number, Function],
+    },
+    width2: {
+      type: Number,
+    },
+    arrow: {
+      type: Number,
+    },
+    arrowColor: {
+      type: String,
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

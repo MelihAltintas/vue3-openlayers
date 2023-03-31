@@ -1,36 +1,30 @@
 <template lang="">
-<div v-if="false">
-</div>
+  <div v-if="false"></div>
 </template>
 
 <script>
-import LineString from 'ol/geom/LineString';
-import useGeometry from '@/composables/useGeometry'
+import LineString from "ol/geom/LineString";
+import useGeometry from "@/composables/useGeometry";
 
 export default {
-    name: 'ol-geom-line-string',
-    setup(props) {
-        const {
-            geometry
-        } = useGeometry(LineString, props);
+  name: "ol-geom-line-string",
+  setup(props) {
+    const { geometry } = useGeometry(LineString, props);
 
-        return {
-            geometry
-        }
-
+    return {
+      geometry,
+    };
+  },
+  props: {
+    coordinates: {
+      type: Array,
     },
-    props: {
-        coordinates: {
-            type: Array,
-        },
-        opt_layout: {
-            type: String,
-            default: 'XY'
-        },
-    }
-}
+    opt_layout: {
+      type: String,
+      default: "XY",
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

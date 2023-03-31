@@ -1,113 +1,91 @@
 <template>
-<div>
+  <div>
     <slot></slot>
-</div>
+  </div>
 </template>
 
 <script>
-import VectorSource from 'ol/source/Vector';
+import VectorSource from "ol/source/Vector";
 
-import {
-    inject,
-    watch,
-    onMounted,
-    onUnmounted,
-    provide,
-    computed
-} from 'vue'
+import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
-    name: 'ol-source-webglpoints',
-    setup(props) {
+  name: "ol-source-webglpoints",
+  setup(props) {
+    const layer = inject("webglPointsLayer");
 
-        const layer = inject('webglPointsLayer');
+    const { properties } = usePropsAsObjectProperties(props);
 
-        const {
-            properties
-        } = usePropsAsObjectProperties(props);
+    const source = computed(() => new VectorSource(properties));
 
-        let source = computed(() => new VectorSource(properties));
+    const applySource = () => {
+      layer.value.setSource(null);
+      layer.value.setSource(source.value);
+      layer.value.changed();
+    };
+    watch(properties, () => {
+      applySource();
+    });
 
-        const applySource = () => {
-            layer.value.setSource(null)
-            layer.value.setSource(source.value)
-            layer.value.changed()
-        };
-        watch(properties, () => {
-            applySource();
+    watch(layer, () => {
+      applySource();
+    });
 
-        })
+    onMounted(() => {
+      layer.value.setSource(source.value);
+    });
 
-        watch(layer, () => {
-            applySource();
-        });
+    onUnmounted(() => {
+      layer.value.setSource(null);
+    });
 
-        onMounted(() => {
-            layer.value.setSource(source.value)
-        });
+    provide("vectorSource", source);
 
-        onUnmounted(() => {
-            layer.value.setSource(null)
-        });
-
-        provide("vectorSource", source);
-
-        return {
-            layer,
-            source
-        }
+    return {
+      layer,
+      source,
+    };
+  },
+  props: {
+    attributions: {
+      type: [String, Array],
     },
-    props: {
-        attributions: {
-            type: [String, Array],
-        },
-        features: {
-            type: Array,
-            default: () => []
-        },
-        format: {
-            type: Object
-
-        },
-        loader: {
-            type: Function
-
-        },
-        overlaps: {
-            type: Boolean,
-            default: true
-
-        },
-        projection: {
-            type: String,
-            default: 'EPSG:3857'
-        },
-        strategy: {
-            type: Function
-
-        },
-        url: {
-            type: [String, Function]
-
-        },
-        useSpatialIndex: {
-            type: Boolean,
-            default: true
-
-        },
-        wrapX: {
-            type: Boolean,
-            default: true
-
-        }
-
-    }
-
-}
+    features: {
+      type: Array,
+      default: () => [],
+    },
+    format: {
+      type: Object,
+    },
+    loader: {
+      type: Function,
+    },
+    overlaps: {
+      type: Boolean,
+      default: true,
+    },
+    projection: {
+      type: String,
+      default: "EPSG:3857",
+    },
+    strategy: {
+      type: Function,
+    },
+    url: {
+      type: [String, Function],
+    },
+    useSpatialIndex: {
+      type: Boolean,
+      default: true,
+    },
+    wrapX: {
+      type: Boolean,
+      default: true,
+    },
+  },
+};
 </script>
 
-<style lang="">
-
-</style>
+<style lang=""></style>

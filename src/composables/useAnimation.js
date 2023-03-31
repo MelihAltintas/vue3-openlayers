@@ -1,47 +1,26 @@
-import {
-
-    provide,
-    computed
-
-} from 'vue'
-import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
-import Animation from '@/components/animations/FeatureAnimation';
+import { provide, computed } from "vue";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import Animation from "@/components/animations/FeatureAnimation";
 
 export default function useAnimation(AnimationType, props) {
+  const { map, vectorLayer } = Animation.setup();
 
-    const {
+  const { properties } = usePropsAsObjectProperties(props);
 
-        map,
-        vectorLayer,
+  const animation = computed(() => {
+    const anim = new AnimationType({
+      ...properties,
+    });
 
-    } = Animation.setup();
+    return anim;
+  });
 
-    const {
-        properties
-    } = usePropsAsObjectProperties(props);
-    
+  provide("animation", animation);
 
-
-    const animation = computed(() => {
-
-
-
-        let anim = new AnimationType({
-            ...properties,
-      
-        })
-    
-        return anim
-    })
-
-    provide("animation", animation)
-
-    return {
-
-        map,
-        vectorLayer,
-        animation,
-        properties
-    };
-
+  return {
+    map,
+    vectorLayer,
+    animation,
+    properties,
+  };
 }

@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.1.74",
+  "version": "0.1.75",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
@@ -41,7 +41,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
+    "lint-fix": "npm run lint -- --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "files": [
     "dist/*",
@@ -51,24 +58,10 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
-    "ol": "^7.2.2",
-    "ol-contextmenu": "^5.1.4",
-    "ol-ext": "^4.0.4",
-    "proj4": "^2.8.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "es2021": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+    "ol": "^7.3.0",
+    "ol-contextmenu": "^5.2.0",
+    "ol-ext": "^4.0.6",
+    "proj4": "^2.9.0"
   },
   "browserslist": [
     "> 1%",
@@ -76,9 +69,20 @@
     "not dead"
   ],
   "devDependencies": {
-    "@types/node": "^17.0.35",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "vite": "^2.9.9",
-    "vue": "^3.2.36"
+    "@babel/eslint-parser": "^7.21.3",
+    "@types/file-saver": "^2.0.5",
+    "@types/node": "^18.15.9",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "eslint": "^8.36.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.10.0",
+    "husky": "^8.0.0",
+    "prettier": "^2.8.7",
+    "pretty-quick": "^3.1.3",
+    "vite": "^4.2.1",
+    "vitepress": "^1.0.0-alpha.64",
+    "vue": "^3.2.47"
   }
 }

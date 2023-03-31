@@ -20,7 +20,7 @@ export class Tianditu extends WMTSSource {
       ter: 14,
       img: 18,
     };
-    let options = opt_options || {};
+    const options = opt_options || {};
 
     options.layerType = options.layerType || "vec";
     options.layerType = options.isLabel
@@ -39,12 +39,12 @@ export class Tianditu extends WMTSSource {
     options.url = options.url
       .replace("{layer}", options.layerType)
       .replace("{proj}", options.matrixSet);
-    let tileGrid =
+    const tileGrid =
       options.tileGrid ||
       Tianditu.getTileGrid(options.projection || "EPSG:3857");
-    let crossOrigin =
+    const crossOrigin =
       options.crossOrigin !== undefined ? options.crossOrigin : "anonymous";
-    let superOptions = {
+    const superOptions = {
       version: options.version || "1.0.0",
       format: options.format || "tiles",
       dimensions: options.dimensions || {},
@@ -62,7 +62,6 @@ export class Tianditu extends WMTSSource {
       projection: options.projection || "EPSG:3857",
       wrapX: options.wrapX,
     };
-  
 
     if (options.tileProxy) {
       superOptions.tileLoadFunction = tileLoadFunction;
@@ -72,10 +71,9 @@ export class Tianditu extends WMTSSource {
       this.tileProxy = options.tileProxy;
     }
 
-    let me = this;
-    function tileLoadFunction(imageTile, src) {
-      imageTile.getImage().src = me.tileProxy + encodeURIComponent(src);
-    }
+    const tileLoadFunction = (imageTile, src) => {
+      imageTile.getImage().src = this.tileProxy + encodeURIComponent(src);
+    };
   }
 
   static getTileGrid(projection) {
@@ -86,13 +84,13 @@ export class Tianditu extends WMTSSource {
   }
 
   static default4326TileGrid() {
-    let tdt_WGS84_resolutions = [];
-    let matrixIds = [];
+    const tdt_WGS84_resolutions = [];
+    const matrixIds = [];
     for (let i = 1; i < 19; i++) {
       tdt_WGS84_resolutions.push((0.703125 * 2) / Math.pow(2, i));
       matrixIds.push(i);
     }
-    let tileGird = new TileGridWMTS({
+    const tileGird = new TileGridWMTS({
       extent: [-180, -90, 180, 90],
       resolutions: tdt_WGS84_resolutions,
       origin: [-180, 90],
@@ -103,17 +101,16 @@ export class Tianditu extends WMTSSource {
   }
 
   static default3857TileGrid() {
-    let tdt_Mercator_resolutions = [];
-    let matrixIds = [];
+    const tdt_Mercator_resolutions = [];
+    const matrixIds = [];
     for (let i = 1; i < 19; i++) {
+      // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
       tdt_Mercator_resolutions.push((78271.5169640203125 * 2) / Math.pow(2, i));
       matrixIds.push(i);
     }
-    let tileGird = new TileGridWMTS({
+    const tileGird = new TileGridWMTS({
       extent: [
-        -20037508.3427892,
-        -20037508.3427892,
-        20037508.3427892,
+        -20037508.3427892, -20037508.3427892, 20037508.3427892,
         20037508.3427892,
       ],
       resolutions: tdt_Mercator_resolutions,
@@ -129,7 +126,7 @@ export default {
   setup(props) {
     const layer = inject("tileLayer");
     const { properties } = usePropsAsObjectProperties(props);
-    let source = computed(() => {
+    const source = computed(() => {
       return new Tianditu(properties);
     });
     watch(source, () => {
@@ -152,7 +149,7 @@ export default {
   props: {
     layerType: {
       type: String,
-      default: "img", 
+      default: "img",
     },
     tk: {
       type: String,
@@ -195,7 +192,7 @@ export default {
     },
     dimensions: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     imageSmoothing: {
       type: Boolean,
