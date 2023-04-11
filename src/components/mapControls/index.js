@@ -57,6 +57,7 @@ export {
   ZoomControl,
   ZoomSliderControl,
   ZoomToExtentControl,
+  RotateControl,
   ContextMenuControl,
   SwipeControl,
   ControlBar,
