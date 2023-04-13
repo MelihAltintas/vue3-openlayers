@@ -195,6 +195,10 @@ export default defineConfig({
         text: "Interactions",
         items: [
           {
+            text: "ol-interaction-clusterselect",
+            link: "/componentsguide/interactions/clusterselect/",
+          },
+          {
             text: "ol-interaction-draw",
             link: "/componentsguide/interactions/draw/",
           },
