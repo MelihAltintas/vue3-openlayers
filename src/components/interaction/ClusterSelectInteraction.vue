@@ -65,6 +65,28 @@ export default {
       type: Boolean,
       default: true,
     },
+    animationDuration: {
+      type: Number,
+      default: 500,
+    },
+    spiral: {
+      type: Boolean,
+      default: true,
+    },
+    selectCluster: {
+      type: Boolean,
+      default: true,
+    },
+    autoClose: {
+      type: Boolean,
+      default: true,
+    },
+    circleMaxObjects: {
+      type: Number,
+    },
+    maxObjects: {
+      type: Number,
+    },
     featureStyle: {
       type: Function,
     },
