@@ -86,10 +86,6 @@ export default {
       type: String,
       default: "mapserver",
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     layers: {
       type: [String, Array],
       required: true,

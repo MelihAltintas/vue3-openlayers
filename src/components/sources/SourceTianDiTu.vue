@@ -194,10 +194,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     maxZoom: {
       type: Number,
       default: 21,

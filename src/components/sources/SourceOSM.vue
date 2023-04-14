@@ -49,10 +49,6 @@ export default {
       type: String,
       default: "anonymous",
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     minZoom: {
       type: Number,
       default: 0,

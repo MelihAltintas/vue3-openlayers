@@ -60,10 +60,6 @@ export default {
     projection: {
       type: [String, Object],
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     imageSize: {
       type: Array,
     },
