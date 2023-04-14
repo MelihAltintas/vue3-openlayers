@@ -34,7 +34,7 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
         :matrixSet="matrixSet"
         :format="format"
         :layer="layerName"
-        :style="styleName"
+        :styles="styleName"
       ></ol-source-wmts>
     </ol-tile-layer>
   </ol-map>

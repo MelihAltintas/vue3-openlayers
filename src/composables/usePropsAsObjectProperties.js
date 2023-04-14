@@ -4,20 +4,16 @@ import { toRefs, watch, reactive } from "vue";
  * We can't use 'style' as a component prop since it's a reserved property
  * This function will map the special `styles` prop to `style`
  */
-function getRevisedProps(props) {
-  const revisedProps = { ...props };
-  delete revisedProps.styles;
-  if (props.styles) {
-    props.style = props.styles;
+function checkAndUpdateStylePropDef(options, key) {
+  if (key === "styles") {
+    options.style = options[key].value;
   }
-  return revisedProps;
 }
 
 export default function usePropsAsObjectProperties(props, ignoredKeys = []) {
-  const revisedProps = getRevisedProps(props);
-
-  let options = toRefs(revisedProps);
+  let options = toRefs(props);
   Object.keys(options).forEach((key) => {
+    checkAndUpdateStylePropDef(options, key);
     options[key] = options[key].value;
   });
 
@@ -25,10 +21,11 @@ export default function usePropsAsObjectProperties(props, ignoredKeys = []) {
     ...options,
   });
 
-  watch(props, (newVal) => {
-    options = toRefs(getRevisedProps(newVal));
+  watch(props, () => {
+    options = toRefs(props);
     Object.keys(options).forEach((key) => {
       if (properties[key] != options[key].value && !ignoredKeys.includes(key)) {
+        checkAndUpdateStylePropDef(options, key);
         properties[key] = options[key].value;
       }
     });

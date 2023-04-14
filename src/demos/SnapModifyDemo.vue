@@ -19,7 +19,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-vector-layer :style="vectorStyle">
+    <ol-vector-layer :styles="vectorStyle">
       <ol-source-vector :features="zones">
         <ol-interaction-modify
           v-if="modifyEnabled"

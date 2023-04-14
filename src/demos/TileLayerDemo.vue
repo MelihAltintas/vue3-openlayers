@@ -17,7 +17,7 @@
         :matrixSet="matrixSet"
         :format="format"
         :layer="layerName"
-        :style="styleName"
+        :styles="styleName"
       ></ol-source-wmts>
     </ol-tile-layer>
   </ol-map>
