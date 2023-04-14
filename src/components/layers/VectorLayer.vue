@@ -49,8 +49,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    style: {
-      type: Function,
+    styles: {
+      type: [String, Array, Function],
     },
     updateWhileInteracting: {
       type: Boolean,
