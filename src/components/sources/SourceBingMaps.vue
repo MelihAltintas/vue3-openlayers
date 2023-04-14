@@ -61,10 +61,6 @@ export default {
     imagerySet: {
       type: String,
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     maxZoom: {
       type: Number,
       default: 21,

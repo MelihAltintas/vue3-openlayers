@@ -87,10 +87,6 @@ export default {
     crossOrigin: {
       type: String,
     },
-    imageSmoothing: {
-      type: Boolean,
-      default: true,
-    },
     projection: {
       type: [String, Object],
       default: "EPSG:3857",
