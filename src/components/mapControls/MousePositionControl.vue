@@ -31,9 +31,8 @@ export default {
     target: {
       type: HTMLElement,
     },
-    undefinedHTML: {
+    placeholder: {
       type: String,
-      default: "&#160;",
     },
   },
 };
