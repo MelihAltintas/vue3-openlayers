@@ -22,8 +22,12 @@ export default {
     const style = computed(() => new Style(properties));
 
     const setStyle = (val) => {
-      if (styledObj instanceof Draw || styledObj instanceof Modify) {
-        styledObj.getOverlay().setStyle(val);
+      if (
+        styledObj.value instanceof Draw ||
+        styledObj.value instanceof Modify
+      ) {
+        styledObj.value.getOverlay().setStyle(val);
+        styledObj.value.changed();
         styledObj.value.dispatchEvent("styleChanged");
         return;
       }

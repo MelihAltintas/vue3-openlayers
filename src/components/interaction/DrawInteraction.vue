@@ -10,10 +10,11 @@ import {
   onMounted,
   onUnmounted,
   toRefs,
-  //computed
+  computed,
 } from "vue";
 
 import Draw from "ol/interaction/Draw";
+import { Style } from "ol/style";
 //import Style from 'ol/style/Style';
 
 export default {
@@ -40,8 +41,8 @@ export default {
       wrapX,
     } = toRefs(props);
 
-    const createDraw = () => {
-      const draw = new Draw({
+    const draw = computed(() => {
+      const d = new Draw({
         source: source.value,
         type: type.value,
         clickTolerance: clickTolerance.value,
@@ -59,18 +60,16 @@ export default {
         wrapX: wrapX.value,
       });
 
-      draw.on("drawstart", (event) => {
+      d.on("drawstart", (event) => {
         emit("drawstart", event);
       });
 
-      draw.on("drawend", (event) => {
+      d.on("drawend", (event) => {
         emit("drawend", event);
       });
 
-      return draw;
-    };
-
-    let draw = createDraw();
+      return d;
+    });
 
     watch(
       [
@@ -90,21 +89,20 @@ export default {
         wrapX,
       ],
       () => {
-        map.removeInteraction(draw);
-        draw = createDraw();
-        map.addInteraction(draw);
-        draw.changed();
+        map.removeInteraction(draw.value);
+        map.addInteraction(draw.value);
+        draw.value.changed();
 
         map.changed();
       }
     );
 
     onMounted(() => {
-      map.addInteraction(draw);
+      map.addInteraction(draw.value);
     });
 
     onUnmounted(() => {
-      map.removeInteraction(draw);
+      map.removeInteraction(draw.value);
     });
 
     provide("stylable", draw);
