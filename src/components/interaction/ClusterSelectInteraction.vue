@@ -6,7 +6,6 @@
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 
 import Select from "ol-ext/interaction/SelectCluster";
-import Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 export default {
@@ -18,10 +17,7 @@ export default {
     const { properties } = usePropsAsObjectProperties(props);
 
     const select = computed(() => {
-      const s = new Select({
-        ...properties,
-        style: new Style(),
-      });
+      const s = new Select(properties);
       s.on("select", (event) => {
         emit("select", event);
       });
@@ -88,9 +84,6 @@ export default {
       type: Number,
     },
     featureStyle: {
-      type: Function,
-    },
-    style: {
       type: Function,
     },
   },
