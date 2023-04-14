@@ -14,7 +14,6 @@ import {
 } from "vue";
 
 import Draw from "ol/interaction/Draw";
-import { Style } from "ol/style";
 //import Style from 'ol/style/Style';
 
 export default {

@@ -15,7 +15,6 @@ import {
 
 import Collection from "ol/Collection";
 import Modify from "ol/interaction/Modify";
-import { Style } from "ol/style";
 //import Style from 'ol/style/Style';
 //import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 

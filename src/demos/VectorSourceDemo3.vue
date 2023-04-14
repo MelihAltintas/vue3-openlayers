@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { TopoJSON } from "ol/format";
 import { ref, inject } from "vue";
 export default {
   setup() {
