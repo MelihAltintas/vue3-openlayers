@@ -47,8 +47,6 @@ export default {
     const focus = () => map.focus();
     const forEachFeatureAtPixel = (pixel, callback, options = {}) =>
       map.forEachFeatureAtPixel(pixel, callback, options);
-    const forEachLayerAtPixel = (pixel, callback, layerFilter) =>
-      map.forEachLayerAtPixel(pixel, callback, layerFilter);
     const getCoordinateFromPixel = (pixel) => map.getCoordinateFromPixel(pixel);
     const refresh = () => map.refresh();
     const render = () => map.render();
@@ -71,7 +69,6 @@ export default {
       mapRef,
       focus,
       forEachFeatureAtPixel,
-      forEachLayerAtPixel,
       getCoordinateFromPixel,
       refresh,
       render,

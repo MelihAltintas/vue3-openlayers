@@ -132,20 +132,6 @@ Detect features that intersect a pixel on the viewport, and execute a callback
 with each intersecting feature. Layers included in the detection can be configured
 through the `layerFilter` option in `options`.
 
-### forEachLayerAtPixel(pixel, callback, layerFilter)
-
-- **Arguments**:
-  - `pixel {number[]}`
-  - `callback {function(ol.layer.Layer, ?(number[] | Uint8Array)): *}` Layer callback.
-    The callback will receive `layer` and array representing `[R, G, B, A]` pixel values.
-    To stop detection, callback functions can return a truthy value.
-  - `[layerFilter] {function(ol.layer.Layer): boolean | undefined}` Layer filter function.
-- **Returns**: `*` Truthy value returned from the callback.
-
-Detect layers that have a color value at a pixel on the viewport, and execute
-a callback with each matching layer. Layers included in the detection can be
-configured through `layerFilter`.
-
 ### getCoordinateFromPixel(pixel)
 
 - **Arguments**:
