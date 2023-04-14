@@ -10,11 +10,12 @@ import {
   onMounted,
   onUnmounted,
   toRefs,
-  // computed
+  computed,
 } from "vue";
 
 import Collection from "ol/Collection";
 import Modify from "ol/interaction/Modify";
+import { Style } from "ol/style";
 //import Style from 'ol/style/Style';
 //import usePropsAsObjectProperties from '@/composables/usePropsAsObjectProperties'
 
@@ -35,8 +36,8 @@ export default {
       hitDetection,
     } = toRefs(props);
 
-    const createModify = () => {
-      const modify = new Modify({
+    const modify = computed(() => {
+      const m = new Modify({
         source: source.value,
         features: features.value,
         condition: condition.value,
@@ -47,18 +48,16 @@ export default {
         hitDetection: hitDetection.value,
       });
 
-      modify.on("modifystart", (event) => {
+      m.on("modifystart", (event) => {
         emit("modifystart", event);
       });
 
-      modify.on("modifyend", (event) => {
+      m.on("modifyend", (event) => {
         emit("modifyend", event);
       });
 
-      return modify;
-    };
-
-    let modify = createModify();
+      return m;
+    });
 
     watch(
       [
@@ -70,21 +69,20 @@ export default {
         hitDetection,
       ],
       () => {
-        map.removeInteraction(modify);
-        modify = createModify();
-        map.addInteraction(modify);
-        modify.changed();
+        map.removeInteraction(modify.value);
+        map.addInteraction(modify.value);
+        modify.value.changed();
 
         map.changed();
       }
     );
 
     onMounted(() => {
-      map.addInteraction(modify);
+      map.addInteraction(modify.value);
     });
 
     onUnmounted(() => {
-      map.removeInteraction(modify);
+      map.removeInteraction(modify.value);
     });
 
     provide("stylable", modify);
