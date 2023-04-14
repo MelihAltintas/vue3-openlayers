@@ -28,8 +28,3 @@ See [Demo page for all Map Controls](../index.md)
 ### target
 
 - **Type**: `HTMLElement`
-
-### undefinedHTML
-
-- **Type**: `String`
-- **Default**: `&#160;`
