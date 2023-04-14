@@ -133,8 +133,8 @@ export default {
     layer: {
       type: String,
     },
-    style: {
-      type: String,
+    styles: {
+      type: [String, Array, Function],
     },
   },
 };

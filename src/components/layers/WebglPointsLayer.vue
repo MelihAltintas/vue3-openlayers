@@ -37,8 +37,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    style: {
-      type: Object,
+    styles: {
+      type: [String, Array, Function],
       default: () => ({
         symbol: {
           symbolType: "circle",
