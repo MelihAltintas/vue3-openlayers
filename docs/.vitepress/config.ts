@@ -58,6 +58,7 @@ export default defineConfig({
       },
       {
         text: "Layers",
+        collapsed: true,
         items: [
           {
             text: "ol-animated-clusterlayer",
@@ -91,6 +92,7 @@ export default defineConfig({
       },
       {
         text: "Sources",
+        collapsed: true,
         items: [
           {
             text: "ol-source-bingmaps",
@@ -135,131 +137,146 @@ export default defineConfig({
         ],
       },
       {
-        text: "Geometries",
+        text: "Vector Data",
+        collapsed: true,
         items: [
           {
-            text: "ol-geom-line-string",
-            link: "/componentsguide/geometries/geomlinestring/",
+            text: "ol-feature",
+            link: "/componentsguide/feature/",
           },
           {
-            text: "ol-geom-point",
-            link: "/componentsguide/geometries/geompoint/",
+            text: "Geometries",
+            collapsed: true,
+            items: [
+              {
+                text: "ol-geom-line-string",
+                link: "/componentsguide/geometries/geomlinestring/",
+              },
+              {
+                text: "ol-geom-point",
+                link: "/componentsguide/geometries/geompoint/",
+              },
+              {
+                text: "ol-geom-polygon",
+                link: "/componentsguide/geometries/geompolygon/",
+              },
+              {
+                text: "ol-geom-multi-line-string",
+                link: "/componentsguide/geometries/geommultilinestring/",
+              },
+              {
+                text: "ol-geom-multi-point",
+                link: "/componentsguide/geometries/geommultipoint/",
+              },
+              {
+                text: "ol-geom-multi-polygon",
+                link: "/componentsguide/geometries/geommultipolygon/",
+              },
+            ],
           },
           {
-            text: "ol-geom-polygon",
-            link: "/componentsguide/geometries/geompolygon/",
+            text: "Styles",
+            collapsed: true,
+            items: [
+              {
+                text: "ol-style",
+                link: "/componentsguide/styles/style/",
+              },
+              {
+                text: "ol-style-circle",
+                link: "/componentsguide/styles/circle/",
+              },
+              {
+                text: "ol-style-fill",
+                link: "/componentsguide/styles/fill/",
+              },
+              {
+                text: "ol-style-icon",
+                link: "/componentsguide/styles/icon/",
+              },
+              {
+                text: "ol-style-stroke",
+                link: "/componentsguide/styles/stroke/",
+              },
+              {
+                text: "ol-style-text",
+                link: "/componentsguide/styles/text/",
+              },
+            ],
           },
           {
-            text: "ol-geom-multi-line-string",
-            link: "/componentsguide/geometries/geommultilinestring/",
+            text: "Interactions",
+            collapsed: true,
+            items: [
+              {
+                text: "ol-interaction-clusterselect",
+                link: "/componentsguide/interactions/clusterselect/",
+              },
+              {
+                text: "ol-interaction-draw",
+                link: "/componentsguide/interactions/draw/",
+              },
+              {
+                text: "ol-interaction-dragrotate",
+                link: "/componentsguide/interactions/dragrotate/",
+              },
+              {
+                text: "ol-interaction-dragrotatezoom",
+                link: "/componentsguide/interactions/dragrotatezoom/",
+              },
+              {
+                text: "ol-interaction-modify",
+                link: "/componentsguide/interactions/modify/",
+              },
+              {
+                text: "ol-interaction-select",
+                link: "/componentsguide/interactions/select/",
+              },
+              {
+                text: "ol-interaction-snap",
+                link: "/componentsguide/interactions/snap/",
+              },
+              {
+                text: "ol-interaction-transform",
+                link: "/componentsguide/interactions/transform/",
+              },
+            ],
           },
           {
-            text: "ol-geom-multi-point",
-            link: "/componentsguide/geometries/geommultipoint/",
-          },
-          {
-            text: "ol-geom-multi-polygon",
-            link: "/componentsguide/geometries/geommultipolygon/",
-          },
-        ],
-      },
-      {
-        text: "Styles",
-        items: [
-          {
-            text: "ol-style",
-            link: "/componentsguide/styles/style/",
-          },
-          {
-            text: "ol-style-circle",
-            link: "/componentsguide/styles/circle/",
-          },
-          {
-            text: "ol-style-fill",
-            link: "/componentsguide/styles/fill/",
-          },
-          {
-            text: "ol-style-icon",
-            link: "/componentsguide/styles/icon/",
-          },
-          {
-            text: "ol-style-stroke",
-            link: "/componentsguide/styles/stroke/",
-          },
-          {
-            text: "ol-style-text",
-            link: "/componentsguide/styles/text/",
-          },
-        ],
-      },
-      {
-        text: "Interactions",
-        items: [
-          {
-            text: "ol-interaction-clusterselect",
-            link: "/componentsguide/interactions/clusterselect/",
-          },
-          {
-            text: "ol-interaction-draw",
-            link: "/componentsguide/interactions/draw/",
-          },
-          {
-            text: "ol-interaction-dragrotate",
-            link: "/componentsguide/interactions/dragrotate/",
-          },
-          {
-            text: "ol-interaction-dragrotatezoom",
-            link: "/componentsguide/interactions/dragrotatezoom/",
-          },
-          {
-            text: "ol-interaction-modify",
-            link: "/componentsguide/interactions/modify/",
-          },
-          {
-            text: "ol-interaction-select",
-            link: "/componentsguide/interactions/select/",
-          },
-          {
-            text: "ol-interaction-snap",
-            link: "/componentsguide/interactions/snap/",
-          },
-          {
-            text: "ol-interaction-transform",
-            link: "/componentsguide/interactions/transform/",
-          },
-        ],
-      },
-      {
-        text: "Animations",
-        items: [
-          {
-            text: "ol-animation-drop",
-            link: "/componentsguide/animations/drop/",
-          },
-          {
-            text: "ol-animation-fade",
-            link: "/componentsguide/animations/fade/",
-          },
-          {
-            text: "ol-animation-shake",
-            link: "/componentsguide/animations/shake/",
-          },
-          {
-            text: "ol-animation-slide",
-            link: "/componentsguide/animations/slide/",
-          },
-          {
-            text: "ol-animation-teleport",
-            link: "/componentsguide/animations/teleport/",
-          },
-          {
-            text: "ol-animation-zoom",
-            link: "/componentsguide/animations/zoom/",
+            text: "Animations",
+            collapsed: true,
+            items: [
+              {
+                text: "ol-animation-drop",
+                link: "/componentsguide/animations/drop/",
+              },
+              {
+                text: "ol-animation-fade",
+                link: "/componentsguide/animations/fade/",
+              },
+              {
+                text: "ol-animation-shake",
+                link: "/componentsguide/animations/shake/",
+              },
+              {
+                text: "ol-animation-slide",
+                link: "/componentsguide/animations/slide/",
+              },
+              {
+                text: "ol-animation-teleport",
+                link: "/componentsguide/animations/teleport/",
+              },
+              {
+                text: "ol-animation-zoom",
+                link: "/componentsguide/animations/zoom/",
+              },
+            ],
           },
         ],
       },
       {
         text: "Map Controls",
+        collapsed: true,
         items: [
           {
             text: "Demo",
