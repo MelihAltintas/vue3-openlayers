@@ -164,6 +164,13 @@
             </ol-style>
           </ol-feature>
         </ol-animation-shake>
+        <ol-feature>
+          <ol-geom-circle :center="[38, 42]" :radius="2"></ol-geom-circle>
+          <ol-style>
+            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,200,0,0.2)"></ol-style-fill>
+          </ol-style>
+        </ol-feature>
       </ol-source-vector>
     </ol-vector-layer>
 

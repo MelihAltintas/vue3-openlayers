@@ -149,6 +149,10 @@ export default defineConfig({
             collapsed: true,
             items: [
               {
+                text: "ol-geom-circle",
+                link: "/componentsguide/geometries/geomcircle/",
+              },
+              {
                 text: "ol-geom-line-string",
                 link: "/componentsguide/geometries/geomlinestring/",
               },
