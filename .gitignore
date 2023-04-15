@@ -25,3 +25,6 @@ pnpm-debug.log*
 # vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache
+
+# tests
+coverage
