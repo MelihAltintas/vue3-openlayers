@@ -28,13 +28,18 @@
                 [-98.844358, 19.693667],
                 [-98.844959, 19.691586],
               ],
+              [
+                [-98.84573034297229, 19.691206743587088],
+                [-98.84236332851385, 19.69026183008994],
+                [-98.84133866368556, 19.69351739026062],
+                [-98.8447693829186, 19.694312532467134],
+                [-98.84573034297229, 19.691206743587088],
+              ],
             ]"
           ></ol-geom-polygon>
           <ol-style>
-            <ol-style-stroke
-              :color="strokeColor"
-              :width="strokeWidth"
-            ></ol-style-stroke>
+            <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(255,0,0,0.2)"></ol-style-fill>
           </ol-style>
         </ol-feature>
       </ol-source-vector>
