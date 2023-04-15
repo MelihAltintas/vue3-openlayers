@@ -23,6 +23,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Get Started", link: "/get-started" },
       { text: "Demo", link: "/demo" },
+      { text: "Playground", link: "/playground" },
     ],
 
     sidebar: [

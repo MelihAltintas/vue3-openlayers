@@ -2,12 +2,13 @@
 name: Bug report
 about: Create a report to help us improve
 title: ""
-labels: ""
+labels: "bug"
 assignees: ""
 ---
 
 **Describe the bug**
 A clear and concise description of what the bug is.
+Ideally, you can fork the [Stackblitz starter template](https://stackblitz.com/edit/vue3-openlayers-template) and provide your issue as an example.
 
 **To Reproduce**
 Steps to reproduce the behavior:

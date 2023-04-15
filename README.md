@@ -15,6 +15,8 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 [![GitHub forks](https://img.shields.io/github/forks/MelihAltintas/vue3-openlayers)]()
 [![GitHub Stars](https://img.shields.io/github/stars/MelihAltintas/vue3-openlayers)]()
 
+[![Stackblitz Starter Template](https://img.shields.io/badge/Stackblitz-Starter%20Template-green)](https://stackblitz.com/edit/vue3-openlayers-template?file=src%2Fcomponents%2FTheMap.vue)
+
 <p align="center">
   <a href="https://vue3openlayers.netlify.app/" target="_blank" title="Vue OpenLayers Homepage">
     <img width="100" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/logo.png"><br />
