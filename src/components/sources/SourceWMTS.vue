@@ -28,7 +28,7 @@ export default {
 
       for (let z = 0; z < properties.tileZoomLevel; ++z) {
         resolutions[z] = size.value / Math.pow(2, z);
-        matrixIds[z] = z;
+        matrixIds[z] = props.tileMatrixPrefix + z;
       }
 
       return new WMTSTileGrid({
@@ -132,6 +132,10 @@ export default {
     },
     layer: {
       type: String,
+    },
+    tileMatrixPrefix: {
+      type: String,
+      default: ''
     },
     styles: {
       type: [String, Array, Function],
