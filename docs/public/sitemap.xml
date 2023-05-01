@@ -58,6 +58,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://vue3openlayers.netlify.app/componentsguide/layers/vectorimagelayer/</loc>
+  <lastmod>2023-04-01T14:14:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://vue3openlayers.netlify.app/componentsguide/layers/vectorlayer/</loc>
   <lastmod>2021-08-15T21:05:05+00:00</lastmod>
   <priority>0.80</priority>
