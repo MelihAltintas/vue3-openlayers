@@ -1,4 +1,4 @@
-# ol-source-xyz
+# ol-source-tile-arcgis-rest
 
 Layer source for tile data from ArcGIS Rest services. Map and Image Services are supported.
 
