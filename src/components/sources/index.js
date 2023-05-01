@@ -9,7 +9,7 @@ import SourceTianDiTu from "./SourceTianDiTu.vue";
 import SourceImageWMS from "./SourceImageWMS.vue";
 import SourceTileWMS from "./SourceTileWMS.vue";
 import SourceWebglPoints from "./SourceWebglPoints.vue";
-import SourceTileArcGISRest from "@/components/sources/SourceTileArcGISRest.vue";
+import SourceTileArcGISRest from "@/components/sources/SourceTileArcGisRest.vue";
 
 function install(app) {
   if (install.installed) {
