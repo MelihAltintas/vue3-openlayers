@@ -135,7 +135,7 @@ export default {
     },
     tileMatrixPrefix: {
       type: String,
-      default: ''
+      default: "",
     },
     styles: {
       type: [String, Array, Function],

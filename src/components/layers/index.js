@@ -1,6 +1,7 @@
 import TileLayer from "./TileLayer.vue";
 import WebGLTileLayer from "./WebGLTileLayer.vue";
 import ImageLayer from "./ImageLayer.vue";
+import VectorImageLayer from "./VectorImageLayer.vue";
 import VectorLayer from "./VectorLayer.vue";
 import AnimatedClusterLayer from "./AnimatedClusterLayer.vue";
 import WebglPointsLayer from "./WebglPointsLayer.vue";
@@ -16,6 +17,7 @@ function install(app) {
   app.component(TileLayer.name, TileLayer);
   app.component(WebGLTileLayer.name, WebGLTileLayer);
   app.component(ImageLayer.name, ImageLayer);
+  app.component(VectorImageLayer.name, VectorImageLayer);
   app.component(VectorLayer.name, VectorLayer);
   app.component(AnimatedClusterLayer.name, AnimatedClusterLayer);
   app.component(WebglPointsLayer.name, WebglPointsLayer);
@@ -29,6 +31,7 @@ export {
   TileLayer,
   WebGLTileLayer,
   ImageLayer,
+  VectorImageLayer,
   VectorLayer,
   AnimatedClusterLayer,
   WebglPointsLayer,
