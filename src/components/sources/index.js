@@ -9,6 +9,7 @@ import SourceTianDiTu from "./SourceTianDiTu.vue";
 import SourceImageWMS from "./SourceImageWMS.vue";
 import SourceTileWMS from "./SourceTileWMS.vue";
 import SourceWebglPoints from "./SourceWebglPoints.vue";
+import SourceTileArcGISRest from "@/components/sources/SourceTileArcGisRest.vue";
 
 function install(app) {
   if (install.installed) {
@@ -28,6 +29,7 @@ function install(app) {
   app.component(SourceImageWMS.name, SourceImageWMS);
   app.component(SourceTileWMS.name, SourceTileWMS);
   app.component(SourceWebglPoints.name, SourceWebglPoints);
+  app.component(SourceTileArcGISRest.name, SourceTileArcGISRest);
 }
 
 export default install;
@@ -45,4 +47,5 @@ export {
   SourceTileWMS,
   SourceWebglPoints,
   SourceBingMaps,
+  SourceTileArcGISRest,
 };
