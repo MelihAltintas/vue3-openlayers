@@ -77,6 +77,10 @@ export default defineConfig({
             link: "/componentsguide/layers/tilelayer/",
           },
           {
+            text: "ol-vector-image-layer",
+            link: "/componentsguide/layers/vectorimagelayer/",
+          },
+          {
             text: "ol-vector-layer",
             link: "/componentsguide/layers/vectorlayer/",
           },
