@@ -1,6 +1,6 @@
 {
   "name": "vue3-openlayers",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Openlayers Wrapper for Vue3",
   "repository": {
     "type": "git",
