@@ -14,7 +14,8 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 export default {
   name: "ol-source-vector",
   setup(props) {
-    const layer = inject("vectorLayer", inject("heatmapLayer"));
+    const layer =
+      inject("vectorLayer", undefined) || inject("heatmapLayer", undefined);
 
     const { properties } = usePropsAsObjectProperties(props);
 
