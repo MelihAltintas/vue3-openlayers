@@ -1,7 +1,7 @@
 import OlSourceXYZ from "./OlSourceXYZ.vue";
+import OlSourceWMTS from "./OlSourceWMTS.vue";
 import SourceOSM from "./SourceOSM.vue";
 import SourceImageStatic from "./SourceImageStatic.vue";
-import SourceWMTS from "./SourceWMTS.vue";
 import SourceVector from "./SourceVector.vue";
 import SourceCluster from "./SourceCluster.vue";
 import SourceBingMaps from "./SourceBingMaps.vue";
@@ -19,9 +19,9 @@ function install(app) {
   install.installed = true;
 
   app.component("ol-source-xyz", OlSourceXYZ);
+  app.component("ol-source-wmts", OlSourceWMTS);
   app.component(SourceOSM.name, SourceOSM);
   app.component(SourceImageStatic.name, SourceImageStatic);
-  app.component(SourceWMTS.name, SourceWMTS);
   app.component(SourceVector.name, SourceVector);
   app.component(SourceCluster.name, SourceCluster);
   app.component(SourceBingMaps.name, SourceBingMaps);
@@ -37,9 +37,9 @@ export default install;
 export {
   install,
   OlSourceXYZ,
+  OlSourceWMTS,
   SourceOSM,
   SourceImageStatic,
-  SourceWMTS,
   SourceVector,
   SourceCluster,
   SourceTianDiTu,

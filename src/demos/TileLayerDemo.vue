@@ -23,33 +23,18 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([-11158582, 4813697]);
-    const zoom = ref(4);
-    const rotation = ref(0);
-    const url = ref("https://mrdata.usgs.gov/mapcache/wmts");
-    const layerName = ref("sgmc2");
-    const matrixSet = ref("GoogleMapsCompatible");
-    const format = ref("image/png");
-    const styleName = ref("default");
-    const attribution = ref(
-      'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>'
-    );
 
-    return {
-      center,
-      zoom,
-      rotation,
-      url,
-      layerName,
-      matrixSet,
-      format,
-      styleName,
-      attribution,
-    };
-  },
-};
+const center = ref([-11158582, 4813697]);
+const zoom = ref(4);
+const rotation = ref(0);
+const url = ref("https://mrdata.usgs.gov/mapcache/wmts");
+const layerName = ref("sgmc2");
+const matrixSet = ref("GoogleMapsCompatible");
+const format = ref("image/png");
+const styleName = ref("default");
+const attribution = ref(
+  'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>'
+);
 </script>
