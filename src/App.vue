@@ -35,7 +35,7 @@
       :radius="20"
       :weight="heatmapWeight"
       :gradient="['purple', '#89CFF0', '#93C572', '#FFBF00', 'pink']"
-      zIndex="1"
+      :zIndex="1"
     >
       <ol-source-vector
         ref="earthquakes"

@@ -39,7 +39,7 @@ Example below shows how you can use ol-heatmap-layer and ol-source-vector to ren
       :blur="20"
       :radius="20"
       :weight="heatmapWeight"
-      zIndex="1"
+      :zIndex="1"
     >
       <ol-source-vector
         ref="earthquakes"
