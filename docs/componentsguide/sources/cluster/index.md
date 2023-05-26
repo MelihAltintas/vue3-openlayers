@@ -1,6 +1,8 @@
 # ol-source-cluster
 
-Layer source to cluster vector data. Works out of the box with point geometries. For other geometry types, or if not all geometries should be considered for clustering, a custom geometryFunction can be defined.
+Layer source to cluster vector data.
+Works out of the box with point geometries.
+For other geometry types, or if not all geometries should be considered for clustering, a custom geometryFunction can be defined.
 
 <script setup>
 import ClusterDemo from "@demos/ClusterDemo.vue"
@@ -21,7 +23,7 @@ This example shows how to do clustering on 1000 point features.
     ref="map"
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:800px"
+    style="height: 800px"
   >
     <ol-view
       ref="view"
@@ -38,7 +40,7 @@ This example shows how to do clustering on 1000 point features.
     <ol-vector-layer>
       <ol-source-cluster :distance="40">
         <ol-source-vector>
-          <ol-feature v-for="index in 1000" :key="index">
+          <ol-feature v-for="index in 300" :key="index">
             <ol-geom-point
               :coordinates="[
                 getRandomInRange(24, 45, 3),
@@ -65,38 +67,35 @@ This example shows how to do clustering on 1000 point features.
   </ol-map>
 </template>
 
-<script>
-import { ref, inject } from "vue";
+<script setup>
+import { ref } from "vue";
 
-export default {
-  setup() {
-    const center = ref([34, 39.13]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6.8);
-    const rotation = ref(0);
+const center = ref([34, 39.13]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6.8);
+const rotation = ref(0);
 
-    const overrideStyleFunction = (feature, style) => {
-      let clusteredFeatures = feature.get("features");
-      let size = clusteredFeatures.length;
+const overrideStyleFunction = (feature, style) => {
+  const clusteredFeatures = feature.get("features");
+  const size = clusteredFeatures.length;
 
-      style.getText().setText(size.toString());
-    };
+  style.getText().setText(size.toString());
+};
 
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      overrideStyleFunction,
-      getRandomInRange,
-    };
-  },
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 </script>
+
+<style>
+.overlay-content {
+  background: red !important;
+  color: white;
+  box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
+  padding: 10px 20px;
+  font-size: 16px;
+}
+</style>
 ```
 
 ## Properties

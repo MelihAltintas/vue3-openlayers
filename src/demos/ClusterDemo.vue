@@ -47,36 +47,23 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
-export default {
-  setup() {
-    const center = ref([34, 39.13]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6.8);
-    const rotation = ref(0);
+const center = ref([34, 39.13]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6.8);
+const rotation = ref(0);
 
-    const overrideStyleFunction = (feature, style) => {
-      const clusteredFeatures = feature.get("features");
-      const size = clusteredFeatures.length;
+const overrideStyleFunction = (feature, style) => {
+  const clusteredFeatures = feature.get("features");
+  const size = clusteredFeatures.length;
 
-      style.getText().setText(size.toString());
-    };
+  style.getText().setText(size.toString());
+};
 
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      overrideStyleFunction,
-      getRandomInRange,
-    };
-  },
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 </script>
 
