@@ -1,5 +1,5 @@
 import OlFeature from "./OlFeature.vue";
-import Map from "./Map.vue";
+import OlMap from "./OlMap.vue";
 import View from "./View.vue";
 import Overlay from "./Overlay.vue";
 import GeoLocation from "./GeoLocation.vue";
@@ -13,7 +13,7 @@ function install(app) {
   install.installed = true;
 
   app.component("ol-feature", OlFeature);
-  app.component(Map.name, Map);
+  app.component("ol-map", OlMap);
   app.component(View.name, View);
   app.component(Overlay.name, Overlay);
   app.component(GeoLocation.name, GeoLocation);
@@ -22,4 +22,4 @@ function install(app) {
 
 export default install;
 
-export { install, OlFeature, Map, View, Overlay, GeoLocation, Projection };
+export { install, OlFeature, OlMap, View, Overlay, GeoLocation, Projection };
