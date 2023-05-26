@@ -42,7 +42,8 @@ export default {
   },
   props: {
     weight: {
-      type: Function,
+      type: [String, Function],
+      default: "weight",
     },
     extent: {
       type: Array,

@@ -88,10 +88,11 @@ export default {
 
 ### weight
 
-- **Type**: `Function`
-- **Default**: `none`
+- **Type**: `String` | `Function`
+- **Default**: `'weight'`
 
-A function that returns a weight from a feature. Weight values should range from 0 to 1 (and values outside will be clamped to that range).
+The feature attribute to use for the weight or a function that returns a weight from a feature.
+Weight values should range from 0 to 1 (and values outside will be clamped to that range).
 
 ### extent
 
