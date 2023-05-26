@@ -1,4 +1,4 @@
-import SourceXYZ from "./SourceXYZ.vue";
+import OlSourceXYZ from "./OlSourceXYZ.vue";
 import SourceOSM from "./SourceOSM.vue";
 import SourceImageStatic from "./SourceImageStatic.vue";
 import SourceWMTS from "./SourceWMTS.vue";
@@ -18,7 +18,7 @@ function install(app) {
 
   install.installed = true;
 
-  app.component(SourceXYZ.name, SourceXYZ);
+  app.component("ol-source-xyz", OlSourceXYZ);
   app.component(SourceOSM.name, SourceOSM);
   app.component(SourceImageStatic.name, SourceImageStatic);
   app.component(SourceWMTS.name, SourceWMTS);
@@ -36,7 +36,7 @@ export default install;
 
 export {
   install,
-  SourceXYZ,
+  OlSourceXYZ,
   SourceOSM,
   SourceImageStatic,
   SourceWMTS,
