@@ -18,13 +18,13 @@ function install(app) {
 
   install.installed = true;
 
+  app.component("ol-source-bingmaps", OlSourceBingMaps);
   app.component("ol-source-xyz", OlSourceXYZ);
   app.component("ol-source-wmts", OlSourceWMTS);
   app.component(SourceOSM.name, SourceOSM);
   app.component(SourceImageStatic.name, SourceImageStatic);
   app.component(SourceVector.name, SourceVector);
   app.component(SourceCluster.name, SourceCluster);
-  app.component(SourceBingMaps.name, SourceBingMaps);
   app.component(SourceTianDiTu.name, SourceTianDiTu);
   app.component(SourceImageWMS.name, SourceImageWMS);
   app.component(SourceTileWMS.name, SourceTileWMS);
@@ -36,6 +36,7 @@ export default install;
 
 export {
   install,
+  OlSourceBingMaps,
   OlSourceXYZ,
   OlSourceWMTS,
   SourceOSM,
@@ -46,6 +47,5 @@ export {
   SourceImageWMS,
   SourceTileWMS,
   SourceWebglPoints,
-  SourceBingMaps,
   SourceTileArcGISRest,
 };
