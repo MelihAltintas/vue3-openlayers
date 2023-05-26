@@ -20,7 +20,7 @@ Example below shows how to add custom content on to the map.
 
 ```vue
 <template>
-  <ol-map style="height:400px">
+  <ol-map style="height: 400px">
     <ol-view
       ref="view"
       :center="center"
@@ -44,6 +44,15 @@ Example below shows how to add custom content on to the map.
   </ol-map>
 </template>
 
+<script setup>
+import { ref } from "vue";
+
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
+</script>
+
 <style>
 .overlay-content {
   background: #efefef;
@@ -52,25 +61,6 @@ Example below shows how to add custom content on to the map.
   font-size: 16px;
 }
 </style>
-
-<script>
-import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-    };
-  },
-};
-</script>
 ```
 
 ## Properties
