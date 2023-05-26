@@ -2,9 +2,9 @@ import OlSourceBingMaps from "./OlSourceBingMaps.vue";
 import OlSourceCluster from "./OlSourceCluster.vue";
 import OlSourceImageStatic from "./OlSourceImageStatic.vue";
 import OlSourceImageWMS from "./OlSourceImageWMS.vue";
+import OlSourceOSM from "./OlSourceOSM.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
-import SourceOSM from "./SourceOSM.vue";
 import SourceVector from "./SourceVector.vue";
 import SourceTianDiTu from "./SourceTianDiTu.vue";
 import SourceTileWMS from "./SourceTileWMS.vue";
@@ -22,9 +22,9 @@ function install(app) {
   app.component("ol-source-cluster", OlSourceCluster);
   app.component("ol-source-image-static", OlSourceImageStatic);
   app.component("ol-source-image-wms", OlSourceImageWMS);
+  app.component("ol-source-osm", OlSourceOSM);
   app.component("ol-source-xyz", OlSourceXYZ);
   app.component("ol-source-wmts", OlSourceWMTS);
-  app.component(SourceOSM.name, SourceOSM);
   app.component(SourceVector.name, SourceVector);
   app.component(SourceTianDiTu.name, SourceTianDiTu);
   app.component(SourceTileWMS.name, SourceTileWMS);
@@ -40,9 +40,9 @@ export {
   OlSourceCluster,
   OlSourceImageStatic,
   OlSourceImageWMS,
+  OlSourceOSM,
   OlSourceXYZ,
   OlSourceWMTS,
-  SourceOSM,
   SourceVector,
   SourceTianDiTu,
   SourceTileWMS,
