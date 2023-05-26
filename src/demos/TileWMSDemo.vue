@@ -29,20 +29,10 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
-export default {
-  setup() {
-    const zoom = ref(4);
-    const rotation = ref(0);
-    const center = ref([-10997148, 4569099]);
-
-    return {
-      center,
-      zoom,
-      rotation,
-    };
-  },
-};
+const zoom = ref(4);
+const rotation = ref(0);
+const center = ref([-10997148, 4569099]);
 </script>
