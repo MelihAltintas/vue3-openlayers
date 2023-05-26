@@ -2,13 +2,13 @@
   <div v-if="false"></div>
 </template>
 
-<script>
+<script setup>
 import WMTSSource from "ol/source/WMTS";
 import TileGridWMTS from "ol/tilegrid/WMTS";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
 
-export class Tianditu extends WMTSSource {
+class Tianditu extends WMTSSource {
   constructor(opt_options) {
     Tianditu.layerLabelMap = {
       vec: "cva",
@@ -121,99 +121,97 @@ export class Tianditu extends WMTSSource {
     return tileGird;
   }
 }
-export default {
-  name: "ol-source-tianditu",
-  setup(props) {
-    const layer = inject("tileLayer");
-    const { properties } = usePropsAsObjectProperties(props);
-    const source = computed(() => {
-      return new Tianditu(properties);
-    });
-    watch(source, () => {
-      layer.value.setSource(source.value);
-    });
-    watch(layer, () => {
-      layer.value.setSource(source.value);
-    });
-    onMounted(() => {
-      layer.value.setSource(source.value);
-    });
-    onUnmounted(() => {
-      layer.value.setSource(null);
-    });
-    return {
-      layer,
-      source,
-    };
+
+const props = defineProps({
+  layerType: {
+    type: String,
+    default: "img",
   },
-  props: {
-    layerType: {
-      type: String,
-      default: "img",
-    },
-    tk: {
-      type: String,
-    },
-    isLabel: {
-      type: Boolean,
-      default: false,
-    },
-    cacheSize: {
-      type: Number,
-    },
-    crossOrigin: {
-      type: String,
-    },
-    projection: {
-      Type: String,
-      default: "EPSG:3857",
-    },
-    hidpi: {
-      type: Boolean,
-      default: false,
-    },
-    requestEncoding: {
-      type: String,
-      default: "KVP",
-    },
-    format: {
-      type: String,
-    },
-    version: {
-      type: String,
-      default: "1.0.0",
-    },
-    culture: {
-      type: String,
-      default: "en-us",
-    },
-    matrixSet: {
-      type: String,
-    },
-    dimensions: {
-      type: Object,
-      default: () => ({}),
-    },
-    maxZoom: {
-      type: Number,
-      default: 21,
-    },
-    reprojectionErrorThreshold: {
-      type: Number,
-    },
-    tileLoadFunction: {
-      type: Function,
-      default: (imageTile, src) => (imageTile.getImage().src = src),
-    },
-    wrapX: {
-      type: Boolean,
-      default: true,
-    },
-    transition: {
-      type: Number,
-    },
+  tk: {
+    type: String,
   },
-};
+  isLabel: {
+    type: Boolean,
+    default: false,
+  },
+  cacheSize: {
+    type: Number,
+  },
+  crossOrigin: {
+    type: String,
+  },
+  projection: {
+    Type: String,
+    default: "EPSG:3857",
+  },
+  hidpi: {
+    type: Boolean,
+    default: false,
+  },
+  requestEncoding: {
+    type: String,
+    default: "KVP",
+  },
+  format: {
+    type: String,
+  },
+  version: {
+    type: String,
+    default: "1.0.0",
+  },
+  culture: {
+    type: String,
+    default: "en-us",
+  },
+  matrixSet: {
+    type: String,
+  },
+  dimensions: {
+    type: Object,
+    default: () => ({}),
+  },
+  maxZoom: {
+    type: Number,
+    default: 21,
+  },
+  reprojectionErrorThreshold: {
+    type: Number,
+  },
+  tileLoadFunction: {
+    type: Function,
+    default: (imageTile, src) => (imageTile.getImage().src = src),
+  },
+  wrapX: {
+    type: Boolean,
+    default: true,
+  },
+  transition: {
+    type: Number,
+  },
+});
+
+const layer = inject("tileLayer");
+const { properties } = usePropsAsObjectProperties(props);
+const source = computed(() => {
+  return new Tianditu(properties);
+});
+watch(source, () => {
+  layer.value.setSource(source.value);
+});
+watch(layer, () => {
+  layer.value.setSource(source.value);
+});
+onMounted(() => {
+  layer.value.setSource(source.value);
+});
+onUnmounted(() => {
+  layer.value.setSource(null);
+});
+
+defineExpose({
+  layer,
+  source,
+});
 </script>
 
 <style lang=""></style>
