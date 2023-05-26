@@ -31,45 +31,32 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([-8908887.277395891, 5381918.072437216]);
-    const projection = ref("EPSG:3857");
-    const zoom = ref(14);
-    const rotation = ref(0);
 
-    const urlFunction = (extent, resolution, projection) => {
-      const proj = projection.getCode();
-      const url =
-        "https://ahocevar.com/geoserver/wfs?service=WFS&" +
-        "version=1.1.0&request=GetFeature&typename=osm:water_areas&" +
-        "outputFormat=application/json&srsname=" +
-        proj +
-        "&" +
-        "bbox=" +
-        extent.join(",") +
-        "," +
-        proj;
-      return url;
-    };
+const center = ref([-8908887.277395891, 5381918.072437216]);
+const projection = ref("EPSG:3857");
+const zoom = ref(14);
+const rotation = ref(0);
 
-    const strategy = inject("ol-loadingstrategy");
-    const bbox = strategy.bbox;
-    console.log(bbox);
-    const format = inject("ol-format");
-    const GeoJSON = new format.GeoJSON();
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      urlFunction,
-      bbox,
-      GeoJSON,
-    };
-  },
+const urlFunction = (extent, resolution, projection) => {
+  const proj = projection.getCode();
+  const url =
+    "https://ahocevar.com/geoserver/wfs?service=WFS&" +
+    "version=1.1.0&request=GetFeature&typename=osm:water_areas&" +
+    "outputFormat=application/json&srsname=" +
+    proj +
+    "&" +
+    "bbox=" +
+    extent.join(",") +
+    "," +
+    proj;
+  return url;
 };
+
+const strategy = inject("ol-loadingstrategy");
+const bbox = strategy.bbox;
+console.log(bbox);
+const format = inject("ol-format");
+const GeoJSON = new format.GeoJSON();
 </script>

@@ -6,9 +6,9 @@ import OlSourceOSM from "./OlSourceOSM.vue";
 import OlSourceTianDiTu from "./OlSourceTianDiTu.vue";
 import OlSourceTileArcGISRest from "@/components/sources/OlSourceTileArcGISRest.vue";
 import OlSourceTileWMS from "./OlSourceTileWMS.vue";
+import OlSourceVector from "./OlSourceVector.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
-import SourceVector from "./SourceVector.vue";
 import SourceWebglPoints from "./SourceWebglPoints.vue";
 
 function install(app) {
@@ -26,9 +26,9 @@ function install(app) {
   app.component("ol-source-tianditu", OlSourceTianDiTu);
   app.component("ol-source-tile-arcgis-rest", OlSourceTileArcGISRest);
   app.component("ol-source-tile-wms", OlSourceTileWMS);
+  app.component("ol-source-vector", OlSourceVector);
   app.component("ol-source-xyz", OlSourceXYZ);
   app.component("ol-source-wmts", OlSourceWMTS);
-  app.component(SourceVector.name, SourceVector);
   app.component(SourceWebglPoints.name, SourceWebglPoints);
 }
 
@@ -44,8 +44,8 @@ export {
   OlSourceTianDiTu,
   OlSourceTileArcGISRest,
   OlSourceTileWMS,
+  OlSourceVector,
   OlSourceXYZ,
   OlSourceWMTS,
-  SourceVector,
   SourceWebglPoints,
 };

@@ -23,7 +23,7 @@ Static features with the help of ol-feature, should be used only for tiny static
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -56,33 +56,18 @@ Static features with the help of ol-feature, should be used only for tiny static
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
-    const radius = ref(40);
-    const strokeWidth = ref(10);
-    const strokeColor = ref("red");
-    const fillColor = ref("white");
-    const coordinate = ref([40, 40]);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      radius,
-      strokeWidth,
-      strokeColor,
-      fillColor,
-      coordinate,
-    };
-  },
-};
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
+const radius = ref(40);
+const strokeWidth = ref(10);
+const strokeColor = ref("red");
+const fillColor = ref("white");
+const coordinate = ref([40, 40]);
 </script>
 ```
 
@@ -97,7 +82,7 @@ Load features simply by providing url value and format GeoJSON
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -117,32 +102,20 @@ Load features simply by providing url value and format GeoJSON
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([0, 0]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(3);
-    const rotation = ref(0);
 
-    const url = ref(
-      "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
-    );
+const center = ref([0, 0]);
+const projection = ref("EPSG:4326");
+const zoom = ref(3);
+const rotation = ref(0);
 
-    const format = inject("ol-format");
-    const geoJson = new format.GeoJSON();
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      url,
-      geoJson,
-    };
-  },
-};
+const url = ref(
+  "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
+);
+const format = inject("ol-format");
+console.log(format);
+const geoJson = new format.GeoJSON();
 </script>
 ```
 
@@ -159,7 +132,7 @@ Next example loads features from remote WFS service by viewport BBOX. With forma
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -188,47 +161,34 @@ Next example loads features from remote WFS service by viewport BBOX. With forma
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([-8908887.277395891, 5381918.072437216]);
-    const projection = ref("EPSG:3857");
-    const zoom = ref(14);
-    const rotation = ref(0);
 
-    const urlFunction = (extent, resolution, projection) => {
-      var proj = projection.getCode();
-      let url =
-        "https://ahocevar.com/geoserver/wfs?service=WFS&" +
-        "version=1.1.0&request=GetFeature&typename=osm:water_areas&" +
-        "outputFormat=application/json&srsname=" +
-        proj +
-        "&" +
-        "bbox=" +
-        extent.join(",") +
-        "," +
-        proj;
-      return url;
-    };
+const center = ref([-8908887.277395891, 5381918.072437216]);
+const projection = ref("EPSG:3857");
+const zoom = ref(14);
+const rotation = ref(0);
 
-    const strategy = inject("ol-loadingstrategy");
-    const bbox = strategy.bbox;
-    console.log(bbox);
-    const format = inject("ol-format");
-    const GeoJSON = new format.GeoJSON();
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      urlFunction,
-      bbox,
-      GeoJSON,
-    };
-  },
+const urlFunction = (extent, resolution, projection) => {
+  const proj = projection.getCode();
+  const url =
+    "https://ahocevar.com/geoserver/wfs?service=WFS&" +
+    "version=1.1.0&request=GetFeature&typename=osm:water_areas&" +
+    "outputFormat=application/json&srsname=" +
+    proj +
+    "&" +
+    "bbox=" +
+    extent.join(",") +
+    "," +
+    proj;
+  return url;
 };
+
+const strategy = inject("ol-loadingstrategy");
+const bbox = strategy.bbox;
+console.log(bbox);
+const format = inject("ol-format");
+const GeoJSON = new format.GeoJSON();
 </script>
 ```
 
@@ -269,36 +229,23 @@ You can also use other Vector formats like TopoJSON.
   </ol-map>
 </template>
 
-<script>
-import { TopoJSON } from "ol/format";
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([4.4764595, 50.5010789]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(7.5);
-    const rotation = ref(0);
 
-    const url =
-      "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";
+const center = ref([4.4764595, 50.5010789]);
+const projection = ref("EPSG:4326");
+const zoom = ref(7.5);
+const rotation = ref(0);
 
-    const format = inject("ol-format");
-    const TopoJSON = new format.TopoJSON({
-      // don't want to render the full world polygon (stored as 'land' layer),
-      // which repeats all countries
-      layers: ["arrondissements", "provinces"],
-    });
+const url =
+  "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      url,
-      TopoJSON,
-    };
-  },
-};
+const format = inject("ol-format");
+const TopoJSON = new format.TopoJSON({
+  // don't want to render the full world polygon (stored as 'land' layer),
+  // which repeats all countries
+  layers: ["arrondissements", "provinces"],
+});
 </script>
 ```
 

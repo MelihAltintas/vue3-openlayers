@@ -38,31 +38,16 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
-    const radius = ref(40);
-    const strokeWidth = ref(10);
-    const strokeColor = ref("red");
-    const fillColor = ref("white");
-    const coordinate = ref([40, 40]);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      radius,
-      strokeWidth,
-      strokeColor,
-      fillColor,
-      coordinate,
-    };
-  },
-};
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
+const radius = ref(40);
+const strokeWidth = ref(10);
+const strokeColor = ref("red");
+const fillColor = ref("white");
+const coordinate = ref([40, 40]);
 </script>

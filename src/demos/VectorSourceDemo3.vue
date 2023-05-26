@@ -26,33 +26,21 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([4.4764595, 50.5010789]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(7.5);
-    const rotation = ref(0);
 
-    const url =
-      "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";
+const center = ref([4.4764595, 50.5010789]);
+const projection = ref("EPSG:4326");
+const zoom = ref(7.5);
+const rotation = ref(0);
 
-    const format = inject("ol-format");
-    const TopoJSON = new format.TopoJSON({
-      // don't want to render the full world polygon (stored as 'land' layer),
-      // which repeats all countries
-      layers: ["arrondissements", "provinces"],
-    });
+const url =
+  "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      url,
-      TopoJSON,
-    };
-  },
-};
+const format = inject("ol-format");
+const TopoJSON = new format.TopoJSON({
+  // don't want to render the full world polygon (stored as 'land' layer),
+  // which repeats all countries
+  layers: ["arrondissements", "provinces"],
+});
 </script>
