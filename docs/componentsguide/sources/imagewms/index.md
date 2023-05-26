@@ -17,7 +17,7 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -44,20 +44,11 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 </template>
 
 <script>
-import { ref, reactive } from "vue";
-export default {
-  setup() {
-    const zoom = ref(4);
-    const rotation = ref(0);
-    const center = ref([-10997148, 4569099]);
+import { ref } from "vue";
 
-    return {
-      center,
-      zoom,
-      rotation,
-    };
-  },
-};
+const zoom = ref(4);
+const rotation = ref(0);
+const center = ref([-10997148, 4569099]);
 </script>
 ```
 
