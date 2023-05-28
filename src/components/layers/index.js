@@ -1,5 +1,5 @@
 import WebGLTileLayer from "./WebGLTileLayer.vue";
-import VectorImageLayer from "./VectorImageLayer.vue";
+import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import VectorLayer from "./VectorLayer.vue";
 import OlAnimatedClusterLayer from "./OlAnimatedClusterLayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
@@ -18,8 +18,8 @@ function install(app) {
   app.component("ol-heatmap-layer", OlHeatmapLayer);
   app.component("ol-image-layer", OlImageLayer);
   app.component("ol-tile-layer", OlTileLayer);
+  app.component("ol-vector-image-layer", OlVectorImageLayer);
   app.component(WebGLTileLayer.name, WebGLTileLayer);
-  app.component(VectorImageLayer.name, VectorImageLayer);
   app.component(VectorLayer.name, VectorLayer);
   app.component(WebglPointsLayer.name, WebglPointsLayer);
 }
@@ -32,8 +32,8 @@ export {
   OlHeatmapLayer,
   OlImageLayer,
   OlTileLayer,
+  OlVectorImageLayer,
   WebGLTileLayer,
-  VectorImageLayer,
   VectorLayer,
   WebglPointsLayer,
 };

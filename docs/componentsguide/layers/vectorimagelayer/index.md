@@ -23,7 +23,7 @@ Load features simply by providing url value and format GeoJSON
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -43,31 +43,17 @@ Load features simply by providing url value and format GeoJSON
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([0, 0]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(3);
-    const rotation = ref(0);
 
-    const url = ref("https://openlayers.org/data/vector/ecoregions.json");
+const center = ref([0, 0]);
+const projection = ref("EPSG:4326");
+const zoom = ref(3);
+const rotation = ref(0);
 
-    const format = inject("ol-format");
-    console.log(format);
-    const geoJson = new format.GeoJSON();
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      url,
-      geoJson,
-    };
-  },
-};
+const url = ref("https://openlayers.org/data/vector/ecoregions.json");
+const format = inject("ol-format");
+const geoJson = new format.GeoJSON();
 </script>
 ```
 
@@ -82,7 +68,7 @@ A CSS class name to set to the layer element.
 
 ### opacity
 
-- **Type**: `number `
+- **Type**: `number`
 - **Default**: `1`
 
 Opacity (0, 1).

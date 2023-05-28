@@ -32,6 +32,5 @@ const rotation = ref(0);
 
 const url = ref("https://openlayers.org/data/vector/ecoregions.json");
 const format = inject("ol-format");
-console.log(format);
 const geoJson = new format.GeoJSON();
 </script>
