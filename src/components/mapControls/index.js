@@ -10,10 +10,10 @@ import OlOverviewMapControl from "./OlOverviewMapControl.vue";
 import OlPrintDialogControl from "./OlPrintDialogControl.vue";
 import OlRotateControl from "./OlRotateControl.vue";
 import OlScaleLineControl from "./OlScaleLineControl.vue";
+import OlSwipeControl from "./OlSwipeControl.vue";
 import ZoomControl from "./ZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
 import ZoomToExtentControl from "./ZoomToExtentControl.vue";
-import SwipeControl from "./SwipeControl.vue";
 import ToggleControl from "./ToggleControl.vue";
 import VideoRecorderControl from "./VideoRecorderControl.vue";
 import ZoneControl from "./ZoneControl.vue";
@@ -35,7 +35,7 @@ function install(app) {
   app.component(ZoomToExtentControl.name, ZoomToExtentControl);
   app.component("ol-rotate-control", OlRotateControl);
   app.component("ol-context-menu-control", OlContextMenuControl);
-  app.component(SwipeControl.name, SwipeControl);
+  app.component("ol-swipe-control", OlSwipeControl);
   app.component("ol-control-bar", OlControlBar);
   app.component(ToggleControl.name, ToggleControl);
   app.component("ol-button-control", OlButtonControl);
@@ -62,10 +62,10 @@ export {
   OlPrintDialogControl,
   OlRotateControl,
   OlScaleLineControl,
+  OlSwipeControl,
   ZoomControl,
   ZoomSliderControl,
   ZoomToExtentControl,
-  SwipeControl,
   ToggleControl,
   VideoRecorderControl,
   ZoneControl,
