@@ -89,7 +89,7 @@ Opacity (0, 1).
 
 ### visible
 
-- **Type**: `boolean  `
+- **Type**: `boolean`
 - **Default**: `true`
 
 Visibility.

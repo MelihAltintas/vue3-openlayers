@@ -17,7 +17,7 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -73,62 +73,47 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
 import markerIcon from "@/assets/marker.png";
 
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(5);
-    const rotation = ref(0);
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(5);
+const rotation = ref(0);
 
-    const overrideStyleFunction = (feature, style) => {
-      let clusteredFeatures = feature.get("features");
-      let size = clusteredFeatures.length;
+const overrideStyleFunction = (feature, style) => {
+  const clusteredFeatures = feature.get("features");
+  const size = clusteredFeatures.length;
 
-      let color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
-      var radius = Math.max(8, Math.min(size, 20));
-      let dash = (2 * Math.PI * radius) / 6;
-      let calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+  const color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+  const radius = Math.max(8, Math.min(size, 20));
+  const dash = (2 * Math.PI * radius) / 6;
+  const calculatedDash = [0, dash, dash, dash, dash, dash, dash];
 
-      style.getImage().getStroke().setLineDash(dash);
-      style
-        .getImage()
-        .getStroke()
-        .setColor("rgba(" + color + ",0.5)");
-      style.getImage().getStroke().setLineDash(calculatedDash);
-      style
-        .getImage()
-        .getFill()
-        .setColor("rgba(" + color + ",1)");
+  style.getImage().getStroke().setLineDash(dash);
+  style
+    .getImage()
+    .getStroke()
+    .setColor("rgba(" + color + ",0.5)");
+  style.getImage().getStroke().setLineDash(calculatedDash);
+  style
+    .getImage()
+    .getFill()
+    .setColor("rgba(" + color + ",1)");
 
-      style.getImage().setRadius(radius);
+  style.getImage().setRadius(radius);
 
-      style.getText().setText(size.toString());
-    };
+  style.getText().setText(size.toString());
+};
 
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+};
 
-    const featureSelected = (event) => {
-      console.log(event);
-    };
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      markerIcon,
-      getRandomInRange,
-      overrideStyleFunction,
-      featureSelected,
-    };
-  },
+const featureSelected = (event) => {
+  console.log(event);
 };
 </script>
 ```
@@ -144,14 +129,14 @@ A CSS class name to set to the layer element.
 
 ### opacity
 
-- **Type**: `number `
+- **Type**: `number`
 - **Default**: `1`
 
 Opacity (0, 1).
 
 ### visible
 
-- **Type**: `boolean  `
+- **Type**: `boolean`
 - **Default**: `true`
 
 Visibility.
