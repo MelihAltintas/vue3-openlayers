@@ -9,7 +9,7 @@ import OlMousePositionControl from "./OlMousePositionControl.vue";
 import OlOverviewMapControl from "./OlOverviewMapControl.vue";
 import OlPrintDialogControl from "./OlPrintDialogControl.vue";
 import OlRotateControl from "./OlRotateControl.vue";
-import ScaleLineControl from "./ScaleLineControl.vue";
+import OlScaleLineControl from "./OlScaleLineControl.vue";
 import ZoomControl from "./ZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
 import ZoomToExtentControl from "./ZoomToExtentControl.vue";
@@ -29,7 +29,7 @@ function install(app) {
   app.component("ol-fullscreen-control", OlFullScreenControl);
   app.component("ol-mouseposition-control", OlMousePositionControl);
   app.component("ol-overviewmap-control", OlOverviewMapControl);
-  app.component(ScaleLineControl.name, ScaleLineControl);
+  app.component("ol-scaleline-control", OlScaleLineControl);
   app.component(ZoomControl.name, ZoomControl);
   app.component(ZoomSliderControl.name, ZoomSliderControl);
   app.component(ZoomToExtentControl.name, ZoomToExtentControl);
@@ -61,7 +61,7 @@ export {
   OlOverviewMapControl,
   OlPrintDialogControl,
   OlRotateControl,
-  ScaleLineControl,
+  OlScaleLineControl,
   ZoomControl,
   ZoomSliderControl,
   ZoomToExtentControl,
