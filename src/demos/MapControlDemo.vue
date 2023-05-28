@@ -65,6 +65,14 @@
       />
       <label for="layerswitcherimagecontrol">layerswitcherimage-control</label>
     </li>
+    <li>
+      <input
+        type="checkbox"
+        id="printdialogcontrol"
+        v-model="showPrintDialogControl"
+      />
+      <label for="printdialogcontrol">printdialog-control</label>
+    </li>
   </ul>
 
   <ol-map
@@ -115,6 +123,8 @@
       v-if="showLayerSwitcherImageControl && layerList.length > 0"
     />
 
+    <ol-printdialog-control v-if="showPrintDialogControl" />
+
     <ol-tile-layer ref="jawgLayer" title="JAWG">
       <ol-source-xyz
         crossOrigin="anonymous"
@@ -151,6 +161,7 @@ const rotatecontrol = ref(true);
 const showSwipeControl = ref(true);
 const showLayerSwitcherControl = ref(true);
 const showLayerSwitcherImageControl = ref(true);
+const showPrintDialogControl = ref(true);
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);

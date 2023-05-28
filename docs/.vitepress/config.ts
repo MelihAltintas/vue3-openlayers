@@ -315,6 +315,10 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/overviewmap/",
           },
           {
+            text: "ol-printdialog-control",
+            link: "/componentsguide/mapcontrols/printdialog/",
+          },
+          {
             text: "ol-rotate-control",
             link: "/componentsguide/mapcontrols/rotate/",
           },

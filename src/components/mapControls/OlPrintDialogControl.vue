@@ -12,8 +12,51 @@ import { jsPDF } from "jspdf";
 import { useAttrs } from "vue";
 
 const props = defineProps({
+  title: {
+    type: String,
+  },
   lang: {
     type: String,
+    default: "en",
+  },
+  className: {
+    type: String,
+  },
+  imageType: {
+    type: String,
+    default: "image/jpeg",
+  },
+  quality: {
+    type: Number,
+  },
+  orientation: {
+    type: String,
+  },
+  immediate: {
+    type: Boolean,
+    default: false,
+  },
+  openWindow: {
+    type: Boolean,
+    default: false,
+  },
+  copy: {
+    type: Boolean,
+    default: true,
+  },
+  print: {
+    type: Boolean,
+    default: true,
+  },
+  pdf: {
+    type: Boolean,
+    default: true,
+  },
+  saveAs: {
+    type: Function,
+  },
+  jsPDF: {
+    type: Object,
   },
 });
 
