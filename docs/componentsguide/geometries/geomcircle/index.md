@@ -45,25 +45,13 @@ import CircleDemo from "@demos/CircleDemo.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([30, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(10);
-    const rotation = ref(0);
-    const radius = ref(40);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      radius,
-    };
-  },
-};
+const center = ref([30, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(10);
+const rotation = ref(0);
 </script>
 ```
 
