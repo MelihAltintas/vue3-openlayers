@@ -1,6 +1,7 @@
 import OlAttributionControl from "./OlAttributionControl.vue";
 import OlButtonControl from "./OlButtonControl.vue";
 import OlContextMenuControl from "./OlContextMenuControl.vue";
+import OlControlBar from "./OlControlBar.vue";
 import FullScreenControl from "./FullScreenControl.vue";
 import MousePositionControl from "./MousePositionControl.vue";
 import OverviewMapControl from "./OverviewMapControl.vue";
@@ -10,13 +11,13 @@ import ZoomSliderControl from "./ZoomSliderControl.vue";
 import ZoomToExtentControl from "./ZoomToExtentControl.vue";
 import RotateControl from "./RotateControl.vue";
 import SwipeControl from "./SwipeControl.vue";
-import ControlBar from "./ControlBar.vue";
 import ToggleControl from "./ToggleControl.vue";
 import PrintDialog from "./PrintDialog.vue";
 import VideoRecorderControl from "./VideoRecorderControl.vue";
 import LayerSwitcherControl from "./LayerSwitcherControl.vue";
 import LayerSwitcherImageControl from "./LayerSwitcherImageControl.vue";
 import ZoneControl from "./ZoneControl.vue";
+
 function install(app) {
   if (install.installed) {
     return;
@@ -35,7 +36,7 @@ function install(app) {
   app.component(RotateControl.name, RotateControl);
   app.component("ol-context-menu-control", OlContextMenuControl);
   app.component(SwipeControl.name, SwipeControl);
-  app.component(ControlBar.name, ControlBar);
+  app.component("ol-control-bar", OlControlBar);
   app.component(ToggleControl.name, ToggleControl);
   app.component("ol-button-control", OlButtonControl);
   app.component(PrintDialog.name, PrintDialog);
@@ -52,6 +53,7 @@ export {
   OlAttributionControl,
   OlButtonControl,
   OlContextMenuControl,
+  OlControlBar,
   FullScreenControl,
   MousePositionControl,
   OverviewMapControl,
@@ -61,7 +63,6 @@ export {
   ZoomToExtentControl,
   RotateControl,
   SwipeControl,
-  ControlBar,
   ToggleControl,
   PrintDialog,
   VideoRecorderControl,
