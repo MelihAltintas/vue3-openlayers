@@ -1,4 +1,5 @@
 import OlAttributionControl from "./OlAttributionControl.vue";
+import OlButtonControl from "./OlButtonControl.vue";
 import FullScreenControl from "./FullScreenControl.vue";
 import MousePositionControl from "./MousePositionControl.vue";
 import OverviewMapControl from "./OverviewMapControl.vue";
@@ -11,7 +12,6 @@ import ContextMenuControl from "./ContextMenuControl.vue";
 import SwipeControl from "./SwipeControl.vue";
 import ControlBar from "./ControlBar.vue";
 import ToggleControl from "./ToggleControl.vue";
-import ButtonControl from "./ButtonControl.vue";
 import PrintDialog from "./PrintDialog.vue";
 import VideoRecorderControl from "./VideoRecorderControl.vue";
 import LayerSwitcherControl from "./LayerSwitcherControl.vue";
@@ -37,7 +37,7 @@ function install(app) {
   app.component(SwipeControl.name, SwipeControl);
   app.component(ControlBar.name, ControlBar);
   app.component(ToggleControl.name, ToggleControl);
-  app.component(ButtonControl.name, ButtonControl);
+  app.component("ol-button-control", OlButtonControl);
   app.component(PrintDialog.name, PrintDialog);
   app.component(VideoRecorderControl.name, VideoRecorderControl);
   app.component(LayerSwitcherControl.name, LayerSwitcherControl);
@@ -50,6 +50,7 @@ export default install;
 export {
   install,
   OlAttributionControl,
+  OlButtonControl,
   FullScreenControl,
   MousePositionControl,
   OverviewMapControl,
@@ -62,7 +63,6 @@ export {
   SwipeControl,
   ControlBar,
   ToggleControl,
-  ButtonControl,
   PrintDialog,
   VideoRecorderControl,
   LayerSwitcherControl,

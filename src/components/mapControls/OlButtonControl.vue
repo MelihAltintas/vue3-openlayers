@@ -2,19 +2,13 @@
   <div v-if="false"></div>
 </template>
 
-<script>
+<script setup>
 import Button from "ol-ext/control/Button";
 
 import useControl from "@/composables/useControl";
-export default {
-  name: "ol-control-button",
-  setup(props, context) {
-    const { control } = useControl(Button, props, context);
+import { useAttrs } from "vue";
 
-    return {
-      control,
-    };
-  },
+const props = defineProps({
   props: {
     html: {
       type: String,
@@ -32,7 +26,14 @@ export default {
       type: Function,
     },
   },
-};
+});
+
+const attrs = useAttrs();
+const { control } = useControl(Button, props, { attrs });
+
+defineExpose({
+  control,
+});
 </script>
 
 <style lang=""></style>
