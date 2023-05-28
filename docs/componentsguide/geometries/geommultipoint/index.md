@@ -16,7 +16,7 @@ import MultiPoint from "@demos/MultiPoint.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -68,30 +68,17 @@ import MultiPoint from "@demos/MultiPoint.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([116.54875, 40.45064]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(17);
-    const rotation = ref(0);
-    const radius = ref(10);
-    const strokeWidth = ref(4);
-    const strokeColor = ref("red");
-    const fillColor = ref("white");
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      radius,
-      strokeWidth,
-      strokeColor,
-      fillColor,
-    };
-  },
-};
+
+const center = ref([116.54875, 40.45064]);
+const projection = ref("EPSG:4326");
+const zoom = ref(17);
+const rotation = ref(0);
+const radius = ref(10);
+const strokeWidth = ref(4);
+const strokeColor = ref("red");
+const fillColor = ref("white");
 </script>
 ```
 
