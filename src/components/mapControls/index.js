@@ -7,6 +7,7 @@ import OlLayerSwitcherControl from "./OlLayerSwitcherControl.vue";
 import OlLayerSwitcherImageControl from "./OlLayerSwitcherImageControl.vue";
 import OlMousePositionControl from "./OlMousePositionControl.vue";
 import OlOverviewMapControl from "./OlOverviewMapControl.vue";
+import OlPrintDialogControl from "./OlPrintDialogControl.vue";
 import ScaleLineControl from "./ScaleLineControl.vue";
 import ZoomControl from "./ZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
@@ -14,7 +15,6 @@ import ZoomToExtentControl from "./ZoomToExtentControl.vue";
 import RotateControl from "./RotateControl.vue";
 import SwipeControl from "./SwipeControl.vue";
 import ToggleControl from "./ToggleControl.vue";
-import PrintDialog from "./PrintDialog.vue";
 import VideoRecorderControl from "./VideoRecorderControl.vue";
 import ZoneControl from "./ZoneControl.vue";
 
@@ -39,7 +39,7 @@ function install(app) {
   app.component("ol-control-bar", OlControlBar);
   app.component(ToggleControl.name, ToggleControl);
   app.component("ol-button-control", OlButtonControl);
-  app.component(PrintDialog.name, PrintDialog);
+  app.component("ol-printdialog-control", OlPrintDialogControl);
   app.component(VideoRecorderControl.name, VideoRecorderControl);
   app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
   app.component("ol-layerswitcherimage-control", OlLayerSwitcherImageControl);
@@ -59,6 +59,7 @@ export {
   OlLayerSwitcherImageControl,
   OlMousePositionControl,
   OlOverviewMapControl,
+  OlPrintDialogControl,
   ScaleLineControl,
   ZoomControl,
   ZoomSliderControl,
@@ -66,7 +67,6 @@ export {
   RotateControl,
   SwipeControl,
   ToggleControl,
-  PrintDialog,
   VideoRecorderControl,
   ZoneControl,
 };
