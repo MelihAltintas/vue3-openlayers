@@ -335,6 +335,10 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/toggle/",
           },
           {
+            text: "ol-zone-control",
+            link: "/componentsguide/mapcontrols/zone/",
+          },
+          {
             text: "ol-zoom-control",
             link: "/componentsguide/mapcontrols/zoom/",
           },

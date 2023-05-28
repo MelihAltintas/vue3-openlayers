@@ -21,9 +21,13 @@
 
     <ol-layerswitcherimage-control />
 
-    <!-- <ol-zone-control :zones="zones" :projection="projection" :layer="jawgLayer.tileLayer" v-if="jawgLayer != null">
-
-    </ol-zone-control> -->
+    <ol-zone-control
+      :zones="zones"
+      :projection="projection"
+      :layer="jawgLayer.tileLayer"
+      v-if="jawgLayer != null"
+    >
+    </ol-zone-control>
 
     <ol-tile-layer ref="osmLayer" title="OSM">
       <ol-source-osm />
