@@ -5,53 +5,54 @@
 <script setup>
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 
-import Select from "ol-ext/interaction/SelectCluster";
+import Transform from "ol-ext/interaction/Transform";
+
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const emit = defineEmits(["select"]);
 const props = defineProps({
-  multi: {
+  enableRotatedTransform: {
     type: Boolean,
     default: false,
   },
   condition: {
     type: Function,
   },
+  addCondition: {
+    type: Function,
+  },
   filter: {
     type: Function,
   },
-  pointRadius: {
-    type: Number,
-    default: 7,
+  layers: {
+    type: Array,
   },
-  animate: {
+  hitTolerance: {
+    type: Number,
+    default: 2,
+  },
+  translateFeature: {
     type: Boolean,
     default: true,
   },
-  animationDuration: {
-    type: Number,
-    default: 500,
-  },
-  spiral: {
+  scale: {
     type: Boolean,
     default: true,
   },
-  selectCluster: {
+  rotate: {
     type: Boolean,
     default: true,
   },
-  autoClose: {
+  keepAspectRatio: {
+    type: Boolean,
+    default: false,
+  },
+  translate: {
     type: Boolean,
     default: true,
   },
-  circleMaxObjects: {
-    type: Number,
-  },
-  maxObjects: {
-    type: Number,
-  },
-  featureStyle: {
-    type: Function,
+  stretch: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -59,16 +60,15 @@ const map = inject("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const select = computed(() => {
-  const s = new Select(properties);
-  s.on("select", (event) => {
-    emit("select", event);
+const transform = computed(() => {
+  const interaction = new Transform({
+    ...properties,
   });
 
-  return s;
+  return interaction;
 });
 
-watch(select, (newVal, oldVal) => {
+watch(transform, (newVal, oldVal) => {
   map.removeInteraction(oldVal);
   map.addInteraction(newVal);
 
@@ -76,14 +76,14 @@ watch(select, (newVal, oldVal) => {
 });
 
 onMounted(() => {
-  map.addInteraction(select.value);
+  map.addInteraction(transform.value);
 });
 
 onUnmounted(() => {
-  map.removeInteraction(select.value);
+  map.removeInteraction(transform.value);
 });
 
-provide("stylable", select);
+provide("stylable", transform);
 </script>
 
 <style lang=""></style>

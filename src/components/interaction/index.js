@@ -5,7 +5,7 @@ import OlSelectInteraction from "./OlSelectInteraction.vue";
 import OlDrawInteraction from "./OlDrawInteraction.vue";
 import OlModifyInteraction from "./OlModifyInteraction.vue";
 import OlSnapInteraction from "./OlSnapInteraction.vue";
-import TransformInteraction from "./TransformInteraction.vue";
+import OlTransformInteraction from "./OlTransformInteraction.vue";
 
 function install(app) {
   if (install.installed) {
@@ -21,7 +21,7 @@ function install(app) {
   app.component("ol-interaction-draw", OlDrawInteraction);
   app.component("ol-interaction-modify", OlModifyInteraction);
   app.component("ol-interaction-snap", OlSnapInteraction);
-  app.component(TransformInteraction.name, TransformInteraction);
+  app.component("ol-interaction-transform", OlTransformInteraction);
 }
 
 export default install;
@@ -35,5 +35,5 @@ export {
   OlDrawInteraction,
   OlModifyInteraction,
   OlSnapInteraction,
-  TransformInteraction,
+  OlTransformInteraction,
 };

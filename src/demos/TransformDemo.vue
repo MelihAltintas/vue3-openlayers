@@ -38,84 +38,65 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import { GeoJSON } from "ol/format";
 
-export default {
-  setup() {
-    const map = ref("");
-    const center = ref([-102.13121, 40.2436]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(5);
-    const rotation = ref(0);
+const map = ref("");
+const center = ref([-102.13121, 40.2436]);
+const projection = ref("EPSG:4326");
+const zoom = ref(5);
+const rotation = ref(0);
+const drawEnabled = ref(false);
 
-    const drawEnabled = ref(false);
-
-    const geojsonObject = {
-      type: "FeatureCollection",
-      crs: {
-        type: "name",
-        properties: {
-          name: "EPSG:4326",
-        },
-      },
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [
-              [
-                [-103.86923852630616, 43.45599322423934],
-                [-103.90891107984544, 39.34240191087722],
-                [-98.76630637117387, 39.558687199211114],
-                [-98.89435771175386, 43.945405844902986],
-                [-103.86923852630616, 43.45599322423934],
-              ],
-            ],
-          },
-        },
-        {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [
-              [
-                [-103.85636392303468, 38.10970692739486],
-                [-103.86770698495866, 33.218572724914544],
-                [-98.20654544301988, 33.6532810221672],
-                [-98.4408283538437, 38.31894739375114],
-                [-103.85636392303468, 38.10970692739486],
-              ],
-            ],
-          },
-        },
-      ],
-    };
-
-    const zones = ref([]);
-
-    const drawend = (event) => {
-      zones.value.push(event.feature);
-      drawEnabled.value = false;
-    };
-
-    zones.value = new GeoJSON().readFeatures(geojsonObject);
-
-    const geoJsonFormat = new GeoJSON();
-
-    return {
-      map,
-      geoJsonFormat,
-      zones,
-      center,
-      projection,
-      zoom,
-      rotation,
-      drawEnabled,
-      drawend,
-    };
+const geojsonObject = {
+  type: "FeatureCollection",
+  crs: {
+    type: "name",
+    properties: {
+      name: "EPSG:4326",
+    },
   },
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [-103.86923852630616, 43.45599322423934],
+            [-103.90891107984544, 39.34240191087722],
+            [-98.76630637117387, 39.558687199211114],
+            [-98.89435771175386, 43.945405844902986],
+            [-103.86923852630616, 43.45599322423934],
+          ],
+        ],
+      },
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [-103.85636392303468, 38.10970692739486],
+            [-103.86770698495866, 33.218572724914544],
+            [-98.20654544301988, 33.6532810221672],
+            [-98.4408283538437, 38.31894739375114],
+            [-103.85636392303468, 38.10970692739486],
+          ],
+        ],
+      },
+    },
+  ],
 };
+
+const zones = ref([]);
+
+const drawend = (event) => {
+  zones.value.push(event.feature);
+  drawEnabled.value = false;
+};
+
+zones.value = new GeoJSON().readFeatures(geojsonObject);
 </script>
