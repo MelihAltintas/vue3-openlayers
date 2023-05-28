@@ -17,7 +17,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-context-menu :items="contextMenuItems" />
+    <ol-context-menu-control :items="contextMenuItems" />
 
     <ol-vector-layer>
       <ol-source-vector ref="markers"> </ol-source-vector>
@@ -28,59 +28,45 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
 
 import marker from "@/assets/marker.png";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
 
-    const contextMenuItems = ref([]);
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
 
-    const markers = ref(null);
-    const view = ref(null);
+const contextMenuItems = ref([]);
 
-    const Feature = inject("ol-feature");
-    const Geom = inject("ol-geom");
+const markers = ref(null);
+const view = ref(null);
 
-    contextMenuItems.value = [
-      {
-        text: "Center map here",
-        classname: "some-style-class", // add some CSS rules
-        callback: (val) => {
-          view.value.setCenter(val.coordinate);
-        }, // `center` is your callback function
-      },
-      {
-        text: "Add a Marker",
-        classname: "some-style-class", // you can add this icon with a CSS class
-        // instead of `icon` property (see next line)
-        icon: marker, // this can be relative or absolute
-        callback: (val) => {
-          console.log(val);
-          const feature = new Feature({
-            geometry: new Geom.Point(val.coordinate),
-          });
-          markers.value.source.addFeature(feature);
-        },
-      },
-      "-", // this is a separator
-    ];
+const Feature = inject("ol-feature");
+const Geom = inject("ol-geom");
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      contextMenuItems,
-      marker,
-      markers,
-      view,
-    };
+contextMenuItems.value = [
+  {
+    text: "Center map here",
+    classname: "some-style-class", // add some CSS rules
+    callback: (val) => {
+      view.value.setCenter(val.coordinate);
+    }, // `center` is your callback function
   },
-};
+  {
+    text: "Add a Marker",
+    classname: "some-style-class", // you can add this icon with a CSS class
+    // instead of `icon` property (see next line)
+    icon: marker, // this can be relative or absolute
+    callback: (val) => {
+      console.log(val);
+      const feature = new Feature({
+        geometry: new Geom.Point(val.coordinate),
+      });
+      markers.value.source.addFeature(feature);
+    },
+  },
+  "-", // this is a separator
+];
 </script>

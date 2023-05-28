@@ -141,7 +141,7 @@ export default defineConfig({
           {
             text: "ol-source-tile-arcgis-rest",
             link: "/componentsguide/sources/arcgisrest/",
-          }
+          },
         ],
       },
       {
@@ -299,7 +299,7 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/attribution/",
           },
           {
-            text: "ol-context-menu",
+            text: "ol-context-menu-control",
             link: "/componentsguide/mapcontrols/contextmenu/",
           },
           {
