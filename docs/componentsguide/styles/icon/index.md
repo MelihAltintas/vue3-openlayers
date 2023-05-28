@@ -20,7 +20,7 @@ import IconDemo from "@demos/IconDemo.vue"
     ref="map"
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:500px"
+    style="height: 500px"
   >
     <ol-view
       ref="view"
@@ -50,31 +50,17 @@ import IconDemo from "@demos/IconDemo.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
 
 import markerIcon from "@/assets/marker.png";
-export default {
-  setup() {
-    const center = ref([34, 39.13]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6.8);
-    const rotation = ref(0);
 
-    const format = inject("ol-format");
-
-    const geoJson = new format.GeoJSON();
-
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      geoJson,
-      markerIcon,
-    };
-  },
-};
+const center = ref([34, 39.13]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6.8);
+const rotation = ref(0);
+const format = inject("ol-format");
+const geoJson = new format.GeoJSON();
 </script>
 ```
 
