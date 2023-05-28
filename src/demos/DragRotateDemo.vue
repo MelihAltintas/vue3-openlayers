@@ -19,19 +19,10 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([-102.13121, 40.2436]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(5);
 
-    return {
-      center,
-      projection,
-      zoom,
-    };
-  },
-};
+const center = ref([-102.13121, 40.2436]);
+const projection = ref("EPSG:4326");
+const zoom = ref(5);
 </script>

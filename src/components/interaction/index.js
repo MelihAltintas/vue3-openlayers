@@ -1,4 +1,5 @@
 import OlClusterSelectInteraction from "./OlClusterSelectInteraction.vue";
+import OlDragRotateInteraction from "./OlDragRotateInteraction.vue";
 import SelectInteraction from "./SelectInteraction.vue";
 import DrawInteraction from "./DrawInteraction.vue";
 import SnapInteraction from "./SnapInteraction.vue";
@@ -14,6 +15,7 @@ function install(app) {
   install.installed = true;
 
   app.component("ol-interaction-clusterselect", OlClusterSelectInteraction);
+  app.component("ol-interaction-dragrotate", OlDragRotateInteraction);
   app.component(SelectInteraction.name, SelectInteraction);
   app.component(DrawInteraction.name, DrawInteraction);
   app.component(SnapInteraction.name, SnapInteraction);
@@ -30,6 +32,7 @@ export default install;
 export {
   install,
   OlClusterSelectInteraction,
+  OlDragRotateInteraction,
   SelectInteraction,
   DrawInteraction,
   SnapInteraction,
