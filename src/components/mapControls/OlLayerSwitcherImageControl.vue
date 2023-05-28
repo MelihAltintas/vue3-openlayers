@@ -3,12 +3,12 @@
 </template>
 
 <script setup>
-import LayerSwitcher from "ol-ext/control/LayerSwitcher";
-import useLayerControl from "@/composables/useLayerControl";
+import LayerSwitcherImage from "ol-ext/control/LayerSwitcherImage";
+import useLayerControl from "../../composables/useLayerControl";
 import { useAttrs } from "vue";
 
 const attrs = useAttrs();
-const { control } = useLayerControl(LayerSwitcher, attrs);
+const { control } = useLayerControl(LayerSwitcherImage, attrs);
 
 defineExpose({
   control,
