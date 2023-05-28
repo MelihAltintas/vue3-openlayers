@@ -85,8 +85,8 @@
         title="LineString"
         :onToggle="(active) => changeDrawType(active, 'LineString')"
       />
-      <ol-control-videorecorder :order="4" @stop="videoStopped">
-      </ol-control-videorecorder>
+      <ol-videorecorder-control :order="4" @stop="videoStopped">
+      </ol-videorecorder-control>
       <ol-control-printdialog :order="5" />
     </ol-control-bar>
 

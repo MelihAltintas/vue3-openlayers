@@ -77,6 +77,15 @@
       <input type="checkbox" id="togglecontrol" v-model="showToggleControl" />
       <label for="togglecontrol">toggle-control</label>
     </li>
+
+    <li>
+      <input
+        type="checkbox"
+        id="videorecordercontrol"
+        v-model="showVideoRecorderControl"
+      />
+      <label for="videorecordercontrol">videorecorder-control</label>
+    </li>
   </ul>
 
   <ol-map
@@ -131,6 +140,11 @@
 
     <ol-toggle-control v-if="showToggleControl" />
 
+    <ol-videorecorder-control
+      v-if="showVideoRecorderControl"
+      @stop="videoStopped"
+    />
+
     <ol-tile-layer ref="jawgLayer" title="JAWG">
       <ol-source-xyz
         crossOrigin="anonymous"
@@ -169,6 +183,11 @@ const showLayerSwitcherControl = ref(true);
 const showLayerSwitcherImageControl = ref(true);
 const showPrintDialogControl = ref(true);
 const showToggleControl = ref(true);
+const showVideoRecorderControl = ref(true);
+
+const videoStopped = (event) => {
+  console.log(event);
+};
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);
