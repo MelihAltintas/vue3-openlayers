@@ -14,7 +14,7 @@ import OlSwipeControl from "./OlSwipeControl.vue";
 import OlToggleControl from "./OlToggleControl.vue";
 import OlVideoRecorderControl from "./OlVideoRecorderControl.vue";
 import OlZoneControl from "./OlZoneControl.vue";
-import ZoomControl from "./ZoomControl.vue";
+import OlZoomControl from "./OlZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
 import ZoomToExtentControl from "./ZoomToExtentControl.vue";
 
@@ -30,7 +30,7 @@ function install(app) {
   app.component("ol-mouseposition-control", OlMousePositionControl);
   app.component("ol-overviewmap-control", OlOverviewMapControl);
   app.component("ol-scaleline-control", OlScaleLineControl);
-  app.component(ZoomControl.name, ZoomControl);
+  app.component("ol-zoom-control", OlZoomControl);
   app.component(ZoomSliderControl.name, ZoomSliderControl);
   app.component(ZoomToExtentControl.name, ZoomToExtentControl);
   app.component("ol-rotate-control", OlRotateControl);
@@ -66,7 +66,7 @@ export {
   OlToggleControl,
   OlVideoRecorderControl,
   OlZoneControl,
-  ZoomControl,
+  OlZoomControl,
   ZoomSliderControl,
   ZoomToExtentControl,
 };
