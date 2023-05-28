@@ -13,10 +13,10 @@ import OlScaleLineControl from "./OlScaleLineControl.vue";
 import OlSwipeControl from "./OlSwipeControl.vue";
 import OlToggleControl from "./OlToggleControl.vue";
 import OlVideoRecorderControl from "./OlVideoRecorderControl.vue";
+import OlZoneControl from "./OlZoneControl.vue";
 import ZoomControl from "./ZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
 import ZoomToExtentControl from "./ZoomToExtentControl.vue";
-import ZoneControl from "./ZoneControl.vue";
 
 function install(app) {
   if (install.installed) {
@@ -43,7 +43,7 @@ function install(app) {
   app.component("ol-videorecorder-control", OlVideoRecorderControl);
   app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
   app.component("ol-layerswitcherimage-control", OlLayerSwitcherImageControl);
-  app.component(ZoneControl.name, ZoneControl);
+  app.component("ol-zone-control", OlZoneControl);
 }
 
 export default install;
@@ -65,8 +65,8 @@ export {
   OlSwipeControl,
   OlToggleControl,
   OlVideoRecorderControl,
+  OlZoneControl,
   ZoomControl,
   ZoomSliderControl,
   ZoomToExtentControl,
-  ZoneControl,
 };
