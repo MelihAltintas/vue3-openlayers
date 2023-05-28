@@ -22,7 +22,7 @@ const props = defineProps({
     default: 5000000,
   },
   videoTarget: {
-    type: String,
+    type: [String, Object],
   },
   downloadName: {
     type: String,
