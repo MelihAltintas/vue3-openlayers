@@ -331,6 +331,10 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/swipe/",
           },
           {
+            text: "ol-toggle-control",
+            link: "/componentsguide/mapcontrols/toggle/",
+          },
+          {
             text: "ol-zoom-control",
             link: "/componentsguide/mapcontrols/zoom/",
           },

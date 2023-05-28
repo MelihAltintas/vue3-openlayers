@@ -9,17 +9,32 @@ import useControl from "@/composables/useControl";
 import { useAttrs } from "vue";
 
 const props = defineProps({
+  className: {
+    type: String,
+  },
+  title: {
+    type: String,
+  },
   html: {
     type: String,
   },
   interaction: {
     type: Object,
   },
-  className: {
-    type: String,
+  active: {
+    type: Boolean,
+    default: false,
   },
-  title: {
-    type: String,
+  disable: {
+    type: Boolean,
+    default: false,
+  },
+  bar: {
+    type: Object,
+  },
+  autoActive: {
+    type: Boolean,
+    default: false,
   },
   onToggle: {
     type: Function,
