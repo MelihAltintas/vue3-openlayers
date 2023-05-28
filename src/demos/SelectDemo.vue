@@ -48,43 +48,28 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import markerIcon from "@/assets/marker.png";
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
 
-    const format = inject("ol-format");
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
 
-    const geoJson = new format.GeoJSON();
+const format = inject("ol-format");
 
-    const selectConditions = inject("ol-selectconditions");
+const geoJson = new format.GeoJSON();
 
-    const selectCondition = selectConditions.pointerMove;
+const selectConditions = inject("ol-selectconditions");
 
-    const featureSelected = (event) => {
-      console.log(event);
-    };
+const selectCondition = selectConditions.pointerMove;
 
-    const selectInteactionFilter = (feature) => {
-      return feature.values_.name != undefined;
-    };
+const featureSelected = (event) => {
+  console.log(event);
+};
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      selectCondition,
-      featureSelected,
-      selectInteactionFilter,
-      geoJson,
-      markerIcon,
-    };
-  },
+const selectInteactionFilter = (feature) => {
+  return feature.values_.name != undefined;
 };
 </script>

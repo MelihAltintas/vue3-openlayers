@@ -1,7 +1,7 @@
 import OlClusterSelectInteraction from "./OlClusterSelectInteraction.vue";
 import OlDragRotateInteraction from "./OlDragRotateInteraction.vue";
 import OlDragRotateZoomInteraction from "./OlDragRotateZoomInteraction.vue";
-import SelectInteraction from "./SelectInteraction.vue";
+import OlSelectInteraction from "./OlSelectInteraction.vue";
 import DrawInteraction from "./DrawInteraction.vue";
 import SnapInteraction from "./SnapInteraction.vue";
 import ModifyInteraction from "./ModifyInteraction.vue";
@@ -17,7 +17,7 @@ function install(app) {
   app.component("ol-interaction-clusterselect", OlClusterSelectInteraction);
   app.component("ol-interaction-dragrotate", OlDragRotateInteraction);
   app.component("ol-interaction-dragrotatezoom", OlDragRotateZoomInteraction);
-  app.component(SelectInteraction.name, SelectInteraction);
+  app.component("ol-interaction-select", OlSelectInteraction);
   app.component(DrawInteraction.name, DrawInteraction);
   app.component(SnapInteraction.name, SnapInteraction);
   app.component(ModifyInteraction.name, ModifyInteraction);
@@ -31,7 +31,7 @@ export {
   OlClusterSelectInteraction,
   OlDragRotateInteraction,
   OlDragRotateZoomInteraction,
-  SelectInteraction,
+  OlSelectInteraction,
   DrawInteraction,
   SnapInteraction,
   ModifyInteraction,
