@@ -1,6 +1,6 @@
 import OlStyle from "./OlStyle.vue";
 import OlStyleCircle from "./OlStyleCircle.vue";
-import Stroke from "./Stroke.vue";
+import OlStyleStroke from "./OlStyleStroke.vue";
 import Fill from "./Fill.vue";
 import Icon from "./Icon.vue";
 import Text from "./Text.vue";
@@ -15,7 +15,7 @@ function install(app) {
 
   app.component("ol-style", OlStyle);
   app.component("ol-style-circle", OlStyleCircle);
-  app.component(Stroke.name, Stroke);
+  app.component("ol-style-stroke", OlStyleStroke);
   app.component(Fill.name, Fill);
   app.component(Icon.name, Icon);
   app.component(Text.name, Text);
@@ -27,7 +27,7 @@ export default install;
 export {
   install,
   OlStyle,
-  Stroke,
+  OlStyleStroke,
   Fill,
   Icon,
   Text,
