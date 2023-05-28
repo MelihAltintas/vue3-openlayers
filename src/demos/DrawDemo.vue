@@ -52,36 +52,22 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
 
-    const drawEnable = ref(true);
-    const drawType = ref("Polygon");
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
 
-    const drawstart = (event) => {
-      console.log(event);
-    };
+const drawEnable = ref(true);
+const drawType = ref("Polygon");
 
-    const drawend = (event) => {
-      console.log(event);
-    };
+const drawstart = (event) => {
+  console.log(event);
+};
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      drawEnable,
-      drawType,
-      drawstart,
-      drawend,
-    };
-  },
+const drawend = (event) => {
+  console.log(event);
 };
 </script>

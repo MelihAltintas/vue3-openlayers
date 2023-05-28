@@ -29,7 +29,7 @@ import DrawDemo from "@demos/DrawDemo.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -51,6 +51,10 @@ import DrawDemo from "@demos/DrawDemo.vue"
           @drawend="drawend"
           @drawstart="drawstart"
         >
+          <ol-style>
+            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
+            <ol-style-fill color="rgba(255, 255, 0, 0.4)"></ol-style-fill>
+          </ol-style>
         </ol-interaction-draw>
       </ol-source-vector>
 
@@ -58,44 +62,30 @@ import DrawDemo from "@demos/DrawDemo.vue"
         <ol-style-stroke color="red" :width="2"></ol-style-stroke>
         <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
         <ol-style-circle :radius="7">
-          <ol-style-fill color="blue"></ol-style-fill>
+          <ol-style-fill color="red"></ol-style-fill>
         </ol-style-circle>
       </ol-style>
     </ol-vector-layer>
   </ol-map>
 </template>
 
-<script>
-import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
+<script setup>
+import { ref } from "vue";
 
-    const drawEnable = ref(true);
-    const drawType = ref("Point");
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
 
-    const drawstart = (event) => {
-      console.log(event);
-    };
+const drawEnable = ref(true);
+const drawType = ref("Polygon");
 
-    const drawend = (event) => {
-      console.log(event);
-    };
+const drawstart = (event) => {
+  console.log(event);
+};
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      drawEnable,
-      drawType,
-      drawstart,
-      drawend,
-    };
-  },
+const drawend = (event) => {
+  console.log(event);
 };
 </script>
 ```
