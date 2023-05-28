@@ -18,7 +18,7 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
 
@@ -39,37 +39,20 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([-90, 50]);
-    const zoom = ref(2);
-    const rotation = ref(0);
-    const url = ref(
-      "https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/WMTS/"
-    );
-    const layerName = ref("0");
-    const matrixSet = ref("EPSG:3857");
-    const format = ref("image/png");
-    const styleName = ref("default");
-    const attribution = ref(
-      'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>'
-    );
 
-    return {
-      center,
-      zoom,
-      rotation,
-      url,
-      layerName,
-      matrixSet,
-      format,
-      styleName,
-      attribution,
-    };
-  },
-};
+const center = ref([-11158582, 4813697]);
+const zoom = ref(4);
+const rotation = ref(0);
+const url = ref("https://mrdata.usgs.gov/mapcache/wmts");
+const layerName = ref("sgmc2");
+const matrixSet = ref("GoogleMapsCompatible");
+const format = ref("image/png");
+const styleName = ref("default");
+const attribution = ref(
+  'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>'
+);
 </script>
 ```
 
