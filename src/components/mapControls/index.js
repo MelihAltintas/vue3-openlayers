@@ -6,7 +6,7 @@ import OlFullScreenControl from "./OlFullScreenControl.vue";
 import OlLayerSwitcherControl from "./OlLayerSwitcherControl.vue";
 import OlLayerSwitcherImageControl from "./OlLayerSwitcherImageControl.vue";
 import OlMousePositionControl from "./OlMousePositionControl.vue";
-import OverviewMapControl from "./OverviewMapControl.vue";
+import OlOverviewMapControl from "./OlOverviewMapControl.vue";
 import ScaleLineControl from "./ScaleLineControl.vue";
 import ZoomControl from "./ZoomControl.vue";
 import ZoomSliderControl from "./ZoomSliderControl.vue";
@@ -28,7 +28,7 @@ function install(app) {
   app.component("ol-attribution-control", OlAttributionControl);
   app.component("ol-fullscreen-control", OlFullScreenControl);
   app.component("ol-mouseposition-control", OlMousePositionControl);
-  app.component(OverviewMapControl.name, OverviewMapControl);
+  app.component("ol-overviewmap-control", OlOverviewMapControl);
   app.component(ScaleLineControl.name, ScaleLineControl);
   app.component(ZoomControl.name, ZoomControl);
   app.component(ZoomSliderControl.name, ZoomSliderControl);
@@ -58,7 +58,7 @@ export {
   OlLayerSwitcherControl,
   OlLayerSwitcherImageControl,
   OlMousePositionControl,
-  OverviewMapControl,
+  OlOverviewMapControl,
   ScaleLineControl,
   ZoomControl,
   ZoomSliderControl,
