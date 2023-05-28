@@ -1,4 +1,4 @@
-# ol-webglpoints-layer
+# ol-webgl-points-layer
 
 <script setup>
 import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
@@ -14,7 +14,7 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -28,62 +28,50 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-webglpoints-layer :styles="webglPointsStyle">
+    <ol-webgl-points-layer :styles="webglPointsStyle">
       <ol-source-webglpoints
         :format="geoJson"
         url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
       />
-    </ol-webglpoints-layer>
+    </ol-webgl-points-layer>
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(3);
-    const rotation = ref(0);
 
-    const format = inject("ol-format");
-    const geoJson = new format.GeoJSON();
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(3);
+const rotation = ref(0);
 
-    const webglPointsStyle = {
-      symbol: {
-        symbolType: "circle",
-        size: [
-          "interpolate",
-          ["linear"],
-          ["get", "population"],
-          40000,
-          8,
-          2000000,
-          28,
-        ],
-        color: "#ffed02",
-        rotateWithView: false,
-        offset: [0, 0],
-        opacity: [
-          "interpolate",
-          ["linear"],
-          ["get", "population"],
-          40000,
-          0.6,
-          2000000,
-          0.92,
-        ],
-      },
-    };
+const format = inject("ol-format");
+const geoJson = new format.GeoJSON();
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      geoJson,
-      webglPointsStyle,
-    };
+const webglPointsStyle = {
+  symbol: {
+    symbolType: "circle",
+    size: [
+      "interpolate",
+      ["linear"],
+      ["get", "population"],
+      40000,
+      8,
+      2000000,
+      28,
+    ],
+    color: "#ffed02",
+    rotateWithView: false,
+    offset: [0, 0],
+    opacity: [
+      "interpolate",
+      ["linear"],
+      ["get", "population"],
+      40000,
+      0.6,
+      2000000,
+      0.92,
+    ],
   },
 };
 </script>

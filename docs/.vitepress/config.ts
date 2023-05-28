@@ -85,7 +85,7 @@ export default defineConfig({
             link: "/componentsguide/layers/vectorlayer/",
           },
           {
-            text: "ol-webglpoints-layer",
+            text: "ol-webgl-points-layer",
             link: "/componentsguide/layers/webglpointslayer/",
           },
           {

@@ -16,12 +16,12 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-webglpoints-layer :styles="webglPointsStyle">
+    <ol-webgl-points-layer :styles="webglPointsStyle">
       <ol-source-webglpoints
         :format="geoJson"
         url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
       />
-    </ol-webglpoints-layer>
+    </ol-webgl-points-layer>
   </ol-map>
 </template>
 
