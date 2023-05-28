@@ -1,6 +1,6 @@
+import OlAttributionControl from "./OlAttributionControl.vue";
 import FullScreenControl from "./FullScreenControl.vue";
 import MousePositionControl from "./MousePositionControl.vue";
-import AttributionControl from "./AttributionControl.vue";
 import OverviewMapControl from "./OverviewMapControl.vue";
 import ScaleLineControl from "./ScaleLineControl.vue";
 import ZoomControl from "./ZoomControl.vue";
@@ -24,9 +24,9 @@ function install(app) {
 
   install.installed = true;
 
+  app.component("ol-attribution-control", OlAttributionControl);
   app.component(FullScreenControl.name, FullScreenControl);
   app.component(MousePositionControl.name, MousePositionControl);
-  app.component(AttributionControl.name, AttributionControl);
   app.component(OverviewMapControl.name, OverviewMapControl);
   app.component(ScaleLineControl.name, ScaleLineControl);
   app.component(ZoomControl.name, ZoomControl);
@@ -49,9 +49,9 @@ export default install;
 
 export {
   install,
+  OlAttributionControl,
   FullScreenControl,
   MousePositionControl,
-  AttributionControl,
   OverviewMapControl,
   ScaleLineControl,
   ZoomControl,

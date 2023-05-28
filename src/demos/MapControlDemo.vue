@@ -104,52 +104,33 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
-    const layerList = ref([]);
-    const jawgLayer = ref(null);
-    const osmLayer = ref(null);
-    const swipeControl = ref(null);
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
+const layerList = ref([]);
+const jawgLayer = ref(null);
+const osmLayer = ref(null);
+const swipeControl = ref(null);
 
-    onMounted(() => {
-      layerList.value.push(jawgLayer.value.tileLayer);
-      layerList.value.push(osmLayer.value.tileLayer);
-      console.log(layerList.value);
-    });
+const fullscreencontrol = ref(true);
+const attributioncontrol = ref(true);
+const zoomcontrol = ref(true);
+const zoomslidercontrol = ref(true);
+const zoomtoextentcontrol = ref(true);
+const scalelinecontrol = ref(true);
+const overviewmapcontrol = ref(true);
+const mousepositioncontrol = ref(true);
+const rotatecontrol = ref(true);
+const showSwipeControl = ref(true);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      layerList,
-      jawgLayer,
-      osmLayer,
-      swipeControl,
-    };
-  },
-
-  data() {
-    return {
-      fullscreencontrol: true,
-      attributioncontrol: true,
-      zoomcontrol: true,
-      zoomslidercontrol: true,
-      zoomtoextentcontrol: true,
-      scalelinecontrol: true,
-      overviewmapcontrol: true,
-      mousepositioncontrol: true,
-      rotatecontrol: true,
-      showSwipeControl: true,
-    };
-  },
-};
+onMounted(() => {
+  layerList.value.push(jawgLayer.value.tileLayer);
+  layerList.value.push(osmLayer.value.tileLayer);
+  console.log(layerList.value);
+});
 </script>
 
 <style>
