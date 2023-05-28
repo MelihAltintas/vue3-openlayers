@@ -49,6 +49,14 @@
       <input type="checkbox" id="swipecontrol" v-model="showSwipeControl" />
       <label for="swipecontrol">swipe-control</label>
     </li>
+    <li>
+      <input
+        type="checkbox"
+        id="layerswitchercontrol"
+        v-model="showLayerSwitcherControl"
+      />
+      <label for="layerswitchercontrol">layerswitcher-control</label>
+    </li>
   </ul>
 
   <ol-map
@@ -91,6 +99,10 @@
       :layerList="layerList"
     />
 
+    <ol-layerswitcher-control
+      v-if="showLayerSwitcherControl && layerList.length > 0"
+    />
+
     <ol-tile-layer ref="jawgLayer" title="JAWG">
       <ol-source-xyz
         crossOrigin="anonymous"
@@ -125,6 +137,7 @@ const overviewmapcontrol = ref(true);
 const mousepositioncontrol = ref(true);
 const rotatecontrol = ref(true);
 const showSwipeControl = ref(true);
+const showLayerSwitcherControl = ref(true);
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);

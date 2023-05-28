@@ -14,7 +14,7 @@ import SwipeControl from "./SwipeControl.vue";
 import ToggleControl from "./ToggleControl.vue";
 import PrintDialog from "./PrintDialog.vue";
 import VideoRecorderControl from "./VideoRecorderControl.vue";
-import LayerSwitcherControl from "./LayerSwitcherControl.vue";
+import OlLayerSwitcherControl from "./OlLayerSwitcherControl.vue";
 import LayerSwitcherImageControl from "./LayerSwitcherImageControl.vue";
 import ZoneControl from "./ZoneControl.vue";
 
@@ -41,7 +41,7 @@ function install(app) {
   app.component("ol-button-control", OlButtonControl);
   app.component(PrintDialog.name, PrintDialog);
   app.component(VideoRecorderControl.name, VideoRecorderControl);
-  app.component(LayerSwitcherControl.name, LayerSwitcherControl);
+  app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
   app.component(LayerSwitcherImageControl.name, LayerSwitcherImageControl);
   app.component(ZoneControl.name, ZoneControl);
 }
@@ -55,6 +55,7 @@ export {
   OlContextMenuControl,
   OlControlBar,
   OlFullScreenControl,
+  OlLayerSwitcherControl,
   MousePositionControl,
   OverviewMapControl,
   ScaleLineControl,
@@ -66,7 +67,6 @@ export {
   ToggleControl,
   PrintDialog,
   VideoRecorderControl,
-  LayerSwitcherControl,
   LayerSwitcherImageControl,
   ZoneControl,
 };
