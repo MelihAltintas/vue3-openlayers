@@ -1,4 +1,3 @@
-import WebGLTileLayer from "./WebGLTileLayer.vue";
 import OlAnimatedClusterLayer from "./OlAnimatedClusterLayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
 import OlImageLayer from "./OlImageLayer.vue";
@@ -6,6 +5,7 @@ import OlTileLayer from "./OlTileLayer.vue";
 import OlVectorLayer from "./OlVectorLayer.vue";
 import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import OlWebglPointsLayer from "./OlWebglPointsLayer.vue";
+import OlWebglTileLayer from "./OlWebglTileLayer.vue";
 
 function install(app) {
   if (install.installed) {
@@ -21,7 +21,7 @@ function install(app) {
   app.component("ol-vector-image-layer", OlVectorImageLayer);
   app.component("ol-vector-layer", OlVectorLayer);
   app.component("ol-webgl-points-layer", OlWebglPointsLayer);
-  app.component(WebGLTileLayer.name, WebGLTileLayer);
+  app.component("ol-webgl-tile-layer", OlWebglTileLayer);
 }
 
 export default install;
@@ -35,5 +35,5 @@ export {
   OlVectorImageLayer,
   OlVectorLayer,
   OlWebglPointsLayer,
-  WebGLTileLayer,
+  OlWebglTileLayer,
 };
