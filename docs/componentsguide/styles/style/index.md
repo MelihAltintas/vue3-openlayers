@@ -18,7 +18,7 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -48,23 +48,13 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(8);
-    const rotation = ref(0);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-    };
-  },
-};
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+const rotation = ref(0);
 </script>
 ```
 
@@ -79,7 +69,7 @@ Styling the whole layer.
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -103,32 +93,20 @@ Styling the whole layer.
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from "vue";
-export default {
-  setup() {
-    const center = ref([0, 0]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(3);
-    const rotation = ref(0);
 
-    const url = ref(
-      "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
-    );
-    const format = inject("ol-format");
-    console.log(format);
-    const geoJson = new format.GeoJSON();
+const center = ref([0, 0]);
+const projection = ref("EPSG:4326");
+const zoom = ref(3);
+const rotation = ref(0);
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      url,
-      geoJson,
-    };
-  },
-};
+const url = ref(
+  "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
+);
+const format = inject("ol-format");
+console.log(format);
+const geoJson = new format.GeoJSON();
 </script>
 ```
 
