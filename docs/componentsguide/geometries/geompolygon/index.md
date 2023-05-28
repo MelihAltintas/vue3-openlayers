@@ -19,7 +19,7 @@ import PolygonDemo from "@demos/PolygonDemo.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:400px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"
@@ -64,29 +64,13 @@ import PolygonDemo from "@demos/PolygonDemo.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  setup() {
-    const center = ref([-98.8449, 19.6869]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(15);
-    const rotation = ref(0);
-    const radius = ref(40);
-    const strokeWidth = ref(10);
-    const strokeColor = ref("red");
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      radius,
-      strokeWidth,
-      strokeColor,
-    };
-  },
-};
+const center = ref([-98.8449, 19.6869]);
+const projection = ref("EPSG:4326");
+const zoom = ref(15);
+const rotation = ref(0);
 </script>
 ```
 

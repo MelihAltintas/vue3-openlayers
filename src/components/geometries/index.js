@@ -4,7 +4,7 @@ import OlGeomMultiLineString from "./OlGeomMultiLineString.vue";
 import OlGeomMultiPoint from "./OlGeomMultiPoint.vue";
 import OlGeomMultiPolygon from "./OlGeomMultiPolygon.vue";
 import OlGeomPoint from "./OlGeomPoint.vue";
-import Polygon from "./Polygon.vue";
+import OlGeomPolygon from "./OlGeomPolygon.vue";
 
 function install(app) {
   if (install.installed) {
@@ -19,7 +19,7 @@ function install(app) {
   app.component("ol-geom-multi-point", OlGeomMultiPoint);
   app.component("ol-geom-multi-polygon", OlGeomMultiPolygon);
   app.component("ol-geom-point", OlGeomPoint);
-  app.component(Polygon.name, Polygon);
+  app.component("ol-geom-polygon", OlGeomPolygon);
 }
 
 export default install;
@@ -32,5 +32,5 @@ export {
   OlGeomMultiPoint,
   OlGeomMultiPolygon,
   OlGeomPoint,
-  Polygon,
+  OlGeomPolygon,
 };
