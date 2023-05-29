@@ -266,230 +266,191 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref, inject, onMounted } from "vue";
 
 import markerIcon from "@/assets/marker.png";
 import starIcon from "@/assets/star.png";
-export default {
-  setup() {
-    const center = ref([34, 39.13]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6);
-    const rotation = ref(0);
 
-    const format = inject("ol-format");
+const center = ref([34, 39.13]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6);
+const rotation = ref(0);
 
-    const geoJson = new format.GeoJSON();
+const format = inject("ol-format");
 
-    const selectConditions = inject("ol-selectconditions");
+const geoJson = new format.GeoJSON();
 
-    const selectCondition = selectConditions.pointerMove;
+const selectConditions = inject("ol-selectconditions");
 
-    const selectedCityName = ref("");
-    const selectedCityPosition = ref([]);
+const selectCondition = selectConditions.pointerMove;
 
-    const extent = inject("ol-extent");
+const selectedCityName = ref("");
+const selectedCityPosition = ref([]);
 
-    const Feature = inject("ol-feature");
-    const Geom = inject("ol-geom");
+const extent = inject("ol-extent");
 
-    const contextMenuItems = ref([]);
-    const vectorsource = ref(null);
-    const view = ref(null);
+const Feature = inject("ol-feature");
+const Geom = inject("ol-geom");
 
-    const drawEnable = ref(false);
-    const drawType = ref("Point");
+const contextMenuItems = ref([]);
+const vectorsource = ref(null);
+const view = ref(null);
 
-    const changeDrawType = (active, draw) => {
-      drawEnable.value = active;
-      drawType.value = draw;
-    };
+const drawEnable = ref(false);
+const drawType = ref("Point");
 
-    contextMenuItems.value = [
-      {
-        text: "Center map here",
-        classname: "some-style-class", // add some CSS rules
-        callback: (val) => {
-          view.value.setCenter(val.coordinate);
-        }, // `center` is your callback function
-      },
-      {
-        text: "Add a Marker",
-        classname: "some-style-class", // you can add this icon with a CSS class
-        // instead of `icon` property (see next line)
-        icon: markerIcon, // this can be relative or absolute
-        callback: (val) => {
-          console.log(val);
-          const feature = new Feature({
-            geometry: new Geom.Point(val.coordinate),
-          });
-          vectorsource.value.source.addFeature(feature);
-        },
-      },
-      "-", // this is a separator
-    ];
+const changeDrawType = (active, draw) => {
+  drawEnable.value = active;
+  drawType.value = draw;
+};
 
-    const featureSelected = (event) => {
-      if (event.selected.length == 1) {
-        selectedCityPosition.value = extent.getCenter(
-          event.selected[0].getGeometry().extent_
-        );
-        selectedCityName.value = event.selected[0].values_.name;
-      } else {
-        selectedCityName.value = "";
-      }
-    };
+contextMenuItems.value = [
+  {
+    text: "Center map here",
+    classname: "some-style-class", // add some CSS rules
+    callback: (val) => {
+      view.value.setCenter(val.coordinate);
+    }, // `center` is your callback function
+  },
+  {
+    text: "Add a Marker",
+    classname: "some-style-class", // you can add this icon with a CSS class
+    // instead of `icon` property (see next line)
+    icon: markerIcon, // this can be relative or absolute
+    callback: (val) => {
+      console.log(val);
+      const feature = new Feature({
+        geometry: new Geom.Point(val.coordinate),
+      });
+      vectorsource.value.source.addFeature(feature);
+    },
+  },
+  "-", // this is a separator
+];
 
-    const overrideStyleFunction = (feature, style) => {
-      const clusteredFeatures = feature.get("features");
-      const size = clusteredFeatures.length;
+const featureSelected = (event) => {
+  if (event.selected.length == 1) {
+    selectedCityPosition.value = extent.getCenter(
+      event.selected[0].getGeometry().extent_
+    );
+    selectedCityName.value = event.selected[0].values_.name;
+  } else {
+    selectedCityName.value = "";
+  }
+};
 
-      const color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
-      const radius = Math.max(8, Math.min(size, 20));
-      const dash = (2 * Math.PI * radius) / 6;
-      const calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+const overrideStyleFunction = (feature, style) => {
+  const clusteredFeatures = feature.get("features");
+  const size = clusteredFeatures.length;
 
-      style.getImage().getStroke().setLineDash(dash);
-      style
-        .getImage()
-        .getStroke()
-        .setColor("rgba(" + color + ",0.5)");
-      style.getImage().getStroke().setLineDash(calculatedDash);
-      style
-        .getImage()
-        .getFill()
-        .setColor("rgba(" + color + ",1)");
+  const color = size > 20 ? "192,0,0" : size > 8 ? "255,128,0" : "0,128,0";
+  const radius = Math.max(8, Math.min(size, 20));
+  const dash = (2 * Math.PI * radius) / 6;
+  const calculatedDash = [0, dash, dash, dash, dash, dash, dash];
 
-      style.getImage().setRadius(radius);
+  style.getImage().getStroke().setLineDash(dash);
+  style
+    .getImage()
+    .getStroke()
+    .setColor("rgba(" + color + ",0.5)");
+  style.getImage().getStroke().setLineDash(calculatedDash);
+  style
+    .getImage()
+    .getFill()
+    .setColor("rgba(" + color + ",1)");
 
-      style.getText().setText(size.toString());
-    };
+  style.getImage().setRadius(radius);
 
-    const selectInteactionFilter = (feature) => {
-      return feature.values_.name != undefined;
-    };
+  style.getText().setText(size.toString());
+};
 
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
+const selectInteactionFilter = (feature) => {
+  return feature.values_.name != undefined;
+};
 
-    const drawstart = (event) => {
-      console.log(event);
-    };
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+};
 
-    const drawend = (event) => {
-      console.log(event);
-    };
+const drawstart = (event) => {
+  console.log(event);
+};
 
-    const modifystart = (event) => {
-      console.log(event);
-    };
+const drawend = (event) => {
+  console.log(event);
+};
 
-    const modifyend = (event) => {
-      console.log(event);
-    };
+const modifystart = (event) => {
+  console.log(event);
+};
 
-    const videoStopped = (event) => {
-      console.log(event);
-    };
+const modifyend = (event) => {
+  console.log(event);
+};
 
-    const swipeControl = ref(null);
-    const jawgLayer = ref(null);
-    const osmLayer = ref(null);
-    const layerList = ref([]);
-    onMounted(() => {
-      layerList.value.push(jawgLayer.value.tileLayer);
-      layerList.value.push(osmLayer.value.tileLayer);
-      console.log(layerList.value);
-    });
+const videoStopped = (event) => {
+  console.log(event);
+};
 
-    const path = ref([
-      [25.6064453125, 44.73302734375001],
-      [27.759765625, 44.75500000000001],
-      [28.287109375, 43.32677734375001],
-      [30.55029296875, 46.40294921875001],
-      [31.69287109375, 43.04113281250001],
-    ]);
-    const animationPath = ref(null);
+const swipeControl = ref(null);
+const jawgLayer = ref(null);
+const osmLayer = ref(null);
+const layerList = ref([]);
+onMounted(() => {
+  layerList.value.push(jawgLayer.value.tileLayer);
+  layerList.value.push(osmLayer.value.tileLayer);
+  console.log(layerList.value);
+});
 
-    const zones = [
-      {
-        title: "Turkey",
-        extent: [17.952, 46.241, 52.449, 31.222],
-      },
-      {
-        title: "Cyprus",
-        extent: [31.2836, 36.1623, 35.5957, 34.1823],
-      },
-      {
-        title: "Brazil",
-        extent: [-120.32, 22.76, 17.67, -47.52],
-      },
-    ];
+const path = ref([
+  [25.6064453125, 44.73302734375001],
+  [27.759765625, 44.75500000000001],
+  [28.287109375, 43.32677734375001],
+  [30.55029296875, 46.40294921875001],
+  [31.69287109375, 43.04113281250001],
+]);
+const animationPath = ref(null);
 
-    const webglPointsStyle = {
-      symbol: {
-        symbolType: "circle",
-        size: [
-          "interpolate",
-          ["linear"],
-          ["get", "population"],
-          40000,
-          8,
-          2000000,
-          28,
-        ],
-        color: "#ffed02",
-        rotateWithView: false,
-        offset: [0, 0],
-        opacity: [
-          "interpolate",
-          ["linear"],
-          ["get", "population"],
-          40000,
-          0.6,
-          2000000,
-          0.92,
-        ],
-      },
-    };
+const zones = [
+  {
+    title: "Turkey",
+    extent: [17.952, 46.241, 52.449, 31.222],
+  },
+  {
+    title: "Cyprus",
+    extent: [31.2836, 36.1623, 35.5957, 34.1823],
+  },
+  {
+    title: "Brazil",
+    extent: [-120.32, 22.76, 17.67, -47.52],
+  },
+];
 
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      geoJson,
-      featureSelected,
-      selectCondition,
-      selectedCityName,
-      selectedCityPosition,
-      markerIcon,
-      overrideStyleFunction,
-      getRandomInRange,
-      contextMenuItems,
-      vectorsource,
-      view,
-      selectInteactionFilter,
-      drawstart,
-      drawend,
-      modifystart,
-      modifyend,
-      videoStopped,
-      drawEnable,
-      drawType,
-      layerList,
-      jawgLayer,
-      swipeControl,
-      osmLayer,
-      starIcon,
-      changeDrawType,
-      path,
-      animationPath,
-      zones,
-      webglPointsStyle,
-    };
+const webglPointsStyle = {
+  symbol: {
+    symbolType: "circle",
+    size: [
+      "interpolate",
+      ["linear"],
+      ["get", "population"],
+      40000,
+      8,
+      2000000,
+      28,
+    ],
+    color: "#ffed02",
+    rotateWithView: false,
+    offset: [0, 0],
+    opacity: [
+      "interpolate",
+      ["linear"],
+      ["get", "population"],
+      40000,
+      0.6,
+      2000000,
+      0.92,
+    ],
   },
 };
 </script>
