@@ -1,6 +1,6 @@
 import FeatureAnimation from "./FeatureAnimation.vue";
 
-import DropAnimation from "./DropAnimation.vue";
+import OLAnimationDrop from "./OLAnimationDrop.vue";
 import ShakeAnimation from "./ShakeAnimation.vue";
 import ZoomAnimation from "./ZoomAnimation.vue";
 import TeleportAnimation from "./TeleportAnimation.vue";
@@ -14,8 +14,8 @@ function install(app) {
 
   install.installed = true;
 
+  app.component("ol-animation-drop", OLAnimationDrop);
   app.component(FeatureAnimation.name, FeatureAnimation);
-  app.component(DropAnimation.name, DropAnimation);
   app.component(ShakeAnimation.name, ShakeAnimation);
   app.component(ZoomAnimation.name, ZoomAnimation);
   app.component(TeleportAnimation.name, TeleportAnimation);
@@ -28,8 +28,8 @@ export default install;
 
 export {
   install,
+  OLAnimationDrop,
   FeatureAnimation,
-  DropAnimation,
   ShakeAnimation,
   ZoomAnimation,
   TeleportAnimation,

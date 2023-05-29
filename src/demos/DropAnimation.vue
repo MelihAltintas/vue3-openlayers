@@ -21,7 +21,7 @@
       :updateWhileInteracting="true"
     >
       <ol-source-vector ref="vectorsource">
-        <ol-animation-drop :duration="2000">
+        <ol-animation-drop :duration="2000" :repeat="3">
           <ol-feature v-for="index in 20" :key="index">
             <ol-geom-point
               :coordinates="[
@@ -40,26 +40,15 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import starIcon from "@/assets/star.png";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6);
-    const rotation = ref(0);
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      getRandomInRange,
-      starIcon,
-    };
-  },
+
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6);
+const rotation = ref(0);
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 </script>

@@ -1,12 +1,7 @@
-<template lang="">
-  <slot></slot>
-</template>
-
-<script>
 import { easeOut } from "ol/easing";
 
-export default {
-  props: {
+export default function useBaseLayerProps() {
+  return {
     duration: {
       type: Number,
       default: 1000,
@@ -27,8 +22,5 @@ export default {
       type: Function,
       default: easeOut,
     },
-  },
-};
-</script>
-
-<style lang=""></style>
+  };
+}

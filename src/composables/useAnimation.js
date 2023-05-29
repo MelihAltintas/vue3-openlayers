@@ -1,9 +1,9 @@
-import { provide, computed } from "vue";
+import { provide, computed, inject } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import Animation from "@/components/animations/FeatureAnimation";
 
 export default function useAnimation(AnimationType, props) {
-  const { map, vectorLayer } = Animation.setup();
+  const map = inject("map");
+  const vectorLayer = inject("vectorLayer");
 
   const { properties } = usePropsAsObjectProperties(props);
 
