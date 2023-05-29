@@ -15,7 +15,7 @@ import SlideAnimation from "@demos/SlideAnimation.vue"
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height:700px"
+    style="height: 700px"
   >
     <ol-view
       ref="view"
@@ -53,27 +53,16 @@ import SlideAnimation from "@demos/SlideAnimation.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import starIcon from "@/assets/star.png";
-export default {
-  setup() {
-    const center = ref([40, 40]);
-    const projection = ref("EPSG:4326");
-    const zoom = ref(6);
-    const rotation = ref(0);
-    const getRandomInRange = (from, to, fixed) => {
-      return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-    };
-    return {
-      center,
-      projection,
-      zoom,
-      rotation,
-      getRandomInRange,
-      starIcon,
-    };
-  },
+
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(6);
+const rotation = ref(0);
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 </script>
 ```

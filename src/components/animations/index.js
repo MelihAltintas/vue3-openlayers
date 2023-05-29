@@ -3,9 +3,9 @@ import OlAnimationFade from "./OlAnimationFade.vue";
 import OlAnimationFeature from "./OlAnimationFeature.vue";
 import OlAnimationPath from "./OlAnimationPath.vue";
 import OlAnimationShake from "./OlAnimationShake.vue";
+import OlAnimationSlide from "./OlAnimationSlide.vue";
 import ZoomAnimation from "./ZoomAnimation.vue";
 import TeleportAnimation from "./TeleportAnimation.vue";
-import SlideAnimation from "./SlideAnimation.vue";
 
 function install(app) {
   if (install.installed) {
@@ -19,9 +19,9 @@ function install(app) {
   app.component("ol-animation-feature", OlAnimationFeature);
   app.component("ol-animation-path", OlAnimationPath);
   app.component("ol-animation-shake", OlAnimationShake);
+  app.component("ol-animation-slide", OlAnimationSlide);
   app.component(ZoomAnimation.name, ZoomAnimation);
   app.component(TeleportAnimation.name, TeleportAnimation);
-  app.component(SlideAnimation.name, SlideAnimation);
 }
 
 export default install;
@@ -33,7 +33,7 @@ export {
   OlAnimationFeature,
   OlAnimationPath,
   OlAnimationShake,
+  OlAnimationSlide,
   ZoomAnimation,
   TeleportAnimation,
-  SlideAnimation,
 };
