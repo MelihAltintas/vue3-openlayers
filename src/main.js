@@ -1,9 +1,9 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import AppDemo from "./demos/AppDemo.vue";
 
 import OpenLayersMap from ".";
 
-const app = createApp(App);
+const app = createApp(AppDemo);
 app.use(OpenLayersMap);
 
 app.mount("#app");
