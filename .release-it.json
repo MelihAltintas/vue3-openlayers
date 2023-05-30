@@ -12,7 +12,8 @@
     ]
   },
   "github": {
-    "release": true
+    "release": true,
+    "assets": ["dist/*"]
   },
   "npm": {
     "publish": true
