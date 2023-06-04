@@ -27,3 +27,6 @@ docs/.vitepress/cache
 
 # tests
 coverage
+
+# generate types
+components/*.d.ts
