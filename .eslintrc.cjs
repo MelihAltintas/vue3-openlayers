@@ -13,6 +13,7 @@ module.exports = {
   ],
   rules: {
     "vue/no-multiple-template-root": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
   },
   settings: {
     "vue-i18n": {

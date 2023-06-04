@@ -1,6 +1,6 @@
 import { easeOut } from "ol/easing";
 
-export default function useBaseLayerProps() {
+export default function useAnimationProps() {
   return {
     duration: {
       type: Number,

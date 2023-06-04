@@ -1,5 +1,7 @@
 import useControl from "./useControl";
 import { defineProps } from "vue";
+import type LayerSwitcher from "ol-ext/control/LayerSwitcher";
+import type LayerSwitcherImage from "ol-ext/control/LayerSwitcherImage";
 
 const props = defineProps({
   selection: {
@@ -49,7 +51,10 @@ const props = defineProps({
   },
 });
 
-export default function useLayerControl(controlType, attrs) {
+export default function useLayerControl(
+  controlType: new (options?: any) => LayerSwitcher | LayerSwitcherImage,
+  attrs: Record<string, unknown>
+) {
   useControl(controlType, props, { attrs });
 
   return {
