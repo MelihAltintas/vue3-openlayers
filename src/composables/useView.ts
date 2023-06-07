@@ -10,9 +10,10 @@ import type { Size } from "ol/size";
 import type { Pixel } from "ol/pixel";
 import type BaseEvent from "ol/events/Event";
 import type { SimpleGeometry } from "ol/geom";
+import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
 
 export default function useView(
-  properties: Record<string, unknown> & {
+  props: Record<string, unknown> & {
     projection: string | Options;
   },
   emit: (
@@ -24,7 +25,8 @@ export default function useView(
     ...args: any[]
   ) => void
 ) {
-  const map = inject<Ref<Map>>("map");
+  const map = inject<Map>("map");
+  const { properties } = usePropsAsObjectProperties(props);
 
   const createProp = () => {
     return {
@@ -38,6 +40,21 @@ export default function useView(
     };
   };
   const view = new View(createProp());
+
+  onMounted(() => {
+    map?.setView(view);
+  });
+
+  view.on("change:center", () => {
+    emit("centerChanged", getCenter());
+    emit("zoomChanged", getZoom());
+  });
+
+  view.on("change:resolution", () =>
+    emit("resolutionChanged", getResolution())
+  );
+
+  view.on("change:rotation", () => emit("rotationChanged", getRotation()));
 
   watch(properties, () => {
     const pr = createProp();
@@ -105,21 +122,6 @@ export default function useView(
     view.setResolution(resolution);
   const setRotation = (rotation: number) => view.setRotation(rotation);
   const setZoom = (zoom: number) => view.setZoom(zoom);
-
-  onMounted(() => {
-    map?.value?.setView(view);
-  });
-
-  view.on("change:center", () => {
-    emit("centerChanged", getCenter());
-    emit("zoomChanged", getZoom());
-  });
-
-  view.on("change:resolution", () =>
-    emit("resolutionChanged", getResolution())
-  );
-
-  view.on("change:rotation", () => emit("rotationChanged", getRotation()));
 
   return {
     view,
