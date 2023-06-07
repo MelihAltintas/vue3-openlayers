@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { inject, provide, onUnmounted, onMounted, watch } from "vue";
+import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
 import HeatmapLayer from "ol/layer/Heatmap";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -35,18 +35,18 @@ const map = inject("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const heatmapLayer = new HeatmapLayer(properties);
+const heatmapLayer = computed(() => new HeatmapLayer(properties));
 
 watch(properties, () => {
-  heatmapLayer.setProperties(properties);
+  heatmapLayer.value.setProperties(properties);
 });
 
 onMounted(() => {
-  map.addLayer(heatmapLayer);
+  map.addLayer(heatmapLayer.value);
 });
 
 onUnmounted(() => {
-  map.removeLayer(heatmapLayer);
+  map.removeLayer(heatmapLayer.value);
 });
 
 provide("heatmapLayer", heatmapLayer);
