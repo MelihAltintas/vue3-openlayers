@@ -1,6 +1,5 @@
 import type { PanIntoViewOptions, Positioning } from "ol/Overlay";
 import Overlay from "ol/Overlay";
-import type { Ref } from "vue";
 import {
   inject,
   ref,
@@ -13,9 +12,10 @@ import {
 
 import type Map from "ol/Map";
 import type { Coordinate } from "ol/coordinate";
+import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
 
 export default function useOverlay(
-  properties: Record<string, unknown>,
+  props: Record<string, unknown>,
   emit: (
     ev:
       | "elementChanged"
@@ -25,19 +25,46 @@ export default function useOverlay(
     ...args: any[]
   ) => void
 ) {
-  const map = inject<Ref<Map>>("map");
+  const map = inject<Map>("map");
 
   const htmlContent = ref<HTMLElement>();
+
+  const { properties } = usePropsAsObjectProperties(props);
 
   const overlay = computed(() => new Overlay(properties));
 
   onMounted(() => {
-    map?.value?.addOverlay(overlay.value);
+    map?.addOverlay(overlay.value);
   });
 
   onUnmounted(() => {
-    map?.value?.removeOverlay(overlay.value);
+    map?.removeOverlay(overlay.value);
   });
+
+  watch(overlay, (newVal, oldVal) => {
+    map?.removeOverlay(oldVal);
+    map?.addOverlay(newVal);
+  });
+
+  watchEffect(
+    () => {
+      setElement(htmlContent.value);
+    },
+    {
+      flush: "post",
+    }
+  );
+
+  overlay.value.on("change:element", () =>
+    emit("elementChanged", getElement())
+  );
+  overlay.value.on("change:offset", () => emit("offsetChanged", getOffset()));
+  overlay.value.on("change:position", () =>
+    emit("positionChanged", getPosition())
+  );
+  overlay.value.on("change:positioning", () =>
+    emit("positioningChanged", getPositioning())
+  );
 
   const getElement = () => overlay.value.getElement();
   const getOffset = () => overlay.value.getOffset();
@@ -52,31 +79,6 @@ export default function useOverlay(
     overlay.value.setPosition(position);
   const setPositioning = (positioning: Positioning) =>
     overlay.value.setPositioning(positioning);
-
-  overlay.value.on("change:element", () =>
-    emit("elementChanged", getElement())
-  );
-  overlay.value.on("change:offset", () => emit("offsetChanged", getOffset()));
-  overlay.value.on("change:position", () =>
-    emit("positionChanged", getPosition())
-  );
-  overlay.value.on("change:positioning", () =>
-    emit("positioningChanged", getPositioning())
-  );
-
-  watch(overlay, (newVal, oldVal) => {
-    map?.value?.removeOverlay(oldVal);
-    map?.value?.addOverlay(newVal);
-  });
-
-  watchEffect(
-    () => {
-      setElement(htmlContent.value);
-    },
-    {
-      flush: "post",
-    }
-  );
 
   return {
     overlay,
