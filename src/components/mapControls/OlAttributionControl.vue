@@ -5,7 +5,7 @@
 <script setup>
 import { Attribution } from "ol/control";
 import useControl from "@/composables/useControl";
-import { useAttrs, useSlots } from "vue";
+import { useAttrs } from "vue";
 
 const props = defineProps({
   className: {

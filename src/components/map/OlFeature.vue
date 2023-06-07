@@ -41,7 +41,7 @@ watch(vectorSource, (newVal, oldVal) => {
 onMounted(() => {
   vectorSource.value.addFeature(feature.value);
   if (animation != null) {
-    vectorLayer.value.animateFeature(feature.value, animation.value);
+    vectorLayer.animateFeature(feature.value, animation.value);
   }
 });
 

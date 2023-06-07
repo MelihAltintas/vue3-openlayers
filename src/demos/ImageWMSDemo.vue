@@ -28,7 +28,7 @@
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
 const zoom = ref(4);

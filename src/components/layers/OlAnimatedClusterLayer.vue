@@ -61,13 +61,13 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  map.addLayer(vectorLayer.value);
+  map.addLayer(vectorLayer);
   vectorLayer.value.changed();
   map.changed();
 });
 
 onUnmounted(() => {
-  map.removeLayer(vectorLayer.value);
+  map.removeLayer(vectorLayer);
 });
 
 provide("vectorLayer", source);

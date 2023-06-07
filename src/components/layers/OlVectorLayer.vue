@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import { inject, provide, onUnmounted, onMounted, watch } from "vue";
 
 import VectorLayer from "ol/layer/Vector";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -34,18 +34,18 @@ const map = inject("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const vectorLayer = computed(() => new VectorLayer(properties));
+const vectorLayer = new VectorLayer(properties);
 
 watch(properties, () => {
-  vectorLayer.value.setProperties(properties);
+  vectorLayer.setProperties(properties);
 });
 
 onMounted(() => {
-  map.addLayer(vectorLayer.value);
+  map.addLayer(vectorLayer);
 });
 
 onUnmounted(() => {
-  map.removeLayer(vectorLayer.value);
+  map.removeLayer(vectorLayer);
 });
 
 provide("vectorLayer", vectorLayer);

@@ -57,9 +57,9 @@ const { properties } = usePropsAsObjectProperties(props);
 const source = computed(() => new VectorSource(properties));
 
 const applySource = () => {
-  layer.value.setSource(null);
-  layer.value.setSource(source.value);
-  layer.value.changed();
+  layer.setSource(null);
+  layer.setSource(source.value);
+  layer.changed();
 };
 watch(properties, () => {
   applySource();
@@ -70,11 +70,11 @@ watch(layer, () => {
 });
 
 onMounted(() => {
-  layer.value.setSource(source.value);
+  layer.setSource(source.value);
 });
 
 onUnmounted(() => {
-  layer.value.setSource(null);
+  layer.setSource(null);
 });
 
 provide("vectorSource", source);

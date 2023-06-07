@@ -1,4 +1,4 @@
-import { toRefs, watch, reactive, type ToRefs, ref, type Ref } from "vue";
+import { toRefs, watch, reactive, type ToRefs, ref } from "vue";
 
 /**
  * We can't use 'style' as a component prop since it's a reserved property
