@@ -4,73 +4,59 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Options, TextPlacement } from "ol/style/Text";
 import Text from "ol/style/Text";
 import Fill from "ol/style/Fill";
 import Stroke from "ol/style/Stroke";
 
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
+import type Style from "ol/style/Style";
+import type Draw from "ol/interaction/Draw";
+import type Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  font: {
-    type: String,
-  },
-  maxAngle: {
-    type: Number,
-    default: Math.PI / 4,
-  },
-  offsetX: {
-    type: Number,
-    default: 0,
-  },
-  offsetY: {
-    type: Number,
-    default: 0,
-  },
-  overflow: {
-    type: Boolean,
-    default: false,
-  },
-  placement: {
-    type: String,
-    default: "point",
-  },
-  scale: {
-    type: Number,
-  },
-  rotateWithView: {
-    type: Boolean,
-    default: false,
-  },
-  rotation: {
-    type: Number,
-    default: 0,
-  },
-  text: {
-    type: String,
-  },
-  textAlign: {
-    type: String,
-  },
-  textBaseline: {
-    type: String,
-    default: "middle",
-  },
-  padding: {
-    type: Array,
-    default: () => [0, 0, 0, 0],
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    font?: string;
+    maxAngle?: number;
+    offsetX?: number;
+    offsetY?: number;
+    overflow?: boolean;
+    placement?: TextPlacement;
+    scale?: number;
+    rotateWithView?: boolean;
+    rotation?: number;
+    text?: string;
+    textAlign?: CanvasTextAlign;
+    textBaseline?: CanvasTextBaseline;
+    padding?: [number, number, number, number];
+  }>(),
+  {
+    maxAngle: Math.PI / 4,
+    offsetX: 0,
+    offsetY: 0,
+    overflow: false,
+    placement: "point",
+    rotateWithView: false,
+    rotation: 0,
+    textBaseline: "middle",
+    padding: () => [0, 0, 0, 0],
+  }
+);
 
-const style = inject("style", null);
-const styledObj = inject("styledObj", null);
+const style = inject<Ref<Style | null> | null>("style", null);
+const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
+  "styledObj",
+  null
+);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const createText = (properties) => {
+const createText = (innerProperties: Omit<Options, "fill" | "stroke">) => {
   return new Text({
-    ...properties,
+    ...innerProperties,
     fill: new Fill(),
     stroke: new Stroke(),
   });
@@ -79,28 +65,32 @@ const createText = (properties) => {
 const text = computed(() => createText(properties));
 
 const applyStyle = () => {
-  style.value.setText(null);
-  style.value.setText(text.value);
-  styledObj.value.changed();
+  // @ts-ignore
+  style?.value?.setText(null);
+  style?.value?.setText(text.value);
+  // @ts-ignore
+  styledObj?.value?.changed();
 };
 watch(properties, () => {
   applyStyle();
 });
 
-watch(style, () => {
-  applyStyle();
-});
+watch(
+  () => style?.value,
+  () => {
+    applyStyle();
+  }
+);
 
 onMounted(() => {
-  style.value.setText(text.value);
+  style?.value?.setText(text.value);
 });
 
 onUnmounted(() => {
-  style.value.setText(null);
+  // @ts-ignore
+  style?.value?.setText(null);
 });
 
 provide("style", text);
 provide("styledObj", styledObj);
 </script>
-
-<style lang=""></style>

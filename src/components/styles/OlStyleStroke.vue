@@ -1,58 +1,56 @@
-<template>
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
+import type { Options } from "ol/style/Stroke";
 import Stroke from "ol/style/Stroke";
-
+import type { Ref } from "vue";
+import { inject, watch, onMounted, onUnmounted } from "vue";
+import type Style from "ol/style/Style";
+import type CircleStyle from "ol/style/Circle";
+import type Draw from "ol/interaction/Draw";
+import type Modify from "ol/interaction/Modify";
+import type { ColorLike } from "ol/colorlike";
+import type { Color } from "ol/color";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-import { inject, watch, onMounted, onUnmounted } from "vue";
+const props = withDefaults(
+  defineProps<{
+    color?: Color | ColorLike;
+    lineCap?: CanvasLineCap;
+    lineJoin?: CanvasLineJoin;
+    lineDash?: number[];
+    lineDashOffset?: number;
+    miterLimit?: number;
+    width?: number;
+  }>(),
+  {
+    lineCap: "round",
+    lineJoin: "round",
+    lineDashOffset: 0,
+    miterLimit: 10,
+    width: 1,
+  }
+);
 
-const props = defineProps({
-  color: {
-    type: String,
-  },
-  lineCap: {
-    type: String,
-    default: "round",
-  },
-  lineJoin: {
-    type: String,
-    default: "round",
-  },
-  lineDash: {
-    type: Array,
-  },
-  lineDashOffset: {
-    type: Number,
-    default: 0,
-  },
-  miterLimit: {
-    type: Number,
-    default: 10,
-  },
-  width: {
-    type: Number,
-    default: 1,
-  },
-});
-
-const style = inject("style", null);
-const circle = inject("circle", null);
-const styledObj = inject("styledObj", null);
+const style = inject<Ref<Style | null> | null>("style", null);
+const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
+  "styledObj",
+  null
+);
+const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
 if (style != null && circle == null) {
   // in style object
-
   let stroke = new Stroke(properties);
-  style.value.setStroke(stroke);
+
+  style.value?.setStroke(stroke);
+
   const applyStroke = () => {
-    style.value.setStroke(null);
+    // @ts-ignore
+    style?.value?.setStroke(null);
     stroke = new Stroke(properties);
-    style.value.setStroke(stroke);
+    style?.value?.setStroke(stroke);
   };
   watch(properties, () => {
     applyStroke();
@@ -62,35 +60,42 @@ if (style != null && circle == null) {
   });
 
   onMounted(() => {
-    style.value.setStroke(stroke);
+    // @ts-ignore
+    style?.value?.setStroke(stroke);
   });
 
   onUnmounted(() => {
-    style.value.setStroke(null);
+    // @ts-ignore
+    style?.value?.setStroke(null);
   });
 } else if (circle != null) {
   // in circle
+  const applyStroketoCircle = (innerProperties: Options) => {
+    // @ts-ignore
+    circle?.value?.getStroke()?.setColor(innerProperties.color);
+    circle?.value?.getStroke()?.setLineCap(innerProperties.lineCap);
+    // @ts-ignore
+    circle?.value?.getStroke()?.setLineDash(innerProperties.lineDash);
+    circle?.value
+      ?.getStroke()
+      ?.setLineDashOffset(innerProperties.lineDashOffset);
+    circle?.value?.getStroke()?.setLineJoin(innerProperties.lineJoin);
+    circle?.value?.getStroke()?.setMiterLimit(innerProperties.miterLimit);
+    circle?.value?.getStroke()?.setWidth(innerProperties.width);
 
-  const applyStroketoCircle = (properties) => {
-    circle.value.getStroke().setColor(properties.color);
-    circle.value.getStroke().setLineCap(properties.lineCap);
-    circle.value.getStroke().setLineDash(properties.lineDash);
-    circle.value.getStroke().setLineDashOffset(properties.lineDashOffset);
-    circle.value.getStroke().setLineJoin(properties.lineJoin);
-    circle.value.getStroke().setMiterLimit(properties.miterLimit);
-    circle.value.getStroke().setWidth(properties.width);
-
-    circle.value.setRadius(circle.value.getRadius());
+    circle?.value?.setRadius(circle?.value?.getRadius());
     try {
-      styledObj.value.changed();
+      // @ts-ignore
+      styledObj?.value?.changed();
     } catch (error) {
-      styledObj.changed();
+      // @ts-ignore
+      styledObj?.value?.changed();
     }
   };
 
   applyStroketoCircle(properties);
 
-  watch(properties, (newVal) => {
+  watch(properties, (newVal: Options) => {
     applyStroketoCircle(newVal);
   });
 
@@ -99,5 +104,3 @@ if (style != null && circle == null) {
   });
 }
 </script>
-
-<style lang=""></style>

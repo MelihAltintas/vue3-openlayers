@@ -1,37 +1,36 @@
-<template>
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import Fill from "ol/style/Fill";
+import type CircleStyle from "ol/style/Circle";
 
+import type { Ref } from "vue";
+import { inject, watch, onMounted, onUnmounted } from "vue";
+import type Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-import { inject, watch, onMounted, onUnmounted } from "vue";
+const props = withDefaults(
+  defineProps<{
+    color?: string;
+  }>(),
+  {}
+);
 
-const props = defineProps({
-  color: {
-    type: String,
-  },
-});
-
-const style = inject("style", null);
-const circle = inject("circle", null);
-
-const styledObj = inject("styledObj", null);
+const style = inject<Ref<Style | null> | null>("style", null);
+const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
+const styledObj = inject<Ref<Style | null> | null>("styledObj", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
 if (style != null && circle == null) {
   // in style object
-
   let fill = new Fill(properties);
-  style.value.setFill(fill);
+  style?.value?.setFill(fill);
 
   const applyFill = () => {
-    style.value.setFill(null);
+    // @ts-ignore
+    style?.value?.setFill(null);
     fill = new Fill(properties);
-    style.value.setFill(fill);
+    style?.value?.setFill(fill);
   };
   watch(properties, () => {
     applyFill();
@@ -42,23 +41,25 @@ if (style != null && circle == null) {
   });
 
   onMounted(() => {
-    style.value.setFill(fill);
+    style?.value?.setFill(fill);
   });
 
   onUnmounted(() => {
-    style.value.setFill(null);
+    // @ts-ignore
+    style?.value?.setFill(null);
   });
 } else if (circle != null) {
   // in circle
+  const applyFilltoCircle = (color: any) => {
+    circle?.value?.getFill().setColor(color);
 
-  const applyFilltoCircle = (color) => {
-    circle.value.getFill().setColor(color);
-
-    circle.value.setRadius(circle.value.getRadius()); // force render
+    circle?.value?.setRadius(circle?.value.getRadius()); // force render
     try {
-      styledObj.value.changed();
+      // @ts-ignore
+      styledObj?.value?.changed();
     } catch (error) {
-      styledObj.changed();
+      // @ts-ignore
+      styledObj?.value.changed();
     }
   };
 
@@ -72,5 +73,3 @@ if (style != null && circle == null) {
   });
 }
 </script>
-
-<style lang=""></style>

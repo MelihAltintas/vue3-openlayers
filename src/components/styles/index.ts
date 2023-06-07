@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OlStyle from "./OlStyle.vue";
 import OlStyleCircle from "./OlStyleCircle.vue";
 import OlStyleStroke from "./OlStyleStroke.vue";
@@ -6,12 +7,11 @@ import OlStyleIcon from "./OlStyleIcon.vue";
 import OlStyleText from "./OlStyleText.vue";
 import OlStyleFlowline from "./OlStyleFlowline.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-style", OlStyle);
   app.component("ol-style-circle", OlStyleCircle);

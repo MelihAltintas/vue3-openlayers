@@ -101,9 +101,7 @@ const projection = ref("EPSG:4326");
 const zoom = ref(3);
 const rotation = ref(0);
 
-const url = ref(
-  "https://openlayers.org/en/latest/examples/data/geojson/countries.geojson"
-);
+const url = ref("https://openlayers.org/data/vector/ecoregions.json");
 const format = inject("ol-format");
 console.log(format);
 const geoJson = new format.GeoJSON();

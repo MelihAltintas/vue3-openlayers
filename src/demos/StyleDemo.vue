@@ -21,7 +21,7 @@
         <ol-feature>
           <ol-geom-point :coordinates="[40, 40]"></ol-geom-point>
           <ol-style>
-            <ol-style-circle radius="30">
+            <ol-style-circle :radius="30">
               <ol-style-fill color="white"></ol-style-fill>
               <ol-style-stroke color="red" :width="10"></ol-style-stroke>
             </ol-style-circle>

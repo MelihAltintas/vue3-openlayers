@@ -1,79 +1,53 @@
-<template>
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
+import type { IconAnchorUnits, IconOrigin } from "ol/style/Icon";
 import Icon from "ol/style/Icon";
 
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
+import type Style from "ol/style/Style";
+import type Draw from "ol/interaction/Draw";
+import type Modify from "ol/interaction/Modify";
+import type { Size } from "ol/size";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  anchor: {
-    type: Array,
-  },
-  anchorOrigin: {
-    type: String,
-    default: "top-left",
-  },
-  anchorXUnits: {
-    type: String,
-    default: "fraction",
-  },
-  anchorYUnits: {
-    type: String,
-    default: "fraction",
-  },
-  color: {
-    type: String,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  img: {
-    type: [HTMLImageElement, HTMLCanvasElement],
-  },
-  offset: {
-    type: Array,
-    default: () => [0, 0],
-  },
-  displacement: {
-    type: Array,
-    default: () => [0, 0],
-  },
-  offsetOrigin: {
-    type: String,
-    default: "top-left",
-  },
-  opacity: {
-    type: Number,
-    default: 1,
-  },
-  scale: {
-    type: Number,
-    default: 1,
-  },
-  rotateWithView: {
-    type: Boolean,
-    default: false,
-  },
-  rotation: {
-    type: Number,
-    default: 0,
-  },
-  size: {
-    type: Array,
-  },
-  imgSize: {
-    type: Array,
-  },
-  src: {
-    type: String,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    anchor?: number[];
+    anchorOrigin?: IconOrigin;
+    anchorXUnits?: IconAnchorUnits;
+    color?: string;
+    crossOrigin?: string;
+    img?: HTMLImageElement | HTMLCanvasElement;
+    offset?: [number, number];
+    displacement?: [number, number];
+    offsetOrigin?: IconOrigin;
+    opacity?: number;
+    scale?: number;
+    rotateWithView?: boolean;
+    rotation?: number;
+    size?: Size;
+    imgSize?: Size;
+    src?: string;
+  }>(),
+  {
+    anchorOrigin: "top-left",
+    anchorXUnits: "fraction",
+    offset: () => [0, 0],
+    displacement: () => [0, 0],
+    offsetOrigin: "top-left",
+    opacity: 1,
+    scale: 1,
+    rotateWithView: false,
+    rotation: 0,
+  }
+);
 
-const style = inject("style", null);
-const styledObj = inject("styledObj", null);
+const style = inject<Ref<Style | null> | null>("style", null);
+const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
+  "styledObj",
+  null
+);
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -84,26 +58,30 @@ const icon = computed(() => {
 });
 
 const applyStyle = () => {
-  style.value.setImage(null);
-  style.value.setImage(icon.value);
-  styledObj.value.changed();
+  // @ts-ignore
+  style?.value?.setImage(null);
+  style?.value?.setImage(icon.value);
+  // @ts-ignore
+  styledObj?.value?.changed();
 };
 
 watch(properties, () => {
   applyStyle();
 });
 
-watch(style, () => {
-  applyStyle();
-});
+watch(
+  () => style?.value,
+  () => {
+    applyStyle();
+  }
+);
 
 onMounted(() => {
-  style.value.setImage(icon.value);
+  style?.value?.setImage(icon.value);
 });
 
 onUnmounted(() => {
-  style.value.setImage(null);
+  // @ts-ignore
+  style?.value?.setImage(null);
 });
 </script>
-
-<style lang=""></style>
