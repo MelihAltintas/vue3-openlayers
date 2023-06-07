@@ -1,96 +1,79 @@
-<template>
-  <div v-if="false"></div>
-</template>
+<template><div v-if="false"></div></template>
 
-<script setup>
+<script setup lang="ts">
+import type { RequestEncoding, Options } from "ol/source/WMTS";
 import WMTS from "ol/source/WMTS";
+import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
 import WMTSTileGrid from "ol/tilegrid/WMTS";
+import type { ProjectionLike } from "ol/proj";
 import { get as getProjection } from "ol/proj";
+import type { Extent } from "ol/extent";
 import { getTopLeft, getWidth } from "ol/extent";
+import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch, computed } from "vue";
+import type TileSource from "ol/source/Tile";
+import type TileLayer from "ol/layer/Tile";
+import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  tileZoomLevel: {
-    type: Number,
-    default: 30,
-  },
-  attributions: {
-    type: String,
-  },
-  cacheSize: {
-    type: Number,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  reprojectionErrorThreshold: {
-    type: Number,
-    default: 0.5,
-  },
-  tilePixelRatio: {
-    type: Number,
-    default: 1,
-  },
-  format: {
-    type: String,
-    default: "image/jpeg",
-  },
-  version: {
-    type: String,
-    default: "1.0.0",
-  },
-  matrixSet: {
-    type: String,
-  },
-  dimensions: {
-    type: Object,
-  },
-  requestEncoding: {
-    type: String,
-    default: "KVP",
-  },
-  url: {
-    type: String,
-  },
-  urls: {
-    type: Array,
-  },
-  wrapX: {
-    type: Boolean,
-    default: false,
-  },
-  transition: {
-    type: Number,
-  },
-  layer: {
-    type: String,
-  },
-  tileMatrixPrefix: {
-    type: String,
-    default: "",
-  },
-  styles: {
-    type: [String, Array, Function],
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    tileZoomLevel?: number;
+    attributions?: string;
+    cacheSize?: number;
+    crossOrigin?: string;
+    imageSmoothing?: boolean;
+    projection?: ProjectionLike;
+    reprojectionErrorThreshold?: number;
+    tilePixelRatio?: number;
+    format: string;
+    version?: string;
+    matrixSet: string;
+    dimensions?: Record<string, unknown>;
+    requestEncoding?: RequestEncoding;
+    url: string;
+    urls?: string[];
+    wrapX?: boolean;
+    transition?: number;
+    layer: string;
+    tileMatrixPrefix?: string;
+    styles: string;
+  }>(),
+  {
+    tileZoomLevel: 30,
+    imageSmoothing: true,
+    projection: "EPSG:3857",
+    reprojectionErrorThreshold: 0.5,
+    tilePixelRatio: 1,
+    format: "image/jpeg",
+    version: "1.0.0",
+    requestEncoding: "KVP",
+    wrapX: false,
+    tileMatrixPrefix: "",
+  }
+);
 
-const tileLayer = inject("tileLayer");
+const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const extent = computed(() => getProjection(properties.projection).getExtent());
-const origin = computed(() => getTopLeft(extent.value));
-const size = computed(() => getWidth(extent.value) / 256);
+const extent = computed((): Extent | null => {
+  return (
+    getProjection(properties.projection as ProjectionLike)?.getExtent() || null
+  );
+});
+const origin = computed((): Coordinate | undefined => {
+  return extent.value ? getTopLeft(extent.value) : undefined;
+});
+const size = computed(() => {
+  return extent.value ? getWidth(extent.value) / 256 : 0;
+});
 
 const getTileGrid = computed(() => {
   const resolutions = new Array(properties.tileZoomLevel);
   const matrixIds = new Array(properties.tileZoomLevel);
 
+  // eslint-disable-next-line no-plusplus
   for (let z = 0; z < properties.tileZoomLevel; ++z) {
     resolutions[z] = size.value / Math.pow(2, z);
     matrixIds[z] = props.tileMatrixPrefix + z;
@@ -108,29 +91,33 @@ const source = computed(
     new WMTS({
       ...properties,
       projection:
-        typeof properties.projection == "string"
+        typeof properties.projection === "string"
           ? properties.projection
           : new Projection({
-              ...properties.projection,
+              // @ts-ignore
+              ...(properties.projection as ProjectionOptions),
             }),
       tileGrid: getTileGrid.value,
-    })
+    } as unknown as Options)
 );
 
 watch(source, () => {
-  tileLayer.value.setSource(source.value);
+  tileLayer?.value?.setSource(source.value);
 });
 
-watch(tileLayer, () => {
-  tileLayer.value.setSource(source.value);
-});
+watch(
+  () => tileLayer,
+  () => {
+    tileLayer?.value?.setSource(source.value);
+  }
+);
 
 onMounted(() => {
-  tileLayer.value.setSource(source.value);
+  tileLayer?.value?.setSource(source.value);
 });
 
 onUnmounted(() => {
-  tileLayer.value.setSource(null);
+  tileLayer?.value?.setSource(null);
 });
 
 defineExpose({
@@ -138,5 +125,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

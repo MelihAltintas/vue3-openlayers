@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OlSourceBingMaps from "./OlSourceBingMaps.vue";
 import OlSourceCluster from "./OlSourceCluster.vue";
 import OlSourceImageStatic from "./OlSourceImageStatic.vue";
@@ -11,12 +12,11 @@ import OlSourceWebglPoints from "./OlSourceWebglPoints.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-source-bingmaps", OlSourceBingMaps);
   app.component("ol-source-cluster", OlSourceCluster);

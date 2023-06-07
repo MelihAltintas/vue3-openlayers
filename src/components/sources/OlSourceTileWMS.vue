@@ -1,77 +1,48 @@
-<template>
-  <div v-if="false"></div>
-</template>
+<template><div v-if="false"></div></template>
 
-<script setup>
+<script setup lang="ts">
 import TileWMS from "ol/source/TileWMS";
 import Projection from "ol/proj/Projection";
 
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
+import type { ServerType } from "ol/source/wms";
+import type { Options as ProjectionOptions } from "ol/proj/Projection";
+import type { Options } from "ol/source/TileWMS";
 
-const props = defineProps({
-  attributions: {
-    type: String,
-  },
-  cacheSize: {
-    type: Number,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  interpolate: {
-    type: Boolean,
-    default: true,
-  },
-  layers: {
-    type: [String, Array],
-    required: true,
-  },
-  styles: {
-    type: [String, Array],
-    default: "",
-  },
-  hidpi: {
-    type: Boolean,
-    default: false,
-  },
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  reprojectionErrorThreshold: {
-    type: Number,
-    default: 0.5,
-  },
-  tileGrid: {
-    type: Object,
-  },
-  serverType: {
-    type: String,
-    default: "mapserver",
-  },
-  tileLoadFunction: {
-    type: Function,
-    default: (imageTile, src) => (imageTile.getImage().src = src),
-  },
-  url: {
-    type: String,
-  },
-  urls: {
-    type: Array,
-  },
-  params: {
-    type: Object,
-    default: () => ({}),
-  },
-  wrapX: {
-    type: Boolean,
-    default: true,
-  },
-  transition: {
-    type: Number,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: string;
+    cacheSize?: number;
+    crossOrigin?: string;
+    interpolate?: boolean;
+    layers: string | unknown[];
+    styles?: string | unknown[];
+    hidpi?: boolean;
+    projection?: ProjectionLike;
+    reprojectionErrorThreshold?: number;
+    serverType?: ServerType;
+    tileLoadFunction?: (imageTile: any, src: string) => void;
+    url: string;
+    urls?: string[];
+    params?: Options;
+    wrapX?: boolean;
+    transition: number;
+  }>(),
+  {
+    interpolate: true,
+    styles: "",
+    hidpi: false,
+    projection: "EPSG:3857",
+    reprojectionErrorThreshold: 0.5,
+    serverType: "mapserver",
+    tileLoadFunction: (imageTile: any, src: string) => {
+      imageTile.getImage().src = src;
+    },
+    wrapX: false,
+  }
+);
 
 const layer = inject("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
@@ -89,7 +60,7 @@ const createSource = () => {
       typeof properties.projection == "string"
         ? properties.projection
         : new Projection({
-            ...properties.projection,
+            ...(properties.projection as unknown as ProjectionOptions),
           }),
   });
 };
@@ -97,16 +68,16 @@ const createSource = () => {
 let source = createSource();
 
 watch(properties, () => {
-  layer.value.setSource(null);
+  layer?.value?.setSource(null);
   source = createSource();
-  layer.value.setSource(source);
+  layer?.value?.setSource(source);
 });
 onMounted(() => {
-  layer.value.setSource(source);
+  layer?.value?.setSource(source);
 });
 
 onUnmounted(() => {
-  layer.value.setSource(null);
+  layer?.value?.setSource(null);
 });
 
 defineExpose({
@@ -114,5 +85,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

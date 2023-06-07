@@ -1,78 +1,50 @@
-<template>
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import ImageWMS from "ol/source/ImageWMS";
+import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
-
+import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch } from "vue";
+import type { Extent } from "ol/extent";
+import type ImageLayer from "ol/layer/Image";
+import type ImageSource from "ol/source/Image";
+import type { ServerType } from "ol/source/wms";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  attributions: {
-    type: String,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  imageExtent: {
-    type: Array,
-  },
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  reprojectionErrorThreshold: {
-    type: Number,
-    default: 0.5,
-  },
-  format: {
-    type: String,
-    default: "image/png",
-  },
-  version: {
-    type: String,
-    default: "1.3.0",
-  },
-  matrixSet: {
-    type: String,
-  },
-  serverType: {
-    type: String,
-    default: "mapserver",
-  },
-  layers: {
-    type: [String, Array],
-    required: true,
-  },
-  styles: {
-    type: [String, Array],
-    default: "",
-  },
-  time: {
-    type: String,
-  },
-  ratio: {
-    type: Number,
-    default: 1,
-  },
-  imageSize: {
-    type: Array,
-  },
-  url: {
-    type: String,
-  },
-  params: {
-    type: Object,
-    default: () => ({}),
-  },
-  imageLoadFunction: {
-    type: Function,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: string;
+    crossOrigin?: string;
+    imageExtent?: Extent;
+    projection?: string | ProjectionOptions;
+    reprojectionErrorThreshold?: number;
+    format?: string;
+    version?: string;
+    matrixSet?: string;
+    serverType?: ServerType;
+    imageSmoothing?: boolean;
+    layers: string | unknown[];
+    styles?: string | unknown[];
+    time?: string;
+    ratio?: number;
+    imageSize?: number[];
+    url?: string;
+    params?: Record<string, unknown>;
+    imageLoadFunction?: (...args: unknown[]) => unknown;
+  }>(),
+  {
+    projection: "EPSG:3857",
+    reprojectionErrorThreshold: 0.5,
+    format: "image/png",
+    version: "1.3.0",
+    serverType: "mapserver",
+    imageSmoothing: true,
+    styles: "",
+    ratio: 1,
+  }
+);
 
-const layer = inject("imageLayer");
+const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
@@ -85,10 +57,10 @@ const createSource = () => {
       TIME: props.time,
     },
     projection:
-      typeof properties.projection == "string"
+      typeof properties.projection === "string"
         ? properties.projection
         : new Projection({
-            ...properties.projection,
+            ...(properties.projection as ProjectionOptions),
           }),
   });
 };
@@ -96,16 +68,16 @@ const createSource = () => {
 let source = createSource();
 
 watch(properties, () => {
-  layer.setSource(null);
+  layer?.setSource(null);
   source = createSource();
-  layer.setSource(source);
+  layer?.setSource(source);
 });
 onMounted(() => {
-  layer.setSource(source);
+  layer?.setSource(source);
 });
 
 onUnmounted(() => {
-  layer.setSource(null);
+  layer?.setSource(null);
 });
 
 defineExpose({
@@ -113,5 +85,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

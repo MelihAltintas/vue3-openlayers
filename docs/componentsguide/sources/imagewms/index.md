@@ -43,7 +43,7 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
   </ol-map>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from "vue";
 
 const zoom = ref(4);

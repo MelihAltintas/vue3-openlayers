@@ -1,46 +1,41 @@
-<template>
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import Static from "ol/source/ImageStatic";
+import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
-
+import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch } from "vue";
+import type { Extent } from "ol/extent";
+import type ImageLayer from "ol/layer/Image";
+import type ImageSource from "ol/source/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  attributions: {
-    type: String,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  imageExtent: {
-    type: Array,
-  },
-  projection: {
-    type: [String, Object],
-  },
-  imageSize: {
-    type: Array,
-  },
-  url: {
-    type: String,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: string;
+    crossOrigin?: string;
+    imageExtent?: Extent;
+    projection?: string | ProjectionOptions;
+    imageSmoothing?: boolean;
+    imageSize?: number[];
+    url: string;
+  }>(),
+  {
+    imageSmoothing: true,
+  }
+);
 
-const layer = inject("imageLayer");
+const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
   return new Static({
     ...properties,
     projection:
-      typeof properties.projection == "string"
+      typeof properties.projection === "string"
         ? properties.projection
         : new Projection({
-            ...properties.projection,
+            ...(properties.projection as ProjectionOptions),
           }),
   });
 };
@@ -48,16 +43,16 @@ const createSource = () => {
 let source = createSource();
 
 watch(properties, () => {
-  layer.setSource(null);
+  layer?.setSource(null);
   source = createSource();
-  layer.setSource(source);
+  layer?.setSource(source);
 });
 onMounted(() => {
-  layer.setSource(source);
+  layer?.setSource(source);
 });
 
 onUnmounted(() => {
-  layer.setSource(null);
+  layer?.setSource(null);
 });
 
 defineExpose({
@@ -65,5 +60,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

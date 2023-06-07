@@ -15,6 +15,10 @@ import VectorSourceDemo3 from "@demos/VectorSourceDemo3.vue"
 
 Static features with the help of ol-feature, should be used only for tiny static layers.
 
+<ClientOnly>
+<GeomPoint />
+</ClientOnly>
+
 ```vue
 <template>
   <button @click="() => (coordinate = coordinate.map((a) => a + 0.01))">
@@ -71,11 +75,11 @@ const coordinate = ref([40, 40]);
 </script>
 ```
 
-<ClientOnly>
-<GeomPoint />
-</ClientOnly>
-
 Load features simply by providing url value and format GeoJSON
+
+<ClientOnly>
+<VectorSourceDemo1 />
+</ClientOnly>
 
 ```vue
 <template>
@@ -119,13 +123,13 @@ const geoJson = new format.GeoJSON();
 </script>
 ```
 
-<ClientOnly>
-<VectorSourceDemo1 />
-</ClientOnly>
-
 ### `urlFunction`
 
 Next example loads features from remote WFS service by viewport BBOX. With format and strategy you can define custom vector source format and loading strategy.
+
+<ClientOnly>
+<VectorSourceDemo2/>
+</ClientOnly>
 
 ```vue
 <template>
@@ -192,13 +196,13 @@ const GeoJSON = new format.GeoJSON();
 </script>
 ```
 
-<ClientOnly>
-<VectorSourceDemo2/>
-</ClientOnly>
-
 ### TopoJSON
 
 You can also use other Vector formats like TopoJSON.
+
+<ClientOnly>
+<VectorSourceDemo3/>
+</ClientOnly>
 
 ```vue
 <template>
@@ -248,10 +252,6 @@ const TopoJSON = new format.TopoJSON({
 });
 </script>
 ```
-
-<ClientOnly>
-<VectorSourceDemo3/>
-</ClientOnly>
 
 ## Properties
 

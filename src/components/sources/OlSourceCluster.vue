@@ -4,32 +4,35 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Cluster } from "ol/source";
 
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
+import type Geometry from "ol/geom/Geometry";
+import type Feature from "ol/Feature";
+import type VectorSource from "ol/source/Vector";
+import type { AttributionLike } from "ol/source/Source";
+import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  attributions: {
-    type: [String, Array],
-  },
-  distance: {
-    type: Number,
-    default: 20,
-  },
-  geometryFunction: {
-    type: Function,
-    default: (feature) => feature.getGeometry(),
-  },
-  wrapX: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: AttributionLike;
+    distance?: number;
+    geometryFunction?: ((arg0: Feature<Geometry>) => Point) | undefined;
+    wrapX?: boolean;
+  }>(),
+  {
+    distance: 20,
+    geometryFunction: (feature: Feature<Geometry>): Point =>
+      feature.getGeometry() as Point,
+    wrapX: true,
+  }
+);
 
-const layer = inject("vectorLayer");
+const layer = inject<Ref<VectorSource<Geometry>> | null>("vectorLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -39,25 +42,34 @@ const source = computed(() => {
 });
 
 const applySource = () => {
-  layer.value.setSource(null);
-  layer.value.setSource(source.value);
-  layer.value.changed();
+  // @ts-ignore
+  layer?.value?.setSource(null);
+  // @ts-ignore
+  layer?.value?.setSource(source.value);
+
+  layer?.value?.changed();
 };
 watch(properties, () => {
   applySource();
 });
 
-watch(layer, () => {
-  applySource();
-});
+watch(
+  () => layer?.value,
+  () => {
+    applySource();
+  }
+);
 
 onMounted(() => {
-  layer.value.setSource(source.value);
-  layer.value.changed();
+  // @ts-ignore
+  layer?.value?.setSource(source.value);
+  // @ts-ignore
+  layer?.value?.changed();
 });
 
 onUnmounted(() => {
-  layer.value.setSource(null);
+  // @ts-ignore
+  layer?.value?.setSource(null);
 });
 
 provide("vectorLayer", source);
@@ -67,5 +79,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

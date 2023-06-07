@@ -1,74 +1,65 @@
 <template>
   <div v-if="false"></div>
 </template>
-
-<script setup>
+<script setup lang="ts">
 import OSM from "ol/source/OSM";
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
+import type TileSource from "ol/source/Tile";
+import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  attributions: {
-    type: String,
-  },
-  cacheSize: {
-    type: Number,
-    default: 2048,
-  },
-  crossOrigin: {
-    type: String,
-    default: "anonymous",
-  },
-  minZoom: {
-    type: Number,
-    default: 0,
-  },
-  maxZoom: {
-    type: Number,
-    default: 19,
-  },
-  opaque: {
-    type: Boolean,
-    default: true,
-  },
-  reprojectionErrorThreshold: {
-    type: Number,
-    default: 0.5,
-  },
-  transition: {
-    type: Number,
-    default: 250,
-  },
-  url: {
-    type: String,
-    default: "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  },
-  wrapX: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: string;
+    cacheSize?: number;
+    crossOrigin?: string;
+    imageSmoothing?: boolean;
+    minZoom?: number;
+    maxZoom?: number;
+    opaque?: boolean;
+    reprojectionErrorThreshold?: number;
+    transition?: number;
+    url?: string;
+    wrapX?: boolean;
+  }>(),
+  {
+    cacheSize: 2048,
+    crossOrigin: "anonymous",
+    imageSmoothing: true,
+    minZoom: 0,
+    maxZoom: 19,
+    opaque: true,
+    reprojectionErrorThreshold: 0.5,
+    transition: 250,
+    url: "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    wrapX: true,
+  }
+);
 
-const layer = inject("tileLayer");
+const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => new OSM(properties));
 
 watch(source, () => {
-  layer.value.setSource(source.value);
+  layer?.value?.setSource(source.value);
 });
 
-watch(layer, () => {
-  layer.value.setSource(source.value);
-});
+watch(
+  () => layer?.value,
+  () => {
+    layer?.value?.setSource(source.value);
+  }
+);
 
 onMounted(() => {
-  layer.value.setSource(source.value);
+  layer?.value?.setSource(source.value);
 });
 
 onUnmounted(() => {
-  layer.value.setSource(null);
+  layer?.value?.setSource(null);
 });
 
 defineExpose({
@@ -76,5 +67,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

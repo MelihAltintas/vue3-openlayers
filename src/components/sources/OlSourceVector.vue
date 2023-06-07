@@ -4,77 +4,75 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { LoadingStrategy, Options } from "ol/source/Vector";
 import VectorSource from "ol/source/Vector";
-
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
-
+import type { AttributionLike } from "ol/source/Source";
+import type Collection from "ol/Collection";
+import type Feature from "ol/Feature";
+import type Geometry from "ol/geom/Geometry";
+import type FeatureFormat from "ol/format/Feature";
+import type { FeatureLoader, FeatureUrlFunction } from "ol/featureloader";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  attributions: {
-    type: [String, Array],
-  },
-  features: {
-    type: Array,
-    default: () => [],
-  },
-  format: {
-    type: Object,
-  },
-  loader: {
-    type: Function,
-  },
-  overlaps: {
-    type: Boolean,
-    default: true,
-  },
-  projection: {
-    type: String,
-    default: "EPSG:3857",
-  },
-  strategy: {
-    type: Function,
-  },
-  url: {
-    type: [String, Function],
-  },
-  useSpatialIndex: {
-    type: Boolean,
-    default: true,
-  },
-  wrapX: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: AttributionLike;
+    features?: Collection<Feature<Geometry>>;
+    format?: FeatureFormat | undefined;
+    loader?: FeatureLoader;
+    overlaps?: boolean;
+    projection?: string;
+    strategy?: LoadingStrategy;
+    url?: string | FeatureUrlFunction;
+    useSpatialIndex?: boolean;
+    wrapX?: boolean;
+  }>(),
+  {
+    overlaps: true,
+    projection: "EPSG:3857",
+    useSpatialIndex: true,
+    wrapX: true,
+  }
+);
 
 const layer =
-  inject("vectorLayer", undefined) || inject("heatmapLayer", undefined);
-
+  inject<Ref<VectorSource<Geometry>> | null>("vectorLayer") ||
+  inject("heatmapLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => new VectorSource(properties));
+const source = computed(
+  () => new VectorSource(properties as Options<Geometry>)
+);
 
 const applySource = () => {
-  layer.value.setSource(null);
-  layer.value.setSource(source.value);
-  layer.value.changed();
+  // @ts-ignore
+  layer?.value?.setSource(null);
+  // @ts-ignore
+  layer?.value?.setSource(source.value);
+  layer?.value?.changed();
 };
 watch(properties, () => {
   applySource();
 });
 
-watch(layer, () => {
-  applySource();
-});
+watch(
+  () => layer?.value,
+  () => {
+    applySource();
+  }
+);
 
 onMounted(() => {
-  layer.value.setSource(source.value);
+  // @ts-ignore
+  layer?.value?.setSource(source.value);
 });
 
 onUnmounted(() => {
-  layer.value.setSource(null);
+  // @ts-ignore
+  layer?.value?.setSource(null);
 });
 
 provide("vectorSource", source);
@@ -84,5 +82,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

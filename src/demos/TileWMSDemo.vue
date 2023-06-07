@@ -4,13 +4,7 @@
     :loadTilesWhileInteracting="true"
     style="height: 400px"
   >
-    <ol-view
-      ref="view"
-      :center="center"
-      :rotation="rotation"
-      :zoom="zoom"
-      :projection="projection"
-    />
+    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
     <ol-zoom-control />
 
     <ol-tile-layer :zIndex="1000">
@@ -29,7 +23,7 @@
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const zoom = ref(4);

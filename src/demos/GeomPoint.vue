@@ -1,6 +1,9 @@
 <template>
-  <button @click="() => (coordinate = coordinate.map((a) => a + 0.01))">
-    changecoor
+  <button
+    @click="() => (coordinate = coordinate.map((a) => a + 0.01))"
+    type="button"
+  >
+    change coordinates
   </button>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -51,3 +54,15 @@ const strokeColor = ref("red");
 const fillColor = ref("white");
 const coordinate = ref([40, 40]);
 </script>
+
+<style>
+button {
+  border: 1px solid black;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+button:hover,
+button:focus {
+  background-color: lightgray;
+}
+</style>

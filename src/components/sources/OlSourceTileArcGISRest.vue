@@ -1,66 +1,44 @@
-<template>
-  <div v-if="false"></div>
-</template>
+<template><div v-if="false"></div></template>
 
-<script setup>
+<script setup lang="ts">
 import { TileArcGISRest } from "ol/source";
 import Projection from "ol/proj/Projection";
 import { inject, onMounted, onUnmounted, watch, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { createXYZ } from "ol/tilegrid";
+import type { ProjectionLike } from "ol/proj";
+import type { Options } from "ol/source/TileArcGISRest";
+import type { Options as ProjectionOptions } from "ol/proj/Projection";
 
-const props = defineProps({
-  attributions: {
-    type: String,
-  },
-  cacheSize: {
-    type: Number,
-  },
-  crossOrigin: {
-    type: String,
-  },
-  interpolate: {
-    type: Boolean,
-    default: true,
-  },
-  params: {
-    type: Object,
-    default: () => ({}),
-  },
-  hidpi: {
-    type: Boolean,
-    default: true,
-  },
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  reprojectionErrorThreshold: {
-    type: Number,
-    default: 0.5,
-  },
-  tileLoadFunction: {
-    type: Function,
-    default: (imageTile, src) => (imageTile.getImage().src = src),
-  },
-  url: {
-    type: String,
-  },
-  wrapX: {
-    type: Boolean,
-    default: true,
-  },
-  transition: {
-    type: Number,
-  },
-  urls: {
-    type: Array,
-  },
-  tileSize: {
-    type: Array[Number],
-    default: [256, 256],
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    attributions?: string;
+    cacheSize?: number;
+    crossOrigin?: string;
+    interpolate?: boolean;
+    params: Options;
+    hidpi?: boolean;
+    projection?: ProjectionLike;
+    reprojectionErrorThreshold?: number;
+    tileLoadFunction?: (imageTile: any, src: string) => void;
+    url: string;
+    urls?: string[];
+    wrapX?: boolean;
+    transition?: number;
+    tileSize?: [number, number];
+  }>(),
+  {
+    interpolate: true,
+    hidpi: false,
+    projection: "EPSG:3857",
+    reprojectionErrorThreshold: 0.5,
+    tileLoadFunction: (imageTile: any, src: string) => {
+      imageTile.getImage().src = src;
+    },
+    wrapX: false,
+    tileSize: () => [256, 256],
+  }
+);
 
 const tileLayer = inject("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
@@ -79,26 +57,29 @@ const source = computed(
         typeof properties.projection == "string"
           ? properties.projection
           : new Projection({
-              ...properties.projection,
+              ...(properties.projection as unknown as ProjectionOptions),
             }),
       tileGrid: getTileGrid.value,
     })
 );
 
 watch(source, () => {
-  tileLayer.value.setSource(source.value);
+  tileLayer?.value?.setSource(source.value);
 });
 
-watch(tileLayer, () => {
-  tileLayer.value.setSource(source.value);
-});
+watch(
+  () => tileLayer,
+  () => {
+    tileLayer?.value?.setSource(source.value);
+  }
+);
 
 onMounted(() => {
-  tileLayer.value.setSource(source.value);
+  tileLayer?.value?.setSource(source.value);
 });
 
 onUnmounted(() => {
-  tileLayer.value.setSource(null);
+  tileLayer?.value?.setSource(null);
 });
 
 defineExpose({

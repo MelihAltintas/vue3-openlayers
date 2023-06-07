@@ -44,7 +44,7 @@ import TileWMSDemo from "@demos/TileWMSDemo.vue"
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const zoom = ref(4);
