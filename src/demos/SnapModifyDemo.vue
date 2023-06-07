@@ -130,6 +130,7 @@ function vectorStyle() {
   return style;
 }
 
+const geoJsonFormat = new GeoJSON();
 const selectConditions = inject("ol-selectconditions");
 const selectCondition = selectConditions.click;
 
