@@ -1,74 +1,60 @@
-<template lang="">
-  <div :ref="(el) => (mapRef = el)">
+<template>
+  <div ref="mapRef">
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, provide, onMounted, onUnmounted, watch } from "vue";
-
+import type { AtPixelOptions } from "ol/Map";
 import Map from "ol/Map";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { defaults } from "ol/interaction/defaults";
+import type Collection from "ol/Collection";
+import type Control from "ol/control/Control";
+import type { FeatureLike } from "ol/Feature";
+import type { SimpleGeometry } from "ol/geom";
+import type LayerRenderer from "ol/renderer/Layer";
+import type { Layer } from "ol/layer";
+import type { Pixel } from "ol/pixel";
+import type { Source } from "ol/source";
+import type { Coordinate } from "ol/coordinate";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  loadTilesWhileAnimating: {
-    type: Boolean,
-    default: false,
-  },
-  loadTilesWhileInteracting: {
-    type: Boolean,
-    default: false,
-  },
-  moveTolerance: {
-    type: Number,
-    default: 1,
-  },
-  pixelRatio: {
-    type: Number,
-    default: 1,
-  },
-  controls: {
-    type: Array,
-    default: () => [],
-  },
-  altShiftDragRotate: {
-    type: Boolean,
-    default: true,
-  },
-  onFocusOnly: {
-    type: Boolean,
-    default: true,
-  },
-  doubleClickZoom: {
-    type: Boolean,
-    default: true,
-  },
-  keyboard: {
-    type: Boolean,
-    default: true,
-  },
-  mouseWheelZoom: {
-    type: Boolean,
-    default: true,
-  },
-  shiftDragZoom: {
-    type: Boolean,
-    default: true,
-  },
-  dragPan: {
-    type: Boolean,
-    default: true,
-  },
-  pinchRotate: {
-    type: Boolean,
-    default: true,
-  },
-  pinchZoom: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    controls?: Collection<Control> | Control[] | undefined;
+    pixelRatio?: number | undefined;
+
+    loadTilesWhileAnimating?: boolean;
+    loadTilesWhileInteracting?: boolean;
+    moveTolerance?: number;
+    altShiftDragRotate?: boolean;
+    onFocusOnly?: boolean;
+    doubleClickZoom?: boolean;
+    keyboard?: boolean;
+    mouseWheelZoom?: boolean;
+    shiftDragZoom?: boolean;
+    dragPan?: boolean;
+    pinchRotate?: boolean;
+    pinchZoom?: boolean;
+  }>(),
+  {
+    loadTilesWhileAnimating: false,
+    loadTilesWhileInteracting: false,
+    moveTolerance: 1,
+    pixelRatio: 1,
+    controls: undefined,
+    altShiftDragRotate: true,
+    onFocusOnly: true,
+    doubleClickZoom: true,
+    keyboard: true,
+    mouseWheelZoom: true,
+    shiftDragZoom: true,
+    dragPan: true,
+    pinchRotate: true,
+    pinchZoom: true,
+  }
+);
 
 const emit = defineEmits([
   "click",
@@ -85,9 +71,8 @@ const emit = defineEmits([
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const mapRef = ref(null);
-
-let map = new Map({
+const mapRef = ref<string | HTMLElement | undefined>(undefined);
+let map: Map | undefined = new Map({
   ...properties,
   interactions: defaults({
     ...properties,
@@ -95,7 +80,7 @@ let map = new Map({
 });
 
 watch(properties, () => {
-  map.setProperties({
+  map?.setProperties({
     ...properties,
     interactions: defaults({
       ...properties,
@@ -104,23 +89,49 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  map.setTarget(mapRef.value);
+  map?.setTarget(mapRef.value);
 });
 
 onUnmounted(() => {
-  map.setTarget(null);
-  map = null;
+  map?.setTarget(undefined);
+  map = undefined;
 });
 
 provide("map", map);
 
-const focus = () => map.focus();
-const forEachFeatureAtPixel = (pixel, callback, options = {}) =>
-  map.forEachFeatureAtPixel(pixel, callback, options);
-const getCoordinateFromPixel = (pixel) => map.getCoordinateFromPixel(pixel);
-const refresh = () => map.refresh();
-const render = () => map.render();
-const updateSize = () => map.updateSize();
+const focus = () => {
+  // @ts-ignore
+  return map?.focus();
+};
+const forEachFeatureAtPixel = (
+  pixel: Pixel,
+  callback: (
+    arg0: FeatureLike,
+    arg1: Layer<Source, LayerRenderer<any>>,
+    arg2: SimpleGeometry
+  ) => unknown,
+  options?: AtPixelOptions | undefined
+) => map?.forEachFeatureAtPixel(pixel, callback, options);
+const forEachLayerAtPixel = (
+  pixel: Pixel,
+  callback: (
+    arg0: FeatureLike,
+    arg1: Layer<Source, LayerRenderer<any>>,
+    arg2: SimpleGeometry
+  ) => unknown,
+  layerFilter?: AtPixelOptions | undefined
+) => {
+  // @ts-ignore
+  return map?.forEachLayerAtPixel(pixel, callback, layerFilter);
+};
+const getCoordinateFromPixel = (pixel: Coordinate) =>
+  map?.getCoordinateFromPixel(pixel);
+const refresh = () => {
+  // @ts-ignore
+  return map?.refresh();
+};
+const render = () => map?.render();
+const updateSize = () => map?.updateSize();
 
 map.on("click", (event) => emit("click", event));
 map.on("dblclick", (event) => emit("dblclick", event));
@@ -139,11 +150,10 @@ defineExpose({
   mapRef,
   focus,
   forEachFeatureAtPixel,
+  forEachLayerAtPixel,
   getCoordinateFromPixel,
   refresh,
   render,
   updateSize,
 });
 </script>
-
-<style lang=""></style>

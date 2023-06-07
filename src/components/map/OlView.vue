@@ -1,90 +1,52 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
+import type { Extent } from "ol/extent";
+import type { Options } from "ol/proj/Projection";
 import useView from "@/composables/useView";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  center: {
-    type: Array,
-    default: () => [0, 0],
-  },
-  constrainRotation: {
-    type: Boolean,
-    default: true,
-  },
-  enableRotation: {
-    type: Boolean,
-    default: true,
-  },
-  extent: {
-    type: Array,
-  },
-  constrainOnlyCenter: {
-    type: Boolean,
-    default: false,
-  },
-  smoothExtentConstraint: {
-    type: Boolean,
-    default: true,
-  },
-  maxResolution: {
-    type: Number,
-  },
-  minResolution: {
-    type: Number,
-  },
-  maxZoom: {
-    type: Number,
-    default: 28,
-  },
-  minZoom: {
-    type: Number,
-    default: 0,
-  },
-  multiWorld: {
-    type: Boolean,
-    default: false,
-  },
-  constrainResolution: {
-    type: Boolean,
-    default: false,
-  },
-  smoothResolutionConstraint: {
-    type: Boolean,
-    default: true,
-  },
-  showFullExtent: {
-    type: Boolean,
-    default: false,
-  },
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  resolution: {
-    type: Number,
-  },
-  resolutions: {
-    type: Array,
-  },
-  rotation: {
-    type: Number,
-  },
-  zoom: {
-    type: Number,
-    default: 0,
-  },
-  zoomFactor: {
-    type: Number,
-    default: 2,
-  },
-  padding: {
-    type: Array,
-    default: () => [0, 0, 0, 0],
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    center?: unknown[];
+    constrainRotation?: boolean;
+    enableRotation?: boolean;
+    extent?: Extent;
+    constrainOnlyCenter?: boolean;
+    smoothExtentConstraint?: boolean;
+    maxResolution?: number;
+    minResolution?: number;
+    maxZoom?: number;
+    minZoom?: number;
+    multiWorld?: boolean;
+    constrainResolution?: boolean;
+    smoothResolutionConstraint?: boolean;
+    showFullExtent?: boolean;
+    projection?: string | Options;
+    resolution?: number;
+    resolutions?: unknown[];
+    rotation?: number;
+    zoom?: number;
+    zoomFactor?: number;
+    padding?: number[];
+  }>(),
+  {
+    center: () => [0, 0],
+    constrainRotation: true,
+    enableRotation: true,
+    constrainOnlyCenter: false,
+    smoothExtentConstraint: true,
+    maxZoom: 28,
+    minZoom: 0,
+    multiWorld: false,
+    constrainResolution: false,
+    smoothResolutionConstraint: true,
+    showFullExtent: false,
+    projection: "EPSG:3857",
+    zoom: 0,
+    zoomFactor: 2,
+    padding: () => [0, 0, 0, 0],
+  }
+);
 
 const emit = defineEmits([
   "centerChanged",

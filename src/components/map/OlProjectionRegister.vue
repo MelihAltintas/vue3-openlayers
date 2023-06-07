@@ -1,24 +1,23 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
+import { toRefs } from "vue";
+import type { ProjectionDefinition } from "proj4";
 import proj4 from "proj4";
 import { register } from "ol/proj/proj4";
-import { toRefs } from "vue";
 import Projection from "ol/proj/Projection";
+import type { Extent } from "ol/extent";
 
-const props = defineProps({
-  projectionName: {
-    type: String,
-  },
-  projectionDef: {
-    type: String,
-  },
-  projectionExtent: {
-    type: Array,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    projectionName: string;
+    projectionDef: string | ProjectionDefinition;
+    projectionExtent?: Extent;
+  }>(),
+  {
+    projectionExtent: undefined,
+  }
+);
+
 const { projectionName, projectionDef, projectionExtent } = toRefs(props);
 
 proj4.defs(projectionName.value, projectionDef.value);
@@ -33,5 +32,3 @@ defineExpose({
   projection,
 });
 </script>
-
-<style lang=""></style>

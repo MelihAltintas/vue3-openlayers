@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <slot
     :position="position"
     :speed="speed"
@@ -7,13 +7,14 @@
     :altitude="altitude"
     :altitudeAccuracy="altitudeAccuracy"
     :accuracyGeometry="accuracyGeometry"
-  >
-  </slot>
+  ></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { watch, computed, ref } from "vue";
 import Geolocation from "ol/Geolocation";
+import type { Coordinate } from "ol/coordinate";
+import type Polygon from "ol/geom/Polygon";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 const emit = defineEmits([
@@ -25,40 +26,39 @@ const emit = defineEmits([
   "accuracyGeometryChanged",
 ]);
 
-const props = defineProps({
-  projection: {
-    type: [String, Object],
-    default: "EPSG:3857",
-  },
-  tracking: {
-    type: Boolean,
-    default: true,
-  },
-  trackingOptions: {
-    type: Object,
-    default: () => {
-      return {
-        enableHighAccuracy: true,
-      };
-    },
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    projection: string | Record<string, unknown>;
+    tracking?: boolean;
+    trackingOptions?: {
+      enableHighAccuracy: boolean;
+    };
+  }>(),
+  {
+    projection: "EPSG:3857",
+    tracking: true,
+    trackingOptions: () => ({
+      enableHighAccuracy: true,
+    }),
+  }
+);
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const geoLoc = computed(() => {
+  // @ts-ignore
   const g = new Geolocation(properties);
   g.on("change", changeEvt);
   return g;
 });
 
-const position = ref([]);
-const accuracy = ref(0);
-const altitude = ref(0);
-const altitudeAccuracy = ref(0);
-const speed = ref(0);
-const heading = ref(0);
-const accuracyGeometry = ref({});
+const position = ref<Coordinate | undefined>([]);
+const accuracy = ref<number | undefined>(0);
+const altitude = ref<number | undefined>(0);
+const altitudeAccuracy = ref<number | undefined>(0);
+const speed = ref<number | undefined>(0);
+const heading = ref<number | undefined>(0);
+const accuracyGeometry = ref<Polygon | null>(null);
 
 watch(position, () => {
   emit("positionChanged", position.value);
@@ -110,5 +110,3 @@ defineExpose({
   accuracyGeometry,
 });
 </script>
-
-<style lang=""></style>
