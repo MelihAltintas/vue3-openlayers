@@ -1,5 +1,5 @@
 import type { App } from "vue";
-import OLAnimationDrop from "./OLAnimationDrop.vue";
+import OLAnimationDrop from "./OlAnimationDrop.vue";
 import OlAnimationFade from "./OlAnimationFade.vue";
 import OlAnimationFeature from "./OlAnimationFeature.vue";
 import OlAnimationPath from "./OlAnimationPath.vue";
