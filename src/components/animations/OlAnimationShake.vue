@@ -13,9 +13,9 @@ import {
 const props = withDefaults(
   defineProps<
     AnimationCommonProps & {
-      bounce: number;
-      amplitude: number;
-      horizontal: boolean;
+      bounce?: number;
+      amplitude?: number;
+      horizontal?: boolean;
     }
   >(),
   {

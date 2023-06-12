@@ -11,7 +11,7 @@ import {
 } from "./AnimationCommonProps";
 
 const props = withDefaults(
-  defineProps<AnimationCommonProps & { speed: number; side: number }>(),
+  defineProps<AnimationCommonProps & { speed?: number; side?: number }>(),
   {
     ...animationCommonDefaultProps,
     side: 0,

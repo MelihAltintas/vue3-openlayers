@@ -13,7 +13,11 @@ import type { LineString } from "ol/geom";
 
 const props = withDefaults(
   defineProps<
-    AnimationCommonProps & { rotate: boolean; speed: number; path: LineString }
+    AnimationCommonProps & {
+      rotate?: boolean;
+      speed?: number;
+      path: LineString;
+    }
   >(),
   {
     ...animationCommonDefaultProps,
