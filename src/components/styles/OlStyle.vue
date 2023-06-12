@@ -21,58 +21,40 @@ const props = withDefaults(
   {}
 );
 
-const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
+const styledObj = inject<Ref<Draw | Modify | Style> | undefined>(
   "stylable",
-  null
+  undefined
 );
 const { properties } = usePropsAsObjectProperties(props);
 
 const style = computed(() => new Style(properties));
 
 const setStyle = (val: Style | null) => {
-  if (styledObj?.value instanceof Draw || styledObj?.value instanceof Modify) {
-    styledObj.value?.getOverlay().setStyle(val);
-    styledObj.value.changed();
-    styledObj.value?.dispatchEvent("styleChanged");
+  const st = styledObj?.value;
+  if (!st) {
     return;
   }
-  try {
-    if (styledObj?.value) {
+  if (st instanceof Draw || st instanceof Modify) {
+    st.getOverlay().setStyle(val);
+    st.changed();
+    st.dispatchEvent("styleChanged");
+  } else {
+    try {
       // @ts-ignore
-      if (styledObj.value.setStyle) {
-        // @ts-ignore
-        styledObj.value.setStyle(val);
-      }
+      st.setStyle(val);
       // @ts-ignore
-      if (styledObj.value.changed) {
-        // @ts-ignore
-        styledObj.value.changed();
-      }
+      st.changed();
       // @ts-ignore
-      if (styledObj.value.dispatchEvent) {
-        // @ts-ignore
-        styledObj.value.dispatchEvent("styleChanged");
-      }
-    }
-  } catch (error) {
-    if (styledObj?.value) {
+      st.dispatchEvent("styleChanged");
+    } catch (error) {
       // @ts-ignore
-      styledObj.value.style_ = val;
+      st.style_ = val;
       // @ts-ignore
-      if (styledObj.value.values_) {
-        // @ts-ignore
-        styledObj.value.values_.style = val;
-      }
+      st.values_.style = val;
       // @ts-ignore
-      if (styledObj.value?.changed) {
-        // @ts-ignore
-        styledObj.value?.changed();
-      }
+      st.changed();
       // @ts-ignore
-      if (styledObj.value?.dispatchEvent) {
-        // @ts-ignore
-        styledObj.value?.dispatchEvent("styleChanged");
-      }
+      st.dispatchEvent("styleChanged");
     }
   }
 };
