@@ -8,7 +8,7 @@ import useAnimation from "@/composables/useAnimation";
 import {
   animationCommonDefaultProps,
   type AnimationCommonProps,
-} from "./AnimationCommonProps";
+} from "@/components/animations/AnimationCommonProps";
 import type { LineString } from "ol/geom";
 
 const props = withDefaults(

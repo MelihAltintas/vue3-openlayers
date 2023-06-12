@@ -14,7 +14,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
-} from "./LayersCommonProps";
+} from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
 
 const props = withDefaults(

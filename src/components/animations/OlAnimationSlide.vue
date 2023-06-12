@@ -8,7 +8,7 @@ import useAnimation from "@/composables/useAnimation";
 import {
   animationCommonDefaultProps,
   type AnimationCommonProps,
-} from "./AnimationCommonProps";
+} from "@/components/animations/AnimationCommonProps";
 
 const props = withDefaults(
   defineProps<AnimationCommonProps & { speed?: number }>(),

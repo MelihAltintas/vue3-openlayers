@@ -12,7 +12,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
-} from "./LayersCommonProps";
+} from "@/components/layers/LayersCommonProps";
 
 const props = withDefaults(
   defineProps<LayersCommonProps>(),

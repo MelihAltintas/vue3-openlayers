@@ -11,7 +11,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 import {
   animationCommonDefaultProps,
   type AnimationCommonProps,
-} from "./AnimationCommonProps";
+} from "@/components/animations/AnimationCommonProps";
 
 const props = withDefaults(
   defineProps<AnimationCommonProps>(),
