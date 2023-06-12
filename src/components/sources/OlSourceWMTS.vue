@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 
 <script setup lang="ts">
 import type { RequestEncoding, Options } from "ol/source/WMTS";
@@ -59,6 +61,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const extent = computed((): Extent | null => {
   return (
+    // @ts-ignore
     getProjection(properties.projection as ProjectionLike)?.getExtent() || null
   );
 });
@@ -70,20 +73,22 @@ const size = computed(() => {
 });
 
 const getTileGrid = computed(() => {
-  const resolutions = new Array(properties.tileZoomLevel);
-  const matrixIds = new Array(properties.tileZoomLevel);
+  const resolutions = [properties.tileZoomLevel];
+  const matrixIds = [`${properties.tileZoomLevel}`];
 
-  // eslint-disable-next-line no-plusplus
+  // @ts-ignore eslint-disable-next-line no-plusplus
   for (let z = 0; z < properties.tileZoomLevel; ++z) {
+    // @ts-ignore
     resolutions[z] = size.value / Math.pow(2, z);
     matrixIds[z] = props.tileMatrixPrefix + z;
   }
 
+  // @ts-ignore
   return new WMTSTileGrid({
     origin: origin.value,
     resolutions,
     matrixIds,
-  });
+  } as Options);
 });
 
 const source = computed(
@@ -93,7 +98,8 @@ const source = computed(
       projection:
         typeof properties.projection === "string"
           ? properties.projection
-          : new Projection({
+          : // @ts-ignore
+            new Projection({
               // @ts-ignore
               ...(properties.projection as ProjectionOptions),
             }),

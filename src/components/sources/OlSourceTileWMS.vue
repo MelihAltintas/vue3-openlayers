@@ -1,15 +1,19 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 
 <script setup lang="ts">
 import TileWMS from "ol/source/TileWMS";
 import Projection from "ol/proj/Projection";
 
-import { inject, onMounted, onUnmounted, watch } from "vue";
+import { inject, onMounted, onUnmounted, watch, type Ref } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { ProjectionLike } from "ol/proj";
 import type { ServerType } from "ol/source/wms";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import type { Options } from "ol/source/TileWMS";
+import type TileSource from "ol/source/Tile";
+import type TileLayer from "ol/layer/Tile";
 
 const props = withDefaults(
   defineProps<{
@@ -44,7 +48,7 @@ const props = withDefaults(
   }
 );
 
-const layer = inject("tileLayer");
+const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
@@ -59,25 +63,27 @@ const createSource = () => {
     projection:
       typeof properties.projection == "string"
         ? properties.projection
-        : new Projection({
+        : // @ts-ignore
+          new Projection({
+            // @ts-ignore
             ...(properties.projection as unknown as ProjectionOptions),
           }),
-  });
+  } as Options);
 };
 
 let source = createSource();
 
 watch(properties, () => {
-  layer?.value?.setSource(null);
+  layer?.value.setSource(null);
   source = createSource();
-  layer?.value?.setSource(source);
+  layer?.value.setSource(source);
 });
 onMounted(() => {
-  layer?.value?.setSource(source);
+  layer?.value.setSource(source);
 });
 
 onUnmounted(() => {
-  layer?.value?.setSource(null);
+  layer?.value.setSource(null);
 });
 
 defineExpose({

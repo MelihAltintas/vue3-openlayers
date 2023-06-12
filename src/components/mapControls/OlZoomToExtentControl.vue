@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import ZoomToExtent from "ol/control/ZoomToExtent";
 import { useAttrs } from "vue";

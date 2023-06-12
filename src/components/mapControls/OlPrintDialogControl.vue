@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import PrintDialog from "ol-ext/control/PrintDialog";
 
@@ -21,7 +23,7 @@ const { properties } = usePropsAsObjectProperties(props);
 const { control } = useControl(PrintDialog, properties, attrs);
 
 // @ts-ignore
-control.value.on(["print", "error"], (e) => {
+control.value.on(["print", "error"], (e: any) => {
   // Print success
   // @ts-ignore
   if (e.image) {
@@ -50,7 +52,7 @@ control.value.on(["print", "error"], (e) => {
       // Save image as file
       // @ts-ignore
       e.canvas.toBlob(
-        (blob) => {
+        (blob: Blob) => {
           // @ts-ignore
           const name =
             (e.print.legend ? "legend." : "map.") +

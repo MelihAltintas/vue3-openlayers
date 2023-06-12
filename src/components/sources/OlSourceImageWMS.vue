@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import ImageWMS from "ol/source/ImageWMS";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
@@ -58,7 +60,9 @@ const createSource = () => {
     projection:
       typeof properties.projection === "string"
         ? properties.projection
-        : new Projection({
+        : // @ts-ignore
+          new Projection({
+            // @ts-ignore
             ...(properties.projection as ProjectionOptions),
           }),
   });

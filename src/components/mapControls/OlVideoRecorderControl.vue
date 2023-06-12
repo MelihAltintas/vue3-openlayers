@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import VideoRecorder from "ol-ext/control/VideoRecorder";
 import { saveAs } from "file-saver";

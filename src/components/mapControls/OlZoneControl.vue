@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import Zone from "ol-ext/control/MapZone";
 import { useAttrs } from "vue";

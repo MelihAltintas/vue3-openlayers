@@ -1,14 +1,18 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 
 <script setup lang="ts">
 import { TileArcGISRest } from "ol/source";
 import Projection from "ol/proj/Projection";
-import { inject, onMounted, onUnmounted, watch, computed } from "vue";
+import { inject, onMounted, onUnmounted, watch, computed, type Ref } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { createXYZ } from "ol/tilegrid";
 import type { ProjectionLike } from "ol/proj";
 import type { Options } from "ol/source/TileArcGISRest";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
+import type TileLayer from "ol/layer/Tile";
+import type TileSource from "ol/source/Tile";
 
 const props = withDefaults(
   defineProps<{
@@ -40,7 +44,7 @@ const props = withDefaults(
   }
 );
 
-const tileLayer = inject("tileLayer");
+const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const getTileGrid = computed(() => {
@@ -56,7 +60,9 @@ const source = computed(
       projection:
         typeof properties.projection == "string"
           ? properties.projection
-          : new Projection({
+          : // @ts-ignore
+            new Projection({
+              // @ts-ignore
               ...(properties.projection as unknown as ProjectionOptions),
             }),
       tileGrid: getTileGrid.value,

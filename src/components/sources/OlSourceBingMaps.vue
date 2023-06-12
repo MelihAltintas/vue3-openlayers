@@ -1,7 +1,9 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 
 <script setup lang="ts">
-import BingMaps from "ol/source/BingMaps";
+import BingMaps, { type Options } from "ol/source/BingMaps";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
@@ -44,7 +46,7 @@ const source = computed(
     new BingMaps({
       ...properties,
       key: properties.apiKey,
-    })
+    } as Options)
 );
 
 watch(source, () => {

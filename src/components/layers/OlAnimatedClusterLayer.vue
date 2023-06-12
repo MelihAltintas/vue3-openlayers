@@ -48,7 +48,7 @@ const vectorLayer = computed(() => {
   const ac = new AnimatedCluster({
     ...properties,
     source: new Cluster({
-      distance: properties.distance as number | undefined,
+      distance: properties.distance,
       geometryFunction: (feature) => feature.getGeometry() as Point,
     }),
   });

@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import type { IconAnchorUnits, IconOrigin } from "ol/style/Icon";
 import Icon from "ol/style/Icon";

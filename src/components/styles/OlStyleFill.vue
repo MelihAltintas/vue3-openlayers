@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import Fill from "ol/style/Fill";
 import type CircleStyle from "ol/style/Circle";

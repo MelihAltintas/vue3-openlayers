@@ -1,6 +1,8 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
-import Static from "ol/source/ImageStatic";
+import Static, { type Options } from "ol/source/ImageStatic";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
 import { inject, onMounted, onUnmounted, watch } from "vue";
@@ -33,10 +35,12 @@ const createSource = () => {
     projection:
       typeof properties.projection === "string"
         ? properties.projection
-        : new Projection({
+        : // @ts-ignore
+          new Projection({
+            // @ts-ignore
             ...(properties.projection as ProjectionOptions),
           }),
-  });
+  } as Options);
 };
 
 let source = createSource();

@@ -1,4 +1,6 @@
-<template><div v-if="false"></div></template>
+<template>
+  <div v-if="false"></div>
+</template>
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";

@@ -63,6 +63,7 @@ const styleFunc = computed(() => {
   // @ts-ignore
   return (feature) => {
     if (properties.overrideStyleFunction != null) {
+      // @ts-ignore
       properties.overrideStyleFunction(feature, style.value);
     }
     return style.value;
