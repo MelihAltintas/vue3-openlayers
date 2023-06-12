@@ -1,4 +1,4 @@
-import { inject, watch, onMounted, type Ref } from "vue";
+import { inject, watch, onMounted } from "vue";
 import type { Options } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
 import type { AnimationOptions, FitOptions } from "ol/View";

@@ -62,12 +62,12 @@ const createText = (innerProperties: Omit<Options, "fill" | "stroke">) => {
   });
 };
 
-const text = computed(() => createText(properties));
+const textContent = computed(() => createText(properties));
 
 const applyStyle = () => {
   // @ts-ignore
   style?.value?.setText(null);
-  style?.value?.setText(text.value);
+  style?.value?.setText(textContent.value);
   // @ts-ignore
   styledObj?.value?.changed();
 };
@@ -83,7 +83,7 @@ watch(
 );
 
 onMounted(() => {
-  style?.value?.setText(text.value);
+  style?.value?.setText(textContent.value);
 });
 
 onUnmounted(() => {
@@ -91,6 +91,6 @@ onUnmounted(() => {
   style?.value?.setText(null);
 });
 
-provide("style", text);
+provide("style", textContent);
 provide("styledObj", styledObj);
 </script>

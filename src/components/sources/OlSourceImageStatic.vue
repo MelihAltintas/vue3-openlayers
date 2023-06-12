@@ -3,7 +3,6 @@
 import Static from "ol/source/ImageStatic";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
-import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import type { Extent } from "ol/extent";
 import type ImageLayer from "ol/layer/Image";

@@ -3,7 +3,6 @@
 import type { Extent } from "ol/extent";
 import type { Options } from "ol/proj/Projection";
 import useView from "@/composables/useView";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 const props = withDefaults(
   defineProps<{

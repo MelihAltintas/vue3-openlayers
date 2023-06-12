@@ -8,7 +8,7 @@ import PrintDialog from "ol-ext/control/PrintDialog";
 import useControl from "@/composables/useControl";
 
 import FileSaver from "file-saver";
-import { jsPDF } from "jspdf";
+import { jsPDF as jsPDFClass } from "jspdf";
 import { useAttrs } from "vue";
 
 const props = defineProps({
@@ -68,7 +68,7 @@ control.value.on(["print", "error"], function (e) {
   if (e.image) {
     if (e.pdf) {
       // Export pdf using the print info
-      const pdf = new jsPDF({
+      const pdf = new jsPDFClass({
         orientation: e.print.orientation,
         unit: e.print.unit,
         format: e.print.size,
