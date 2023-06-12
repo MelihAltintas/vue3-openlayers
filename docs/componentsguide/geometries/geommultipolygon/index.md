@@ -67,7 +67,7 @@ import MultiPolygon from "@demos/MultiPolygon.vue"
   </ol-map>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
 const center = ref([-98.8449, 19.6869]);
