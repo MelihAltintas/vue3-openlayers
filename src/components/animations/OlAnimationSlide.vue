@@ -1,19 +1,22 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Slide from "ol-ext/featureanimation/Slide";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps({
-  ...useAnimationProps(),
-  speed: {
-    type: Number,
-    default: 0,
-  },
-});
+const props = withDefaults(
+  defineProps<AnimationCommonProps & { speed: number }>(),
+  {
+    ...animationCommonDefaultProps,
+    speed: 0,
+  }
+);
 
 const { map, vectorLayer, properties } = useAnimation(Slide, props);
 
@@ -23,5 +26,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

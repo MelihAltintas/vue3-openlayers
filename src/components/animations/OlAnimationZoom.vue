@@ -1,19 +1,26 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Zoom from "ol-ext/featureanimation/Zoom";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  type AnimationCommonProps,
+  animationCommonDefaultProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps({
-  ...useAnimationProps(),
-  zoomOut: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    AnimationCommonProps & {
+      zoomOut?: boolean;
+    }
+  >(),
+  {
+    ...animationCommonDefaultProps,
+    zoomOut: false,
+  }
+);
 
 const { map, vectorLayer, properties } = useAnimation(Zoom, props);
 
@@ -23,5 +30,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

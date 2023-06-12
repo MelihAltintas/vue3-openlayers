@@ -1,16 +1,25 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useAnimationProps from "@/composables/useAnimationProps";
+<script setup lang="ts">
+import type { Ref } from "vue";
 import { inject } from "vue";
+import type VectorSource from "ol/source/Vector";
+import type Geometry from "ol/geom/Geometry";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps(useAnimationProps());
+const props = withDefaults(
+  defineProps<AnimationCommonProps>(),
+  animationCommonDefaultProps
+);
 
 const map = inject("map");
-const vectorLayer = inject("vectorLayer");
+const vectorLayer = inject<Ref<VectorSource<Geometry>> | null>("vectorLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -20,5 +29,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

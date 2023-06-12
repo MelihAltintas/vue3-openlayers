@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OLAnimationDrop from "./OLAnimationDrop.vue";
 import OlAnimationFade from "./OlAnimationFade.vue";
 import OlAnimationFeature from "./OlAnimationFeature.vue";
@@ -7,12 +8,11 @@ import OlAnimationSlide from "./OlAnimationSlide.vue";
 import OlAnimationTeleport from "./OlAnimationTeleport.vue";
 import OlAnimationZoom from "./OlAnimationZoom.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-animation-drop", OLAnimationDrop);
   app.component("ol-animation-fade", OlAnimationFade);

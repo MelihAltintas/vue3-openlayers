@@ -1,13 +1,20 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Fade from "ol-ext/featureanimation/Fade";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps(useAnimationProps());
+const props = withDefaults(
+  defineProps<AnimationCommonProps>(),
+  animationCommonDefaultProps
+);
+
 const { map, vectorLayer, properties } = useAnimation(Fade, props);
 
 defineExpose({
@@ -16,5 +23,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

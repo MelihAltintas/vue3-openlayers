@@ -9,7 +9,7 @@ import Feature from "ol/Feature";
 import type Geometry from "ol/geom/Geometry";
 import type VectorSource from "ol/source/Vector";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { FeatureAnimation } from "@/composables/AnimationTypes";
+import type { FeatureAnimation } from "@/components/animations/AnimationTypes";
 
 const props = withDefaults(
   defineProps<{

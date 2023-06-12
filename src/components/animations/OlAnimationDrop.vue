@@ -1,23 +1,23 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Drop from "ol-ext/featureanimation/Drop";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps({
-  ...useAnimationProps(),
-  side: {
-    type: Number,
-    default: 0,
-  },
-  speed: {
-    type: Number,
-    default: 0,
-  },
-});
+const props = withDefaults(
+  defineProps<AnimationCommonProps & { speed: number; side: number }>(),
+  {
+    ...animationCommonDefaultProps,
+    side: 0,
+    speed: 0,
+  }
+);
 
 const { map, vectorLayer, properties } = useAnimation(Drop, props);
 
@@ -27,5 +27,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

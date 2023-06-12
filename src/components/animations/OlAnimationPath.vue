@@ -1,26 +1,26 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Path from "ol-ext/featureanimation/Path";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
+import type { LineString } from "ol/geom";
 
-const props = defineProps({
-  ...useAnimationProps(),
-  rotate: {
-    type: Boolean,
-    default: false,
-  },
-  speed: {
-    type: Number,
-    default: 0,
-  },
-  path: {
-    type: Object,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    AnimationCommonProps & { rotate: boolean; speed: number; path: LineString }
+  >(),
+  {
+    ...animationCommonDefaultProps,
+    rotate: false,
+    speed: 0,
+  }
+);
 
 const { map, vectorLayer, properties } = useAnimation(Path, props);
 
@@ -30,5 +30,3 @@ defineExpose({
   properties,
 });
 </script>
-
-<style lang=""></style>

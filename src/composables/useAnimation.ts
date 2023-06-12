@@ -4,7 +4,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 import type {
   FeatureAnimationOptions,
   FeatureAnimation,
-} from "@/composables/AnimationTypes";
+} from "@/components/animations/AnimationTypes";
 
 export default function useAnimation(
   AnimationType: new () => FeatureAnimation,

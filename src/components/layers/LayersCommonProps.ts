@@ -17,7 +17,7 @@ export type LayersCommonProps = {
   properties?: () => Record<string, any>;
 };
 
-export const layersCommonDefaultProps = {
+export const layersCommonDefaultProps: LayersCommonProps = {
   className: "ol-layer",
   opacity: 1,
   visible: true,

@@ -2,7 +2,7 @@ import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch, computed } from "vue";
 import type featureType from "ol/Feature";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { Class } from "@/composables/AnimationTypes";
+import type { Class } from "@/components/animations/AnimationTypes";
 
 export default function useGeometry(
   GeometryType: Class,

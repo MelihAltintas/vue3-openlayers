@@ -38,15 +38,9 @@ const props = withDefaults(
   }
 );
 
-const vectorLayer = inject<Ref<VectorSource<Geometry>> | null>(
-  "vectorLayer",
-  null
-);
-const heatmapLayer = inject<Ref<VectorSource<Geometry>> | null>(
-  "heatmapLayer",
-  null
-);
-const layer = heatmapLayer || vectorLayer;
+const layer =
+  inject<Ref<VectorSource<Geometry>> | null>("vectorLayer") ||
+  inject("heatmapLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 

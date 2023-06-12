@@ -1,27 +1,30 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Shake from "ol-ext/featureanimation/Shake";
 import useAnimation from "@/composables/useAnimation";
-import useAnimationProps from "@/composables/useAnimationProps";
+import {
+  animationCommonDefaultProps,
+  type AnimationCommonProps,
+} from "./AnimationCommonProps";
 
-const props = defineProps({
-  ...useAnimationProps(),
-  bounce: {
-    type: Number,
-    default: 6,
-  },
-  amplitude: {
-    type: Number,
-    default: 40,
-  },
-  horizontal: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    AnimationCommonProps & {
+      bounce: number;
+      amplitude: number;
+      horizontal: boolean;
+    }
+  >(),
+  {
+    ...animationCommonDefaultProps,
+    bounce: 6,
+    amplitude: 40,
+    horizontal: false,
+  }
+);
 
 const { map, vectorLayer, properties, animation } = useAnimation(Shake, props);
 
@@ -32,5 +35,3 @@ defineExpose({
   animation,
 });
 </script>
-
-<style lang=""></style>

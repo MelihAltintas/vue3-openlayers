@@ -16,7 +16,7 @@ const props = withDefaults(
     LayersCommonProps & {
       renderBuffer?: number;
       updateWhileAnimating?: boolean;
-      style?: () => unknown;
+      styles?: () => unknown;
       updateWhileInteracting?: boolean;
     }
   >(),
