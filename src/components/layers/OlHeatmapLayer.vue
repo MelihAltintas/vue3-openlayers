@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <slot></slot>
-  </div>
+  <div><slot></slot></div>
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import { inject, provide, onUnmounted, onMounted, watch, ref } from "vue";
 import HeatmapLayer from "ol/layer/Heatmap";
 import type { Extent } from "ol/extent";
 import type Map from "ol/Map";
@@ -39,19 +37,21 @@ const props = withDefaults(
 const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
-// @ts-ignore
-const heatmapLayer = computed(() => new HeatmapLayer(properties));
+const heatmapLayer = ref();
 
 watch(properties, () => {
   heatmapLayer.value.setProperties(properties);
 });
 
 onMounted(() => {
+  heatmapLayer.value = new HeatmapLayer(properties);
   map?.addLayer(heatmapLayer.value);
+  map?.changed();
 });
 
 onUnmounted(() => {
   map?.removeLayer(heatmapLayer.value);
+  map?.changed();
 });
 
 provide("heatmapLayer", heatmapLayer);
