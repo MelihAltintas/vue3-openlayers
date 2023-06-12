@@ -1,66 +1,54 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
-
 import Select from "ol-ext/interaction/SelectCluster";
+import Style from "ol/style/Style";
+import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
 const emit = defineEmits(["select"]);
-const props = defineProps({
-  multi: {
-    type: Boolean,
-    default: false,
-  },
-  condition: {
-    type: Function,
-  },
-  filter: {
-    type: Function,
-  },
-  pointRadius: {
-    type: Number,
-    default: 7,
-  },
-  animate: {
-    type: Boolean,
-    default: true,
-  },
-  animationDuration: {
-    type: Number,
-    default: 500,
-  },
-  spiral: {
-    type: Boolean,
-    default: true,
-  },
-  selectCluster: {
-    type: Boolean,
-    default: true,
-  },
-  autoClose: {
-    type: Boolean,
-    default: true,
-  },
-  circleMaxObjects: {
-    type: Number,
-  },
-  maxObjects: {
-    type: Number,
-  },
-  featureStyle: {
-    type: Function,
-  },
-});
 
-const map = inject("map");
+const props = withDefaults(
+  defineProps<{
+    multi?: boolean;
+    condition?: () => boolean;
+    filter?: () => boolean;
+    pointRadius?: number;
+    animate?: boolean;
+    animationDuration?: number;
+    spiral?: boolean;
+    selectCluster?: boolean;
+    autoClose?: boolean;
+    circleMaxObjects?: number;
+    maxObjects?: number;
+    featureStyle?: () => Record<string, unknown>;
+    styles?: () => Record<string, unknown>;
+  }>(),
+  {
+    multi: false,
+    pointRadius: 7,
+    animate: true,
+    animationDuration: 500,
+    spiral: true,
+    selectCluster: true,
+    autoClose: true,
+  }
+);
+
+const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
-  const s = new Select(properties);
+  // @ts-ignore
+  const s = new Select({
+    style: new Style(),
+    ...properties,
+  });
+
   s.on("select", (event) => {
     emit("select", event);
   });
@@ -69,21 +57,19 @@ const select = computed(() => {
 });
 
 watch(select, (newVal, oldVal) => {
-  map.removeInteraction(oldVal);
-  map.addInteraction(newVal);
+  map?.removeInteraction(oldVal);
+  map?.addInteraction(newVal);
 
-  map.changed();
+  map?.changed();
 });
 
 onMounted(() => {
-  map.addInteraction(select.value);
+  map?.addInteraction(select.value);
 });
 
 onUnmounted(() => {
-  map.removeInteraction(select.value);
+  map?.removeInteraction(select.value);
 });
 
 provide("stylable", select);
 </script>
-
-<style lang=""></style>

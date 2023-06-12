@@ -1,57 +1,55 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted } from "vue";
-
 import Snap from "ol/interaction/Snap";
+import type Map from "ol/Map";
+import type VectorSource from "ol/source/Vector";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  vertex: {
-    type: Boolean,
-    default: true,
-  },
-  edge: {
-    type: Boolean,
-    default: true,
-  },
-  pixelTolerance: {
-    type: Number,
-    default: 10,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    vertex?: boolean;
+    edge?: boolean;
+    pixelTolerance?: number;
+  }>(),
+  {
+    vertex: true,
+    edge: true,
+    pixelTolerance: 10,
+  }
+);
 
-const map = inject("map");
-const source = inject("vectorSource");
+const map = inject<Map>("map");
+const source = inject<Ref<VectorSource> | null>("vectorSource");
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSnap = () => {
-  const s = new Snap({
+  const olSnap = new Snap({
     ...properties,
-    source: source.value,
+    source: source?.value,
   });
 
-  return s;
+  return olSnap;
 };
 let snap = createSnap();
 
 watch(properties, () => {
-  map.removeInteraction(snap);
+  map?.removeInteraction(snap);
   snap = createSnap();
-  map.addInteraction(snap);
-  map.changed();
+  map?.addInteraction(snap);
+  map?.changed();
 });
 
 onMounted(() => {
-  map.addInteraction(snap);
+  map?.addInteraction(snap);
 });
 
 onUnmounted(() => {
-  map.removeInteraction(snap);
+  map?.removeInteraction(snap);
 });
 </script>
-
-<style lang=""></style>

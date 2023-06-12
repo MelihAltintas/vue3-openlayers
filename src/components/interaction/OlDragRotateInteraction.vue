@@ -2,24 +2,25 @@
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 
 import DragRotate from "ol/interaction/DragRotate";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { Map } from "ol";
 
-const props = defineProps({
-  condition: {
-    type: Function,
-  },
-  duration: {
-    type: Number,
-    default: 250,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    condition?: () => boolean;
+    duration?: number;
+  }>(),
+  {
+    duration: 250,
+  }
+);
 
-const map = inject("map");
+const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -32,18 +33,18 @@ const dragrotate = computed(() => {
 });
 
 watch(dragrotate, (newVal, oldVal) => {
-  map.removeInteraction(oldVal);
-  map.addInteraction(newVal);
+  map?.removeInteraction(oldVal);
+  map?.addInteraction(newVal);
 
-  map.changed();
+  map?.changed();
 });
 
 onMounted(() => {
-  map.addInteraction(dragrotate.value);
+  map?.addInteraction(dragrotate.value);
 });
 
 onUnmounted(() => {
-  map.removeInteraction(dragrotate.value);
+  map?.removeInteraction(dragrotate.value);
 });
 </script>
 

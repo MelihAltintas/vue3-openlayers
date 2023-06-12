@@ -1,50 +1,45 @@
-<template lang="">
+<template>
   <slot></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
-
 import DragRotateAndZoom from "ol/interaction/DragRotateAndZoom";
-
+import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  condition: {
-    type: Function,
-  },
-  duration: {
-    type: Number,
-    default: 400,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    condition?: () => boolean;
+    duration?: number;
+  }>(),
+  {
+    duration: 400,
+  }
+);
 
-const map = inject("map");
-
+const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
-
-const dragrotatezoom = computed(() => {
-  const s = new DragRotateAndZoom({
+const dragRotateZoom = computed(() => {
+  const OlDragRotateAndZoom = new DragRotateAndZoom({
     ...properties,
   });
 
-  return s;
+  return OlDragRotateAndZoom;
 });
 
-watch(dragrotatezoom, (newVal, oldVal) => {
-  map.removeInteraction(oldVal);
-  map.addInteraction(newVal);
+watch(dragRotateZoom, (newVal, oldVal) => {
+  map?.removeInteraction(oldVal);
+  map?.addInteraction(newVal);
 
-  map.changed();
+  map?.changed();
 });
 
 onMounted(() => {
-  map.addInteraction(dragrotatezoom.value);
+  map?.addInteraction(dragRotateZoom.value);
 });
 
 onUnmounted(() => {
-  map.removeInteraction(dragrotatezoom.value);
+  map?.removeInteraction(dragRotateZoom.value);
 });
 </script>
-
-<style lang=""></style>
