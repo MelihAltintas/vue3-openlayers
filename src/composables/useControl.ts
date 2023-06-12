@@ -85,13 +85,13 @@ export default function useControl<T extends InnerControlType>(
   properties: InnerControlProperties,
   attrs: Record<string, unknown>
 ) {
-  const map = inject<Ref<ExtentedMap>>("map");
+  const map = inject<ExtentedMap>("map");
   const controlBar = inject<Ref<InnerControlType | null> | null>(
     "controlBar",
     null
   );
 
-  const parent = controlBar !== null ? controlBar?.value : map?.value;
+  const parent = controlBar !== null ? controlBar?.value : map;
 
   const control = computed(
     () =>
@@ -106,7 +106,7 @@ export default function useControl<T extends InnerControlType>(
     if (parent && parent instanceof Map) {
       parent.removeControl(oldVal);
       parent.addControl(newVal);
-      map?.value?.changed();
+      map?.changed();
     }
   });
 
@@ -132,7 +132,7 @@ export default function useControl<T extends InnerControlType>(
       parent.changed();
     }
 
-    map?.value?.changed();
+    map?.changed();
   });
 
   onUnmounted(() => {
@@ -148,7 +148,7 @@ export default function useControl<T extends InnerControlType>(
       }
       control.value.dispose();
     }
-    map?.value?.changed();
+    map?.changed();
   });
 
   return {
