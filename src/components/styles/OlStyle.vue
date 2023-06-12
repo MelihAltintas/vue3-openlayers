@@ -88,7 +88,7 @@ const styleFunc = computed(() => {
 });
 
 watch(properties, () => {
-  if (properties.overrideStyleFunction === null) {
+  if (!properties.overrideStyleFunction === null) {
     setStyle(style.value);
   } else {
     // @ts-ignore
@@ -97,7 +97,7 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  if (properties.overrideStyleFunction === null) {
+  if (!properties.overrideStyleFunction) {
     setStyle(style.value);
   } else {
     // @ts-ignore
