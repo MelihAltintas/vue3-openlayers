@@ -1,4 +1,4 @@
-# vl-overlay
+# ol-overlay
 
 > HTML element attached to geographical coordinate
 
