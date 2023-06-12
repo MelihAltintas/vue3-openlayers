@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OlAttributionControl from "./OlAttributionControl.vue";
 import OlButtonControl from "./OlButtonControl.vue";
 import OlContextMenuControl from "./OlContextMenuControl.vue";
@@ -18,12 +19,11 @@ import OlZoomControl from "./OlZoomControl.vue";
 import OlZoomSliderControl from "./OlZoomSliderControl.vue";
 import OlZoomToExtentControl from "./OlZoomToExtentControl.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-attribution-control", OlAttributionControl);
   app.component("ol-fullscreen-control", OlFullScreenControl);

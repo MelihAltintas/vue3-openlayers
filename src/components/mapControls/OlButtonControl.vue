@@ -1,39 +1,28 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import Button from "ol-ext/control/Button";
 
-import useControl from "@/composables/useControl";
 import { useAttrs } from "vue";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  props: {
-    html: {
-      type: String,
-    },
-    name: {
-      type: String,
-    },
-    className: {
-      type: String,
-    },
-    title: {
-      type: String,
-    },
-    handleClick: {
-      type: Function,
-    },
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    html?: string;
+    name?: string;
+    className?: string;
+    title?: string;
+    handleClick?: () => unknown;
+  }>(),
+  {}
+);
 
 const attrs = useAttrs();
-const { control } = useControl(Button, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+
+const { control } = useControl(Button, properties, attrs);
 
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

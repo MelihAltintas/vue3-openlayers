@@ -1,78 +1,41 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import PrintDialog from "ol-ext/control/PrintDialog";
 
-import useControl from "@/composables/useControl";
-
-import FileSaver from "file-saver";
+import { saveAs } from "file-saver";
 import { jsPDF as jsPDFClass } from "jspdf";
 import { useAttrs } from "vue";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  title: {
-    type: String,
-  },
-  lang: {
-    type: String,
-    default: "en",
-  },
-  className: {
-    type: String,
-  },
-  imageType: {
-    type: String,
-    default: "image/jpeg",
-  },
-  quality: {
-    type: Number,
-  },
-  orientation: {
-    type: String,
-  },
-  immediate: {
-    type: Boolean,
-    default: false,
-  },
-  openWindow: {
-    type: Boolean,
-    default: false,
-  },
-  copy: {
-    type: Boolean,
-    default: true,
-  },
-  print: {
-    type: Boolean,
-    default: true,
-  },
-  pdf: {
-    type: Boolean,
-    default: true,
-  },
-  saveAs: {
-    type: Function,
-  },
-  jsPDF: {
-    type: Object,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    lang?: string;
+  }>(),
+  {}
+);
 
 const attrs = useAttrs();
-const { control } = useControl(PrintDialog, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
 
-control.value.on(["print", "error"], function (e) {
+const { control } = useControl(PrintDialog, properties, attrs);
+
+// @ts-ignore
+control.value.on(["print", "error"], (e) => {
   // Print success
+  // @ts-ignore
   if (e.image) {
+    // @ts-ignore
     if (e.pdf) {
       // Export pdf using the print info
       const pdf = new jsPDFClass({
         orientation: e.print.orientation,
+        // @ts-ignore
         unit: e.print.unit,
+        // @ts-ignore
         format: e.print.size,
       });
+      // @ts-ignore
       pdf.addImage(
         e.image,
         "JPEG",
@@ -81,15 +44,19 @@ control.value.on(["print", "error"], function (e) {
         e.print.imageWidth,
         e.print.imageHeight
       );
+      // @ts-ignore
       pdf.save(e.print.legend ? "legend.pdf" : "map.pdf");
     } else {
       // Save image as file
+      // @ts-ignore
       e.canvas.toBlob(
-        function (blob) {
+        (blob) => {
+          // @ts-ignore
           const name =
             (e.print.legend ? "legend." : "map.") +
             e.imageType.replace("image/", "");
-          FileSaver.saveAs(blob, name);
+          saveAs(blob, name);
+          // @ts-ignore
         },
         e.imageType,
         e.quality
@@ -104,5 +71,3 @@ defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

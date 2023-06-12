@@ -1,38 +1,32 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import ContextMenu from "ol-contextmenu";
-
-import useControl from "@/composables/useControl";
 import { useAttrs } from "vue";
+import type { Item } from "ol-contextmenu/dist/types";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  eventType: {
-    type: String,
-    default: "contextmenu",
-  },
-  defaultItems: {
-    type: Boolean,
-    default: true,
-  },
-  width: {
-    type: Number,
-    default: 150,
-  },
-  items: {
-    type: Array,
-    default: () => [],
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    eventType?: "contextmenu" | "click" | "dblclick" | undefined;
+    defaultItems?: boolean;
+    width?: number;
+    items?: Item[];
+  }>(),
+  {
+    eventType: "contextmenu",
+    defaultItems: true,
+    width: 150,
+    items: () => [],
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(ContextMenu, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+
+const { control } = useControl(ContextMenu, properties, attrs);
 
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

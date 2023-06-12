@@ -1,59 +1,39 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import { Attribution } from "ol/control";
-import useControl from "@/composables/useControl";
 import { useAttrs } from "vue";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  className: {
-    type: String,
-    default: "ol-attribution",
-  },
-  target: {
-    type: HTMLElement,
-  },
-  collapsible: {
-    type: Boolean,
-  },
-  collapsed: {
-    type: Boolean,
-    default: true,
-  },
-  tipLabel: {
-    type: String,
-    default: "Attributions",
-  },
-
-  label: {
-    type: String,
-    default: "i",
-  },
-  expandClassName: {
-    type: String,
-    default: "ol-attribution-expand",
-  },
-  collapseLabel: {
-    type: String,
-    default: "»",
-  },
-  collapseClassName: {
-    type: String,
-    default: "ol-attribution-collapse",
-  },
-  render: {
-    type: Function,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    target?: HTMLElement;
+    collapsible?: boolean;
+    collapsed?: boolean;
+    tipLabel?: string;
+    label?: string;
+    expandClassName?: string;
+    collapseLabel?: string;
+    collapseClassName?: string;
+    render?: () => void;
+  }>(),
+  {
+    className: "ol-attribution",
+    collapsed: true,
+    tipLabel: "Attributions",
+    label: "i",
+    expandClassName: "ol-attribution-expand",
+    collapseLabel: "»",
+    collapseClassName: "ol-attribution-collapse",
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(Attribution, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+const { control } = useControl(Attribution, properties, attrs);
 
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

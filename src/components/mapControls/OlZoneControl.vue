@@ -1,38 +1,31 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import Zone from "ol-ext/control/MapZone";
-import useControl from "@/composables/useControl";
 import { useAttrs } from "vue";
+import type { Layer } from "ol/layer";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  className: {
-    type: String,
-  },
-  zones: {
-    type: Array,
-  },
-  layer: {
-    type: [Object, Function],
-  },
-  projection: {
-    type: String,
-    default: "EPSG:3857",
-  },
-  centerOnClick: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    zones?: Zone[];
+    layer?: Layer | ((zone: Zone) => Layer);
+    projection?: string;
+    centerOnClick?: boolean;
+  }>(),
+  {
+    projection: "EPSG:3857",
+    centerOnClick: true,
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(Zone, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+
+const { control } = useControl(Zone, properties, attrs);
 
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

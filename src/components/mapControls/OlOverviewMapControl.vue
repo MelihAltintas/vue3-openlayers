@@ -1,59 +1,49 @@
-<template lang="">
+<template>
   <div>
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { OverviewMap } from "ol/control";
-import useControl from "@/composables/useControl";
+import type { Ref } from "vue";
 import { provide, inject, onMounted, onUnmounted, useAttrs } from "vue";
+import type Map from "ol/Map";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  className: {
-    type: String,
-    default: "ol-overviewmap",
-  },
-  collapsed: {
-    type: Boolean,
-    default: true,
-  },
-  collapseLabel: {
-    type: String,
-    default: "«",
-  },
-  collapsible: {
-    type: Boolean,
-    default: true,
-  },
-  label: {
-    type: String,
-    default: "»",
-  },
-  render: {
-    type: Function,
-  },
-  rotateWithView: {
-    type: Boolean,
-    default: false,
-  },
-  target: {
-    type: HTMLElement,
-  },
-
-  tipLabel: {
-    type: String,
-    default: "Overview map",
-  },
-});
-
-const map = inject("map");
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    collapsed?: boolean;
+    collapseLabel?: string;
+    collapsible?: boolean;
+    label?: string;
+    render?: (...args: unknown[]) => unknown;
+    rotateWithView?: boolean;
+    target?: HTMLElement;
+    tipLabel?: string;
+  }>(),
+  {
+    className: "ol-overviewmap",
+    collapsed: true,
+    collapseLabel: "«",
+    collapsible: true,
+    label: "»",
+    rotateWithView: false,
+    tipLabel: "Overview map",
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(OverviewMap, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+
+const map = inject<Ref<Map> | null>("map");
+
+const { control } = useControl(OverviewMap, properties, attrs);
 
 onMounted(() => {
-  control.value.setMap(map);
+  control.value.setMap(map?.value || null);
 });
 
 onUnmounted(() => {
@@ -66,5 +56,3 @@ defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

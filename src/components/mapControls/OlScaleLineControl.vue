@@ -1,57 +1,39 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
-import useControl from "@/composables/useControl";
-
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import { ScaleLine } from "ol/control";
 import { useAttrs } from "vue";
+import useControl from "@/composables/useControl";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  className: {
-    type: String,
-    default: "ol-scale-line",
-  },
-  minWidth: {
-    type: Number,
-    default: 64,
-  },
-  render: {
-    type: Function,
-  },
-  target: {
-    type: HTMLElement,
-  },
-  units: {
-    type: String,
-    default: "metric",
-  },
-  bar: {
-    type: Boolean,
-    default: false,
-  },
-
-  steps: {
-    type: Number,
-    default: 4,
-  },
-  text: {
-    type: Boolean,
-    default: false,
-  },
-  dpi: {
-    type: Number,
-    default: undefined,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    minWidth?: number;
+    render?: (...args: unknown[]) => unknown;
+    target?: HTMLElement;
+    units?: string;
+    bar?: boolean;
+    steps?: number;
+    text?: string;
+    dpi?: number;
+  }>(),
+  {
+    className: "ol-scale-line",
+    minWidth: 64,
+    units: "metric",
+    bar: false,
+    steps: 4,
+    text: "",
+    dpi: undefined,
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(ScaleLine, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
+
+const { control } = useControl(ScaleLine, properties, attrs);
 
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>

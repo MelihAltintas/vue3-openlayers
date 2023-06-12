@@ -1,40 +1,30 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
+import { useAttrs } from "vue";
 import { MousePosition } from "ol/control";
 import useControl from "@/composables/useControl";
-import { useAttrs } from "vue";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = defineProps({
-  className: {
-    type: String,
-    default: "ol-mouse-position",
-  },
-  coordinateFormat: {
-    type: [String, Function],
-  },
-  projection: {
-    type: String,
-  },
-  render: {
-    type: Function,
-  },
-  target: {
-    type: HTMLElement,
-  },
-  placeholder: {
-    type: String,
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    coordinateFormat?: [string, (...args: unknown[]) => unknown];
+    projection?: string;
+    render?: (...args: unknown[]) => unknown;
+    target?: HTMLElement;
+    undefinedHTML?: string;
+  }>(),
+  {
+    className: "ol-mouse-position",
+    undefinedHTML: "&#160;",
+  }
+);
 
 const attrs = useAttrs();
-const { control } = useControl(MousePosition, props, { attrs });
+const { properties } = usePropsAsObjectProperties(props);
 
+const { control } = useControl(MousePosition, properties, attrs);
 defineExpose({
   control,
 });
 </script>
-
-<style lang=""></style>
