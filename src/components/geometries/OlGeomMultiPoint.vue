@@ -1,20 +1,17 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
-
-<script setup>
+<template><div v-if="false"></div></template>
+<script setup lang="ts">
 import MultiPoint from "ol/geom/MultiPoint";
 import useGeometry from "@/composables/useGeometry";
 
-const props = defineProps({
-  coordinates: {
-    type: Array,
-  },
-  opt_layout: {
-    type: String,
-    default: "XY",
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    coordinates: number[];
+    opt_layout?: string;
+  }>(),
+  {
+    opt_layout: "XY",
+  }
+);
 
 const { geometry } = useGeometry(MultiPoint, props);
 
@@ -22,5 +19,3 @@ defineExpose({
   geometry,
 });
 </script>
-
-<style lang=""></style>

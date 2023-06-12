@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OlGeomCircle from "./OlGeomCircle.vue";
 import OlGeomLineString from "./OlGeomLineString.vue";
 import OlGeomMultiLineString from "./OlGeomMultiLineString.vue";
@@ -6,12 +7,11 @@ import OlGeomMultiPolygon from "./OlGeomMultiPolygon.vue";
 import OlGeomPoint from "./OlGeomPoint.vue";
 import OlGeomPolygon from "./OlGeomPolygon.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-geom-circle", OlGeomCircle);
   app.component("ol-geom-line-string", OlGeomLineString);

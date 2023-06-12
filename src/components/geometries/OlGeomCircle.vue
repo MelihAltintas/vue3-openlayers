@@ -1,23 +1,19 @@
-<template lang="">
-  <div v-if="false"></div>
-</template>
+<template><div v-if="false"></div></template>
 
-<script setup>
+<script setup lang="ts">
 import Circle from "ol/geom/Circle";
 import useGeometry from "@/composables/useGeometry";
 
-const props = defineProps({
-  center: {
-    type: Array,
-  },
-  radius: {
-    type: Number,
-  },
-  opt_layout: {
-    type: String,
-    default: "XY",
-  },
-});
+const props = withDefaults(
+  defineProps<{
+    center: number[];
+    radius: number;
+    opt_layout?: string;
+  }>(),
+  {
+    opt_layout: "XY",
+  }
+);
 
 const { geometry } = useGeometry(Circle, props);
 
@@ -25,5 +21,3 @@ defineExpose({
   geometry,
 });
 </script>
-
-<style lang=""></style>
