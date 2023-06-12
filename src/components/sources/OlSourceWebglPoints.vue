@@ -28,7 +28,7 @@ const props = withDefaults(
     overlaps?: boolean;
     projection?: string;
     strategy?: LoadingStrategy;
-    url?: FeatureUrlFunction;
+    url?: string | FeatureUrlFunction;
     useSpatialIndex?: boolean;
     wrapX?: boolean;
   }>(),

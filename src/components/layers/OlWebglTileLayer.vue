@@ -1,46 +1,51 @@
-<template lang="">
+<template>
   <div>
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Ref } from "vue";
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
-
 import TileLayer from "ol/layer/WebGLTile";
+import type Map from "ol/Map";
+import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useBaseLayerProps from "@/composables/useBaseLayerProps";
+import type { LayersCommonProps } from "./LayersCommonProps";
 
-const props = defineProps({
-  ...useBaseLayerProps(),
-  preload: {
-    type: Number,
-    default: 1,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    LayersCommonProps & {
+      preload?: number;
+    }
+  >(),
+  {
+    preload: 1,
+  }
+);
 
-const map = inject("map");
-const overViewMap = inject("overviewMap", null);
+const map = inject<Map>("map");
+const overViewMap = inject<Ref<OverviewMap | null> | null>("overviewMap", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const tileLayer = computed(() => new TileLayer(properties));
 
 const applyTileLayer = () => {
-  if (overViewMap != null) {
-    overViewMap.value.getOverviewMap().addLayer(tileLayer.value);
-    overViewMap.value.changed();
+  if (overViewMap?.value) {
+    overViewMap.value?.getOverviewMap().addLayer(tileLayer.value);
+    overViewMap.value?.changed();
   } else {
-    map.addLayer(tileLayer.value);
+    map?.addLayer(tileLayer.value);
   }
 };
 
 const removeTileLayer = () => {
   if (overViewMap != null) {
-    overViewMap.value.getOverviewMap().removeLayer(tileLayer.value);
-    overViewMap.value.changed();
+    overViewMap.value?.getOverviewMap().removeLayer(tileLayer.value);
+    overViewMap.value?.changed();
   } else {
-    map.removeLayer(tileLayer.value);
+    map?.removeLayer(tileLayer.value);
   }
 };
 
@@ -65,5 +70,3 @@ defineExpose({
   tileLayer,
 });
 </script>
-
-<style lang=""></style>

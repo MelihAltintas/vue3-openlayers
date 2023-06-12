@@ -4,33 +4,35 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
 import VectorImageLayer from "ol/layer/VectorImage";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useBaseLayerProps from "@/composables/useBaseLayerProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
+import type { Map } from "ol";
 
-const props = defineProps({
-  ...useBaseLayerProps(),
-  renderBuffer: {
-    type: Number,
-    default: 100,
-  },
-  updateWhileAnimating: {
-    type: Boolean,
-    default: false,
-  },
-  styles: {
-    type: [String, Array, Function],
-  },
-  updateWhileInteracting: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    LayersCommonProps & {
+      renderBuffer?: number;
+      updateWhileAnimating?: boolean;
+      styles?: () => unknown;
+      updateWhileInteracting?: boolean;
+    }
+  >(),
+  {
+    ...layersCommonDefaultProps,
+    renderBuffer: 100,
+    updateWhileAnimating: false,
+    updateWhileInteracting: false,
+  }
+);
 
-const map = inject("map");
+const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -41,11 +43,11 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  map.addLayer(vectorImageLayer.value);
+  map?.addLayer(vectorImageLayer.value);
 });
 
 onUnmounted(() => {
-  map.removeLayer(vectorImageLayer.value);
+  map?.removeLayer(vectorImageLayer.value);
 });
 
 provide("vectorLayer", vectorImageLayer);

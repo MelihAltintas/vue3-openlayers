@@ -1,43 +1,46 @@
-<template lang="">
+<template>
   <div>
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 import { Cluster } from "ol/source";
 import { easeOut } from "ol/easing";
-
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster";
+import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useBaseLayerProps from "@/composables/useBaseLayerProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
+import type { Point } from "ol/geom";
 
-const props = defineProps({
-  ...useBaseLayerProps(),
-  animationDuration: {
-    type: Number,
-    default: 700,
-  },
-  distance: {
-    type: Number,
-    default: 20,
-  },
-  animationMethod: {
-    type: Function,
-    default: easeOut,
-  },
-  updateWhileAnimating: {
-    type: Boolean,
-    default: false,
-  },
-  updateWhileInteracting: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = withDefaults(
+  defineProps<
+    LayersCommonProps & {
+      animationDuration?: number;
+      distance?: number;
+      animationMethod?: (t: number) => number;
+      updateWhileAnimating?: boolean;
+      updateWhileInteracting?: boolean;
+    }
+  >(),
+  {
+    ...layersCommonDefaultProps,
+    className: "ol-layer",
+    opacity: 1,
+    visible: true,
+    animationDuration: 700,
+    distance: 20,
+    animationMethod: easeOut,
+    updateWhileAnimating: false,
+    updateWhileInteracting: false,
+  }
+);
 
-const map = inject("map");
+const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -45,8 +48,8 @@ const vectorLayer = computed(() => {
   const ac = new AnimatedCluster({
     ...properties,
     source: new Cluster({
-      distance: properties.distance,
-      geometryFunction: (feature) => feature.getGeometry(),
+      distance: properties.distance as number | undefined,
+      geometryFunction: (feature) => feature.getGeometry() as Point,
     }),
   });
 
@@ -61,13 +64,13 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  map.addLayer(vectorLayer.value);
+  map?.addLayer(vectorLayer.value);
   vectorLayer.value.changed();
-  map.changed();
+  map?.changed();
 });
 
 onUnmounted(() => {
-  map.removeLayer(vectorLayer.value);
+  map?.removeLayer(vectorLayer.value);
 });
 
 provide("vectorLayer", source);
@@ -78,5 +81,3 @@ defineExpose({
   map,
 });
 </script>
-
-<style lang=""></style>

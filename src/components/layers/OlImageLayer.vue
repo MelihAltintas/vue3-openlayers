@@ -1,19 +1,25 @@
-<template lang="">
+<template>
   <div>
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch } from "vue";
-
 import ImageLayer from "ol/layer/Image";
+import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useBaseLayerProps from "@/composables/useBaseLayerProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
 
-const props = defineProps(useBaseLayerProps());
+const props = withDefaults(
+  defineProps<LayersCommonProps>(),
+  layersCommonDefaultProps
+);
 
-const map = inject("map");
+const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const imageLayer = new ImageLayer(properties);
@@ -23,11 +29,11 @@ watch(properties, () => {
 });
 
 onMounted(() => {
-  map.addLayer(imageLayer);
+  map?.addLayer(imageLayer);
 });
 
 onUnmounted(() => {
-  map.removeLayer(imageLayer);
+  map?.removeLayer(imageLayer);
 });
 
 provide("imageLayer", imageLayer);
@@ -36,5 +42,3 @@ defineExpose({
   imageLayer,
 });
 </script>
-
-<style lang=""></style>

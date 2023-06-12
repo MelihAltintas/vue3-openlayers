@@ -1,25 +1,40 @@
-<template lang="">
+<template>
   <div>
     <slot></slot>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { Ref } from "vue";
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
 import WebGLPointsLayer from "ol/layer/WebGLPoints";
+import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import useBaseLayerProps from "@/composables/useBaseLayerProps";
+import type { LayersCommonProps } from "./LayersCommonProps";
 
-const props = defineProps({
-  ...useBaseLayerProps(),
-  disableHitDetection: {
-    type: Boolean,
-    default: false,
-  },
-  styles: {
-    type: [String, Array, Function],
-    default: () => ({
+type StyleType = {
+  symbol: {
+    symbolType: string;
+    size: number;
+    color: string;
+    opacity: number;
+  };
+};
+
+const props = withDefaults(
+  defineProps<
+    LayersCommonProps & {
+      disableHitDetection?: boolean;
+      styles: StyleType;
+      className?: "ol-layer";
+      opacity?: 1;
+      visible?: true;
+    }
+  >(),
+  {
+    disableHitDetection: false,
+    styles: () => ({
       symbol: {
         symbolType: "circle",
         size: 8,
@@ -27,20 +42,23 @@ const props = defineProps({
         opacity: 0.9,
       },
     }),
-  },
-});
+  }
+);
 
-const map = inject("map");
+const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
+
+// @ts-ignore
 const webglPointsLayer = computed(() => new WebGLPointsLayer(properties));
+
 watch(properties, () => {
   webglPointsLayer.value.setProperties(properties);
 });
 onMounted(() => {
-  map.addLayer(webglPointsLayer.value);
+  map?.addLayer(webglPointsLayer.value);
 });
 onUnmounted(() => {
-  map.removeLayer(webglPointsLayer.value);
+  map?.removeLayer(webglPointsLayer.value);
 });
 provide("webglPointsLayer", webglPointsLayer);
 
@@ -48,5 +66,3 @@ defineExpose({
   webglPointsLayer,
 });
 </script>
-
-<style lang=""></style>

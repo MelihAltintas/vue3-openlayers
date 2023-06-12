@@ -1,3 +1,4 @@
+import type { App } from "vue";
 import OlAnimatedClusterLayer from "./OlAnimatedClusterLayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
 import OlImageLayer from "./OlImageLayer.vue";
@@ -7,12 +8,11 @@ import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import OlWebglPointsLayer from "./OlWebglPointsLayer.vue";
 import OlWebglTileLayer from "./OlWebglTileLayer.vue";
 
-function install(app) {
-  if (install.installed) {
-    return;
-  }
+let installed = false;
 
-  install.installed = true;
+function install(app: App) {
+  if (installed) return;
+  installed = true;
 
   app.component("ol-animated-clusterlayer", OlAnimatedClusterLayer);
   app.component("ol-heatmap-layer", OlHeatmapLayer);
