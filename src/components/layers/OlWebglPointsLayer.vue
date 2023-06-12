@@ -5,13 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
 import WebGLPointsLayer from "ol/layer/WebGLPoints";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { LayersCommonProps } from "./LayersCommonProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
 
 type StyleType = {
   symbol: {
@@ -27,12 +29,10 @@ const props = withDefaults(
     LayersCommonProps & {
       disableHitDetection?: boolean;
       styles: StyleType;
-      className?: "ol-layer";
-      opacity?: 1;
-      visible?: true;
     }
   >(),
   {
+    ...layersCommonDefaultProps,
     disableHitDetection: false,
     styles: () => ({
       symbol: {

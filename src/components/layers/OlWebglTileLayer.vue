@@ -11,7 +11,10 @@ import TileLayer from "ol/layer/WebGLTile";
 import type Map from "ol/Map";
 import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { LayersCommonProps } from "./LayersCommonProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
 
 const props = withDefaults(
   defineProps<
@@ -20,6 +23,7 @@ const props = withDefaults(
     }
   >(),
   {
+    ...layersCommonDefaultProps,
     preload: 1,
   }
 );

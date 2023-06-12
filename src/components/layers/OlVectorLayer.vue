@@ -9,18 +9,24 @@ import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 import VectorLayer from "ol/layer/Vector";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { LayersCommonProps } from "./LayersCommonProps";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "./LayersCommonProps";
+import type { StyleLike } from "ol/style/Style";
+import type { FlatStyleLike } from "ol/style/flat";
 
 const props = withDefaults(
   defineProps<
     LayersCommonProps & {
       renderBuffer?: number;
       updateWhileAnimating?: boolean;
-      styles?: () => unknown;
+      styles?: StyleLike | FlatStyleLike | null;
       updateWhileInteracting?: boolean;
     }
   >(),
   {
+    ...layersCommonDefaultProps,
     renderBuffer: 100,
     updateWhileAnimating: false,
     updateWhileInteracting: false,
