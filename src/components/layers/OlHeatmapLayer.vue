@@ -44,6 +44,7 @@ const heatmapLayer = computed(() => new HeatmapLayer(properties));
 
 watch(properties, () => {
   heatmapLayer.value.setProperties(properties);
+  map?.changed();
 });
 
 onMounted(() => {
