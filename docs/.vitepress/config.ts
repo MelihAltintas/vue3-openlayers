@@ -54,6 +54,10 @@ export default defineConfig({
             text: "ol-geolocation",
             link: "/componentsguide/geolocation/",
           },
+          {
+            text: "ol-projection-register",
+            link: "/componentsguide/projection/",
+          },
         ],
       },
       {
