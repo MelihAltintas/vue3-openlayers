@@ -8,11 +8,15 @@ Install current **stable version**
 
 ```bash
 npm install vue3-openlayers
+
+# OR:
+
+npm install vue3-openlayers@alpha # try out the latest alpha version
 ```
 
 ## Usage
 
-To use vue3-openlayers in your application, you can import all components or just what you really need.
+To use `vue3-openlayers` in your application, you can import all components or just what you really need.
 
 ```js
 import { createApp } from "vue";

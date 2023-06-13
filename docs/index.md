@@ -13,6 +13,9 @@ hero:
     - theme: alt
       text: Demo
       link: /demo
+    - theme: alt
+      text: Releases
+      link: https://github.com/MelihAltintas/vue3-openlayers/releases
 
 # features:
 #   - title: Vue3

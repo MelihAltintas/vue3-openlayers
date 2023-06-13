@@ -36,6 +36,10 @@ export default defineConfig({
         link: "/demo",
       },
       {
+        text: "Releases",
+        link: "https://github.com/MelihAltintas/vue3-openlayers/releases",
+      },
+      {
         text: "General",
         items: [
           {
