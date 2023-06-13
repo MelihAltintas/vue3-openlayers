@@ -8,6 +8,8 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
+The properties are reflected 1:1 from [ol-ext/control/PrintDialog](https://viglino.github.io/ol-ext/doc/doc-pages/ol.control.PrintDialog.html).
+
 ### lang
 
 control language, default en

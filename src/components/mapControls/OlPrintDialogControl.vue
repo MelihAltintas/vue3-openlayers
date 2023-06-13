@@ -2,7 +2,7 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import PrintDialog from "ol-ext/control/PrintDialog";
+import PrintDialog, { type Options } from "ol-ext/control/PrintDialog";
 
 import { saveAs } from "file-saver";
 import { jsPDF as jsPDFClass } from "jspdf";
@@ -10,12 +10,7 @@ import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(
-  defineProps<{
-    lang?: string;
-  }>(),
-  {}
-);
+const props = withDefaults(defineProps<Options>(), {});
 
 const attrs = useAttrs();
 const { properties } = usePropsAsObjectProperties(props);
