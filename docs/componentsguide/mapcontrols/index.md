@@ -31,31 +31,31 @@ See menu items on the left.
         id="fullscreencontrol"
         v-model="fullscreencontrol"
       />
-      <label for="fullscreencontrol">fullscreencontrol</label>
+      <label for="fullscreencontrol">ol-fullscreen-control</label>
     </li>
     <li>
       <input type="checkbox" id="attribution" v-model="attributioncontrol" />
-      <label for="attribution">attributioncontrol</label>
+      <label for="attribution">ol-attribution-control</label>
     </li>
     <li>
       <input type="checkbox" id="zoom" v-model="zoomcontrol" />
-      <label for="zoom">zoomcontrol</label>
+      <label for="zoom">ol-zoom-control</label>
     </li>
     <li>
       <input type="checkbox" id="zoomtoextent" v-model="zoomtoextentcontrol" />
-      <label for="zoomtoextent">zoomtoextentcontrol</label>
+      <label for="zoomtoextent">ol-zoomtoextent-control</label>
     </li>
     <li>
       <input type="checkbox" id="zoomslider" v-model="zoomslidercontrol" />
-      <label for="zoomslider">zoomslidercontrol</label>
+      <label for="zoomslider">ol-zoomslider-control</label>
     </li>
     <li>
       <input type="checkbox" id="scaleline" v-model="scalelinecontrol" />
-      <label for="scaleline">scalelinecontrol</label>
+      <label for="scaleline">ol-scaleline-control</label>
     </li>
     <li>
       <input type="checkbox" id="overviewmap" v-model="overviewmapcontrol" />
-      <label for="overviewmap">overviewmapcontrol</label>
+      <label for="overviewmap">ol-overviewmap-control</label>
     </li>
     <li>
       <input
@@ -64,15 +64,15 @@ See menu items on the left.
         v-model="mousepositioncontrol"
       />
 
-      <label for="mousepositioncontrol">mousepositioncontrol</label>
+      <label for="mousepositioncontrol">ol-mouseposition-control</label>
     </li>
     <li>
       <input type="checkbox" id="rotatecontrol" v-model="rotatecontrol" />
-      <label for="rotatecontrol">rotatecontrol</label>
+      <label for="rotatecontrol">ol-rotate-control</label>
     </li>
     <li>
       <input type="checkbox" id="swipecontrol" v-model="showSwipeControl" />
-      <label for="swipecontrol">swipe-control</label>
+      <label for="swipecontrol">ol-swipe-control</label>
     </li>
     <li>
       <input
@@ -80,7 +80,7 @@ See menu items on the left.
         id="layerswitchercontrol"
         v-model="showLayerSwitcherControl"
       />
-      <label for="layerswitchercontrol">layerswitcher-control</label>
+      <label for="layerswitchercontrol">ol-layerswitcher-control</label>
     </li>
     <li>
       <input
@@ -88,7 +88,9 @@ See menu items on the left.
         id="layerswitcherimagecontrol"
         v-model="showLayerSwitcherImageControl"
       />
-      <label for="layerswitcherimagecontrol">layerswitcherimage-control</label>
+      <label for="layerswitcherimagecontrol"
+        >ol-layerswitcherimage-control</label
+      >
     </li>
     <li>
       <input
@@ -96,11 +98,11 @@ See menu items on the left.
         id="printdialogcontrol"
         v-model="showPrintDialogControl"
       />
-      <label for="printdialogcontrol">printdialog-control</label>
+      <label for="printdialogcontrol">ol-printdialog-control</label>
     </li>
     <li>
       <input type="checkbox" id="togglecontrol" v-model="showToggleControl" />
-      <label for="togglecontrol">toggle-control</label>
+      <label for="togglecontrol">ol-toggle-control</label>
     </li>
 
     <li>
@@ -109,7 +111,7 @@ See menu items on the left.
         id="videorecordercontrol"
         v-model="showVideoRecorderControl"
       />
-      <label for="videorecordercontrol">videorecorder-control</label>
+      <label for="videorecordercontrol">ol-videorecorder-control</label>
     </li>
   </ul>
 
