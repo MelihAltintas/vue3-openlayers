@@ -7,6 +7,8 @@
 <script setup lang="ts">
 import type { LoadingStrategy, Options } from "ol/source/Vector";
 import VectorSource from "ol/source/Vector";
+import type VectorLayer from "ol/layer/Vector";
+import type HeatmapLayer from "ol/layer/Heatmap";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type { AttributionLike } from "ol/source/Source";
@@ -38,14 +40,11 @@ const props = withDefaults(
   }
 );
 
-const vectorLayer = inject<Ref<VectorSource<Geometry>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource>> | null>(
   "vectorLayer",
   null
 );
-const heatmapLayer = inject<Ref<VectorSource<Geometry>> | null>(
-  "heatmapLayer",
-  null
-);
+const heatmapLayer = inject<Ref<HeatmapLayer> | null>("heatmapLayer", null);
 const layer = heatmapLayer || vectorLayer;
 
 const { properties } = usePropsAsObjectProperties(props);

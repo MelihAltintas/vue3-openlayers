@@ -8,6 +8,8 @@ import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 import Feature from "ol/Feature";
 import type Geometry from "ol/geom/Geometry";
 import type VectorSource from "ol/source/Vector";
+import type VectorLayer from "ol/layer/Vector";
+import type HeatmapLayer from "ol/layer/Heatmap";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { FeatureAnimation } from "@/components/animations/AnimationTypes";
 
@@ -21,7 +23,12 @@ const props = withDefaults(
 );
 
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
-const vectorLayer = inject<Ref<VectorSource<Geometry>> | null>("vectorLayer");
+const vectorLayer = inject<Ref<VectorLayer<VectorSource>> | null>(
+  "vectorLayer",
+  null
+);
+const heatmapLayer = inject<Ref<HeatmapLayer> | null>("heatmapLayer", null);
+const layer = heatmapLayer || vectorLayer;
 const animation = inject<Ref<FeatureAnimation | null> | null>(
   "animation",
   null
@@ -54,7 +61,7 @@ onMounted(() => {
   vectorSource?.value?.addFeature(feature.value);
   if (animation?.value) {
     // @ts-ignore
-    vectorLayer?.value?.animateFeature(feature.value, animation.value);
+    layer?.value?.animateFeature(feature.value, animation.value);
   }
 });
 
