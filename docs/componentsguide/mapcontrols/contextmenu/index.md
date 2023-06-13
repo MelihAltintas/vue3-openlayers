@@ -1,4 +1,4 @@
-# ol-context-menu
+# ol-context-menu-control
 
 > A contextmenu extension for OpenLayers.
 

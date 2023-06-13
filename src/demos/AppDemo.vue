@@ -41,25 +41,25 @@
     </ol-tile-layer>
 
     <ol-control-bar>
-      <ol-control-toggle
+      <ol-toggle-control
         html="<i class='fas fa-map-marker'></i>"
         className="edit"
         title="Point"
         :onToggle="(active) => changeDrawType(active, 'Point')"
       />
-      <ol-control-toggle
+      <ol-toggle-control
         html="<i class='fas fa-draw-polygon'></i>"
         className="edit"
         title="Polygon"
         :onToggle="(active) => changeDrawType(active, 'Polygon')"
       />
-      <ol-control-toggle
+      <ol-toggle-control
         html="<i class='fas fa-circle'></i>"
         className="edit"
         title="Circle"
         :onToggle="(active) => changeDrawType(active, 'Circle')"
       />
-      <ol-control-toggle
+      <ol-toggle-control
         html="<i class='fas fa-grip-lines'></i>"
         className="edit"
         title="LineString"
@@ -67,7 +67,7 @@
       />
       <ol-videorecorder-control @stop="videoStopped">
       </ol-videorecorder-control>
-      <ol-control-printdialog />
+      <ol-printdialog-control />
     </ol-control-bar>
 
     <ol-mouseposition-control />
@@ -87,7 +87,7 @@
       tipLabel="Fit to Turkey"
     />
 
-    <ol-context-menu :items="contextMenuItems" />
+    <ol-context-menu-control :items="contextMenuItems" />
 
     <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
       <ol-style>

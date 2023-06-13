@@ -4,7 +4,10 @@ aside: false
 
 # Map Controls
 
-A control is a visible widget with a DOM element in a fixed position on the screen. They can involve user input (buttons), or be informational only; the position is determined using CSS. By default these are placed in the container with CSS class name ol-overlaycontainer-stopevent, but can use any outside DOM element.
+A control is a visible widget with a DOM element in a fixed position on the screen.
+They can involve user input (buttons), or be informational only;
+the position is determined using CSS.
+By default these are placed in the container with CSS class name ol-overlaycontainer-stopevent, but can use any outside DOM element.
 
 <script setup>
 import MapControlDemo from "@demos/MapControlDemo.vue"
@@ -15,17 +18,7 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
 
 ## Control List
 
-- `ol-attribution-control`
-- `ol-context-menu`
-- `ol-fullscreen-control`
-- `ol-mouseposition-control`
-- `ol-overviewmap-control`
-- `ol-rotate-control`
-- `ol-scaleline-control`
-- `ol-swipe-control`
-- `ol-zoom-control`
-- `ol-zoomslider-control`
-- `ol-zoomtoextent-control`
+See menu items on the left.
 
 ## Usage
 
@@ -81,6 +74,43 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
       <input type="checkbox" id="swipecontrol" v-model="showSwipeControl" />
       <label for="swipecontrol">swipe-control</label>
     </li>
+    <li>
+      <input
+        type="checkbox"
+        id="layerswitchercontrol"
+        v-model="showLayerSwitcherControl"
+      />
+      <label for="layerswitchercontrol">layerswitcher-control</label>
+    </li>
+    <li>
+      <input
+        type="checkbox"
+        id="layerswitcherimagecontrol"
+        v-model="showLayerSwitcherImageControl"
+      />
+      <label for="layerswitcherimagecontrol">layerswitcherimage-control</label>
+    </li>
+    <li>
+      <input
+        type="checkbox"
+        id="printdialogcontrol"
+        v-model="showPrintDialogControl"
+      />
+      <label for="printdialogcontrol">printdialog-control</label>
+    </li>
+    <li>
+      <input type="checkbox" id="togglecontrol" v-model="showToggleControl" />
+      <label for="togglecontrol">toggle-control</label>
+    </li>
+
+    <li>
+      <input
+        type="checkbox"
+        id="videorecordercontrol"
+        v-model="showVideoRecorderControl"
+      />
+      <label for="videorecordercontrol">videorecorder-control</label>
+    </li>
   </ul>
 
   <ol-map
@@ -123,6 +153,23 @@ import MapControlDemo from "@demos/MapControlDemo.vue"
       :layerList="layerList"
     />
 
+    <ol-layerswitcher-control
+      v-if="showLayerSwitcherControl && layerList.length > 0"
+    />
+
+    <ol-layerswitcherimage-control
+      v-if="showLayerSwitcherImageControl && layerList.length > 0"
+    />
+
+    <ol-printdialog-control v-if="showPrintDialogControl" />
+
+    <ol-toggle-control v-if="showToggleControl" />
+
+    <ol-videorecorder-control
+      v-if="showVideoRecorderControl"
+      @stop="videoStopped"
+    />
+
     <ol-tile-layer ref="jawgLayer" title="JAWG">
       <ol-source-xyz
         crossOrigin="anonymous"
@@ -157,6 +204,15 @@ const overviewmapcontrol = ref(true);
 const mousepositioncontrol = ref(true);
 const rotatecontrol = ref(true);
 const showSwipeControl = ref(true);
+const showLayerSwitcherControl = ref(true);
+const showLayerSwitcherImageControl = ref(true);
+const showPrintDialogControl = ref(true);
+const showToggleControl = ref(true);
+const showVideoRecorderControl = ref(true);
+
+const videoStopped = (event) => {
+  console.log(event);
+};
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);
