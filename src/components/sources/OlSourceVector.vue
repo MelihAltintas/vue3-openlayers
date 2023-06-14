@@ -40,6 +40,19 @@ const props = withDefaults(
   }
 );
 
+const emit = defineEmits([
+  "addfeature",
+  "change",
+  "changefeature",
+  "clear",
+  "error",
+  "featuresloadend",
+  "featuresloaderror",
+  "featuresloadstart",
+  "propertychange",
+  "removefeature",
+]);
+
 const vectorLayer = inject<Ref<VectorLayer<VectorSource>> | null>(
   "vectorLayer",
   null
@@ -49,9 +62,22 @@ const layer = heatmapLayer || vectorLayer;
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(
-  () => new VectorSource(properties as Options<Geometry>)
-);
+const source = computed(() => {
+  const vs = new VectorSource(properties as Options<Geometry>);
+
+  vs.on("addfeature", (...args) => emit("addfeature", ...args));
+  vs.on("change", (...args) => emit("change", ...args));
+  vs.on("changefeature", (...args) => emit("changefeature", ...args));
+  vs.on("clear", (...args) => emit("clear", ...args));
+  vs.on("error", (...args) => emit("error", ...args));
+  vs.on("featuresloadend", (...args) => emit("featuresloadend", ...args));
+  vs.on("featuresloaderror", (...args) => emit("featuresloaderror", ...args));
+  vs.on("featuresloadstart", (...args) => emit("featuresloadstart", ...args));
+  vs.on("propertychange", (...args) => emit("propertychange", ...args));
+  vs.on("removefeature", (...args) => emit("removefeature", ...args));
+
+  return vs;
+});
 
 const applySource = () => {
   // @ts-ignore

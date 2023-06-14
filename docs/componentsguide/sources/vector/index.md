@@ -7,13 +7,14 @@ import GeomPoint from "@demos/GeomPoint.vue"
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 import VectorSourceDemo2 from "@demos/VectorSourceDemo2.vue"
 import VectorSourceDemo3 from "@demos/VectorSourceDemo3.vue"
+import AnimatedClusterDemo2 from "@demos/AnimatedClusterDemo2.vue"
 </script>
 
 ## Usage
 
-### GeoJSON
+### `ol-feature` component (GeoJSON)
 
-Static features with the help of ol-feature, should be used only for tiny static layers.
+Static features with the help of `ol-feature`, should be used only for tiny static layers.
 
 <ClientOnly>
 <GeomPoint />
@@ -75,6 +76,8 @@ const coordinate = ref([40, 40]);
 </script>
 ```
 
+### `url` property
+
 Load features simply by providing url value and format GeoJSON
 
 <ClientOnly>
@@ -120,6 +123,12 @@ console.log(format);
 const geoJson = new format.GeoJSON();
 </script>
 ```
+
+### `features` property
+
+<ClientOnly>
+<AnimatedClusterDemo2 />
+</ClientOnly>
 
 ### `urlFunction`
 
@@ -303,3 +312,16 @@ strategy available with inject('ol-loadingstrategy');
 
 - **Type**: `Boolean`
 - **Default**: `true`
+
+## Events
+
+- `addfeature`
+- `change`
+- `changefeature`
+- `clear`
+- `error`
+- `featuresloadend`
+- `featuresloaderror`
+- `featuresloadstart`
+- `propertychange`
+- `removefeature`
