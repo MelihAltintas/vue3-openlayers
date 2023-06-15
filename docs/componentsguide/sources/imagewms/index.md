@@ -117,3 +117,11 @@ Resolutions. If specified, requests will be made for these resolutions only.
 - **Type**: `string`
 
 WMS service URL.
+
+### params
+
+WMS request parameters.
+`VERSION` is `1.3.0` by default.
+`WIDTH`, `HEIGHT`, `BBOX` and `CRS` (`SRS` for WMS version < `1.3.0`) will be set dynamically.
+
+- **Type**: `Object.<string, *>`
