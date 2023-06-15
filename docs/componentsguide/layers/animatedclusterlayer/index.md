@@ -1,6 +1,10 @@
 # ol-animated-clusterlayer
 
-ol-animated-clusterlayer is a layer that animates clusters on zoom change. ol-interaction-clusterselect. is a select interaction. On select cluster springs apart to reveal the features. The revealed features are themselves selectable. Revealed features are themselves a cluster with an attribute 'features' that contain the original feature.
+`ol-animated-clusterlayer` is a layer that animates clusters on zoom change.
+`ol-interaction-clusterselect`. is a select interaction.
+On select cluster springs apart to reveal the features.
+The revealed features are themselves selectable.
+Revealed features are themselves a cluster with an attribute 'features' that contain the original feature.
 
 <script setup>
 import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
@@ -115,6 +119,40 @@ const getRandomInRange = (from, to, fixed) => {
 const featureSelected = (event) => {
   console.log(event);
 };
+</script>
+```
+
+## Performance hints
+
+The performance of a map with a huge amount of markers / clusters can be influenced by the way, the data is passed for the `ol-source-vector`.
+In case your map doesn't render fluently, interactive elements are blocking or your are ending in a memory leak, it's probably worth switching from passing the features directly to requesting features from a URL.
+More information you will find in the [performance section for `ol-source-vector`](../../sources/vector/#performance-hints).
+
+```vue
+<template>
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height: 400px"
+  >
+    <!-- ... -->
+
+    <ol-animated-clusterlayer :animationDuration="500" :distance="40">
+      <ol-source-vector :url="url" :format="geoJson" />
+    </ol-animated-clusterlayer>
+  </ol-map>
+</template>
+
+<script setup>
+import { /* ... */, computed, inject } from "vue";
+
+// ...
+
+const format = inject("ol-format");
+const geoJson = new format.GeoJSON();
+const url = computed(() => {
+  return `http://localhost:3000/${count.value}`;
+});
 </script>
 ```
 
