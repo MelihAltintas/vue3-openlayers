@@ -2,36 +2,20 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import LayerSwitcher from "ol-ext/control/LayerSwitcher";
+import LayerSwitcher, { type Options } from "ol-ext/control/LayerSwitcher";
+import LayerGroup from "ol/layer/Group";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(
-  defineProps<{
-    selection?: boolean;
-    displayInLayerSwitcher?: (...ars: unknown[]) => unknown;
-    show_progress?: boolean;
-    mouseover?: boolean;
-    reordering?: boolean;
-    trash?: boolean;
-    oninfo?: (...ars: unknown[]) => unknown;
-    extent?: boolean;
-    onextent?: (...ars: unknown[]) => unknown;
-    drawDelay?: number;
-    collapsed?: boolean;
-    layerGroup?: Record<string, any>;
-    noScroll?: boolean;
-  }>(),
-  {
-    show_progress: false,
-    mouseover: false,
-    reordering: true,
-    trash: false,
-    collapsed: true,
-    noScroll: false,
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  show_progress: false,
+  mouseover: false,
+  reordering: true,
+  trash: false,
+  collapsed: true,
+  noScroll: false,
+});
 
 const attrs = useAttrs();
 const { properties } = usePropsAsObjectProperties(props);

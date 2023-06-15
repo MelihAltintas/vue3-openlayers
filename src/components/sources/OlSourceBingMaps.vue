@@ -54,7 +54,7 @@ watch(source, () => {
 });
 
 watch(
-  () => layer,
+  () => layer?.value,
   () => {
     layer?.value?.setSource(source.value);
   }

@@ -92,6 +92,7 @@ Bing Maps API key
 - **Type**: `String`
 
 Type of imagery.
+It must be defined for example to show the thumbnail images when adding the [`ol-layerswitcherimage-control`](../../mapcontrols/layerswitcherimage/).
 
 ### imageSmoothing
 

@@ -315,6 +315,14 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/fullscreen/",
           },
           {
+            text: "ol-layerswitcher-control",
+            link: "/componentsguide/mapcontrols/layerswitcher/",
+          },
+          {
+            text: "ol-layerswitcherimage-control",
+            link: "/componentsguide/mapcontrols/layerswitcherimage/",
+          },
+          {
             text: "ol-mouseposition-control",
             link: "/componentsguide/mapcontrols/mouseposition/",
           },

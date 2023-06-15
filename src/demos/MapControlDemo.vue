@@ -154,6 +154,13 @@
       />
     </ol-tile-layer>
 
+    <ol-tile-layer ref="bingLayer">
+      <ol-source-bingmaps
+        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
+        :imagerySet="'CanvasDark'"
+      />
+    </ol-tile-layer>
+
     <ol-tile-layer ref="osmLayer">
       <ol-source-osm />
     </ol-tile-layer>
@@ -169,6 +176,7 @@ const rotation = ref(0);
 const layerList = ref([]);
 const jawgLayer = ref(null);
 const osmLayer = ref(null);
+const bingLayer = ref(null);
 const swipeControl = ref(null);
 
 const fullscreencontrol = ref(true);
