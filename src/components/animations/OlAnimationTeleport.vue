@@ -15,11 +15,7 @@ const props = withDefaults(
   animationCommonDefaultProps
 );
 
-const { map, vectorLayer, properties } = useAnimation(Teleport, props);
+const exposed = useAnimation(Teleport, props);
 
-defineExpose({
-  map,
-  vectorLayer,
-  properties,
-});
+defineExpose(exposed);
 </script>

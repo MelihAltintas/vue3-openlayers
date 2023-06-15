@@ -18,11 +18,7 @@ const props = withDefaults(
   }
 );
 
-const { map, vectorLayer, properties } = useAnimation(Slide, props);
+const exposed = useAnimation(Slide, props);
 
-defineExpose({
-  map,
-  vectorLayer,
-  properties,
-});
+defineExpose(exposed);
 </script>

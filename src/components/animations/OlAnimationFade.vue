@@ -15,11 +15,7 @@ const props = withDefaults(
   animationCommonDefaultProps
 );
 
-const { map, vectorLayer, properties } = useAnimation(Fade, props);
+const exposed = useAnimation(Fade, props);
 
-defineExpose({
-  map,
-  vectorLayer,
-  properties,
-});
+defineExpose(exposed);
 </script>

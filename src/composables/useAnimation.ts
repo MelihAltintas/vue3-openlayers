@@ -6,18 +6,19 @@ import type {
   FeatureAnimation,
 } from "@/components/animations/AnimationTypes";
 
+type GenericFeatureAnimationOptions = Partial<
+  Record<keyof FeatureAnimationOptions, unknown>
+>;
+
 export default function useAnimation(
-  AnimationType: new () => FeatureAnimation,
-  props: Partial<Record<keyof FeatureAnimationOptions, unknown>>
+  AnimationType: new (props: Record<string, unknown>) => FeatureAnimation,
+  props: GenericFeatureAnimationOptions
 ) {
   const map = inject("map");
   const vectorLayer = inject("vectorLayer");
 
   const { properties } = usePropsAsObjectProperties(props);
-  const animation = computed(() => {
-    // @ts-ignore
-    return new AnimationType(properties);
-  });
+  const animation = computed(() => new AnimationType(properties));
 
   provide("animation", animation);
 

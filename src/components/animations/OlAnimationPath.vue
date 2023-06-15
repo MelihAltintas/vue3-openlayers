@@ -26,11 +26,7 @@ const props = withDefaults(
   }
 );
 
-const { map, vectorLayer, properties } = useAnimation(Path, props);
+const exposed = useAnimation(Path, props);
 
-defineExpose({
-  map,
-  vectorLayer,
-  properties,
-});
+defineExpose(exposed);
 </script>

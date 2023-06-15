@@ -22,11 +22,7 @@ const props = withDefaults(
   }
 );
 
-const { map, vectorLayer, properties } = useAnimation(Zoom, props);
+const exposed = useAnimation(Zoom, props);
 
-defineExpose({
-  map,
-  vectorLayer,
-  properties,
-});
+defineExpose(exposed);
 </script>
