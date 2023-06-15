@@ -11,7 +11,7 @@ npm install vue3-openlayers
 
 # OR:
 
-npm install vue3-openlayers@alpha # try out the latest alpha version
+npm install vue3-openlayers@next # try out the latest version (next channel)
 ```
 
 ## Usage
