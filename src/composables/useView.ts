@@ -11,6 +11,7 @@ import type { Pixel } from "ol/pixel";
 import type BaseEvent from "ol/events/Event";
 import type { SimpleGeometry } from "ol/geom";
 import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 export default function useView(
   props: Record<string, unknown> & {

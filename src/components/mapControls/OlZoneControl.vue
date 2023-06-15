@@ -7,13 +7,14 @@ import { useAttrs } from "vue";
 import type { Layer } from "ol/layer";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
     className?: string;
     zones?: Zone[];
     layer?: Layer | ((zone: Zone) => Layer);
-    projection?: string;
+    projection?: ProjectionLike;
     centerOnClick?: boolean;
   }>(),
   {

@@ -3,20 +3,20 @@
 </template>
 <script setup lang="ts">
 import Static, { type Options } from "ol/source/ImageStatic";
-import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import type { Extent } from "ol/extent";
 import type ImageLayer from "ol/layer/Image";
 import type ImageSource from "ol/source/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
     attributions?: string;
     crossOrigin?: string;
     imageExtent?: Extent;
-    projection?: string | ProjectionOptions;
+    projection?: ProjectionLike;
     imageSmoothing?: boolean;
     imageSize?: number[];
     url: string;
@@ -37,8 +37,7 @@ const createSource = () => {
         ? properties.projection
         : // @ts-ignore
           new Projection({
-            // @ts-ignore
-            ...(properties.projection as ProjectionOptions),
+            ...properties.projection,
           }),
   } as Options);
 };

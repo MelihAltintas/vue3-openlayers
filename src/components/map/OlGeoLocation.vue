@@ -16,6 +16,7 @@ import Geolocation from "ol/Geolocation";
 import type { Coordinate } from "ol/coordinate";
 import type Polygon from "ol/geom/Polygon";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const emit = defineEmits([
   "positionChanged",
@@ -28,7 +29,7 @@ const emit = defineEmits([
 
 const props = withDefaults(
   defineProps<{
-    projection: string | Record<string, unknown>;
+    projection: ProjectionLike;
     tracking?: boolean;
     trackingOptions?: {
       enableHighAccuracy: boolean;

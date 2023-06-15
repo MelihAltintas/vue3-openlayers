@@ -8,6 +8,7 @@ import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
 import { Tianditu } from "@/components/sources/TiandituClass";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
@@ -16,7 +17,7 @@ const props = withDefaults(
     isLabel?: boolean;
     cacheSize?: number;
     crossOrigin?: string;
-    projection?: string;
+    projection?: ProjectionLike;
     hidpi?: boolean;
     requestEncoding?: string;
     format?: string;

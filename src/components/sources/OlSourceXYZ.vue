@@ -11,6 +11,7 @@ import type TileLayer from "ol/layer/Tile";
 import type { AttributionLike } from "ol/source/Source";
 import type TileGrid from "ol/tilegrid/TileGrid";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
@@ -21,7 +22,7 @@ const props = withDefaults(
     maxZoom?: number;
     minZoom?: number;
     opaque?: boolean;
-    projection?: string;
+    projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;
     tileSize?: [number, number];
     tilePixelRatio?: number;

@@ -18,6 +18,7 @@ import type { FeatureLoader, FeatureUrlFunction } from "ol/featureloader";
 import type WebGLPointsLayer from "ol/layer/WebGLPoints";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
@@ -26,7 +27,7 @@ const props = withDefaults(
     format?: FeatureFormat | undefined;
     loader?: FeatureLoader;
     overlaps?: boolean;
-    projection?: string;
+    projection?: ProjectionLike;
     strategy?: LoadingStrategy;
     url?: string | FeatureUrlFunction;
     useSpatialIndex?: boolean;

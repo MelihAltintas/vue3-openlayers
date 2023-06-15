@@ -18,6 +18,7 @@ import type Geometry from "ol/geom/Geometry";
 import type FeatureFormat from "ol/format/Feature";
 import type { FeatureLoader, FeatureUrlFunction } from "ol/featureloader";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
@@ -26,7 +27,7 @@ const props = withDefaults(
     format?: FeatureFormat | undefined;
     loader?: FeatureLoader;
     overlaps?: boolean;
-    projection?: string;
+    projection?: ProjectionLike;
     strategy?: LoadingStrategy;
     url?: string | FeatureUrlFunction;
     useSpatialIndex?: boolean;

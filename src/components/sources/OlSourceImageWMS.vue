@@ -11,13 +11,14 @@ import type ImageLayer from "ol/layer/Image";
 import type ImageSource from "ol/source/Image";
 import type { ServerType } from "ol/source/wms";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
     attributions?: string;
     crossOrigin?: string;
     imageExtent?: Extent;
-    projection?: string | ProjectionOptions;
+    projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;
     format?: string;
     version?: string;
@@ -62,8 +63,7 @@ const createSource = () => {
         ? properties.projection
         : // @ts-ignore
           new Projection({
-            // @ts-ignore
-            ...(properties.projection as ProjectionOptions),
+            ...properties.projection,
           }),
   });
 };

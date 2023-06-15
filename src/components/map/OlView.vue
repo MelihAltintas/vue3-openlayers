@@ -3,8 +3,8 @@
 </template>
 <script setup lang="ts">
 import type { Extent } from "ol/extent";
-import type { Options } from "ol/proj/Projection";
 import useView from "@/composables/useView";
+import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
   defineProps<{
@@ -22,7 +22,7 @@ const props = withDefaults(
     constrainResolution?: boolean;
     smoothResolutionConstraint?: boolean;
     showFullExtent?: boolean;
-    projection?: string | Options;
+    projection?: ProjectionLike;
     resolution?: number;
     resolutions?: unknown[];
     rotation?: number;
