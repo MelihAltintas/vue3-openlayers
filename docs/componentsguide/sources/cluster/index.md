@@ -1,12 +1,12 @@
 # ol-source-cluster
 
-Layer source to cluster vector data.
+> Layer source to cluster vector data.
+
 Works out of the box with point geometries.
-For other geometry types, or if not all geometries should be considered for clustering, a custom geometryFunction can be defined.
+For other geometry types, or if not all geometries should be considered for clustering, a custom `geometryFunction` can be defined.
 
 <script setup>
 import ClusterDemo from "@demos/ClusterDemo.vue"
-
 </script>
 
 <ClientOnly>
@@ -100,36 +100,49 @@ const getRandomInRange = (from, to, fixed) => {
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: ` [String, Array]`
-- **Default**: `EPSG:3857`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Cluster-Cluster.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Attributions.
+### Deviating Properties
 
-### distance
+None.
 
-- **Type**: `number`
-- **Default**: `20`
+## Events
 
-Minimum distance in pixels between clusters.
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available events tht will be fired.
 
-### geometryFunction
-
-- **Type**: `Function`
-- **Default**:
-
-```js
-function(feature) {
-  return feature.getGeometry();
-}
+```html
+<ol-source-cluster @error="handleEvent" />
 ```
 
-Function that takes an module:ol/Feature as argument and returns an module:ol/geom/Point as cluster calculation point for the feature. When a feature should not be considered for clustering, the function should return null. The default, which works when the underyling source contains point features only, is
+## Methods
 
-### wrapX
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available methods.
 
-- **Type**: `Boolean`
-- **Default**: `true`
+To access the source, you can use a `ref()` as shown below:
 
-Whether to wrap the world horizontally.
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-cluster :distance="40" ref="sourceRef" />
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type { Cluster } from "ol/source";
+
+const sourceRef = ref<{ source: Cluster }>(null);
+
+onMounted(() => {
+  const source: Cluster = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { Cluster } from "ol/source";
+import type { Options } from "ol/source/Cluster";
 
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
@@ -13,24 +14,17 @@ import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type Geometry from "ol/geom/Geometry";
 import type Feature from "ol/Feature";
 import type VectorSource from "ol/source/Vector";
-import type { AttributionLike } from "ol/source/Source";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import eventGateway from "@/helpers/eventGateway";
 
-const props = withDefaults(
-  defineProps<{
-    attributions?: AttributionLike;
-    distance?: number;
-    geometryFunction?: ((arg0: Feature<Geometry>) => Point) | undefined;
-    wrapX?: boolean;
-  }>(),
-  {
-    distance: 20,
-    geometryFunction: (feature: Feature<Geometry>): Point =>
-      feature.getGeometry() as Point,
-    wrapX: true,
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  distance: 20,
+  geometryFunction: (feature: Feature<Geometry>): Point =>
+    feature.getGeometry() as Point,
+  wrapX: true,
+});
+const emit = defineEmits([]);
 
 const layer = inject<Ref<VectorSource<Geometry>> | null>("vectorLayer");
 
@@ -38,6 +32,20 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => {
   const c = new Cluster(properties);
+
+  eventGateway(emit, c, [
+    "addFeature",
+    "change",
+    "changefeature",
+    "clear",
+    "error",
+    "featuresloadend",
+    "featuresloaderror",
+    "featuresloadstart",
+    "propertychange",
+    "removefeature",
+  ]);
+
   return c;
 });
 
