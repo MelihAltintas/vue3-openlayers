@@ -2,38 +2,22 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import ImageWMS from "ol/source/ImageWMS";
-import type { Options as ProjectionOptions } from "ol/proj/Projection";
-import Projection from "ol/proj/Projection";
+import ImageWMS, { type Options } from "ol/source/ImageWMS";
 import { inject, onMounted, onUnmounted, watch } from "vue";
-import type { Extent } from "ol/extent";
 import type ImageLayer from "ol/layer/Image";
 import type ImageSource from "ol/source/Image";
-import type { ServerType } from "ol/source/wms";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { ProjectionLike } from "ol/proj";
+import projectionFromProperties from "@/helpers/projection";
+import eventGateway from "@/helpers/eventGateway";
 
 const props = withDefaults(
-  defineProps<{
-    attributions?: string;
-    crossOrigin?: string;
-    imageExtent?: Extent;
-    projection?: ProjectionLike;
-    reprojectionErrorThreshold?: number;
-    format?: string;
-    version?: string;
-    matrixSet?: string;
-    serverType?: ServerType;
-    imageSmoothing?: boolean;
-    layers: string | unknown[];
-    styles?: string | unknown[];
-    time?: string;
-    ratio?: number;
-    imageSize?: number[];
-    url?: string;
-    params?: Record<string, unknown>;
-    imageLoadFunction?: (...args: unknown[]) => unknown;
-  }>(),
+  defineProps<
+    Options & {
+      layers: string | unknown[];
+      styles?: string | unknown[];
+      time?: string;
+    }
+  >(),
   {
     projection: "EPSG:3857",
     reprojectionErrorThreshold: 0.5,
@@ -45,12 +29,13 @@ const props = withDefaults(
     ratio: 1,
   }
 );
+const emit = defineEmits([]);
 
 const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
-  return new ImageWMS({
+  const i = new ImageWMS({
     ...properties,
     params: {
       ...props.params,
@@ -58,14 +43,19 @@ const createSource = () => {
       STYLES: props.styles,
       TIME: props.time,
     },
-    projection:
-      typeof properties.projection === "string"
-        ? properties.projection
-        : // @ts-ignore
-          new Projection({
-            ...properties.projection,
-          }),
+    projection: projectionFromProperties(properties.projection),
   });
+
+  eventGateway(emit, i, [
+    "change",
+    "error",
+    "imageloadend",
+    "imageloaderror",
+    "imageloadstart",
+    "propertychange",
+  ]);
+
+  return i;
 };
 
 let source = createSource();

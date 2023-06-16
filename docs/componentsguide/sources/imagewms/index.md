@@ -54,74 +54,67 @@ const center = ref([-10997148, 4569099]);
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
+
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageWMS-ImageWMS.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
+
+### Deviating Properties
+
+The following additional properties are available for setting specific `params`.
+
+#### layers
+
+Sets / overrides the `params.LAYERS` property.
+
+- **Type**: `string` | `unknown[]`
+
+#### styles
+
+Sets / overrides the `params.STYLES` property.
+
+- **Type**: `string` | `unknown[]`
+
+#### time
+
+Sets / overrides the `params.TIME` property.
 
 - **Type**: `string`
 
-Attributions
+## Events
 
-### crossOrigin
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageWMS-ImageWMS.html) to see the available events tht will be fired.
 
-- **Type**: `string`
-- **Default**: `ol-layer`
+```html
+<ol-source-image-wms :url="imgUrl" @error="handleEvent" />
+```
 
-The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
+## Methods
 
-### hidpi
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageWMS-ImageWMS.html) to see the available methods.
 
-- **Type**: `Boolean`
-- **Default**: `true`
+To access the source, you can use a `ref()` as shown below:
 
-### serverType
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-image-wms :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-- **Type**: `string`
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type ImageWMS from "ol/source/ImageWMS";
 
-The type of the remote WMS server: mapserver, geoserver or qgis. Only needed if hidpi is true.
+const sourceRef = ref<{ source: ImageWMS }>(null);
 
-### imageLoadFunction
-
-- **Type**: `Function`
-
-Optional function to load an image given a URL
-
-### imageSmoothing
-
-- **Type**: `Boolean`
-- **Default**: `true`
-
-Enable image smoothing.
-
-### layers
-
-- **Type**: `[String,Array]`
-
-### styles
-
-- **Type**: `[String,Array]`
-
-### ratio
-
-- **Type**: `number`
-- **Default**: `1.5`
-
-Ratio. 1 means image requests are the size of the map viewport, 2 means twice the width and height of the map viewport, and so on. Must be 1 or higher.
-
-### resolutions
-
-- **Type**: `Array<number>`
-
-Resolutions. If specified, requests will be made for these resolutions only.
-
-### url
-
-- **Type**: `string`
-
-WMS service URL.
-
-### params
-
-WMS request parameters.
-`VERSION` is `1.3.0` by default.
-`WIDTH`, `HEIGHT`, `BBOX` and `CRS` (`SRS` for WMS version < `1.3.0`) will be set dynamically.
-
-- **Type**: `Object.<string, *>`
+onMounted(() => {
+  const source: ImageWMS = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```
