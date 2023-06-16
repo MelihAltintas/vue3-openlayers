@@ -2,7 +2,7 @@
 
 ## Installation
 
-vue3-openlayers works with Vue.js **^3.0** and OpenLayers **^6.6.1**
+vue3-openlayers works with Vue.js **^3.0** and OpenLayers **^7.3.0**
 
 Install current **stable version**
 

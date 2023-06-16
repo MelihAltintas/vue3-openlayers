@@ -114,7 +114,7 @@ None.
 ## Events
 
 You have access to all Events from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available events tht will be fired.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Cluster-Cluster.html) to see the available events tht will be fired.
 
 ```html
 <ol-source-cluster @error="handleEvent" />
@@ -123,7 +123,7 @@ Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc
 ## Methods
 
 You have access to all Methods from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available methods.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Cluster-Cluster.html) to see the available methods.
 
 To access the source, you can use a `ref()` as shown below:
 

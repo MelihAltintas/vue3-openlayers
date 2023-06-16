@@ -1,6 +1,6 @@
 # ol-source-image-static
 
-A layer source for displaying a single, static image.
+> Layer source for displaying a single, static image.
 
 <script setup>
 import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
@@ -64,47 +64,49 @@ const imgCopyright = ref('© <a href="http://xkcd.com/license.html">xkcd</a>');
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: `string`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Attributions
+### Deviating Properties
 
-### crossOrigin
+None.
 
-- **Type**: `string`
-- **Default**: `ol-layer`
+## Events
 
-The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html) to see the available events tht will be fired.
 
-### imageExtent
+```html
+<ol-source-image-static :url="imgUrl" @error="handleEvent" />
+```
 
-- **Type**: `Array`
+## Methods
 
-Extent of the image in map coordinates. This is the [left, bottom, right, top] map coordinates of your image.
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html) to see the available methods.
 
-### imageSmoothing
+To access the source, you can use a `ref()` as shown below:
 
-- **Type**: `boolean`
-- **Default**: `true`
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-image-static :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-Enable image smoothing.
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type ImageStatic from "ol/source/ImageStatic";
 
-### projection
+const sourceRef = ref<{ source: ImageStatic }>(null);
 
-- **Type**: `string or object (options projection)`
-- **Default**: `Projection. Default is the view projection.`
-
-The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
-
-### imageSize
-
-- **Type**: `Array`
-
-Size of the image in pixels. Usually the image size is auto-detected, so this only needs to be set if auto-detection fails for some reason.
-
-### url
-
-- **Type**: `string`
-
-Image URL.
+onMounted(() => {
+  const source: ImageStatic = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

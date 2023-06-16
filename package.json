@@ -65,9 +65,9 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
-    "ol": "^7.3.0",
+    "ol": "^7.4.0",
     "ol-contextmenu": "^5.2.1",
-    "ol-ext": "^4.0.7",
+    "ol-ext": "^4.0.8",
     "proj4": "^2.9.0"
   },
   "browserslist": [

@@ -3,43 +3,37 @@
 </template>
 <script setup lang="ts">
 import Static, { type Options } from "ol/source/ImageStatic";
-import Projection from "ol/proj/Projection";
-import { inject, onMounted, onUnmounted, watch } from "vue";
-import type { Extent } from "ol/extent";
+import { computed, inject, onMounted, onUnmounted, watch, type Ref } from "vue";
 import type ImageLayer from "ol/layer/Image";
 import type ImageSource from "ol/source/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { ProjectionLike } from "ol/proj";
+import eventGateway from "@/helpers/eventGateway";
+import projectionFromProperties from "@/helpers/projection";
 
-const props = withDefaults(
-  defineProps<{
-    attributions?: string;
-    crossOrigin?: string;
-    imageExtent?: Extent;
-    projection?: ProjectionLike;
-    imageSmoothing?: boolean;
-    imageSize?: number[];
-    url: string;
-  }>(),
-  {
-    imageSmoothing: true,
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  interpolate: true,
+});
+const emit = defineEmits([]);
 
 const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
-  return new Static({
+  const s = new Static({
     ...properties,
-    projection:
-      typeof properties.projection === "string"
-        ? properties.projection
-        : // @ts-ignore
-          new Projection({
-            ...properties.projection,
-          }),
-  } as Options);
+    projection: projectionFromProperties(properties.projection),
+  });
+
+  eventGateway(emit, s, [
+    "change",
+    "error",
+    "imageloadend",
+    "imageloaderror",
+    "imageloadstart",
+    "propertychange",
+  ]);
+
+  return s;
 };
 
 let source = createSource();

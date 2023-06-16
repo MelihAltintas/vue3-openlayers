@@ -7,6 +7,7 @@ export default function eventGateway(
 ) {
   events.forEach((event: string) => {
     instance.on(event, (...args: unknown[]) => {
+      console.log(event, args);
       emit(event, ...args);
     });
   });
