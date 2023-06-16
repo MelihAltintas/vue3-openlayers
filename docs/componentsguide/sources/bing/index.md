@@ -40,10 +40,7 @@ Example of `ol-source-bingmaps` usage
     />
 
     <ol-tile-layer>
-      <ol-source-bingmaps
-        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
-        :imagerySet="selected"
-      />
+      <ol-source-bingmaps apiKey="YOUR_API_KEY" :imagerySet="selected" />
     </ol-tile-layer>
   </ol-map>
 </template>
@@ -61,78 +58,56 @@ const selected = ref("AerialWithLabels");
 
 ## Properties
 
-### cacheSize
+### Props from OpenLayers
 
-- **Type**: `number`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
+### Deviating Properties
 
-### hidpi
+### `key` ➡ `apiKey`
 
-- **Type**: `boolean`
-- **Default**: `false`
+The property `key` from OpenLayers BingMaps is exposed as `apiKey` as the `key` attribute is reserved in Vue and cannot be used as a component property.
+Please refer to the `key` property [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) but pass it as `apiKey`.
 
-If true hidpi tiles will be requested.
-
-### culture
-
-- **Type**: `String`
-- **Default**: `en-us`
-
-Culture code.
-
-### apiKey
-
-- **Type**: `String`
-
-Bing Maps API key
-
-### imagerySet
-
-- **Type**: `String`
-
-Type of imagery.
-It must be defined for example to show the thumbnail images when adding the [`ol-layerswitcherimage-control`](../../mapcontrols/layerswitcherimage/).
-
-### imageSmoothing
-
-- **Type**: `boolean`
-- **Default**: `TRUE`
-
-Enable image smoothing.
-
-### maxZoom
-
-- **Type**: `number`
-- **Default**: 21
-  Max zoom.
-
-### reprojectionErrorThreshold
-
-- **Type**: `number `
-- **Default**: 0.5
-
-Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
-
-### tileLoadFunction
-
-- **Type**: `Function`
-- **Default**:
-
-```js
-(imageTile, src) => (imageTile.getImage().src = src);
+```html
+<ol-source-bingmaps apiKey="YOUR_API_KEY" />
 ```
 
-Optional function to load a tile given a URL
+## Events
 
-### transition
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available events tht will be fired.
 
-- **Type**: `number`
+```html
+<ol-source-bingmaps apiKey="YOUR_API_KEY" @error="handleEvent" />
+```
 
-Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
+## Methods
 
-### wrapX
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available methods.
 
-- **Type**: `boolean `
-- **Default**: true
-  Whether to wrap the world horizontally.
+To access the source, you can use a `ref()` as shown below:
+
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-bingmaps apiKey="YOUR_API_KEY" ref="sourceRef" />
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type BingMaps from "ol/source/BingMaps";
+
+const sourceRef = ref<{ source: BingMaps }>(null);
+
+onMounted(() => {
+  const source: BingMaps = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

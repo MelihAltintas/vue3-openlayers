@@ -9,21 +9,10 @@ import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import type TileSource from "ol/source/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import eventGateway from "@/helpers/eventGateway";
 
 const props = withDefaults(
-  defineProps<{
-    cacheSize?: number;
-    hidpi?: boolean;
-    culture?: string;
-    apiKey: string;
-    imagerySet: string;
-    imageSmoothing?: boolean;
-    maxZoom?: number;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: (imageTile: any, src: string) => void;
-    wrapX?: boolean;
-    transition?: number;
-  }>(),
+  defineProps<Omit<Options, "key"> & { apiKey: string }>(),
   {
     hidpi: false,
     culture: "en-us",
@@ -36,18 +25,29 @@ const props = withDefaults(
     wrapX: true,
   }
 );
+const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(
-  () =>
-    new BingMaps({
-      ...properties,
-      key: properties.apiKey,
-    } as Options)
-);
+const source = computed(() => {
+  const bingMaps = new BingMaps({
+    ...properties,
+    key: properties.apiKey,
+  });
+
+  eventGateway(emit, bingMaps, [
+    "change",
+    "error",
+    "propertychange",
+    "tileloadend",
+    "tileloadstart",
+    "tileloaderror",
+  ]);
+
+  return bingMaps;
+});
 
 watch(source, () => {
   layer?.value?.setSource(source.value);
