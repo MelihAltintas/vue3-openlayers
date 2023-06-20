@@ -91,31 +91,13 @@ const draw = computed(() => {
   return d;
 });
 
-watch(
-  [
-    type,
-    clickTolerance,
-    dragVertexDelay,
-    snapTolerance,
-    stopClick,
-    maxPoints,
-    minPoints,
-    finishCondition,
-    geometryFunction,
-    geometryName,
-    condition,
-    freehand,
-    freehandCondition,
-    wrapX,
-  ],
-  () => {
-    map?.removeInteraction(draw.value);
-    map?.addInteraction(draw.value);
-    draw.value.changed();
+watch(draw, (newVal, oldVal) => {
+  map?.removeInteraction(oldVal);
+  map?.addInteraction(newVal);
+  newVal.changed();
 
-    map?.changed();
-  }
-);
+  map?.changed();
+});
 
 onMounted(() => {
   map?.addInteraction(draw.value);
