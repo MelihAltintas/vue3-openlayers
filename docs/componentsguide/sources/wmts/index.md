@@ -126,6 +126,12 @@ WMTS version.
 
 Matrix set.
 
+### tileGrid
+
+- **Type**: `ol/tilegrid/TileGrid`
+
+An optional tile grid object. If not given, a tile grid will be generated from the `projection` and `tileZoomLevel` properties.
+
 ### dimensions
 
 - **Type**: `Object`
