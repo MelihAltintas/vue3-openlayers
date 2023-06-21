@@ -139,6 +139,10 @@ export default defineConfig({
             link: "/componentsguide/sources/vector/",
           },
           {
+            text: "ol-source-webglpoints",
+            link: "/componentsguide/sources/webglpoints/",
+          },
+          {
             text: "ol-source-wmts",
             link: "/componentsguide/sources/wmts/",
           },

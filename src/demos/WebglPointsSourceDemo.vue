@@ -1,20 +1,3 @@
-# ol-webgl-points-layer
-
-> A layer for rendering points with WebGL
-
-Please note, that you can't use `ol-style` and related style components here as child components.
-For more information please checkout the [`ol-source-webglpoints` docs](../../sources/webglpoints/) as well.
-
-<script setup>
-import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
-</script>
-<ClientOnly>
-<WebglPointsLayerDemo />
-</ClientOnly>
-
-## Usage
-
-```vue
 <template>
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -34,10 +17,16 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
     </ol-tile-layer>
 
     <ol-webgl-points-layer :styles="webglPointsStyle">
-      <ol-source-webglpoints
-        :format="geoJson"
-        url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
-      />
+      <ol-source-webglpoints :format="geoJson">
+        <ol-feature v-for="index in 20" :key="index">
+          <ol-geom-point
+            :coordinates="[
+              getRandomInRange(24, 45, 3),
+              getRandomInRange(35, 41, 3),
+            ]"
+          ></ol-geom-point>
+        </ol-feature>
+      </ol-source-webglpoints>
     </ol-webgl-points-layer>
   </ol-map>
 </template>
@@ -47,11 +36,15 @@ import { ref, inject } from "vue";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
-const zoom = ref(3);
+const zoom = ref(5);
 const rotation = ref(0);
 
 const format = inject("ol-format");
 const geoJson = new format.GeoJSON();
+
+const getRandomInRange = (from, to, fixed) => {
+  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+};
 
 const webglPointsStyle = {
   symbol: {
@@ -80,23 +73,3 @@ const webglPointsStyle = {
   },
 };
 </script>
-```
-
-## Properties
-
-### disableHitDetection
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-### style
-
-- **Type**: `object`
-- **Default**: `() => ({
-    symbol: {
-        symbolType: 'circle',
-        size: 8,
-        color: '#33AAFF',
-        opacity: 0.9
-    }
-})`
