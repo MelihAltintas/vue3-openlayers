@@ -7,6 +7,7 @@ import type { RequestEncoding, Options } from "ol/source/WMTS";
 import WMTS from "ol/source/WMTS";
 import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import Projection from "ol/proj/Projection";
+import TileGrid from "ol/tilegrid/TileGrid";
 import WMTSTileGrid from "ol/tilegrid/WMTS";
 import type { ProjectionLike } from "ol/proj";
 import { get as getProjection } from "ol/proj";
@@ -32,6 +33,7 @@ const props = withDefaults(
     format: string;
     version?: string;
     matrixSet: string;
+    tileGrid?: TileGrid;
     dimensions?: Record<string, unknown>;
     requestEncoding?: RequestEncoding;
     url: string;
@@ -59,33 +61,29 @@ const props = withDefaults(
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const extent = computed((): Extent | null => {
-  return (
-    // @ts-ignore
-    getProjection(properties.projection as ProjectionLike)?.getExtent() || null
-  );
-});
-const origin = computed((): Coordinate | undefined => {
-  return extent.value ? getTopLeft(extent.value) : undefined;
-});
-const size = computed(() => {
-  return extent.value ? getWidth(extent.value) / 256 : 0;
-});
-
 const getTileGrid = computed(() => {
+  const extent: Extent | null =
+    // @ts-ignore
+    getProjection(properties.projection as ProjectionLike)?.getExtent() || null;
+
+  const origin: Coordinate | undefined = extent
+    ? getTopLeft(extent)
+    : undefined;
+  const size: number = extent ? getWidth(extent) / 256 : 0;
+
   const resolutions = [properties.tileZoomLevel];
   const matrixIds = [`${properties.tileZoomLevel}`];
 
   // @ts-ignore eslint-disable-next-line no-plusplus
   for (let z = 0; z < properties.tileZoomLevel; ++z) {
     // @ts-ignore
-    resolutions[z] = size.value / Math.pow(2, z);
+    resolutions[z] = size / Math.pow(2, z);
     matrixIds[z] = props.tileMatrixPrefix + z;
   }
 
   // @ts-ignore
   return new WMTSTileGrid({
-    origin: origin.value,
+    origin,
     resolutions,
     matrixIds,
   } as Options);
@@ -103,7 +101,7 @@ const source = computed(
               // @ts-ignore
               ...(properties.projection as ProjectionOptions),
             }),
-      tileGrid: getTileGrid.value,
+      tileGrid: properties.tileGrid || getTileGrid.value,
     } as unknown as Options)
 );
 
