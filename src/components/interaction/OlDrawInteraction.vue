@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type Ref } from "vue";
+import type { Ref } from "vue";
 import { provide, inject, watch, onMounted, onUnmounted, toRefs } from "vue";
 import Draw from "ol/interaction/Draw";
 import type Map from "ol/Map";
@@ -61,7 +61,7 @@ const {
   wrapX,
 } = toRefs(props);
 
-const draw = computed(() => {
+function createDraw() {
   const d = new Draw({
     source: source?.value,
     type: type.value,
@@ -88,24 +88,45 @@ const draw = computed(() => {
     emit("drawend", event);
   });
 
+  provide("stylable", d);
+
   return d;
-});
+}
 
-watch(draw, (newVal, oldVal) => {
-  map?.removeInteraction(oldVal);
-  map?.addInteraction(newVal);
-  newVal.changed();
+let draw: Draw;
 
-  map?.changed();
-});
+watch(
+  [
+    type,
+    clickTolerance,
+    dragVertexDelay,
+    snapTolerance,
+    stopClick,
+    maxPoints,
+    minPoints,
+    finishCondition,
+    geometryFunction,
+    geometryName,
+    condition,
+    freehand,
+    freehandCondition,
+    wrapX,
+  ],
+  () => {
+    draw.abortDrawing();
+    map?.removeInteraction(draw);
+    draw = createDraw();
+    map?.addInteraction(draw);
+    map?.changed();
+  }
+);
 
 onMounted(() => {
-  map?.addInteraction(draw.value);
+  draw = createDraw();
+  map?.addInteraction(draw);
 });
 
 onUnmounted(() => {
-  map?.removeInteraction(draw.value);
+  map?.removeInteraction(draw);
 });
-
-provide("stylable", draw);
 </script>
