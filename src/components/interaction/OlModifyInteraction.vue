@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type Ref } from "vue";
+import type { Ref } from "vue";
 import { provide, inject, watch, onMounted, onUnmounted, toRefs } from "vue";
 import type Collection from "ol/Collection";
 import Modify from "ol/interaction/Modify";
@@ -44,7 +44,7 @@ const {
   hitDetection,
 } = toRefs(props);
 
-const modify = computed(() => {
+function createModify() {
   const m = new Modify({
     source: source?.value,
     features: features?.value,
@@ -65,7 +65,9 @@ const modify = computed(() => {
   });
 
   return m;
-});
+}
+
+let modify = createModify();
 
 watch(
   [
@@ -77,20 +79,20 @@ watch(
     hitDetection,
   ],
   () => {
-    map?.removeInteraction(modify.value);
-    map?.addInteraction(modify.value);
-    modify.value.changed();
-
+    modify.dispose();
+    map?.removeInteraction(modify);
+    modify = createModify();
+    map?.addInteraction(modify);
     map?.changed();
   }
 );
 
 onMounted(() => {
-  map?.addInteraction(modify.value);
+  map?.addInteraction(modify);
 });
 
 onUnmounted(() => {
-  map?.removeInteraction(modify.value);
+  map?.removeInteraction(modify);
 });
 
 provide("stylable", modify);
