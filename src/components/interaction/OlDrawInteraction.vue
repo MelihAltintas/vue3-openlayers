@@ -88,12 +88,10 @@ function createDraw() {
     emit("drawend", event);
   });
 
-  provide("stylable", d);
-
   return d;
 }
 
-let draw: Draw;
+let draw = createDraw();
 
 watch(
   [
@@ -122,11 +120,12 @@ watch(
 );
 
 onMounted(() => {
-  draw = createDraw();
   map?.addInteraction(draw);
 });
 
 onUnmounted(() => {
   map?.removeInteraction(draw);
 });
+
+provide("stylable", draw);
 </script>
