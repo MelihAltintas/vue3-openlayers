@@ -4,6 +4,7 @@ import OlSourceCluster from "./OlSourceCluster.vue";
 import OlSourceImageStatic from "./OlSourceImageStatic.vue";
 import OlSourceImageWMS from "./OlSourceImageWMS.vue";
 import OlSourceOSM from "./OlSourceOSM.vue";
+import OlSourceStamen from "./OlSourceStamen.vue";
 import OlSourceTianDiTu from "./OlSourceTianDiTu.vue";
 import OlSourceTileArcGISRest from "@/components/sources/OlSourceTileArcGISRest.vue";
 import OlSourceTileWMS from "./OlSourceTileWMS.vue";
@@ -23,6 +24,7 @@ function install(app: App) {
   app.component("ol-source-image-static", OlSourceImageStatic);
   app.component("ol-source-image-wms", OlSourceImageWMS);
   app.component("ol-source-osm", OlSourceOSM);
+  app.component("ol-source-stamen", OlSourceStamen);
   app.component("ol-source-tianditu", OlSourceTianDiTu);
   app.component("ol-source-tile-arcgis-rest", OlSourceTileArcGISRest);
   app.component("ol-source-tile-wms", OlSourceTileWMS);
@@ -41,6 +43,7 @@ export {
   OlSourceImageStatic,
   OlSourceImageWMS,
   OlSourceOSM,
+  OlSourceStamen,
   OlSourceTianDiTu,
   OlSourceTileArcGISRest,
   OlSourceTileWMS,

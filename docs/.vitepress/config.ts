@@ -127,6 +127,10 @@ export default defineConfig({
             link: "/componentsguide/sources/osm/",
           },
           {
+            text: "ol-source-stamen",
+            link: "/componentsguide/sources/stamen/",
+          },
+          {
             text: "ol-source-tianditu",
             link: "/componentsguide/sources/tianditu/",
           },
