@@ -1,16 +1,17 @@
-# ol-source-tile-json
+# ol-layer-group
 
-> Layer source for tile data in TileJSON format.
+> A Collection of layers that are handled together.
 
 <script setup>
 import TileJSONDemo from "@demos/TileJSONDemo.vue"
 </script>
-
 <ClientOnly>
 <TileJSONDemo />
 </ClientOnly>
 
 ## Usage
+
+The example below shows how you can apply common styles / behavior on multiple layers.
 
 ```vue
 <template>
@@ -41,7 +42,7 @@ const zoom = ref(4);
 ### Props from OpenLayers
 
 Properties are passed-trough from OpenLayers directly.
-Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileJSON-TileJSON.html).
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_Group-LayerGroup.html).
 Only some properties deviate caused by reserved keywords from Vue / HTML.
 This deviating props are described in the section below.
 
@@ -52,35 +53,39 @@ None.
 ## Events
 
 You have access to all Events from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileJSON-TileJSON.html) to see the available events tht will be fired.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_Group-LayerGroup.html) to see the available events tht will be fired.
 
 ```html
-<ol-source-tile-json :url="url" crossOrigin="anonymous" @error="handleEvent" />
+<ol-layer-group :opacity="0.2" @error="handleEvent">
+  <!-- ... -->
+</ol-layer-group>
 ```
 
 ## Methods
 
 You have access to all Methods from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileJSON-TileJSON.html) to see the available methods.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_Group-LayerGroup.html) to see the available methods.
 
 To access the source, you can use a `ref()` as shown below:
 
 ```vue
 <template>
   <!-- ... -->
-  <ol-source-tile-json :url="url" crossOrigin="anonymous" ref="sourceRef" />
+  <ol-layer-group :opacity="0.2" ref="layerGroupRef">
+    <!-- ... -->
+  </ol-layer-group>
   <!-- ... -->
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import type TileJSON from "ol/source/TileJSON";
+import type LayerGroup from "ol/layer/LayerGroup";
 
-const sourceRef = ref<{ source: TileJSON }>(null);
+const layerGroupRef = ref<{ layerGroup: LayerGroup }>(null);
 
 onMounted(() => {
-  const source: TileJSON = sourceRef.value?.source;
-  // call your method on `source`
+  const layerGroup: LayerGroup = sourceRef.layerGroup;
+  // call your method on `layerGroup`
 });
 </script>
 ```

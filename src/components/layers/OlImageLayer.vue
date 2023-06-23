@@ -13,6 +13,7 @@ import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
+import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<LayersCommonProps>(),
@@ -20,6 +21,8 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
+const layerGroup = inject<LayerGroup | null>("layerGroup", null);
+
 const { properties } = usePropsAsObjectProperties(props);
 
 const imageLayer = new ImageLayer(properties);
@@ -30,6 +33,12 @@ watch(properties, () => {
 
 onMounted(() => {
   map?.addLayer(imageLayer);
+
+  if (layerGroup) {
+    const layerCollection = layerGroup.getLayers();
+    layerCollection.push(imageLayer);
+    layerGroup.setLayers(layerCollection);
+  }
 });
 
 onUnmounted(() => {

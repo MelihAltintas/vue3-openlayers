@@ -14,6 +14,7 @@ import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
+import type LayerGroup from "ol/layer/Group";
 
 type StyleType = {
   symbol: {
@@ -46,6 +47,8 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
+const layerGroup = inject<LayerGroup | null>("layerGroup", null);
+
 const { properties } = usePropsAsObjectProperties(props);
 
 // @ts-ignore
@@ -56,6 +59,11 @@ watch(properties, () => {
 });
 onMounted(() => {
   map?.addLayer(webglPointsLayer.value);
+  if (layerGroup) {
+    const layerCollection = layerGroup.getLayers();
+    layerCollection.push(webglPointsLayer.value);
+    layerGroup.setLayers(layerCollection);
+  }
 });
 onUnmounted(() => {
   map?.removeLayer(webglPointsLayer.value);

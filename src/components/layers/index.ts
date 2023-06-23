@@ -2,6 +2,7 @@ import type { App } from "vue";
 import OlAnimatedClusterLayer from "./OlAnimatedClusterLayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
 import OlImageLayer from "./OlImageLayer.vue";
+import OlLayerGroup from "./OlLayerGroup.vue";
 import OlTileLayer from "./OlTileLayer.vue";
 import OlVectorLayer from "./OlVectorLayer.vue";
 import OlVectorImageLayer from "./OlVectorImageLayer.vue";
@@ -17,6 +18,7 @@ function install(app: App) {
   app.component("ol-animated-clusterlayer", OlAnimatedClusterLayer);
   app.component("ol-heatmap-layer", OlHeatmapLayer);
   app.component("ol-image-layer", OlImageLayer);
+  app.component("ol-layer-group", OlLayerGroup);
   app.component("ol-tile-layer", OlTileLayer);
   app.component("ol-vector-image-layer", OlVectorImageLayer);
   app.component("ol-vector-layer", OlVectorLayer);
@@ -31,6 +33,7 @@ export {
   OlAnimatedClusterLayer,
   OlHeatmapLayer,
   OlImageLayer,
+  OlLayerGroup,
   OlTileLayer,
   OlVectorImageLayer,
   OlVectorLayer,

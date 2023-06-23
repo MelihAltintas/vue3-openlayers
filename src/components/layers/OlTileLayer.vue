@@ -22,6 +22,7 @@ import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
+import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<
@@ -36,6 +37,7 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
+const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 const overViewMap = inject<Ref<OverviewMap | null> | null>("overviewMap", null);
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -43,6 +45,11 @@ const { properties } = usePropsAsObjectProperties(props);
 const tileLayer = computed(() => new TileLayer(properties));
 
 const applyTileLayer = () => {
+  if (layerGroup) {
+    const layerCollection = layerGroup.getLayers();
+    layerCollection.push(tileLayer.value);
+    layerGroup.setLayers(layerCollection);
+  }
   if (overViewMap?.value) {
     overViewMap.value?.getOverviewMap().addLayer(tileLayer.value);
     overViewMap.value?.changed();

@@ -69,6 +69,10 @@ export default defineConfig({
         collapsed: true,
         items: [
           {
+            text: "ol-layer-group",
+            link: "/componentsguide/layers/group/",
+          },
+          {
             text: "ol-animated-clusterlayer",
             link: "/componentsguide/layers/animatedclusterlayer/",
           },

@@ -14,6 +14,7 @@ import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
+import type LayerGroup from "ol/layer/Group";
 
 type WeightFunction = () => number;
 
@@ -37,6 +38,7 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
+const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 // @ts-ignore
@@ -49,6 +51,12 @@ watch(properties, () => {
 
 onMounted(() => {
   map?.addLayer(heatmapLayer.value);
+
+  if (layerGroup) {
+    const layerCollection = layerGroup.getLayers();
+    layerCollection.push(heatmapLayer.value);
+    layerGroup.setLayers(layerCollection);
+  }
 });
 
 onUnmounted(() => {

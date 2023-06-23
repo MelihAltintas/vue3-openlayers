@@ -1,12 +1,14 @@
 <template>
   <ol-map style="height: 400px">
     <ol-view ref="view" :center="center" :zoom="zoom" />
-    <ol-tile-layer>
-      <ol-source-osm />
-    </ol-tile-layer>
-    <ol-tile-layer>
-      <ol-source-tile-json :url="url" crossOrigin="anonymous" />
-    </ol-tile-layer>
+    <ol-layer-group :opacity="0.4">
+      <ol-tile-layer>
+        <ol-source-osm />
+      </ol-tile-layer>
+      <ol-tile-layer>
+        <ol-source-tile-json :url="url" crossOrigin="anonymous" />
+      </ol-tile-layer>
+    </ol-layer-group>
   </ol-map>
 </template>
 

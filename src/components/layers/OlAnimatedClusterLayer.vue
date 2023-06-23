@@ -16,6 +16,7 @@ import {
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
+import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<
@@ -41,6 +42,7 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
+const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
@@ -61,6 +63,12 @@ const source = computed(() => vectorLayer.value.getSource());
 watch(properties, () => {
   vectorLayer.value.setProperties(properties);
   vectorLayer.value.changed();
+
+  if (layerGroup) {
+    const layerCollection = layerGroup.getLayers();
+    layerCollection.push(vectorLayer.value);
+    layerGroup.setLayers(layerCollection);
+  }
 });
 
 onMounted(() => {
