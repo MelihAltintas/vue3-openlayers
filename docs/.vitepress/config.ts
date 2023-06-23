@@ -25,7 +25,6 @@ export default defineConfig({
       { text: "Demo", link: "/demo" },
       { text: "Playground", link: "/playground" },
     ],
-
     sidebar: [
       {
         text: "Get Started",
@@ -391,5 +390,8 @@ export default defineConfig({
         link: "https://github.com/MelihAltintas/vue3-openlayers",
       },
     ],
+    search: {
+      provider: "local",
+    },
   },
 });
