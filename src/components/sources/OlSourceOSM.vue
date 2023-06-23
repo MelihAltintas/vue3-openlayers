@@ -2,46 +2,45 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import OSM from "ol/source/OSM";
+import OSM, { type Options } from "ol/source/OSM";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
-import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import eventGateway from "@/helpers/eventGateway";
 
-const props = withDefaults(
-  defineProps<{
-    attributions?: string;
-    cacheSize?: number;
-    crossOrigin?: string;
-    imageSmoothing?: boolean;
-    minZoom?: number;
-    maxZoom?: number;
-    opaque?: boolean;
-    reprojectionErrorThreshold?: number;
-    transition?: number;
-    url?: string;
-    wrapX?: boolean;
-  }>(),
-  {
-    cacheSize: 2048,
-    crossOrigin: "anonymous",
-    imageSmoothing: true,
-    minZoom: 0,
-    maxZoom: 19,
-    opaque: true,
-    reprojectionErrorThreshold: 0.5,
-    transition: 250,
-    url: "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    wrapX: true,
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  crossOrigin: "anonymous",
+  interpolate: true,
+  imageSmoothing: true,
+  maxZoom: 19,
+  opaque: true,
+  reprojectionErrorThreshold: 0.5,
+  transition: 250,
+  url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  wrapX: true,
+  zDirection: 0,
+});
+const emit = defineEmits([]);
 
-const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
+const layer = inject<Ref<TileLayer<OSM>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => new OSM(properties));
+const source = computed(() => {
+  const o = new OSM(properties);
+
+  eventGateway(emit, o, [
+    "change",
+    "error",
+    "tileloadend",
+    "tileloaderror",
+    "tileloadstart",
+    "propertychange",
+  ]);
+
+  return o;
+});
 
 watch(source, () => {
   layer?.value?.setSource(source.value);

@@ -5,7 +5,6 @@
 import ImageWMS, { type Options } from "ol/source/ImageWMS";
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import type ImageLayer from "ol/layer/Image";
-import type ImageSource from "ol/source/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
 import eventGateway from "@/helpers/eventGateway";
@@ -31,7 +30,7 @@ const props = withDefaults(
 );
 const emit = defineEmits([]);
 
-const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
+const layer = inject<ImageLayer<ImageWMS> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {

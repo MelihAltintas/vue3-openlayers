@@ -5,8 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Cluster } from "ol/source";
-import type { Options } from "ol/source/Cluster";
+import Cluster, { type Options } from "ol/source/Cluster";
 
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";

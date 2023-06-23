@@ -3,9 +3,8 @@
 </template>
 <script setup lang="ts">
 import Static, { type Options } from "ol/source/ImageStatic";
-import { computed, inject, onMounted, onUnmounted, watch, type Ref } from "vue";
+import { inject, onMounted, onUnmounted, watch } from "vue";
 import type ImageLayer from "ol/layer/Image";
-import type ImageSource from "ol/source/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import eventGateway from "@/helpers/eventGateway";
 import projectionFromProperties from "@/helpers/projection";
@@ -15,7 +14,7 @@ const props = withDefaults(defineProps<Options>(), {
 });
 const emit = defineEmits([]);
 
-const layer = inject<ImageLayer<ImageSource> | null>("imageLayer");
+const layer = inject<ImageLayer<Static> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {

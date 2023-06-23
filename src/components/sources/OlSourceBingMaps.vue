@@ -7,7 +7,6 @@ import BingMaps, { type Options } from "ol/source/BingMaps";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import type TileSource from "ol/source/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import eventGateway from "@/helpers/eventGateway";
 
@@ -27,7 +26,7 @@ const props = withDefaults(
 );
 const emit = defineEmits([]);
 
-const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
+const layer = inject<Ref<TileLayer<BingMaps>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 

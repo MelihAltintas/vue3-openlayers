@@ -22,70 +22,49 @@ Loading a simple OSM base layer.
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: `string`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_OSM-OSM.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Attributions.
+### Deviating Properties
 
-### cacheSize
+None.
 
-- **Type**: `number`
-- **Default**: `2048`
+## Events
 
-Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_OSM-OSM.html) to see the available events tht will be fired.
 
-### crossOrigin
+```html
+<ol-source-osm :url="url" @error="handleEvent" />
+```
 
-- **Type**: `string`
-- **Default**: `anonymous`
+## Methods
 
-The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_OSM-OSM.html) to see the available methods.
 
-### imageSmoothing
+To access the source, you can use a `ref()` as shown below:
 
-- **Type**: `boolean`
-- **Default**: `true`
-  Enable image smoothing.
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-osm :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-### maxZoom
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type OSM from "ol/source/OSM";
 
-- **Type**: `number`
-- **Default**: 19
-  Max zoom.
+const sourceRef = ref<{ source: OSM }>(null);
 
-### minZoom
-
-- **Type**: `number`
-- **Default**: 0
-  Min zoom.
-
-### opaque
-
-- **Type**: `boolean`
-- **Default**: true
-  Whether the layer is opaque.
-
-### reprojectionErrorThreshold
-
-- **Type**: `number `
-- **Default**: 0.5
-  Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
-
-### transition
-
-- **Type**: `number`
-- **Default**: 250
-  Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
-
-### url
-
-- **Type**: `string`
-- **Default**: `https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png`
-  URL template. Must include {x}, {y} or {-y}, and {z} placeholders.
-
-### wrapX
-
-- **Type**: `boolean `
-- **Default**: true
-  Whether to wrap the world horizontally.
+onMounted(() => {
+  const source: OSM = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```
