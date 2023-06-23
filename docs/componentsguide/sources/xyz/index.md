@@ -18,46 +18,11 @@ Example of ol-source-xyz loading OSM tiles (Note that if you need an OSM layer y
 
 Example of loading google maps satellite tiles. Notice that this is only allowed in places that are publicly available to the internet (as opposed to being behind a password for example).
 
-```vue
-<template>
-  <select v-model="selected">
-    <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">
-      OSM
-    </option>
-    <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">
-      GOOGLE
-    </option>
-  </select>
-  {{ selected }}
-  <ol-map
-    :loadTilesWhileAnimating="true"
-    :loadTilesWhileInteracting="true"
-    style="height: 400px"
-  >
-    <ol-view
-      ref="view"
-      :center="center"
-      :rotation="rotation"
-      :zoom="zoom"
-      :projection="projection"
-    />
+::: code-group
 
-    <ol-tile-layer>
-      <ol-source-xyz :url="selected" />
-    </ol-tile-layer>
-  </ol-map>
-</template>
+<<< src/demos/XYZSourceDemo.vue
 
-<script setup>
-import { ref } from "vue";
-
-const center = ref([40, 40]);
-const projection = ref("EPSG:4326");
-const zoom = ref(8);
-const rotation = ref(0);
-const selected = ref("https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png");
-</script>
-```
+:::
 
 ## Properties
 

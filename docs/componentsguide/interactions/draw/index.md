@@ -14,81 +14,11 @@ import DrawDemo from "@demos/DrawDemo.vue"
 
 ## Usage
 
-```vue
-<template>
-  <input type="checkbox" id="checkbox" v-model="drawEnable" />
-  <label for="checkbox">Draw Enable</label>
+::: code-group
 
-  <select id="type" v-model="drawType">
-    <option value="Point">Point</option>
-    <option value="LineString">LineString</option>
-    <option value="Polygon">Polygon</option>
-    <option value="Circle">Circle</option>
-  </select>
+<<< src/demos/DrawDemo.vue
 
-  <ol-map
-    :loadTilesWhileAnimating="true"
-    :loadTilesWhileInteracting="true"
-    style="height: 400px"
-  >
-    <ol-view
-      ref="view"
-      :center="center"
-      :rotation="rotation"
-      :zoom="zoom"
-      :projection="projection"
-    />
-
-    <ol-tile-layer>
-      <ol-source-osm />
-    </ol-tile-layer>
-
-    <ol-vector-layer>
-      <ol-source-vector :projection="projection">
-        <ol-interaction-draw
-          v-if="drawEnable"
-          :type="drawType"
-          @drawend="drawend"
-          @drawstart="drawstart"
-        >
-          <ol-style>
-            <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-            <ol-style-fill color="rgba(255, 255, 0, 0.4)"></ol-style-fill>
-          </ol-style>
-        </ol-interaction-draw>
-      </ol-source-vector>
-
-      <ol-style>
-        <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-        <ol-style-fill color="rgba(255,255,255,0.1)"></ol-style-fill>
-        <ol-style-circle :radius="7">
-          <ol-style-fill color="red"></ol-style-fill>
-        </ol-style-circle>
-      </ol-style>
-    </ol-vector-layer>
-  </ol-map>
-</template>
-
-<script setup>
-import { ref } from "vue";
-
-const center = ref([40, 40]);
-const projection = ref("EPSG:4326");
-const zoom = ref(8);
-const rotation = ref(0);
-
-const drawEnable = ref(true);
-const drawType = ref("Polygon");
-
-const drawstart = (event) => {
-  console.log(event);
-};
-
-const drawend = (event) => {
-  console.log(event);
-};
-</script>
-```
+:::
 
 ## Properties
 
