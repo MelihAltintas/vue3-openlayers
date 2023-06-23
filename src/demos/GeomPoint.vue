@@ -55,7 +55,7 @@ const fillColor = ref("white");
 const coordinate = ref([40, 40]);
 </script>
 
-<style>
+<style scoped>
 button {
   border: 1px solid black;
   margin: 0.5rem 0;
