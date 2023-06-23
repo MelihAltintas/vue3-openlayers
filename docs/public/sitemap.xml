@@ -88,6 +88,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://vue3openlayers.netlify.app/componentsguide/sources/tilejson/</loc>
+  <lastmod>2023-03-23T09:30:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://vue3openlayers.netlify.app/componentsguide/sources/tilewms/</loc>
   <lastmod>2023-03-30T21:05:05+00:00</lastmod>
   <priority>0.80</priority>

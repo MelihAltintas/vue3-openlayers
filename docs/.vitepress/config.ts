@@ -135,6 +135,10 @@ export default defineConfig({
             link: "/componentsguide/sources/tianditu/",
           },
           {
+            text: "ol-source-tile-json",
+            link: "/componentsguide/sources/tilejson/",
+          },
+          {
             text: "ol-source-tile-wms",
             link: "/componentsguide/sources/tilewms/",
           },
