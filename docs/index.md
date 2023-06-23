@@ -28,3 +28,13 @@ head:
     - name: google-site-verification
       content: sO5Ac-6bG_0zPh8Kip5pMwBlL6gLH5Vx-NGGaEchKVE
 ---
+
+<p style="position: fixed;
+  right: 0;
+  top: 20vh;
+  opacity: .4;
+  margin: 3rem;
+  max-width: calc(100% - 6rem);
+  width: 400px;">
+  <img src="/logo.png" alt=""><br />
+</p>

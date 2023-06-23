@@ -19,7 +19,7 @@ Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 
 <p align="center">
   <a href="https://vue3openlayers.netlify.app/" target="_blank" title="Vue OpenLayers Homepage">
-    <img width="100" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/logo.png"><br />
+    <img width="100" src="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/docs/public/logo.png" alt=""><br />
   </a>
 </p>
 
