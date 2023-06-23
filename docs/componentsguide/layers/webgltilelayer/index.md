@@ -13,7 +13,7 @@ import WebglTileLayerDemo from "@demos/WebglTileLayerDemo.vue"
 
 ::: code-group
 
-<<< src/demos/WebglTileLayerDemo.vue
+<<< ../../../../src/demos/WebglTileLayerDemo.vue
 
 :::
 

@@ -20,7 +20,7 @@ Load features simply by providing url value and format GeoJSON
 
 ::: code-group
 
-<<< src/demos/VectorSourceDemo4.vue
+<<< ../../../../src/demos/VectorSourceDemo4.vue
 
 :::
 

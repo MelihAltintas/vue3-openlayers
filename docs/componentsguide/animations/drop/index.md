@@ -12,7 +12,7 @@ import DropAnimation from "@demos/DropAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/DropAnimation.vue
+<<< ../../../../src/demos/DropAnimation.vue
 
 :::
 

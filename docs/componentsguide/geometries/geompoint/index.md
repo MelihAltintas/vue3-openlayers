@@ -14,7 +14,7 @@ import GeomPoint from "@demos/GeomPoint.vue"
 
 ::: code-group
 
-<<< src/demos/GeomPoint.vue
+<<< ../../../../src/demos/GeomPoint.vue
 
 :::
 

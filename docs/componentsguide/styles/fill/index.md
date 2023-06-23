@@ -17,7 +17,7 @@ Styling a feature
 
 ::: code-group
 
-<<< src/demos/MultiPoint.vue
+<<< ../../../../src/demos/MultiPoint.vue
 
 :::
 

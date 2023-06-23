@@ -13,7 +13,7 @@ import LineString from "@demos/LineString.vue"
 
 ::: code-group
 
-<<< src/demos/LineString.vue
+<<< ../../../../src/demos/LineString.vue
 
 :::
 

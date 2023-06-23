@@ -12,7 +12,7 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/FadeAnimation.vue
+<<< ../../../../src/demos/FadeAnimation.vue
 
 :::
 

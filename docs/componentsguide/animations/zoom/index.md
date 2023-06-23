@@ -12,7 +12,7 @@ import ZoomAnimation from "@demos/ZoomAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/ZoomAnimation.vue
+<<< ../../../../src/demos/ZoomAnimation.vue
 
 :::
 

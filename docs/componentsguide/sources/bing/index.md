@@ -19,7 +19,7 @@ Example of `ol-source-bingmaps` usage
 
 ::: code-group
 
-<<< src/demos/BingMapsDemo.vue
+<<< ../../../../src/demos/BingMapsDemo.vue
 
 :::
 

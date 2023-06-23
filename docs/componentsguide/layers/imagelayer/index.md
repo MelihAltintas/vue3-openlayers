@@ -16,7 +16,7 @@ Example below shows how to use ol-image-layer component together with ol-source-
 
 ::: code-group
 
-<<< src/demos/ImageLayerDemo.vue
+<<< ../../../../src/demos/ImageLayerDemo.vue
 
 :::
 

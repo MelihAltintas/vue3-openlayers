@@ -17,6 +17,6 @@ import AppDemo from "@demos/AppDemo.vue"
 
 ::: code-group
 
-<<< src/demos/AppDemo.vue
+<<< ../src/demos/AppDemo.vue
 
 :::

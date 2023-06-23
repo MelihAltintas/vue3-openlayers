@@ -14,7 +14,7 @@ import SelectDemo from "@demos/SelectDemo.vue"
 
 ::: code-group
 
-<<< src/demos/SelectDemo.vue
+<<< ../../../../src/demos/SelectDemo.vue
 
 :::
 

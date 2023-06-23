@@ -20,7 +20,7 @@ Example of loading google maps satellite tiles. Notice that this is only allowed
 
 ::: code-group
 
-<<< src/demos/XYZSourceDemo.vue
+<<< ../../../../src/demos/XYZSourceDemo.vue
 
 :::
 

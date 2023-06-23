@@ -16,7 +16,7 @@ Loading a simple OSM base layer.
 
 ::: code-group
 
-<<< src/demos/MapDemo.vue
+<<< ../../../../src/demos/MapDemo.vue
 
 :::
 

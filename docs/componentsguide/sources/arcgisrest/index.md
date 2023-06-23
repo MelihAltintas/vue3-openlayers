@@ -18,7 +18,7 @@ Example of `ol-source-tile-arcgis-rest` usage. Information about the arcgis serv
 
 ::: code-group
 
-<<< src/demos/TileArcGISRestSourceDemo.vue
+<<< ../../../../src/demos/TileArcGISRestSourceDemo.vue
 
 :::
 

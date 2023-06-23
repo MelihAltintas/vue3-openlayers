@@ -12,7 +12,7 @@ import TeleportAnimation from "@demos/TeleportAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/TeleportAnimation.vue
+<<< ../../../../src/demos/TeleportAnimation.vue
 
 :::
 

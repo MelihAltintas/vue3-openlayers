@@ -16,7 +16,7 @@ import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
 
 ::: code-group
 
-<<< src/demos/WebglPointsLayerDemo.vue
+<<< ../../../../src/demos/WebglPointsLayerDemo.vue
 
 :::
 

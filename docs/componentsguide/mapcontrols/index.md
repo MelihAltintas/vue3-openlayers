@@ -24,6 +24,6 @@ See menu items on the left.
 
 ::: code-group
 
-<<< src/demos/MapControlDemo.vue
+<<< ../../../src/demos/MapControlDemo.vue
 
 :::

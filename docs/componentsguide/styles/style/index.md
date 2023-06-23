@@ -19,7 +19,7 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
 
 ::: code-group
 
-<<< src/demos/StyleDemo.vue
+<<< ../../../../src/demos/StyleDemo.vue
 
 :::
 
@@ -31,7 +31,7 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
 
 ::: code-group
 
-<<< src/demos/StyleDemo2.vue
+<<< ../../../../src/demos/StyleDemo2.vue
 
 :::
 

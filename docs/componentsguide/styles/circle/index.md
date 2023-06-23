@@ -18,7 +18,7 @@ Styling a feature inside a vector layer.
 
 ::: code-group
 
-<<< src/demos/StyleDemo.vue
+<<< ../../../../src/demos/StyleDemo.vue
 
 :::
 

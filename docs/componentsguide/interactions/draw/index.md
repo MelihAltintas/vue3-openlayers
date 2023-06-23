@@ -16,7 +16,7 @@ import DrawDemo from "@demos/DrawDemo.vue"
 
 ::: code-group
 
-<<< src/demos/DrawDemo.vue
+<<< ../../../../src/demos/DrawDemo.vue
 
 :::
 

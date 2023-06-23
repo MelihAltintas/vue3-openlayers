@@ -16,7 +16,7 @@ import PolygonDemo from "@demos/PolygonDemo.vue"
 
 ::: code-group
 
-<<< src/demos/PolygonDemo.vue
+<<< ../../../../src/demos/PolygonDemo.vue
 
 :::
 

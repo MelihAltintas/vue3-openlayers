@@ -14,7 +14,7 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 ::: code-group
 
-<<< src/demos/AnimatedClusterDemo.vue
+<<< ../../../../src/demos/AnimatedClusterDemo.vue
 
 :::
 

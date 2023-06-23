@@ -14,7 +14,7 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 
 ::: code-group
 
-<<< src/demos/ImageWMSDemo.vue
+<<< ../../../../src/demos/ImageWMSDemo.vue
 
 :::
 

@@ -16,7 +16,7 @@ Example below shows how you can use ol-heatmap-layer and ol-source-vector to ren
 
 ::: code-group
 
-<<< src/demos/HeatmapLayerDemo.vue
+<<< ../../../../src/demos/HeatmapLayerDemo.vue
 
 :::
 

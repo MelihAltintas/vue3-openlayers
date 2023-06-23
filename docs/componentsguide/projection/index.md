@@ -18,7 +18,7 @@ Example below shows how to register and use a custom projection on to the map.
 
 ::: code-group
 
-<<< src/demos/ProjectionRegisterDemo.vue
+<<< ../../../src/demos/ProjectionRegisterDemo.vue
 
 :::
 

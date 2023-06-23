@@ -14,7 +14,7 @@ import CircleDemo from "@demos/CircleDemo.vue"
 
 ::: code-group
 
-<<< src/demos/CircleDemo.vue
+<<< ../../../../src/demos/CircleDemo.vue
 
 :::
 

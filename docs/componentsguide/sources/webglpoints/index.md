@@ -20,7 +20,7 @@ import WebglPointsSourceDemo from "@demos/WebglPointsSourceDemo.vue"
 
 ::: code-group
 
-<<< src/demos/WebglPointsLayerDemo.vue
+<<< ../../../../src/demos/WebglPointsLayerDemo.vue
 
 :::
 
@@ -32,7 +32,7 @@ import WebglPointsSourceDemo from "@demos/WebglPointsSourceDemo.vue"
 
 ::: code-group
 
-<<< src/demos/WebglPointsSourceDemo.vue
+<<< ../../../../src/demos/WebglPointsSourceDemo.vue
 
 :::
 

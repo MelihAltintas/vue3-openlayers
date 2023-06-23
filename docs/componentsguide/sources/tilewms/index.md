@@ -14,7 +14,7 @@ import TileWMSDemo from "@demos/TileWMSDemo.vue"
 
 ::: code-group
 
-<<< src/demos/TileWMSDemo.vue
+<<< ../../../../src/demos/TileWMSDemo.vue
 
 :::
 

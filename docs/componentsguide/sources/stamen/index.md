@@ -14,7 +14,7 @@ import StamenDemo from "@demos/StamenDemo.vue"
 
 ::: code-group
 
-<<< src/demos/StamenDemo.vue
+<<< ../../../../src/demos/StamenDemo.vue
 
 :::
 

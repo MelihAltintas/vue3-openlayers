@@ -19,7 +19,7 @@ Example below shows how to add custom content on to the map.
 
 ::: code-group
 
-<<< src/demos/OverlayDemo.vue
+<<< ../../../src/demos/OverlayDemo.vue
 
 :::
 

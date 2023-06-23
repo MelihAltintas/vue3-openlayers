@@ -16,7 +16,7 @@ import IconDemo from "@demos/IconDemo.vue"
 
 ::: code-group
 
-<<< src/demos/IconDemo.vue
+<<< ../../../../src/demos/IconDemo.vue
 
 :::
 

@@ -21,7 +21,7 @@ See also documentation of ol-map component
 
 ::: code-group
 
-<<< src/demos/ViewDemo.vue
+<<< ../../../src/demos/ViewDemo.vue
 
 :::
 

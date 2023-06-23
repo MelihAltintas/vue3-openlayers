@@ -16,7 +16,7 @@ Add text to shapes
 
 ::: code-group
 
-<<< src/demos/TextDemo.vue
+<<< ../../../../src/demos/TextDemo.vue
 
 :::
 

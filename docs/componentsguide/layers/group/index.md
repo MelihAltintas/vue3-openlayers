@@ -15,7 +15,7 @@ The example below shows how you can apply common styles / behavior on multiple l
 
 ::: code-group
 
-<<< src/demos/TileJSONDemo.vue
+<<< ../../../../src/demos/TileJSONDemo.vue
 
 :::
 

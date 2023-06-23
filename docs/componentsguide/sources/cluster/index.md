@@ -19,7 +19,7 @@ This example shows how to do clustering on 1000 point features.
 
 ::: code-group
 
-<<< src/demos/ClusterDemo.vue
+<<< ../../../../src/demos/ClusterDemo.vue
 
 :::
 

@@ -17,7 +17,7 @@ The map view is configured with a custom projection that translates image coordi
 
 ::: code-group
 
-<<< src/demos/ImageLayerDemo.vue
+<<< ../../../../src/demos/ImageLayerDemo.vue
 
 :::
 

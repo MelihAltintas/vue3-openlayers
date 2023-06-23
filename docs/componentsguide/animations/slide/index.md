@@ -12,7 +12,7 @@ import SlideAnimation from "@demos/SlideAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/SlideAnimation.vue
+<<< ../../../../src/demos/SlideAnimation.vue
 
 :::
 

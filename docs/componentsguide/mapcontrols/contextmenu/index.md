@@ -17,7 +17,7 @@ Add context menu to map
 
 ::: code-group
 
-<<< src/demos/ContextMenuDemo.vue
+<<< ../../../../src/demos/ContextMenuDemo.vue
 
 :::
 

@@ -14,7 +14,7 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 
 ::: code-group
 
-<<< src/demos/SnapModifyDemo.vue
+<<< ../../../../src/demos/SnapModifyDemo.vue
 
 :::
 

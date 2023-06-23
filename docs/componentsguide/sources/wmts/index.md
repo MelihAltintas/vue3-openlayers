@@ -16,7 +16,7 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
 
 ::: code-group
 
-<<< src/demos/TileLayerDemo.vue
+<<< ../../../../src/demos/TileLayerDemo.vue
 
 :::
 

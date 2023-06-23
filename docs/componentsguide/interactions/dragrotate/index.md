@@ -14,7 +14,7 @@ import DragRotateDemo from "@demos/DragRotateDemo.vue"
 
 ::: code-group
 
-<<< src/demos/DragRotateDemo.vue
+<<< ../../../../src/demos/DragRotateDemo.vue
 
 :::
 

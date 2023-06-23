@@ -14,7 +14,7 @@ import TransformDemo from "@demos/TransformDemo.vue"
 
 ::: code-group
 
-<<< src/demos/TransformDemo.vue
+<<< ../../../../src/demos/TransformDemo.vue
 
 :::
 

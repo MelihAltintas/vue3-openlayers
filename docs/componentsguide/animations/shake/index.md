@@ -12,7 +12,7 @@ import ShakeAnimation from "@demos/ShakeAnimation.vue"
 
 ::: code-group
 
-<<< src/demos/ShakeAnimation.vue
+<<< ../../../../src/demos/ShakeAnimation.vue
 
 :::
 

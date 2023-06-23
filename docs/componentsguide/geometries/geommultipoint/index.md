@@ -13,7 +13,7 @@ import MultiPoint from "@demos/MultiPoint.vue"
 
 ::: code-group
 
-<<< src/demos/MultiPoint.vue
+<<< ../../../../src/demos/MultiPoint.vue
 
 :::
 

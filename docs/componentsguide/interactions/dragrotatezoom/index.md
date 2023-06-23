@@ -14,7 +14,7 @@ import DragRotateZoomDemo from "@demos/DragRotateZoomDemo.vue"
 
 ::: code-group
 
-<<< src/demos/DragRotateZoomDemo.vue
+<<< ../../../../src/demos/DragRotateZoomDemo.vue
 
 :::
 

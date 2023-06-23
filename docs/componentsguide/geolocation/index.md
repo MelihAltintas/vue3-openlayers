@@ -16,7 +16,7 @@ import GeoLocationDemo from "@demos/GeoLocationDemo.vue"
 
 ::: code-group
 
-<<< src/demos/GeoLocationDemo.vue
+<<< ../../../src/demos/GeoLocationDemo.vue
 
 :::
 

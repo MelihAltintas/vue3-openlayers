@@ -14,7 +14,7 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 
 ::: code-group
 
-<<< src/demos/TileJSONDemo.vue
+<<< ../../../../src/demos/TileJSONDemo.vue
 
 :::
 

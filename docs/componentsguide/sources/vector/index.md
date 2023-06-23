@@ -22,7 +22,7 @@ Static features with the help of `ol-feature`, should be used only for tiny stat
 
 ::: code-group
 
-<<< src/demos/GeomPoint.vue
+<<< ../../../../src/demos/GeomPoint.vue
 
 :::
 
@@ -36,7 +36,7 @@ Load features simply by providing url value and format GeoJSON
 
 ::: code-group
 
-<<< src/demos/VectorSourceDemo1.vue
+<<< ../../../../src/demos/VectorSourceDemo1.vue
 
 :::
 
@@ -48,7 +48,7 @@ Load features simply by providing url value and format GeoJSON
 
 ::: code-group
 
-<<< src/demos/AnimatedClusterDemo2.vue
+<<< ../../../../src/demos/AnimatedClusterDemo2.vue
 
 :::
 
@@ -62,7 +62,7 @@ Next example loads features from remote WFS service by viewport BBOX. With forma
 
 ::: code-group
 
-<<< src/demos/VectorSourceDemo2.vue
+<<< ../../../../src/demos/VectorSourceDemo2.vue
 
 :::
 
@@ -76,7 +76,7 @@ You can also use other Vector formats like TopoJSON.
 
 ::: code-group
 
-<<< src/demos/VectorSourceDemo3.vue
+<<< ../../../../src/demos/VectorSourceDemo3.vue
 
 :::
 

@@ -19,7 +19,7 @@ Example of `ol-source-tianditu` usage
 
 ::: code-group
 
-<<< src/demos/TiandituDemo.vue
+<<< ../../../../src/demos/TiandituDemo.vue
 
 :::
 

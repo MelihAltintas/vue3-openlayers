@@ -18,7 +18,7 @@ Load features simply by providing url value and format GeoJSON
 
 ::: code-group
 
-<<< src/demos/VectorSourceDemo1.vue
+<<< ../../../../src/demos/VectorSourceDemo1.vue
 
 :::
 

@@ -13,7 +13,7 @@ import MultiPolygon from "@demos/MultiPolygon.vue"
 
 ::: code-group
 
-<<< src/demos/MultiPolygon.vue
+<<< ../../../../src/demos/MultiPolygon.vue
 
 :::
 

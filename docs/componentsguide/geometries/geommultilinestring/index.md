@@ -13,7 +13,7 @@ import MultiLineString from "@demos/MultiLineString.vue"
 
 ::: code-group
 
-<<< src/demos/MultiLineString.vue
+<<< ../../../../src/demos/MultiLineString.vue
 
 :::
 
