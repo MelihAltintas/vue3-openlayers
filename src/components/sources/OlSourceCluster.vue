@@ -15,7 +15,7 @@ import type Feature from "ol/Feature";
 import type VectorSource from "ol/source/Vector";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(defineProps<Options>(), {
   distance: 20,
@@ -32,15 +32,7 @@ const { properties } = usePropsAsObjectProperties(props);
 const source = computed(() => {
   const c = new Cluster(properties);
 
-  eventGateway(emit, c, [
-    "addFeature",
-    "changefeature",
-    "clear",
-    "featuresloadend",
-    "featuresloaderror",
-    "featuresloadstart",
-    "removefeature",
-  ]);
+  eventGateway(emit, c, FEATURE_EVENTS);
 
   return c;
 });

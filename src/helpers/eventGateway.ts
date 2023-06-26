@@ -25,3 +25,12 @@ export const IMAGE_SOURCE_EVENTS = [
   "imageloaderror",
   "imageloadstart",
 ];
+export const FEATURE_EVENTS = [
+  "addFeature",
+  "changefeature",
+  "clear",
+  "featuresloadend",
+  "featuresloaderror",
+  "featuresloadstart",
+  "removefeature",
+];
