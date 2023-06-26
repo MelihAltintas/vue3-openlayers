@@ -20,4 +20,8 @@ export const TILE_SOURCE_EVENTS = [
   "tileloaderror",
   "tileloadstart",
 ];
-export const IMAGE_SOURCE_EVENTS = [];
+export const IMAGE_SOURCE_EVENTS = [
+  "imageloadend",
+  "imageloaderror",
+  "imageloadstart",
+];
