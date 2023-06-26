@@ -49,8 +49,7 @@ if (style != null && circle == null) {
   style.value?.setStroke(stroke);
 
   const applyStroke = () => {
-    // @ts-ignore
-    style?.value?.setStroke(null);
+    style?.value?.setStroke(new Stroke());
     stroke = new Stroke(properties);
     style?.value?.setStroke(stroke);
   };
@@ -62,22 +61,18 @@ if (style != null && circle == null) {
   });
 
   onMounted(() => {
-    // @ts-ignore
     style?.value?.setStroke(stroke);
   });
 
   onUnmounted(() => {
-    // @ts-ignore
-    style?.value?.setStroke(null);
+    style?.value?.setStroke(new Stroke());
   });
 } else if (circle != null) {
   // in circle
   const applyStroketoCircle = (innerProperties: Options) => {
-    // @ts-ignore
-    circle?.value?.getStroke()?.setColor(innerProperties.color);
+    circle?.value?.getStroke()?.setColor(innerProperties.color || "");
     circle?.value?.getStroke()?.setLineCap(innerProperties.lineCap);
-    // @ts-ignore
-    circle?.value?.getStroke()?.setLineDash(innerProperties.lineDash);
+    circle?.value?.getStroke()?.setLineDash(innerProperties.lineDash || []);
     circle?.value
       ?.getStroke()
       ?.setLineDashOffset(innerProperties.lineDashOffset);

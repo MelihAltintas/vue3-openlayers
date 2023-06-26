@@ -43,7 +43,6 @@ const createCircleStyle = (
   });
 };
 
-// @ts-ignore
 const circle = computed(() => createCircleStyle(properties));
 
 const applyStyle = () => {

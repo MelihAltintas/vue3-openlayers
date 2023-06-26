@@ -51,8 +51,13 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-// @ts-ignore
-const webglPointsLayer = computed(() => new WebGLPointsLayer(properties));
+const webglPointsLayer = computed(
+  () =>
+    new WebGLPointsLayer({
+      ...properties,
+      style: properties.styles,
+    })
+);
 
 watch(properties, () => {
   webglPointsLayer.value.setProperties(properties);

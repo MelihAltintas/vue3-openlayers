@@ -39,7 +39,6 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-// @ts-ignore
 const vectorLayer = computed(() => new VectorLayer(properties));
 
 watch(properties, () => {

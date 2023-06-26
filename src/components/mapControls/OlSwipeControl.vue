@@ -27,8 +27,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const { control } = useControl(Swipe, properties, attrs);
 
-// @ts-ignore
-props.layerList.forEach((layer, index) => {
+props.layerList?.forEach((layer, index) => {
   control.value.addLayer(layer, index === 1);
 });
 defineExpose({

@@ -29,8 +29,7 @@ if (style != null && circle == null) {
   style?.value?.setFill(fill);
 
   const applyFill = () => {
-    // @ts-ignore
-    style?.value?.setFill(null);
+    style?.value?.setFill(new Fill());
     fill = new Fill(properties);
     style?.value?.setFill(fill);
   };
@@ -47,8 +46,7 @@ if (style != null && circle == null) {
   });
 
   onUnmounted(() => {
-    // @ts-ignore
-    style?.value?.setFill(null);
+    style?.value?.setFill(new Fill());
   });
 } else if (circle != null) {
   // in circle

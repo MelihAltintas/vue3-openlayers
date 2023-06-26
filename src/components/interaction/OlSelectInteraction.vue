@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 import Select from "ol/interaction/Select";
 import Style from "ol/style/Style";
@@ -34,7 +33,6 @@ const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
-  // @ts-ignore
   const olSelect = new Select({
     ...properties,
     style: new Style(),

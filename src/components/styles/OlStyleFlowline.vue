@@ -15,6 +15,7 @@ import type { ColorLike } from "ol/colorlike";
 import type Feature from "ol/Feature";
 import type Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { StyleFunction, StyleLike } from "ol/style/Style";
 
 const props = withDefaults(
   defineProps<{
@@ -24,10 +25,14 @@ const props = withDefaults(
     width2?: number;
     arrow?: number;
     arrowColor?: string;
-    lineCap?: CanvasLineCap;
+    lineCap: CanvasRenderingContext2D["lineCap"];
     overrideStyleFunction?: (...args: unknown[]) => unknown;
   }>(),
-  {}
+  {
+    visible: true,
+    lineCap: "butt",
+    arrowSize: 16,
+  }
 );
 
 const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
@@ -37,10 +42,9 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
 
 const { properties } = usePropsAsObjectProperties(props);
 
-// @ts-ignore
 const style = computed(() => new FlowLine(properties));
 
-const setStyle = (val: Style | null) => {
+const setStyle = (val: StyleLike | null) => {
   if (styledObj?.value instanceof Draw || styledObj?.value instanceof Modify) {
     styledObj?.value?.getOverlay().setStyle(val);
     styledObj?.value?.dispatchEvent("styleChanged");
@@ -67,11 +71,9 @@ const setStyle = (val: Style | null) => {
   }
 };
 
-const styleFunc = computed(() => {
-  // @ts-ignore
+const styleFunc = computed<StyleLike>(() => {
   return (feature) => {
     if (properties.overrideStyleFunction != null) {
-      // @ts-ignore
       properties.overrideStyleFunction(feature, style.value);
     }
     return style.value;
@@ -82,7 +84,6 @@ watch(properties, () => {
   if (properties.overrideStyleFunction == null) {
     setStyle(style.value);
   } else {
-    // @ts-ignore
     setStyle(styleFunc.value);
   }
 });
@@ -91,7 +92,6 @@ onMounted(() => {
   if (properties.overrideStyleFunction == null) {
     setStyle(style.value);
   } else {
-    // @ts-ignore
     setStyle(styleFunc.value);
   }
 });

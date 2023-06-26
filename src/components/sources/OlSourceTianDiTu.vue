@@ -4,7 +4,6 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
-import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
 import { Tianditu, type Options } from "@/components/sources/TiandituClass";

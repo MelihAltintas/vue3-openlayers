@@ -8,7 +8,7 @@
 import type { Ref } from "vue";
 import { provide, inject, watch, onUnmounted, onMounted, computed } from "vue";
 
-import Style from "ol/style/Style";
+import Style, { type StyleLike } from "ol/style/Style";
 import Draw from "ol/interaction/Draw";
 import Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -29,7 +29,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const style = computed(() => new Style(properties));
 
-const setStyle = (val: Style | null) => {
+const setStyle = (val: StyleLike | null) => {
   const st = styledObj?.value;
   if (!st) {
     return;
@@ -59,11 +59,9 @@ const setStyle = (val: Style | null) => {
   }
 };
 
-const styleFunc = computed(() => {
-  // @ts-ignore
+const styleFunc = computed<StyleLike>(() => {
   return (feature) => {
     if (properties.overrideStyleFunction != null) {
-      // @ts-ignore
       properties.overrideStyleFunction(feature, style.value);
     }
     return style.value;
@@ -74,7 +72,6 @@ watch(properties, () => {
   if (!properties.overrideStyleFunction === null) {
     setStyle(style.value);
   } else {
-    // @ts-ignore
     setStyle(styleFunc.value);
   }
 });
@@ -83,7 +80,6 @@ onMounted(() => {
   if (!properties.overrideStyleFunction) {
     setStyle(style.value);
   } else {
-    // @ts-ignore
     setStyle(styleFunc.value);
   }
 });

@@ -127,7 +127,6 @@ const forEachLayerAtPixel = (
 const getCoordinateFromPixel = (pixel: Coordinate) =>
   map?.getCoordinateFromPixel(pixel);
 const refresh = () => {
-  // @ts-ignore
   return map?.refresh();
 };
 const render = () => map?.render();

@@ -30,7 +30,7 @@ export default function usePropsAsObjectProperties<
     Object.keys(options).forEach((key) => {
       if (properties[key] != options[key].value && !ignoredKeys.includes(key)) {
         checkAndUpdateStylePropDef(options, key);
-        // @ts-ignore// @ts-ignore
+        // @ts-ignore
         properties[key] = options[key].value;
       }
     });

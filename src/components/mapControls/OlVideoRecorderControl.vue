@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import VideoRecorder from "ol-ext/control/VideoRecorder";
 import { saveAs } from "file-saver";
-import { toRefs, useAttrs } from "vue";
+import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
@@ -30,14 +30,13 @@ const { properties } = usePropsAsObjectProperties(props);
 const { control } = useControl(VideoRecorder, properties, attrs);
 
 // @ts-ignore
-control.value.on("start", (event) => {
+control.value.on("start", (event: Event<HTMLVideoElement>) => {
   emit("start", event);
 });
 
 // @ts-ignore
-control.value.on("stop", (event) => {
+control.value.on("stop", (event: Event<HTMLVideoElement>) => {
   emit("stop", event);
-  // @ts-ignore
   saveAs(event.videoURL, props.downloadName);
 });
 

@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 import Select from "ol-ext/interaction/SelectCluster";
-import Style from "ol/style/Style";
+import Style, { type StyleLike } from "ol/style/Style";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
@@ -24,7 +24,7 @@ const props = withDefaults(
     autoClose?: boolean;
     circleMaxObjects?: number;
     maxObjects?: number;
-    featureStyle?: () => Record<string, unknown>;
+    featureStyle?: StyleLike;
     styles?: () => Record<string, unknown>;
   }>(),
   {
@@ -43,7 +43,6 @@ const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
-  // @ts-ignore
   const s = new Select({
     style: new Style(),
     ...properties,

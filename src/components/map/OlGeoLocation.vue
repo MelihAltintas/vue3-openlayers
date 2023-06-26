@@ -47,7 +47,6 @@ const props = withDefaults(
 const { properties } = usePropsAsObjectProperties(props);
 
 const geoLoc = computed(() => {
-  // @ts-ignore
   const g = new Geolocation(properties);
   g.on("change", changeEvt);
   return g;

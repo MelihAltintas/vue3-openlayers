@@ -41,7 +41,6 @@ const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
-// @ts-ignore
 const heatmapLayer = computed(() => new HeatmapLayer(properties));
 
 watch(properties, () => {

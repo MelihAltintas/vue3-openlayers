@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
 import Transform from "ol-ext/interaction/Transform";
 import type { Condition } from "ol/events/condition";
@@ -16,12 +15,11 @@ const props = withDefaults(
     condition?: Condition;
     addCondition?: Condition;
     filter?: () => boolean;
-    layers?: unknown[];
     hitTolerance?: number;
     translateFeature?: boolean;
     scale?: boolean;
     rotate?: boolean;
-    keepAspectRatio?: boolean;
+    keepAspectRatio?: Condition;
     translate?: boolean;
     stretch?: boolean;
   }>(),
@@ -31,7 +29,7 @@ const props = withDefaults(
     translateFeature: true,
     scale: true,
     rotate: true,
-    keepAspectRatio: false,
+    keepAspectRatio: () => false,
     translate: true,
     stretch: true,
   }
@@ -42,7 +40,6 @@ const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const transform = computed(() => {
-  // @ts-ignore
   const olTransform = new Transform({
     ...properties,
   });

@@ -23,7 +23,7 @@ const props = withDefaults(
 );
 
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
-const vectorLayer = inject<Ref<VectorLayer<VectorSource>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   "vectorLayer",
   null
 );
@@ -36,11 +36,7 @@ const animation = inject<Ref<FeatureAnimation | null> | null>(
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const feature = computed(() => {
-  // @ts-ignore
-  const olFeature = new Feature({ ...properties.properties });
-  return olFeature;
-});
+const feature = computed(() => new Feature({ ...properties.properties }));
 
 watch(feature, (newVal, oldVal) => {
   vectorSource?.value?.removeFeature(oldVal);

@@ -65,8 +65,7 @@ const createText = (innerProperties: Omit<Options, "fill" | "stroke">) => {
 const textContent = computed(() => createText(properties));
 
 const applyStyle = () => {
-  // @ts-ignore
-  style?.value?.setText(null);
+  style?.value?.setText(new Text());
   style?.value?.setText(textContent.value);
   // @ts-ignore
   styledObj?.value?.changed();
@@ -87,8 +86,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  // @ts-ignore
-  style?.value?.setText(null);
+  style?.value?.setText(new Text());
 });
 
 provide("style", textContent);
