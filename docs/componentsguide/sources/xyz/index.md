@@ -26,62 +26,49 @@ Example of loading google maps satellite tiles. Notice that this is only allowed
 
 ## Properties
 
-### cacheSize
+### Props from OpenLayers
 
-- **Type**: `number`
-- **Default**: `2048`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_XYZ-XYZ.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### crossOrigin
+### Deviating Properties
 
-- **Type**: `string`
+The following additional properties are available for setting specific `params`.
 
-### maxZoom
+## Events
 
-- **Type**: `number`
-- **Default**: `28`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_XYZ-XYZ.html) to see the available events tht will be fired.
 
-### minZoom
+```html
+<ol-source-xyz :url="url" @error="handleEvent" />
+```
 
-- **Type**: `number`
-- **Default**: `0`
+## Methods
 
-### opaque
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_XYZ-XYZ.html) to see the available methods.
 
-- **Type**: `boolean`
+To access the source, you can use a `ref()` as shown below:
 
-### projection
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-xyz :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-- **Type**: `string`
-- **Default**: `EPSG:3857`
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type XYZ from "ol/source/XYZ";
 
-### reprojectionErrorThreshold
+const sourceRef = ref<{ source: XYZ }>(null);
 
-- **Type**: `number`
-- **Default**: `0.5`
-
-### tilePixelRatio
-
-- **Type**: `number`
-- **Default**: `1`
-
-### tileSize
-
-- **Type**: `array`
-- **Default**: `[256, 256]`
-
-### tileKey
-
-- **Type**: `string`
-
-### url
-
-- **Type**: `string`
-- **Required**: `true`
-
-URL template
-
-### transition
-
-- **Type**: `number`
-
-Duration of the opacity transition for rendering. To disable the opacity transition, pass `0`.
+onMounted(() => {
+  const source: XYZ = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```
