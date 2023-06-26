@@ -14,7 +14,7 @@ import type Geometry from "ol/geom/Geometry";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
 
-const props = withDefaults(defineProps<Options>(), {
+const props = withDefaults(defineProps<Options<Geometry>>(), {
   overlaps: true,
   projection: "EPSG:3857",
   useSpatialIndex: true,
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const emit = defineEmits([]);
 
-const vectorLayer = inject<Ref<VectorLayer<VectorSource>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   "vectorLayer",
   null
 );
@@ -33,7 +33,7 @@ const layer = heatmapLayer || vectorLayer;
 const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => {
-  const vs = new VectorSource(properties as Options<Geometry>);
+  const vs = new VectorSource(properties);
 
   eventGateway(emit, vs, FEATURE_EVENTS);
 

@@ -38,66 +38,49 @@ import WebglPointsSourceDemo from "@demos/WebglPointsSourceDemo.vue"
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: ` [String, Array]`
-- **Default**: `EPSG:3857`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### features
+### Deviating Properties
 
-- **Type**: `Array`
-- **Default**: `() => []`
-
-### format
-
-- **Type**: `Format`
-
-formats available with `inject('ol-format')`
-
-### loader
-
-- **Type**: `Function`
-
-### overlaps
-
-- **Type**: `Boolean`
-- **Default**: `true`
-
-### projection
-
-- **Type**: `String`
-- **Default**: 'EPSG:3857'
-
-### strategy
-
-- **Type**: `Function`
-
-strategy available with inject('ol-loadingstrategy');
-
-### url
-
-- **Type**: `[String, Function]`
-
-### useSpatialIndex
-
-- **Type**: `Boolean`
-
-- **Default**: `true`
-
-### wrapX
-
-- **Type**: `Boolean`
-- **Default**: `true`
+None.
 
 ## Events
 
-- `addfeature`
-- `change`
-- `changefeature`
-- `clear`
-- `error`
-- `featuresloadend`
-- `featuresloaderror`
-- `featuresloadstart`
-- `propertychange`
-- `removefeature`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html) to see the available events tht will be fired.
+
+```html
+<ol-source-webglpoints :url="url" @error="handleEvent" />
+```
+
+## Methods
+
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html) to see the available methods.
+
+To access the source, you can use a `ref()` as shown below:
+
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-webglpoints :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type VectorSource from "ol/source/vector";
+
+const sourceRef = ref<{ source: VectorSource }>(null);
+
+onMounted(() => {
+  const source: VectorSource = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

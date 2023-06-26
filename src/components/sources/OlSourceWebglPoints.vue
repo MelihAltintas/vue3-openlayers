@@ -5,41 +5,23 @@
 </template>
 
 <script setup lang="ts">
-import type { LoadingStrategy, Options } from "ol/source/Vector";
-import VectorSource from "ol/source/Vector";
+import VectorSource, { type Options } from "ol/source/Vector";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
-import type { AttributionLike } from "ol/source/Source";
-import type Collection from "ol/Collection";
-import type Feature from "ol/Feature";
-import type FeatureFormat from "ol/format/Feature";
-import type { FeatureLoader, FeatureUrlFunction } from "ol/featureloader";
 import type WebGLPointsLayer from "ol/layer/WebGLPoints";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { ProjectionLike } from "ol/proj";
+import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
 
-const props = withDefaults(
-  defineProps<{
-    attributions?: AttributionLike;
-    features?: Collection<Feature<Point>>;
-    format?: FeatureFormat | undefined;
-    loader?: FeatureLoader;
-    overlaps?: boolean;
-    projection?: ProjectionLike;
-    strategy?: LoadingStrategy;
-    url?: string | FeatureUrlFunction;
-    useSpatialIndex?: boolean;
-    wrapX?: boolean;
-  }>(),
-  {
-    overlaps: true,
-    projection: "EPSG:3857",
-    useSpatialIndex: true,
-    wrapX: true,
-  }
-);
+const props = withDefaults(defineProps<Options<Point>>(), {
+  overlaps: true,
+  projection: "EPSG:3857",
+  useSpatialIndex: true,
+  wrapX: true,
+});
+
+const emit = defineEmits([]);
 
 const layer = inject<Ref<WebGLPointsLayer<VectorSource<Point>>> | null>(
   "webglPointsLayer"
@@ -47,7 +29,13 @@ const layer = inject<Ref<WebGLPointsLayer<VectorSource<Point>>> | null>(
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => new VectorSource(properties as Options<Point>));
+const source = computed(() => {
+  const vs = new VectorSource(properties);
+
+  eventGateway(emit, vs, FEATURE_EVENTS);
+
+  return vs;
+});
 
 const applySource = () => {
   layer?.value?.setSource(null);
