@@ -20,95 +20,61 @@ import TileWMSDemo from "@demos/TileWMSDemo.vue"
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: `string`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileWMS-TileWMS.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Attributions
+### Deviating Properties
 
-### cacheSize
+The following additional properties are available for setting specific `params`.
 
-- **Type**: `Number`
+#### layers
 
-### crossOrigin
+Sets / overrides the `params.LAYERS` property.
 
-- **Type**: `string`
-- **Default**: `ol-layer`
+- **Type**: `string` | `unknown[]`
 
-The crossOrigin attribute for loaded images. Note that you must provide a crossOrigin value if you want to access pixel data with the Canvas renderer.
+#### styles
 
-### interpolate
+Sets / overrides the `params.STYLES` property.
 
-- **Type**: `Boolean`
-- **Default**: `true`
+- **Type**: `string` | `unknown[]`
 
-### styles
+## Events
 
-- **Type**: `[String,Array]`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileWMS-TileWMS.html) to see the available events tht will be fired.
 
-### layers
+```html
+<ol-source-tile-wms :url="imgUrl" @error="handleEvent" />
+```
 
-- **Type**: `[String,Array]`
+## Methods
 
-### hidpi
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileWMS-TileWMS.html) to see the available methods.
 
-- **Type**: `Boolean`
-- **Default**: `true`
+To access the source, you can use a `ref()` as shown below:
 
-### projection
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-tile-wms :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-- **Type**: `string`
-- **Default**: `EPSG:3857`
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type TileWMS from "ol/source/TileWMS";
 
-### reprojectionErrorThreshold
+const sourceRef = ref<{ source: TileWMS }>(null);
 
-- **Type**: `number `
-- **Default**: 0.5
-
-Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
-
-### tileGrid
-
-- **Type**: `TileGrid|undefined`
-- **Default**: 0.5
-
-Tile grid. Base this on the resolutions, tilesize and extent supported by the server. If this is not defined, a default grid will be used: if there is a projection extent, the grid will be based on that; if not, a grid based on a global extent with origin at 0,0 will be used.
-
-### serverType
-
-- **Type**: `string`
-
-The type of the remote WMS server: mapserver, geoserver or qgis. Only needed if hidpi is true.
-
-### tileLoadFunction
-
-- **Type**: `Function`
-
-### url
-
-- **Type**: `string`
-
-WMS service URL.
-
-### urls
-
-- **Type**: `Array.<string>`
-
-An array of URLs. Requests will be distributed among the URLs in this array.
-
-### params
-
-- **Type**: `Object.<string, *>`
-
-WMS request parameters.
-
-### wrapX
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### transition
-
-- **Type**: `number`
-- **Default**: 250
-  Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
+onMounted(() => {
+  const source: TileWMS = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

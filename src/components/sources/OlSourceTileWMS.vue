@@ -3,72 +3,54 @@
 </template>
 
 <script setup lang="ts">
-import TileWMS from "ol/source/TileWMS";
-import Projection from "ol/proj/Projection";
-
+import TileWMS, { type Options } from "ol/source/TileWMS";
 import { inject, onMounted, onUnmounted, watch, type Ref } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { ProjectionLike } from "ol/proj";
-import type { ServerType } from "ol/source/wms";
-import type { Options as ProjectionOptions } from "ol/proj/Projection";
-import type { Options } from "ol/source/TileWMS";
-import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
+import type { ImageTile } from "ol";
+import projectionFromProperties from "@/helpers/projection";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(
-  defineProps<{
-    attributions?: string;
-    cacheSize?: number;
-    crossOrigin?: string;
-    interpolate?: boolean;
-    layers: string | unknown[];
-    styles?: string | unknown[];
-    hidpi?: boolean;
-    projection?: ProjectionLike;
-    reprojectionErrorThreshold?: number;
-    serverType?: ServerType;
-    tileLoadFunction?: (imageTile: any, src: string) => void;
-    url: string;
-    urls?: string[];
-    params?: Options;
-    wrapX?: boolean;
-    transition: number;
-  }>(),
+  defineProps<
+    Options & {
+      layers: string | unknown[];
+      styles?: string | unknown[];
+    }
+  >(),
   {
+    attributionsCollapsible: true,
     interpolate: true,
     styles: "",
-    hidpi: false,
+    gutter: 0,
+    hidpi: true,
     projection: "EPSG:3857",
     reprojectionErrorThreshold: 0.5,
-    serverType: "mapserver",
-    tileLoadFunction: (imageTile: any, src: string) => {
-      imageTile.getImage().src = src;
+    tileLoadFunction: (imageTile, src) => {
+      ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
     },
-    wrapX: false,
+    wrapX: true,
   }
 );
+const emit = defineEmits([]);
 
-const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
+const layer = inject<Ref<TileLayer<TileWMS>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const createSource = () => {
-  return new TileWMS({
+  const t = new TileWMS({
     ...properties,
     params: {
       ...props.params,
       LAYERS: props.layers,
       STYLES: props.styles,
-      TILED: true,
     },
-    projection:
-      typeof properties.projection == "string"
-        ? properties.projection
-        : // @ts-ignore
-          new Projection({
-            // @ts-ignore
-            ...(properties.projection as unknown as ProjectionOptions),
-          }),
-  } as Options);
+    projection: projectionFromProperties(properties.projection),
+  });
+
+  eventGateway(emit, t, TILE_SOURCE_EVENTS);
+
+  return t;
 };
 
 let source = createSource();
