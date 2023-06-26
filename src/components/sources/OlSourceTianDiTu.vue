@@ -7,54 +7,38 @@ import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
-import { Tianditu } from "@/components/sources/TiandituClass";
-import type { ProjectionLike } from "ol/proj";
+import { Tianditu, type Options } from "@/components/sources/TiandituClass";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import type { ImageTile } from "ol";
 
-const props = withDefaults(
-  defineProps<{
-    layerType?: string;
-    tk?: string;
-    isLabel?: boolean;
-    cacheSize?: number;
-    crossOrigin?: string;
-    projection?: ProjectionLike;
-    hidpi?: boolean;
-    requestEncoding?: string;
-    format?: string;
-    version?: string;
-    culture?: string;
-    matrixSet?: string;
-    dimensions?: Record<string, unknown>;
-    imageSmoothing?: boolean;
-    maxZoom?: number;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: (imageTile: any, src: string) => void;
-    wrapX?: boolean;
-    transition?: number;
-  }>(),
-  {
-    layerType: "img",
-    isLabel: false,
-    projection: "EPSG:3857",
-    hidpi: false,
-    requestEncoding: "KVP",
-    version: "1.0.0",
-    culture: "en-us",
-    dimensions: () => ({}),
-    imageSmoothing: true,
-    maxZoom: 21,
-    tileLoadFunction: (imageTile: any, src: string) => {
-      imageTile.getImage().src = src;
-    },
-    wrapX: true,
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  layerType: "img",
+  isLabel: false,
+  projection: "EPSG:3857",
+  hidpi: false,
+  requestEncoding: "KVP",
+  version: "1.0.0",
+  culture: "en-us",
+  dimensions: () => ({}),
+  imageSmoothing: true,
+  maxZoom: 21,
+  tileLoadFunction: (imageTile, src) => {
+    ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
+  },
+  wrapX: true,
+});
+const emit = defineEmits([]);
 
-const layer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
+const layer = inject<Ref<TileLayer<Tianditu>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 const source = computed(() => {
-  return new Tianditu(properties);
+  const t = new Tianditu(properties);
+
+  eventGateway(emit, t, TILE_SOURCE_EVENTS);
+
+  return t;
 });
+
 watch(source, () => {
   layer?.value?.setSource(source.value);
 });

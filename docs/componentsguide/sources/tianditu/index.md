@@ -25,6 +25,15 @@ Example of `ol-source-tianditu` usage
 
 ## Properties
 
+### Props from OpenLayers
+
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
+
+### Deviating Properties
+
 ### layerType
 
 - **Type**: `string`
@@ -43,74 +52,42 @@ api key
 - **Type**: `Boolean`
 - **Default**: `false`
 
-### cacheSize
-
-- **Type**: `Number`
-
-### crossOrigin
-
-- **Type**: `String`
-
-### projection
-
-- **Type**: `String`
-- **Default**: `EPSG:3857`
-
-### hidpi
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### requestEncoding
-
-- **Type**: `String`
-- **Default**: `KVP`
-
-### format
-
-- **Type**: `String`
-
-### version
-
-- **Type**: `String`
-- **Default**: `1.0.0`
-
 ### culture
 
 - **Type**: `String`
 - **Default**: `en-us`
 
-### matrixSet
+## Events
 
-- **Type**: `String`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html) to see the available events tht will be fired.
 
-### dimensions
+```html
+<ol-source-tianditu :url="url" @error="handleEvent" />
+```
 
-- **Type**: `Object`
+## Methods
 
-### imageSmoothing
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html) to see the available methods.
 
-- **Type**: `Boolean`
-- **Default**: `true`
+To access the source, you can use a `ref()` as shown below:
 
-### maxZoom
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-tianditu :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-- **Type**: `Number`
-- **Default**: `21`
+<script setup>
+import { ref, onMounted } from "vue";
 
-### reprojectionErrorThreshold
+const sourceRef = ref(null);
 
-- **Type**: `Number`
-
-### tileLoadFunction
-
-- **Type**: `Function`
-
-### wrapX
-
-- **Type**: `Boolean`
-- **Default**: `true`
-
-### transition
-
-- **Type**: `Number`
+onMounted(() => {
+  const source = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```
