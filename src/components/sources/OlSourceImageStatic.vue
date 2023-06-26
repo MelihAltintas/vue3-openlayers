@@ -6,7 +6,7 @@ import Static, { type Options } from "ol/source/ImageStatic";
 import { inject, onMounted, onUnmounted, watch } from "vue";
 import type ImageLayer from "ol/layer/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { IMAGE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 import projectionFromProperties from "@/helpers/projection";
 
 const props = withDefaults(defineProps<Options>(), {
@@ -23,14 +23,7 @@ const createSource = () => {
     projection: projectionFromProperties(properties.projection),
   });
 
-  eventGateway(emit, s, [
-    "change",
-    "error",
-    "imageloadend",
-    "imageloaderror",
-    "imageloadstart",
-    "propertychange",
-  ]);
+  eventGateway(emit, s, IMAGE_SOURCE_EVENTS);
 
   return s;
 };

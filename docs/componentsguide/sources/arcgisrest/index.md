@@ -24,94 +24,56 @@ Example of `ol-source-tile-arcgis-rest` usage. Information about the arcgis serv
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
 
-- **Type**: `String`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileArcGISRest-TileArcGISRest.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Attributions.
+### Deviating Properties
 
-### cacheSize
+### `tileSize`
 
-- **Type**: `Number`
-
-Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
-
-### crossOrigin
-
-- **Type**: `String`
-
-The `crossOrigin` attribute for loaded images. Note that you must provide a `crossOrigin` value if you want to access pixel data with the Canvas renderer. See https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image for more detail.
-
-### interpolate
-
-- **Type**: `Boolean`
-- **default**: `true`
-
-Use interpolated values when resampling. By default, linear interpolation is used when resampling. Set to false to use the nearest neighbor instead.
-
-### params
-
-- **Type**: `Object`
-- **default**: `() => ({})`
-
-ArcGIS Rest parameters. This field is optional. Service defaults will be used for any fields not specified. `FORMAT` is `PNG32` by default. `F` is `IMAGE` by default. `TRANSPARENT` is `true` by default. `BBOX`, `SIZE`, `BBOXSR`, and `IMAGESR` will be set dynamically. Set `LAYERS` to override the default service layer visibility. See https://developers.arcgis.com/rest/services-reference/export-map.htm for further reference.
-
-### hidpi
-
-- **Type**: `Boolean`
-- **default**: `true`
-
-Use the `ol/Map#pixelRatio` value when requesting the image from the remote server.
-
-### projection
-
-- **Type**: `String or Object`
-- **default**: `EPSG:3857`
-
-Projection. Default is the view projection. The projection code must contain a numeric end portion separated by : or the entire code must form a valid ArcGIS SpatialReference definition.
-
-### reprojectionErrorThreshold
-
-- **Type**: `Number`
-- **default**: `0.5`
-
-Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
-
-### tileLoadFunction
-
-- **Type**: `Function`
-- **default**: `(imageTile, src) => (imageTile.getImage().src = src)`
-
-Optional function to load a tile given a URL.
-
-### url
-
-- **Type**: `String`
-
-ArcGIS Rest service URL for a Map Service or Image Service. The url should include /MapServer or /ImageServer.
-
-### wrapX
-
-- **Type**: `String`
-- **default**: `true`
-
-Whether to wrap the world horizontally.
-
-### transition
-
-- **Type**: `Number`
-
-Duration of the opacity transition for rendering. To disable the opacity transition, pass `transition: 0`.
-
-### urls
-
-- **Type**: `Array`
-
-ArcGIS Rest service urls. Use this instead of `url` when the ArcGIS Service supports multiple urls for export requests.
-
-### tileSize
+Size of tile for the grid pattern for sources accessing tiled-image servers.
+This property will only be used, when the `tileGrid` property is not defined.
+It uses the [`createXYZ`](https://openlayers.org/en/latest/apidoc/module-ol_tilegrid.html#.createXYZ) function to create a tile grid with the given `tileSize`.
 
 - **Type**: `Array[Number]`
 - **default**: `[256, 256]`
 
-Size of tile for the grid pattern for sources accessing tiled-image servers.
+## Events
+
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileArcGISRest-TileArcGISRest.html) to see the available events tht will be fired.
+
+```html
+<ol-source-tile-arcgis-rest :url="url" @error="handleEvent" />
+```
+
+## Methods
+
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_TileArcGISRest-TileArcGISRest.html) to see the available methods.
+
+To access the source, you can use a `ref()` as shown below:
+
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-tile-arcgis-rest :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type TileArcGISRest from "ol/source/TileArcGISRest";
+
+const sourceRef = ref<{ source: TileArcGISRest }>(null);
+
+onMounted(() => {
+  const source: TileArcGISRest = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

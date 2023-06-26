@@ -3,71 +3,52 @@
 </template>
 
 <script setup lang="ts">
-import { TileArcGISRest } from "ol/source";
-import Projection from "ol/proj/Projection";
+import TileArcGISRest, { type Options } from "ol/source/TileArcGISRest";
 import { inject, onMounted, onUnmounted, watch, computed, type Ref } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { createXYZ } from "ol/tilegrid";
-import type { ProjectionLike } from "ol/proj";
-import type { Options } from "ol/source/TileArcGISRest";
-import type { Options as ProjectionOptions } from "ol/proj/Projection";
 import type TileLayer from "ol/layer/Tile";
-import type TileSource from "ol/source/Tile";
+import type ImageTile from "ol/ImageTile";
+import projectionFromProperties from "@/helpers/projection";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
-const props = withDefaults(
-  defineProps<{
-    attributions?: string;
-    cacheSize?: number;
-    crossOrigin?: string;
-    interpolate?: boolean;
-    params: Options;
-    hidpi?: boolean;
-    projection?: ProjectionLike;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: (imageTile: any, src: string) => void;
-    url: string;
-    urls?: string[];
-    wrapX?: boolean;
-    transition?: number;
-    tileSize?: [number, number];
-  }>(),
-  {
-    interpolate: true,
-    hidpi: false,
-    projection: "EPSG:3857",
-    reprojectionErrorThreshold: 0.5,
-    tileLoadFunction: (imageTile: any, src: string) => {
-      imageTile.getImage().src = src;
-    },
-    wrapX: false,
-    tileSize: () => [256, 256],
-  }
-);
+const props = withDefaults(defineProps<Options>(), {
+  interpolate: true,
+  hidpi: false,
+  projection: "EPSG:3857",
+  reprojectionErrorThreshold: 0.5,
+  tileLoadFunction: (imageTile, src) => {
+    ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
+  },
+  wrapX: false,
+  tileSize: () => [256, 256],
+  zDirection: 0,
+});
+const emit = defineEmits([]);
 
-const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
+const tileLayer = inject<Ref<TileLayer<TileArcGISRest>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
 const getTileGrid = computed(() => {
-  return createXYZ({
-    tileSize: props.tileSize,
-  });
+  return (
+    props.tileGrid ||
+    createXYZ({
+      tileSize: props.tileSize,
+    })
+  );
 });
 
-const source = computed(
-  () =>
-    new TileArcGISRest({
-      ...properties,
-      projection:
-        typeof properties.projection == "string"
-          ? properties.projection
-          : // @ts-ignore
-            new Projection({
-              // @ts-ignore
-              ...(properties.projection as unknown as ProjectionOptions),
-            }),
-      tileGrid: getTileGrid.value,
-    })
-);
+const source = computed(() => {
+  const t = new TileArcGISRest({
+    ...properties,
+    projection: projectionFromProperties(properties.projection),
+    tileGrid: getTileGrid.value,
+  });
+
+  eventGateway(emit, t, TILE_SOURCE_EVENTS);
+
+  return t;
+});
 
 watch(source, () => {
   tileLayer?.value?.setSource(source.value);

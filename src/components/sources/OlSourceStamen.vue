@@ -7,7 +7,7 @@ import Stamen, { type Options } from "ol/source/Stamen";
 import { inject, onMounted, onUnmounted, watch, type Ref, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type TileLayer from "ol/layer/Tile";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(defineProps<Options>(), {
   interpolate: true,
@@ -27,13 +27,9 @@ const source = computed(() => {
   const s = new Stamen(properties);
 
   eventGateway(emit, s, [
-    "change",
-    "error",
+    ...TILE_SOURCE_EVENTS,
     "propertychange",
     "removefeature",
-    "tileloadend",
-    "tileloadstart",
-    "tileloaderror",
   ]);
 
   return s;

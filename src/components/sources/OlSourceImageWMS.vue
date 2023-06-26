@@ -7,7 +7,7 @@ import { inject, onMounted, onUnmounted, watch } from "vue";
 import type ImageLayer from "ol/layer/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { IMAGE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(
   defineProps<
@@ -45,14 +45,7 @@ const createSource = () => {
     projection: projectionFromProperties(properties.projection),
   });
 
-  eventGateway(emit, i, [
-    "change",
-    "error",
-    "imageloadend",
-    "imageloaderror",
-    "imageloadstart",
-    "propertychange",
-  ]);
+  eventGateway(emit, i, IMAGE_SOURCE_EVENTS);
 
   return i;
 };

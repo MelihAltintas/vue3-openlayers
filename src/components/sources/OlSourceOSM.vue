@@ -7,7 +7,7 @@ import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(defineProps<Options>(), {
   crossOrigin: "anonymous",
@@ -30,14 +30,7 @@ const { properties } = usePropsAsObjectProperties(props);
 const source = computed(() => {
   const o = new OSM(properties);
 
-  eventGateway(emit, o, [
-    "change",
-    "error",
-    "tileloadend",
-    "tileloaderror",
-    "tileloadstart",
-    "propertychange",
-  ]);
+  eventGateway(emit, o, TILE_SOURCE_EVENTS);
 
   return o;
 });

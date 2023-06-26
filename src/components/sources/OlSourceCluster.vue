@@ -34,14 +34,11 @@ const source = computed(() => {
 
   eventGateway(emit, c, [
     "addFeature",
-    "change",
     "changefeature",
     "clear",
-    "error",
     "featuresloadend",
     "featuresloaderror",
     "featuresloadstart",
-    "propertychange",
     "removefeature",
   ]);
 

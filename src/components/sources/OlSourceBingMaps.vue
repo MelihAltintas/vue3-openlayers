@@ -8,7 +8,7 @@ import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway from "@/helpers/eventGateway";
+import eventGateway, { IMAGE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(
   defineProps<Omit<Options, "key"> & { apiKey: string }>(),
@@ -36,14 +36,7 @@ const source = computed(() => {
     key: properties.apiKey,
   });
 
-  eventGateway(emit, bingMaps, [
-    "change",
-    "error",
-    "propertychange",
-    "tileloadend",
-    "tileloadstart",
-    "tileloaderror",
-  ]);
+  eventGateway(emit, bingMaps, IMAGE_SOURCE_EVENTS);
 
   return bingMaps;
 });

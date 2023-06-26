@@ -138,6 +138,10 @@ export default defineConfig({
             link: "/componentsguide/sources/tianditu/",
           },
           {
+            text: "ol-source-tile-arcgis-rest",
+            link: "/componentsguide/sources/arcgisrest/",
+          },
+          {
             text: "ol-source-tile-json",
             link: "/componentsguide/sources/tilejson/",
           },
@@ -160,10 +164,6 @@ export default defineConfig({
           {
             text: "ol-source-xyz",
             link: "/componentsguide/sources/xyz/",
-          },
-          {
-            text: "ol-source-tile-arcgis-rest",
-            link: "/componentsguide/sources/arcgisrest/",
           },
         ],
       },
