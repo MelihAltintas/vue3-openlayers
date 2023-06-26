@@ -22,112 +22,69 @@ Example below shows how to use ol-layer-tile component together with ol-source-w
 
 ## Properties
 
-### attributions
+### Props from OpenLayers
+
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
+
+### Deviating Properties
+
+#### `styles`
+
+Sets the WMTS source `style` property.
 
 - **Type**: `string`
 
-Attributions.
+#### `tileZoomLevel`
 
-### cacheSize
+Sets the zoom level to calculate the used `WMTSTileGrid`.
+It's only used, when the `tileGrid` property isn't set.
 
 - **Type**: `number`
+- **Default**: `30`
 
-Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
+#### `tileMatrixPrefix`
 
-### crossOrigin
-
-- **Type**: `string`
-- **Default**: `ol-layer`
-
-Initial tile cache size. Will auto-grow to hold at least the number of tiles in the viewport.
-
-### imageSmoothing
-
-- **Type**: `boolean `
-- **Default**: true
-
-Enable image smoothing.
-
-### projection
-
-- **Type**: `[String, Object]`
-- **Default**: true
-
-Projection. Default is the view projection.
-
-### reprojectionErrorThreshold
-
-- **Type**: `Number`
-- **Default**: 0.5
-
-Maximum allowed reprojection error (in pixels). Higher values can increase reprojection performance, but decrease precision.
-
-### tilePixelRatio
-
-- **Type**: `Number`
-- **Default**: 1
-
-The pixel ratio used by the tile service. For example, if the tile service advertizes 256px by 256px tiles but actually sends 512px by 512px images (for retina/hidpi devices) then tilePixelRatio should be set to 2.
-
-### format
-
-- **Type**: `String`
-- **Default**: `image/jpeg`
-
-Image format. Only used when requestEncoding is 'KVP'.
-
-### version
-
-- **Type**: `String`
-- **Default**: `1.0.0`
-
-WMTS version.
-
-### matrixSet
-
-- **Type**: `String`
-
-Matrix set.
-
-### dimensions
-
-- **Type**: `Object`
-
-Additional "dimensions" for tile requests. This is an object with properties named like the advertised WMTS dimensions.
-
-### url
+Sets the matrix prefix string to create the used `WMTSTileGrid`.
+It's only used, when the `tileGrid` property isn't set.
 
 - **Type**: `string`
+- **Default**: `""`
 
-A URL for the service. For the RESTful request encoding, this is a URL template. For KVP encoding, it is normal URL. A {?-?} template pattern, for example subdomain{a-f}.domain.com, may be used instead of defining each one separately in the urls option.
+## Events
 
-### urls
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html) to see the available events tht will be fired.
 
-- **Type**: `Array.<string>`
+```html
+<ol-source-wmts :url="imgUrl" @error="handleEvent" />
+```
 
-An array of URLs. Requests will be distributed among the URLs in this array.
+## Methods
 
-### wrapX
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_WMTS-WMTS.html) to see the available methods.
 
-- **Type**: `boolean `
-- **Default**: false
+To access the source, you can use a `ref()` as shown below:
 
-Whether to wrap the world horizontally.
+```vue
+<template>
+  <!-- ... -->
+  <ol-source-wmts :url="url" ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-### transition
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type WMTS from "ol/source/WMTS";
 
-- **Type**: `number`
+const sourceRef = ref<{ source: WMTS }>(null);
 
-Duration of the opacity transition for rendering. To disable the opacity transition, pass transition: 0.
-
-### layer
-
-- **Type**: `string`
-
-Layer name as advertised in the WMTS capabilities.
-
-### style
-
-- **Type**: `string`
-
-Style name as advertised in the WMTS capabilities.
+onMounted(() => {
+  const source: WMTS = sourceRef.value?.source;
+  // call your method on `source`
+});
+</script>
+```

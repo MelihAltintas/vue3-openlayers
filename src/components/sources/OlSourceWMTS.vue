@@ -3,12 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import type { RequestEncoding, Options } from "ol/source/WMTS";
-import WMTS from "ol/source/WMTS";
-import type { Options as ProjectionOptions } from "ol/proj/Projection";
-import Projection from "ol/proj/Projection";
+import WMTS, { type Options } from "ol/source/WMTS";
 import WMTSTileGrid from "ol/tilegrid/WMTS";
-import type { ProjectionLike } from "ol/proj";
 import { get as getProjection } from "ol/proj";
 import type { Extent } from "ol/extent";
 import { getTopLeft, getWidth } from "ol/extent";
@@ -18,31 +14,19 @@ import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import projectionFromProperties from "@/helpers/projection";
+import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 
 const props = withDefaults(
-  defineProps<{
-    tileZoomLevel?: number;
-    attributions?: string;
-    cacheSize?: number;
-    crossOrigin?: string;
-    imageSmoothing?: boolean;
-    projection?: ProjectionLike;
-    reprojectionErrorThreshold?: number;
-    tilePixelRatio?: number;
-    format: string;
-    version?: string;
-    matrixSet: string;
-    dimensions?: Record<string, unknown>;
-    requestEncoding?: RequestEncoding;
-    url: string;
-    urls?: string[];
-    wrapX?: boolean;
-    transition?: number;
-    layer: string;
-    tileMatrixPrefix?: string;
-    styles: string;
-  }>(),
+  defineProps<
+    Options & {
+      styles?: string | unknown[];
+      tileZoomLevel?: number;
+      tileMatrixPrefix?: string;
+    }
+  >(),
   {
+    attributionsCollapsible: true,
     tileZoomLevel: 30,
     imageSmoothing: true,
     projection: "EPSG:3857",
@@ -55,15 +39,13 @@ const props = withDefaults(
     tileMatrixPrefix: "",
   }
 );
+const emit = defineEmits([]);
 
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const extent = computed((): Extent | null => {
-  return (
-    // @ts-ignore
-    getProjection(properties.projection as ProjectionLike)?.getExtent() || null
-  );
+const extent = computed((): Extent | undefined => {
+  return getProjection(properties.projection)?.getExtent();
 });
 const origin = computed((): Coordinate | undefined => {
   return extent.value ? getTopLeft(extent.value) : undefined;
@@ -73,39 +55,35 @@ const size = computed(() => {
 });
 
 const getTileGrid = computed(() => {
+  if (props.tileGrid) {
+    return props.tileGrid;
+  }
+
   const resolutions = [properties.tileZoomLevel];
   const matrixIds = [`${properties.tileZoomLevel}`];
 
-  // @ts-ignore eslint-disable-next-line no-plusplus
   for (let z = 0; z < properties.tileZoomLevel; ++z) {
-    // @ts-ignore
     resolutions[z] = size.value / Math.pow(2, z);
     matrixIds[z] = props.tileMatrixPrefix + z;
   }
 
-  // @ts-ignore
   return new WMTSTileGrid({
     origin: origin.value,
     resolutions,
     matrixIds,
-  } as Options);
+  });
 });
 
-const source = computed(
-  () =>
-    new WMTS({
-      ...properties,
-      projection:
-        typeof properties.projection === "string"
-          ? properties.projection
-          : // @ts-ignore
-            new Projection({
-              // @ts-ignore
-              ...(properties.projection as ProjectionOptions),
-            }),
-      tileGrid: getTileGrid.value,
-    } as unknown as Options)
-);
+const source = computed(() => {
+  const w = new WMTS({
+    ...properties,
+    projection: projectionFromProperties(properties.projection),
+    tileGrid: getTileGrid.value,
+  });
+
+  eventGateway(emit, w, TILE_SOURCE_EVENTS);
+  return w;
+});
 
 watch(source, () => {
   tileLayer?.value?.setSource(source.value);
