@@ -1,4 +1,12 @@
-import { toRefs, watch, reactive, type ToRefs, ref, type Ref } from "vue";
+import {
+  toRefs,
+  watch,
+  reactive,
+  type ToRefs,
+  ref,
+  type Ref,
+  inject,
+} from "vue";
 
 /**
  * We can't use 'style' as a component prop since it's a reserved property
@@ -16,6 +24,8 @@ function checkAndUpdateStylePropDef(
 export default function usePropsAsObjectProperties<
   T extends Record<string, unknown>
 >(props: T, ignoredKeys = [] as string[]) {
+  const globalOptions = inject("ol-options");
+
   let options = toRefs(props);
   Object.keys(options).forEach((key) => {
     checkAndUpdateStylePropDef(options, key);
@@ -35,6 +45,13 @@ export default function usePropsAsObjectProperties<
       }
     });
   });
+
+  if (globalOptions?.debug) {
+    console.debug("[Vue3-Openlayers Debug] PROPS", {
+      in: props,
+      out: properties,
+    });
+  }
 
   return {
     properties,

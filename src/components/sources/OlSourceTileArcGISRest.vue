@@ -10,7 +10,15 @@ import { createXYZ } from "ol/tilegrid";
 import type TileLayer from "ol/layer/Tile";
 import type ImageTile from "ol/ImageTile";
 import projectionFromProperties from "@/helpers/projection";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   interpolate: true,
@@ -24,7 +32,6 @@ const props = withDefaults(defineProps<Options>(), {
   tileSize: () => [256, 256],
   zDirection: 0,
 });
-const emit = defineEmits([]);
 
 const tileLayer = inject<Ref<TileLayer<TileArcGISRest>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
@@ -38,17 +45,16 @@ const getTileGrid = computed(() => {
   );
 });
 
-const source = computed(() => {
-  const t = new TileArcGISRest({
-    ...properties,
-    projection: projectionFromProperties(properties.projection),
-    tileGrid: getTileGrid.value,
-  });
+const source = computed(
+  () =>
+    new TileArcGISRest({
+      ...properties,
+      projection: projectionFromProperties(properties.projection),
+      tileGrid: getTileGrid.value,
+    })
+);
 
-  eventGateway(emit, t, TILE_SOURCE_EVENTS);
-
-  return t;
-});
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 watch(source, () => {
   tileLayer?.value?.setSource(source.value);

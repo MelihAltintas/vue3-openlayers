@@ -7,7 +7,15 @@ import { inject, onMounted, onUnmounted, watch } from "vue";
 import type ImageLayer from "ol/layer/Image";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
-import eventGateway, { IMAGE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  IMAGE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<
@@ -28,13 +36,12 @@ const props = withDefaults(
     ratio: 1,
   }
 );
-const emit = defineEmits([]);
 
 const layer = inject<ImageLayer<ImageWMS> | null>("imageLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const createSource = () => {
-  const i = new ImageWMS({
+const createSource = () =>
+  new ImageWMS({
     ...properties,
     params: {
       ...props.params,
@@ -45,12 +52,8 @@ const createSource = () => {
     projection: projectionFromProperties(properties.projection),
   });
 
-  eventGateway(emit, i, IMAGE_SOURCE_EVENTS);
-
-  return i;
-};
-
 let source = createSource();
+useOpenLayersEvents(source, IMAGE_SOURCE_EVENTS);
 
 watch(properties, () => {
   layer?.setSource(null);

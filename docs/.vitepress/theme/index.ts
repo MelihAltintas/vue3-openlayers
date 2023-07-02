@@ -7,7 +7,7 @@ export default {
   async enhanceApp({ app }) {
     if (!import.meta.env.SSR) {
       const plugin = await import("../../../src");
-      app.use(plugin);
+      app.use(plugin, { debug: true });
     }
   },
 };

@@ -7,7 +7,15 @@ import Stamen, { type Options } from "ol/source/Stamen";
 import { inject, onMounted, onUnmounted, watch, type Ref, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type TileLayer from "ol/layer/Tile";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   interpolate: true,
@@ -18,22 +26,18 @@ const props = withDefaults(defineProps<Options>(), {
   zDirection: 0,
   wrapX: true,
 });
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<Stamen>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const s = new Stamen(properties);
+const source = computed(() => new Stamen(properties));
 
-  eventGateway(emit, s, [
-    ...TILE_SOURCE_EVENTS,
-    "propertychange",
-    "removefeature",
-  ]);
+useOpenLayersEvents(source, [
+  ...TILE_SOURCE_EVENTS,
+  "propertychange",
+  "removefeature",
+]);
 
-  return s;
-});
 const applySource = () => {
   layer?.value?.setSource(null);
   layer?.value?.setSource(source.value);

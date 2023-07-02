@@ -7,7 +7,12 @@ import TileJSON, { type Options } from "ol/source/TileJSON";
 import { inject, onMounted, onUnmounted, watch, type Ref, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type TileLayer from "ol/layer/Tile";
-import eventGateway from "@/helpers/eventGateway";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   interpolate: true,
@@ -17,26 +22,22 @@ const props = withDefaults(defineProps<Options>(), {
   zDirection: 0,
   wrapX: true,
 });
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<TileJSON>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const s = new TileJSON(properties);
+const source = computed(() => new TileJSON(properties));
 
-  eventGateway(emit, s, [
-    "change",
-    "error",
-    "propertychange",
-    "removefeature",
-    "tileloadend",
-    "tileloadstart",
-    "tileloaderror",
-  ]);
+useOpenLayersEvents(source, [
+  "change",
+  "error",
+  "propertychange",
+  "removefeature",
+  "tileloadend",
+  "tileloadstart",
+  "tileloaderror",
+]);
 
-  return s;
-});
 const applySource = () => {
   layer?.value?.setSource(null);
   layer?.value?.setSource(source.value);

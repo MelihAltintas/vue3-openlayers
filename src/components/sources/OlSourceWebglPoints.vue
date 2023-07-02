@@ -12,7 +12,15 @@ import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type WebGLPointsLayer from "ol/layer/WebGLPoints";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
+import {
+  FEATURE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options<Point>>(), {
   overlaps: true,
@@ -21,21 +29,15 @@ const props = withDefaults(defineProps<Options<Point>>(), {
   wrapX: true,
 });
 
-const emit = defineEmits([]);
-
 const layer = inject<Ref<WebGLPointsLayer<VectorSource<Point>>> | null>(
   "webglPointsLayer"
 );
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const vs = new VectorSource(properties);
+const source = computed(() => new VectorSource(properties));
 
-  eventGateway(emit, vs, FEATURE_EVENTS);
-
-  return vs;
-});
+useOpenLayersEvents(source, FEATURE_EVENTS);
 
 const applySource = () => {
   layer?.value?.setSource(null);

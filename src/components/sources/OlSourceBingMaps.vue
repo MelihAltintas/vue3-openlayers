@@ -8,7 +8,15 @@ import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway, { IMAGE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  IMAGE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<Omit<Options, "key"> & { apiKey: string }>(),
@@ -24,22 +32,20 @@ const props = withDefaults(
     wrapX: true,
   }
 );
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<BingMaps>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const bingMaps = new BingMaps({
-    ...properties,
-    key: properties.apiKey,
-  });
+const source = computed(
+  () =>
+    new BingMaps({
+      ...properties,
+      key: properties.apiKey,
+    })
+);
 
-  eventGateway(emit, bingMaps, IMAGE_SOURCE_EVENTS);
-
-  return bingMaps;
-});
+useOpenLayersEvents(source, IMAGE_SOURCE_EVENTS);
 
 watch(source, () => {
   layer?.value?.setSource(source.value);

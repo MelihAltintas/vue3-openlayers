@@ -7,8 +7,16 @@ import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "../../composables/usePropsAsObjectProperties";
 import { Tianditu, type Options } from "@/components/sources/TiandituClass";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
 import type { ImageTile } from "ol";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   layerType: "img",
@@ -26,17 +34,12 @@ const props = withDefaults(defineProps<Options>(), {
   },
   wrapX: true,
 });
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<Tianditu>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
-const source = computed(() => {
-  const t = new Tianditu(properties);
+const source = computed(() => new Tianditu(properties));
 
-  eventGateway(emit, t, TILE_SOURCE_EVENTS);
-
-  return t;
-});
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 watch(source, () => {
   layer?.value?.setSource(source.value);

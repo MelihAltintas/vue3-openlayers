@@ -21,7 +21,11 @@ import {
 } from "./components";
 import type { App, Plugin } from "vue";
 
-const install: Plugin = (app: App) => {
+type Vue3OpenlayersGlobalOptions = {
+  debug: boolean;
+};
+
+const install: Plugin = (app: App, options?: Vue3OpenlayersGlobalOptions) => {
   app.use(Map.install);
   app.use(Layers.install);
   app.use(Sources.install);
@@ -31,6 +35,7 @@ const install: Plugin = (app: App) => {
   app.use(Interactions.install);
   app.use(Animations.install);
 
+  app.provide("ol-options", options);
   app.provide("ol-feature", feature);
   app.provide("ol-geom", geom);
   app.provide("ol-animations", animations);
@@ -41,6 +46,7 @@ const install: Plugin = (app: App) => {
 };
 
 declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
   export function inject(key: "ol-feature"): feature;
   export function inject(key: "ol-geom"): typeof geom;
   export function inject(key: "ol-animations"): typeof animations;
@@ -63,4 +69,5 @@ export {
   Styles,
   Interactions,
   Animations,
+  type Vue3OpenlayersGlobalOptions,
 };

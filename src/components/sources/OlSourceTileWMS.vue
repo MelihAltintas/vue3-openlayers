@@ -9,7 +9,15 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 import type TileLayer from "ol/layer/Tile";
 import type { ImageTile } from "ol";
 import projectionFromProperties from "@/helpers/projection";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<
@@ -32,13 +40,12 @@ const props = withDefaults(
     wrapX: true,
   }
 );
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<TileWMS>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const createSource = () => {
-  const t = new TileWMS({
+const createSource = () =>
+  new TileWMS({
     ...properties,
     params: {
       ...props.params,
@@ -48,12 +55,9 @@ const createSource = () => {
     projection: projectionFromProperties(properties.projection),
   });
 
-  eventGateway(emit, t, TILE_SOURCE_EVENTS);
-
-  return t;
-};
-
 let source = createSource();
+
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 watch(properties, () => {
   layer?.value.setSource(null);

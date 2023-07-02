@@ -10,16 +10,20 @@ import LayerGroup, { type Options } from "ol/layer/Group";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { layersCommonDefaultProps } from "@/components/layers/LayersCommonProps";
-import eventGateway from "@/helpers/eventGateway";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), layersCommonDefaultProps);
-const emit = defineEmits([]);
 
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const layerGroup = new LayerGroup(properties);
-eventGateway(emit, layerGroup, [
+useOpenLayersEvents(layerGroup, [
   "change",
   "change:extend",
   "change:layers",

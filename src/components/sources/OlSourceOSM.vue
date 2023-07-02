@@ -7,7 +7,15 @@ import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   crossOrigin: "anonymous",
@@ -21,19 +29,14 @@ const props = withDefaults(defineProps<Options>(), {
   wrapX: true,
   zDirection: 0,
 });
-const emit = defineEmits([]);
 
 const layer = inject<Ref<TileLayer<OSM>> | null>("tileLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const o = new OSM(properties);
+const source = computed(() => new OSM(properties));
 
-  eventGateway(emit, o, TILE_SOURCE_EVENTS);
-
-  return o;
-});
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 watch(source, () => {
   layer?.value?.setSource(source.value);

@@ -12,7 +12,15 @@ import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type Geometry from "ol/geom/Geometry";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
+import {
+  useOpenLayersEvents,
+  FEATURE_EVENTS,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options<Geometry>>(), {
   overlaps: true,
@@ -20,8 +28,6 @@ const props = withDefaults(defineProps<Options<Geometry>>(), {
   useSpatialIndex: true,
   wrapX: true,
 });
-
-const emit = defineEmits([]);
 
 const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   "vectorLayer",
@@ -32,13 +38,9 @@ const layer = heatmapLayer || vectorLayer;
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const vs = new VectorSource(properties);
+const source = computed(() => new VectorSource(properties));
 
-  eventGateway(emit, vs, FEATURE_EVENTS);
-
-  return vs;
-});
+useOpenLayersEvents(source, FEATURE_EVENTS);
 
 const applySource = () => {
   layer?.value?.setSource(null);

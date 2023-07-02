@@ -15,7 +15,15 @@ import type TileLayer from "ol/layer/Tile";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
-import eventGateway, { TILE_SOURCE_EVENTS } from "@/helpers/eventGateway";
+import {
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<
@@ -39,7 +47,6 @@ const props = withDefaults(
     tileMatrixPrefix: "",
   }
 );
-const emit = defineEmits([]);
 
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
@@ -74,16 +81,16 @@ const getTileGrid = computed(() => {
   });
 });
 
-const source = computed(() => {
-  const w = new WMTS({
-    ...properties,
-    projection: projectionFromProperties(properties.projection),
-    tileGrid: getTileGrid.value,
-  });
+const source = computed(
+  () =>
+    new WMTS({
+      ...properties,
+      projection: projectionFromProperties(properties.projection),
+      tileGrid: getTileGrid.value,
+    })
+);
 
-  eventGateway(emit, w, TILE_SOURCE_EVENTS);
-  return w;
-});
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 watch(source, () => {
   tileLayer?.value?.setSource(source.value);

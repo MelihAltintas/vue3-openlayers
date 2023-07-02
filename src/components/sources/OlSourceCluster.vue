@@ -12,7 +12,15 @@ import type Geometry from "ol/geom/Geometry";
 import type Feature from "ol/Feature";
 import type Point from "ol/geom/Point";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import eventGateway, { FEATURE_EVENTS } from "@/helpers/eventGateway";
+import {
+  FEATURE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   distance: 20,
@@ -20,19 +28,14 @@ const props = withDefaults(defineProps<Options>(), {
     feature.getGeometry() as Point,
   wrapX: true,
 });
-const emit = defineEmits([]);
 
 const layer = inject<Ref<Cluster> | null>("vectorLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => {
-  const c = new Cluster(properties);
+const source = computed(() => new Cluster(properties));
 
-  eventGateway(emit, c, FEATURE_EVENTS);
-
-  return c;
-});
+useOpenLayersEvents(source, FEATURE_EVENTS);
 
 const applySource = () => {
   layer?.value?.setSource(null);
