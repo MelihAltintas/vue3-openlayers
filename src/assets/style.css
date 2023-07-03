@@ -1,16 +1,16 @@
-.ol-zoomslider {
+.ol-viewport .ol-zoomslider {
   top: 7.5em;
   left: 0.5em;
   height: 240px;
   border: 2px solid rgba(0, 60, 136, 0.5);
 }
 
-.ol-overviewmap {
+.ol-viewport .ol-overviewmap {
   left: 3.5em;
   bottom: 2.5em;
 }
 
-.ol-mouse-position {
+.ol-viewport .ol-mouse-position {
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
@@ -19,31 +19,31 @@
   text-align: center;
 }
 
-.ol-rotate {
+.ol-viewport .ol-rotate {
   top: 0.5em;
   right: 2.5em;
   transition: opacity 0.25s linear, visibility 0s linear;
 }
 
-.ol-layerswitcher-image .ol-layer-hidden {
+.ol-viewport .ol-layerswitcher-image .ol-layer-hidden {
   opacity: 1;
 }
 
-.ol-overviewmap.ol-collapsed .ol-overviewmap-map,
-.ol-overviewmap.ol-uncollapsible button {
+.ol-viewport .ol-overviewmap.ol-collapsed .ol-overviewmap-map,
+.ol-viewport .ol-overviewmap.ol-uncollapsible button {
   display: block;
   opacity: 0;
 }
 
-.ol-collapsed {
+.ol-viewport .ol-collapsed {
   background-color: rgba(255, 255, 255, 0);
 }
 
-.ol-collapsed:hover {
+.ol-viewport .ol-collapsed:hover {
   background-color: rgba(255, 255, 255, 0);
 }
 
-.ol-layerswitcher-image button {
+.ol-viewport .ol-layerswitcher-image button {
   background-color: transparent;
 }
 

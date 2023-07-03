@@ -2,22 +2,17 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import Zone from "ol-ext/control/MapZone";
+import MapZone, { type Options, type Zone } from "ol-ext/control/MapZone";
 import { useAttrs } from "vue";
-import type { Layer } from "ol/layer";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { ProjectionLike } from "ol/proj";
 
 const props = withDefaults(
-  defineProps<{
-    className?: string;
-    zones?: Zone[];
-    layer?: Layer | ((zone: Zone) => Layer);
-    projection?: ProjectionLike;
-    centerOnClick?: boolean;
-  }>(),
+  defineProps<
+    Omit<Options, "className" | "zone"> & { className: string; zones: Zone[] }
+  >(),
   {
+    className: "ol-mapzone",
     projection: "EPSG:3857",
     centerOnClick: true,
   }
@@ -26,7 +21,7 @@ const props = withDefaults(
 const attrs = useAttrs();
 const { properties } = usePropsAsObjectProperties(props);
 
-const { control } = useControl(Zone, properties, attrs);
+const { control } = useControl(MapZone, properties, attrs);
 
 defineExpose({
   control,

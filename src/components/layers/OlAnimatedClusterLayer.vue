@@ -30,7 +30,6 @@ const props = withDefaults(
   >(),
   {
     ...layersCommonDefaultProps,
-    className: "ol-layer",
     opacity: 1,
     visible: true,
     animationDuration: 700,

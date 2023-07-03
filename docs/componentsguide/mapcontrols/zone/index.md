@@ -2,9 +2,22 @@
 
 > A control to jump from one zone to another.
 
-## Demo
+<script setup>
+import ZoneControlDemo from "@demos/ZoneControlDemo.vue"
+</script>
+<ClientOnly>
+<ZoneControlDemo />
+</ClientOnly>
 
-See [App Demo page for all Map Controls](../../../demo.md)
+## Usage
+
+Add context menu to map
+
+::: code-group
+
+<<< ../../../../src/demos/ZoneControlDemo.vue
+
+:::
 
 ## Properties
 
@@ -12,7 +25,7 @@ See [App Demo page for all Map Controls](../../../demo.md)
 
 - **Type**: `String`
 
-### zone
+### zones
 
 an array of zone: `{ name, extent (in EPSG:4326) }`
 
