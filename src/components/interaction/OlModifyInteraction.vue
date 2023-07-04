@@ -96,4 +96,8 @@ onUnmounted(() => {
 });
 
 provide("stylable", modify);
+
+defineExpose({
+  modify,
+});
 </script>

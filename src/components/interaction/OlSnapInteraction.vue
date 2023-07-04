@@ -52,4 +52,8 @@ onMounted(() => {
 onUnmounted(() => {
   map?.removeInteraction(snap);
 });
+
+defineExpose({
+  snap,
+});
 </script>

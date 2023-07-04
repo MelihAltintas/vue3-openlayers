@@ -42,4 +42,8 @@ onMounted(() => {
 onUnmounted(() => {
   map?.removeInteraction(dragRotateZoom.value);
 });
+
+defineExpose({
+  dragRotateZoom,
+});
 </script>

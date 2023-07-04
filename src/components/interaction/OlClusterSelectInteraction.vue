@@ -54,4 +54,8 @@ onUnmounted(() => {
 });
 
 provide("stylable", select);
+
+defineExpose({
+  select,
+});
 </script>

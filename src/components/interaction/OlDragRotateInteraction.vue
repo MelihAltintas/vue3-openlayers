@@ -46,6 +46,10 @@ onMounted(() => {
 onUnmounted(() => {
   map?.removeInteraction(dragrotate.value);
 });
+
+defineExpose({
+  dragrotate,
+});
 </script>
 
 <style lang=""></style>

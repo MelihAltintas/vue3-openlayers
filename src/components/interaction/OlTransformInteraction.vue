@@ -63,4 +63,8 @@ onUnmounted(() => {
 });
 
 provide("stylable", transform);
+
+defineExpose({
+  transform,
+});
 </script>

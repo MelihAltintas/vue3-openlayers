@@ -128,4 +128,8 @@ onUnmounted(() => {
 });
 
 provide("stylable", draw);
+
+defineExpose({
+  draw,
+});
 </script>
