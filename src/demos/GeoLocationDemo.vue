@@ -17,7 +17,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-geolocation :projection="projection" @positionChanged="geoLocChange">
+    <ol-geolocation :projection="projection" @change:position="geoLocChange">
       <template v-slot="slotProps">
         <!-- SlotProps: {{ slotProps }} -->
         <ol-vector-layer :zIndex="2">
@@ -39,18 +39,16 @@
 import hereIcon from "@/assets/here.png";
 import { ref } from "vue";
 import type { View } from "ol";
+import type { ObjectEvent } from "ol/Object";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
-const zoom = ref(8);
+const zoom = ref(12);
 const rotation = ref(0);
 const view = ref<View>();
 const map = ref(null);
 
-const geoLocChange = (loc: number[]) => {
-  console.log(loc);
-  view.value?.fit([loc[0], loc[1], loc[0], loc[1]], {
-    maxZoom: 14,
-  });
+const geoLocChange = (event: ObjectEvent) => {
+  view.value?.setCenter(event.target?.getPosition());
 };
 </script>

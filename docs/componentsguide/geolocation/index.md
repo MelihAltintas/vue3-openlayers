@@ -22,32 +22,53 @@ import GeoLocationDemo from "@demos/GeoLocationDemo.vue"
 
 ## Properties
 
-### tracking
+### Props from OpenLayers
 
-- **Type**: `boolean`
-- **Default**: `true`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Enables / disables tracking.
+### Deviating Properties
 
-### tracking-options
+None.
 
-- **Type**: `Object`
-- **Default**: `undefined`
+## Events
 
-Tracking options. See [PositionOptions](https://www.w3.org/TR/geolocation-API/#position_options_interface) documentation.
+You have access to all Events from the underlying Openlayers Geolocation API.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html) to see the available events tht will be fired.
 
-### projection
+```html
+<ol-geolocation :projection="projection" @change:position="geoLocChange" />
+```
 
-- **Type**: `string`
-- **Default**: `EPSG:3857`
+## Methods
 
-Projection of the current position.
+You have access to all Methods from the underlying Openlayers Geolocation API.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html) to see the available methods.
 
-## Emits
+To access the source, you can use a `ref()` as shown below:
 
-- `positionChanged`
-- `speedChanged`
-- `headingChanged`
-- `altitudeChanged`
-- `altitudeAccuracyChanged`
-- `accuracyGeometryChanged`
+```vue
+<template>
+  <!-- ... -->
+  <ol-geolocation
+    :projection="projection"
+    @change:position="geoLocChange"
+    ref="geoLocRef"
+  />
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type Geolocation from "ol/Geolocation";
+
+const geoLocRef = ref<{ geoLoc: Geolocation }>(null);
+
+onMounted(() => {
+  const geoLocation: Geolocation = geoLocRef.value?.geoLoc;
+  // call your method on `geoLocation`
+});
+</script>
+```
