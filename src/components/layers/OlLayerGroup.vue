@@ -17,7 +17,10 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options>(), layersCommonDefaultProps);
+const props = withDefaults(
+  defineProps<Options & { className?: string }>(),
+  layersCommonDefaultProps
+);
 
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);

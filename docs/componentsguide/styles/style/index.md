@@ -41,8 +41,13 @@ import StyleDemo2 from "@demos/StyleDemo2.vue"
 
 - **Type**: `Number`
 
-### overrideStyleFunction
+### `overrideStyleFunction`
 
-- **Type**: `Function`
+- **Type**: `OverrideStyleFunction`
 
-Change the style forexample in cluster sytem you can change the feature count in text style (see cluster doc)
+Change the style for example in cluster you can change the feature count in text style (see cluster doc)
+The function has three arguments:
+
+1. `feature: FeatureLike`: The feature the style is related to.
+2. `currentStyle: Style`: The current style that's applied (you can override it here)
+3. `resolution?: number`: A number representing the view's resolution

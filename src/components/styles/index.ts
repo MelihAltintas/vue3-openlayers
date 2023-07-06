@@ -6,8 +6,16 @@ import OlStyleFill from "./OlStyleFill.vue";
 import OlStyleIcon from "./OlStyleIcon.vue";
 import OlStyleText from "./OlStyleText.vue";
 import OlStyleFlowline from "./OlStyleFlowline.vue";
+import type { FeatureLike } from "ol/Feature";
+import type { Style } from "ol/style";
 
 let installed = false;
+
+type OverrideStyleFunction = (
+  feature: FeatureLike,
+  currentStyle: Style,
+  resolution: number
+) => Style | Style[] | void;
 
 function install(app: App) {
   if (installed) return;
@@ -33,4 +41,5 @@ export {
   OlStyleText,
   OlStyleFlowline,
   OlStyleCircle,
+  type OverrideStyleFunction,
 };

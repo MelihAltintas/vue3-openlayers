@@ -55,10 +55,10 @@ const projection = ref("EPSG:4326");
 const zoom = ref(6.8);
 const rotation = ref(0);
 
-const overrideStyleFunction = (feature, style) => {
+const overrideStyleFunction = (feature, style, resolution) => {
+  console.log({ feature, style, resolution });
   const clusteredFeatures = feature.get("features");
   const size = clusteredFeatures.length;
-
   style.getText().setText(size.toString());
 };
 

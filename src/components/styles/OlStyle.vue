@@ -12,24 +12,27 @@ import Style, { type StyleLike } from "ol/style/Style";
 import Draw from "ol/interaction/Draw";
 import Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type Feature from "ol/Feature";
+import type { Layer } from "ol/layer";
+import type { Select } from "ol/interaction";
+import type { OverrideStyleFunction } from ".";
 
 const props = withDefaults(
   defineProps<{
     zIndex?: number;
-    overrideStyleFunction?: (...args: unknown[]) => unknown;
+    overrideStyleFunction?: OverrideStyleFunction;
   }>(),
   {}
 );
 
-const styledObj = inject<Ref<Draw | Modify | Style> | undefined>(
-  "stylable",
-  undefined
-);
+const styledObj = inject<
+  Ref<Draw | Modify | Select | Feature | Layer> | undefined
+>("stylable", undefined);
 const { properties } = usePropsAsObjectProperties(props);
 
 const style = computed(() => new Style(properties));
 
-const setStyle = (val: StyleLike | null) => {
+const setStyle = (val: StyleLike) => {
   const st = styledObj?.value;
   if (!st) {
     return;
@@ -42,50 +45,38 @@ const setStyle = (val: StyleLike | null) => {
     try {
       // @ts-ignore
       st.setStyle(val);
-      // @ts-ignore
       st.changed();
-      // @ts-ignore
       st.dispatchEvent("styleChanged");
     } catch (error) {
       // @ts-ignore
       st.style_ = val;
       // @ts-ignore
       st.values_.style = val;
-      // @ts-ignore
       st.changed();
-      // @ts-ignore
       st.dispatchEvent("styleChanged");
     }
   }
 };
 
 const styleFunc = computed<StyleLike>(() => {
-  return (feature) => {
-    if (properties.overrideStyleFunction != null) {
-      properties.overrideStyleFunction(feature, style.value);
+  return (feature, resolution) => {
+    if (properties.overrideStyleFunction) {
+      properties.overrideStyleFunction(feature, style.value, resolution);
     }
     return style.value;
   };
 });
 
-watch(properties, () => {
-  if (!properties.overrideStyleFunction === null) {
-    setStyle(style.value);
-  } else {
-    setStyle(styleFunc.value);
-  }
-});
+watch(properties, () =>
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value)
+);
 
-onMounted(() => {
-  if (!properties.overrideStyleFunction) {
-    setStyle(style.value);
-  } else {
-    setStyle(styleFunc.value);
-  }
-});
+onMounted(() =>
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value)
+);
 
 onUnmounted(() => {
-  setStyle(null);
+  setStyle(new Style());
 });
 
 provide("style", style);
