@@ -226,6 +226,10 @@ export default defineConfig({
                 link: "/componentsguide/styles/fill/",
               },
               {
+                text: "ol-style-flowline",
+                link: "/componentsguide/styles/flowline/",
+              },
+              {
                 text: "ol-style-icon",
                 link: "/componentsguide/styles/icon/",
               },
