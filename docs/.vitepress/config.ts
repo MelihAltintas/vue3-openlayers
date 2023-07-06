@@ -294,6 +294,10 @@ export default defineConfig({
                 link: "/componentsguide/animations/fade/",
               },
               {
+                text: "ol-animation-path",
+                link: "/componentsguide/animations/path/",
+              },
+              {
                 text: "ol-animation-shake",
                 link: "/componentsguide/animations/shake/",
               },
