@@ -72,11 +72,6 @@
     "ol-contextmenu": "^5.2.1",
     "ol-ext": "^4.0.8"
   },
-  "peerDependenciesMeta": {
-    "ol-contextmenu": {
-      "optional": true
-    }
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
