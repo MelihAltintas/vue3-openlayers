@@ -5,8 +5,8 @@ vue3-openlayers works with [Vue.js](https://vuejs.org/) **^3.0** and [OpenLayers
 ## Requirements
 
 - [Vue](https://vuejs.org/) version **^3.0.0**
-- [Openlayers](https://openlayers.org/) version **^7.4.0**
-- [Openlayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
+- [OpenLayers](https://openlayers.org/) version **^7.4.0**
+- [OpenLayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
 - [ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu) version **^5.2.1**
 
 ## Installation

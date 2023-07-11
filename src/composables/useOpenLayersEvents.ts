@@ -63,7 +63,7 @@ export function useOpenLayersEvents(
 
       unwrappedFeature.on(eventName, (...args: unknown[]) => {
         if (globalOptions?.debug) {
-          console.debug("[Vue3-Openlayers Debug] EVENT", eventName, {
+          console.debug("[Vue3-OpenLayers Debug] EVENT", eventName, {
             eventName,
             args,
             source: feature,

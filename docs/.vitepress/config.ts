@@ -5,7 +5,7 @@ export default defineConfig({
   // https://MelihAltintas.github.com/vue3-openlayers
   // base: '/vue3-openlayers/',
   title: "vue3-openlayers",
-  description: "Openlayers Wrapper for Vue3",
+  description: "OpenLayers Wrapper for Vue3",
   lastUpdated: true,
   themeConfig: {
     // https://vitepress.vuejs.org/reference/default-theme-config

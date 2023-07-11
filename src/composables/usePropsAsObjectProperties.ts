@@ -47,7 +47,7 @@ export default function usePropsAsObjectProperties<
   });
 
   if (globalOptions?.debug) {
-    console.debug("[Vue3-Openlayers Debug] PROPS", {
+    console.debug("[Vue3-OpenLayers Debug] PROPS", {
       in: props,
       out: properties,
     });

@@ -2,7 +2,7 @@
 
 > Interaction for selecting vector cluster features
 
-The interaction components wraps `SelectCluster` interaction of the [famous `ol-ext` Openlayers extension](http://viglino.github.io/ol-ext/).
+The interaction components wraps `SelectCluster` interaction of the [famous `ol-ext` OpenLayers extension](http://viglino.github.io/ol-ext/).
 
 <script setup>
 import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"

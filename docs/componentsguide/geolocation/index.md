@@ -35,7 +35,7 @@ None.
 
 ## Events
 
-You have access to all Events from the underlying Openlayers Geolocation API.
+You have access to all Events from the underlying OpenLayers Geolocation API.
 Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html) to see the available events tht will be fired.
 
 ```html
@@ -44,7 +44,7 @@ Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc
 
 ## Methods
 
-You have access to all Methods from the underlying Openlayers Geolocation API.
+You have access to all Methods from the underlying OpenLayers Geolocation API.
 Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html) to see the available methods.
 
 To access the source, you can use a `ref()` as shown below:

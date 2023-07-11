@@ -2,7 +2,7 @@
 
 > Web map [Vue](https://vuejs.org/ "Vue Homepage") components with the power of [OpenLayers](https://openlayers.org/ "OpenLayers Homepage")
 
-Openlayers Useful 3rd party libraries https://openlayers.org/3rd-party/
+OpenLayers Useful 3rd party libraries https://openlayers.org/3rd-party/
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/be6e2e4b-ccfe-4ace-ba27-79d6035370cc/deploy-status)](https://app.netlify.com/sites/vue3openlayers/deploys)
 [![NPM version](https://img.shields.io/npm/v/vue3-openlayers.svg)](https://www.npmjs.com/package/vue3-openlayers)
@@ -50,8 +50,8 @@ It can display maps with tiled, raster or vector layers loaded from different so
 ## Requirements
 
 - [Vue](https://vuejs.org/) version **^3.0.0**
-- [Openlayers](https://openlayers.org/) version **^7.4.0**
-- [Openlayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
+- [OpenLayers](https://openlayers.org/) version **^7.4.0**
+- [OpenLayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
 - [ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu) version **^5.2.1**
 
 ## License
