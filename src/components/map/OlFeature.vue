@@ -40,7 +40,6 @@ watch(
   () => {
     // Ensure the feature's properties are updated on change
     feature.value.setProperties(props.properties);
-    console.debug("feature changed", feature.value.getProperties().lat);
   }
 );
 
