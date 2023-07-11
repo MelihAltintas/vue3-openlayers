@@ -4,19 +4,20 @@ vue3-openlayers works with [Vue.js](https://vuejs.org/) **^3.0** and [OpenLayers
 
 ## Requirements
 
-- [Vue](https://vuejs.org/) version **^3.0.0**
-- [OpenLayers](https://openlayers.org/) version **^7.4.0**
-- [OpenLayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
-- [ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu) version **^5.2.1**
+<!-- auto-generated-peer-dependency-requirements START -->
+
+- **[vue](https://github.com/vuejs/core)**: `^3.0.0`
+- **[ol](https://github.com/openlayers/openlayers)**: `^7.4.0`
+- **[ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu)**: `^5.2.1`
+- **[ol-ext](https://github.com/Viglino/ol-ext)**: `^4.0.8`
+
+<!-- auto-generated-peer-dependency-requirements END -->
 
 ## Installation
 
 ```bash
-npm install ol ol-ext            # install the peerDependencies
-npm install vue3-openlayers@next # install this library with the latest features and fixes (recommended)
-
-# OR: install this library (last stable before whole codebase-wide refactorings were made) - not recommended anymore
-npm install vue3-openlayers
+npm install ol ol-ext ol-contextmenu  # install the peerDependencies
+npm install vue3-openlayers           # install this library
 ```
 
 ## Usage
@@ -29,7 +30,6 @@ import App from "./App.vue";
 
 import OpenLayersMap from "vue3-openlayers";
 import "vue3-openlayers/styles.css"; // vue3-openlayers version < 1.0.0-*
-import "vue3-openlayers/dist/vue3-openlayers.css"; // vue3-openlayers version >= 1.0.0-*
 
 const app = createApp(App);
 app.use(OpenLayersMap /* options */);

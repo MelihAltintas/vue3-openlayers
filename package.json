@@ -54,6 +54,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "docs:update-requirements": "node scripts/insert-required-versions.mjs README.md docs/get-started.md",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
@@ -68,6 +69,7 @@
     "proj4": "^2.9.0"
   },
   "peerDependencies": {
+    "vue": "^3.0.0",
     "ol": "^7.4.0",
     "ol-contextmenu": "^5.2.1",
     "ol-ext": "^4.0.8"
@@ -92,6 +94,7 @@
     "eslint": "^8.44.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.15.1",
+    "get-repository-url": "^2.0.0",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "prettier": "^2.8.8",
