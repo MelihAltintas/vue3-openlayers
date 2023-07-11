@@ -62,7 +62,6 @@
 import { computed, ref } from "vue";
 import { Point } from "ol/geom";
 import Feature from "ol/Feature";
-import { tile } from "ol/loadingstrategy";
 import markerIcon from "@/assets/marker.png";
 
 const center = ref([40, 40]);
