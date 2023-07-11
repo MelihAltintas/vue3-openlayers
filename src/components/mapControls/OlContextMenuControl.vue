@@ -2,6 +2,7 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
+import "ol-contextmenu/ol-contextmenu.css";
 import ContextMenu from "ol-contextmenu";
 import { useAttrs } from "vue";
 import type { Item } from "ol-contextmenu/dist/types";

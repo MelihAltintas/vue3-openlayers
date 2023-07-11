@@ -4,6 +4,12 @@
 
 Right click on the map to open the contextmenu.
 
+This feature requires to additionally install the [`ol-contextmenu` package](https://www.npmjs.com/package/ol-contextmenu) as dependency:
+
+```bash
+npm i ol-contextmenu
+```
+
 <script setup>
 import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 </script>
