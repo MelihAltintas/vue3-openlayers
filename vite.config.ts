@@ -49,7 +49,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       },
-      external: ["vue"],
+      external: ["vue", /^ol.*/], // Avoid bundling ol imports into the final build
       output: {
         inlineDynamicImports: true,
         exports: "named",
