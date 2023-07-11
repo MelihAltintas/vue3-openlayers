@@ -10,6 +10,14 @@ assignees: ""
 A clear and concise description of what the bug is.
 Ideally, you can fork the [Stackblitz starter template](https://stackblitz.com/edit/vue3-openlayers-template) and provide your issue as an example.
 
+**Affected version(s)**
+
+Please run `npm list --depth=0 vue vue3-openlayers ol ol-ext ol-contextmenu` and paste the output below:
+
+```
+<VERSION_OUTPUT>
+```
+
 **To Reproduce**
 Steps to reproduce the behavior:
 
@@ -26,16 +34,14 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
 
-- OS: [e.g. iOS]
+- OS: [e.g. macOS]
 - Browser [e.g. chrome, safari]
-- Version [e.g. 22]
 
 **Smartphone (please complete the following information):**
 
-- Device: [e.g. iPhone6]
-- OS: [e.g. iOS8.1]
-- Browser [e.g. stock browser, safari]
-- Version [e.g. 22]
+- Device: [e.g. iPhone 14]
+- OS: [e.g. iOS 16.15.1]
+- Browser [e.g. chrome, safari]
 
 **Additional context**
 Add any other context about the problem here.
