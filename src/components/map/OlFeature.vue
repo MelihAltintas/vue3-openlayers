@@ -4,13 +4,12 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
+import { provide, inject, watch, onMounted, onUnmounted, ref } from "vue";
 import Feature from "ol/Feature";
 import type Geometry from "ol/geom/Geometry";
 import type VectorSource from "ol/source/Vector";
 import type VectorLayer from "ol/layer/Vector";
 import type HeatmapLayer from "ol/layer/Heatmap";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { FeatureAnimation } from "@/components/animations/AnimationTypes";
 
 const props = withDefaults(
@@ -34,15 +33,15 @@ const animation = inject<Ref<FeatureAnimation | null> | null>(
   null
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const feature = ref<Feature<Geometry>>(new Feature({ ...props.properties }));
 
-const feature = computed(() => new Feature({ ...properties.properties }));
-
-watch(feature, (newVal, oldVal) => {
-  vectorSource?.value?.removeFeature(oldVal);
-  vectorSource?.value?.addFeature(newVal);
-  vectorSource?.value?.changed();
-});
+watch(
+  () => props.properties, // Needed as props.properties is optional
+  () => {
+    // Ensure the feature's properties are updated on change
+    feature.value.setProperties(props.properties);
+  }
+);
 
 watch(
   () => vectorSource,
