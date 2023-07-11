@@ -1,11 +1,15 @@
 # Get Started
 
-## Installation
-
 vue3-openlayers works with [Vue.js](https://vuejs.org/) **^3.0** and [OpenLayers](https://github.com/openlayers/openlayers) **^7.4.0**.
-Also it uses the Openlayers extensions provided by the [`ol-ext` project](https://github.com/Viglino/ol-ext) which must be installed in version **^4.0.8**.
 
-Install current **stable version**
+## Requirements
+
+- [Vue](https://vuejs.org/) version **^3.0.0**
+- [Openlayers](https://openlayers.org/) version **^7.4.0**
+- [Openlayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
+- [ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu) version **^5.2.1**
+
+## Installation
 
 ```bash
 npm install ol ol-ext            # install the peerDependencies

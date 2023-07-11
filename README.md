@@ -50,7 +50,9 @@ It can display maps with tiled, raster or vector layers loaded from different so
 ## Requirements
 
 - [Vue](https://vuejs.org/) version **^3.0.0**
-- [OpenLayers](https://openlayers.org/) version **^7.3.0**
+- [Openlayers](https://openlayers.org/) version **^7.4.0**
+- [Openlayers extensions (ol-ext)](https://github.com/Viglino/ol-ext) version **^4.0.8**
+- [ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu) version **^5.2.1**
 
 ## License
 
