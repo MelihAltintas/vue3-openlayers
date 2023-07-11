@@ -1,8 +1,6 @@
 # Get Started
 
-vue3-openlayers works with [Vue.js](https://vuejs.org/) **^3.0** and [OpenLayers](https://github.com/openlayers/openlayers) **^7.4.0**.
-
-## Requirements
+vue3-openlayers works with the following versions which must be installed as peer dependencies:
 
 <!-- auto-generated-peer-dependency-requirements START -->
 
