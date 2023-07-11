@@ -2,16 +2,17 @@
 
 ## Installation
 
-vue3-openlayers works with Vue.js **^3.0** and OpenLayers **^7.3.0**
+vue3-openlayers works with [Vue.js](https://vuejs.org/) **^3.0** and [OpenLayers](https://github.com/openlayers/openlayers) **^7.4.0**.
+Also it uses the Openlayers extensions provided by the [`ol-ext` project](https://github.com/Viglino/ol-ext) which must be installed in version **^4.0.8**.
 
 Install current **stable version**
 
 ```bash
+npm install ol ol-ext            # install the peerDependencies
+npm install vue3-openlayers@next # install this library with the latest features and fixes (recommended)
+
+# OR: install this library (last stable before whole codebase-wide refactorings were made) - not recommended anymore
 npm install vue3-openlayers
-
-# OR:
-
-npm install vue3-openlayers@next # try out the latest version (next channel)
 ```
 
 ## Usage
