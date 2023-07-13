@@ -8,7 +8,7 @@
 import type { Options, TextPlacement } from "ol/style/Text";
 import Text from "ol/style/Text";
 import Fill from "ol/style/Fill";
-import Stroke from "ol/style/Stroke";
+import Stroke, { type Options as StrokeOptions } from "ol/style/Stroke";
 
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
@@ -16,6 +16,8 @@ import type Style from "ol/style/Style";
 import type Draw from "ol/interaction/Draw";
 import type Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { Color } from "ol/color";
+import type { ColorLike } from "ol/colorlike";
 
 const props = withDefaults(
   defineProps<{
@@ -32,6 +34,8 @@ const props = withDefaults(
     textAlign?: CanvasTextAlign;
     textBaseline?: CanvasTextBaseline;
     padding?: [number, number, number, number];
+    backgroundFill?: Color | ColorLike;
+    backgroundStroke?: StrokeOptions;
   }>(),
   {
     maxAngle: Math.PI / 4,
@@ -54,12 +58,23 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const createText = (innerProperties: Omit<Options, "fill" | "stroke">) => {
-  return new Text({
+const createText = (properties: typeof props) => {
+  const innerProperties = properties as Omit<
+    Options,
+    "fill" | "stroke" | "backgroundFill" | "backgroundStroke"
+  >;
+  const options: Options = {
     ...innerProperties,
     fill: new Fill(),
     stroke: new Stroke(),
-  });
+  };
+  if (properties.backgroundFill) {
+    options.backgroundFill = new Fill({ color: properties.backgroundFill });
+  }
+  if (properties.backgroundStroke) {
+    options.backgroundStroke = new Stroke(properties.backgroundStroke);
+  }
+  return new Text(options);
 };
 
 const textContent = computed(() => createText(properties));
