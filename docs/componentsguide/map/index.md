@@ -76,6 +76,34 @@ Other events that emit [`ol.MapEvent`](http://openlayers.org/en/latest/apidoc/mo
 
 ## Methods
 
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map.html) to see the available methods.
+
+To access the source, you can use a `ref()` as shown below:
+
+```vue
+<template>
+  <ol-map ref="mapRef">
+    <!-- ... -->
+  </ol-map>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type Map from "ol/Map";
+
+const mapRef = ref<{ map: Map }>(null);
+
+onMounted(() => {
+  const map: Map = mapRef.value?.map;
+  // call your method on `map`
+  const size = map.getSize();
+});
+</script>
+```
+
+Furthermore the following methods are directly exposed and can be use as describe above, using a `ref=""`.
+
 ### focus()
 
 Triggers focus on map container.
