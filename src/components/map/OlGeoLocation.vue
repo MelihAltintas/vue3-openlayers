@@ -18,6 +18,11 @@ import type Polygon from "ol/geom/Polygon";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
+
 const props = withDefaults(defineProps<Options>(), {
   projection: "EPSG:3857",
   tracking: true,
