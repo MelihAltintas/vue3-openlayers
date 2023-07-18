@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import repoUrl from "get-repository-url";
 
+// eslint-disable-next-line no-undef
 const [, , ...filepaths] = process.argv;
 
 const packageJson = readFileSync("./package.json");
