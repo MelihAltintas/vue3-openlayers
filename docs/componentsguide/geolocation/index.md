@@ -52,11 +52,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-geolocation
-    :projection="projection"
-    @change:position="geoLocChange"
-    ref="geoLocRef"
-  />
+  <ol-geolocation :projection="projection" ref="geoLocRef" />
   <!-- ... -->
 </template>
 

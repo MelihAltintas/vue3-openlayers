@@ -18,12 +18,11 @@
     </ol-tile-layer>
 
     <ol-geolocation :projection="projection" @change:position="geoLocChange">
-      <template v-slot="slotProps">
-        <!-- SlotProps: {{ slotProps }} -->
+      <template>
         <ol-vector-layer :zIndex="2">
           <ol-source-vector>
             <ol-feature ref="positionFeature">
-              <ol-geom-point :coordinates="slotProps.position"></ol-geom-point>
+              <ol-geom-point :coordinates="position"></ol-geom-point>
               <ol-style>
                 <ol-style-icon :src="hereIcon" :scale="0.1"></ol-style-icon>
               </ol-style>
@@ -47,8 +46,11 @@ const zoom = ref(12);
 const rotation = ref(0);
 const view = ref<View>();
 const map = ref(null);
+const position = ref([]);
 
 const geoLocChange = (event: ObjectEvent) => {
+  console.log("AAAAA", event);
+  position.value = event.target.getPosition();
   view.value?.setCenter(event.target?.getPosition());
 };
 </script>
