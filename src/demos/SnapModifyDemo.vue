@@ -32,7 +32,7 @@
           type="Polygon"
           @drawend="drawend"
         />
-        <ol-interaction-snap v-if="modifyEnabled" />
+        <ol-interaction-snap v-if="modifyEnabled || drawEnabled" />
       </ol-source-vector>
     </ol-vector-layer>
     <ol-interaction-select
