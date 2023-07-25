@@ -24,9 +24,9 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 ## Performance hints
 
-The performance of a map with a huge amount of markers / clusters can be influenced by the way, the data is passed for the `ol-source-vector`.
-In case your map doesn't render fluently, interactive elements are blocking or your are ending in a memory leak, it's probably worth switching from passing the features directly to requesting features from a URL.
-More information you will find in the [performance section for `ol-source-vector`](../../sources/vector/#performance-hints).
+The performance of a map with a huge amount of markers / clusters can be influenced by the way the data is passed to the `ol-source-vector`.
+In case your map doesn't render correctly, interactive elements are blocking, or you are ending up with memory leaks, it's probably worth switching from passing the features directly to requesting features from a URL.
+You can find more information in the [performance section for `ol-source-vector`](../../sources/vector/#performance-hints).
 
 ```vue
 <template>
@@ -89,7 +89,7 @@ The bounding extent for layer rendering. The layer will not be rendered outside 
 
 - **Type**: `number`
 
-The z-index for layer rendering. At rendering time, the layers will be ordered, first by Z-index and then by position.
+The z-index for layer rendering. When rendering, the layers will be ordered, first by Z-index and then by position.
 
 ### minResolution
 
@@ -119,13 +119,13 @@ The maximum view zoom level (inclusive) at which this layer will be visible.
 
 - **Type**: `number`
 - **Default**: `100`
-  The buffer in pixels around the viewport extent used by the renderer when getting features from the vector source for the rendering or hit-detection. Recommended value: the size of the largest symbol, line width or label.
+The buffer in pixels around the viewport extent used by the renderer when getting features from the vector source for the rendering or hit-detection. Recommended value: the size of the largest symbol, line width or label.
 
 ### updateWhileAnimating
 
 - **Type**: `Boolean`
 - **Default**: `false`
-  When set to true, feature batches will be recreated during animations. This means that no vectors will be shown clipped, but the setting will have a performance impact for large amounts of vector data. When set to false, batches will be recreated when no animation is active.
+When set to true, feature batches will be recreated during animations. This means that no vectors will be shown clipped, but the setting will have a performance impact for large amounts of vector data. When set to false, batches will be recreated when no animation is active.
 
 ### updateWhileInteracting
 
