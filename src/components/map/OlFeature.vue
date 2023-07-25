@@ -4,7 +4,15 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { provide, inject, watch, onMounted, onUnmounted, ref } from "vue";
+import {
+  provide,
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  ref,
+  nextTick,
+} from "vue";
 import Feature from "ol/Feature";
 import type Geometry from "ol/geom/Geometry";
 import type VectorSource from "ol/source/Vector";
@@ -53,11 +61,13 @@ watch(
 );
 
 onMounted(() => {
-  vectorSource?.value?.addFeature(feature.value);
   if (animation?.value) {
     // @ts-ignore
     layer?.value?.animateFeature(feature.value, animation.value);
   }
+  nextTick(() => {
+    vectorSource?.value?.addFeature(feature.value);
+  });
 });
 
 onUnmounted(() => {
