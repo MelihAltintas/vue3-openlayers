@@ -41,6 +41,13 @@ When set to `true`, tiles will be loaded during animations.
 
 When set to `true`, tiles will be loaded while interacting with the map.
 
+### mouseWheelZoom
+
+- **Type**: `boolean`
+- **Default**: `true`
+
+When set to `false`, zooming by using the mouse wheel is disabled.
+
 ### moveTolerance
 
 - **Type**: `number`
