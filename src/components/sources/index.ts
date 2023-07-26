@@ -10,6 +10,7 @@ import OlSourceTileArcGISRest from "@/components/sources/OlSourceTileArcGISRest.
 import OlSourceTileJSON from "./OlSourceTileJSON.vue";
 import OlSourceTileWMS from "./OlSourceTileWMS.vue";
 import OlSourceVector from "./OlSourceVector.vue";
+import OlSourceVectorTile from "./OlSourceVectorTile.vue";
 import OlSourceWebglPoints from "./OlSourceWebglPoints.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
@@ -31,6 +32,7 @@ function install(app: App) {
   app.component("ol-source-tile-json", OlSourceTileJSON);
   app.component("ol-source-tile-wms", OlSourceTileWMS);
   app.component("ol-source-vector", OlSourceVector);
+  app.component("ol-source-vector-tile", OlSourceVectorTile);
   app.component("ol-source-webglpoints", OlSourceWebglPoints);
   app.component("ol-source-xyz", OlSourceXYZ);
   app.component("ol-source-wmts", OlSourceWMTS);
