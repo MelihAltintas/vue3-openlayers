@@ -69,10 +69,10 @@
     "proj4": "^2.9.0"
   },
   "peerDependencies": {
-    "vue": "^3.0.0",
     "ol": "^7.4.0",
     "ol-contextmenu": "^5.2.1",
-    "ol-ext": "^4.0.8"
+    "ol-ext": "^4.0.8",
+    "vue": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
@@ -81,6 +81,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.9",
+    "@release-it/conventional-changelog": "^7.0.0",
     "@types/file-saver": "^2.0.5",
     "@types/node": "^18.17.1",
     "@types/ol-ext": "npm:@siedlerchr/types-ol-ext@^3.2.0",
