@@ -23,7 +23,6 @@ const props = withDefaults(
   {
     hidpi: false,
     culture: "en-us",
-    imageSmoothing: true,
     maxZoom: 21,
     reprojectionErrorThreshold: 0.5,
     tileLoadFunction: (imageTile: any, src: any) => {

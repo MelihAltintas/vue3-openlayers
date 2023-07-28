@@ -27,7 +27,6 @@ const props = withDefaults(defineProps<Options>(), {
   version: "1.0.0",
   culture: "en-us",
   dimensions: () => ({}),
-  imageSmoothing: true,
   maxZoom: 21,
   tileLoadFunction: (imageTile, src) => {
     ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;

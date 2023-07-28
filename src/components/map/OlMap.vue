@@ -99,10 +99,6 @@ onUnmounted(() => {
 
 provide("map", map);
 
-const focus = () => {
-  // @ts-ignore
-  return map?.focus();
-};
 const forEachFeatureAtPixel = (
   pixel: Pixel,
   callback: (
@@ -112,23 +108,8 @@ const forEachFeatureAtPixel = (
   ) => unknown,
   options?: AtPixelOptions | undefined
 ) => map?.forEachFeatureAtPixel(pixel, callback, options);
-const forEachLayerAtPixel = (
-  pixel: Pixel,
-  callback: (
-    arg0: FeatureLike,
-    arg1: Layer<Source, LayerRenderer<any>>,
-    arg2: SimpleGeometry
-  ) => unknown,
-  layerFilter?: AtPixelOptions | undefined
-) => {
-  // @ts-ignore
-  return map?.forEachLayerAtPixel(pixel, callback, layerFilter);
-};
 const getCoordinateFromPixel = (pixel: Coordinate) =>
   map?.getCoordinateFromPixel(pixel);
-const refresh = () => {
-  return map?.refresh();
-};
 const render = () => map?.render();
 const updateSize = () => map?.updateSize();
 
@@ -147,11 +128,9 @@ map.on("postcompose", (event) => emit("postcompose", event));
 defineExpose({
   map,
   mapRef,
-  focus,
   forEachFeatureAtPixel,
   forEachLayerAtPixel,
   getCoordinateFromPixel,
-  refresh,
   render,
   updateSize,
 });

@@ -20,7 +20,6 @@ defineOptions({
 const props = withDefaults(defineProps<Options>(), {
   crossOrigin: "anonymous",
   interpolate: true,
-  imageSmoothing: true,
   maxZoom: 19,
   opaque: true,
   reprojectionErrorThreshold: 0.5,

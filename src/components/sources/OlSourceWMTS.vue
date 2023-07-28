@@ -36,7 +36,6 @@ const props = withDefaults(
   {
     attributionsCollapsible: true,
     tileZoomLevel: 30,
-    imageSmoothing: true,
     projection: "EPSG:3857",
     reprojectionErrorThreshold: 0.5,
     tilePixelRatio: 1,

@@ -14,11 +14,9 @@ const props = withDefaults(
     projection?: string;
     render?: (...args: unknown[]) => unknown;
     target?: HTMLElement;
-    undefinedHTML?: string;
   }>(),
   {
     className: "ol-mouse-position",
-    undefinedHTML: "&#160;",
   }
 );
 

@@ -31,7 +31,6 @@ const props = withDefaults(
     format: "image/png",
     version: "1.3.0",
     serverType: "mapserver",
-    imageSmoothing: true,
     styles: "",
     ratio: 1,
   }
