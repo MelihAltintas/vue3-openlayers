@@ -140,7 +140,11 @@
 
     <ol-printdialog-control v-if="showPrintDialogControl" />
 
-    <ol-toggle-control v-if="showToggleControl" />
+    <ol-toggle-control
+      v-if="showToggleControl"
+      :html="'log'"
+      :onToggle="($event) => console.log('ol-toggle-control: onToggle', $event)"
+    />
 
     <ol-videorecorder-control
       v-if="showVideoRecorderControl"
