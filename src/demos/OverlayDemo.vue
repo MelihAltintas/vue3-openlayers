@@ -3,7 +3,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -12,13 +11,14 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overlay :position="[40, 40]">
-      <template v-slot="slotProps">
-        <div class="overlay-content">
-          Hello world!<br />
-          Position: {{ slotProps.position }}
-        </div>
-      </template>
+    <ol-overlay
+      :position="[item + 37.9, 40.1]"
+      v-for="item in list"
+      :key="item"
+    >
+      <div class="overlay-content">
+        {{ item }}
+      </div>
     </ol-overlay>
   </ol-map>
 </template>
@@ -29,7 +29,7 @@ import { ref } from "vue";
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
-const rotation = ref(0);
+const list = ref([2, 1, 3, 5, -1]);
 </script>
 
 <style>
