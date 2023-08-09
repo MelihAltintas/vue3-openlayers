@@ -63,6 +63,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://vue3openlayers.netlify.app/componentsguide/layers/svglayer/</loc>
+  <lastmod>2023-08-09T21:30:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://vue3openlayers.netlify.app/componentsguide/layers/heatmaplayer/</loc>
   <lastmod>2023-02-14T21:30:20+00:00</lastmod>
   <priority>0.80</priority>

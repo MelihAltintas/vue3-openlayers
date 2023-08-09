@@ -4,6 +4,7 @@ import OlHeatmapLayer from "./OlHeatmapLayer.vue";
 import OlImageLayer from "./OlImageLayer.vue";
 import OlLayerGroup from "./OlLayerGroup.vue";
 import OlTileLayer from "./OlTileLayer.vue";
+import OlSvgLayer from "./OlSvgLayer.vue";
 import OlVectorLayer from "./OlVectorLayer.vue";
 import OlVectorTileLayer from "./OlVectorTileLayer.vue";
 import OlVectorImageLayer from "./OlVectorImageLayer.vue";
@@ -21,6 +22,7 @@ function install(app: App) {
   app.component("ol-image-layer", OlImageLayer);
   app.component("ol-layer-group", OlLayerGroup);
   app.component("ol-tile-layer", OlTileLayer);
+  app.component("ol-svg-layer", OlSvgLayer);
   app.component("ol-vector-image-layer", OlVectorImageLayer);
   app.component("ol-vector-layer", OlVectorLayer);
   app.component("ol-vector-tile-layer", OlVectorTileLayer);
@@ -37,6 +39,7 @@ export {
   OlImageLayer,
   OlLayerGroup,
   OlTileLayer,
+  OlSvgLayer,
   OlVectorImageLayer,
   OlVectorLayer,
   OlWebglPointsLayer,

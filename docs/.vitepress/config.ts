@@ -84,6 +84,10 @@ export default defineConfig({
             link: "/componentsguide/layers/imagelayer/",
           },
           {
+            text: "ol-svg-layer",
+            link: "/componentsguide/layers/svglayer/",
+          },
+          {
             text: "ol-tile-layer",
             link: "/componentsguide/layers/tilelayer/",
           },
