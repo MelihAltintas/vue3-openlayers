@@ -129,7 +129,6 @@ defineExpose({
   map,
   mapRef,
   forEachFeatureAtPixel,
-  forEachLayerAtPixel,
   getCoordinateFromPixel,
   render,
   updateSize,
