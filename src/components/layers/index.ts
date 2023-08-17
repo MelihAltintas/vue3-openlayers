@@ -39,6 +39,7 @@ export {
   OlTileLayer,
   OlVectorImageLayer,
   OlVectorLayer,
+  OlVectorTileLayer,
   OlWebglPointsLayer,
   OlWebglTileLayer,
 };
