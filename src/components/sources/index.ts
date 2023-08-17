@@ -53,6 +53,7 @@ export {
   OlSourceTileJSON,
   OlSourceTileWMS,
   OlSourceVector,
+  OlSourceVectorTile,
   OlSourceWebglPoints,
   OlSourceXYZ,
   OlSourceWMTS,
