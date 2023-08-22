@@ -11,7 +11,6 @@ import {
   onUnmounted,
   onMounted,
   watch,
-  computed,
   type Ref,
   ref,
 } from "vue";
@@ -29,7 +28,8 @@ import { composeCssTransform } from "ol/transform.js";
 const props = withDefaults(
   defineProps<
     LayersCommonProps & {
-      preload?: number;
+      width?: number;
+      height?: number;
     }
   >(),
   {
@@ -47,35 +47,55 @@ const svgContainer = ref<HTMLElement | null>(null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const svgResolution = computed(() => 360 / props.width);
-
-const svgLayer = computed(
-  () =>
-    new Layer({
-      ...properties,
-      render: function (frameState) {
-        const scale = svgResolution.value / frameState.viewState.resolution;
-        const center = frameState.viewState.center;
-        const size = frameState.size;
-        const cssTransform = composeCssTransform(
-          size[0] / 2,
-          size[1] / 2,
-          scale,
-          scale,
-          frameState.viewState.rotation,
-          -center[0] / svgResolution.value - props.width / 2,
-          center[1] / svgResolution.value - props.height / 2
-        );
-        if (svgContainer.value) {
-          svgContainer.value.style.transform = cssTransform;
-          svgContainer.value.style.opacity = `${this.opacity}`;
-        }
-        return svgContainer.value!;
-      },
-    })
+watch(
+  () => properties.width,
+  () => {
+    removeSvgLayer();
+    applySvgLayer();
+  }
 );
 
+const svgLayer = ref();
+function createSvgLayer() {
+  return new Layer({
+    ...properties,
+    render: function (frameState) {
+      const svgResolutionX = 40050000 / props.width;
+      const svgResolutionY = 43650000 / props.width;
+      const scaleX = svgResolutionX / frameState.viewState.resolution;
+      const scaleY = svgResolutionY / frameState.viewState.resolution;
+      const center = frameState.viewState.center;
+      const size = frameState.size;
+
+      const cssTransform = composeCssTransform(
+        size[0] / 2,
+        size[1] / 2,
+        scaleX,
+        scaleY,
+        frameState.viewState.rotation,
+        -center[0] / svgResolutionX - properties.width! / 2,
+        center[1] / svgResolutionY - properties.height! / 2
+      );
+
+      if (svgContainer.value) {
+        svgContainer.value.style.width = properties.width! + "px";
+        svgContainer.value.style.height = properties.height! + "px";
+        svgContainer.value.style.transformOrigin = "top left";
+        svgContainer.value.className = "svg-layer";
+        svgContainer.value.style.transform = cssTransform;
+        svgContainer.value.style.opacity = `0.6`; // `${this.opacity}`;
+
+        console.log("render", {
+          cssTransform,
+        });
+      }
+      return svgContainer.value!;
+    },
+  });
+}
+
 const applySvgLayer = () => {
+  svgLayer.value = createSvgLayer();
   if (layerGroup) {
     const layerCollection = layerGroup.getLayers();
     layerCollection.push(svgLayer.value);
@@ -89,7 +109,7 @@ const applySvgLayer = () => {
   }
 };
 
-const removeTileLayer = () => {
+const removeSvgLayer = () => {
   if (overViewMap?.value) {
     overViewMap.value?.getOverviewMap().removeLayer(svgLayer.value);
     overViewMap.value?.changed();
@@ -100,7 +120,7 @@ const removeTileLayer = () => {
 
 if (overViewMap?.value) {
   watch(overViewMap, () => {
-    removeTileLayer();
+    removeSvgLayer();
     applySvgLayer();
   });
 }
@@ -110,7 +130,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  removeTileLayer();
+  removeSvgLayer();
 });
 
 provide("svgLayer", svgLayer);
