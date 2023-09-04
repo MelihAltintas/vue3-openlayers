@@ -60,6 +60,8 @@
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "release": "release-it",
+    "release:pre": "npm run release -- --preRelease",
+    "release:rc": "npm run release -- --preRelease",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
