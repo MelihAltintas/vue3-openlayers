@@ -1,6 +1,6 @@
 {
   "git": {
-    "requireBranch": "main",
+    "requireBranch": ["main", "release/*"],
     "commitMessage": "chore: release v${version}"
   },
   "hooks": {
