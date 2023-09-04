@@ -431,30 +431,19 @@ const zones = [
 ];
 
 const webglPointsStyle = {
-  symbol: {
-    symbolType: "circle",
-    size: [
-      "interpolate",
-      ["linear"],
-      ["get", "population"],
-      40000,
-      8,
-      2000000,
-      28,
-    ],
-    color: "#ffed02",
-    rotateWithView: false,
-    offset: [0, 0],
-    opacity: [
-      "interpolate",
-      ["linear"],
-      ["get", "population"],
-      40000,
-      0.6,
-      2000000,
-      0.92,
-    ],
-  },
+  "circle-radius": 6,
+  "circle-fill-color": "yellow",
+  "circle-stroke-width": 2,
+  "circle-stroke-color": "darkblue",
+  "circle-opacity": [
+    "interpolate",
+    ["linear"],
+    ["get", "population"],
+    40000,
+    0.6,
+    2000000,
+    0.92,
+  ],
 };
 </script>
 
