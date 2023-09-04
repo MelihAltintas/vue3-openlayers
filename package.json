@@ -66,12 +66,16 @@
   "dependencies": {
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
-    "proj4": "^2.9.0"
+    "proj4": "^2.9.0",
+    "ol": "^8.0.0",
+    "ol-contextmenu": "^5.2.1",
+    "ol-ext": "^4.0.11",
+    "vue": "^3.0.0"
   },
   "peerDependencies": {
-    "ol": "^7.4.0",
+    "ol": "^8.0.0",
     "ol-contextmenu": "^5.2.1",
-    "ol-ext": "^4.0.8",
+    "ol-ext": "^4.0.11",
     "vue": "^3.0.0"
   },
   "browserslist": [
