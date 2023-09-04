@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import Stamen, { type Options } from "ol/source/Stamen";
+import StadiaMaps, { type Options } from "ol/source/StadiaMaps";
 import { inject, onMounted, onUnmounted, watch, type Ref, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type TileLayer from "ol/layer/Tile";
@@ -27,10 +27,12 @@ const props = withDefaults(defineProps<Options>(), {
   wrapX: true,
 });
 
-const layer = inject<Ref<TileLayer<Stamen>> | null>("tileLayer");
+// NOTE: Layers from Stadia Maps do not require an API key for localhost development or most production
+// web deployments. See https://docs.stadiamaps.com/authentication/ for details.
+const layer = inject<Ref<TileLayer<StadiaMaps>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
 
-const source = computed(() => new Stamen(properties));
+const source = computed(() => new StadiaMaps(properties));
 
 useOpenLayersEvents(source, [
   ...TILE_SOURCE_EVENTS,
