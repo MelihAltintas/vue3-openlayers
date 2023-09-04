@@ -6,10 +6,10 @@
   >
     <ol-view ref="view" :center="center" :zoom="zoom" />
     <ol-tile-layer>
-      <ol-source-stamen layer="watercolor" />
+      <ol-source-stadia-maps layer="stamen_watercolor" />
     </ol-tile-layer>
     <ol-tile-layer>
-      <ol-source-stamen layer="terrain-labels" />
+      <ol-source-stadia-maps layer="stamen_terrain_labels" />
     </ol-tile-layer>
   </ol-map>
 </template>

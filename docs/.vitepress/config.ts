@@ -134,8 +134,8 @@ export default defineConfig({
             link: "/componentsguide/sources/osm/",
           },
           {
-            text: "ol-source-stamen",
-            link: "/componentsguide/sources/stamen/",
+            text: "ol-source-stadia-maps",
+            link: "/componentsguide/sources/stadiamaps/",
           },
           {
             text: "ol-source-tianditu",
