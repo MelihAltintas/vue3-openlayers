@@ -20,82 +20,13 @@ import IconDemo from "@demos/IconDemo.vue"
 
 :::
 
-## Properties
+### Props from OpenLayers
 
-### anchor
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_style_Icon-Icon.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-- **Type**: `Array`
+### Deviating Properties
 
-### anchorOrigin
-
-- **Type**: `String`
-- **Default**: `top-left`
-
-### anchorXUnits
-
-- **Type**: `String`
-- **Default**: `fraction`
-
-### anchorYUnits
-
-- **Type**: `String`
-- **Default**: `fraction`
-
-### color
-
-- **Type**: `String`
-
-### crossOrigin
-
-- **Type**: `String`
-
-### img
-
-- **Type**: `[HTMLImageElement, HTMLCanvasElement]`
-
-### offset
-
-- **Type**: `Array`
-- **Default**: `() => [0, 0]`
-
-### displacement
-
-- **Type**: `Array`
-- **Default**: `() => [0, 0]`
-
-### offsetOrigin
-
-- **Type**: `String`
-- **Default**: `top-left`
-
-### opacity
-
-- **Type**: `Number`
-- **Default**: `1`
-
-### scale
-
-- **Type**: `Number`
-- **Default**: `1`
-
-### rotateWithView
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### rotation
-
-- **Type**: `Number`
-- **Default**: `0`
-
-### size
-
-- **Type**: `Array`
-
-  ### imgSize
-
-- **Type**: `Array`
-
-### src
-
-- **Type**: `String`
+None.
