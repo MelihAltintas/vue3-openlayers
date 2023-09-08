@@ -1,3 +1,26 @@
+# [2.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v2.0.0-1) (2023-09-08)
+
+### Bug Fixes
+
+- correctly remove controls onUnmounted ([3756fbb](https://github.com/MelihAltintas/vue3-openlayers/commit/3756fbb7175889ac1d505cfa65010e81aea46d26)), closes [#246](https://github.com/MelihAltintas/vue3-openlayers/issues/246)
+
+### chore
+
+- update dependency to openlayers 8.0.0 ([cdd9267](https://github.com/MelihAltintas/vue3-openlayers/commit/cdd9267b93ea00a2d6dd8c2d33ce68ce043ea374))
+
+### Code Refactoring
+
+- **ol-source-stadia-maps:** replace old ol-stamen component ([3d303e2](https://github.com/MelihAltintas/vue3-openlayers/commit/3d303e2ca7275019590809769f837c2cae53600b))
+- **ol-style-icon:** pass-through properties from OpenLayers ([aba89f3](https://github.com/MelihAltintas/vue3-openlayers/commit/aba89f3fff6970414cbd86d06f6017a6418b0fb0))
+- **ol-webgl-points-layer:** use new flat style format ([8c9dc48](https://github.com/MelihAltintas/vue3-openlayers/commit/8c9dc48da2d3ff9eed8347a517e6d6946fc53765))
+
+### BREAKING CHANGES
+
+- **ol-webgl-points-layer:** use the [new introduced flat format from OpenLayers 8](https://github.com/openlayers/openlayers/blob/v8.0.0/changelog/upgrade-notes.md#change-of-the-symbol-style-format-in-ollayerwebglpointslayer)
+- **ol-style-icon:** properties are passed-through from OpenLayers directly and property `imgSize` has been removed since it's [removed from OpenLayers 8](https://github.com/openlayers/openlayers/blob/v8.0.0/changelog/upgrade-notes.md#removal-of-olstyleicons-imgsize-property)
+- **ol-source-stadia-maps:** The new component `ol-source-stadia-maps` replaced the old `ol-source-stamen` component. Please checkout the official [OpenLayers 8 release notes](https://github.com/openlayers/openlayers/blob/v8.0.0/changelog/upgrade-notes.md#new-stadiamaps-source-replaces-the-stamen-source) for further information.
+- You need to have a peerDependency of `ol` >= `8.0.0` installed
+
 # [2.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v2.0.0-0) (2023-09-04)
 
 ### chore
