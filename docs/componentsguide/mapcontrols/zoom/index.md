@@ -8,56 +8,49 @@ See [Demo page for all Map Controls](../index.md)
 
 ## Properties
 
-### className
+### Props from OpenLayers
 
-- **Type**: `String`
-- **Default**: `ol-zoom`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### duration
+### Deviating Properties
 
-- **Type**: `Number`
-- **Default**: `250`
+None.
 
-### zoomInClassName
+## Events
 
-- **Type**: `String`
-- **Default**: `ol-zoom-in`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html) to see the available events tht will be fired.
 
-### zoomOutClassName
+```html
+<ol-zoom-control @error="handleEvent" />
+```
 
-- **Type**: `String`
-- **Default**: `ol-zoom-out`
+## Methods
 
-### zoomInLabel
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_ImageStatic-Static.html) to see the available methods.
 
-- **Type**: `String`
-- **Default**: `+`
+To access the source, you can use a `ref()` as shown below:
 
-### zoomOutLabel
+```vue
+<template>
+  <!-- ... -->
+  <ol-zoom-control ref="sourceRef" />
+  <!-- ... -->
+</template>
 
-- **Type**: `String`
-- **Default**: `-`
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type Zoom from "ol/control/Zoom";
 
-### zoomInTipLabel
+const sourceRef = ref<{ source: Zoom }>(null);
 
-- **Type**: `String`
-- **Default**: `Zoom in`
-
-### zoomInTipLabel
-
-- **Type**: `String`
-- **Default**: `Zoom in`
-
-### zoomOutTipLabel
-
-- **Type**: `String`
-- **Default**: `Zoom Out`
-
-### delta
-
-- **Type**: `Number`
-- **Default**: `1`
-
-### target
-
-- **Type**: `HTMLElement`
+onMounted(() => {
+  const zoom: Zoom = sourceRef.value?.control;
+  // call your method on `control`
+});
+</script>
+```

@@ -137,7 +137,14 @@ export default function useControl<T extends InnerControlType>(
 
   onUnmounted(() => {
     if (parent && parent instanceof Map) {
-      parent.removeControl(control.value);
+      parent
+        ?.getControls()
+        .getArray()
+        .forEach((c) => {
+          if (c instanceof ControlType) {
+            parent.removeControl(c);
+          }
+        });
     } else {
       // ol-ext controls
       if (parent?.controls_) {
