@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v1.2.2) (2023-09-08)
+
+### Bug Fixes
+
+- correctly remove controls onUnmounted ([3756fbb](https://github.com/MelihAltintas/vue3-openlayers/commit/3756fbb7175889ac1d505cfa65010e81aea46d26)), closes [#246](https://github.com/MelihAltintas/vue3-openlayers/issues/246)
+
 ## [1.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.0...v1.2.1) (2023-09-01)
 
 ### Bug Fixes
