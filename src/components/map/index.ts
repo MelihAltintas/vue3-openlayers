@@ -6,12 +6,7 @@ import OlOverlay from "./OlOverlay.vue";
 import OlProjectionRegister from "./OlProjectionRegister.vue";
 import OlView from "./OlView.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-feature", OlFeature);
   app.component("ol-geolocation", OlGeoLocation);
   app.component("ol-map", OlMap);
