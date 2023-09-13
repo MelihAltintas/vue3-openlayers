@@ -12,7 +12,7 @@ import type { Options as AttributionOptions } from "ol/control/Attribution";
 import type Control from "ol/control/Control";
 import type ContextMenu from "ol-contextmenu";
 import type { Options as OlContextmenuOptions } from "ol-contextmenu/dist/types";
-import type Bar from "ol-ext/control/Bar";
+import Bar from "ol-ext/control/Bar";
 import type { Options as BarOptions } from "ol-ext/control/Bar";
 import type Button from "ol-ext/control/Button";
 import type { Options as ButtonOptions } from "ol-ext/control/Button";
@@ -103,15 +103,25 @@ export default function useControl<T extends InnerControlType>(
   control.value.set("order", attrs.order === undefined ? 0 : attrs.order);
 
   watch(control, (newVal, oldVal) => {
-    if (parent && parent instanceof Map) {
-      parent.removeControl(oldVal);
-      parent.addControl(newVal);
+    if (parent) {
+      if (parent instanceof Map) {
+        parent.removeControl(oldVal);
+        parent.addControl(newVal);
+      } else if (parent instanceof Bar) {
+        if (parent?.controls_) {
+          const index = parent?.controls_.findIndex((a) => a === control.value);
+          if (index) {
+            parent?.controls_.splice(index, 1);
+          }
+        }
+        parent.addControl(newVal);
+      }
       map?.changed();
     }
   });
 
   onMounted(() => {
-    if (parent && parent instanceof Map) {
+    if (parent && (parent instanceof Map || parent instanceof Bar)) {
       parent.addControl(control.value);
     }
 
@@ -123,7 +133,7 @@ export default function useControl<T extends InnerControlType>(
 
       parent.controls_ = [];
 
-      if (parent instanceof Map) {
+      if (parent && (parent instanceof Map || parent instanceof Bar)) {
         sortedControls.forEach((c) => {
           parent.addControl(c);
         });
@@ -153,8 +163,8 @@ export default function useControl<T extends InnerControlType>(
           parent?.controls_.splice(index, 1);
         }
       }
-      control.value.dispose();
     }
+    control.value.dispose();
     map?.changed();
   });
 
