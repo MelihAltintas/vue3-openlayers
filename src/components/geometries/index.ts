@@ -7,12 +7,7 @@ import OlGeomMultiPolygon from "./OlGeomMultiPolygon.vue";
 import OlGeomPoint from "./OlGeomPoint.vue";
 import OlGeomPolygon from "./OlGeomPolygon.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-geom-circle", OlGeomCircle);
   app.component("ol-geom-line-string", OlGeomLineString);
   app.component("ol-geom-multi-line-string", OlGeomMultiLineString);
