@@ -15,12 +15,7 @@ import OlSourceWebglPoints from "./OlSourceWebglPoints.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-source-bingmaps", OlSourceBingMaps);
   app.component("ol-source-cluster", OlSourceCluster);
   app.component("ol-source-image-static", OlSourceImageStatic);

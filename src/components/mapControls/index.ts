@@ -19,12 +19,7 @@ import OlZoomControl from "./OlZoomControl.vue";
 import OlZoomSliderControl from "./OlZoomSliderControl.vue";
 import OlZoomToExtentControl from "./OlZoomToExtentControl.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-attribution-control", OlAttributionControl);
   app.component("ol-fullscreen-control", OlFullScreenControl);
   app.component("ol-mouseposition-control", OlMousePositionControl);
