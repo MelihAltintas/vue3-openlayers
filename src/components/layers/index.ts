@@ -10,12 +10,7 @@ import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import OlWebglPointsLayer from "./OlWebglPointsLayer.vue";
 import OlWebglTileLayer from "./OlWebglTileLayer.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-animated-clusterlayer", OlAnimatedClusterLayer);
   app.component("ol-heatmap-layer", OlHeatmapLayer);
   app.component("ol-image-layer", OlImageLayer);

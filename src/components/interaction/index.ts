@@ -8,12 +8,7 @@ import OlModifyInteraction from "./OlModifyInteraction.vue";
 import OlSnapInteraction from "./OlSnapInteraction.vue";
 import OlTransformInteraction from "./OlTransformInteraction.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-interaction-clusterselect", OlClusterSelectInteraction);
   app.component("ol-interaction-dragrotate", OlDragRotateInteraction);
   app.component("ol-interaction-dragrotatezoom", OlDragRotateZoomInteraction);

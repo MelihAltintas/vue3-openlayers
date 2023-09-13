@@ -9,8 +9,6 @@ import OlStyleFlowline from "./OlStyleFlowline.vue";
 import type { FeatureLike } from "ol/Feature";
 import type { Style } from "ol/style";
 
-let installed = false;
-
 type OverrideStyleFunction = (
   feature: FeatureLike,
   currentStyle: Style,
@@ -18,9 +16,6 @@ type OverrideStyleFunction = (
 ) => Style | Style[] | void;
 
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-style", OlStyle);
   app.component("ol-style-circle", OlStyleCircle);
   app.component("ol-style-stroke", OlStyleStroke);

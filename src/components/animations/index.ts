@@ -8,12 +8,7 @@ import OlAnimationSlide from "./OlAnimationSlide.vue";
 import OlAnimationTeleport from "./OlAnimationTeleport.vue";
 import OlAnimationZoom from "./OlAnimationZoom.vue";
 
-let installed = false;
-
 function install(app: App) {
-  if (installed) return;
-  installed = true;
-
   app.component("ol-animation-drop", OLAnimationDrop);
   app.component("ol-animation-fade", OlAnimationFade);
   app.component("ol-animation-feature", OlAnimationFeature);
