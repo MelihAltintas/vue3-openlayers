@@ -146,6 +146,10 @@ export default defineConfig({
             link: "/componentsguide/sources/arcgisrest/",
           },
           {
+            text: "ol-source-tile-debug",
+            link: "/componentsguide/sources/tiledebug/",
+          },
+          {
             text: "ol-source-tile-json",
             link: "/componentsguide/sources/tilejson/",
           },

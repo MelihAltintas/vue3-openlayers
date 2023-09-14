@@ -85,6 +85,7 @@ export default defineConfig({
           "ol/source/ImageWMS": "ImageWMS",
           "ol/source/OSM": "OSM",
           "ol/source/Stamen": "Stamen",
+          "ol/source/TileDebug": "TileDebug",
           "ol/source/WMTS": "WMTSSource",
           "ol/tilegrid/WMTS": "TileGridWMTS",
           "ol/source/TileArcGISRest": "TileArcGISRest",
