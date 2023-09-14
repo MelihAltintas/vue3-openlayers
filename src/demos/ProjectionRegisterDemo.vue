@@ -20,6 +20,9 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
+    <ol-tile-layer>
+      <ol-source-tile-debug />
+    </ol-tile-layer>
   </ol-map>
 </template>
 
