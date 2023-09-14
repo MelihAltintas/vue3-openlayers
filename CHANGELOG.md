@@ -1,18 +1,20 @@
-# [2.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v2.0.0-1) (2023-09-08)
+# [2.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0-1...v2.0.0) (2023-09-14)
 
 ### Bug Fixes
 
+- allow multiple plugin installation ([#247](https://github.com/MelihAltintas/vue3-openlayers/issues/247)) ([9a3b133](https://github.com/MelihAltintas/vue3-openlayers/commit/9a3b133de757afbd5d8ea6a028f19aa30f91d8ef))
+- allow using controls as childs of bar ([#248](https://github.com/MelihAltintas/vue3-openlayers/issues/248)) ([8d59c76](https://github.com/MelihAltintas/vue3-openlayers/commit/8d59c7620320adcd146ff5e21aee2d60811e513c))
 - correctly remove controls onUnmounted ([3756fbb](https://github.com/MelihAltintas/vue3-openlayers/commit/3756fbb7175889ac1d505cfa65010e81aea46d26)), closes [#246](https://github.com/MelihAltintas/vue3-openlayers/issues/246)
 
 ### chore
 
-- update dependency to openlayers 8.0.0 ([cdd9267](https://github.com/MelihAltintas/vue3-openlayers/commit/cdd9267b93ea00a2d6dd8c2d33ce68ce043ea374))
+- update dependency to openlayers 8.0.0 ([a76dd57](https://github.com/MelihAltintas/vue3-openlayers/commit/a76dd57acc12de72d7a674c207ca1fd89f30a6cd))
 
 ### Code Refactoring
 
-- **ol-source-stadia-maps:** replace old ol-stamen component ([3d303e2](https://github.com/MelihAltintas/vue3-openlayers/commit/3d303e2ca7275019590809769f837c2cae53600b))
-- **ol-style-icon:** pass-through properties from OpenLayers ([aba89f3](https://github.com/MelihAltintas/vue3-openlayers/commit/aba89f3fff6970414cbd86d06f6017a6418b0fb0))
-- **ol-webgl-points-layer:** use new flat style format ([8c9dc48](https://github.com/MelihAltintas/vue3-openlayers/commit/8c9dc48da2d3ff9eed8347a517e6d6946fc53765))
+- **ol-source-stadia-maps:** replace old ol-stamen component ([ff9e373](https://github.com/MelihAltintas/vue3-openlayers/commit/ff9e373b320186e4a3df7eda797bdfeba3d22bc2))
+- **ol-style-icon:** pass-through properties from OpenLayers ([84232e9](https://github.com/MelihAltintas/vue3-openlayers/commit/84232e92ee42d586b0aad8ac99817f7c6a210cc7))
+- **ol-webgl-points-layer:** use new flat style format ([02b8d1f](https://github.com/MelihAltintas/vue3-openlayers/commit/02b8d1f72cb7a31c1b07b413ff4eb0e7c0b6d364))
 
 ### BREAKING CHANGES
 
@@ -20,6 +22,27 @@
 - **ol-style-icon:** properties are passed-through from OpenLayers directly and property `imgSize` has been removed since it's [removed from OpenLayers 8](https://github.com/openlayers/openlayers/blob/v8.0.0/changelog/upgrade-notes.md#removal-of-olstyleicons-imgsize-property)
 - **ol-source-stadia-maps:** The new component `ol-source-stadia-maps` replaced the old `ol-source-stamen` component. Please checkout the official [OpenLayers 8 release notes](https://github.com/openlayers/openlayers/blob/v8.0.0/changelog/upgrade-notes.md#new-stadiamaps-source-replaces-the-stamen-source) for further information.
 - You need to have a peerDependency of `ol` >= `8.0.0` installed
+
+### Features
+
+- **ol-source-tile-debug:** provide new component for TileDebug ([b009f7b](https://github.com/MelihAltintas/vue3-openlayers/commit/b009f7bc923782db2d3a6dd836dab4a762d4f78c)), closes [#250](https://github.com/MelihAltintas/vue3-openlayers/issues/250)
+
+# [1.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.2...v1.3.0) (2023-09-14)
+
+### Bug Fixes
+
+- allow multiple plugin installation ([#247](https://github.com/MelihAltintas/vue3-openlayers/issues/247)) ([edbbdc3](https://github.com/MelihAltintas/vue3-openlayers/commit/edbbdc38dfb606d6c77a088f231585cec270a700))
+- allow using controls as childs of bar ([#248](https://github.com/MelihAltintas/vue3-openlayers/issues/248)) ([9bc69cd](https://github.com/MelihAltintas/vue3-openlayers/commit/9bc69cd369d29dcf01dd8754b7099b882091f087))
+
+### Features
+
+- **ol-source-tile-debug:** provide new component for TileDebug ([943cc29](https://github.com/MelihAltintas/vue3-openlayers/commit/943cc2965e2d731b3ac7bed3f4751904ce471a3f)), closes [#250](https://github.com/MelihAltintas/vue3-openlayers/issues/250)
+
+# [2.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v2.0.0-1) (2023-09-08)
+
+### Bug Fixes
+
+- correctly remove controls onUnmounted ([3756fbb](https://github.com/MelihAltintas/vue3-openlayers/commit/3756fbb7175889ac1d505cfa65010e81aea46d26)), closes [#246](https://github.com/MelihAltintas/vue3-openlayers/issues/246)
 
 # [2.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v1.2.1...v2.0.0-0) (2023-09-04)
 
