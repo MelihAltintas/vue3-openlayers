@@ -5,8 +5,8 @@
 import type { Extent } from "ol/extent";
 import { inject, watch, onMounted } from "vue";
 import Projection from "ol/proj/Projection";
-import type { AnimationOptions, FitOptions } from "ol/View";
-import View, { type ViewOptions } from "ol/View";
+import type { AnimationOptions, FitOptions, ViewOptions } from "ol/View";
+import View from "ol/View";
 import type Map from "ol/Map";
 import type { Coordinate } from "ol/coordinate";
 import type { Size } from "ol/size";
@@ -15,6 +15,7 @@ import type BaseEvent from "ol/events/Event";
 import type { SimpleGeometry } from "ol/geom";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -34,18 +35,15 @@ const createProp = () => {
 };
 const view = new View(createProp());
 
+useOpenLayersEvents(view, [
+  "change:center",
+  "change:resolution",
+  "change:rotation",
+]);
+
 onMounted(() => {
   map?.setView(view);
 });
-
-view.on("change:center", () => {
-  emit("centerChanged", getCenter());
-  emit("zoomChanged", getZoom());
-});
-
-view.on("change:resolution", () => emit("resolutionChanged", getResolution()));
-
-view.on("change:rotation", () => emit("rotationChanged", getRotation()));
 
 watch(properties, () => {
   const pr = createProp();
