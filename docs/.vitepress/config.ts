@@ -334,10 +334,6 @@ export default defineConfig({
         collapsed: true,
         items: [
           {
-            text: "Demo",
-            link: "/componentsguide/mapcontrols/",
-          },
-          {
             text: "ol-attribution-control",
             link: "/componentsguide/mapcontrols/attribution/",
           },
