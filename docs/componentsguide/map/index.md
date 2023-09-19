@@ -38,34 +38,29 @@ None.
 
 ## Events
 
-Pointer events that emits [`ol.MapBrowserEvent`](http://openlayers.org/en/latest/apidoc/module-ol_MapBrowserEvent-MapBrowserEvent.html)
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html) to see the available events tht will be fired.
 
-- `click`
-- `dblclick`
-- `singleclick`
-- `pointerdrag`
-- `pointermove`
-
-Other events that emit [`ol.MapEvent`](http://openlayers.org/en/latest/apidoc/module-ol_MapEvent-MapEvent.html)
-
-- `movestart`
-- `moveend`
-- `postrender`
-- `precompose`
-- `postcompose`
+```html
+<ol-map @error="handleEvent">
+  <!-- ... -->
+</ol-map>
+```
 
 ## Methods
 
 You have access to all Methods from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map.html) to see the available methods.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html) to see the available methods.
 
 To access the source, you can use a `ref()` as shown below:
 
 ```vue
 <template>
-  <ol-map ref="mapRef">
+  <!-- ... -->
+  <ol-map ref="mapRef" @error="handleEvent">
     <!-- ... -->
   </ol-map>
+  <!-- ... -->
 </template>
 
 <script setup lang="ts">
@@ -77,55 +72,6 @@ const mapRef = ref<{ map: Map }>(null);
 onMounted(() => {
   const map: Map = mapRef.value?.map;
   // call your method on `map`
-  const size = map.getSize();
 });
 </script>
 ```
-
-Furthermore the following methods are directly exposed and can be use as describe above, using a `ref=""`.
-
-### focus()
-
-Triggers focus on map container.
-
-### forEachFeatureAtPixel(pixel, callback, options = {})
-
-- **Arguments**:
-  - `pixel {number[]}`
-  - `callback {function(ol.Feature, ?ol.layer.Layer): *}`
-    Feature callback. The callback will be called with two arguments: OpenLayers `feature`
-    at the pixel and `layer` of the feature (will be null for unmanaged layers).
-    To stop detection, callback functions can return a truthy value.
-  - `[options] {Object | undefined}`
-    - `layerFilter {function(ol.layer.Layer): boolean}` Layer filter function.
-    - `hitTolerance {number | undefined}` Hit-detection tolerance in pixels.
-      Default is `0`.
-- **Returns**: `*` Truthy value returned from the callback.
-
-Detect features that intersect a pixel on the viewport, and execute a callback
-with each intersecting feature. Layers included in the detection can be configured
-through the `layerFilter` option in `options`.
-
-### getCoordinateFromPixel(pixel)
-
-- **Arguments**:
-  - `pixel {number[]}`
-- **Returns**: `number[]` Coordinates of the pixel in map view projection.
-
-Get the coordinate for a given pixel.
-
-### refresh()
-
-- **Returns**: `{Promise<void>}`
-
-Updates map size and re-renders map.
-
-### render()
-
-- **Returns**: `{Promise<void>}`
-
-Request a map rendering (at the next animation frame).
-
-### updateSize()
-
-Updates map size.

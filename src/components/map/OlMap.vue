@@ -20,6 +20,10 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 const props = defineProps<MapOptions>();
 
 const emit = defineEmits([
+  "change:layerGroup",
+  "change:size",
+  "change:target",
+  "change:view",
   "click",
   "dblclick",
   "singleclick",
@@ -30,6 +34,7 @@ const emit = defineEmits([
   "postrender",
   "precompose",
   "postcompose",
+  "rendercomplete",
 ]);
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -67,16 +72,19 @@ const render = () => map?.render();
 const updateSize = () => map?.updateSize();
 
 map.on("click", (event) => emit("click", event));
+map.on("change:size", (event) => emit("change:size", event));
+map.on("change:target", (event) => emit("change:target", event));
+map.on("change:view", (event) => emit("change:view", event));
 map.on("dblclick", (event) => emit("dblclick", event));
 map.on("singleclick", (event) => emit("singleclick", event));
 map.on("pointerdrag", (event) => emit("pointerdrag", event));
 map.on("pointermove", (event) => emit("pointermove", event));
-
 map.on("movestart", (event) => emit("movestart", event));
 map.on("moveend", (event) => emit("moveend", event));
 map.on("postrender", (event) => emit("postrender", event));
 map.on("precompose", (event) => emit("precompose", event));
 map.on("postcompose", (event) => emit("postcompose", event));
+map.on("rendercomplete", (event) => emit("rendercomplete", event));
 
 defineExpose({
   map,
