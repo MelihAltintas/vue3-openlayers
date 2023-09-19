@@ -7,10 +7,7 @@
 <script setup lang="ts">
 import { ref, provide, onMounted, onUnmounted, watch } from "vue";
 import type { AtPixelOptions } from "ol/Map";
-import Map from "ol/Map";
-import { defaults } from "ol/interaction/defaults";
-import type Collection from "ol/Collection";
-import type Control from "ol/control/Control";
+import Map, { type MapOptions } from "ol/Map";
 import type { FeatureLike } from "ol/Feature";
 import type { SimpleGeometry } from "ol/geom";
 import type LayerRenderer from "ol/renderer/Layer";
@@ -20,41 +17,7 @@ import type { Source } from "ol/source";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(
-  defineProps<{
-    controls?: Collection<Control> | Control[] | undefined;
-    pixelRatio?: number | undefined;
-
-    loadTilesWhileAnimating?: boolean;
-    loadTilesWhileInteracting?: boolean;
-    moveTolerance?: number;
-    altShiftDragRotate?: boolean;
-    onFocusOnly?: boolean;
-    doubleClickZoom?: boolean;
-    keyboard?: boolean;
-    mouseWheelZoom?: boolean;
-    shiftDragZoom?: boolean;
-    dragPan?: boolean;
-    pinchRotate?: boolean;
-    pinchZoom?: boolean;
-  }>(),
-  {
-    loadTilesWhileAnimating: false,
-    loadTilesWhileInteracting: false,
-    moveTolerance: 1,
-    pixelRatio: 1,
-    controls: undefined,
-    altShiftDragRotate: true,
-    onFocusOnly: true,
-    doubleClickZoom: true,
-    keyboard: true,
-    mouseWheelZoom: true,
-    shiftDragZoom: true,
-    dragPan: true,
-    pinchRotate: true,
-    pinchZoom: true,
-  }
-);
+const props = defineProps<MapOptions>();
 
 const emit = defineEmits([
   "click",
@@ -72,20 +35,10 @@ const emit = defineEmits([
 const { properties } = usePropsAsObjectProperties(props);
 
 const mapRef = ref<string | HTMLElement | undefined>(undefined);
-let map: Map | undefined = new Map({
-  ...properties,
-  interactions: defaults({
-    ...properties,
-  }),
-});
+let map: Map | undefined = new Map(properties);
 
 watch(properties, () => {
-  map?.setProperties({
-    ...properties,
-    interactions: defaults({
-      ...properties,
-    }),
-  });
+  map?.setProperties(properties);
 });
 
 onMounted(() => {

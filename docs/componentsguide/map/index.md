@@ -25,43 +25,16 @@ See also documentation of `ol-view` component.
 
 :::
 
-## Properties
+### Props from OpenLayers
 
-### loadTilesWhileAnimating
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-- **Type**: `boolean`
-- **Default**: `false`
+### Deviating Properties
 
-When set to `true`, tiles will be loaded during animations.
-
-### loadTilesWhileInteracting
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-When set to `true`, tiles will be loaded while interacting with the map.
-
-### mouseWheelZoom
-
-- **Type**: `boolean`
-- **Default**: `true`
-
-When set to `false`, zooming by using the mouse wheel is disabled.
-
-### moveTolerance
-
-- **Type**: `number`
-- **Default**: `1`
-
-The minimum distance in pixels the cursor must move to be detected as a map move
-event instead of a click. Increasing this value can make it easier to click on the map.
-
-### pixelRatio
-
-- **Type**: `number`
-- **Default**: `1`
-
-The ratio between physical pixels and device-independent pixels (dips) on the device.
+None.
 
 ## Events
 
