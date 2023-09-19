@@ -1,5 +1,6 @@
 <template>
   <button
+    class="btn-default"
     @click="() => (coordinate = coordinate.map((a) => a + 0.01))"
     type="button"
   >

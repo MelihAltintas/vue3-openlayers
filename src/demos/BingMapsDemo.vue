@@ -1,11 +1,9 @@
 <template>
-  <select v-model="selected">
+  <select v-model="selected" class="select-default">
     <option value="AerialWithLabels">AerialWithLabels</option>
     <option value="RoadOnDemand">RoadOnDemand</option>
     <option value="CanvasDark">CanvasDark</option>
   </select>
-  {{ selected }}
-
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"

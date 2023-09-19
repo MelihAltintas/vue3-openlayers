@@ -1,0 +1,95 @@
+main input:focus-visible,
+main textarea:focus-visible,
+main select:focus-visible,
+main input:focus,
+main textarea:focus,
+main select:focus {
+  color: var(--vp-c-text-1);
+  transition: color 0.25s;
+}
+
+main button.btn-default,
+main select.select-default {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--vp-c-text-2);
+  transition: color 0.5s;
+  border: 1px solid var(--vp-c-border);
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin: 0 1rem 0.5rem 0;
+}
+
+main select.select-default {
+  padding: 6px 26px 6px 12px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' viewBox='0 0 24 24' class='icon'><path d='M9,19c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l5.3-5.3L8.3,6.7c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l6,6c0.4,0.4,0.4,1,0,1.4l-6,6C9.5,18.9,9.3,19,9,19z'></path></svg>");
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: 95%;
+}
+
+main button.btn-default:hover,
+main select.select-default:hover {
+  color: var(--vp-c-text-1);
+  transition: color 0.25s;
+}
+
+main button.btn-default:focus:not(:focus-visible),
+main select.select-default:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+main form {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+main form fieldset {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border: none;
+}
+
+main input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+main input[type="checkbox"]::before {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--vp-c-brand);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+main input[type="checkbox"]:checked::before {
+  transform: scale(1);
+  background-color: var(--vp-c-brand);
+}
+
+main ul > li:has(> input[type="checkbox"]) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

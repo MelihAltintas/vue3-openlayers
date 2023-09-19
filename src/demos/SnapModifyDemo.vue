@@ -1,6 +1,7 @@
 <template>
-  <button @click="drawEnabled = !drawEnabled">Draw</button>
-  {{ drawEnabled }}
+  <button class="btn-default" @click="drawEnabled = !drawEnabled">
+    Draw: {{ drawEnabled }}
+  </button>
   <ol-map
     ref="map"
     :load-tiles-while-animating="true"

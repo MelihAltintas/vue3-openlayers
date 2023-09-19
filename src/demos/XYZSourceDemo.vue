@@ -1,13 +1,14 @@
 <template>
-  <select v-model="selected">
-    <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">
-      OSM
-    </option>
-    <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">
-      GOOGLE
-    </option>
-  </select>
-  {{ selected }}
+  <form>
+    <select v-model="selected" class="select-default">
+      <option value="https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png">
+        OSM
+      </option>
+      <option value="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}">
+        GOOGLE
+      </option>
+    </select>
+  </form>
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"

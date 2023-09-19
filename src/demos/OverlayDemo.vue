@@ -1,5 +1,7 @@
 <template>
-  <button type="button" @click="moveToEast">Move to the right</button>
+  <button class="btn-default" type="button" @click="moveToEast">
+    Move to the right
+  </button>
   <ol-map style="height: 400px">
     <ol-view
       ref="view"

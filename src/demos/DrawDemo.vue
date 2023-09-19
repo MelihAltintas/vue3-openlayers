@@ -1,13 +1,19 @@
 <template>
-  <input type="checkbox" id="checkbox" v-model="drawEnable" />
-  <label for="checkbox">Draw Enable</label>
-
-  <select id="type" v-model="drawType">
-    <option value="Point">Point</option>
-    <option value="LineString">LineString</option>
-    <option value="Polygon">Polygon</option>
-    <option value="Circle">Circle</option>
-  </select>
+  <form>
+    <fieldset>
+      <label for="checkbox">Draw Mode Enabled</label>
+      <input type="checkbox" id="checkbox" v-model="drawEnable" />
+    </fieldset>
+    <fieldset>
+      <label for="type">Geometry Type</label>
+      <select id="type" class="select-default" v-model="drawType">
+        <option value="Point">Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+        <option value="Circle">Circle</option>
+      </select>
+    </fieldset>
+  </form>
 
   <ol-map
     :loadTilesWhileAnimating="true"
