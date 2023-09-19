@@ -12,6 +12,12 @@ import type VectorSource from "ol/source/Vector";
 import type Geometry from "ol/geom/Geometry";
 import type Feature from "ol/Feature";
 import type { Condition } from "ol/events/condition";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<{
@@ -28,8 +34,6 @@ const props = withDefaults(
     wrapX: false,
   }
 );
-
-const emit = defineEmits(["modifystart", "modifyend"]);
 
 const map = inject<Map>("map");
 const source = inject<Ref<VectorSource> | null>("vectorSource");
@@ -56,18 +60,12 @@ function createModify() {
     hitDetection: hitDetection.value,
   });
 
-  m.on("modifystart", (event) => {
-    emit("modifystart", event);
-  });
-
-  m.on("modifyend", (event) => {
-    emit("modifyend", event);
-  });
-
   return m;
 }
 
 let modify = createModify();
+
+useOpenLayersEvents(modify, ["modifystart", "modifyend"]);
 
 watch(
   [
