@@ -12,6 +12,12 @@ import type Feature from "ol/Feature";
 import type Geometry from "ol/geom/Geometry";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<{
@@ -27,23 +33,18 @@ const props = withDefaults(
     hitTolerance: 0,
   }
 );
-const emit = defineEmits(["select"]);
 
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
-  const olSelect = new Select({
+  return new Select({
     ...properties,
     style: new Style(),
   });
-
-  olSelect.on("select", (event) => {
-    emit("select", event);
-  });
-
-  return olSelect;
 });
+
+useOpenLayersEvents(select, ["select"]);
 
 watch(select, (newVal, oldVal) => {
   map?.removeInteraction(oldVal);
