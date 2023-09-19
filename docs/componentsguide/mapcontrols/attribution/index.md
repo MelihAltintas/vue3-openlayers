@@ -2,9 +2,22 @@
 
 > A Attribution control for OpenLayers.
 
-## Demo
+<script setup>
+import AttributionControlDemo from "@demos/AttributionControlDemo.vue"
+</script>
+<ClientOnly>
+<AttributionControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+Add context menu to map
+
+::: code-group
+
+<<< ../../../../src/demos/AttributionControlDemo.vue
+
+:::
 
 ## Properties
 
