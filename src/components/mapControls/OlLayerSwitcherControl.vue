@@ -3,7 +3,6 @@
 </template>
 <script setup lang="ts">
 import LayerSwitcher, { type Options } from "ol-ext/control/LayerSwitcher";
-import LayerGroup from "ol/layer/Group";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";

@@ -6,9 +6,7 @@
 
 <script setup lang="ts">
 import { OverviewMap } from "ol/control";
-import type { Ref } from "vue";
-import { provide, inject, onMounted, onUnmounted, useAttrs } from "vue";
-import type Map from "ol/Map";
+import { provide, useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
@@ -37,18 +35,7 @@ const props = withDefaults(
 
 const attrs = useAttrs();
 const { properties } = usePropsAsObjectProperties(props);
-
-const map = inject<Ref<Map> | null>("map");
-
 const { control } = useControl(OverviewMap, properties, attrs);
-
-onMounted(() => {
-  control.value.setMap(map?.value || null);
-});
-
-onUnmounted(() => {
-  control.value.setMap(null);
-});
 
 provide("overviewMap", control);
 

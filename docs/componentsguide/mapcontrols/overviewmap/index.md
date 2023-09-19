@@ -2,9 +2,20 @@
 
 > A Overview Map control for OpenLayers.
 
-## Demo
+<script setup>
+import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
+</script>
+<ClientOnly>
+<OverviewmapControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/OverviewmapControlDemo.vue
+
+:::
 
 ## Properties
 

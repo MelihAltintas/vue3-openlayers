@@ -5,11 +5,6 @@
   border: 2px solid rgba(0, 60, 136, 0.5);
 }
 
-.ol-viewport .ol-overviewmap {
-  left: 3.5em;
-  bottom: 2.5em;
-}
-
 .ol-viewport .ol-mouse-position {
   top: 0;
   left: 50%;
