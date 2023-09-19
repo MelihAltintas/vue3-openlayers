@@ -6,21 +6,24 @@
       :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
-      @zoomChanged="zoomChanged"
-      @centerChanged="centerChanged"
-      @resolutionChanged="resolutionChanged"
-      @rotationChanged="rotationChanged"
+      @change:center="centerChanged"
+      @change:resolution="resolutionChanged"
+      @change:rotation="rotationChanged"
     />
 
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
+
+    <ol-rotate-control></ol-rotate-control>
   </ol-map>
 
-  <div>
-    center : {{ currentCenter }} zoom : {{ currentZoom }} resolution :
-    {{ currentResolution }} rotation : {{ currentRotation }}
-  </div>
+  <ul>
+    <li>center : {{ currentCenter }}</li>
+    <li>resolution : {{ currentResolution }}</li>
+    <li>zoom : {{ currentZoom }}</li>
+    <li>rotation : {{ currentRotation }}</li>
+  </ul>
 </template>
 
 <script setup>
@@ -31,21 +34,19 @@ const projection = ref("EPSG:4326");
 const zoom = ref(8);
 const rotation = ref(0);
 
-const currentCenter = ref(0);
-const currentZoom = ref(0);
+const currentCenter = ref(center.value);
+const currentZoom = ref(zoom.value);
+const currentRotation = ref(rotation.value);
 const currentResolution = ref(0);
-const currentRotation = ref(0);
 
-function zoomChanged(z) {
-  currentZoom.value = z;
+function resolutionChanged(event) {
+  currentResolution.value = event.target.getResolution();
+  currentZoom.value = event.target.getZoom();
 }
-function resolutionChanged(r) {
-  currentResolution.value = r;
+function centerChanged(event) {
+  currentCenter.value = event.target.getCenter();
 }
-function centerChanged(c) {
-  currentCenter.value = c;
-}
-function rotationChanged(r) {
-  currentRotation.value = r;
+function rotationChanged(event) {
+  currentRotation.value = event.target.getRotation();
 }
 </script>
