@@ -51,5 +51,3 @@ defineExpose({
   dragrotate,
 });
 </script>
-
-<style lang=""></style>

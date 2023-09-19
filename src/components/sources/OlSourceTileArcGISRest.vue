@@ -80,5 +80,3 @@ defineExpose({
   source,
 });
 </script>
-
-<style lang=""></style>

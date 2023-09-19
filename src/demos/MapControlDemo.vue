@@ -210,7 +210,7 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 ul.checkbox-list {
   columns: 2;
   padding: 0;

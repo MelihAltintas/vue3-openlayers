@@ -98,5 +98,3 @@ defineExpose({
   setPositioning,
 });
 </script>
-
-<style lang=""></style>

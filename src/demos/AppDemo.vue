@@ -447,9 +447,9 @@ const webglPointsStyle = {
 };
 </script>
 
-<style>
+<style scoped>
 .overlay-content {
-  background: red !important;
+  background: #c84031;
   color: white;
   box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
   padding: 10px 20px;

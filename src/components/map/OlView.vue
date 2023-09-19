@@ -155,5 +155,3 @@ defineExpose({
   setZoom,
 });
 </script>
-
-<style lang=""></style>

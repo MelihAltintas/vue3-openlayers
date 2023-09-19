@@ -65,5 +65,3 @@ defineExpose({
   vectorImageLayer,
 });
 </script>
-
-<style lang=""></style>

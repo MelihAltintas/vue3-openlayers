@@ -52,13 +52,3 @@ const heatmapWeight = function (feature) {
   return magnitude - 5;
 };
 </script>
-
-<style>
-.overlay-content {
-  background: red !important;
-  color: white;
-  box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
-  padding: 10px 20px;
-  font-size: 16px;
-}
-</style>

@@ -38,7 +38,7 @@ function moveToEast() {
 }
 </script>
 
-<style>
+<style scoped>
 .overlay-content {
   background: #efefef;
   box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
