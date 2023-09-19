@@ -2,9 +2,20 @@
 
 > A Fullscreen control for OpenLayers.
 
-## Demo
+<script setup>
+import FullscreenControlDemo from "@demos/FullscreenControlDemo.vue"
+</script>
+<ClientOnly>
+<FullscreenControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/FullscreenControlDemo.vue
+
+:::
 
 ## Properties
 

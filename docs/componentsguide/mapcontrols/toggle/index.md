@@ -2,9 +2,20 @@
 
 > A simple toggle control The control can be created with an interaction to control its activation.
 
-## Demo
+<script setup>
+import ToggleControlDemo from "@demos/ToggleControlDemo.vue"
+</script>
+<ClientOnly>
+<ToggleControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/ToggleControlDemo.vue
+
+:::
 
 ## Properties
 

@@ -2,9 +2,20 @@
 
 > A Zoom Slider control for OpenLayers.
 
-## Demo
+<script setup>
+import ZoomsliderControlDemo from "@demos/ZoomsliderControlDemo.vue"
+</script>
+<ClientOnly>
+<ZoomsliderControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/ZoomsliderControlDemo.vue
+
+:::
 
 ## Properties
 

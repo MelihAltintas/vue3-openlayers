@@ -11,8 +11,6 @@ import AttributionControlDemo from "@demos/AttributionControlDemo.vue"
 
 ## Usage
 
-Add context menu to map
-
 ::: code-group
 
 <<< ../../../../src/demos/AttributionControlDemo.vue

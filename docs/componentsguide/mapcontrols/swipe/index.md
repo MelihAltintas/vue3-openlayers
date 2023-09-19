@@ -2,9 +2,20 @@
 
 > A Swipe control for OpenLayers.
 
-## Demo
+<script setup>
+import SwipeControlDemo from "@demos/SwipeControlDemo.vue"
+</script>
+<ClientOnly>
+<SwipeControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/SwipeControlDemo.vue
+
+:::
 
 ## Properties
 

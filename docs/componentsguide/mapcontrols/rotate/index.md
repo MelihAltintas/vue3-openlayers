@@ -2,9 +2,20 @@
 
 > A Rotate control for OpenLayers.
 
-## Demo
+<script setup>
+import RotateControlDemo from "@demos/RotateControlDemo.vue"
+</script>
+<ClientOnly>
+<RotateControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/RotateControlDemo.vue
+
+:::
 
 ## Properties
 

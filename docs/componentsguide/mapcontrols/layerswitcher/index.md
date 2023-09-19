@@ -2,9 +2,20 @@
 
 > A control for switching between layers.
 
-## Demo
+<script setup>
+import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
+</script>
+<ClientOnly>
+<LayerswitcherControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/LayerswitcherControlDemo.vue
+
+:::
 
 ## Properties
 

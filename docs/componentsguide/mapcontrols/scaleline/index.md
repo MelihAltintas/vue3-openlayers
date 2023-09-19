@@ -2,9 +2,20 @@
 
 > A Scale Line control for OpenLayers.
 
-## Demo
+<script setup>
+import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
+</script>
+<ClientOnly>
+<ScalelineControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/ScalelineControlDemo.vue
+
+:::
 
 ## Properties
 

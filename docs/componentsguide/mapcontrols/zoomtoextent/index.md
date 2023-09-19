@@ -2,9 +2,20 @@
 
 > A Zoom to extent control for OpenLayers.
 
-## Demo
+<script setup>
+import ZoomtoextentControlDemo from "@demos/ZoomtoextentControlDemo.vue"
+</script>
+<ClientOnly>
+<ZoomtoextentControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/ZoomtoextentControlDemo.vue
+
+:::
 
 ## Properties
 

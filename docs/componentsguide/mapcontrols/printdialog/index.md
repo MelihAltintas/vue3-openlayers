@@ -2,9 +2,20 @@
 
 > A print dialog to print the current map canvas content.
 
-## Demo
+<script setup>
+import PrintdialogControlDemo from "@demos/PrintdialogControlDemo.vue"
+</script>
+<ClientOnly>
+<PrintdialogControlDemo />
+</ClientOnly>
 
-See [Demo page for all Map Controls](../index.md)
+## Usage
+
+::: code-group
+
+<<< ../../../../src/demos/PrintdialogControlDemo.vue
+
+:::
 
 ## Properties
 

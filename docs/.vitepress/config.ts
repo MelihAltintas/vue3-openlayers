@@ -386,6 +386,10 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/toggle/",
           },
           {
+            text: "ol-videorecorder-control",
+            link: "/componentsguide/mapcontrols/videorecorder/",
+          },
+          {
             text: "ol-zone-control",
             link: "/componentsguide/mapcontrols/zone/",
           },
