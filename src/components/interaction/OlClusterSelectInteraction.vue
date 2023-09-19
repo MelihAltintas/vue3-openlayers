@@ -8,8 +8,12 @@ import SelectCluster, { type Options } from "ol-ext/interaction/SelectCluster";
 import Style from "ol/style/Style";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const emit = defineEmits(["select"]);
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   multi: false,
@@ -26,17 +30,13 @@ const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
-  const s = new SelectCluster({
+  return new SelectCluster({
     style: new Style(),
     ...properties,
   });
-
-  s.on("select", (event) => {
-    emit("select", event);
-  });
-
-  return s;
 });
+
+useOpenLayersEvents(select, ["select"]);
 
 watch(select, (newVal, oldVal) => {
   map?.removeInteraction(oldVal);
