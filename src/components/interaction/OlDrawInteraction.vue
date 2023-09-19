@@ -11,8 +11,12 @@ import type VectorSource from "ol/source/Vector";
 import type { Type as GeometryType } from "ol/geom/Geometry";
 import type { GeometryFunction } from "ol/interaction/Draw";
 import type { Condition } from "ol/events/condition";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const emit = defineEmits(["drawstart", "drawend"]);
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<{
@@ -62,7 +66,7 @@ const {
 } = toRefs(props);
 
 function createDraw() {
-  const d = new Draw({
+  return new Draw({
     source: source?.value,
     type: type.value,
     clickTolerance: clickTolerance.value,
@@ -79,19 +83,11 @@ function createDraw() {
     freehandCondition: freehandCondition?.value,
     wrapX: wrapX.value,
   });
-
-  d.on("drawstart", (event) => {
-    emit("drawstart", event);
-  });
-
-  d.on("drawend", (event) => {
-    emit("drawend", event);
-  });
-
-  return d;
 }
 
 let draw = createDraw();
+
+useOpenLayersEvents(draw, ["drawstart", "drawend"]);
 
 watch(
   [
