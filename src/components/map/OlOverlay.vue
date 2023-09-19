@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import type { PanIntoViewOptions, Positioning } from "ol/Overlay";
-import Overlay from "ol/Overlay";
+import Overlay, { type Options } from "ol/Overlay";
 import {
   inject,
   ref,
@@ -20,45 +20,14 @@ import {
 import type Map from "ol/Map";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const props = defineProps({
-  position: {
-    type: Array,
-  },
-  offset: {
-    type: Array,
-  },
-  positioning: {
-    type: String,
-  },
-  stopEvent: {
-    type: Boolean,
-    default: true,
-  },
-  insertFirst: {
-    type: Boolean,
-    default: true,
-  },
-  autoPan: {
-    type: Boolean,
-    default: false,
-  },
-  autoPanMargin: {
-    type: Number,
-    default: 20,
-  },
-  autoPanAnimation: {
-    type: Object,
-    default: undefined,
-  },
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
 });
 
-const emit = defineEmits([
-  "elementChanged",
-  "offsetChanged",
-  "positionChanged",
-  "positioningChanged",
-]);
+const props = defineProps<Options>();
 
 const map = inject<Map>("map");
 
@@ -66,11 +35,16 @@ const htmlContent = ref<HTMLElement>();
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const overlay = computed(
-  () => new Overlay(properties as Record<string, unknown>)
-);
+const overlay = computed(() => new Overlay(properties));
 
-const getElement = () => overlay.value.getElement();
+useOpenLayersEvents(overlay, [
+  "change:element",
+  "change:map",
+  "change:offset",
+  "change:position",
+  "change:positioning",
+]);
+
 const getOffset = () => overlay.value.getOffset();
 const getPosition = () => overlay.value.getPosition();
 const getPositioning = () => overlay.value.getPositioning();
@@ -84,25 +58,21 @@ const setPosition = (position?: Coordinate) =>
 const setPositioning = (positioning: Positioning) =>
   overlay.value.setPositioning(positioning);
 
-overlay.value.on("change:element", () => emit("elementChanged", getElement()));
-overlay.value.on("change:offset", () => emit("offsetChanged", getOffset()));
-overlay.value.on("change:position", () =>
-  emit("positionChanged", getPosition())
-);
-overlay.value.on("change:positioning", () =>
-  emit("positioningChanged", getPositioning())
-);
+function removeOverlay(ov: Overlay) {
+  const removed = map?.removeOverlay(ov);
+  if (!removed) {
+    console.warn("couldn't find matching overlay to remove", overlay.value);
+  }
+}
 
 onMounted(() => {
   map?.addOverlay(overlay.value);
 });
 
-onUnmounted(() => {
-  map?.removeOverlay(overlay.value);
-});
+onUnmounted(() => removeOverlay(overlay.value));
 
 watch(overlay, (newVal, oldVal) => {
-  map?.removeOverlay(oldVal);
+  removeOverlay(oldVal);
   map?.addOverlay(newVal);
 });
 

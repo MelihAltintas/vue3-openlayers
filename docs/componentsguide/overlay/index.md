@@ -25,70 +25,52 @@ Example below shows how to add custom content on to the map.
 
 ## Properties
 
-### position
+### Props from OpenLayers
 
-- **Type**: `number[]`
-- **Required**
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-Coordinate of the overlay position in view
+### Deviating Properties
 
-### offset
+### `element`
 
-- **Type**: `number[]`
-- **Default**: `[0, 0]`
-
-XY axis offset in pixels used when positioning the overlay.
-
-### positioning
-
-- **Type**: `string`
-- **Default**: `top-left`
-
-The overlay positioning relative to its Possible values: `bottom-left`,
-`bottom-center`, `bottom-right`, `center-left`, `center-center`, `center-right`, `top-left`, `top-center`,
-and `top-right`.
-
-### stopEvent
-
-- **Type**: `boolean`
-- **Default**: `true`
-
-Whether pointer event propagation from overlay element to the map viewport should be stopped. When set to `true`
-the overlay will be placed in the same container with map controls.
-
-### insertFirst
-
-- **Type**: `boolean`
-- **Default**: `true`
-
-Determines whether the overlay will be prepended or appended in the overlay container.
-When `stop-event` is set to `true` you will probably set `insert-first` to `true`
-so the overlay is displayed below controls.
-
-### autoPan
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-Enables map panning when the overlay will be added, so the overlay will be visible in the current viewport.
-
-### autoPanMargin
-
-- **Type**: `boolean`
-- **Default**: `20`
-
-The margin (in pixels) between the overlay and the viewport borders.
-
-### autoPanAnimation
-
-- **Type**: `Object`
-- **Default**: `undefined`
-
-The animation options used to pan the overlay into view.
+The property `element` from OpenLayers is filled by the vue components template ref.
+However, you are still able to override it and bind the component to another differing HTML element.
 
 ## Events
 
-- `elementChanged`
-- `offsetChanged`
-- `positionChanged`
-- `positioningChanged`
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html) to see the available events tht will be fired.
+
+```html
+<ol-overlay @error="handleEvent">My Overlay Text</ol-overlay>
+```
+
+## Methods
+
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html) to see the available methods.
+
+To access the source, you can use a `ref()` as shown below:
+
+```vue
+<template>
+  <!-- ... -->
+  <ol-overlay ref="overlayRef">My Overlay Text</ol-overlay>
+  <!-- ... -->
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type Overlay from "ol/Overlay";
+
+const overlayRef = ref<{ overlay: Overlay }>(null);
+
+onMounted(() => {
+  const overlay: Overlay = overlayRef.value?.overlay.value;
+  // call your method on `overlay`
+});
+</script>
+```
