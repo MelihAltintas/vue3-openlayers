@@ -42,25 +42,25 @@
 
     <ol-control-bar>
       <ol-toggle-control
-        html="<i class='fas fa-map-marker'></i>"
+        html="🔘"
         className="edit"
         title="Point"
         :onToggle="(active) => changeDrawType(active, 'Point')"
       />
       <ol-toggle-control
-        html="<i class='fas fa-draw-polygon'></i>"
+        html="🔹"
         className="edit"
         title="Polygon"
         :onToggle="(active) => changeDrawType(active, 'Polygon')"
       />
       <ol-toggle-control
-        html="<i class='fas fa-circle'></i>"
+        html="🟢"
         className="edit"
         title="Circle"
         :onToggle="(active) => changeDrawType(active, 'Circle')"
       />
       <ol-toggle-control
-        html="<i class='fas fa-grip-lines'></i>"
+        html="〰️"
         className="edit"
         title="LineString"
         :onToggle="(active) => changeDrawType(active, 'LineString')"
