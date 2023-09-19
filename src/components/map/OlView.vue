@@ -16,30 +16,12 @@ import type { SimpleGeometry } from "ol/geom";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
 
-const props = withDefaults(defineProps<ViewOptions>(), {
-  center: () => [0, 0],
-  constrainRotation: true,
-  enableRotation: true,
-  constrainOnlyCenter: false,
-  smoothExtentConstraint: true,
-  maxZoom: 28,
-  minZoom: 0,
-  multiWorld: false,
-  constrainResolution: false,
-  smoothResolutionConstraint: true,
-  showFullExtent: false,
-  projection: "EPSG:3857",
-  zoom: 0,
-  zoomFactor: 2,
-  padding: () => [0, 0, 0, 0],
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
 });
 
-const emit = defineEmits([
-  "centerChanged",
-  "zoomChanged",
-  "resolutionChanged",
-  "rotationChanged",
-]);
+const props = defineProps<ViewOptions>();
 
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);

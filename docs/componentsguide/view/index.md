@@ -25,161 +25,16 @@ See also documentation of ol-map component
 
 :::
 
-## Properties
+### Props from OpenLayers
 
-### center
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-- **Type**: `number[]`
-- **Default**: `[0, 0]`
+### Deviating Properties
 
-The center coordinate of the map view in the provided `projection`.
-
-### zoom
-
-- **Type**: `number`
-- **Default**: `0`
-
-Zoom level used to calculate the resolution for the view as `int` value.
-Only used if `resolution` is not defined.
-
-### rotation
-
-- **Type**: `number`
-- **Default**: `0`
-
-The initial rotation for the view in **radians** (positive rotation clockwise).
-
-### resolution
-
-- **Type**: `number`
-- **Default**: `undefined`
-
-The initial resolution for the view. The units are projection units per pixel
-(e.g. meters per pixel). An alternative to setting this is to set `zoom`
-
-### resolutions
-
-- **Type**: `number[]`
-- **Default**: `undefined`
-
-Resolutions to determine the resolution constraint. If set the `max-resolution`,
-`min-resolution`, `min-zoom`, `max-zoom`, and `zoom-factor` options are ignored.
-
-### projection
-
-- **Type**: `string` or `object (options projection)`
-- **Default**: `EPSG:3857`
-
-The view internal projection. This is the projection with which OpenLayers component
-
-### maxZoom
-
-- **Type**: `number`
-- **Default**: `28`
-
-The maximum zoom level used to determine the resolution constraint.
-
-### minZoom
-
-- **Type**: `number`
-- **Default**: `0`
-
-The minimum zoom level used to determine the resolution constraint.
-
-### maxResolution
-
-- **Type**: `number`
-- **Default**: `undefined`
-
-The maximum resolution used to determine the resolution constraint.
-
-### minResolution
-
-- **Type**: `number`
-- **Default**: `undefined`
-
-The minimum resolution used to determine the resolution constraint.
-
-### constrainRotation
-
-- **Type**: `boolean | number`
-- **Default**: `true`
-
-Rotation constraint. `false` means no constraint. `true` means no constraint, but
-snap to zero near zero. A number constrains the rotation to that number of values.
-For example, `4` will constrain the rotation to `0`, `90`, `180`, and `270` degrees.
-
-### enableRotation
-
-- **Type**: `boolean`
-- **Default**: `true`
-
-Enable rotation. Default is `true`. If `false` a rotation constraint that
-always sets the rotation to zero is used.
-
-### extent
-
-- **Type**: `number[leftBottomX, leftBottomY, rightTopX, rightTopY]`
-- **Default**: `undefined`
-
-The extent that constrains the `center` defined in the view projection, in other words,
-center cannot be set outside this extent.
-
-### zoomFactor
-
-- **Type**: `number`
-- **Default**: `2`
-
-The zoom factor used to determine the resolution constraint.
-
-### constrainOnlyCenter
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-If true, the extent constraint will only apply to the view center and not the whole extent.
-
-### smoothExtentConstraint
-
-- **Type**: `Boolean`
-- **Default**: `true`
-
-If true, the extent constraint will be applied smoothly, i.e. allow the view to go slightly outside of the given extent.
-
-### multiWorld
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-If false the view is constrained so only one world is visible, and you cannot pan off the edge. If true the map may show multiple worlds at low zoom levels. Only used if the projection is global. Note that if extent is also provided it is given precedence.
-
-### constrainResolution
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-If true, the view will always animate to the closest zoom level after an interaction; false means intermediary zoom levels are allowed.
-
-### smoothResolutionConstraint
-
-- **Type**: `Boolean`
-- **Default**: `true`
-
-If true, the resolution min/max values will be applied smoothly, i. e. allow the view to exceed slightly the given resolution or zoom bounds.
-
-### showFullExtent
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-If true, the resolution min/max values will be applied smoothly, i. e. allow the view to exceed slightly the given resolution or zoom bounds.
-
-### padding
-
-- **Type**: `Array`
-- **Default**: `() => [0, 0, 0, 0]`
-
-If true, the resolution min/max values will be applied smoothly, i. e. allow the view to exceed slightly the given resolution or zoom bounds.
+None.
 
 ## Events
 
