@@ -21,14 +21,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => new TileDebug(properties));
 
-useOpenLayersEvents(source, [
-  "change",
-  "error",
-  "propertychange",
-  "tileloadend",
-  "tileloadstart",
-  "tileloaderror",
-]);
+useOpenLayersEvents(source, ["tileloadend", "tileloadstart", "tileloaderror"]);
 
 const applySource = () => {
   layer?.value?.setSource(null);

@@ -34,11 +34,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => new StadiaMaps(properties));
 
-useOpenLayersEvents(source, [
-  ...TILE_SOURCE_EVENTS,
-  "propertychange",
-  "removefeature",
-]);
+useOpenLayersEvents(source, [...TILE_SOURCE_EVENTS, "removefeature"]);
 
 const applySource = () => {
   layer?.value?.setSource(null);

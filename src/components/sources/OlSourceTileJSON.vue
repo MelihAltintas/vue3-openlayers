@@ -29,9 +29,6 @@ const { properties } = usePropsAsObjectProperties(props);
 const source = computed(() => new TileJSON(properties));
 
 useOpenLayersEvents(source, [
-  "change",
-  "error",
-  "propertychange",
   "removefeature",
   "tileloadend",
   "tileloadstart",

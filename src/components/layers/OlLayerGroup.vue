@@ -27,7 +27,6 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const layerGroup = new LayerGroup(properties);
 useOpenLayersEvents(layerGroup, [
-  "change",
   "change:extend",
   "change:layers",
   "change:maxResolution",
@@ -37,8 +36,6 @@ useOpenLayersEvents(layerGroup, [
   "change:opacity",
   "change:visible",
   "change:zIndex",
-  "error",
-  "propertychange",
 ]);
 
 const parentLayerGroup = inject<LayerGroup | null>("layerGroup", null);
