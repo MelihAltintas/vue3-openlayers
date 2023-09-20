@@ -4,6 +4,7 @@
     :loadTilesWhileInteracting="true"
     style="height: 400px"
     ref="map"
+    :controls="[]"
   >
     <ol-view
       :center="center"

@@ -1,5 +1,5 @@
 <template>
-  <ol-map style="height: 400px">
+  <ol-map style="height: 400px" :controls="[]">
     <ol-view
       :center="center"
       :rotation="rotation"
@@ -10,7 +10,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-zoom-control />
+    <ol-zoom-control zoomInLabel="➕" zoomOutLabel="➖" />
   </ol-map>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <ol-map style="height: 400px">
+  <ol-map style="height: 400px" :controls="[]">
     <ol-view
       :center="center"
       :rotation="rotation"

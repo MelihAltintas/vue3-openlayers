@@ -4,6 +4,7 @@
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
     style="height: 800px"
+    :controls="[]"
   >
     <ol-view
       ref="view"
