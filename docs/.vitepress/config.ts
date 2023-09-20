@@ -7,6 +7,10 @@ export default defineConfig({
   title: "vue3-openlayers",
   description: "OpenLayers Wrapper for Vue3",
   lastUpdated: true,
+  sitemap: {
+    hostname: "https://vue3openlayers.netlify.app",
+    lastmodDateOnly: false,
+  },
   themeConfig: {
     // https://vitepress.vuejs.org/reference/default-theme-config
     editLink: {

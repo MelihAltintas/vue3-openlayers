@@ -42,4 +42,3 @@ If you added a new component feature (layer, geom, source, etc.), please be sure
 - [ ] Create a `src/demos/<Component>Demo.vue`
 - [ ] Create a `docs/componentsguide/<Category>/<Feature>/index.md` containing the Demo and documentation for the component
 - [ ] Add the docs page to `docs/.vitepress/config.ts`
-- [ ] Update the sitemap `docs/public/sitemap.xml`
