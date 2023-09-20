@@ -46,5 +46,6 @@ function moveToEast() {
   box-shadow: 0 5px 10px rgb(2 2 2 / 20%);
   padding: 10px 20px;
   font-size: 16px;
+  color: black;
 }
 </style>
