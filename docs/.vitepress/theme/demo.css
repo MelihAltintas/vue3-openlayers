@@ -1,3 +1,9 @@
+:root {
+  --vp-c-brand-1: #10b981;
+  --vp-c-brand-2: #059669;
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+}
+
 main input:focus-visible,
 main textarea:focus-visible,
 main select:focus-visible,
@@ -78,14 +84,14 @@ main input[type="checkbox"]::before {
   height: 0.8rem;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--vp-c-brand);
+  box-shadow: inset 1em 1em var(--vp-c-brand-1);
   transform-origin: bottom left;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 main input[type="checkbox"]:checked::before {
   transform: scale(1);
-  background-color: var(--vp-c-brand);
+  background-color: var(--vp-c-brand-1);
 }
 
 main ul > li:has(> input[type="checkbox"]) {
