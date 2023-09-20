@@ -2,15 +2,41 @@
 
 # [3.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0...v3.0.0-0) (2023-09-20)
 
-
 ### Bug Fixes
 
 * **demo:** use scoped styles and cleanup unused styles ([3d7fba4](https://github.com/MelihAltintas/vue3-openlayers/commit/3d7fba4c117a612351f3575bf7be918a26642a49))
 
-
 ### Features
 
 * **ol-videorecorder-control:** pass-through all props and events from `ol-ext` ([fb99807](https://github.com/MelihAltintas/vue3-openlayers/commit/fb99807d367f13736b5b597cbb6e85b2a425a4f1))
+* **ol-map:** feat(ol-map) support all Map events from OpenLayers on component. Newly supported events are:
+  - `change:size`
+  - `change:target`
+  - `change:view`
+  - `rendercomplete`
+  Please refer to the [OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html)
+* **ol-videorecorder-control**: pass-through all props and events from `ol-ext`
+  - if not `downloadName` is set, the file will not be downloaded but the `stop` event is fired with the blob data/url.
+  - all events are now fired. In addition to the already existing `start` and `stop` event, you can now also react to the `pause` and `resume` event
+  - docs has been updated
+
+### BREAKING CHANGES
+
+- **`ol-overlay`** all properties are now passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html). Potentially this hasn't changed anything yet, but it can in the future, if OpenLayers changes it's API
+- **`ol-overlay`** all events are now fired at component level [as defined in OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html). Details:
+  - `elementChanged` is now emitted as `change:element`
+  - `offsetChanged` is now emitted as `change:offset`
+  - `positionChanged` is now emitted as `change:position`
+  - `positioningChanged` is now emitted as `change:positioning`
+- **`ol-view`**: property `center`'s default value has been removed (it was set `[0, 0]`) before. Now all [default values from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) are used directly
+- **`ol-view`**: All [Events  from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) are emitted as component events directly now. Please change:
+  - `resolutionChanged` to `change:resolution`
+  - `rotationChanged` to `change:rotation`
+  - `rotationChanged` to `change:rotation`
+  - `centerChanged` to `change:center`
+  - `zoomChanged` event has been dropped. Please use `change:center` or `change:resolution` instead
+- **`ol-map`**: properties with default values are now aligned with all [default values from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html)
 
 # [2.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0-1...v2.0.0) (2023-09-14)
 
