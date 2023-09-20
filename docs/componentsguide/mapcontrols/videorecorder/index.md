@@ -19,35 +19,53 @@ import VideorecorderControlDemo from "@demos/VideorecorderControlDemo.vue"
 
 ## Properties
 
-### className
+### Props from OpenLayers
 
-class of the control
+Properties are passed-trough from `ol-ext` directly.
+Their types and default values can be checked-out [in the official docs](https://viglino.github.io/ol-ext/doc/doc-pages/ol.control.VideoRecorder.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-- **Type**: `String`
+### Deviating Properties
 
-### framerate
+### `downloadName`
 
-framerate for the video
+If this property is set, the file will be downloaded immediately after stopping the recording and saved as the given `downloadName`.
+If not defined, you need to handle the `stop` event fired on component level.
+By default this property is set to `mapVideo.mp4`.
 
-- **Type**: `Number`
-- **Default**: `30`
+## Events
 
-### videoBitsPerSecond
+You have access to all Events from the underlying control.
+Check out [the official docs](https://viglino.github.io/ol-ext/doc/doc-pages/ol.control.VideoRecorder.html) to see the available events tht will be fired.
 
-bitrate for the video
+```html
+<ol-videorecorder-control @error="handleEvent" />
+```
 
-- **Type**: `Number`
-- **Default**: `5000000`
+## Methods
 
-### videoTarget
+You have access to all Methods from the underlying control.
+Check out [the official docs](https://viglino.github.io/ol-ext/doc/doc-pages/ol.control.VideoRecorder.html) to see the available methods.
 
-video element or the container to add the video when finished or `'DIALOG'` to show it in a dialog.
+To access the source, you can use a `ref()` as shown below:
 
-- **Type**: `String | DOMElement`
+```vue
+<template>
+  <!-- ... -->
+  <ol-videorecorder-control ref="vRef" @error="handleEvent" />
+  <!-- ... -->
+</template>
 
-### downloadName
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type VideoRecorder from "ol-ext/control/VideoRecorder";
 
-class of the control
+const vRef = ref<{ control: VideoRecorder }>(null);
 
-- **Type**: `String`
-- **Default**: `'mapVideo.mp4'`
+onMounted(() => {
+  const recorder: VideoRecorder = vRef.value?.control;
+  // call your method on `recorder`
+});
+</script>
+```
