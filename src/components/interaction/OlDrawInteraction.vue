@@ -42,7 +42,7 @@ const props = withDefaults(
     stopClick: false,
     freehand: false,
     wrapX: false,
-  }
+  },
 );
 
 const map = inject<Map>("map");
@@ -112,7 +112,7 @@ watch(
     draw = createDraw();
     map?.addInteraction(draw);
     map?.changed();
-  }
+  },
 );
 
 onMounted(() => {

@@ -30,12 +30,12 @@ const props = withDefaults(
     visible: true,
     lineCap: "butt",
     arrowSize: 16,
-  }
+  },
 );
 
 const styledObj = inject<Ref<Draw | Modify | Select | Feature | Layer> | null>(
   "stylable",
-  null
+  null,
 );
 
 const { properties } = usePropsAsObjectProperties(props);

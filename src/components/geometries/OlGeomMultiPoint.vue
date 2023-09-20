@@ -12,7 +12,7 @@ const props = withDefaults(
   }>(),
   {
     opt_layout: "XY",
-  }
+  },
 );
 
 const { geometry } = useGeometry(MultiPoint, props);

@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const vectorTileLayer = inject<Ref<VectorTileLayer> | null>(
   "vectorTileLayer",
-  null
+  null,
 );
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -50,7 +50,7 @@ watch(
   () => vectorTileLayer?.value,
   () => {
     applySource();
-  }
+  },
 );
 
 onMounted(() => {

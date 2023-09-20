@@ -12,7 +12,7 @@ import {
 
 const props = withDefaults(
   defineProps<AnimationCommonProps>(),
-  animationCommonDefaultProps
+  animationCommonDefaultProps,
 );
 
 const exposed = useAnimation(Teleport, props);

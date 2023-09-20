@@ -45,7 +45,7 @@ watch(
   () => layer?.value,
   () => {
     layer?.value?.setSource(source.value);
-  }
+  },
 );
 
 onMounted(() => {

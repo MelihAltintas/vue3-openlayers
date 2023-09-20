@@ -35,6 +35,6 @@ const matrixSet = ref("GoogleMapsCompatible");
 const format = ref("image/png");
 const styleName = ref("default");
 const attribution = ref(
-  'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>'
+  'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
 );
 </script>

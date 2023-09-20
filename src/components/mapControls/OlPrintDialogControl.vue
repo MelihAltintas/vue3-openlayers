@@ -18,7 +18,7 @@ const { properties } = usePropsAsObjectProperties(props);
 const { control } = useControl(PrintDialog, properties, attrs);
 
 // @ts-ignore
-control.value.on(["print", "error"], (e: any) => {
+control.value.on(["print", "error"], (e: unknown) => {
   // Print success
   if (e.image) {
     if (e.pdf) {
@@ -34,7 +34,7 @@ control.value.on(["print", "error"], (e: any) => {
         e.print.position[0],
         e.print.position[0],
         e.print.imageWidth,
-        e.print.imageHeight
+        e.print.imageHeight,
       );
       pdf.save(e.print.legend ? "legend.pdf" : "map.pdf");
     } else {
@@ -47,7 +47,7 @@ control.value.on(["print", "error"], (e: any) => {
           saveAs(blob, name);
         },
         e.imageType,
-        e.quality
+        e.quality,
       );
     }
   } else {

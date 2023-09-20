@@ -37,7 +37,7 @@ type EventCallback = (event: ObjectEvent) => void;
 type OpenLayersFeature = {
   on: (event: string, callback: EventCallback) => void;
   un: (event: string, callback: EventCallback) => void;
-} & any;
+} & unknown;
 
 // Define the composable function
 export function useOpenLayersEvents(
@@ -45,7 +45,7 @@ export function useOpenLayersEvents(
     | OpenLayersFeature
     | Ref<OpenLayersFeature>
     | ComputedRef<OpenLayersFeature>,
-  eventNames: string[]
+  eventNames: string[],
 ) {
   const instance = getCurrentInstance();
   const globalOptions = inject("ol-options");

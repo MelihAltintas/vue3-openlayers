@@ -18,7 +18,7 @@ const props = withDefaults(
   }>(),
   {
     projectionExtent: undefined,
-  }
+  },
 );
 
 const { projectionName, projectionDef, projectionExtent } = toRefs(props);

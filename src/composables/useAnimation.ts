@@ -12,7 +12,7 @@ type GenericFeatureAnimationOptions = Partial<
 
 export default function useAnimation(
   AnimationType: new (props: Record<string, unknown>) => FeatureAnimation,
-  props: GenericFeatureAnimationOptions
+  props: GenericFeatureAnimationOptions,
 ) {
   const map = inject("map");
   const vectorLayer = inject("vectorLayer");

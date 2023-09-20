@@ -14,7 +14,7 @@ export type LayersCommonProps = {
   name?: string;
   preview?: string;
   baseLayer?: boolean;
-  properties?: () => Record<string, any>;
+  properties?: () => Record<string, unknown>;
 };
 
 export const layersCommonDefaultProps = {

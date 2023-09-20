@@ -12,7 +12,7 @@ import type { Style } from "ol/style";
 type OverrideStyleFunction = (
   feature: FeatureLike,
   currentStyle: Style,
-  resolution: number
+  resolution: number,
 ) => Style | Style[] | void;
 
 function install(app: App) {

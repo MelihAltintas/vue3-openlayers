@@ -28,7 +28,7 @@ const props = withDefaults(
     expandClassName: "ol-attribution-expand",
     collapseLabel: "»",
     collapseClassName: "ol-attribution-collapse",
-  }
+  },
 );
 
 const attrs = useAttrs();

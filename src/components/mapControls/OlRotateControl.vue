@@ -26,7 +26,7 @@ const props = withDefaults(
     compassClassName: "ol-compass",
     duration: 250,
     autoHide: false,
-  }
+  },
 );
 
 const attrs = useAttrs();

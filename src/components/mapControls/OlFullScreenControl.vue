@@ -29,7 +29,7 @@ const props = withDefaults(
     keys: false,
     target: undefined,
     source: undefined,
-  }
+  },
 );
 
 const attrs = useAttrs();

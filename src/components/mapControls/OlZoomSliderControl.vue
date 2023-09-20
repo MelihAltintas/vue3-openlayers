@@ -16,7 +16,7 @@ const props = withDefaults(
   {
     duration: 200,
     className: "ol-zoomslider",
-  }
+  },
 );
 
 const attrs = useAttrs();

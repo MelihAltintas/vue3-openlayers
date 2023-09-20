@@ -38,7 +38,7 @@ const props = withDefaults(
       ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
     },
     wrapX: true,
-  }
+  },
 );
 
 const layer = inject<Ref<TileLayer<TileWMS>> | null>("tileLayer");

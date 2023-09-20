@@ -61,10 +61,11 @@ const forEachFeatureAtPixel = (
   pixel: Pixel,
   callback: (
     arg0: FeatureLike,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     arg1: Layer<Source, LayerRenderer<any>>,
-    arg2: SimpleGeometry
+    arg2: SimpleGeometry,
   ) => unknown,
-  options?: AtPixelOptions | undefined
+  options?: AtPixelOptions | undefined,
 ) => map?.forEachFeatureAtPixel(pixel, callback, options);
 const getCoordinateFromPixel = (pixel: Coordinate) =>
   map?.getCoordinateFromPixel(pixel);

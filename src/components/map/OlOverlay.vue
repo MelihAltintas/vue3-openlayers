@@ -82,7 +82,7 @@ watchEffect(
   },
   {
     flush: "post",
-  }
+  },
 );
 
 defineExpose({

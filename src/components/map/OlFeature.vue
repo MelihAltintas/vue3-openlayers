@@ -26,19 +26,19 @@ const props = withDefaults(
   }>(),
   {
     properties: () => [] as unknown[],
-  }
+  },
 );
 
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
 const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   "vectorLayer",
-  null
+  null,
 );
 const heatmapLayer = inject<Ref<HeatmapLayer> | null>("heatmapLayer", null);
 const layer = heatmapLayer || vectorLayer;
 const animation = inject<Ref<FeatureAnimation | null> | null>(
   "animation",
-  null
+  null,
 );
 
 const feature = ref<Feature<Geometry>>(new Feature({ ...props.properties }));
@@ -48,7 +48,7 @@ watch(
   () => {
     // Ensure the feature's properties are updated on change
     feature.value.setProperties(props.properties);
-  }
+  },
 );
 
 watch(
@@ -57,7 +57,7 @@ watch(
     oldVal?.value?.removeFeature(feature.value);
     newVal?.value?.addFeature(feature.value);
     newVal?.value?.changed();
-  }
+  },
 );
 
 onMounted(() => {

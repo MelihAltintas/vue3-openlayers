@@ -32,7 +32,7 @@ const props = withDefaults(
     keepAspectRatio: () => false,
     translate: true,
     stretch: true,
-  }
+  },
 );
 
 const map = inject<Map>("map");

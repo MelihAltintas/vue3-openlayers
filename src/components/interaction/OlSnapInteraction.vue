@@ -20,7 +20,7 @@ const props = withDefaults(
     vertex: true,
     edge: true,
     pixelTolerance: 10,
-  }
+  },
 );
 
 const map = inject<Map>("map");

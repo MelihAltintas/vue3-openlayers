@@ -14,7 +14,7 @@ const props = withDefaults(
   defineProps<{
     color?: string;
   }>(),
-  {}
+  {},
 );
 
 const style = inject<Ref<Style | null> | null>("style", null);
@@ -50,9 +50,8 @@ if (style != null && circle == null) {
   });
 } else if (circle != null) {
   // in circle
-  const applyFilltoCircle = (color: any) => {
-    circle?.value?.getFill().setColor(color);
-
+  const applyFilltoCircle = (color?: string) => {
+    circle?.value?.getFill().setColor(color || null);
     circle?.value?.setRadius(circle?.value.getRadius()); // force render
     try {
       // @ts-ignore

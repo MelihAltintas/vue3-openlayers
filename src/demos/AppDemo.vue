@@ -331,7 +331,7 @@ contextMenuItems.value = [
 const featureSelected = (event) => {
   if (event.selected.length == 1) {
     selectedCityPosition.value = extent.getCenter(
-      event.selected[0].getGeometry().extent_
+      event.selected[0].getGeometry().extent_,
     );
     selectedCityName.value = event.selected[0].values_.name;
   } else {

@@ -17,7 +17,7 @@ import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<LayersCommonProps>(),
-  layersCommonDefaultProps
+  layersCommonDefaultProps,
 );
 
 const map = inject<Map>("map");

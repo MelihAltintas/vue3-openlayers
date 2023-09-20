@@ -81,14 +81,14 @@ type InnerControlProperties =
   | ZoomToExtentOptions;
 
 export default function useControl<T extends InnerControlType>(
-  ControlType: new (options?: any) => T,
+  ControlType: new (options?: Record<string, unknown>) => T,
   properties: InnerControlProperties,
-  attrs: Record<string, unknown>
+  attrs: Record<string, unknown>,
 ) {
   const map = inject<ExtentedMap>("map");
   const controlBar = inject<Ref<InnerControlType | null> | null>(
     "controlBar",
-    null
+    null,
   );
 
   const parent = controlBar !== null ? controlBar?.value : map;
@@ -97,7 +97,7 @@ export default function useControl<T extends InnerControlType>(
     () =>
       new ControlType({
         ...properties,
-      })
+      }),
   );
 
   control.value.set("order", attrs.order === undefined ? 0 : attrs.order);
@@ -128,7 +128,7 @@ export default function useControl<T extends InnerControlType>(
     if (parent?.controls_ !== undefined) {
       const sortedControls = [...parent.controls_];
       sortedControls.sort(
-        (a: Control, b: Control) => a.get("order") - b.get("order")
+        (a: Control, b: Control) => a.get("order") - b.get("order"),
       );
 
       parent.controls_ = [];

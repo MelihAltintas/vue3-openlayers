@@ -18,19 +18,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<Omit<Options, "key"> & { apiKey: string }>(),
-  {
-    hidpi: false,
-    culture: "en-us",
-    maxZoom: 21,
-    reprojectionErrorThreshold: 0.5,
-    tileLoadFunction: (imageTile: any, src: any) => {
-      imageTile.getImage().src = src;
-    },
-    wrapX: true,
-  }
-);
+const props = defineProps<Omit<Options, "key"> & { apiKey: string }>();
 
 const layer = inject<Ref<TileLayer<BingMaps>> | null>("tileLayer");
 
@@ -41,7 +29,7 @@ const source = computed(
     new BingMaps({
       ...properties,
       key: properties.apiKey,
-    })
+    }),
 );
 
 useOpenLayersEvents(source, IMAGE_SOURCE_EVENTS);
@@ -54,7 +42,7 @@ watch(
   () => layer?.value,
   () => {
     layer?.value?.setSource(source.value);
-  }
+  },
 );
 
 onMounted(() => {

@@ -33,7 +33,7 @@ const props = withDefaults(
     serverType: "mapserver",
     styles: "",
     ratio: 1,
-  }
+  },
 );
 
 const layer = inject<ImageLayer<ImageWMS> | null>("imageLayer");

@@ -27,7 +27,7 @@ const props = withDefaults(
     steps: 4,
     text: "",
     dpi: undefined,
-  }
+  },
 );
 
 const attrs = useAttrs();

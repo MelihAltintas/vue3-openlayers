@@ -16,7 +16,7 @@ const props = withDefaults(
   {
     toggleOne: true,
     group: true,
-  }
+  },
 );
 
 const attrs = useAttrs();

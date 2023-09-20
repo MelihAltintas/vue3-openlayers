@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Options<Geometry>>(), {
 
 const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   "vectorLayer",
-  null
+  null,
 );
 const heatmapLayer = inject<Ref<HeatmapLayer> | null>("heatmapLayer", null);
 const layer = heatmapLayer || vectorLayer;
@@ -55,7 +55,7 @@ watch(
   () => layer?.value,
   () => {
     applySource();
-  }
+  },
 );
 
 onMounted(() => {

@@ -6,14 +6,14 @@ import type { Class } from "@/components/animations/AnimationTypes";
 
 export default function useGeometry(
   GeometryType: Class,
-  props: Record<string, unknown>
+  props: Record<string, unknown>,
 ) {
   const feature = inject<Ref<featureType>>("feature");
 
   const { properties } = usePropsAsObjectProperties(props);
 
   const geometry = computed(
-    () => new GeometryType(...Object.values(properties))
+    () => new GeometryType(...Object.values(properties)),
   );
 
   watch(properties, () => {
@@ -25,7 +25,7 @@ export default function useGeometry(
     () => feature,
     () => {
       feature?.value?.setGeometry(geometry.value);
-    }
+    },
   );
 
   onMounted(() => {

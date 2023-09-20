@@ -73,13 +73,13 @@ const dispatchEvent = (event: string | BaseEvent): boolean | undefined =>
 const endInteraction = (
   optDuration?: number | undefined,
   optResolutionDirection?: number | undefined,
-  optAnchor?: Coordinate | undefined
+  optAnchor?: Coordinate | undefined,
 ) => view.endInteraction(optDuration, optResolutionDirection, optAnchor);
 const fit = (
   geometryOrExtent: Extent | SimpleGeometry,
-  options?: FitOptions | undefined
+  options?: FitOptions | undefined,
 ) => view.fit(geometryOrExtent, options);
-const get = (key: string): any => view.get(key);
+const get = (key: string): unknown => view.get(key);
 const getAnimating = (): boolean => view.getAnimating();
 const getCenter = (): Coordinate | undefined => view.getCenter();
 const getInteracting = (): boolean => view.getInteracting();

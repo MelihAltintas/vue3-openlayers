@@ -31,7 +31,7 @@ const props = withDefaults(
     renderBuffer: 100,
     updateWhileAnimating: false,
     updateWhileInteracting: false,
-  }
+  },
 );
 
 const map = inject<Map>("map");

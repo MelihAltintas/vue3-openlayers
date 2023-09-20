@@ -20,7 +20,7 @@ const props = withDefaults(
     className: "ol-zoom-extent",
     label: "E",
     tipLabel: "Fit to extent",
-  }
+  },
 );
 
 const attrs = useAttrs();

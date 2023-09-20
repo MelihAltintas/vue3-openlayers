@@ -30,13 +30,13 @@ const props = withDefaults(
     lineDashOffset: 0,
     miterLimit: 10,
     width: 1,
-  }
+  },
 );
 
 const style = inject<Ref<Style | null> | null>("style", null);
 const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   "styledObj",
-  null
+  null,
 );
 const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
 

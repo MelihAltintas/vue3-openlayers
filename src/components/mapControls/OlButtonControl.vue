@@ -16,7 +16,7 @@ const props = withDefaults(
     title?: string;
     handleClick?: () => unknown;
   }>(),
-  {}
+  {},
 );
 
 const attrs = useAttrs();

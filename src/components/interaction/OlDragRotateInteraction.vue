@@ -17,7 +17,7 @@ const props = withDefaults(
   }>(),
   {
     duration: 250,
-  }
+  },
 );
 
 const map = inject<Map>("map");

@@ -19,7 +19,7 @@ const props = withDefaults(
     className: "ol-swipe",
     position: 0.5,
     orientation: "vertical",
-  }
+  },
 );
 
 const attrs = useAttrs();

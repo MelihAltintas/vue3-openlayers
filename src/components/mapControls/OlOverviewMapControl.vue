@@ -30,7 +30,7 @@ const props = withDefaults(
     label: "»",
     rotateWithView: false,
     tipLabel: "Overview map",
-  }
+  },
 );
 
 const attrs = useAttrs();

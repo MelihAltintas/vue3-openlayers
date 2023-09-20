@@ -20,7 +20,7 @@ const props = withDefaults(
     defaultItems: true,
     width: 150,
     items: () => [],
-  }
+  },
 );
 
 const attrs = useAttrs();

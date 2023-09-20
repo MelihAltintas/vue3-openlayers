@@ -15,7 +15,7 @@ import {
 
 const props = withDefaults(
   defineProps<AnimationCommonProps>(),
-  animationCommonDefaultProps
+  animationCommonDefaultProps,
 );
 
 const map = inject("map");

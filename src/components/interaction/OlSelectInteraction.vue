@@ -31,7 +31,7 @@ const props = withDefaults(
   {
     multi: false,
     hitTolerance: 0,
-  }
+  },
 );
 
 const map = inject<Map>("map");

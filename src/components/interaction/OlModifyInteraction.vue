@@ -32,7 +32,7 @@ const props = withDefaults(
   {
     pixelTolerance: 10,
     wrapX: false,
-  }
+  },
 );
 
 const map = inject<Map>("map");
@@ -82,7 +82,7 @@ watch(
     modify = createModify();
     map?.addInteraction(modify);
     map?.changed();
-  }
+  },
 );
 
 onMounted(() => {

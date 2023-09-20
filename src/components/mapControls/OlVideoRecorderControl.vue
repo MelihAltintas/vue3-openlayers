@@ -32,7 +32,7 @@ control.value.on(
     if (props.downloadName) {
       saveAs(event.videoURL, props.downloadName);
     }
-  }
+  },
 );
 
 defineExpose({

@@ -19,7 +19,7 @@ const props = withDefaults(
   {
     ...animationCommonDefaultProps,
     zoomOut: false,
-  }
+  },
 );
 
 const exposed = useAnimation(Zoom, props);

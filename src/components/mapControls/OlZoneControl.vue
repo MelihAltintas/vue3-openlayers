@@ -19,7 +19,7 @@ const props = withDefaults(
     className: "ol-mapzone",
     projection: "EPSG:3857",
     centerOnClick: true,
-  }
+  },
 );
 
 const attrs = useAttrs();

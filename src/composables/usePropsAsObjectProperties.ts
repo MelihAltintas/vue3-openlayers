@@ -1,12 +1,4 @@
-import {
-  toRefs,
-  watch,
-  reactive,
-  type ToRefs,
-  ref,
-  type Ref,
-  inject,
-} from "vue";
+import { toRefs, watch, reactive, type ToRefs, ref, inject } from "vue";
 
 /**
  * We can't use 'style' as a component prop since it's a reserved property
@@ -14,7 +6,7 @@ import {
  */
 function checkAndUpdateStylePropDef(
   options: ToRefs<Record<string, unknown>>,
-  key: string
+  key: string,
 ) {
   if (key === "styles") {
     options.style = ref(options[key].value);
@@ -22,7 +14,7 @@ function checkAndUpdateStylePropDef(
 }
 
 export default function usePropsAsObjectProperties<
-  T extends Record<string, unknown>
+  T extends Record<string, unknown>,
 >(props: T, ignoredKeys = [] as string[]) {
   const globalOptions = inject("ol-options");
 

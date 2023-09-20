@@ -34,7 +34,7 @@ const props = withDefaults(
     radius: 8,
     blur: 15,
     gradient: () => ["#00f", "#0ff", "#0f0", "#ff0", "#f00"],
-  }
+  },
 );
 
 const map = inject<Map>("map");

@@ -23,7 +23,7 @@ const props = withDefaults(
     bounce: 6,
     amplitude: 40,
     horizontal: false,
-  }
+  },
 );
 
 const exposed = useAnimation(Shake, props);

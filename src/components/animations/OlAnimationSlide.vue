@@ -15,7 +15,7 @@ const props = withDefaults(
   {
     ...animationCommonDefaultProps,
     speed: 0,
-  }
+  },
 );
 
 const exposed = useAnimation(Slide, props);

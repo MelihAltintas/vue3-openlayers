@@ -24,7 +24,7 @@ import type { Options as ZoomOptions } from "ol-ext/featureanimation/Zoom";
 import type ZoomOut from "ol-ext/featureanimation/ZoomOut";
 import type { Options as ZoomOutOptions } from "ol-ext/featureanimation/ZoomOut";
 
-export type Class = { new (...args: any[]): any };
+export type Class = { new (...args: unknown[]): unknown };
 
 export type FeatureAnimation =
   | Blink

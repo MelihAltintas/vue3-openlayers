@@ -26,7 +26,7 @@ const props = withDefaults(
   {
     ...layersCommonDefaultProps,
     preload: 1,
-  }
+  },
 );
 
 const map = inject<Map>("map");

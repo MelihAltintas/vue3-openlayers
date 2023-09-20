@@ -43,7 +43,7 @@ const props = withDefaults(
         opacity: 0.9,
       },
     }),
-  }
+  },
 );
 
 const map = inject<Map>("map");
@@ -56,7 +56,7 @@ const webglPointsLayer = computed(
     new WebGLPointsLayer({
       ...properties,
       style: properties.styles,
-    })
+    }),
 );
 
 watch(properties, () => {

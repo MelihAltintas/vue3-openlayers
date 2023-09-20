@@ -49,7 +49,7 @@ watch(
   () => layer?.value,
   () => {
     applySource();
-  }
+  },
 );
 
 onMounted(() => {

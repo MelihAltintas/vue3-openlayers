@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run docs:update-requirements
-npx pretty-quick --staged
+

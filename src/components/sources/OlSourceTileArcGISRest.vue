@@ -51,7 +51,7 @@ const source = computed(
       ...properties,
       projection: projectionFromProperties(properties.projection),
       tileGrid: getTileGrid.value,
-    })
+    }),
 );
 
 useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
@@ -64,7 +64,7 @@ watch(
   () => tileLayer,
   () => {
     tileLayer?.value?.setSource(source.value);
-  }
+  },
 );
 
 onMounted(() => {

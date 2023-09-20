@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Options<Point>>(), {
 });
 
 const layer = inject<Ref<WebGLPointsLayer<VectorSource<Point>>> | null>(
-  "webglPointsLayer"
+  "webglPointsLayer",
 );
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -52,7 +52,7 @@ watch(
   () => layer,
   () => {
     applySource();
-  }
+  },
 );
 
 onMounted(() => {

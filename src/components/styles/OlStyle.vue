@@ -22,7 +22,7 @@ const props = withDefaults(
     zIndex?: number;
     overrideStyleFunction?: OverrideStyleFunction;
   }>(),
-  {}
+  {},
 );
 
 const styledObj = inject<
@@ -68,11 +68,11 @@ const styleFunc = computed<StyleLike>(() => {
 });
 
 watch(properties, () =>
-  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value)
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value),
 );
 
 onMounted(() =>
-  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value)
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value),
 );
 
 onUnmounted(() => {

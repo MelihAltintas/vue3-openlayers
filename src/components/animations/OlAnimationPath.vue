@@ -23,7 +23,7 @@ const props = withDefaults(
     ...animationCommonDefaultProps,
     rotate: false,
     speed: 0,
-  }
+  },
 );
 
 const exposed = useAnimation(Path, props);

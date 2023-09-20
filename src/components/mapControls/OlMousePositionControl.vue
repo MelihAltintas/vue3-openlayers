@@ -17,7 +17,7 @@ const props = withDefaults(
   }>(),
   {
     className: "ol-mouse-position",
-  }
+  },
 );
 
 const attrs = useAttrs();

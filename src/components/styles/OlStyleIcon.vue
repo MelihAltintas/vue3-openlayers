@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Options>(), {
 const style = inject<Ref<Style | null> | null>("style", null);
 const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   "styledObj",
-  null
+  null,
 );
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -52,7 +52,7 @@ watch(
   () => style?.value,
   () => {
     applyStyle();
-  }
+  },
 );
 
 onMounted(() => {

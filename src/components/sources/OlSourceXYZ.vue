@@ -46,7 +46,7 @@ const source = computed(
     new XYZ({
       ...properties,
       projection: projectionFromProperties(properties.projection),
-    })
+    }),
 );
 
 useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
@@ -59,7 +59,7 @@ watch(
   () => layer?.value,
   () => {
     layer?.value?.setSource(source.value);
-  }
+  },
 );
 onMounted(() => {
   layer?.value?.setSource(source.value);

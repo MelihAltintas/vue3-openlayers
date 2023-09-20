@@ -19,7 +19,7 @@ defineOptions({
 
 const props = withDefaults(
   defineProps<Options & { className?: string }>(),
-  layersCommonDefaultProps
+  layersCommonDefaultProps,
 );
 
 const map = inject<Map>("map");

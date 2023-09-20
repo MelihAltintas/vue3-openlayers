@@ -22,19 +22,19 @@ const props = withDefaults(
     radius: number;
     scale?: number;
   }>(),
-  {}
+  {},
 );
 
 const style = inject<Ref<Style | null> | null>("style", null);
 const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   "styledObj",
-  null
+  null,
 );
 
 const { properties } = usePropsAsObjectProperties(props);
 
 const createCircleStyle = (
-  innerProperties: Omit<Options, "fill" | "stroke">
+  innerProperties: Omit<Options, "fill" | "stroke">,
 ) => {
   return new CircleStyle({
     ...innerProperties,
@@ -60,7 +60,7 @@ watch(
   () => style,
   () => {
     applyStyle();
-  }
+  },
 );
 
 onMounted(() => {

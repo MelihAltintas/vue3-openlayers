@@ -16,7 +16,7 @@ const props = withDefaults(
     ...animationCommonDefaultProps,
     side: 0,
     speed: 0,
-  }
+  },
 );
 
 const exposed = useAnimation(Drop, props);
