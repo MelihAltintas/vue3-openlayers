@@ -1,5 +1,12 @@
 
 
+# [3.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-0...v3.0.0-1) (2023-09-20)
+
+
+### Features
+
+* **ol-animated-clusterlayer:** emit all Cluster events ([0867d4b](https://github.com/MelihAltintas/vue3-openlayers/commit/0867d4b8cca6a203bed6f95aa73aaae41fd6329c))
+
 # [3.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0...v3.0.0-0) (2023-09-20)
 
 ### Bug Fixes
