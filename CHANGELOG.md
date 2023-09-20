@@ -1,3 +1,17 @@
+
+
+# [3.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0...v3.0.0-0) (2023-09-20)
+
+
+### Bug Fixes
+
+* **demo:** use scoped styles and cleanup unused styles ([3d7fba4](https://github.com/MelihAltintas/vue3-openlayers/commit/3d7fba4c117a612351f3575bf7be918a26642a49))
+
+
+### Features
+
+* **ol-videorecorder-control:** pass-through all props and events from `ol-ext` ([fb99807](https://github.com/MelihAltintas/vue3-openlayers/commit/fb99807d367f13736b5b597cbb6e85b2a425a4f1))
+
 # [2.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v2.0.0-1...v2.0.0) (2023-09-14)
 
 ### Bug Fixes
