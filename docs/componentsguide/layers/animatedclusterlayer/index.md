@@ -135,3 +135,12 @@ When set to true, feature batches will be recreated during animations. This mean
 - **Default**: `false`
 
 When set to true, feature batches will be recreated during interactions. See also updateWhileAnimating.
+
+## Events
+
+You have access to all Events from the underlying `Cluster` source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Cluster-Cluster.html) to see the available events tht will be fired.
+
+```html
+<ol-animated-clusterlayer @error="handleEvent" />
+```

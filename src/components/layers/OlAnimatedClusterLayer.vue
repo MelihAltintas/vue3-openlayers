@@ -17,6 +17,12 @@ import {
 } from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
 import type LayerGroup from "ol/layer/Group";
+import { FEATURE_EVENTS, useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<
@@ -45,17 +51,22 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const vectorLayer = computed(() => {
-  const ac = new AnimatedCluster({
-    ...properties,
-    source: new Cluster({
-      distance: properties.distance,
-      geometryFunction: (feature) => feature.getGeometry() as Point,
-    }),
+const clusterSource = computed(() => {
+  return new Cluster({
+    distance: properties.distance,
+    geometryFunction: (feature) => feature.getGeometry() as Point,
   });
-
-  return ac;
 });
+
+const vectorLayer = computed(() => {
+  return new AnimatedCluster({
+    ...properties,
+    source: clusterSource.value,
+  });
+});
+
+
+useOpenLayersEvents(clusterSource, FEATURE_EVENTS);
 
 const source = computed(() => vectorLayer.value.getSource());
 
