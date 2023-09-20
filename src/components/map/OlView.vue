@@ -22,7 +22,9 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<ViewOptions>();
+const props = withDefaults(defineProps<ViewOptions>(), {
+  enableRotation: true,
+});
 
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);

@@ -34,7 +34,10 @@ This deviating props are described in the section below.
 
 ### Deviating Properties
 
-None.
+### `enableRotation`
+
+Rotation is enabled by default.
+Setting this to `false` prevents from any rotation even when the property `rotation` is set or by using methods such ad `adjustRotation` or `setRotation`.
 
 ## Events
 
