@@ -34,7 +34,7 @@ const projection = ref("EPSG:3857");
 const zoom = ref(15);
 const rotation = ref(0);
 const arcgisUrl =
-  "https://pkk.rosreestr.ru/arcgis/rest/services/PKK6/CadastreObjects/MapServer/export";
+  "https://services.wvgis.wvu.edu/arcgis/rest/services/Imagery_BaseMaps_EarthCover/wv_imagery_WVGISTC_leaf_off_mosaic/MapServer";
 const requestParams = {
   layers: "show:30,27,24,23,22",
   format: "PNG32",
