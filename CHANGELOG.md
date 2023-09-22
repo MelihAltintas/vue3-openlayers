@@ -1,5 +1,12 @@
 
 
+# [3.0.0-2](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-1...v3.0.0-2) (2023-09-22)
+
+
+### Bug Fixes
+
+* **ol-view:** re-enable rotation ([57c9a95](https://github.com/MelihAltintas/vue3-openlayers/commit/57c9a95156b9515705b7d66b95004aaf009d1f22))
+
 # [3.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-0...v3.0.0-1) (2023-09-20)
 
 
