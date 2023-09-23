@@ -19,45 +19,42 @@ import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
 
 ## Properties
 
-### className
+### Props from OpenLayers
 
-- **Type**: `String`
-- **Default**: `ol-overviewmap`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_OSM-OSM.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### collapsed
+### Deviating Properties
 
-- **Type**: `Boolean`
-- **Default**: `true`
+None.
 
-### collapseLabel
+## Methods
 
-- **Type**: `String`
-- **Default**: `«`
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_OSM-OSM.html) to see the available methods.
 
-### collapsible
+To access the source, you can use a `ref()` as shown below:
 
-- **Type**: `Boolean`
-- **Default**: `true`
+```vue
+<template>
+  <!-- ... -->
+    <ol-overviewmap-control :ref="controlRef">
+      <!-- ... -->
+    </ol-overviewmap-control>
+  <!-- ... -->
+</template>
 
-### label
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type OverviewMap from "ol/control/OverviewMap";
 
-- **Type**: `String`
-- **Default**: `»`
+const controlRef = ref<{ control: OverviewMap }>(null);
 
-### render
-
-- **Type**: `Function`
-
-### rotateWithView
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### target
-
-- **Type**: `HTMLElement`
-
-### tipLabel
-
-- **Type**: `String`
-- **Default**: `Overview map`
+onMounted(() => {
+  const controlRef: OverviewMap = sourceRef.value?.control;
+  // call your method on `control`
+});
+</script>
+```

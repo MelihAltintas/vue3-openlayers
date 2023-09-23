@@ -8,10 +8,14 @@
     />
 
     <ol-tile-layer>
-      <ol-source-osm ref="osmLayer" />
+      <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overviewmap-control :layers="layerList"> </ol-overviewmap-control>
+    <ol-overviewmap-control :collapsed="false">
+      <ol-tile-layer>
+        <ol-source-stadia-maps layer="stamen_watercolor" />
+      </ol-tile-layer>
+    </ol-overviewmap-control>
   </ol-map>
 </template>
 
@@ -20,10 +24,4 @@ import { ref, onMounted } from "vue";
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
-const layerList = ref([]);
-const osmLayer = ref(null);
-
-onMounted(() => {
-  layerList.value.push(osmLayer.value.tileLayer);
-});
 </script>
