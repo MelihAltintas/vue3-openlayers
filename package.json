@@ -52,6 +52,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "docs:dev": "vitepress dev docs",
+    "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "docs:update-requirements": "node scripts/insert-required-versions.mjs README.md docs/get-started.md",
