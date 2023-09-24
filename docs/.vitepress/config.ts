@@ -126,6 +126,10 @@ export default defineConfig({
             link: "/componentsguide/sources/cluster/",
           },
           {
+            text: "ol-source-geo-tiff",
+            link: "/componentsguide/sources/geotiff/",
+          },
+          {
             text: "ol-source-image-static",
             link: "/componentsguide/sources/imagestatic/",
           },
