@@ -3,81 +3,67 @@
 This example uses WebGL to raster tiles on a map.
 
 <script setup>
-import WebglTileLayerDemo from "@demos/WebglTileLayerDemo.vue"
+import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 </script>
 <ClientOnly>
-<WebglTileLayerDemo />
+<GeoTIFFDemo />
 </ClientOnly>
 
 ## Usage
 
 ::: code-group
 
-<<< ../../../../src/demos/WebglTileLayerDemo.vue
+<<< ../../../../src/demos/GeoTIFFDemo.vue
 
 :::
 
 ## Properties
 
-### className
+### Props from OpenLayers
 
-- **Type**: `string`
-- **Default**: `ol-layer`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_WebGLTile-WebGLTileLayer.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-A CSS class name to set to the layer element.
+### Deviating Properties
 
-### opacity
+**`visible`**
 
-- **Type**: `number `
-- **Default**: `1`
+The value for `visible` is set to `true` by default.
 
-Opacity (0, 1).
+## Events
 
-### visible
+You have access to all Events from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_WebGLTile-WebGLTileLayer.html) to see the available events tht will be fired.
 
-- **Type**: `boolean`
-- **Default**: `true`
+```html
+<ol-webgl-tile-layer @error="handleEvent" />
+```
 
-Visibility.
+## Methods
 
-### extent
+You have access to all Methods from the underlying source.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_layer_WebGLTile-WebGLTileLayer.html) to see the available methods.
 
-- **Type**: `Array`
+To access the source, you can use a `ref()` as shown below:
 
-The bounding extent for layer rendering. The layer will not be rendered outside of this extent.
+```vue
+<template>
+  <!-- ... -->
+  <ol-webgl-tile-layer ref="layerRef" />
+  <!-- ... -->
+</template>
 
-### zIndex
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import type WebGLTileLayer from "ol/layer/WebGLTile";
 
-- **Type**: `number`
+const layerRef = ref<{ tileLayer: WebGLTileLayer }>(null);
 
-The z-index for layer rendering. At rendering time, the layers will be ordered, first by Z-index and then by position.
-
-### minResolution
-
-- **Type**: `number`
-
-The minimum resolution (inclusive) at which this layer will be visible.
-
-### maxResolution
-
-- **Type**: `number`
-
-The maximum resolution (exclusive) below which this layer will be visible.
-
-### minZoom
-
-- **Type**: `number`
-
-The minimum view zoom level (exclusive) above which this layer will be visible.
-
-### maxZoom
-
-- **Type**: `number`
-
-The maximum view zoom level (inclusive) at which this layer will be visible.
-
-### preload
-
-- **Type**: `number`
-- **Default**: `0`
-  Low-resolution tiles up to preload level will be load.
+onMounted(() => {
+  const layer: WebGLTileLayer = sourceRef.value?.tileLayer;
+  // call your method on `layer`
+});
+</script>
+```

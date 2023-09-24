@@ -7,25 +7,19 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
-import TileLayer from "ol/layer/WebGLTile";
+import TileLayer, { type Options } from "ol/layer/WebGLTile";
 import type Map from "ol/Map";
 import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
   layersCommonDefaultProps,
-  type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
-  defineProps<
-    LayersCommonProps & {
-      preload?: number;
-    }
-  >(),
+  defineProps<Options>(),
   {
-    ...layersCommonDefaultProps,
-    preload: 1,
+    visible: true,
   },
 );
 
