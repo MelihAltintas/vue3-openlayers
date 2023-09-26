@@ -6,23 +6,41 @@ ol-vector-tile-layer can render vector tile from various backend services. It sh
 import VectorTileLayerDemo from "@demos/VectorTileLayerDemo.vue"
 import FeatureSelectDemo from "@demos/FeatureSelectDemo.vue"
 </script>
-<ClientOnly>
-<VectorTileLayerDemo />
-</ClientOnly>
-<ClientOnly>
-<FeatureSelectDemo />
-</ClientOnly>
-
 
 ## Usage
+
+### Example 1
 
 Example below shows how you can use ol-vector-tile-layer and ol-source-vector-tile to render some vector-tile features from remote backend.
 
 Load features simply by providing url value and format MVT
 
+<ClientOnly>
+<VectorTileLayerDemo />
+</ClientOnly>
+
 ::: code-group
 
 <<< ../../../../src/demos/VectorTileLayerDemo.vue
+
+:::
+
+### Example 2
+
+The Example below shows how you can copy features from a `ol-vector-tile-layer` to a `ol-vector-layer`. It also visualizes how you can use the [Turf](https://turfjs.org/) library in combination with vue3-openlayers.
+
+> #### Important Notes:
+>
+> - You can use the `{ featureClass: Feature }` option, when defining the `ol-source-vector-tile` format to Control the Type of Features visible in the Map
+> - [Turf](https://turfjs.org/) is only Compatible with [EPSG:4326](https://epsg.io/4326). Openlayers uses [EPSG:3857](https://epsg.io/3857), so you need to convert between them.
+
+<ClientOnly>
+<FeatureSelectDemo />
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../../src/demos/FeatureSelectDemo.vue
 
 :::
 
