@@ -4,10 +4,15 @@ ol-vector-layer can render vector from various backend services. It should be us
 
 <script setup>
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
+import FeatureSelectDemo from "@demos/FeatureSelectDemo.vue"
 </script>
 
 <ClientOnly>
 <VectorSourceDemo1 />
+</ClientOnly>
+
+<ClientOnly>
+<FeatureSelectDemo />
 </ClientOnly>
 
 ## Usage
