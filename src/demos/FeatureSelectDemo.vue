@@ -7,14 +7,14 @@
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height: 700px"
+    style="height: 400px"
     @pointermove="pointermove"
     @click="click"
     ref="mapRef"
   >
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
 
-    <ol-vector-tile-layer ref="vectorTileLayerRef">
+    <ol-vector-tile-layer>
       <ol-source-vector-tile :url="url" :format="mvtFormat">
       </ol-source-vector-tile>
 
@@ -53,6 +53,7 @@
 import * as turf from "@turf/turf";
 import Feature, { type FeatureLike } from "ol/Feature";
 import type MapRef from "ol/Map.js";
+import { Geometry } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
 import VectorTileLayer from "ol/layer/VectorTile";
 import { transform } from "ol/proj";
@@ -69,9 +70,6 @@ const format = inject("ol-format");
 const mvtFormat = new format.MVT({ featureClass: Feature });
 
 const mapRef = ref<{ map: MapRef } | null>(null);
-const vectorTileLayerRef = ref<{ vectorTileLayer: VectorTileLayer } | null>(
-  null,
-);
 
 let selectedFeatures = ref<FeatureLike[]>([]);
 let highlightedFeature = ref<FeatureLike[]>([]);
