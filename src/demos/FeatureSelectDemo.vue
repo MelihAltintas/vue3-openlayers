@@ -14,7 +14,7 @@
   >
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
 
-    <ol-vector-tile-layer>
+    <ol-vector-tile-layer class-name="feature-layer">
       <ol-source-vector-tile :url="url" :format="mvtFormat">
       </ol-source-vector-tile>
 
@@ -40,7 +40,7 @@
       </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer v-if="bound">
+    <ol-vector-layer v-if="bound" class-name="bound">
       <ol-source-vector :features="[bound]"> </ol-source-vector>
 
       <ol-style>
@@ -66,6 +66,7 @@ import {
   Point,
   Polygon,
 } from "ol/geom";
+import type { Layer } from "ol/layer";
 import { transform } from "ol/proj";
 import { inject, ref, watch } from "vue";
 
@@ -85,6 +86,13 @@ const bufferRadius = ref<number>(10);
 const highlightingTemplate = ref<Coordinate[]>([]);
 
 /**
+ * Only handle click / hover for the layer with class name "feature-layer"
+ */
+function layerFilter(layerCandidate: Layer) {
+  return layerCandidate.getClassName().includes("feature-layer");
+}
+
+/**
  * show hovered feature in separate layer
  */
 function hoverFeature(event: MapBrowserEvent<PointerEvent>) {
@@ -98,7 +106,7 @@ function hoverFeature(event: MapBrowserEvent<PointerEvent>) {
     (feature: FeatureLike) => {
       highlightedFeature.value = feature;
     },
-    { hitTolerance: 1 },
+    { hitTolerance: 10, layerFilter },
   );
 }
 
@@ -118,7 +126,10 @@ function selectFeature(event: MapBrowserEvent<PointerEvent>) {
   }
 
   // store selected feature
-  const feature = map.getFeaturesAtPixel(event.pixel, { hitTolerance: 10 })[0];
+  const feature = map.getFeaturesAtPixel(event.pixel, {
+    hitTolerance: 10,
+    layerFilter,
+  })[0];
   if (!feature) {
     return;
   }
