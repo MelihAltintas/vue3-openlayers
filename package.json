@@ -67,6 +67,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "proj4": "^2.9.2",
