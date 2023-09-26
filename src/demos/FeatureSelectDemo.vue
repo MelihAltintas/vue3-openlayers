@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="bufferRadius"> Buffer Radius: </label>
+    <label for="bufferRadius">Buffer Radius:</label>
     <input type="number" id="bufferRadius" v-model="bufferRadius" />
   </div>
 
@@ -8,8 +8,8 @@
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
     style="height: 400px"
-    @pointermove="pointermove"
-    @click="click"
+    @pointermove="hoverFeature"
+    @click="selectFeature"
     ref="mapRef"
   >
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
@@ -23,24 +23,25 @@
       </ol-style>
     </ol-vector-tile-layer>
 
+    <ol-vector-layer v-if="highlightedFeature">
+      <ol-source-vector :features="[highlightedFeature]"> </ol-source-vector>
+
+      <ol-style>
+        <ol-style-stroke color="orange" :width="4"></ol-style-stroke>
+      </ol-style>
+    </ol-vector-layer>
+
     <ol-vector-layer>
-      <ol-source-vector :features="highlightedFeature"> </ol-source-vector>
+      <ol-source-vector :features="Array.from(selectedFeatures)">
+      </ol-source-vector>
 
       <ol-style>
         <ol-style-stroke color="red" :width="3"></ol-style-stroke>
       </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer>
-      <ol-source-vector :features="selectedFeatures"> </ol-source-vector>
-
-      <ol-style>
-        <ol-style-stroke color="red" :width="3"></ol-style-stroke>
-      </ol-style>
-    </ol-vector-layer>
-
-    <ol-vector-layer>
-      <ol-source-vector :features="bound"> </ol-source-vector>
+    <ol-vector-layer v-if="bound">
+      <ol-source-vector :features="[bound]"> </ol-source-vector>
 
       <ol-style>
         <ol-style-stroke color="green" :width="3"></ol-style-stroke>
@@ -50,132 +51,117 @@
 </template>
 
 <script setup lang="ts">
-import * as turf from "@turf/turf";
+import buffer from "@turf/buffer";
+import { lineString } from "@turf/helpers";
+import { MapBrowserEvent } from "ol";
 import Feature, { type FeatureLike } from "ol/Feature";
 import type MapRef from "ol/Map.js";
-import { Geometry } from "ol/geom";
+import type { Coordinate } from "ol/coordinate";
 import GeoJSON from "ol/format/GeoJSON";
-import VectorTileLayer from "ol/layer/VectorTile";
+import {
+  LineString,
+  MultiLineString,
+  MultiPoint,
+  MultiPolygon,
+  Point,
+  Polygon,
+} from "ol/geom";
 import { transform } from "ol/proj";
 import { inject, ref, watch } from "vue";
 
-const center = ref([943955.94569529717, 6356667.343082143]);
+const format = inject("ol-format");
+const mvtFormat = new format.MVT({ featureClass: Feature });
+const mapRef = ref<{ map: MapRef } | null>(null);
+const center = ref([943955.9456952971, 6356667.343082143]);
 const zoom = ref(18);
 const rotation = ref(0);
-
 const url = ref(
   "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf",
 );
-const format = inject("ol-format");
-const mvtFormat = new format.MVT({ featureClass: Feature });
+const selectedFeatures = ref<Set<FeatureLike>>(new Set());
+const highlightedFeature = ref<FeatureLike>();
+const bound = ref<FeatureLike>();
+const bufferRadius = ref<number>(10);
+const highlightingTemplate = ref<Coordinate[]>([]);
 
-const mapRef = ref<{ map: MapRef } | null>(null);
-
-let selectedFeatures = ref<FeatureLike[]>([]);
-let highlightedFeature = ref<FeatureLike[]>([]);
-let bound = ref<FeatureLike[]>([]);
-let bufferRadius = ref<number>(10);
-let highlightingTemplate = ref<number[][][]>([]);
-
-function pointermove(event: any) {
+/**
+ * show hovered feature in separate layer
+ */
+function hoverFeature(event: MapBrowserEvent<PointerEvent>) {
   const map = mapRef.value?.map;
-
-  highlightedFeature.value = [];
-
-  if (map) {
-    map.forEachFeatureAtPixel(
-      event.pixel,
-      (feature: FeatureLike) => {
-        highlightedFeature.value = [feature];
-      },
-      {
-        hitTolerance: 1,
-      },
-    );
+  if (!map) {
+    return;
   }
+  highlightedFeature.value = undefined;
+  map.forEachFeatureAtPixel(
+    event.pixel,
+    (feature: FeatureLike) => {
+      highlightedFeature.value = feature;
+    },
+    { hitTolerance: 1 },
+  );
 }
 
-function reMap(espg3857: number[][]): number[][] {
-  return espg3857.map((coord) => transform(coord, "EPSG:3857", "EPSG:4326"));
-}
-
-function click(event: any) {
+/**
+ * select features and combine them when shift key is pressed
+ */
+function selectFeature(event: MapBrowserEvent<PointerEvent>) {
   const map = mapRef.value?.map;
+  if (!map) {
+    return;
+  }
 
+  // reset selection when shift key isn't pressed
   if (!event.originalEvent.shiftKey) {
-    selectedFeatures.value = [];
+    selectedFeatures.value.clear();
     highlightingTemplate.value = [];
   }
 
-  if (map) {
-    const features = map.getFeaturesAtPixel(event.pixel, { hitTolerance: 1 });
-    if (features[0]) {
-      const featureIndex = selectedFeatures.value.indexOf(features[0]);
-      if (featureIndex == -1) {
-        selectedFeatures.value.push(features[0]);
-      } else {
-        selectedFeatures.value.splice(featureIndex, 1);
-      }
-
-      let coordinates: number[][][] = [];
-
-      selectedFeatures.value.forEach((feature) => {
-        const newCoordinates = feature.getGeometry().getCoordinates();
-
-        console.log(feature.getGeometry().getType(), newCoordinates);
-
-        switch (feature.getGeometry().getType()) {
-          case "MultiLineString": {
-            newCoordinates.forEach((element: number[][]) => {
-              coordinates.push(reMap(element));
-            });
-
-            break;
-          }
-
-          case "Polygon": {
-            coordinates.push(reMap(newCoordinates.flat()));
-            break;
-          }
-
-          case "MultiPolygon": {
-            newCoordinates.forEach((element: number[][][]) => {
-              coordinates.push(reMap(element.flat()));
-            });
-            break;
-          }
-
-          default: {
-            coordinates.push(reMap(newCoordinates));
-            break;
-          }
-        }
-      });
-
-      console.log(coordinates);
-
-      highlightingTemplate.value = coordinates;
-    }
+  // store selected feature
+  const feature = map.getFeaturesAtPixel(event.pixel, { hitTolerance: 10 })[0];
+  if (!feature) {
+    return;
   }
+  selectedFeatures.value.has(feature)
+    ? selectedFeatures.value.delete(feature)
+    : selectedFeatures.value.add(feature);
+
+  // get flat coordinates from all selected geometries (e. g. [13.40, 52.52, 13.32, 51.43, ...])
+  const allFlatCoordinates: Coordinate = [];
+  selectedFeatures.value.forEach((feature) => {
+    const geometry = feature.getGeometry() as
+      | Point
+      | MultiPoint
+      | Polygon
+      | MultiPolygon
+      | LineString
+      | MultiLineString;
+    allFlatCoordinates.push(...geometry.getFlatCoordinates());
+  });
+
+  // map flat coordinates to Coordinate array (e. g. [[13.40, 52.52], [13.32, 51.43], [...]])
+  highlightingTemplate.value = allFlatCoordinates
+    .reduce<Coordinate[]>((accumulator, _, currentIndex, array) => {
+      if (currentIndex % 2 === 0) {
+        accumulator.push(array.slice(currentIndex, currentIndex + 2));
+      }
+      return accumulator;
+    }, [])
+    .map((c) => transform(c, "EPSG:3857", "EPSG:4326"));
 }
 
 watch([highlightingTemplate, bufferRadius], () => {
   if (highlightingTemplate.value.length === 0) {
-    bound.value = [];
+    bound.value = undefined;
   } else {
-    const multiLine = turf.multiLineString(highlightingTemplate.value);
-
-    const bufferedHull = turf.buffer(multiLine, bufferRadius.value, {
+    const line = lineString(highlightingTemplate.value);
+    const bufferedHull = buffer(line, bufferRadius.value, {
       units: "meters",
     });
-
-    const format = new GeoJSON();
-    const olFeature = format.readFeature(bufferedHull, {
+    bound.value = new GeoJSON().readFeature(bufferedHull, {
       dataProjection: "EPSG:4326",
       featureProjection: "EPSG:3857",
     });
-
-    bound.value = [olFeature];
   }
 });
 </script>
