@@ -15,8 +15,7 @@
     <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
 
     <ol-vector-tile-layer class-name="feature-layer">
-      <ol-source-vector-tile :url="url" :format="mvtFormat">
-      </ol-source-vector-tile>
+      <ol-source-vector-tile :url="url" :format="mvtFormat" />
       <ol-style>
         <ol-style-stroke color="#2255ee" :width="1" />
       </ol-style>
@@ -29,7 +28,7 @@
       </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer v-if="selectedFeatures">
+    <ol-vector-layer>
       <ol-source-vector :features="selectedFeatures" />
       <ol-style>
         <ol-style-stroke color="#bb2233" :width="2" />
@@ -114,7 +113,7 @@ function layerFilter(layerCandidate: Layer) {
 /**
  * show hovered feature in separate layer
  */
-function hoverFeature(event: MapBrowserEvent<PointerEvent>, a) {
+function hoverFeature(event: MapBrowserEvent<PointerEvent>) {
   const map = mapRef.value?.map;
   if (!map) {
     return;
@@ -141,10 +140,14 @@ function selectFeature(event: MapBrowserEvent<PointerEvent>) {
   }
 
   // store selected feature
-  const feature = map.getFeaturesAtPixel(event.pixel, {
+  const features = map.getFeaturesAtPixel(event.pixel, {
     hitTolerance: 10,
     layerFilter,
-  })[0];
+  });
+  if (!features.length) {
+    return;
+  }
+  const feature = features[0];
   const featureIndex = selectedFeatures.value.indexOf(feature);
   if (featureIndex == -1) {
     selectedFeatures.value.push(feature);
