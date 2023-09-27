@@ -74,7 +74,7 @@ const url = ref(
   "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf",
 );
 const selectedFeatures = ref<FeatureLike[]>([]);
-const highlightedFeatures = ref<FeatureLike[]>();
+const highlightedFeatures = ref<FeatureLike[]>([]);
 const bound = ref<FeatureLike>();
 const bufferRadius = ref<number>(10);
 
