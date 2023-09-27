@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <form>
     <label for="bufferRadius">Buffer Radius:</label>
     <input type="number" id="bufferRadius" v-model="bufferRadius" />
-  </div>
+  </form>
 
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -17,34 +17,29 @@
     <ol-vector-tile-layer class-name="feature-layer">
       <ol-source-vector-tile :url="url" :format="mvtFormat">
       </ol-source-vector-tile>
-
       <ol-style>
-        <ol-style-stroke color="blue" :width="1"></ol-style-stroke>
+        <ol-style-stroke color="#2255ee" :width="1" />
       </ol-style>
     </ol-vector-tile-layer>
 
     <ol-vector-layer v-if="highlightedFeature">
-      <ol-source-vector :features="[highlightedFeature]"> </ol-source-vector>
-
+      <ol-source-vector :features="[highlightedFeature]" />
       <ol-style>
-        <ol-style-stroke color="orange" :width="4"></ol-style-stroke>
+        <ol-style-stroke color="#bb2233" :width="2" />
       </ol-style>
     </ol-vector-layer>
 
-    <ol-vector-layer>
-      <ol-source-vector :features="Array.from(selectedFeatures)">
-      </ol-source-vector>
-
+    <ol-vector-layer v-if="selectedFeatures">
+      <ol-source-vector :features="selectedFeatures" />
       <ol-style>
-        <ol-style-stroke color="red" :width="3"></ol-style-stroke>
+        <ol-style-stroke color="#bb2233" :width="2" />
       </ol-style>
     </ol-vector-layer>
 
     <ol-vector-layer v-if="bound" class-name="bound">
-      <ol-source-vector :features="[bound]"> </ol-source-vector>
-
+      <ol-source-vector :features="[bound]" />
       <ol-style>
-        <ol-style-stroke color="green" :width="3"></ol-style-stroke>
+        <ol-style-stroke color="#33dd99" :width="3" />
       </ol-style>
     </ol-vector-layer>
   </ol-map>
@@ -68,7 +63,7 @@ import {
 } from "ol/geom";
 import type { Layer } from "ol/layer";
 import { transform } from "ol/proj";
-import { inject, ref, watch } from "vue";
+import { computed, inject, ref, watch } from "vue";
 
 const format = inject("ol-format");
 const mvtFormat = new format.MVT({ featureClass: Feature });
@@ -79,11 +74,35 @@ const rotation = ref(0);
 const url = ref(
   "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf",
 );
-const selectedFeatures = ref<Set<FeatureLike>>(new Set());
+const selectedFeatures = ref<FeatureLike[]>([]);
 const highlightedFeature = ref<FeatureLike>();
 const bound = ref<FeatureLike>();
 const bufferRadius = ref<number>(10);
-const highlightingTemplate = ref<Coordinate[]>([]);
+
+const highlightingTemplate = computed<Coordinate[]>(() => {
+  // get flat coordinates from all selected geometries (e. g. [13.40, 52.52, 13.32, 51.43, ...])
+  const allFlatCoordinates: Coordinate = [];
+  selectedFeatures.value.forEach((feature) => {
+    const geometry = feature.getGeometry() as
+      | Point
+      | MultiPoint
+      | Polygon
+      | MultiPolygon
+      | LineString
+      | MultiLineString;
+    allFlatCoordinates.push(...geometry.getFlatCoordinates());
+  });
+
+  // map flat coordinates to Coordinate array (e. g. [[13.40, 52.52], [13.32, 51.43], [...]])
+  return allFlatCoordinates
+    .reduce<Coordinate[]>((accumulator, _, currentIndex, array) => {
+      if (currentIndex % 2 === 0) {
+        accumulator.push(array.slice(currentIndex, currentIndex + 2));
+      }
+      return accumulator;
+    }, [])
+    .map((c) => transform(c, "EPSG:3857", "EPSG:4326"));
+});
 
 /**
  * Only handle click / hover for the layer with class name "feature-layer"
@@ -121,8 +140,7 @@ function selectFeature(event: MapBrowserEvent<PointerEvent>) {
 
   // reset selection when shift key isn't pressed
   if (!event.originalEvent.shiftKey) {
-    selectedFeatures.value.clear();
-    highlightingTemplate.value = [];
+    selectedFeatures.value = [];
   }
 
   // store selected feature
@@ -130,35 +148,12 @@ function selectFeature(event: MapBrowserEvent<PointerEvent>) {
     hitTolerance: 10,
     layerFilter,
   })[0];
-  if (!feature) {
-    return;
+  const featureIndex = selectedFeatures.value.indexOf(feature);
+  if (featureIndex == -1) {
+    selectedFeatures.value.push(feature);
+  } else {
+    selectedFeatures.value.splice(featureIndex, 1);
   }
-  selectedFeatures.value.has(feature)
-    ? selectedFeatures.value.delete(feature)
-    : selectedFeatures.value.add(feature);
-
-  // get flat coordinates from all selected geometries (e. g. [13.40, 52.52, 13.32, 51.43, ...])
-  const allFlatCoordinates: Coordinate = [];
-  selectedFeatures.value.forEach((feature) => {
-    const geometry = feature.getGeometry() as
-      | Point
-      | MultiPoint
-      | Polygon
-      | MultiPolygon
-      | LineString
-      | MultiLineString;
-    allFlatCoordinates.push(...geometry.getFlatCoordinates());
-  });
-
-  // map flat coordinates to Coordinate array (e. g. [[13.40, 52.52], [13.32, 51.43], [...]])
-  highlightingTemplate.value = allFlatCoordinates
-    .reduce<Coordinate[]>((accumulator, _, currentIndex, array) => {
-      if (currentIndex % 2 === 0) {
-        accumulator.push(array.slice(currentIndex, currentIndex + 2));
-      }
-      return accumulator;
-    }, [])
-    .map((c) => transform(c, "EPSG:3857", "EPSG:4326"));
 }
 
 watch([highlightingTemplate, bufferRadius], () => {
@@ -176,13 +171,3 @@ watch([highlightingTemplate, bufferRadius], () => {
   }
 });
 </script>
-
-<style scoped>
-input {
-  margin: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 1rem;
-  border: 1px solid black;
-  width: 100px;
-}
-</style>
