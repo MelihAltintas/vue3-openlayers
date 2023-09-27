@@ -22,8 +22,8 @@
       </ol-style>
     </ol-vector-tile-layer>
 
-    <ol-vector-layer v-if="highlightedFeature">
-      <ol-source-vector :features="[highlightedFeature]" />
+    <ol-vector-layer>
+      <ol-source-vector :features="highlightedFeatures" />
       <ol-style>
         <ol-style-stroke color="#bb2233" :width="2" />
       </ol-style>
@@ -75,7 +75,7 @@ const url = ref(
   "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf",
 );
 const selectedFeatures = ref<FeatureLike[]>([]);
-const highlightedFeature = ref<FeatureLike>();
+const highlightedFeatures = ref<FeatureLike[]>();
 const bound = ref<FeatureLike>();
 const bufferRadius = ref<number>(10);
 
@@ -114,19 +114,16 @@ function layerFilter(layerCandidate: Layer) {
 /**
  * show hovered feature in separate layer
  */
-function hoverFeature(event: MapBrowserEvent<PointerEvent>) {
+function hoverFeature(event: MapBrowserEvent<PointerEvent>, a) {
   const map = mapRef.value?.map;
   if (!map) {
     return;
   }
-  highlightedFeature.value = undefined;
-  map.forEachFeatureAtPixel(
-    event.pixel,
-    (feature: FeatureLike) => {
-      highlightedFeature.value = feature;
-    },
-    { hitTolerance: 10, layerFilter },
-  );
+  const features = map.getFeaturesAtPixel(event.pixel, {
+    hitTolerance: 10,
+    layerFilter,
+  });
+  highlightedFeatures.value = features[0] ? [features[0]] : [];
 }
 
 /**
