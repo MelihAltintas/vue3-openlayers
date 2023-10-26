@@ -1,9 +1,9 @@
+import vue from "@vitejs/plugin-vue";
 /// <reference types="vite/client" />
 /// <reference types="vitest" />
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [
@@ -83,6 +83,7 @@ export default defineConfig({
           "ol/source/ImageStatic": "Static",
           "ol/proj": "proj",
           "ol/source/ImageWMS": "ImageWMS",
+          "ol/source/GeoTIFF": "GeoTIFF",
           "ol/source/OSM": "OSM",
           "ol/source/StadiaMaps": "StadiaMaps",
           "ol/source/TileDebug": "TileDebug",
@@ -96,6 +97,7 @@ export default defineConfig({
           "ol/source/VectorTile": "VectorSourceTile",
           "ol/source/XYZ": "XYZ",
           "ol/control": "control",
+          "ol/control/OverviewMap": "OverviewMap",
           "ol-ext/control/Button": "Button",
           "ol-contextmenu": "ContextMenu",
           "ol-ext/control/Bar": "Bar",
