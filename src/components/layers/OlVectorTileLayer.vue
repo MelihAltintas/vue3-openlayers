@@ -6,7 +6,9 @@
 
 <script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
-import VectorTileLayer from "ol/layer/VectorTile";
+import VectorTileLayer, {
+  type VectorTileRenderType,
+} from "ol/layer/VectorTile";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
@@ -24,6 +26,7 @@ const props = withDefaults(
       updateWhileAnimating?: boolean;
       styles?: StyleLike | FlatStyleLike | null;
       updateWhileInteracting?: boolean;
+      renderMode?: VectorTileRenderType;
     }
   >(),
   {
@@ -31,6 +34,7 @@ const props = withDefaults(
     renderBuffer: 100,
     updateWhileAnimating: false,
     updateWhileInteracting: false,
+    renderMode: "hybrid",
   },
 );
 
