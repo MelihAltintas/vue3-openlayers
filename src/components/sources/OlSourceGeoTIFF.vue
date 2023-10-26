@@ -18,7 +18,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<Options>()
+const props = defineProps<Options>();
 
 const layer = inject<Ref<TileLayer<GeoTIFF>> | null>("tileLayer");
 const { properties } = usePropsAsObjectProperties(props);
@@ -28,9 +28,7 @@ const createSource = () => {
     ...properties,
     projection: projectionFromProperties(properties.projection),
   });
-
-}
-
+};
 
 let source = createSource();
 

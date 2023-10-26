@@ -17,7 +17,10 @@ import {
 } from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
 import type LayerGroup from "ol/layer/Group";
-import { FEATURE_EVENTS, useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  FEATURE_EVENTS,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -64,7 +67,6 @@ const vectorLayer = computed(() => {
     source: clusterSource.value,
   });
 });
-
 
 useOpenLayersEvents(clusterSource, FEATURE_EVENTS);
 

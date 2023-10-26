@@ -11,17 +11,11 @@ import TileLayer, { type Options } from "ol/layer/WebGLTile";
 import type Map from "ol/Map";
 import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import {
-  layersCommonDefaultProps,
-} from "@/components/layers/LayersCommonProps";
 import type LayerGroup from "ol/layer/Group";
 
-const props = withDefaults(
-  defineProps<Options>(),
-  {
-    visible: true,
-  },
-);
+const props = withDefaults(defineProps<Options>(), {
+  visible: true,
+});
 
 const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
