@@ -2,15 +2,54 @@
 
 # [3.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-3...v3.0.0) (2023-10-26)
 
-
 ### Bug Fixes
 
 * add provided for external module for GeoTIFF and OverviewMap ([ac39fb2](https://github.com/MelihAltintas/vue3-openlayers/commit/ac39fb2b0703f5356160a44aa1ade9b64471896b))
+* **ol-view:** re-enable rotation ([57c9a95](https://github.com/MelihAltintas/vue3-openlayers/commit/57c9a95156b9515705b7d66b95004aaf009d1f22))
+* **demo:** use scoped styles and cleanup unused styles ([3d7fba4](https://github.com/MelihAltintas/vue3-openlayers/commit/3d7fba4c117a612351f3575bf7be918a26642a49))
 
+### Code Refactoring
+
+* **ol-overviewmap-control:** adopt OpenLayers API and fix layers rendering ([fd82d1a](https://github.com/MelihAltintas/vue3-openlayers/commit/fd82d1a6cc3274a425b679d0afba4595274853e9))
+* **ol-webgl-tile-layer:** adopt OpenLayers API and fix layers rendering ([4d44b21](https://github.com/MelihAltintas/vue3-openlayers/commit/4d44b213c00af8e292f0307491e77eea81446b9b))
 
 ### Features
 
 * **ol-vector-tile-layers:** add support for `renderMode` property ([116b576](https://github.com/MelihAltintas/vue3-openlayers/commit/116b576e1da6f9e99ea4d06e584e8221e6deb20b)), closes [#263](https://github.com/MelihAltintas/vue3-openlayers/issues/263)
+* **ol-source-geo-tiff:** add new source for GeoTIFF ([78dc2c6](https://github.com/MelihAltintas/vue3-openlayers/commit/78dc2c68477c643d0d5d714e9791c3b9361d0b45))
+* **ol-animated-clusterlayer:** emit all Cluster events ([0867d4b](https://github.com/MelihAltintas/vue3-openlayers/commit/0867d4b8cca6a203bed6f95aa73aaae41fd6329c))
+* **ol-videorecorder-control:** pass-through all props and events from `ol-ext` ([fb99807](https://github.com/MelihAltintas/vue3-openlayers/commit/fb99807d367f13736b5b597cbb6e85b2a425a4f1))
+* **ol-map:** feat(ol-map) support all Map events from OpenLayers on component. Newly supported events are:
+  - `change:size`
+  - `change:target`
+  - `change:view`
+  - `rendercomplete`
+  Please refer to the [OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html)
+* **ol-videorecorder-control**: pass-through all props and events from `ol-ext`
+  - if not `downloadName` is set, the file will not be downloaded but the `stop` event is fired with the blob data/url.
+  - all events are now fired. In addition to the already existing `start` and `stop` event, you can now also react to the `pause` and `resume` event
+  - docs has been updated
+
+### BREAKING CHANGES
+
+* **ol-webgl-tile-layer:** use [props and default values from openlayers directly](https://openlayers.org/en/latest/apidoc/module-ol_layer_WebGLTile-WebGLTileLayer.html)
+* **ol-overviewmap-control:** use props and default values from openlayers directly. render component from slot in overview map
+- **`ol-overlay`** all properties are now passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html). Potentially this hasn't changed anything yet, but it can in the future, if OpenLayers changes it's API
+- **`ol-overlay`** all events are now fired at component level [as defined in OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html). Details:
+  - `elementChanged` is now emitted as `change:element`
+  - `offsetChanged` is now emitted as `change:offset`
+  - `positionChanged` is now emitted as `change:position`
+  - `positioningChanged` is now emitted as `change:positioning`
+- **`ol-view`**: property `center`'s default value has been removed (it was set `[0, 0]`) before. Now all [default values from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) are used directly
+- **`ol-view`**: All [Events  from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) are emitted as component events directly now. Please change:
+  - `resolutionChanged` to `change:resolution`
+  - `rotationChanged` to `change:rotation`
+  - `rotationChanged` to `change:rotation`
+  - `centerChanged` to `change:center`
+  - `zoomChanged` event has been dropped. Please use `change:center` or `change:resolution` instead
+- **`ol-map`**: properties with default values are now aligned with all [default values from OpenLayers](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html)
+
 
 # [3.0.0-3](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-2...v3.0.0-3) (2023-09-24)
 
