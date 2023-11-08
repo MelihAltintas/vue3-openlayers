@@ -30,19 +30,33 @@
           @drawend="drawend"
         />
         <ol-style>
-          <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
-          <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
+          <ol-style-stroke color="blue" :width="2" />
+          <ol-style-fill color="rgba(255, 0, 0, 0.4)" />
         </ol-style>
       </ol-source-vector>
     </ol-vector-layer>
 
-    <ol-interaction-transform> </ol-interaction-transform>
+    <ol-interaction-transform
+      @select="log('select', $event)"
+      @rotatestart="log('rotatestart', $event)"
+      @rotating="log('rotate', $event)"
+      @rotateend="log('rotateend', $event)"
+      @translatestart="log('translatestart', $event)"
+      @translate="log('translate', $event)"
+      @translateend="log('translateend', $event)"
+      @scalestart="log('scalestart', $event)"
+      @scaling="log('scaling', $event)"
+      @scaleend="log('scaleend', $event)"
+    />
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { GeoJSON } from "ol/format";
+import type { DrawEvent } from "ol/interaction/Draw";
+import type { Feature } from "ol";
+import type { Geometry } from "ol/geom";
 
 const map = ref("");
 const center = ref([-102.13121, 40.2436]);
@@ -93,11 +107,15 @@ const geojsonObject = {
   ],
 };
 
-const zones = ref([]);
+const zones = ref<Feature<Geometry>[]>([]);
 
-const drawend = (event) => {
+const drawend = (event: DrawEvent) => {
   zones.value.push(event.feature);
   drawEnabled.value = false;
+};
+
+const log = (eventType: string, event: unknown) => {
+  console.log(eventType, event);
 };
 
 zones.value = new GeoJSON().readFeatures(geojsonObject);

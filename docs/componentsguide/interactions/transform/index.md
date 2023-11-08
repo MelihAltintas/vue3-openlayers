@@ -74,3 +74,16 @@ import TransformDemo from "@demos/TransformDemo.vue"
 
 - **Type**: `Boolean`
 - **Default**: `true`
+
+## Events
+
+- `select`
+- `rotatestart`
+- `rotating`
+- `rotateend`
+- `translatestart`
+- `translating`
+- `translateend`
+- `scalestart`
+- `scaling`
+- `scaleend`

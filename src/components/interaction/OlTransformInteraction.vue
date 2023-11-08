@@ -8,6 +8,7 @@ import Transform from "ol-ext/interaction/Transform";
 import type { Condition } from "ol/events/condition";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
 const props = withDefaults(
   defineProps<{
@@ -35,6 +36,11 @@ const props = withDefaults(
   },
 );
 
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
+
 const map = inject<Map>("map");
 
 const { properties } = usePropsAsObjectProperties(props);
@@ -46,6 +52,19 @@ const transform = computed(() => {
 
   return olTransform;
 });
+
+useOpenLayersEvents(transform, [
+  "select",
+  "rotatestart",
+  "rotating",
+  "rotateend",
+  "translatestart",
+  "translating",
+  "translateend",
+  "scalestart",
+  "scaling",
+  "scaleend",
+]);
 
 watch(transform, (newVal, oldVal) => {
   map?.removeInteraction(oldVal);
