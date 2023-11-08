@@ -12,7 +12,7 @@ import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
   useOpenLayersEvents,
-  FEATURE_EVENTS,
+  TILE_SOURCE_EVENTS,
 } from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -35,7 +35,7 @@ const { properties } = usePropsAsObjectProperties(props);
 
 const source = computed(() => new VectorTileSource(properties));
 
-useOpenLayersEvents(source, FEATURE_EVENTS);
+useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
 
 const applySource = () => {
   vectorTileLayer?.value?.setSource(null);
