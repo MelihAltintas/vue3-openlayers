@@ -1,12 +1,14 @@
-import {
-  type Ref,
-  onMounted,
-  getCurrentInstance,
-  type ComputedRef,
-  isRef,
-  inject,
-} from "vue";
 import { ObjectEvent } from "ol/Object";
+import {
+  ComputedRef,
+  getCurrentInstance,
+  inject,
+  isRef,
+  onMounted,
+  Ref,
+  type,
+  type,
+} from "vue";
 
 export const COMMON_EVENTS = ["change", "error", "propertychange"];
 

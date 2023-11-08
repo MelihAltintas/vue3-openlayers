@@ -254,6 +254,10 @@ export default defineConfig({
                 link: "/componentsguide/styles/icon/",
               },
               {
+                text: "ol-style-regular-shape",
+                link: "/componentsguide/styles/regularshape/",
+              },
+              {
                 text: "ol-style-stroke",
                 link: "/componentsguide/styles/stroke/",
               },

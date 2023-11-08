@@ -7,7 +7,8 @@ import Stroke from "ol/style/Stroke";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted } from "vue";
 import type Style from "ol/style/Style";
-import type CircleStyle from "ol/style/Circle";
+import CircleStyle from "ol/style/Circle";
+import type RegularShapeStyle from "ol/style/RegularShape";
 import type Draw from "ol/interaction/Draw";
 import type Modify from "ol/interaction/Modify";
 import type { ColorLike } from "ol/colorlike";
@@ -39,10 +40,49 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   null,
 );
 const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
+const regularShape = inject<Ref<RegularShapeStyle | null> | null>(
+  "regularShape",
+  null,
+);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-if (style != null && circle == null) {
+function applyStyleToShape(shape: Ref<CircleStyle | RegularShapeStyle>) {
+  // in circle or regularShape
+  const applyStrokeToShape = (innerProperties: Options) => {
+    shape?.value?.getStroke()?.setColor(innerProperties.color || "");
+    shape?.value?.getStroke()?.setLineCap(innerProperties.lineCap);
+    shape?.value?.getStroke()?.setLineDash(innerProperties.lineDash || []);
+    shape?.value
+      ?.getStroke()
+      ?.setLineDashOffset(innerProperties.lineDashOffset);
+    shape?.value?.getStroke()?.setLineJoin(innerProperties.lineJoin);
+    shape?.value?.getStroke()?.setMiterLimit(innerProperties.miterLimit);
+    shape?.value?.getStroke()?.setWidth(innerProperties.width);
+    if (shape.value instanceof CircleStyle) {
+      shape?.value?.setRadius(shape?.value.getRadius()); // force render
+    }
+    try {
+      // @ts-ignore
+      styledObj?.value?.changed();
+    } catch (error) {
+      // @ts-ignore
+      styledObj?.value?.changed();
+    }
+  };
+
+  applyStrokeToShape(properties);
+
+  watch(properties, (newVal: Options) => {
+    applyStrokeToShape(newVal);
+  });
+
+  watch(shape, () => {
+    applyStrokeToShape(properties);
+  });
+}
+
+if (style != null && !(circle?.value || regularShape?.value)) {
   // in style object
   let stroke = new Stroke(properties);
 
@@ -67,37 +107,9 @@ if (style != null && circle == null) {
   onUnmounted(() => {
     style?.value?.setStroke(new Stroke());
   });
-} else if (circle != null) {
-  // in circle
-  const applyStroketoCircle = (innerProperties: Options) => {
-    circle?.value?.getStroke()?.setColor(innerProperties.color || "");
-    circle?.value?.getStroke()?.setLineCap(innerProperties.lineCap);
-    circle?.value?.getStroke()?.setLineDash(innerProperties.lineDash || []);
-    circle?.value
-      ?.getStroke()
-      ?.setLineDashOffset(innerProperties.lineDashOffset);
-    circle?.value?.getStroke()?.setLineJoin(innerProperties.lineJoin);
-    circle?.value?.getStroke()?.setMiterLimit(innerProperties.miterLimit);
-    circle?.value?.getStroke()?.setWidth(innerProperties.width);
-
-    circle?.value?.setRadius(circle?.value?.getRadius());
-    try {
-      // @ts-ignore
-      styledObj?.value?.changed();
-    } catch (error) {
-      // @ts-ignore
-      styledObj?.value?.changed();
-    }
-  };
-
-  applyStroketoCircle(properties);
-
-  watch(properties, (newVal: Options) => {
-    applyStroketoCircle(newVal);
-  });
-
-  watch(circle, () => {
-    applyStroketoCircle(properties);
-  });
+} else if (circle?.value) {
+  applyStyleToShape(circle as Ref<CircleStyle>);
+} else if (regularShape?.value) {
+  applyStyleToShape(regularShape as Ref<RegularShapeStyle>);
 }
 </script>
