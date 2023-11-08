@@ -1,5 +1,17 @@
 
 
+# [3.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0...v3.1.0) (2023-11-08)
+
+
+### Bug Fixes
+
+* **ol-source-vector-tile:** listen to / pass correct events ([abe37e9](https://github.com/MelihAltintas/vue3-openlayers/commit/abe37e9e447543c2f2a43d7e96d4ac74103578be)), closes [#271](https://github.com/MelihAltintas/vue3-openlayers/issues/271)
+
+
+### Features
+
+* **ol-interaction-transform:** relay events ([350c4e3](https://github.com/MelihAltintas/vue3-openlayers/commit/350c4e3afea1b57070bcc4980f89db197f7a120e)), closes [#270](https://github.com/MelihAltintas/vue3-openlayers/issues/270)
+
 # [3.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0-3...v3.0.0) (2023-10-26)
 
 ### Bug Fixes
