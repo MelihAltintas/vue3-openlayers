@@ -5,7 +5,7 @@ import OlSourceImageStatic from "./OlSourceImageStatic.vue";
 import OlSourceImageWMS from "./OlSourceImageWMS.vue";
 import OlSourceOSM from "./OlSourceOSM.vue";
 import OlSourceStadiaMaps from "./OlSourceStadiaMaps.vue";
-import OlSourceTianDiTu from "./OlSourceTianDiTu.vue";
+import OlSourceTianditu from "./OlSourceTianditu.vue";
 import OlSourceTileArcGISRest from "@/components/sources/OlSourceTileArcGISRest.vue";
 import OlSourceTileDebug from "./OlSourceTileDebug.vue";
 import OlSourceGeoTIFF from "./OlSourceGeoTIFF.vue";
@@ -24,7 +24,7 @@ function install(app: App) {
   app.component("ol-source-image-wms", OlSourceImageWMS);
   app.component("ol-source-osm", OlSourceOSM);
   app.component("ol-source-stadia-maps", OlSourceStadiaMaps);
-  app.component("ol-source-tianditu", OlSourceTianDiTu);
+  app.component("ol-source-tianditu", OlSourceTianditu);
   app.component("ol-source-tile-arcgis-rest", OlSourceTileArcGISRest);
   app.component("ol-source-tile-debug", OlSourceTileDebug);
   app.component("ol-source-geo-tiff", OlSourceGeoTIFF);
@@ -47,7 +47,7 @@ export {
   OlSourceImageWMS,
   OlSourceOSM,
   OlSourceStadiaMaps,
-  OlSourceTianDiTu,
+  OlSourceTianditu,
   OlSourceTileArcGISRest,
   OlSourceTileDebug,
   OlSourceGeoTIFF,
