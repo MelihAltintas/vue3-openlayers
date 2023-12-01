@@ -34,6 +34,8 @@ const props = withDefaults(
     textAlign?: CanvasTextAlign;
     textBaseline?: CanvasTextBaseline;
     padding?: [number, number, number, number];
+    fill?: Color | ColorLike;
+    stroke?: StrokeOptions;
     backgroundFill?: Color | ColorLike;
     backgroundStroke?: StrokeOptions;
   }>(),
@@ -64,10 +66,14 @@ const createText = (properties: typeof props) => {
     "fill" | "stroke" | "backgroundFill" | "backgroundStroke"
   >;
   const options: Options = {
-    ...innerProperties,
-    fill: new Fill(),
-    stroke: new Stroke(),
+    ...innerProperties
   };
+  if (properties.fill) {
+    options.fill = new Fill({ color: properties.fill });
+  }
+  if (properties.stroke) {
+    options.stroke = new Stroke(properties.stroke);
+  }
   if (properties.backgroundFill) {
     options.backgroundFill = new Fill({ color: properties.backgroundFill });
   }

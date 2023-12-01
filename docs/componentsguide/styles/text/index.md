@@ -94,3 +94,15 @@ Fill color for the text background when `placement` is 'point'. Default is no fi
 - **Type**: `Object`
 
 Stroke style for the text background when `placement` is 'point'. Default is no stroke. Please see [ol-style-stroke](/componentsguide/styles/stroke/#properties) for available options.
+
+### fill
+
+- **Type**: `array`, `string`
+
+Fill color for the text. Default is '#333'. Either in hexadecimal or as RGBA array with red, green, and blue values betweeen 0 and 255 and alpha value between 0 and 1 inclusive.
+
+### stroke
+
+- **Type**: `Object`
+
+Stroke style for the text. Default is no stroke. Please see [ol-style-stroke](/componentsguide/styles/stroke/#properties) for available options.
