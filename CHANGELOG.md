@@ -1,5 +1,12 @@
 
 
+# [3.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.1.0...v3.2.0) (2023-12-03)
+
+
+### Features
+
+* **ol-style-text:** fill and stroke properties for the text ([#283](https://github.com/MelihAltintas/vue3-openlayers/issues/283)) ([111be7c](https://github.com/MelihAltintas/vue3-openlayers/commit/111be7c60ddcbc5e9c504a10da69b619c28bc512))
+
 # [3.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.0.0...v3.1.0) (2023-11-08)
 
 
