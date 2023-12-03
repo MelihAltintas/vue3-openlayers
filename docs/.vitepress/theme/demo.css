@@ -14,6 +14,30 @@ main select:focus {
   transition: color 0.25s;
 }
 
+main input {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  padding: 0 12px;
+  height: 40px;
+  cursor: text;
+  margin: 0 12px 12px 0;
+}
+main input:focus:focus-within {
+  border-color: var(--vp-c-brand-1);
+}
+
+/* Chrome, Safari, Edge, Opera */
+main input[type="number"]::-webkit-outer-spin-button,
+main input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* WebKit browsers (Safari) */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Standard property */
+
+  /* Reset other styles (optional) */
+  border: initial;
+  background: initial;
+}
+
 main button.btn-default,
 main select.select-default {
   display: block;
