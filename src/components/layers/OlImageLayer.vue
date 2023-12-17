@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch } from "vue";
+import { inject, provide, onUnmounted, onMounted, watch, ref } from "vue";
 import ImageLayer from "ol/layer/Image";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -25,12 +25,27 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const imageLayer = new ImageLayer(properties);
+const imageLayer = ref(new ImageLayer(properties));
 
 watch(properties, () => {
-  imageLayer.setProperties(properties);
+  imageLayer.value.setProperties(properties);
 });
 
+watch(
+  () => props.opacity,
+  (newOpacity: number) => {
+    imageLayer.value.setOpacity(newOpacity);
+  },
+  { immediate: true },
+);
+
+watch(
+  () => props.visible,
+  (newVisible: boolean) => {
+    imageLayer.value.setVisible(newVisible);
+  },
+  { immediate: true },
+);
 onMounted(() => {
   map?.addLayer(imageLayer);
 

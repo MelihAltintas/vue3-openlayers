@@ -75,6 +75,7 @@ main form {
   display: flex;
   align-items: baseline;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 main form fieldset {
@@ -84,6 +85,10 @@ main form fieldset {
   align-items: baseline;
   gap: 1rem;
   border: none;
+}
+
+main form label {
+  font-weight: bold;
 }
 
 main input[type="checkbox"] {
@@ -122,4 +127,42 @@ main ul > li:has(> input[type="checkbox"]) {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+main input[type="range"] {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 50%;
+  top: 0.9rem;
+}
+
+main input[type="range"] {
+  -webkit-appearance: none;
+}
+
+main input[type="range"]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+main input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-1);
+  margin-top: -4px;
+}
+
+main input[type="range"]:focus {
+  outline: none;
+}
+
+main input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
 }

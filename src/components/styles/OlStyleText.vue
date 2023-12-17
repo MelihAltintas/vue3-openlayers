@@ -66,7 +66,7 @@ const createText = (properties: typeof props) => {
     "fill" | "stroke" | "backgroundFill" | "backgroundStroke"
   >;
   const options: Options = {
-    ...innerProperties
+    ...innerProperties,
   };
   if (properties.fill) {
     options.fill = new Fill({ color: properties.fill });
