@@ -13,12 +13,13 @@
     />
 
     <ol-tile-layer>
-      <ol-source-osm />
+      <ol-source-osm crossOrigin="anonymous" />
     </ol-tile-layer>
 
     <ol-webgl-points-layer :styles="webglPointsStyle">
       <ol-source-webglpoints
         :format="geoJson"
+        crossOrigin="anonymous"
         url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
       />
     </ol-webgl-points-layer>

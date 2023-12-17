@@ -13,11 +13,11 @@
     />
 
     <ol-tile-layer>
-      <ol-source-osm />
+      <ol-source-osm crossOrigin="anonymous" />
     </ol-tile-layer>
 
     <ol-webgl-points-layer :styles="webglPointsStyle">
-      <ol-source-webglpoints :format="geoJson">
+      <ol-source-webglpoints crossOrigin="anonymous" :format="geoJson">
         <ol-feature v-for="index in 20" :key="index">
           <ol-geom-point
             :coordinates="[
@@ -38,6 +38,7 @@ const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(5);
 const rotation = ref(0);
+import marker from "@/assets/marker.png";
 
 const format = inject("ol-format");
 const geoJson = new format.GeoJSON();
@@ -47,18 +48,9 @@ const getRandomInRange = (from, to, fixed) => {
 };
 
 const webglPointsStyle = {
-  "circle-radius": 6,
-  "circle-fill-color": "yellow",
-  "circle-stroke-width": 2,
-  "circle-stroke-color": "darkblue",
-  "circle-opacity": [
-    "interpolate",
-    ["linear"],
-    ["get", "population"],
-    40000,
-    0.6,
-    2000000,
-    0.92,
-  ],
+  "icon-src": marker,
+  "icon-width": 20,
+  "icon-height": 30,
+  "icon-color": [180, 255, 200],
 };
 </script>
