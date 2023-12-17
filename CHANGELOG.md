@@ -1,5 +1,12 @@
 
 
+## [3.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.2.0...v3.2.1) (2023-12-17)
+
+
+### Bug Fixes
+
+* handle visibility and opacity changes ([733fde8](https://github.com/MelihAltintas/vue3-openlayers/commit/733fde88e8ccd8a22d36560334852aceda230673)), closes [#277](https://github.com/MelihAltintas/vue3-openlayers/issues/277)
+
 # [3.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.1.0...v3.2.0) (2023-12-03)
 
 
