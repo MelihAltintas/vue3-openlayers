@@ -1,5 +1,31 @@
 
 
+# [4.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.2.1...v4.0.0) (2023-12-17)
+
+
+### Bug Fixes
+
+* **ol-style-icon:** allow to pass either `scale` or `width`/`height` property ([0f3f889](https://github.com/MelihAltintas/vue3-openlayers/commit/0f3f8896b76136bba53833a62f7b9c29cde9d12d)), closes [#288](https://github.com/MelihAltintas/vue3-openlayers/issues/288)
+
+
+### chore
+
+* update dependencies and peerDependency list ([3e9b311](https://github.com/MelihAltintas/vue3-openlayers/commit/3e9b311375a23a3c98b1e011de7ec20ffccc41aa))
+
+
+### Code Refactoring
+
+* **OlSourceTianditu:** rename `OlSourceTianDiTu` to `OlSourceTianditu` ([71beec4](https://github.com/MelihAltintas/vue3-openlayers/commit/71beec4a00d11e1d359311a5e9e6d00e513c811f)), closes [#281](https://github.com/MelihAltintas/vue3-openlayers/issues/281)
+
+
+### BREAKING CHANGES
+
+* * Drop support for Node.js Versions 16
+* requires a peer dependency of `ol@^8.2.0`
+* requires a peer dependency of `ol-ext@^4.0.13`
+* **ol-style-icon:** **`ol-style-icon`**: the property `scale` has no longer a default of `1`. Please pass a value of one explicitly if needed. The change was needed since the underlying OpenLayers lib want's to either have a `scale` defined or  `width`/`height`. Before it wasn't possible to define an icon by `width`/`height` since the `scale` was set by default.
+* **OlSourceTianditu:** - renamed `OlSourceTianDiTu` to `OlSourceTianditu`
+
 ## [3.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.2.0...v3.2.1) (2023-12-17)
 
 
