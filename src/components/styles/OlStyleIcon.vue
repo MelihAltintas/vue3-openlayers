@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<Options>(), {
   displacement: () => [0, 0],
   offsetOrigin: "top-left",
   opacity: 1,
-  scale: 1,
   rotateWithView: false,
   rotation: 0,
 });
