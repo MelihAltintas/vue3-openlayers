@@ -12,10 +12,9 @@ import type Map from "ol/Map";
 import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type LayerGroup from "ol/layer/Group";
+import { layersCommonDefaultProps } from "./LayersCommonProps";
 
-const props = withDefaults(defineProps<Options>(), {
-  visible: true,
-});
+const props = withDefaults(defineProps<Options>(), layersCommonDefaultProps);
 
 const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
