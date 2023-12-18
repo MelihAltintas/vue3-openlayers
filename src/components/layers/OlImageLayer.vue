@@ -47,22 +47,22 @@ watch(
   { immediate: true },
 );
 onMounted(() => {
-  map?.addLayer(imageLayer);
+  map?.addLayer(imageLayer.value);
 
   if (layerGroup) {
     const layerCollection = layerGroup.getLayers();
-    layerCollection.push(imageLayer);
+    layerCollection.push(imageLayer.value);
     layerGroup.setLayers(layerCollection);
   }
 });
 
 onUnmounted(() => {
-  map?.removeLayer(imageLayer);
+  map?.removeLayer(imageLayer.value);
 });
 
-provide("imageLayer", imageLayer);
+provide("imageLayer", imageLayer.value);
 
 defineExpose({
-  imageLayer,
+  imageLayer: imageLayer.value,
 });
 </script>
