@@ -184,7 +184,7 @@
       preview="https://raw.githubusercontent.com/MelihAltintas/vue3-openlayers/main/src/assets/cluster.png"
     >
       <ol-source-vector ref="vectorsource">
-        <ol-feature v-for="index in 500" :key="index">
+        <ol-feature v-for="index in 300" :key="index">
           <ol-geom-point
             :coordinates="[
               getRandomInRange(24, 45, 3),
@@ -255,13 +255,6 @@
         </ol-animation-path>
       </ol-source-vector>
     </ol-vector-layer>
-
-    <ol-webgl-points-layer :styles="webglPointsStyle">
-      <ol-source-webglpoints
-        :format="geoJson"
-        url="https://openlayers.org/en/latest/examples/data/geojson/world-cities.geojson"
-      />
-    </ol-webgl-points-layer>
   </ol-map>
 </template>
 
@@ -428,22 +421,6 @@ const zones = [
     extent: [-0.101752, 47.49888, 20.827203, 54.043465],
   },
 ];
-
-const webglPointsStyle = {
-  "circle-radius": 6,
-  "circle-fill-color": "yellow",
-  "circle-stroke-width": 2,
-  "circle-stroke-color": "darkblue",
-  "circle-opacity": [
-    "interpolate",
-    ["linear"],
-    ["get", "population"],
-    40000,
-    0.6,
-    2000000,
-    0.92,
-  ],
-};
 </script>
 
 <style scoped>
