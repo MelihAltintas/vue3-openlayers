@@ -1,5 +1,13 @@
 
 
+## [4.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.0...v4.0.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* **ol-image-layer:** correctly access and provide layer ([3e509db](https://github.com/MelihAltintas/vue3-openlayers/commit/3e509db56d74d755331cbbd2d1baf05ea1a73cb1))
+* **ol-webgl-tile-layer:** pass correct defaults ([994d1b0](https://github.com/MelihAltintas/vue3-openlayers/commit/994d1b07274e0ed464f89eadb80080c65b93a400))
+
 # [4.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v3.2.1...v4.0.0) (2023-12-17)
 
 
