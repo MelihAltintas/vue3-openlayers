@@ -143,7 +143,7 @@ export default defineConfig({
           "ol-ext/featureanimation/Zoom": "Zoom$1",
         },
         assetFileNames: (assetInfo) => {
-          return assetInfo.name === "index.css"
+          return assetInfo.name === "main.css"
             ? "styles.css"
             : assetInfo.name || "";
         },
