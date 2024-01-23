@@ -1,5 +1,12 @@
 
 
+## [4.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.1...v4.0.2) (2024-01-23)
+
+
+### Bug Fixes
+
+* **vite:** styles export ([8eb3559](https://github.com/MelihAltintas/vue3-openlayers/commit/8eb3559b716f802ed26b2904416bb7a5a3d82f16))
+
 ## [4.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.0...v4.0.1) (2023-12-18)
 
 
