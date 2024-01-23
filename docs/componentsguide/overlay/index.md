@@ -69,7 +69,7 @@ import type Overlay from "ol/Overlay";
 const overlayRef = ref<{ overlay: Overlay }>(null);
 
 onMounted(() => {
-  const overlay: Overlay = overlayRef.value?.overlay.value;
+  const overlay: Overlay = overlayRef.value?.overlay;
   // call your method on `overlay`
 });
 </script>
