@@ -7,14 +7,15 @@
 <script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
-// wt: import WebGLPointsLayer from "ol/layer/WebGLPoints";
-import WebGLVectorLayerRenderer from somewhere;
+// old: import WebGLPointsLayer from "ol/layer/WebGLPoints";
+import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
+import Layer from "ol/layer/Layer.js";
 // DUPLICATE of the one in ../sources/:
 class WebGLVectorLayer extends Layer {
   createRenderer() {
     return new WebGLVectorLayerRenderer(this, {
       className: this.getClassName(),
-      style: track_style,   // <<< the only difference
+      style: { },  // just a guess...
     });
   }
 }
