@@ -15,10 +15,11 @@ class WebGLVectorLayer extends Layer {
   createRenderer() {
     return new WebGLVectorLayerRenderer(this, {
       className: this.getClassName(),
-      style: { // completely WRONG
-         'stroke-width': 10,
-         'stroke-color': 'red',
-      },
+      style: properties.style,
+      // style: { // completely WRONG
+      //    'stroke-width': 10,
+      //    'stroke-color': 'red',
+      // },
     });
   }
 }
