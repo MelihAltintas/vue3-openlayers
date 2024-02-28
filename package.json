@@ -73,12 +73,13 @@
     "@turf/buffer": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
-    "proj4": "^2.9.2",
     "ol": "^8.2.0",
     "ol-contextmenu": "^5.3.0",
     "ol-ext": "^4.0.13",
-    "vue": "^3.3.12"
+    "proj4": "^2.9.2",
+    "vue": "^3.0.0"
   },
   "peerDependencies": {
     "ol": "^8.2.0",

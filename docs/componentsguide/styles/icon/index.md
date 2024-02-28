@@ -6,10 +6,19 @@ Use it inside ol-style to style points
 
 <script setup>
 import IconDemo from "@demos/IconDemo.vue"
+import IconDemo2 from "@demos/IconDemo2.vue"
 </script>
 
+## Using a passed icon url
+
 <ClientOnly>
-<IconDemo />
+  <IconDemo />
+</ClientOnly>
+
+## Using an icon component
+
+<ClientOnly>
+  <IconDemo2 />
 </ClientOnly>
 
 ## Usage
