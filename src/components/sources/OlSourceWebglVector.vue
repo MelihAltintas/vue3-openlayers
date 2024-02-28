@@ -13,12 +13,13 @@ import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 // import type WebGLPointsLayer from "ol/layer/WebGLPoints";
 // import type Point from "ol/geom/Point";
 // ++++++++++++++++ new::
+import Layer from "ol/layer/Layer.js";
 import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
 class WebGLVectorLayer extends Layer {
   createRenderer() {
     return new WebGLVectorLayerRenderer(this, {
       className: this.getClassName(),
-      style: track_style,   // <<< the only difference
+      style: { },   // <<< the only difference
     });
   }
 }
