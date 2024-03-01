@@ -3,7 +3,7 @@
 > A vector source for rendering lines with WebGL
 
 Please note, that you can't use `ol-style` and related style components here as child components.
-You have to apply styles directly via the `style` prop on the `ol-webgl-points-layer` component.
+You have to apply styles directly via the `style` prop on the `ol-webgl-vector-layer` component.
 
 <script setup>
 import WebglVectorLayerDemo from "@demos/WebglVectorLayerDemo.vue"
