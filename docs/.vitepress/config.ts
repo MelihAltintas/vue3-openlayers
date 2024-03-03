@@ -108,6 +108,10 @@ export default defineConfig({
             link: "/componentsguide/layers/webglpointslayer/",
           },
           {
+            text: "ol-webgl-vector-layer",
+            link: "/componentsguide/layers/webglvectorlayer/",
+          },
+          {
             text: "ol-webgl-tile-layer",
             link: "/componentsguide/layers/webgltilelayer/",
           },
@@ -176,6 +180,10 @@ export default defineConfig({
           {
             text: "ol-source-webglpoints",
             link: "/componentsguide/sources/webglpoints/",
+          },
+          {
+            text: "ol-source-webglvector",
+            link: "/componentsguide/sources/webglvector/",
           },
           {
             text: "ol-source-wmts",
