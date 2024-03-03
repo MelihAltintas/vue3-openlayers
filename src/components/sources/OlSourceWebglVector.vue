@@ -9,10 +9,6 @@ import VectorSource, { type Options } from "ol/source/Vector";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
-// ++++++++++++++++ old:
-// import type WebGLPointsLayer from "ol/layer/WebGLPoints";
-// import type Point from "ol/geom/Point";
-// ++++++++++++++++ new::
 import Layer from "ol/layer/Layer.js";
 import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
 class WebGLVectorLayer extends Layer {
@@ -20,15 +16,12 @@ class WebGLVectorLayer extends Layer {
     return new WebGLVectorLayerRenderer(this, {
       className: this.getClassName(),
       style: properties.style,
-      // style: { // completely WRONG
-      //    'stroke-width': 10,
-      //    'stroke-color': 'red',
-      // },
     });
   }
 }
+
 import type Line from "ol/geom/Line";
-// ++++++++++++++++
+import type Polygon from "ol/geom/Polygon";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
@@ -41,14 +34,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options<Line>>(), {   // SHOULD prob. not be Line
+const props = withDefaults(defineProps<Options<Line|Polygon>>(), {   // SHOULD prob. not be Line
   overlaps: true,
   projection: "EPSG:3857",
   useSpatialIndex: true,
   wrapX: true,
 });
 
-const layer = inject<Ref<WebGLVectorLayer<VectorSource<Line>>> | null>(   // SHOULD prob. not be Line
+const layer = inject<Ref<WebGLVectorLayer<VectorSource<Line|Polygon>>> | null>(   // SHOULD prob. not be Line
   "webglVectorLayer",
 );
 
