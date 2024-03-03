@@ -24,7 +24,7 @@ import WebglVectorSourceDemo from "@demos/WebglVectorSourceDemo.vue"
 
 :::
 
-### `ol-feature` child component
+### with `ol-feature` child component
 
 <ClientOnly>
 <WebglVectorSourceDemo />

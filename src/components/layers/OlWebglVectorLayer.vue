@@ -16,15 +16,9 @@ class WebGLVectorLayer extends Layer {
     return new WebGLVectorLayerRenderer(this, {
       className: this.getClassName(),
       style: properties.style,
-      // style: { // completely WRONG
-      //    'stroke-width': 10,
-      //    'stroke-color': 'red',
-      // },
     });
   }
 }
-
-
 
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
