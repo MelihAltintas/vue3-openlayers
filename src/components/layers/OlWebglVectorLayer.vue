@@ -9,7 +9,7 @@ import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
 import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
 import Layer from "ol/layer/Layer.js";
-// DUPLICATE of the one in ../sources/:
+// duplicate of the one in ../sources/:
 class WebGLVectorLayer extends Layer {
   createRenderer() {
     return new WebGLVectorLayerRenderer(this, {
@@ -47,7 +47,6 @@ const props = withDefaults(
     ...layersCommonDefaultProps,
     disableHitDetection: false,
     styles: () => ({
-      // q: does SimpleGeometry have _all_ types of styles???
       symbol: {
         symbolType: "circle",
         size: 8,
