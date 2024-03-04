@@ -20,8 +20,9 @@ class WebGLVectorLayer extends Layer {
   }
 }
 
-import type Line from "ol/geom/Line";
-import type Polygon from "ol/geom/Polygon";
+import type SimpleGeometry from "ol/geom/SimpleGeometry";
+//old: import type Line from "ol/geom/Line";
+//old: import type Polygon from "ol/geom/Polygon";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
@@ -34,14 +35,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options<Line|Polygon>>(), {   // SHOULD prob. not be Line
+const props = withDefaults(defineProps<Options<SimpleGeometry>>(), {
   overlaps: true,
   projection: "EPSG:3857",
   useSpatialIndex: true,
   wrapX: true,
 });
 
-const layer = inject<Ref<WebGLVectorLayer<VectorSource<Line|Polygon>>> | null>(   // SHOULD prob. not be Line
+const layer = inject<Ref<WebGLVectorLayer<VectorSource<SimpleGeometry>>> | null>(
   "webglVectorLayer",
 );
 
