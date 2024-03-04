@@ -1,23 +1,33 @@
 # ol-webgl-vector-layer
 
-NEW: points added
+NEW: all together
 
 > A layer for rendering points, lines and polygons using WebGL
 
 Please note, that you can't use `ol-style` and related style components here as child components.
 For more information please checkout the [`ol-source-webglvector` docs](../../sources/webglvector/) as well.
 
-Also note that the style format changed in OpenLayers 8.0.
-
 ## Usage
 
-### WebGL Points
+### WebGL Points, Lines, Polygons
 <script setup>
+import WebglVectorLayerDemo from "@demos/WebglVectorLayerDemo.vue"
 import WebglVectorLayerDemo_points from "@demos/WebglVectorLayerDemo_points.vue"
 import WebglVectorLayerDemo_lines from "@demos/WebglVectorLayerDemo_lines.vue"
 import WebglVectorLayerDemo_polygons from "@demos/WebglVectorLayerDemo_polygons.vue"
 </script>
 
+<ClientOnly>
+<WebglVectorLayerDemo />
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../../src/demos/WebglVectorLayerDemo.vue
+
+:::
+
+### WebGL Points
 <ClientOnly>
 <WebglVectorLayerDemo_points />
 </ClientOnly>
