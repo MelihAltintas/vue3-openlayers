@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
-// old: import WebGLPointsLayer from "ol/layer/WebGLPoints";
 import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
 import Layer from "ol/layer/Layer.js";
 // DUPLICATE of the one in ../sources/:
@@ -48,12 +47,16 @@ const props = withDefaults(
     ...layersCommonDefaultProps,
     disableHitDetection: false,
     styles: () => ({
+      // q: does SimpleGeometry have _all_ types of styles???
       symbol: {
         symbolType: "circle",
         size: 8,
         color: "#33AAFF",
         opacity: 0.9,
       },
+      // stroke-width: 5,
+      // stroke-color: 'green',
+      // fill-color: 'blue',
     }),
   },
 );
