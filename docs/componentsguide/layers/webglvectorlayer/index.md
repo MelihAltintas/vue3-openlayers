@@ -1,7 +1,5 @@
 # ol-webgl-vector-layer
 
-NEW: all together
-
 > A layer for rendering points, lines and polygons using WebGL
 
 Please note, that you can't use `ol-style` and related style components here as child components.
