@@ -61,7 +61,7 @@ const setStyle = (val: StyleLike) => {
 const styleFunc = computed<StyleLike>(() => {
   return (feature, resolution) => {
     if (properties.overrideStyleFunction) {
-      properties.overrideStyleFunction(feature, style.value, resolution);
+      return properties.overrideStyleFunction(feature, style.value, resolution);
     }
     return style.value;
   };
