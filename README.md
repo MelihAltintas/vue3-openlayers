@@ -51,9 +51,9 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 <!-- auto-generated-peer-dependency-requirements START -->
 
-- **[ol](https://github.com/openlayers/openlayers)**: `^8.2.0`
+- **[ol](https://github.com/openlayers/openlayers)**: `^9.0.0`
 - **[ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu)**: `^5.3.0`
-- **[ol-ext](https://github.com/Viglino/ol-ext)**: `^4.0.13`
+- **[ol-ext](https://github.com/Viglino/ol-ext)**: `^4.0.15`
 - **[vue](https://github.com/vuejs/core)**: `^3.0.0`
 
 <!-- auto-generated-peer-dependency-requirements END -->

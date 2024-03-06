@@ -75,15 +75,15 @@
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "proj4": "^2.10.0",
-    "ol": "^8.2.0",
+    "ol": "^9.0.0",
     "ol-contextmenu": "^5.3.0",
     "ol-ext": "^4.0.15",
     "vue": "^3.4.21"
   },
   "peerDependencies": {
-    "ol": "^8.2.0",
+    "ol": "^9.0.0",
     "ol-contextmenu": "^5.3.0",
-    "ol-ext": "^4.0.13",
+    "ol-ext": "^4.0.15",
     "vue": "^3.0.0"
   },
   "browserslist": [
