@@ -1,5 +1,17 @@
 
 
+# [4.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.2...v4.1.0) (2024-03-06)
+
+
+### Bug Fixes
+
+* **ol-style:** add missing return statement in OlStyle ([#305](https://github.com/MelihAltintas/vue3-openlayers/issues/305)) ([f87ead7](https://github.com/MelihAltintas/vue3-openlayers/commit/f87ead7086e53301fc87dffb0759d5fdac16323f))
+
+
+### Features
+
+* provide `ol-webgl-points-layer` and `ol-source-webglpoints` components ([7c14476](https://github.com/MelihAltintas/vue3-openlayers/commit/7c14476a330010616e05d98dea9b7014cb7158dc)), closes [#300](https://github.com/MelihAltintas/vue3-openlayers/issues/300)
+
 ## [4.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.1...v4.0.2) (2024-01-23)
 
 
