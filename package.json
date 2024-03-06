@@ -62,7 +62,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "release": "release-it",
     "release:pre": "npm run release -- --preRelease",
     "release:rc": "npm run release -- --preRelease",
@@ -99,9 +99,9 @@
     "@types/ol-ext": "npm:@siedlerchr/types-ol-ext@^3.2.4",
     "@types/proj4": "^2.5.5",
     "@types/turf": "^3.5.32",
-    "@vitejs/plugin-vue": "^4.6.2",
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-v8": "^1.3.1",
-    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "@vue/test-utils": "^2.4.4",
     "@vue/tsconfig": "^0.5.1",
@@ -109,8 +109,8 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-vue": "^9.22.0",
     "get-repository-url": "^2.0.0",
-    "husky": "^8.0.3",
-    "jsdom": "^23.2.0",
+    "husky": "^9.0.11",
+    "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
     "release-it": "^17.1.1",
     "typescript": "~5.4.2",
@@ -118,5 +118,10 @@
     "vite-plugin-dts": "^3.7.3",
     "vitepress": "1.0.0-rc.45",
     "vitest": "1.3.1"
+  },
+  "overrides": {
+    "ol-contextmenu": {
+      "ol": "^9.x"
+    }
   }
 }
