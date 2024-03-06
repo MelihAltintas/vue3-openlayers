@@ -104,10 +104,6 @@ export default defineConfig({
             link: "/componentsguide/layers/vectortilelayer/",
           },
           {
-            text: "ol-webgl-points-layer",
-            link: "/componentsguide/layers/webglpointslayer/",
-          },
-          {
             text: "ol-webgl-vector-layer",
             link: "/componentsguide/layers/webglvectorlayer/",
           },
@@ -176,10 +172,6 @@ export default defineConfig({
           {
             text: "ol-source-vector-tile",
             link: "/componentsguide/sources/vectortile/",
-          },
-          {
-            text: "ol-source-webglpoints",
-            link: "/componentsguide/sources/webglpoints/",
           },
           {
             text: "ol-source-webglvector",
