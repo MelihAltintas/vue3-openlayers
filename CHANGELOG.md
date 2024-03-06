@@ -1,5 +1,23 @@
 
 
+# [5.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.1.0...v5.0.0) (2024-03-06)
+
+
+### chore
+
+* update to OpenLayers@v9 ([d440029](https://github.com/MelihAltintas/vue3-openlayers/commit/d4400298be2c7ec768082cc7ad6fb56226baf9b4))
+
+
+### Features
+
+* remove `ol-webgl-points-layer` and `ol-source-webglpoints` components ([61950aa](https://github.com/MelihAltintas/vue3-openlayers/commit/61950aab9462aa17ff2640393938f44f0efdab8b))
+
+
+### BREAKING CHANGES
+
+* a peerDependency of `ol@^9.0.0` and `ol-ext@^4.0.15` is now required
+* components `ol-webgl-points-layer` and `ol-source-webglpoints` are removed. Please use `ol-webgl-vector-layer` and `ol-source-webglvector` to display points using WebGL
+
 # [4.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.2...v4.1.0) (2024-03-06)
 
 
