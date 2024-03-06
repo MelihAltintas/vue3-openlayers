@@ -9,8 +9,6 @@ import VectorSource, { type Options } from "ol/source/Vector";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
-import type SimpleGeometry from "ol/geom/SimpleGeometry";
-
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
   FEATURE_EVENTS,
