@@ -174,10 +174,6 @@ export default defineConfig({
             link: "/componentsguide/sources/vectortile/",
           },
           {
-            text: "ol-source-webglvector",
-            link: "/componentsguide/sources/webglvector/",
-          },
-          {
             text: "ol-source-wmts",
             link: "/componentsguide/sources/wmts/",
           },

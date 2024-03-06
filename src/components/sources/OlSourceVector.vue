@@ -8,6 +8,7 @@
 import VectorSource, { type Options } from "ol/source/Vector";
 import type VectorLayer from "ol/layer/Vector";
 import type HeatmapLayer from "ol/layer/Heatmap";
+import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type Geometry from "ol/geom/Geometry";
@@ -34,7 +35,11 @@ const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
   null,
 );
 const heatmapLayer = inject<Ref<HeatmapLayer> | null>("heatmapLayer", null);
-const layer = heatmapLayer || vectorLayer;
+const webglVectorLayer = inject<Ref<WebGLVectorLayer> | null>(
+  "webglVectorLayer",
+  null,
+);
+const layer = heatmapLayer || vectorLayer || webglVectorLayer;
 
 const { properties } = usePropsAsObjectProperties(props);
 

@@ -16,7 +16,7 @@
 ### BREAKING CHANGES
 
 * a peerDependency of `ol@^9.0.0` and `ol-ext@^4.0.15` is now required
-* components `ol-webgl-points-layer` and `ol-source-webglpoints` are removed. Please use `ol-webgl-vector-layer` and `ol-source-webglvector` to display points using WebGL
+* components `ol-webgl-points-layer` and `ol-source-webglpoints` are removed. Please use `ol-webgl-vector-layer` and `ol-source-vector` to display points using WebGL
 
 # [4.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.2...v4.1.0) (2024-03-06)
 

@@ -3,7 +3,7 @@
 > A layer for rendering points, lines and polygons using WebGL
 
 Please note, that you can't use `ol-style` and related style components here as child components.
-For more information please checkout the [`ol-source-webglvector` docs](../../sources/webglvector/) as well.
+For more information please checkout the [`ol-source-vector` docs](../../sources/vector/) as well.
 
 ## Usage
 

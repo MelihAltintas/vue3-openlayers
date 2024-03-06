@@ -18,7 +18,7 @@
 
     <!-- webgl points layer -->
     <ol-webgl-vector-layer :styles="webglPointStyle">
-      <ol-source-webglvector
+      <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
         url="https://openlayers.org/en/latest/examples/data/geojson/point-samples.geojson"
@@ -27,7 +27,7 @@
 
     <!-- webgl lines layer -->
     <ol-webgl-vector-layer :styles="webglLineStyle">
-      <ol-source-webglvector
+      <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
         url="https://openlayers.org/en/latest/examples/data/geojson/line-samples.geojson"
@@ -36,7 +36,7 @@
 
     <!-- webgl polygons layer -->
     <ol-webgl-vector-layer :styles="webglPolyStyle">
-      <ol-source-webglvector
+      <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
         url="https://openlayers.org/en/latest/examples/data/geojson/polygon-samples.geojson"

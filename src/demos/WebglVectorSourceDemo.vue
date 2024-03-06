@@ -17,7 +17,7 @@
     </ol-tile-layer>
 
     <ol-webgl-vector-layer :styles="webglLineStyle">
-      <ol-source-webglvector crossOrigin="anonymous" :format="geoJson">
+      <ol-source-vector crossOrigin="anonymous" :format="geoJson">
         <ol-feature>
           <ol-geom-line-string
             :coordinates="[
@@ -40,7 +40,7 @@
             ]"
           ></ol-geom-line-string>
         </ol-feature>
-      </ol-source-webglvector>
+      </ol-source-vector>
     </ol-webgl-vector-layer>
   </ol-map>
 </template>

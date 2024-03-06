@@ -78,7 +78,7 @@
     "ol": "^9.0.0",
     "ol-contextmenu": "^5.3.0",
     "ol-ext": "^4.0.15",
-    "vue": "^3.4.21"
+    "vue": "3.3.12"
   },
   "peerDependencies": {
     "ol": "^9.0.0",
