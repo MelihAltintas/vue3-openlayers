@@ -1,3 +1,7 @@
+> [!WARNING]
+> Deprecated: Please use [`ol-source-webglvector` instead](../webglvector/).
+> `ol-source-webglpoints` will be removed with the next major version.
+
 # ol-source-webglpoints
 
 > A vector source for rendering points with WebGL
