@@ -58,6 +58,7 @@ export {
   OlSourceVector,
   OlSourceVectorTile,
   OlSourceWebglPoints,
+  OlSourceWebglVector,
   OlSourceXYZ,
   OlSourceWMTS,
 };
