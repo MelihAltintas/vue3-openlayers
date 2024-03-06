@@ -7,18 +7,6 @@
 <script setup lang="ts">
 import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
 
-import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
-import Layer from "ol/layer/Layer.js";
-
-class WebGLVectorLayer extends Layer {
-  createRenderer() {
-    return new WebGLVectorLayerRenderer(this, {
-      className: this.getClassName(),
-      style: properties.style,
-    });
-  }
-}
-
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
@@ -26,21 +14,13 @@ import {
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type LayerGroup from "ol/layer/Group";
-
-type StyleType = {
-  symbol: {
-    symbolType: string;
-    size: number;
-    color: string;
-    opacity: number;
-  };
-};
+import { WebGLVectorLayer, type WebGLStyleDef } from "./WebGLVectorLayerClass";
 
 const props = withDefaults(
   defineProps<
     LayersCommonProps & {
       disableHitDetection?: boolean;
-      styles: StyleType;
+      styles: WebGLStyleDef;
     }
   >(),
   {
@@ -62,13 +42,12 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const webglVectorLayer = computed(
-  () =>
-    new WebGLVectorLayer({
-      ...properties,
-      style: properties.styles,
-    }),
-);
+const webglVectorLayer = computed(() => {
+  return new WebGLVectorLayer({
+    ...properties,
+    style: properties.styles,
+  });
+});
 
 watch(properties, () => {
   webglVectorLayer.value.setProperties(properties);

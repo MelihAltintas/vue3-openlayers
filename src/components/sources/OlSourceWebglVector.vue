@@ -9,17 +9,6 @@ import VectorSource, { type Options } from "ol/source/Vector";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 
-import Layer from "ol/layer/Layer.js";
-import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer.js";
-class WebGLVectorLayer extends Layer {
-  createRenderer() {
-    return new WebGLVectorLayerRenderer(this, {
-      className: this.getClassName(),
-      style: properties.style,
-    });
-  }
-}
-
 import type SimpleGeometry from "ol/geom/SimpleGeometry";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -27,22 +16,21 @@ import {
   FEATURE_EVENTS,
   useOpenLayersEvents,
 } from "@/composables/useOpenLayersEvents";
+import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options<SimpleGeometry>>(), {
+const props = withDefaults(defineProps<Options>(), {
   overlaps: true,
   projection: "EPSG:3857",
   useSpatialIndex: true,
   wrapX: true,
 });
 
-const layer = inject<Ref<WebGLVectorLayer<VectorSource<SimpleGeometry>>> | null>(
-  "webglVectorLayer",
-);
+const layer = inject<Ref<WebGLVectorLayer> | null>("webglVectorLayer");
 
 const { properties } = usePropsAsObjectProperties(props);
 
