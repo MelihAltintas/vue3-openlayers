@@ -21,8 +21,6 @@ class WebGLVectorLayer extends Layer {
 }
 
 import type SimpleGeometry from "ol/geom/SimpleGeometry";
-//old: import type Line from "ol/geom/Line";
-//old: import type Polygon from "ol/geom/Polygon";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
