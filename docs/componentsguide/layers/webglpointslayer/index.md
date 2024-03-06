@@ -1,3 +1,7 @@
+> [!WARNING]
+> Deprecated: Please use [`ol-webgl-vector-layer` instead](../webglvectorlayer/).
+> `ol-webgl-points-layer` will be removed with the next major version.
+
 # ol-webgl-points-layer
 
 > A layer for rendering points with WebGL

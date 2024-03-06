@@ -17,7 +17,9 @@
 .ol-viewport .ol-rotate {
   top: 0.5em;
   right: 2.5em;
-  transition: opacity 0.25s linear, visibility 0s linear;
+  transition:
+    opacity 0.25s linear,
+    visibility 0s linear;
 }
 
 .ol-viewport .ol-layerswitcher-image .ol-layer-hidden {

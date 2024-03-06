@@ -1,17 +1,13 @@
-> [!WARNING]
-> Deprecated: Please use [`ol-source-webglvector` instead](../webglvector/).
-> `ol-source-webglpoints` will be removed with the next major version.
+# ol-source-webglvector
 
-# ol-source-webglpoints
-
-> A vector source for rendering points with WebGL
+> A vector source for rendering lines with WebGL
 
 Please note, that you can't use `ol-style` and related style components here as child components.
-You have to apply styles directly via the `style` prop on the `ol-webgl-points-layer` component.
+You have to apply styles directly via the `style` prop on the `ol-webgl-vector-layer` component.
 
 <script setup>
-import WebglPointsLayerDemo from "@demos/WebglPointsLayerDemo.vue"
-import WebglPointsSourceDemo from "@demos/WebglPointsSourceDemo.vue"
+import WebglVectorLayerDemo from "@demos/WebglVectorLayerDemo.vue"
+import WebglVectorSourceDemo from "@demos/WebglVectorSourceDemo.vue"
 </script>
 
 ## Usage
@@ -19,24 +15,24 @@ import WebglPointsSourceDemo from "@demos/WebglPointsSourceDemo.vue"
 ### with `url` prop
 
 <ClientOnly>
-<WebglPointsLayerDemo />
+<WebglVectorLayerDemo />
 </ClientOnly>
 
 ::: code-group
 
-<<< ../../../../src/demos/WebglPointsLayerDemo.vue
+<<< ../../../../src/demos/WebglVectorLayerDemo.vue
 
 :::
 
-### `ol-feature` child component
+### with `ol-feature` child component
 
 <ClientOnly>
-<WebglPointsSourceDemo />
+<WebglVectorSourceDemo />
 </ClientOnly>
 
 ::: code-group
 
-<<< ../../../../src/demos/WebglPointsSourceDemo.vue
+<<< ../../../../src/demos/WebglVectorSourceDemo.vue
 
 :::
 
@@ -56,10 +52,10 @@ None.
 ## Events
 
 You have access to all Events from the underlying source.
-Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html) to see the available events tht will be fired.
+Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html) to see the available events that will be fired.
 
 ```html
-<ol-source-webglpoints :url="url" @error="handleEvent" />
+<ol-source-webglvector :url="url" @error="handleEvent" />
 ```
 
 ## Methods
@@ -72,7 +68,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-source-webglpoints :url="url" ref="sourceRef" />
+  <ol-source-webglvector :url="url" ref="sourceRef" />
   <!-- ... -->
 </template>
 

@@ -116,7 +116,7 @@
     "typescript": "~5.3.2",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.6.4",
-    "vitepress": "1.0.0-rc.32",
+    "vitepress": "1.0.0-rc.45",
     "vitest": "1.0.4"
   }
 }

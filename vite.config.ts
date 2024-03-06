@@ -77,6 +77,7 @@ export default defineConfig({
           "ol/layer/VectorTile": "VectorLayerTile",
           "ol/layer/VectorImage": "VectorImageLayer",
           "ol/layer/WebGLPoints": "WebGLPointsLayer",
+          "ol/layer/WebGLVector": "WebGLVectorLayer",
           "ol/layer/WebGLTile": "TileLayer$1",
           "ol/source/BingMaps": "BingMaps",
           "ol/source/Cluster": "Cluster",
