@@ -1,5 +1,17 @@
 
 
+# [6.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v5.0.0...v6.0.0) (2024-03-06)
+
+
+### Code Refactoring
+
+* remove `ol-source-webglvector` component ([0930c70](https://github.com/MelihAltintas/vue3-openlayers/commit/0930c7040489827bcc4991fe1d22f2fadac3cd86))
+
+
+### BREAKING CHANGES
+
+* `ol-source-webglvector` has been removed in favor of `ol-source-vector` component. Use `ol-source-vector` from now on.
+
 # [5.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.1.0...v5.0.0) (2024-03-06)
 
 
