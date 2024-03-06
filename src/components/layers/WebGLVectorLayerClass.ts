@@ -1,18 +1,10 @@
 import { Layer } from "ol/layer";
 import WebGLVectorLayerRenderer from "ol/renderer/webgl/VectorLayer";
 import type { LayersCommonProps } from "./LayersCommonProps";
+import type { WebGLStyle } from "ol/style/webgl";
 
 export type WebGLVectorLayerOptions = LayersCommonProps & {
-  style?: WebGLStyleDef;
-};
-
-export type WebGLStyleDef = {
-  symbol: {
-    symbolType: string;
-    size: number;
-    color: string;
-    opacity: number;
-  };
+  styles?: WebGLStyle;
 };
 
 export class WebGLVectorLayer extends Layer {

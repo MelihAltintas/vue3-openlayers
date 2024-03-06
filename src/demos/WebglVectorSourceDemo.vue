@@ -45,7 +45,7 @@
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, inject } from "vue";
 
 const center = ref([116.54875, 40.45064]);
@@ -57,7 +57,7 @@ const format = inject("ol-format");
 const geoJson = new format.GeoJSON();
 
 const webglLineStyle = {
-    'stroke-width': 10,
-    'stroke-color': 'rgba(24,86,34,0.7)',
+  "stroke-width": 10,
+  "stroke-color": "rgba(24,86,34,0.7)",
 };
 </script>

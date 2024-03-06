@@ -40,9 +40,9 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-    <ol-overviewmap-control :ref="controlRef">
-      <!-- ... -->
-    </ol-overviewmap-control>
+  <ol-overviewmap-control :ref="controlRef">
+    <!-- ... -->
+  </ol-overviewmap-control>
   <!-- ... -->
 </template>
 

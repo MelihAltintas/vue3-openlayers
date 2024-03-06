@@ -8,6 +8,7 @@ For more information please checkout the [`ol-source-webglvector` docs](../../so
 ## Usage
 
 ### WebGL Points, Lines, Polygons
+
 <script setup>
 import WebglVectorLayerDemo from "@demos/WebglVectorLayerDemo.vue"
 </script>

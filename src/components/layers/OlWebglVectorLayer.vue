@@ -14,25 +14,24 @@ import {
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type LayerGroup from "ol/layer/Group";
-import { WebGLVectorLayer, type WebGLStyleDef } from "./WebGLVectorLayerClass";
+import { WebGLVectorLayer } from "./WebGLVectorLayerClass";
+import type { WebGLStyle } from "ol/style/webgl";
 
 const props = withDefaults(
   defineProps<
     LayersCommonProps & {
       disableHitDetection?: boolean;
-      styles: WebGLStyleDef;
+      styles: WebGLStyle;
     }
   >(),
   {
     ...layersCommonDefaultProps,
     disableHitDetection: false,
     styles: () => ({
-      symbol: {
-        symbolType: "circle",
-        size: 8,
-        color: "#33AAFF",
-        opacity: 0.9,
-      },
+      "shape-points": 1,
+      "shape-radius": 10,
+      "shape-opacity": 0.5,
+      "shape-fill-color": "blue",
     }),
   },
 );
@@ -45,7 +44,7 @@ const { properties } = usePropsAsObjectProperties(props);
 const webglVectorLayer = computed(() => {
   return new WebGLVectorLayer({
     ...properties,
-    style: properties.styles,
+    styles: properties.styles,
   });
 });
 
