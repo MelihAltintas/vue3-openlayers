@@ -60,6 +60,7 @@ const overrideStyleFunction = (feature, style, resolution) => {
   const clusteredFeatures = feature.get("features");
   const size = clusteredFeatures.length;
   style.getText().setText(size.toString());
+  return style;
 };
 
 const getRandomInRange = (from, to, fixed) => {

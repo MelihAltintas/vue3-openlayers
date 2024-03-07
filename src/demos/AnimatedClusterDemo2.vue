@@ -105,6 +105,7 @@ const overrideStyleFunction = (feature, style) => {
   style.getImage().setRadius(radius);
 
   style.getText().setText(size.toString());
+  return style;
 };
 
 const getRandomInRange = (from, to, fixed) => {
