@@ -378,6 +378,10 @@ export default defineConfig({
             link: "/componentsguide/mapcontrols/rotate/",
           },
           {
+            text: "ol-search-control",
+            link: "/componentsguide/mapcontrols/search/",
+          },
+          {
             text: "ol-scaleline-control",
             link: "/componentsguide/mapcontrols/scaleline/",
           },
