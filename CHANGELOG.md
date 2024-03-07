@@ -1,5 +1,12 @@
 
 
+## [5.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v5.0.0...v5.0.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **ol-source-vector:** prevent frequent source re-creation ([57b739c](https://github.com/MelihAltintas/vue3-openlayers/commit/57b739c051085dea5e6a2de24b63a56cd0591ff9)), closes [#297](https://github.com/MelihAltintas/vue3-openlayers/issues/297)
+
 # [5.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.1.0...v5.0.0) (2024-03-06)
 
 
