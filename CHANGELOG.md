@@ -1,5 +1,14 @@
 
 
+## [6.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.0.0...v6.0.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **demo:** use valid TileJSON URL ([df53716](https://github.com/MelihAltintas/vue3-openlayers/commit/df5371602353b517d6e6245d41d67ba00e852174))
+* **ol-source-vector:** prevent frequent source re-creation ([9bb8777](https://github.com/MelihAltintas/vue3-openlayers/commit/9bb8777116d43e32fd49849ca33d1c3c921a9ef9)), closes [#297](https://github.com/MelihAltintas/vue3-openlayers/issues/297)
+* return style in overrideStyleFunction ([838d5e3](https://github.com/MelihAltintas/vue3-openlayers/commit/838d5e3859ab1cf48b47f10775419b52b130bef3))
+
 # [6.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v5.0.0...v6.0.0) (2024-03-06)
 
 
