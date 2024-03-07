@@ -27,6 +27,8 @@ import type { Options as LayerSwitcherOptions } from "ol-ext/control/LayerSwitch
 import type LayerSwitcherImage from "ol-ext/control/LayerSwitcherImage";
 import type Rotate from "ol/control/Rotate";
 import type { Options as RotateOptions } from "ol/control/Rotate";
+import type Search from "ol-ext/control/Search";
+import type { Options as SearchOptions } from "ol-ext/control/Search";
 import type Swipe from "ol-ext/control/Swipe";
 import type { Options as SwipeOptions } from "ol-ext/control/Swipe";
 import type Zone from "ol-ext/control/MapZone";
@@ -55,6 +57,7 @@ type InnerControlType = (
   | MousePosition
   | OverviewMap
   | Rotate
+  | Search
   | ScaleLine
   | Swipe
   | Zone
@@ -73,6 +76,7 @@ type InnerControlProperties =
   | ToggleOptions
   | VideoRecorderOptions
   | LayerSwitcherOptions
+  | SearchOptions
   | RotateOptions
   | SwipeOptions
   | MapZoneOptions

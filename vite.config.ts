@@ -107,6 +107,7 @@ export default defineConfig({
           "ol-ext/control/PrintDialog": "PrintDialog",
           "ol/control/Rotate": "Rotate$1",
           "ol-ext/control/Swipe": "Swipe",
+          "ol-ext/control/Search": "Search",
           "ol-ext/control/Toggle": "Toggle",
           "ol-ext/control/VideoRecorder": "VideoRecorder",
           "ol-ext/control/MapZone": "MapZone",
