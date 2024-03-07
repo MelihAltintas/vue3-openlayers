@@ -1,9 +1,5 @@
 <template>
-  <button
-    class="btn-default"
-    @click="() => (coordinate = coordinate.map((a) => a + 0.01))"
-    type="button"
-  >
+  <button class="btn-default" @click="changeCoordinate" type="button">
     change coordinates
   </button>
   <ol-map
@@ -42,7 +38,7 @@
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const center = ref([40, 40]);
@@ -54,6 +50,10 @@ const strokeWidth = ref(10);
 const strokeColor = ref("red");
 const fillColor = ref("white");
 const coordinate = ref([40, 40]);
+
+function changeCoordinate() {
+  coordinate.value = coordinate.value.map((a) => a + 0.01);
+}
 </script>
 
 <style scoped>

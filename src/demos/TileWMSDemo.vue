@@ -23,7 +23,7 @@
     :loadTilesWhileInteracting="true"
     style="height: 400px"
   >
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
+    <ol-view ref="view" :center="center" :zoom="zoom" />
     <ol-zoom-control />
 
     <ol-tile-layer :zIndex="1000">
@@ -41,6 +41,7 @@
         layers="topp:states"
         serverType="geoserver"
         :transition="0"
+        :params="{}"
       />
     </ol-tile-layer>
   </ol-map>
@@ -50,7 +51,6 @@
 import { ref } from "vue";
 
 const zoom = ref(4);
-const rotation = ref(0);
 const center = ref([-10997148, 4569099]);
 const layerOpacity = ref(0.4);
 const layerVisible = ref(true);
