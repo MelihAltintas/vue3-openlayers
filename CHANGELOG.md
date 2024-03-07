@@ -1,5 +1,12 @@
 
 
+## [4.1.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.1.0...v4.1.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **ol-source-vector:** prevent frequent source re-creation ([7d42280](https://github.com/MelihAltintas/vue3-openlayers/commit/7d42280be442e7de86ac295516e039791e46444e)), closes [#297](https://github.com/MelihAltintas/vue3-openlayers/issues/297)
+
 # [4.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v4.0.2...v4.1.0) (2024-03-06)
 
 
