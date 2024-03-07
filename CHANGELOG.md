@@ -1,5 +1,12 @@
 
 
+# [6.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.0.1...v6.1.0) (2024-03-07)
+
+
+### Features
+
+* **ol-search-control:** add search control ([#309](https://github.com/MelihAltintas/vue3-openlayers/issues/309)) ([4f529f7](https://github.com/MelihAltintas/vue3-openlayers/commit/4f529f7b66810f296f86ac8197bafbefb2f01d73)), closes [#306](https://github.com/MelihAltintas/vue3-openlayers/issues/306)
+
 ## [6.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.0.0...v6.0.1) (2024-03-07)
 
 
