@@ -1,5 +1,12 @@
 
 
+## [6.1.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.1.0...v6.1.1) (2024-03-14)
+
+
+### Bug Fixes
+
+* upgrade ol-contextmenu to v5.4.0 ([#311](https://github.com/MelihAltintas/vue3-openlayers/issues/311)) ([c9b7858](https://github.com/MelihAltintas/vue3-openlayers/commit/c9b785832ce02dce0bd4a448235ff51f1d58003b))
+
 # [6.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.0.1...v6.1.0) (2024-03-07)
 
 
