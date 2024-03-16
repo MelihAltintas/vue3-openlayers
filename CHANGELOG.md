@@ -1,5 +1,12 @@
 
 
+## [5.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v5.0.1...v5.0.2) (2024-03-16)
+
+
+### Bug Fixes
+
+* **ol-webgl-tile-layer:** make TileLayer a computed ([17cba2b](https://github.com/MelihAltintas/vue3-openlayers/commit/17cba2b3383d827bbf796728580a4ca749c62aa0)), closes [#310](https://github.com/MelihAltintas/vue3-openlayers/issues/310)
+
 ## [5.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v5.0.0...v5.0.1) (2024-03-07)
 
 
