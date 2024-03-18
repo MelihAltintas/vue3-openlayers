@@ -31,10 +31,7 @@
       <ol-source-vector ref="vectorsource">
         <ol-feature v-for="index in 500" :key="index">
           <ol-geom-point
-            :coordinates="[
-              getRandomInRange(24, 45, 3),
-              getRandomInRange(35, 41, 3),
-            ]"
+            :coordinates="arrayWith500Points[index - 1]"
           ></ol-geom-point>
         </ol-feature>
       </ol-source-vector>
@@ -64,6 +61,9 @@
 <script setup>
 import { ref } from "vue";
 import { Style, Stroke, Circle, Fill } from "ol/style";
+import { arrayWith500Points } from "./points";
+
+console.log(arrayWith500Points);
 
 import markerIcon from "@/assets/marker.png";
 
@@ -119,10 +119,6 @@ const overrideStyleFunction = (feature, style) => {
 
   style.getText().setText(size.toString());
   return style;
-};
-
-const getRandomInRange = (from, to, fixed) => {
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 
 const featureSelected = (event) => {

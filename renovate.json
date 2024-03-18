@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "groupName": "playwright",
+      "matchPackagePatterns": ["^@playwright/test$"]
+    },
+    {
+      "groupName": "playwright",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["mcr.microsoft.com/playwright"]
+    }
+  ]
+}

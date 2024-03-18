@@ -24,10 +24,7 @@
         <ol-animation-shake :duration="2000" :repeat="5">
           <ol-feature v-for="index in 20" :key="index">
             <ol-geom-point
-              :coordinates="[
-                getRandomInRange(24, 45, 3),
-                getRandomInRange(35, 41, 3),
-              ]"
+              :coordinates="arrayWith500Points[index - 1]"
             ></ol-geom-point>
 
             <ol-style>
@@ -43,12 +40,10 @@
 <script setup>
 import { ref } from "vue";
 import starIcon from "@/assets/star.png";
+import { arrayWith500Points } from "./points";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(6);
 const rotation = ref(0);
-const getRandomInRange = (from, to, fixed) => {
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
-};
 </script>

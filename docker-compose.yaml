@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  screenshot-update:
+    image: mcr.microsoft.com/playwright:v1.42.1-focal
+    volumes:
+      - .:/e2e
+    working_dir: /e2e
+    command: >
+      sh -c  "
+        rm -rf node_modules &&
+        npm i --force --no-package-lock &&
+        npx playwright test --update-snapshots
+      "
+    stdin_open: true
+    tty: true

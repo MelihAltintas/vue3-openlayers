@@ -67,6 +67,11 @@
     "release:pre": "npm run release -- --preRelease",
     "release:rc": "npm run release -- --preRelease",
     "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "npm run test:e2e -- --ui --project=chromium",
+    "test:e2e:debug": "npm run test:e2e -- --debug --workers=1",
+    "test:e2e:trace": "npm run test:e2e -- --trace on",
+    "test:e2e:report": "playwright show-report",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -93,6 +98,7 @@
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",
+    "@playwright/test": "^1.42.1",
     "@release-it/conventional-changelog": "^8.0.1",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^20.11.25",

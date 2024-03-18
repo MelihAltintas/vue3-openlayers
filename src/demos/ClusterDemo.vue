@@ -22,10 +22,7 @@
         <ol-source-vector>
           <ol-feature v-for="index in 300" :key="index">
             <ol-geom-point
-              :coordinates="[
-                getRandomInRange(24, 45, 3),
-                getRandomInRange(35, 41, 3),
-              ]"
+              :coordinates="arrayWith500Points[index - 1]"
             ></ol-geom-point>
           </ol-feature>
         </ol-source-vector>
@@ -49,6 +46,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { arrayWith500Points } from "./points";
 
 const center = ref([34, 39.13]);
 const projection = ref("EPSG:4326");
@@ -61,9 +59,5 @@ const overrideStyleFunction = (feature, style, resolution) => {
   const size = clusteredFeatures.length;
   style.getText().setText(size.toString());
   return style;
-};
-
-const getRandomInRange = (from, to, fixed) => {
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 </script>

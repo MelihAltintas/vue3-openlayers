@@ -25,6 +25,7 @@
 - [ ] New feature (non-breaking change that adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Documentation Update
+- [ ] Tests
 - [ ] Other (Tooling, Dependency Updates, etc.)
 
 ## Checklist:
@@ -35,10 +36,12 @@
 - [ ] My code follows the code style of this project.
 - [ ] My change requires a change to the documentation.
 - [ ] I have updated the documentation accordingly.
+- [ ] I added a new test.
 
 If you added a new component feature (layer, geom, source, etc.), please be sure to update the documentation:
 
 - [ ] Add component to `output.globals` in `vite.config.ts`
+- [ ] Provide at least one simple snapshot test (see `test` directory)
 - [ ] Create a `src/demos/<Component>Demo.vue`
 - [ ] Create a `docs/componentsguide/<Category>/<Feature>/index.md` containing the Demo and documentation for the component
 - [ ] Add the docs page to `docs/.vitepress/config.ts`

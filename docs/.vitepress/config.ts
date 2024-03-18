@@ -1,7 +1,7 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, SiteConfig, UserConfig } from "vitepress";
 
 // https://vitepress.vuejs.org/reference/site-config
-export default defineConfig({
+export const config: UserConfig = {
   // https://MelihAltintas.github.com/vue3-openlayers
   // base: '/vue3-openlayers/',
   title: "vue3-openlayers",
@@ -426,4 +426,6 @@ export default defineConfig({
       provider: "local",
     },
   },
-});
+};
+
+export default defineConfig(config);

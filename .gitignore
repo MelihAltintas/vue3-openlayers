@@ -30,3 +30,6 @@ coverage
 
 # generate types
 components/*.d.ts
+/test-results/
+/playwright-report/
+/playwright/.cache/

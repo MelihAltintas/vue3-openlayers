@@ -58,6 +58,49 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 <!-- auto-generated-peer-dependency-requirements END -->
 
+## Run End-to-End Tests with https://playwright.dev[Playwright]
+
+```bash
+# Install browsers for the first run
+npx playwright install
+
+# Runs the end-to-end tests
+npm run test:e2e
+
+# Runs the end-to-end tests in interactive UI mode (for local development)
+npm run test:e2e:ui
+
+# Runs the tests in debug mode
+npm run test:e2e:debug
+
+# Runs the tests in trace mode (to time-travel between actions)
+npm run test:e2e:trace
+
+# Serve test report (and inspect trace when)
+npm run test:e2e:report
+
+# Runs the tests only on Chromium
+npm run test:e2e -- --project=chromium
+# Runs the tests of a specific file
+npm run test:e2e -- tests/example.spec.ts
+
+# Run tests and record new screenshots locally using the same image as in CI env
+docker compose run screenshot-update
+```
+
+### Screenshots
+
+Please note, when recording screenshots locally the may differ from the platform (linux) in CI.
+This results in:
+- a: a different file name
+- b: a slightly different screenshot
+
+So tackle this issue, please always record screenshots locally using the docker compose file which will use the same image/platform as in CI.
+
+```bash
+docker compose run screenshot-update
+```
+
 ## License
 
 **MIT** (c) Melih Altıntaş

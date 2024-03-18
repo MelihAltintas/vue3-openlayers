@@ -63,6 +63,7 @@ import { computed, ref } from "vue";
 import { Point } from "ol/geom";
 import Feature from "ol/Feature";
 import markerIcon from "@/assets/marker.png";
+import { arrayWith500Points } from "./points";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
@@ -73,10 +74,7 @@ const count = ref(5000);
 const features = computed(() => {
   return Array.from({ length: count.value }, (_, i) => {
     return new Feature({
-      geometry: new Point([
-        getRandomInRange(24, 45, 3),
-        getRandomInRange(35, 41, 3),
-      ]),
+      geometry: new Point(arrayWith500Points[index - 1]),
       index: i,
     });
   });
@@ -106,10 +104,6 @@ const overrideStyleFunction = (feature, style) => {
 
   style.getText().setText(size.toString());
   return style;
-};
-
-const getRandomInRange = (from, to, fixed) => {
-  return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
 };
 
 const featureSelected = (event) => {
