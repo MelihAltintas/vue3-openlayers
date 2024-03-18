@@ -12,9 +12,12 @@ export class MapPage {
     await this.page.goto(route);
   }
 
-  async waitUntilReady() {
+  async waitUntilReady(...selectors: string[]) {
     await this.page.waitForLoadState();
     await this.page.waitForSelector("canvas");
+    for (let index = 0; index < selectors.length; index++) {
+      await this.page.waitForSelector(selectors[index]);
+    }
   }
 
   async waitUntilCanvasLoaded() {
