@@ -22,6 +22,16 @@ test.describe("ol-source-cluster", () => {
   });
 });
 
+test.describe("ol-source-geo-tiff", () => {
+  test("should render", async ({ page }) => {
+    const map = new MapPage(page);
+    map.goto("/componentsguide/sources/geotiff/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-source-image-static", () => {
   test("should render", async ({ page }) => {
     const map = new MapPage(page);
@@ -81,6 +91,16 @@ test.describe("ol-source-tile-arcgis-rest", () => {
   });
 });
 
+test.describe("ol-source-tile-debug", () => {
+  test("should render", async ({ page }) => {
+    const map = new MapPage(page);
+    map.goto("/componentsguide/sources/tiledebug/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-source-tile-json", () => {
   test("should render", async ({ page }) => {
     const map = new MapPage(page);
@@ -123,6 +143,16 @@ test.describe("ol-source-vector-tile", () => {
   test("should render", async ({ page }) => {
     const map = new MapPage(page);
     map.goto("/componentsguide/sources/vectortile/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+});
+
+test.describe("ol-source-wmts", () => {
+  test("should render", async ({ page }) => {
+    const map = new MapPage(page);
+    map.goto("/componentsguide/sources/wmts/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
     await map.checkCanvasScreenshot();
