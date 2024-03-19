@@ -12,7 +12,7 @@
     @click="selectFeature"
     ref="mapRef"
   >
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
+    <ol-view ref="view" :center="center" :zoom="zoom" />
 
     <ol-vector-tile-layer class-name="feature-layer">
       <ol-source-vector-tile :url="url" :format="mvtFormat" />
@@ -69,7 +69,6 @@ const mvtFormat = new format.MVT({ featureClass: Feature });
 const mapRef = ref<{ map: MapRef } | null>(null);
 const center = ref([943955.9456952971, 6356667.343082143]);
 const zoom = ref(18);
-const rotation = ref(0);
 const url = ref(
   "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf",
 );

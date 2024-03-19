@@ -8,7 +8,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -51,7 +50,6 @@ import { arrayWith500Points } from "./points";
 const center = ref([34, 39.13]);
 const projection = ref("EPSG:4326");
 const zoom = ref(6.8);
-const rotation = ref(0);
 
 const overrideStyleFunction = (feature, style, resolution) => {
   console.log({ feature, style, resolution });

@@ -1,14 +1,6 @@
 <template>
-  <button class="btn-default" type="button" @click="rotateRight">
-    Rotate right
-  </button>
   <ol-map style="height: 400px" :controls="[]">
-    <ol-view
-      :center="center"
-      :rotation="rotation"
-      :zoom="zoom"
-      :projection="projection"
-    />
+    <ol-view :center="center" :zoom="zoom" :projection="projection" />
 
     <ol-tile-layer>
       <ol-source-osm />

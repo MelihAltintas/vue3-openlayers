@@ -8,7 +8,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -41,7 +40,6 @@ import markerIcon from "@/assets/marker.png";
 const center = ref([34, 39.13]);
 const projection = ref("EPSG:4326");
 const zoom = ref(6.8);
-const rotation = ref(0);
 const format = inject("ol-format");
 const geoJson = new format.GeoJSON();
 </script>

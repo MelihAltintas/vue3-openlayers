@@ -7,7 +7,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -32,7 +31,6 @@ import { ref, inject } from "vue";
 const center = ref([4.4764595, 50.5010789]);
 const projection = ref("EPSG:4326");
 const zoom = ref(7.5);
-const rotation = ref(0);
 
 const url =
   "https://raw.githubusercontent.com/bmesuere/belgium-topojson/master/belgium.json";

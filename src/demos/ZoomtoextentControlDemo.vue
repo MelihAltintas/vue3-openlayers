@@ -1,11 +1,6 @@
 <template>
   <ol-map style="height: 400px" :controls="[]">
-    <ol-view
-      :center="center"
-      :rotation="rotation"
-      :zoom="zoom"
-      :projection="projection"
-    />
+    <ol-view :center="center" :zoom="zoom" :projection="projection" />
 
     <ol-tile-layer>
       <ol-source-osm />

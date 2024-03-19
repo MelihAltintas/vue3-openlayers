@@ -4,7 +4,7 @@
     :loadTilesWhileInteracting="true"
     style="height: 400px"
   >
-    <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom" />
+    <ol-view ref="view" :center="center" :zoom="zoom" />
     <ol-zoom-control />
 
     <ol-tile-layer :zIndex="1000">
@@ -26,6 +26,5 @@
 import { ref } from "vue";
 
 const zoom = ref(4);
-const rotation = ref(0);
 const center = ref([-10997148, 4569099]);
 </script>
