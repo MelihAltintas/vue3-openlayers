@@ -82,7 +82,7 @@
     "proj4": "^2.10.0",
     "ol": "^9.0.0",
     "ol-contextmenu": "^5.4.0",
-    "ol-ext": "^4.0.15",
+    "ol-ext": "^4.0.17",
     "vue": "^3.4.21"
   },
   "peerDependencies": {
