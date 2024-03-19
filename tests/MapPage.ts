@@ -39,4 +39,8 @@ export class MapPage {
       timeout: 3000,
     });
   }
+
+  async canvasBBox() {
+    return await this.page.locator("canvas").boundingBox();
+  }
 }
