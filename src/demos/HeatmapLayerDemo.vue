@@ -8,7 +8,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -40,7 +39,6 @@ import { ref, inject } from "vue";
 const center = ref([101.97, 4.21]);
 const projection = ref("EPSG:4326");
 const zoom = ref(5);
-const rotation = ref(0);
 const format = inject("ol-format");
 const kml = new format.KML({ extractStyles: false });
 const heatmapWeight = function (feature) {

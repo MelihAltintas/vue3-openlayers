@@ -3,7 +3,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -18,7 +17,7 @@
     <ol-tile-layer ref="bingLayer" title="Bing Maps">
       <ol-source-bingmaps
         apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
-        :imagerySet="'CanvasDark'"
+        imagerySet="RoadOnDemand"
       />
     </ol-tile-layer>
 

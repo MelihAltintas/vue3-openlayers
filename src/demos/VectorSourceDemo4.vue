@@ -7,7 +7,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -28,7 +27,6 @@ import { ref, inject } from "vue";
 const center = ref([0, 0]);
 const projection = ref("EPSG:4326");
 const zoom = ref(3);
-const rotation = ref(0);
 
 const url = ref("https://openlayers.org/data/vector/ecoregions.json");
 const format = inject("ol-format");

@@ -8,7 +8,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -43,7 +42,6 @@ import type { ObjectEvent } from "ol/Object";
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(12);
-const rotation = ref(0);
 const view = ref<View>();
 const map = ref(null);
 const position = ref([]);

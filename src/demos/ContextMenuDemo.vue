@@ -8,7 +8,6 @@
   >
     <ol-view
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
       ref="view"
@@ -37,7 +36,6 @@ import marker from "@/assets/marker.png";
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
-const rotation = ref(0);
 
 const contextMenuItems = ref([]);
 

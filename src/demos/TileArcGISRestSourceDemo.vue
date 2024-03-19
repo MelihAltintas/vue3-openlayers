@@ -7,7 +7,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -32,7 +31,6 @@ import { ref } from "vue";
 const center = ref([4340075, 5628816]);
 const projection = ref("EPSG:3857");
 const zoom = ref(15);
-const rotation = ref(0);
 const arcgisUrl =
   "https://services.wvgis.wvu.edu/arcgis/rest/services/Imagery_BaseMaps_EarthCover/wv_imagery_WVGISTC_leaf_off_mosaic/MapServer";
 const requestParams = {

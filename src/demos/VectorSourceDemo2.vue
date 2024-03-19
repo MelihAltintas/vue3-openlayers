@@ -7,7 +7,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -37,7 +36,6 @@ import { ref, inject } from "vue";
 const center = ref([-8908887.277395891, 5381918.072437216]);
 const projection = ref("EPSG:3857");
 const zoom = ref(14);
-const rotation = ref(0);
 
 const urlFunction = (extent, resolution, projection) => {
   const proj = projection.getCode();

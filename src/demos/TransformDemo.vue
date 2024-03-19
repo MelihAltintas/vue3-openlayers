@@ -12,7 +12,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -62,7 +61,6 @@ const map = ref("");
 const center = ref([-102.13121, 40.2436]);
 const projection = ref("EPSG:4326");
 const zoom = ref(5);
-const rotation = ref(0);
 const drawEnabled = ref(false);
 
 const geojsonObject = {

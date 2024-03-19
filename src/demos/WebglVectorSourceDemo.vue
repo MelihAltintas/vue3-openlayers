@@ -7,7 +7,6 @@
     <ol-view
       ref="view"
       :center="center"
-      :rotation="rotation"
       :zoom="zoom"
       :projection="projection"
     />
@@ -51,7 +50,6 @@ import { ref, inject } from "vue";
 const center = ref([116.54875, 40.45064]);
 const projection = ref("EPSG:4326");
 const zoom = ref(16);
-const rotation = ref(0);
 
 const format = inject("ol-format");
 const geoJson = new format.GeoJSON();
