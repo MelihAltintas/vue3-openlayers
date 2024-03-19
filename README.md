@@ -58,7 +58,7 @@ It can display maps with tiled, raster or vector layers loaded from different so
 
 <!-- auto-generated-peer-dependency-requirements END -->
 
-## Run End-to-End Tests with https://playwright.dev[Playwright]
+## Run End-to-End Tests with [Playwright](https://playwright.dev)
 
 ```bash
 # Install browsers for the first run
