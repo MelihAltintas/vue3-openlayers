@@ -56,12 +56,14 @@ export class MapPage {
               x: point[0],
               y: point[1],
             },
+            force: true,
           })
         : await this.page.locator("canvas").click({
             position: {
               x: point[0],
               y: point[1],
             },
+            force: true,
           });
     } else {
       console.error("Canvas element not found or not visible");
