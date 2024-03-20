@@ -2,6 +2,30 @@ import { test } from "@playwright/test";
 
 import { MapPage } from "./MapPage";
 
+test.describe("ol-interaction-clusterselect", () => {
+  test("should expand cluster points on cluster click", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/clusterselect/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.drawPoint([70, 253]);
+    await map.waitMs(300);
+    await map.checkCanvasScreenshot();
+  });
+
+  test("should zoom and expand cluster points on cluster double click", async ({
+    page,
+  }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/clusterselect/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.drawPoint([70, 253], true);
+    await map.waitMs(300);
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-interaction-draw", () => {
   test("should draw a Point Feature", async ({ page }) => {
     const map = new MapPage(page);
