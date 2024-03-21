@@ -69,3 +69,40 @@ test.describe("ol-interaction-draw", () => {
     await map.checkCanvasScreenshot();
   });
 });
+
+test.describe("ol-interaction-dragrotate", () => {
+  test("should rotate the map view by dragging on it with pressed modifiers", async ({
+    page,
+  }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/dragrotate/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.dragOnCanvas([180, 180], [300, 180], ["Alt", "Shift"]);
+    await map.checkCanvasScreenshot();
+  });
+});
+
+test.describe("ol-interaction-dragrotatezoom", () => {
+  test("should rotate the map view and zoom by dragging on it with pressed modifiers", async ({
+    page,
+  }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/dragrotatezoom/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.dragOnCanvas([180, 180], [300, 180], ["Shift"]);
+    await map.checkCanvasScreenshot();
+  });
+});
+
+test.describe("ol-interaction-select", () => {
+  test("should be able to select a shape by hover", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/select/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.hoverOnCanvas([200, 200]);
+    await map.checkCanvasScreenshot();
+  });
+});
