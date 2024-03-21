@@ -46,28 +46,84 @@ export class MapPage {
     return await this.page.locator("canvas").boundingBox();
   }
 
-  async drawPoint(point: Point, dblClick = false) {
+  async dragOnCanvas(
+    start: Point,
+    end: Point,
+    modifiers?: ("Alt" | "Control" | "Meta" | "Shift")[],
+  ) {
     const boundingBox = await this.canvasBBox();
 
     if (boundingBox) {
-      dblClick
-        ? await this.page.locator("canvas").dblclick({
-            position: {
-              x: point[0],
-              y: point[1],
-            },
-            force: true,
-          })
-        : await this.page.locator("canvas").click({
-            position: {
-              x: point[0],
-              y: point[1],
-            },
-            force: true,
-          });
+      if (modifiers) {
+        for (let index = 0; index < modifiers.length; index++) {
+          await this.page.keyboard.down(modifiers[index]);
+        }
+      }
+      await this.page.mouse.move(
+        boundingBox.x + start[0],
+        boundingBox.y + start[1],
+      );
+      await this.page.mouse.down();
+
+      await this.page.mouse.move(
+        boundingBox.x + end[0],
+        boundingBox.y + end[1],
+        {
+          steps: 10, // important to make dragging on canvas work, it must be above or equal to 1.1
+        },
+      );
+      if (modifiers) {
+        for (let index = 0; index < modifiers.length; index++) {
+          await this.page.keyboard.up(modifiers[index]);
+        }
+      }
+      await this.page.mouse.up();
     } else {
       console.error("Canvas element not found or not visible");
     }
+  }
+
+  async hoverOnCanvas(point: Point) {
+    const boundingBox = await this.canvasBBox();
+
+    if (boundingBox) {
+      await this.page.hover("canvas", {
+        position: {
+          x: point[0],
+          y: point[1],
+        },
+      });
+    } else {
+      console.error("Canvas element not found or not visible");
+    }
+  }
+
+  async clickOnCanvas(
+    point: Point,
+    modifiers?: ("Alt" | "Control" | "Meta" | "Shift")[],
+    dblClick = false,
+  ) {
+    dblClick
+      ? await this.page.locator("canvas").dblclick({
+          position: {
+            x: point[0],
+            y: point[1],
+          },
+          modifiers,
+          force: true,
+        })
+      : await this.page.locator("canvas").click({
+          position: {
+            x: point[0],
+            y: point[1],
+          },
+          modifiers,
+          force: true,
+        });
+  }
+
+  async drawPoint(point: Point, dblClick = false) {
+    this.clickOnCanvas(point, undefined, dblClick);
   }
 
   async drawLineString(...points: Point[]) {
