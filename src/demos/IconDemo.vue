@@ -3,7 +3,7 @@
     ref="map"
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    style="height: 500px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"

@@ -6,7 +6,7 @@
     ref="map"
     :load-tiles-while-animating="true"
     :load-tiles-while-interacting="true"
-    style="height: 350px"
+    style="height: 400px"
   >
     <ol-view
       ref="view"

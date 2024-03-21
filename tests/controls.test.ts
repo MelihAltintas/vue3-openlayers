@@ -30,7 +30,7 @@ test.describe("ol-context-menu-control", () => {
     await map.goto("/componentsguide/mapcontrols/contextmenu/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await page.locator("canvas").click({ button: "right" });
+    await page.locator(".ol-viewport").click({ button: "right" });
     await map.page.waitForSelector(".ol-ctx-menu-container");
     await map.checkCanvasScreenshot();
   });
