@@ -37,13 +37,13 @@ export class MapPage {
   }
 
   async checkCanvasScreenshot(n = 0) {
-    await expect(this.page.locator("canvas").nth(n)).toHaveScreenshot({
-      timeout: 3000,
+    await expect(this.page.locator(".ol-viewport").nth(n)).toHaveScreenshot({
+      timeout: 5000,
     });
   }
 
   async canvasBBox() {
-    return await this.page.locator("canvas").boundingBox();
+    return await this.page.locator(".ol-viewport").boundingBox();
   }
 
   async dragOnCanvas(
@@ -87,7 +87,7 @@ export class MapPage {
     const boundingBox = await this.canvasBBox();
 
     if (boundingBox) {
-      await this.page.hover("canvas", {
+      await this.page.hover(".ol-viewport", {
         position: {
           x: point[0],
           y: point[1],
@@ -104,7 +104,7 @@ export class MapPage {
     dblClick = false,
   ) {
     dblClick
-      ? await this.page.locator("canvas").dblclick({
+      ? await this.page.locator(".ol-viewport").dblclick({
           position: {
             x: point[0],
             y: point[1],
@@ -112,7 +112,7 @@ export class MapPage {
           modifiers,
           force: true,
         })
-      : await this.page.locator("canvas").click({
+      : await this.page.locator(".ol-viewport").click({
           position: {
             x: point[0],
             y: point[1],
