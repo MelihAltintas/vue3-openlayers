@@ -9,6 +9,7 @@ import OlLayerSwitcherImageControl from "./OlLayerSwitcherImageControl.vue";
 import OlMousePositionControl from "./OlMousePositionControl.vue";
 import OlOverviewMapControl from "./OlOverviewMapControl.vue";
 import OlPrintDialogControl from "./OlPrintDialogControl.vue";
+import OlProfileControl from "./OlProfileControl.vue";
 import OlRotateControl from "./OlRotateControl.vue";
 import OlScaleLineControl from "./OlScaleLineControl.vue";
 import OlSearchControl from "./OlSearchControl.vue";
@@ -37,6 +38,7 @@ function install(app: App) {
   app.component("ol-toggle-control", OlToggleControl);
   app.component("ol-button-control", OlButtonControl);
   app.component("ol-printdialog-control", OlPrintDialogControl);
+  app.component("ol-profile-control", OlProfileControl);
   app.component("ol-videorecorder-control", OlVideoRecorderControl);
   app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
   app.component("ol-layerswitcherimage-control", OlLayerSwitcherImageControl);
@@ -57,6 +59,7 @@ export {
   OlMousePositionControl,
   OlOverviewMapControl,
   OlPrintDialogControl,
+  OlProfileControl,
   OlRotateControl,
   OlScaleLineControl,
   OlSearchControl,

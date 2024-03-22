@@ -108,6 +108,18 @@ test.describe("ol-printdialog-control", () => {
   });
 });
 
+test.describe("ol-profile-control", () => {
+  test("should render", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/mapcontrols/profile/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.page.locator(".ol-control").getByTitle("Profile").click();
+    await map.hoverOnCanvas([104, 192]);
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-rotate-control", () => {
   test("should render", async ({ page }) => {
     const map = new MapPage(page);

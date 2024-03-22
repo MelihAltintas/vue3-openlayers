@@ -111,6 +111,7 @@ export default defineConfig({
           "ol-ext/control/Toggle": "Toggle",
           "ol-ext/control/VideoRecorder": "VideoRecorder",
           "ol-ext/control/MapZone": "MapZone",
+          "ol-ext/control/Profile": "Profile",
           "ol/control/Zoom": "Zoom",
           "ol/control/ZoomSlider": "ZoomSlider",
           "ol/control/ZoomToExtent": "ZoomToExtent",

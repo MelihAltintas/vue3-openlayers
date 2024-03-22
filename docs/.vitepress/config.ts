@@ -374,6 +374,10 @@ export const config: UserConfig = {
             link: "/componentsguide/mapcontrols/printdialog/",
           },
           {
+            text: "ol-profile-control",
+            link: "/componentsguide/mapcontrols/profile/",
+          },
+          {
             text: "ol-rotate-control",
             link: "/componentsguide/mapcontrols/rotate/",
           },

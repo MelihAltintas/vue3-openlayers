@@ -17,7 +17,7 @@
 
     <ol-vector-layer>
       <ol-source-vector>
-        <ol-feature>
+        <ol-feature ref="profileFeatureRef">
           <ol-geom-line-string
             :coordinates="[
               [116.544921, 40.451633],
@@ -47,15 +47,35 @@
         </ol-feature>
       </ol-source-vector>
     </ol-vector-layer>
+
+    <ol-profile-control
+      v-if="profileFeatureRef?.feature"
+      :feature="profileFeatureRef.feature"
+      @over="over"
+      @out="out"
+    ></ol-profile-control>
   </ol-map>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 
 const center = ref([116.54875, 40.45064]);
 const projection = ref("EPSG:4326");
 const zoom = ref(17);
 const strokeWidth = ref(10);
 const strokeColor = ref("red");
+const profileFeatureRef = ref(null);
+
+function over(event) {
+  console.log(event);
+}
+
+function out(event) {
+  console.log(event);
+}
+
+onMounted(() => {
+  console.log(profileFeatureRef.value);
+});
 </script>
