@@ -1,6 +1,4 @@
 import vue from "@vitejs/plugin-vue";
-/// <reference types="vite/client" />
-/// <reference types="vitest" />
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -151,12 +149,6 @@ export default defineConfig({
             : assetInfo.name || "";
         },
       },
-    },
-  },
-  test: {
-    environment: "jsdom",
-    coverage: {
-      reporter: ["text", "json", "html"],
     },
   },
 });
