@@ -18,6 +18,8 @@ import type Button from "ol-ext/control/Button";
 import type { Options as ButtonOptions } from "ol-ext/control/Button";
 import type PrintDialog from "ol-ext/control/PrintDialog";
 import type { Options as PrintDialogOptions } from "ol-ext/control/PrintDialog";
+import type Profile from "ol-ext/control/Profile";
+import type { Options as ProfileOptions } from "ol-ext/control/Profile";
 import type Toggle from "ol-ext/control/Toggle";
 import type { Options as ToggleOptions } from "ol-ext/control/Toggle";
 import type VideoRecorder from "ol-ext/control/VideoRecorder";
@@ -49,6 +51,7 @@ type InnerControlType = (
   | Bar
   | Button
   | PrintDialog
+  | Profile
   | Toggle
   | VideoRecorder
   | FullScreen
@@ -73,6 +76,7 @@ type InnerControlProperties =
   | BarOptions
   | ButtonOptions
   | PrintDialogOptions
+  | ProfileOptions
   | ToggleOptions
   | VideoRecorderOptions
   | LayerSwitcherOptions
