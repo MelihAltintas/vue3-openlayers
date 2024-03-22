@@ -1,5 +1,17 @@
 
 
+# [6.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.1.2...v6.2.0) (2024-03-22)
+
+
+### Bug Fixes
+
+* **deps:** use compatible dependencies for vitest and coverage ([69221e7](https://github.com/MelihAltintas/vue3-openlayers/commit/69221e790b4c00c161ae3498216bae652344059f))
+
+
+### Features
+
+* **ol-profile-control:** add control for ol-ext/controls/Profile ([#318](https://github.com/MelihAltintas/vue3-openlayers/issues/318)) ([be78e90](https://github.com/MelihAltintas/vue3-openlayers/commit/be78e90863915876ab7809f477fb8625b066c532)), closes [#269](https://github.com/MelihAltintas/vue3-openlayers/issues/269)
+
 ## [6.1.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.1.1...v6.1.2) (2024-03-16)
 
 
