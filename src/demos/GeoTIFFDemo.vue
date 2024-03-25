@@ -1,4 +1,23 @@
 <template>
+  <form>
+    <fieldset>
+      <label for="opacity-slider">Layer Opacity</label>
+      <input
+        type="range"
+        id="opacity-slider"
+        min="0"
+        max="1"
+        step="0.1"
+        v-model.number="layerOpacity"
+      />
+      <span class="description">{{ layerOpacity }}</span>
+    </fieldset>
+    <fieldset>
+      <label for="visibility-toggle">Layer Visibility:</label>
+      <input type="checkbox" id="visibility-toggle" v-model="layerVisible" />
+      <span> {{ layerVisible ? "Visible" : "Hidden" }}</span>
+    </fieldset>
+  </form>
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
@@ -11,7 +30,12 @@
       :projection="projection"
     />
 
-    <ol-webgl-tile-layer :style="trueColor">
+    <ol-webgl-tile-layer
+      :style="trueColor"
+      :zIndex="1001"
+      :opacity="layerOpacity"
+      :visible="layerVisible"
+    >
       <ol-source-geo-tiff
         :normalize="false"
         :sources="[
@@ -31,6 +55,8 @@ import { ref } from "vue";
 const center = ref([0, 0]);
 const zoom = ref(2);
 const projection = ref("EPSG:4326");
+const layerOpacity = ref(1);
+const layerVisible = ref(true);
 
 const max = 3000;
 function normalize(value) {
