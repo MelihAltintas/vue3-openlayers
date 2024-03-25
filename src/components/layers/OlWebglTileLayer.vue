@@ -6,7 +6,14 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import {
+  inject,
+  provide,
+  onUnmounted,
+  onMounted,
+  watch,
+  shallowRef,
+} from "vue";
 import TileLayer, { type Options } from "ol/layer/WebGLTile";
 import type Map from "ol/Map";
 import type { OverviewMap } from "ol/control";
@@ -23,22 +30,19 @@ const overViewMap = inject<Ref<OverviewMap | null> | null>("overviewMap", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const tileLayer = computed(() => new TileLayer(properties));
+const tileLayer = shallowRef(new TileLayer(properties));
 
 watch(
-  () => props.opacity,
-  (newOpacity: number) => {
-    tileLayer.value.setOpacity(newOpacity);
+  () => properties,
+  (newValue) => {
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        tileLayer.value.set(key, newValue[keyInObj]);
+      }
+    }
   },
-  { immediate: true },
-);
-
-watch(
-  () => props.visible,
-  (newVisible: boolean) => {
-    tileLayer.value.setVisible(newVisible);
-  },
-  { immediate: true },
+  { deep: true },
 );
 
 const applyTileLayer = () => {
