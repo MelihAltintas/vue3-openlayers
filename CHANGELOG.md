@@ -1,5 +1,12 @@
 
 
+## [6.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.2.0...v6.2.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **ol-webgl-tile-layer:** react on property changes ([bdfcab6](https://github.com/MelihAltintas/vue3-openlayers/commit/bdfcab60952ba3da8e2a12c742e7d7bee3ff45d1)), closes [#319](https://github.com/MelihAltintas/vue3-openlayers/issues/319)
+
 # [6.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.1.2...v6.2.0) (2024-03-22)
 
 
