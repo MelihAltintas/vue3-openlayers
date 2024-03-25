@@ -70,6 +70,17 @@ test.describe("ol-interaction-draw", () => {
   });
 });
 
+test.describe("ol-interaction-dragbox", () => {
+  test("should drag on the map", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/dragbox/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.dragOnCanvas([180, 180], [300, 180], ["Shift"]);
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-interaction-dragrotate", () => {
   test("should rotate the map view by dragging on it with pressed modifiers", async ({
     page,

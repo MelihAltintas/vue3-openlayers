@@ -272,6 +272,10 @@ export const config: UserConfig = {
                 link: "/componentsguide/interactions/draw/",
               },
               {
+                text: "ol-interaction-dragbox",
+                link: "/componentsguide/interactions/dragbox/",
+              },
+              {
                 text: "ol-interaction-dragrotate",
                 link: "/componentsguide/interactions/dragrotate/",
               },
