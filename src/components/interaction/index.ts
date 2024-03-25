@@ -1,5 +1,6 @@
 import type { App } from "vue";
 import OlClusterSelectInteraction from "./OlClusterSelectInteraction.vue";
+import OlDragBoxInteraction from "./OlDragBoxInteraction.vue";
 import OlDragRotateInteraction from "./OlDragRotateInteraction.vue";
 import OlDragRotateZoomInteraction from "./OlDragRotateZoomInteraction.vue";
 import OlSelectInteraction from "./OlSelectInteraction.vue";
@@ -10,6 +11,7 @@ import OlTransformInteraction from "./OlTransformInteraction.vue";
 
 function install(app: App) {
   app.component("ol-interaction-clusterselect", OlClusterSelectInteraction);
+  app.component("ol-interaction-dragbox", OlDragBoxInteraction);
   app.component("ol-interaction-dragrotate", OlDragRotateInteraction);
   app.component("ol-interaction-dragrotatezoom", OlDragRotateZoomInteraction);
   app.component("ol-interaction-select", OlSelectInteraction);
@@ -24,6 +26,7 @@ export default install;
 export {
   install,
   OlClusterSelectInteraction,
+  OlDragBoxInteraction,
   OlDragRotateInteraction,
   OlDragRotateZoomInteraction,
   OlSelectInteraction,

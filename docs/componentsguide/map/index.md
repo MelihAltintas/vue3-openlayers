@@ -25,6 +25,8 @@ See also documentation of `ol-view` component.
 
 :::
 
+## Properties
+
 ### Props from OpenLayers
 
 Properties are passed-trough from OpenLayers directly.

@@ -122,6 +122,7 @@ export default defineConfig({
           "ol/geom/Polygon": "Polygon",
           "ol/style/Style": "Style",
           "ol/interaction/Draw": "Draw",
+          "ol/interaction/DragBox": "DragBox",
           "ol/interaction/Modify": "Modify",
           "ol/style/Circle": "CircleStyle",
           "ol/style/Fill": "Fill",
