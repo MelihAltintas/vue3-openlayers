@@ -16,10 +16,12 @@ import {
 import type { StyleLike } from "ol/style/Style";
 import type { FlatStyleLike } from "ol/style/flat";
 import type LayerGroup from "ol/layer/Group";
+import type { BackgroundColor } from "ol/layer/Base";
 
 const props = withDefaults(
   defineProps<
     LayersCommonProps & {
+      background?: BackgroundColor;
       renderBuffer?: number;
       updateWhileAnimating?: boolean;
       styles?: StyleLike | FlatStyleLike | null;

@@ -55,10 +55,16 @@ A CSS class name to set to the layer element.
 
 ### opacity
 
-- **Type**: `number `
+- **Type**: `number`
 - **Default**: `1`
 
 Opacity (0, 1).
+
+### background
+
+- **Type**: `BackgroundColor`
+
+A css color, or a function called with a view resolution returning a css color.
 
 ### visible
 
