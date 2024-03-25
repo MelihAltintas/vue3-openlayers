@@ -1,5 +1,18 @@
 
 
+# [6.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.2.1...v6.3.0) (2024-03-25)
+
+
+### Bug Fixes
+
+* **ol-overlay:** prevent re-compute overlay, use shallowRef instead and watch property changes ([b1bb37e](https://github.com/MelihAltintas/vue3-openlayers/commit/b1bb37e93f48bc5930447adad20dd74d2e65be30)), closes [#257](https://github.com/MelihAltintas/vue3-openlayers/issues/257)
+
+
+### Features
+
+* **ol-interaction-dragbox:** add DragBox component wrapper ([3eb1fff](https://github.com/MelihAltintas/vue3-openlayers/commit/3eb1fff345b81c2990e5aa84eaedea3b39164e19)), closes [#307](https://github.com/MelihAltintas/vue3-openlayers/issues/307)
+* **ol-vector-layer:** add `background` property ([f51cd25](https://github.com/MelihAltintas/vue3-openlayers/commit/f51cd25d93820459209892d817c34be73094faf1))
+
 ## [6.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.2.0...v6.2.1) (2024-03-25)
 
 
