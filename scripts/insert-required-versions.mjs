@@ -1,7 +1,7 @@
 "use strict";
 
 import { readFileSync, writeFileSync } from "fs";
-import repoUrl from "get-repository-url";
+import getPkg from "get-pkg";
 
 // eslint-disable-next-line no-undef
 const [, , ...filepaths] = process.argv;
@@ -11,8 +11,9 @@ const config = JSON.parse(packageJson);
 
 Promise.all(
   Object.entries(config.peerDependencies).map(async ([depName, depVersion]) => {
-    const url = await repoUrl(depName);
-    return `- **[${depName}](${url})**: \`${depVersion}\``;
+    const packageJson = await getPkg(depName);
+    console.log(packageJson);
+    return `- **[${depName}](${packageJson.homepage})**: \`${depVersion}\``;
   }),
 ).then((result) => {
   filepaths.forEach((file) => {
