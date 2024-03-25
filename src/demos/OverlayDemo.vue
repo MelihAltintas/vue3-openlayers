@@ -18,6 +18,7 @@
       :position="[item + 37.9 + offset, 40.1]"
       v-for="item in list"
       :key="item"
+      :autoPan="true"
     >
       <div class="overlay-content">
         {{ item }}
