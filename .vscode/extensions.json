@@ -2,7 +2,7 @@
   "recommendations": [
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
-    "ZixuanChen.vitest-explorer",
+    "vitest.explorer",
     "esbenp.prettier-vscode"
   ]
 }
