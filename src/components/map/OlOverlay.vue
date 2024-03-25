@@ -14,7 +14,7 @@ import {
   watch,
   onMounted,
   onUnmounted,
-  computed,
+  shallowRef,
 } from "vue";
 
 import type Map from "ol/Map";
@@ -35,7 +35,7 @@ const htmlContent = ref<HTMLElement>();
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const overlay = computed(() => new Overlay(properties));
+const overlay = shallowRef(new Overlay(properties));
 
 useOpenLayersEvents(overlay, [
   "change:element",
@@ -71,10 +71,18 @@ onMounted(() => {
 
 onUnmounted(() => removeOverlay(overlay.value));
 
-watch(overlay, (newVal, oldVal) => {
-  removeOverlay(oldVal);
-  map?.addOverlay(newVal);
-});
+watch(
+  () => properties,
+  (newValue) => {
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        overlay.value.set(key, newValue[keyInObj]);
+      }
+    }
+  },
+  { deep: true },
+);
 
 watchEffect(
   () => {
