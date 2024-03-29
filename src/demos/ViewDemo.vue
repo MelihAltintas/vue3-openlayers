@@ -1,4 +1,9 @@
 <template>
+  <form>
+    <label for="zoom">Zoom:</label>
+    <input type="number" id="zoom" v-model="zoom" />
+  </form>
+
   <ol-map style="height: 400px">
     <ol-view
       ref="view"

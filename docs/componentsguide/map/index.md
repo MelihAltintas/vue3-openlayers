@@ -7,11 +7,11 @@ slot to place them all. Usually you will use it together with `ol-view`
 component to setup `zoom`, `center`, `projection` and other view related propeties for the map.
 
 <script setup>
-import MapDemo from "@demos/MapDemo.vue"
+import ViewDemo from "@demos/ViewDemo.vue"
 </script>
 
 <ClientOnly>
-<MapDemo />
+<ViewDemo />
 </ClientOnly>
 
 ## Usage
@@ -21,7 +21,7 @@ See also documentation of `ol-view` component.
 
 ::: code-group
 
-<<< ../../../src/demos/MapDemo.vue
+<<< ../../../src/demos/ViewDemo.vue
 
 :::
 
