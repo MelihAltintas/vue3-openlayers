@@ -5,7 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import {
+  inject,
+  provide,
+  onUnmounted,
+  onMounted,
+  watch,
+  shallowRef,
+} from "vue";
 import HeatmapLayer from "ol/layer/Heatmap";
 import type { Extent } from "ol/extent";
 import type Map from "ol/Map";
@@ -41,12 +48,20 @@ const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
-const heatmapLayer = computed(() => new HeatmapLayer(properties));
+const heatmapLayer = shallowRef(new HeatmapLayer(properties));
 
-watch(properties, () => {
-  heatmapLayer.value.setProperties(properties);
-  map?.changed();
-});
+watch(
+  () => properties,
+  (newValue) => {
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        heatmapLayer.value.set(key, newValue[keyInObj]);
+      }
+    }
+  },
+  { deep: true },
+);
 
 onMounted(() => {
   map?.addLayer(heatmapLayer.value);

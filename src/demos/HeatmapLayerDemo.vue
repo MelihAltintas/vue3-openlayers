@@ -1,4 +1,31 @@
 <template>
+  <form>
+    <fieldset>
+      <label for="blur">Blur</label>
+      <input
+        type="range"
+        id="blur"
+        min="0"
+        max="100"
+        step="1"
+        v-model.number="blur"
+      />
+      <span class="description">{{ blur }}</span>
+    </fieldset>
+    <fieldset>
+      <label for="radius">Radius</label>
+      <input
+        type="range"
+        id="radius"
+        min="0"
+        max="100"
+        step="1"
+        v-model.number="radius"
+      />
+      <span class="description">{{ radius }}</span>
+    </fieldset>
+  </form>
+
   <ol-map
     ref="map"
     :loadTilesWhileAnimating="true"
@@ -18,8 +45,8 @@
 
     <ol-heatmap-layer
       title="heatmap"
-      :blur="20"
-      :radius="20"
+      :blur="blur"
+      :radius="radius"
       :weight="heatmapWeight"
       :zIndex="1"
     >
@@ -39,6 +66,8 @@ import { ref, inject } from "vue";
 const center = ref([101.97, 4.21]);
 const projection = ref("EPSG:4326");
 const zoom = ref(5);
+const blur = ref(20);
+const radius = ref(20);
 const format = inject("ol-format");
 const kml = new format.KML({ extractStyles: false });
 const heatmapWeight = function (feature) {
