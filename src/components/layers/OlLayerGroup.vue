@@ -5,7 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch } from "vue";
+import {
+  inject,
+  provide,
+  onUnmounted,
+  onMounted,
+  watch,
+  shallowRef,
+} from "vue";
 import LayerGroup, { type Options } from "ol/layer/Group";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -25,7 +32,7 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const { properties } = usePropsAsObjectProperties(props);
 
-const layerGroup = new LayerGroup(properties);
+const layerGroup = shallowRef(new LayerGroup(properties));
 useOpenLayersEvents(layerGroup, [
   "change:extend",
   "change:layers",
@@ -40,26 +47,35 @@ useOpenLayersEvents(layerGroup, [
 
 const parentLayerGroup = inject<LayerGroup | null>("layerGroup", null);
 
-watch(properties, () => {
-  layerGroup.setProperties(properties);
-});
+watch(
+  () => properties,
+  (newValue) => {
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        layerGroup.value.set(key, newValue[keyInObj]);
+      }
+    }
+  },
+  { deep: true },
+);
 
 onMounted(() => {
-  map?.addLayer(layerGroup);
+  map?.addLayer(layerGroup.value);
   if (parentLayerGroup) {
     const layerCollection = parentLayerGroup.getLayers();
-    layerCollection.push(layerGroup);
+    layerCollection.push(layerGroup.value);
     parentLayerGroup.setLayers(layerCollection);
   }
 });
 
 onUnmounted(() => {
-  map?.removeLayer(layerGroup);
+  map?.removeLayer(layerGroup.value);
 });
 
-provide("layerGroup", layerGroup);
+provide("layerGroup", layerGroup.value);
 
 defineExpose({
-  layerGroup,
+  layerGroup: layerGroup.value,
 });
 </script>
