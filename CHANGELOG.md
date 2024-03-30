@@ -1,5 +1,13 @@
 
 
+## [6.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.0...v6.3.1) (2024-03-30)
+
+
+### Bug Fixes
+
+* **ol-heatmap-layer:** handle property updates correctly ([e5bb81e](https://github.com/MelihAltintas/vue3-openlayers/commit/e5bb81e3d60e94254f58743960f2dd20589dab51))
+* **ol-layer-group:** handle property updates correctly ([50462ec](https://github.com/MelihAltintas/vue3-openlayers/commit/50462ec35b2546bb43843ff2c83db6b4e0f772ee))
+
 # [6.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.2.1...v6.3.0) (2024-03-25)
 
 
