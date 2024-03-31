@@ -1,5 +1,13 @@
 
 
+## [6.3.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.1...v6.3.2) (2024-03-31)
+
+
+### Bug Fixes
+
+* **ol-animated-cluster-layer:** prevent re-computation of cluster and layer in property changes ([c00d992](https://github.com/MelihAltintas/vue3-openlayers/commit/c00d992af0ac37311053e2211a4e231f6cfbd352))
+* **ol-source-vector:** make property changes reactive ([b476468](https://github.com/MelihAltintas/vue3-openlayers/commit/b476468b57dc2d2f389b5901dd5150c4a08aa164))
+
 ## [6.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.0...v6.3.1) (2024-03-30)
 
 
