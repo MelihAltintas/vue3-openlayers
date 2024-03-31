@@ -5,7 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import {
+  inject,
+  provide,
+  onUnmounted,
+  onMounted,
+  watch,
+  shallowRef,
+} from "vue";
 import { Cluster } from "ol/source";
 import { easeOut } from "ol/easing";
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster";
@@ -54,34 +61,49 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const clusterSource = computed(() => {
-  return new Cluster({
+const clusterSource = shallowRef(
+  new Cluster({
     distance: properties.distance,
     geometryFunction: (feature) => feature.getGeometry() as Point,
-  });
-});
-
-const vectorLayer = computed(() => {
-  return new AnimatedCluster({
-    ...properties,
-    source: clusterSource.value,
-  });
-});
+  }),
+);
 
 useOpenLayersEvents(clusterSource, FEATURE_EVENTS);
 
-const source = computed(() => vectorLayer.value.getSource());
+watch(
+  () => properties.distance,
+  (newValue) => {
+    clusterSource.value.setDistance(newValue);
+  },
+);
 
-watch(properties, () => {
-  vectorLayer.value.setProperties(properties);
-  vectorLayer.value.changed();
+const vectorLayer = shallowRef(
+  new AnimatedCluster({
+    ...properties,
+    source: clusterSource.value,
+  }),
+);
 
-  if (layerGroup) {
-    const layerCollection = layerGroup.getLayers();
-    layerCollection.push(vectorLayer.value);
-    layerGroup.setLayers(layerCollection);
-  }
-});
+watch(
+  () => properties,
+  (newValue) => {
+    vectorLayer.value.setProperties(properties);
+
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        vectorLayer.value.set(key, newValue[keyInObj]);
+      }
+    }
+
+    if (layerGroup) {
+      const layerCollection = layerGroup.getLayers();
+      layerCollection.push(vectorLayer.value);
+      layerGroup.setLayers(layerCollection);
+    }
+  },
+  { deep: true },
+);
 
 onMounted(() => {
   map?.addLayer(vectorLayer.value);
@@ -93,7 +115,7 @@ onUnmounted(() => {
   map?.removeLayer(vectorLayer.value);
 });
 
-provide("vectorLayer", source);
+provide("vectorLayer", clusterSource);
 provide("stylable", vectorLayer);
 
 defineExpose({
