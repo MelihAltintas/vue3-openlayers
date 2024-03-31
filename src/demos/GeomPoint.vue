@@ -1,4 +1,24 @@
 <template>
+  <form>
+    <fieldset>
+      <label for="fill">Fill:</label>
+      <input type="color" id="fill" v-model="fill" />
+      <label for="stroke">Stroke:</label>
+      <input type="color" id="stroke" v-model="stroke" />
+    </fieldset>
+    <fieldset>
+      <label for="strokeWidth">StrokeWidth:</label>
+      <input
+        type="number"
+        id="strokeWidth"
+        step="1"
+        min="0"
+        v-model="strokeWidth"
+      />
+      <label for="radius">Radius:</label>
+      <input type="number" id="radius" step="1" min="1" v-model="radius" />
+    </fieldset>
+  </form>
   <button class="btn-default" @click="changeCoordinate" type="button">
     change coordinates
   </button>
@@ -24,9 +44,9 @@
           <ol-geom-point :coordinates="coordinate"></ol-geom-point>
           <ol-style>
             <ol-style-circle :radius="radius">
-              <ol-style-fill :color="fillColor"></ol-style-fill>
+              <ol-style-fill :color="fill"></ol-style-fill>
               <ol-style-stroke
-                :color="strokeColor"
+                :color="stroke"
                 :width="strokeWidth"
               ></ol-style-stroke>
             </ol-style-circle>
@@ -45,8 +65,8 @@ const projection = ref("EPSG:4326");
 const zoom = ref(8);
 const radius = ref(40);
 const strokeWidth = ref(10);
-const strokeColor = ref("red");
-const fillColor = ref("white");
+const stroke = ref("#ff0000");
+const fill = ref("#ffffff");
 const coordinate = ref([40, 40]);
 
 function changeCoordinate() {

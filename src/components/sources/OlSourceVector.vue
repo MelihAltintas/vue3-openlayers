@@ -10,7 +10,14 @@ import type VectorLayer from "ol/layer/Vector";
 import type HeatmapLayer from "ol/layer/Heatmap";
 import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 import type { Ref } from "vue";
-import { inject, watch, onMounted, onUnmounted, provide, ref } from "vue";
+import {
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  provide,
+  shallowRef,
+} from "vue";
 import type Geometry from "ol/geom/Geometry";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import {
@@ -43,18 +50,27 @@ const layer = heatmapLayer || vectorLayer || webglVectorLayer;
 
 const { properties } = usePropsAsObjectProperties(props);
 
-const createSource = () => new VectorSource(properties);
-
-let source = createSource();
+const source = shallowRef(new VectorSource(properties));
 
 useOpenLayersEvents(source, FEATURE_EVENTS);
 
 const applySource = () => {
-  layer?.value?.setSource(null);
-  source = createSource();
-  layer?.value?.setSource(source);
+  const existingSource = layer?.value.getSource();
+  if (existingSource) {
+    for (const key in properties) {
+      const keyInObj = key as keyof typeof properties;
+      if (properties[keyInObj]) {
+        existingSource.set(key, properties[keyInObj]);
+      }
+    }
+  } else {
+    layer?.value.setSource(source.value);
+  }
 };
-watch(properties, () => applySource());
+watch(
+  () => properties,
+  () => applySource(),
+);
 
 watch(
   () => layer?.value,
@@ -62,17 +78,17 @@ watch(
 );
 
 onMounted(() => {
-  layer?.value.setSource(source);
+  applySource();
 });
 
 onUnmounted(() => {
   layer?.value.setSource(null);
 });
 
-provide("vectorSource", ref(source));
+provide("vectorSource", source);
 
 defineExpose({
   layer,
-  source: ref(source),
+  source,
 });
 </script>
