@@ -67,6 +67,34 @@ const applySource = () => {
     layer?.value.setSource(source.value);
   }
 };
+
+watch(
+  () => properties.features,
+  (updatedFeatures, oldFeatures) => {
+    if (updatedFeatures !== oldFeatures) {
+      source.value.clear();
+      if (updatedFeatures) {
+        source.value.addFeatures(updatedFeatures);
+      }
+    }
+    applySource();
+  },
+  { deep: true },
+);
+
+watch(
+  () => properties.url,
+  (updatedUrl, newUrl) => {
+    if (updatedUrl !== newUrl) {
+      source.value.clear();
+      if (updatedUrl) {
+        source.value.setUrl(updatedUrl);
+      }
+    }
+    applySource();
+  },
+);
+
 watch(
   () => properties,
   () => applySource(),
