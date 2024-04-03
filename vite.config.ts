@@ -67,6 +67,7 @@ export default defineConfig({
           "ol/View": "View",
           "ol/source": "source",
           "ol-ext/layer/AnimatedCluster": "AnimatedCluster",
+          "ol/layer": "Layer",
           "ol/layer/Heatmap": "HeatmapLayer",
           "ol/layer/Image": "ImageLayer",
           "ol/layer/Group": "LayerGroup",
@@ -143,6 +144,7 @@ export default defineConfig({
           "ol-ext/featureanimation/Slide": "Slide",
           "ol-ext/featureanimation/Teleport": "Teleport",
           "ol-ext/featureanimation/Zoom": "Zoom$1",
+          "ol/renderer/webgl/VectorLayer": "WebGLVectorLayerRenderer",
         },
         assetFileNames: (assetInfo) => {
           return assetInfo.name === "main.css"

@@ -5,11 +5,11 @@
 Use it inside ol-style to style points as circles.
 
 <script setup>
-import StyleDemo from "@demos/StyleDemo.vue"
+import GeomPoint from "@demos/GeomPoint.vue"
 </script>
 
 <ClientOnly>
-<StyleDemo/>
+<GeomPoint/>
 </ClientOnly>
 
 ## Usage
@@ -18,7 +18,7 @@ Styling a feature inside a vector layer.
 
 ::: code-group
 
-<<< ../../../../src/demos/StyleDemo.vue
+<<< ../../../../src/demos/GeomPoint.vue
 
 :::
 

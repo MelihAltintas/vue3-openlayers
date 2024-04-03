@@ -7,31 +7,31 @@ Use it inside ol-feature, ol-vector-layer, ol-interaction-select, ol-interaction
 ## Usage
 
 <script setup>
-import StyleDemo from "@demos/StyleDemo.vue"
-import StyleDemo2 from "@demos/StyleDemo2.vue"
+import GeomPoint from "@demos/GeomPoint.vue"
+import VectorSourceDemo2 from "@demos/VectorSourceDemo2.vue"
 </script>
 
 ### Styling a feature.
 
 <ClientOnly>
-<StyleDemo/>
+<GeomPoint/>
 </ClientOnly>
 
 ::: code-group
 
-<<< ../../../../src/demos/StyleDemo.vue
+<<< ../../../../src/demos/GeomPoint.vue
 
 :::
 
 ### Styling the whole layer.
 
 <ClientOnly>
-<StyleDemo2/>
+<VectorSourceDemo2/>
 </ClientOnly>
 
 ::: code-group
 
-<<< ../../../../src/demos/StyleDemo2.vue
+<<< ../../../../src/demos/VectorSourceDemo2.vue
 
 :::
 

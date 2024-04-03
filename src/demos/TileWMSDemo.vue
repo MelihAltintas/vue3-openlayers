@@ -11,8 +11,7 @@
         v-model.number="layerOpacity"
       />
       <span class="description">{{ layerOpacity }}</span>
-    </fieldset>
-    <fieldset>
+
       <label for="visibility-toggle">Layer Visibility:</label>
       <input type="checkbox" id="visibility-toggle" v-model="layerVisible" />
       <span> {{ layerVisible ? "Visible" : "Hidden" }}</span>
