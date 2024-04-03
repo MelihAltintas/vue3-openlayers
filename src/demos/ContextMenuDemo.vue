@@ -17,7 +17,13 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-context-menu-control :items="contextMenuItems" />
+    <ol-context-menu-control
+      :items="contextMenuItems"
+      @beforeopen="log('beforeopen', $event)"
+      @open="log('open', $event)"
+      @close="log('close', $event)"
+      @add-menu-entry="log('add-menu-entry', $event)"
+    />
 
     <ol-vector-layer>
       <ol-source-vector ref="markers"> </ol-source-vector>
@@ -28,29 +34,28 @@
   </ol-map>
 </template>
 
-<script setup>
-import { ref, inject } from "vue";
+<script setup lang="ts">
+import type { ContextMenuEvent, Item } from "ol-contextmenu";
+import { onMounted, ref } from "vue";
+import { Feature, type View } from "ol";
+import { Point } from "ol/geom";
+import type VectorSource from "ol/source/Vector";
 
 import marker from "@/assets/marker.png";
 
+const contextMenuItems = ref<Item[]>([]);
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
-
-const contextMenuItems = ref([]);
-
-const markers = ref(null);
-const view = ref(null);
-
-const Feature = inject("ol-feature");
-const Geom = inject("ol-geom");
+const markers = ref<{ source: VectorSource } | null>(null);
+const view = ref<View | null>(null);
 
 contextMenuItems.value = [
   {
     text: "Center map here",
     classname: "some-style-class", // add some CSS rules
     callback: (val) => {
-      view.value.setCenter(val.coordinate);
+      view.value?.setCenter(val.coordinate);
     }, // `center` is your callback function
   },
   {
@@ -61,11 +66,15 @@ contextMenuItems.value = [
     callback: (val) => {
       console.log(val);
       const feature = new Feature({
-        geometry: new Geom.Point(val.coordinate),
+        geometry: new Point(val.coordinate),
       });
-      markers.value.source.addFeature(feature);
+      markers.value?.source.addFeature(feature);
     },
   },
   "-", // this is a separator
 ];
+
+function log(type: string, event: ContextMenuEvent) {
+  console.log(type, event);
+}
 </script>
