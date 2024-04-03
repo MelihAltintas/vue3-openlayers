@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import type { ContextMenuEvent, Item } from "ol-contextmenu";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { Feature, type View } from "ol";
 import { Point } from "ol/geom";
 import type VectorSource from "ol/source/Vector";
