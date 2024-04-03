@@ -1,5 +1,12 @@
 
 
+## [6.4.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.4.0...v6.4.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* **ol-source-vector:** watch for features changes and update source ([4125541](https://github.com/MelihAltintas/vue3-openlayers/commit/4125541cd670b42aa3582d1eb999dcb702a9f6a1)), closes [#312](https://github.com/MelihAltintas/vue3-openlayers/issues/312)
+
 # [6.4.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.2...v6.4.0) (2024-04-03)
 
 
