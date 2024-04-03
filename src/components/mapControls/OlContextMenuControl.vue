@@ -2,31 +2,29 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import ContextMenu from "ol-contextmenu";
+import ContextMenu, { type Options } from "ol-contextmenu";
 import { useAttrs } from "vue";
-import type { Item } from "ol-contextmenu/dist/types";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const props = withDefaults(
-  defineProps<{
-    eventType?: "contextmenu" | "click" | "dblclick" | undefined;
-    defaultItems?: boolean;
-    width?: number;
-    items?: Item[];
-  }>(),
-  {
-    eventType: "contextmenu",
-    defaultItems: true,
-    width: 150,
-    items: () => [],
-  },
-);
+const props = withDefaults(defineProps<Options>(), {
+  eventType: "contextmenu",
+  defaultItems: true,
+  width: 150,
+  items: () => [],
+});
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const attrs = useAttrs();
 const { properties } = usePropsAsObjectProperties(props);
 
 const { control } = useControl(ContextMenu, properties, attrs);
+useOpenLayersEvents(control, ["beforeopen", "open", "close", "add-menu-entry"]);
 
 defineExpose({
   control,
