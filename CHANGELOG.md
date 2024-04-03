@@ -1,5 +1,12 @@
 
 
+# [6.4.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.2...v6.4.0) (2024-04-03)
+
+
+### Features
+
+* **ol-context-menu-control:** propagate events ([7c1dd70](https://github.com/MelihAltintas/vue3-openlayers/commit/7c1dd7059c5a3d9945908ad9319c87000394d496)), closes [#325](https://github.com/MelihAltintas/vue3-openlayers/issues/325)
+
 ## [6.3.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.3.1...v6.3.2) (2024-03-31)
 
 
