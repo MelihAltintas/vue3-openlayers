@@ -77,3 +77,7 @@ onMounted(() => {
 });
 </script>
 ```
+
+## Show loading state
+
+When layers are loaded, you can show a loading indicator by styling the `ol-map-loading` class.

@@ -56,3 +56,30 @@ function rotationChanged(event) {
   currentRotation.value = event.target.getRotation();
 }
 </script>
+
+<style scoped>
+.ol-map {
+  position: relative;
+}
+.ol-map-loading:after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin-top: -40px;
+  margin-left: -40px;
+  border-radius: 50%;
+  border: 5px solid rgba(180, 180, 180, 0.6);
+  border-top-color: var(--vp-c-brand-1);
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

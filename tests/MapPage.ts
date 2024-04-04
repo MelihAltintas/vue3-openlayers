@@ -16,7 +16,7 @@ export class MapPage {
 
   async waitUntilReady(...selectors: string[]) {
     await this.page.waitForLoadState();
-    await this.page.waitForSelector("canvas");
+    await this.page.waitForSelector(".ol-map-fully-loaded");
     for (let index = 0; index < selectors.length; index++) {
       await this.page.waitForSelector(selectors[index]);
     }

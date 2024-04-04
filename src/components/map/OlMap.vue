@@ -86,6 +86,15 @@ map.on("postrender", (event) => emit("postrender", event));
 map.on("precompose", (event) => emit("precompose", event));
 map.on("postcompose", (event) => emit("postcompose", event));
 map.on("rendercomplete", (event) => emit("rendercomplete", event));
+map.on("loadstart", () => {
+  map.getTargetElement().classList.add("ol-map");
+  map.getTargetElement().classList.add("ol-map-loading");
+  map.getTargetElement().classList.remove("ol-map-fully-loaded");
+});
+map.on("loadend", () => {
+  map.getTargetElement().classList.add("ol-map-fully-loaded");
+  map.getTargetElement().classList.remove("ol-map-loading");
+});
 
 defineExpose({
   map,
