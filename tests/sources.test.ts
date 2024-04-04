@@ -137,6 +137,22 @@ test.describe("ol-source-vector", () => {
     await map.waitUntilCanvasLoaded();
     await map.checkCanvasScreenshot(1);
   });
+
+  test("should render (using features property)", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/sources/vector/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot(2);
+  });
+
+  test("should render (using TopoJSON format)", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/sources/vector/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot(3);
+  });
 });
 
 test.describe("ol-source-vector-tile", () => {

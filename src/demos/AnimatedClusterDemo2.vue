@@ -1,6 +1,6 @@
 <template>
   <label for="count">Marker:</label>
-  <input type="number" id="count" v-model="count" />
+  <input type="number" id="count" v-model.number="count" max="50000" />
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
@@ -29,8 +29,8 @@
 
     <ol-animated-clusterlayer :animationDuration="500" :distance="40">
       <ol-source-vector
-        ref="vectorsource"
-        :features="features"
+        :features="geoJsonFeatures"
+        :format="geoJson"
         @featuresloadstart="featuresloadstart"
         @featuresloadend="featuresloadend"
         @featuresloaderror="featuresloaderror"
@@ -58,29 +58,43 @@
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from "vue";
-import { Point } from "ol/geom";
-import Feature from "ol/Feature";
 import markerIcon from "@/assets/marker.png";
-import { arrayWith500Points } from "./points";
+import { arrayWith50000Points } from "./points";
+import { GeoJSON } from "ol/format";
+import type { FeatureLike } from "ol/Feature";
+import type { SelectEvent } from "ol/interaction/Select";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(5);
 const rotation = ref(0);
-const count = ref(5000);
+const count = ref(1000);
 
-const features = computed(() => {
-  return Array.from({ length: count.value }, (_, i) => {
-    return new Feature({
-      geometry: new Point(arrayWith500Points[index - 1]),
-      index: i,
-    });
+const geoJson = new GeoJSON();
+
+const geoJsonFeatures = computed(() => {
+  const features = Array.from({ length: count.value }, (_, i) => {
+    return {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "Point",
+        coordinates: arrayWith50000Points[i],
+      },
+    };
   });
+
+  const providerFeatureCollection = {
+    type: "FeatureCollection",
+    features,
+  };
+
+  return geoJson.readFeatures(providerFeatureCollection);
 });
 
-const overrideStyleFunction = (feature, style) => {
+const overrideStyleFunction = (feature: FeatureLike, style: any) => {
   const clusteredFeatures = feature.get("features");
   const size = clusteredFeatures.length;
 
@@ -106,10 +120,9 @@ const overrideStyleFunction = (feature, style) => {
   return style;
 };
 
-const featureSelected = (event) => {
+const featureSelected = (event: SelectEvent) => {
   console.log(event);
 };
-
 function featuresloadstart() {
   console.log("features load start");
 }
