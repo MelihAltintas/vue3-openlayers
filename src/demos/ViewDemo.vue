@@ -21,6 +21,7 @@
     </ol-tile-layer>
 
     <ol-rotate-control></ol-rotate-control>
+    <ol-interaction-link />
   </ol-map>
 
   <ul>

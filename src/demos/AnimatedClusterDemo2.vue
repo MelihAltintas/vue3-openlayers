@@ -94,7 +94,7 @@ const geoJsonFeatures = computed(() => {
   return geoJson.readFeatures(providerFeatureCollection);
 });
 
-const overrideStyleFunction = (feature: FeatureLike, style: any) => {
+const overrideStyleFunction = (feature: FeatureLike, style) => {
   const clusteredFeatures = feature.get("features");
   const size = clusteredFeatures.length;
 

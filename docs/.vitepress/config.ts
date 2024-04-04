@@ -260,48 +260,6 @@ export const config: UserConfig = {
             ],
           },
           {
-            text: "Interactions",
-            collapsed: true,
-            items: [
-              {
-                text: "ol-interaction-clusterselect",
-                link: "/componentsguide/interactions/clusterselect/",
-              },
-              {
-                text: "ol-interaction-draw",
-                link: "/componentsguide/interactions/draw/",
-              },
-              {
-                text: "ol-interaction-dragbox",
-                link: "/componentsguide/interactions/dragbox/",
-              },
-              {
-                text: "ol-interaction-dragrotate",
-                link: "/componentsguide/interactions/dragrotate/",
-              },
-              {
-                text: "ol-interaction-dragrotatezoom",
-                link: "/componentsguide/interactions/dragrotatezoom/",
-              },
-              {
-                text: "ol-interaction-modify",
-                link: "/componentsguide/interactions/modify/",
-              },
-              {
-                text: "ol-interaction-select",
-                link: "/componentsguide/interactions/select/",
-              },
-              {
-                text: "ol-interaction-snap",
-                link: "/componentsguide/interactions/snap/",
-              },
-              {
-                text: "ol-interaction-transform",
-                link: "/componentsguide/interactions/transform/",
-              },
-            ],
-          },
-          {
             text: "Animations",
             collapsed: true,
             items: [
@@ -334,6 +292,52 @@ export const config: UserConfig = {
                 link: "/componentsguide/animations/zoom/",
               },
             ],
+          },
+        ],
+      },
+      {
+        text: "Interactions",
+        collapsed: true,
+        items: [
+          {
+            text: "ol-interaction-clusterselect",
+            link: "/componentsguide/interactions/clusterselect/",
+          },
+          {
+            text: "ol-interaction-draw",
+            link: "/componentsguide/interactions/draw/",
+          },
+          {
+            text: "ol-interaction-dragbox",
+            link: "/componentsguide/interactions/dragbox/",
+          },
+          {
+            text: "ol-interaction-dragrotate",
+            link: "/componentsguide/interactions/dragrotate/",
+          },
+          {
+            text: "ol-interaction-dragrotatezoom",
+            link: "/componentsguide/interactions/dragrotatezoom/",
+          },
+          {
+            text: "ol-interaction-link",
+            link: "/componentsguide/interactions/link/",
+          },
+          {
+            text: "ol-interaction-modify",
+            link: "/componentsguide/interactions/modify/",
+          },
+          {
+            text: "ol-interaction-select",
+            link: "/componentsguide/interactions/select/",
+          },
+          {
+            text: "ol-interaction-snap",
+            link: "/componentsguide/interactions/snap/",
+          },
+          {
+            text: "ol-interaction-transform",
+            link: "/componentsguide/interactions/transform/",
           },
         ],
       },

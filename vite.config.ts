@@ -122,6 +122,7 @@ export default defineConfig({
           "ol/geom/Point": "Point$2",
           "ol/geom/Polygon": "Polygon",
           "ol/style/Style": "Style",
+          "ol/interaction/Link": "Link",
           "ol/interaction/Draw": "Draw",
           "ol/interaction/DragBox": "DragBox",
           "ol/interaction/Modify": "Modify",

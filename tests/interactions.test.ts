@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 import { MapPage } from "./MapPage";
 
@@ -104,6 +104,41 @@ test.describe("ol-interaction-dragrotatezoom", () => {
     await map.waitUntilCanvasLoaded();
     await map.dragOnCanvas([180, 180], [300, 180], ["Shift"]);
     await map.checkCanvasScreenshot();
+  });
+});
+
+test.describe("ol-interaction-link", () => {
+  test("should update the URL after loading", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/link/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+    await expect(map.page).toHaveURL(
+      "/componentsguide/interactions/link/?x=40&y=40&z=8&r=0&l=1",
+    );
+  });
+
+  test("should load map view based on query params", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto(
+      "/componentsguide/interactions/link/?x=13.3&y=52.5&z=9&r=-0.1&l=1",
+    );
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+
+  test("should no override existing query params by default", async ({
+    page,
+  }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/link/?existingParam=active");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await expect(map.page).toHaveURL(
+      "/componentsguide/interactions/link/?existingParam=active&x=40&y=40&z=8&r=0&l=1",
+    );
   });
 });
 
