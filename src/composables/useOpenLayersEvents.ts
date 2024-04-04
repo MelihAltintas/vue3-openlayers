@@ -6,7 +6,7 @@ import {
   isRef,
   inject,
 } from "vue";
-import { ObjectEvent } from "ol/Object";
+import type { ObjectEvent } from "ol/Object";
 
 export const COMMON_EVENTS = ["change", "error", "propertychange"];
 
