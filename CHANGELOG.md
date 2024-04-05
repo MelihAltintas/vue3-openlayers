@@ -1,5 +1,13 @@
 
 
+# [6.5.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.4.1...v6.5.0) (2024-04-05)
+
+
+### Features
+
+* add loading class and document how to show loading spinner ([0ada740](https://github.com/MelihAltintas/vue3-openlayers/commit/0ada740aca68d44c46f88996d458e2af9311278a))
+* **ol-interaction-link:** add interaction for sync with URL query params ([4fdd742](https://github.com/MelihAltintas/vue3-openlayers/commit/4fdd74258c192e3345d6db5dff9c5664af84f5a2))
+
 ## [6.4.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.4.0...v6.4.1) (2024-04-03)
 
 
