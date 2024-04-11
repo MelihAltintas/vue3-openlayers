@@ -43,7 +43,7 @@ defineOptions({
 
 const map = inject<Map>("map");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const transform = computed(() => {
   const olTransform = new Transform({

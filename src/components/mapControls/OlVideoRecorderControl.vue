@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Options & { downloadName?: string }>(), {
 });
 
 const attrs = useAttrs();
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 const { control } = useControl(VideoRecorder, properties, attrs);
 
 useOpenLayersEvents(control, ["start", "stop", "pause", "resume"]);

@@ -41,7 +41,7 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const vectorTileLayer = computed(() => new VectorTileLayer(properties));
 

@@ -19,7 +19,7 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 const dragRotateZoom = computed(() => {
   const OlDragRotateAndZoom = new DragRotateAndZoom({
     ...properties,

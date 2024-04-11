@@ -21,7 +21,7 @@ defineOptions({
 const props = defineProps<Options>();
 
 const layer = inject<Ref<TileLayer<GeoTIFF>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createSource = () => {
   return new GeoTIFF({

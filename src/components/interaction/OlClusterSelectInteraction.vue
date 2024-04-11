@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const map = inject<Map>("map");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const select = computed(() => {
   return new SelectCluster({

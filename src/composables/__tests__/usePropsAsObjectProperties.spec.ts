@@ -6,7 +6,7 @@ describe("usePropsAsObjectProperties", () => {
   it("should return a reactive object", () => {
     const props = reactive({ foo: "bar" });
 
-    const { properties } = usePropsAsObjectProperties(props);
+    const properties = usePropsAsObjectProperties(props);
 
     expect(isReactive(properties)).toBe(true);
   });
@@ -14,7 +14,7 @@ describe("usePropsAsObjectProperties", () => {
   it("should return options as non-refs", () => {
     const props = reactive({ foo: ref("bar") });
 
-    const { properties } = usePropsAsObjectProperties(props);
+    const properties = usePropsAsObjectProperties(props);
 
     expect(isRef(properties.foo)).toBe(false);
     expect(properties.foo).toBe("bar");
@@ -23,8 +23,9 @@ describe("usePropsAsObjectProperties", () => {
   it("should map 'styles' to 'style'", () => {
     const props = reactive({ styles: "foo" });
 
-    const { properties } = usePropsAsObjectProperties(props);
+    const properties = usePropsAsObjectProperties(props);
 
     expect(properties.style).toBe("foo");
+    expect(properties.styles).toBeUndefined();
   });
 });

@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Options>(), {
 // NOTE: Layers from Stadia Maps do not require an API key for localhost development or most production
 // web deployments. See https://docs.stadiamaps.com/authentication/ for details.
 const layer = inject<Ref<TileLayer<StadiaMaps>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = computed(() => new StadiaMaps(properties));
 

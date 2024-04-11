@@ -31,7 +31,7 @@ const props = withDefaults(
 );
 
 const attrs = useAttrs();
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const { control } = useControl(ScaleLine, properties, attrs);
 

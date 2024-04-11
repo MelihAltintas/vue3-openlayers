@@ -39,7 +39,7 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const webglVectorLayer = computed(() => {
   return new WebGLVectorLayer({

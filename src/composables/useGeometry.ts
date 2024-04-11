@@ -10,7 +10,7 @@ export default function useGeometry(
 ) {
   const feature = inject<Ref<featureType>>("feature");
 
-  const { properties } = usePropsAsObjectProperties(props);
+  const properties = usePropsAsObjectProperties(props);
 
   const geometry = computed(
     () => new GeometryType(...Object.values(properties)),

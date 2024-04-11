@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<ViewOptions>(), {
 });
 
 const map = inject<Map>("map");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createProp = () => {
   return {

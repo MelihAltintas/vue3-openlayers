@@ -58,7 +58,7 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   null,
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createText = (properties: typeof props) => {
   const innerProperties = properties as Omit<

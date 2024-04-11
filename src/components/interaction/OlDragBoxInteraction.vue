@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Options>(), {});
 
 const map = inject<Map>("map");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const dragbox = computed(() => {
   const s = new DragBox({

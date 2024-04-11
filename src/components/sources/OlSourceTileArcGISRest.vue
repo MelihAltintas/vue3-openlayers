@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<Options>(), {
 });
 
 const tileLayer = inject<Ref<TileLayer<TileArcGISRest>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const getTileGrid = computed(() => {
   return (

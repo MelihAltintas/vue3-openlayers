@@ -28,7 +28,7 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const overViewMap = inject<Ref<OverviewMap | null> | null>("overviewMap", null);
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const tileLayer = shallowRef(new TileLayer(properties));
 

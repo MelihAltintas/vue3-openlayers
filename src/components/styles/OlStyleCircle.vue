@@ -31,7 +31,7 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   null,
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createCircleStyle = (
   innerProperties: Omit<Options, "fill" | "stroke">,
