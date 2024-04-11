@@ -83,13 +83,13 @@
     "ol-contextmenu": "^5.4.0",
     "ol-ext": "^4.0.15",
     "proj4": "^2.11.0",
-    "vue": "^3.0.0"
+    "vue": "^3.4.0"
   },
   "peerDependencies": {
     "ol": "^9.1.0",
     "ol-contextmenu": "^5.4.0",
     "ol-ext": "^4.0.15",
-    "vue": "^3.0.0"
+    "vue": "^3.4.0"
   },
   "browserslist": [
     "> 1%",
