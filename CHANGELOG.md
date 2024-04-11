@@ -1,5 +1,20 @@
 
 
+# [7.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0-0) (2024-04-11)
+
+
+### Performance Improvements
+
+* prevent watching reactive props continously ([14af7e0](https://github.com/MelihAltintas/vue3-openlayers/commit/14af7e0c9cd4f8d5c30c8d75f59f5ff4b10b0e8f))
+
+
+### BREAKING CHANGES
+
+* the composable `usePropsAsObjectProperties` which is used as foundation in all components has been refactored.
+Props were watched always deeply and for lot's of components this was done multiple times since the components implement watchers by themselves.
+However, even if not expected, this may cause some side effects with reactive changes which must be applied for individual components when not implemented and therefore considered as a breaking change.
+Please check your app carefully when updating to the new major version.
+
 # [6.5.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.4.1...v6.5.0) (2024-04-05)
 
 
