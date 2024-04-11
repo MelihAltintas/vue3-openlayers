@@ -31,7 +31,7 @@ const vectorTileLayer = inject<Ref<VectorTileLayer> | null>(
   null,
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = computed(() => new VectorTileSource(properties));
 

@@ -40,7 +40,7 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
 );
 const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 if (style != null && circle == null) {
   // in style object

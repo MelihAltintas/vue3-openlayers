@@ -33,7 +33,7 @@ const map = inject<Map>("map");
 
 const htmlContent = ref<HTMLElement>();
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const overlay = shallowRef(new Overlay(properties));
 

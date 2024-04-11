@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const layer = inject<Ref<Cluster> | null>("vectorLayer");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = computed(() => new Cluster(properties));
 

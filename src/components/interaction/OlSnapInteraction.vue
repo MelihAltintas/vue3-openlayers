@@ -26,7 +26,7 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const source = inject<Ref<VectorSource> | null>("vectorSource");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createSnap = () => {
   const olSnap = new Snap({

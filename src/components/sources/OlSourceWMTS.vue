@@ -48,7 +48,7 @@ const props = withDefaults(
 );
 
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const extent = computed((): Extent | undefined => {
   return getProjection(properties.projection)?.getExtent();

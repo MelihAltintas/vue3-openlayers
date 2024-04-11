@@ -38,7 +38,7 @@ const styledObj = inject<Ref<Draw | Modify | Select | Feature | Layer> | null>(
   null,
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const style = computed(() => new FlowLine(properties));
 

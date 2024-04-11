@@ -42,7 +42,7 @@ const props = withDefaults(
 );
 
 const layer = inject<Ref<TileLayer<TileWMS>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createSource = () =>
   new TileWMS({

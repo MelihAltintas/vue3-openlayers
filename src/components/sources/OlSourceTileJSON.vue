@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<Options>(), {
 });
 
 const layer = inject<Ref<TileLayer<TileJSON>> | null>("tileLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = computed(() => new TileJSON(properties));
 

@@ -37,7 +37,7 @@ const props = withDefaults(
 );
 
 const layer = inject<ImageLayer<ImageWMS> | null>("imageLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createSource = () =>
   new ImageWMS({

@@ -37,7 +37,7 @@ const emit = defineEmits([
   "rendercomplete",
 ]);
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const mapRef = ref<string | HTMLElement | undefined>(undefined);
 let map: Map | undefined = new Map(properties);

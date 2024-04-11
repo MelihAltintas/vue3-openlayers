@@ -48,7 +48,7 @@ const webglVectorLayer = inject<Ref<WebGLVectorLayer> | null>(
 );
 const layer = heatmapLayer || vectorLayer || webglVectorLayer;
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = shallowRef(new VectorSource(properties));
 

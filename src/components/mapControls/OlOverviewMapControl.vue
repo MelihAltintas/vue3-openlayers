@@ -13,7 +13,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 const props = defineProps<Options>();
 
 const attrs = useAttrs();
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 const { control } = useControl(OverviewMap, properties, attrs);
 
 provide("overviewMap", control);

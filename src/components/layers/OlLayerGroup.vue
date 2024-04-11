@@ -30,7 +30,7 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const layerGroup = shallowRef(new LayerGroup(properties));
 useOpenLayersEvents(layerGroup, [

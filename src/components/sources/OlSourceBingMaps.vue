@@ -22,7 +22,7 @@ const props = defineProps<Omit<Options, "key"> & { apiKey: string }>();
 
 const layer = inject<Ref<TileLayer<BingMaps>> | null>("tileLayer");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const source = computed(
   () =>
