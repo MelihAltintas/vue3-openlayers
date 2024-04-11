@@ -27,7 +27,7 @@ const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
   null,
 );
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const icon = computed(() => {
   const ic = new Icon(properties);

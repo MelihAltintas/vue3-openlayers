@@ -22,12 +22,10 @@ const props = withDefaults(
 
 const map = inject<Map>("map");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const dragrotate = computed(() => {
-  const s = new DragRotate({
-    ...properties,
-  });
+  const s = new DragRotate(properties);
 
   return s;
 });

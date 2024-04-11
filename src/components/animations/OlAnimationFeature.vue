@@ -21,7 +21,7 @@ const props = withDefaults(
 const map = inject("map");
 const vectorLayer = inject<Ref<VectorSource<Geometry>> | null>("vectorLayer");
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 defineExpose({
   map,

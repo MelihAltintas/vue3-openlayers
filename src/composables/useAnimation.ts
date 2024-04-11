@@ -17,7 +17,7 @@ export default function useAnimation(
   const map = inject("map");
   const vectorLayer = inject("vectorLayer");
 
-  const { properties } = usePropsAsObjectProperties(props);
+  const properties = usePropsAsObjectProperties(props);
   const animation = computed(() => new AnimationType(properties));
 
   provide("animation", animation);

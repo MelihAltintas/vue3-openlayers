@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Options>(), {
   }),
 });
 
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const geoLoc = computed(() => new Geolocation(properties));
 

@@ -28,7 +28,7 @@ const props = withDefaults(
 const styledObj = inject<
   Ref<Draw | Modify | Select | Feature | Layer> | undefined
 >("stylable", undefined);
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const style = computed(() => new Style(properties));
 

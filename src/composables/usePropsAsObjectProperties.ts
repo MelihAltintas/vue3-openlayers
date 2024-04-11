@@ -1,42 +1,32 @@
-import { toRefs, watch, reactive, type ToRefs, ref, inject } from "vue";
+import { inject, reactive, type UnwrapNestedRefs } from "vue";
+
+type OlClassOptions<T> = T extends { styles: infer S }
+  ? { style: S } & Omit<T, "styles">
+  : T;
 
 /**
  * We can't use 'style' as a component prop since it's a reserved property
  * This function will map the special `styles` prop to `style`
  */
-function checkAndUpdateStylePropDef(
-  options: ToRefs<Record<string, unknown>>,
-  key: string,
+function checkAndUpdateStylePropDef<T extends Record<string, unknown>>(
+  options: T,
 ) {
-  if (key === "styles") {
-    options.style = ref(options[key].value);
+  if ("styles" in options) {
+    const { styles, ...rest } = options;
+    return { style: styles, ...rest } as OlClassOptions<T>;
+  } else {
+    return options as OlClassOptions<T>;
   }
 }
 
 export default function usePropsAsObjectProperties<
   T extends Record<string, unknown>,
->(props: T, ignoredKeys = [] as string[]) {
+>(props: T): UnwrapNestedRefs<OlClassOptions<T>> {
   const globalOptions = inject("ol-options");
 
-  let options = toRefs(props);
-  Object.keys(options).forEach((key) => {
-    checkAndUpdateStylePropDef(options, key);
-    // @ts-ignore
-    options[key] = options[key].value;
-  });
+  const revisedProps = checkAndUpdateStylePropDef<T>(props);
 
-  const properties = reactive({ ...options });
-
-  watch(props, () => {
-    options = toRefs(props);
-    Object.keys(options).forEach((key) => {
-      if (properties[key] != options[key].value && !ignoredKeys.includes(key)) {
-        checkAndUpdateStylePropDef(options, key);
-        // @ts-ignore
-        properties[key] = options[key].value;
-      }
-    });
-  });
+  const properties = reactive(revisedProps);
 
   if (globalOptions?.debug) {
     console.debug("[Vue3-OpenLayers Debug] PROPS", {
@@ -45,7 +35,5 @@ export default function usePropsAsObjectProperties<
     });
   }
 
-  return {
-    properties,
-  };
+  return properties;
 }

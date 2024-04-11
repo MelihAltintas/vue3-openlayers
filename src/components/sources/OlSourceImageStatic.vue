@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Options>(), {
 });
 
 const layer = inject<ImageLayer<Static> | null>("imageLayer");
-const { properties } = usePropsAsObjectProperties(props);
+const properties = usePropsAsObjectProperties(props);
 
 const createSource = () =>
   new Static({
