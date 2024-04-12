@@ -1,5 +1,34 @@
 
 
+# [7.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0-1) (2024-04-12)
+
+
+### chore
+
+* set minimum peerDependency of OpenLayers to version 9.1.0 ([8ae195c](https://github.com/MelihAltintas/vue3-openlayers/commit/8ae195c9812626c755e3a6e31e067ee6c3e8bd72))
+* set minimum peerDependency of vue to version 3.4.15 ([158f00e](https://github.com/MelihAltintas/vue3-openlayers/commit/158f00ed577f682b0f880e93c1881cb8d7560220))
+
+
+### Code Refactoring
+
+* **ol-animation-feature:** remove unused exported component `ol-animation-feature` ([90f082a](https://github.com/MelihAltintas/vue3-openlayers/commit/90f082a39b4cea7e36071461de017735cd071582))
+
+
+### Performance Improvements
+
+* prevent watching reactive props continously ([45f9326](https://github.com/MelihAltintas/vue3-openlayers/commit/45f9326668d5de5853b34fd6315738be413a38fe))
+
+
+### BREAKING CHANGES
+
+* **ol-animation-feature:** The component `ol-animation-feature` was simply exposing the map, vectorLayer and it's passed properties. There was no need to use this component at all and therefore it has been removed. However, when the component was used in the past, make sure to remove it from your template and move the `ref`'s for map and the layer to the correct components.
+* The minimum version of Vue is now 3.4.15 (`npm i vue@^3.4.15`)
+* The minimum version of OpenLayers is now 9.1.0 (`npm i ol@^9.1.0`)
+* the composable `usePropsAsObjectProperties` which is used as foundation in all components has been refactored.
+Props were watched always deeply and for lot's of components this was done multiple times since the components implement watchers by themselves.
+However, even if not expected, this may cause some side effects with reactive changes which must be applied for individual components when not implemented and therefore considered as a breaking change.
+Please check your app carefully when updating to the new major version.
+
 # [7.0.0-0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0-0) (2024-04-11)
 
 
