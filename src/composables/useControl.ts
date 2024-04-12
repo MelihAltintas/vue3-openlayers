@@ -102,7 +102,7 @@ export default function useControl<T extends InnerControlType>(
   const parent = controlBar !== null ? controlBar?.value : map;
 
   const control = computed<T>(
-    () => new ControlType(properties as Record<string, unknown>),
+    () => new ControlType({ ...(properties as Record<string, unknown>) }),
   );
 
   control.value.set("order", attrs.order === undefined ? 0 : attrs.order);
