@@ -18,31 +18,79 @@ npm install ol ol-ext ol-contextmenu  # install the peerDependencies
 npm install vue3-openlayers           # install this library
 ```
 
-## Usage
+## Usage: As Plugin
 
-To use `vue3-openlayers` in your application, you can import all components or just what you really need.
+To use `vue3-openlayers` in your application as a Plugin for global component availability,
+you can import all components (default export) or only parts of `vue3-openlayers` in your application (named exports).
 
 ```ts
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import OpenLayersMap from "vue3-openlayers";
-import "vue3-openlayers/styles.css"; // vue3-openlayers version < 1.0.0-*
+// The style are only needed for some map controls.
+// However, you can also style them by your own
+import "vue3-openlayers/styles.css";
+
+// provide all components
+import OpenLayersMap from 'vue3-openlayers'
+// OR: just use the parts you need
+import { Map, Layers, Sources } from 'vue3-openlayers'
 
 const app = createApp(App);
-app.use(OpenLayersMap /* options */);
+
+// provide all components
+app.use(OpenLayersMap /*, options */);
+
+// OR: just use the parts you need
+app.use(Map)
+app.use(Layers)
+app.use(Sources)
 
 app.mount("#app");
+```
+
+Now you can use the globally provided components like this:
+
+```vue
+<script setup lang="ts"></script>
+
+<template>
+  <ol-map style="min-width: 400px; min-height: 400px">
+    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
+    <ol-tile-layer>
+      <ol-source-osm />
+    </ol-tile-layer>
+  </ol-map>
+</template>
+```
+
+## Usage: Import where needed
+
+You can also import and use components individually by importing them directly in your components.
+
+```vue
+<script setup lang="ts">
+import { Map, Layers, Sources } from 'vue3-openlayers'
+</script>
+
+<template>
+  <Map.OlMap style="min-width: 400px; min-height: 400px">
+    <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
+    <Layers.OlTileLayer>
+      <Sources.OlSourceOSM />
+    </Layers.OlTileLayer>
+  </Map.OlMap>
+</template>
 ```
 
 ## Debug Mode
 
 You can activate the `debug` mode, to log events receiving from OpenLayers and props passed to OpenLayers on the console.
 
+> Note: This is currently only possible when setting up vue3-openlayers globally.
+
 ```ts
-import OpenLayersMap, {
-  type Vue3OpenlayersGlobalOptions,
-} from "vue3-openlayers";
+import OpenLayersMap, { type Vue3OpenlayersGlobalOptions } from "vue3-openlayers";
 // ...
 
 const options: Vue3OpenlayersGlobalOptions = {
