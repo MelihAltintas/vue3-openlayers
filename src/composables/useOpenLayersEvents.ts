@@ -5,8 +5,10 @@ import {
   type ComputedRef,
   isRef,
   inject,
+  type ShallowRef,
 } from "vue";
-import type { ObjectEvent } from "ol/Object";
+import type BaseObject from "ol/Object";
+import type { EventTypes } from "ol/Observable";
 
 export const COMMON_EVENTS = ["change", "error", "propertychange"];
 
@@ -30,29 +32,21 @@ export const FEATURE_EVENTS = [
   "removefeature",
 ];
 
-// Define a generic type for the event callback
-type EventCallback = (event: ObjectEvent) => void;
-
-// Define the generic type parameter for the OpenLayers feature
-type OpenLayersFeature = {
-  on: (event: string, callback: EventCallback) => void;
-  un: (event: string, callback: EventCallback) => void;
-} & unknown;
-
 // Define the composable function
 export function useOpenLayersEvents(
   feature:
-    | OpenLayersFeature
-    | Ref<OpenLayersFeature>
-    | ComputedRef<OpenLayersFeature>,
+    | BaseObject
+    | Ref<BaseObject>
+    | ShallowRef<BaseObject>
+    | ComputedRef<BaseObject>,
   eventNames: string[],
 ) {
   const instance = getCurrentInstance();
   const globalOptions = inject("ol-options");
 
   onMounted(() => {
-    [...COMMON_EVENTS, ...eventNames].forEach((eventName) => {
-      let unwrappedFeature: Pick<OpenLayersFeature, "on">;
+    ([...COMMON_EVENTS, ...eventNames] as EventTypes[]).forEach((eventName) => {
+      let unwrappedFeature: Pick<BaseObject, "on">;
 
       if (!isRef(feature)) {
         unwrappedFeature = feature;
