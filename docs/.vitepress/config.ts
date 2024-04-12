@@ -11,6 +11,9 @@ export const config: UserConfig = {
     hostname: "https://vue3openlayers.netlify.app",
     lastmodDateOnly: false,
   },
+  markdown: {
+    lineNumbers: true,
+  },
   themeConfig: {
     // https://vitepress.vuejs.org/reference/default-theme-config
     editLink: {
