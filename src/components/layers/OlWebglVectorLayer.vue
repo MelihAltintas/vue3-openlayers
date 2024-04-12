@@ -45,7 +45,7 @@ const webglVectorLayer = computed(
   () =>
     new WebGLVectorLayer({
       ...properties,
-      styles: properties.styles,
+      styles: properties.style,
     }),
 );
 
