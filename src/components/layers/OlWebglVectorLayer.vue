@@ -41,12 +41,13 @@ const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const properties = usePropsAsObjectProperties(props);
 
-const webglVectorLayer = computed(() => {
-  return new WebGLVectorLayer({
-    ...properties,
-    styles: properties.styles,
-  });
-});
+const webglVectorLayer = computed(
+  () =>
+    new WebGLVectorLayer({
+      ...properties,
+      styles: properties.styles,
+    }),
+);
 
 watch(properties, () => {
   webglVectorLayer.value.setProperties(properties);

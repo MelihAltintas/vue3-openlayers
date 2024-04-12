@@ -45,13 +45,7 @@ const map = inject<Map>("map");
 
 const properties = usePropsAsObjectProperties(props);
 
-const transform = computed(() => {
-  const olTransform = new Transform({
-    ...properties,
-  });
-
-  return olTransform;
-});
+const transform = computed(() => new Transform(properties));
 
 useOpenLayersEvents(transform, [
   "select",

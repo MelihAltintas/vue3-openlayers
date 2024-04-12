@@ -29,12 +29,13 @@ const map = inject<Map>("map");
 
 const properties = usePropsAsObjectProperties(props);
 
-const select = computed(() => {
-  return new SelectCluster({
-    style: new Style(),
-    ...properties,
-  });
-});
+const select = computed(
+  () =>
+    new SelectCluster({
+      style: new Style(),
+      ...properties,
+    }),
+);
 
 useOpenLayersEvents(select, ["select"]);
 
