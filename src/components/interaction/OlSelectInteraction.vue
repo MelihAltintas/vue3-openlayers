@@ -37,12 +37,13 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);
 
-const select = computed(() => {
-  return new Select({
-    ...properties,
-    style: new Style(),
-  });
-});
+const select = computed(
+  () =>
+    new Select({
+      ...properties,
+      style: new Style(),
+    }),
+);
 
 useOpenLayersEvents(select, ["select"]);
 

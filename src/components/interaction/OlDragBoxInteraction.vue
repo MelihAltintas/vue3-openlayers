@@ -22,13 +22,7 @@ const map = inject<Map>("map");
 
 const properties = usePropsAsObjectProperties(props);
 
-const dragbox = computed(() => {
-  const s = new DragBox({
-    ...properties,
-  });
-
-  return s;
-});
+const dragbox = computed(() => new DragBox(properties));
 
 useOpenLayersEvents(dragbox, ["boxcancel", "boxdrag", "boxend", "boxstart"]);
 

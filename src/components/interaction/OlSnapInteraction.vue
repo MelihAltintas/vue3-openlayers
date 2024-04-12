@@ -28,14 +28,11 @@ const source = inject<Ref<VectorSource> | null>("vectorSource");
 
 const properties = usePropsAsObjectProperties(props);
 
-const createSnap = () => {
-  const olSnap = new Snap({
+const createSnap = () =>
+  new Snap({
     ...properties,
     source: source?.value,
   });
-
-  return olSnap;
-};
 let snap = createSnap();
 
 watch(properties, () => {

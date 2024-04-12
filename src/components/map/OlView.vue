@@ -29,12 +29,10 @@ const props = withDefaults(defineProps<ViewOptions>(), {
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);
 
-const createProp = () => {
-  return {
-    ...properties,
-    projection: projectionFromProperties(properties.projection),
-  };
-};
+const createProp = () => ({
+  ...properties,
+  projection: projectionFromProperties(properties.projection),
+});
 const view = new View(createProp());
 
 useOpenLayersEvents(view, [
