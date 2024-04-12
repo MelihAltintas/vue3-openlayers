@@ -15,7 +15,7 @@ const props = withDefaults(
   },
 );
 
-const { geometry } = useGeometry(MultiPolygon, props);
+const geometry = useGeometry(MultiPolygon, props);
 
 defineExpose({
   geometry,

@@ -2,19 +2,22 @@ import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch, computed } from "vue";
 import type featureType from "ol/Feature";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import type { Class } from "@/components/animations/AnimationTypes";
+import { Geometry } from "ol/geom";
 
-export default function useGeometry(
-  GeometryType: Class,
+export default function useGeometry<T extends Geometry>(
+  GeometryType: { new (...args: never[]): T },
   props: Record<string, unknown>,
 ) {
   const feature = inject<Ref<featureType>>("feature");
 
   const properties = usePropsAsObjectProperties(props);
 
-  const geometry = computed(
-    () => new GeometryType(...Object.values(properties)),
-  );
+  const geometry = computed(() => {
+    const parameters = Object.values(properties);
+    return new GeometryType(
+      ...(parameters as ConstructorParameters<typeof GeometryType>),
+    );
+  });
 
   watch(properties, () => {
     feature?.value?.setGeometry(geometry.value);
@@ -36,7 +39,5 @@ export default function useGeometry(
     feature?.value?.setGeometry(undefined);
   });
 
-  return {
-    geometry,
-  };
+  return geometry;
 }

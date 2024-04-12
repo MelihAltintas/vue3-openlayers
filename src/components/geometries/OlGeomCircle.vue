@@ -17,7 +17,7 @@ const props = withDefaults(
   },
 );
 
-const { geometry } = useGeometry(Circle, props);
+const geometry = useGeometry(Circle, props);
 
 defineExpose({
   geometry,
