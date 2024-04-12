@@ -6,8 +6,12 @@ import Search, { type Options } from "ol-ext/control/Search";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const emit = defineEmits(["select"]);
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<Options>(), {
   className: "ol-search",
@@ -18,7 +22,7 @@ const properties = usePropsAsObjectProperties(props);
 
 const { control } = useControl(Search, properties, attrs);
 
-control.value.on("select", (event) => emit("select", event));
+useOpenLayersEvents(control, ["select"]);
 
 defineExpose({ control });
 </script>
