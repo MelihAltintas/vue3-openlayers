@@ -15,7 +15,7 @@ const props = withDefaults(
   },
 );
 
-const { geometry } = useGeometry(MultiPoint, props);
+const geometry = useGeometry(MultiPoint, props);
 
 defineExpose({
   geometry,

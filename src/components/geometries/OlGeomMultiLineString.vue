@@ -15,7 +15,7 @@ const props = withDefaults(
   },
 );
 
-const { geometry } = useGeometry(MultiLineString, props);
+const geometry = useGeometry(MultiLineString, props);
 
 defineExpose({
   geometry,
