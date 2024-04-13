@@ -95,7 +95,7 @@ app.mount("#app");
 
 :::
 
-## Usage: Import where needed
+## Usage: Explicit import
 
 You can also import and use components individually by importing them directly in your components.
 

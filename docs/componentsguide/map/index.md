@@ -6,6 +6,10 @@ This is the main container for all other vue3-openlayers components and has one 
 slot to place them all. Usually you will use it together with `ol-view`
 component to setup `zoom`, `center`, `projection` and other view related properties for the map.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ViewDemo from "@demos/ViewDemo.vue"
 </script>
@@ -14,7 +18,15 @@ import ViewDemo from "@demos/ViewDemo.vue"
 <ViewDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../map.plugin.md-->
+
 ## Usage
+
+| Plugin Usage | Explicit Import |
+|--------------|:---------------:|
+| `<ol-map>`   |  `<Map.OlMap>`  |
 
 Example of a simple map.
 See also documentation of `ol-view` component.

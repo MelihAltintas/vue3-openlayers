@@ -4,6 +4,10 @@
 
 `ol-projection-register` component creates the given projection definition and makes it available to use with OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
 <ProjectionRegisterDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../map.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |       Explicit Import        |
+|----------------------------|:----------------------------:|
+| `<ol-projection-register>` | `<Map.OlProjectionRegister>` |
 
 Example below shows how to register and use a custom projection on to the map.
 
