@@ -2,12 +2,24 @@
 
 ol-vector-layer can render vector from various backend services. It should be used with together with ol-source-vector component.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 import FeatureSelectDemo from "@demos/FeatureSelectDemo.vue"
 </script>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage        |     Explicit Import      |
+|---------------------|:------------------------:|
+| `<ol-vector-layer>` | `<Layers.OlVectorLayer>` |
 
 ### Example 1
 

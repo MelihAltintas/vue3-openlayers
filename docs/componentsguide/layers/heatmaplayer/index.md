@@ -2,6 +2,10 @@
 
 ol-heatmap-layer can render vector data as a heatmap from various backend services. It should be used with together with ol-source-vector component.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import HeatmapLayerDemo from "@demos/HeatmapLayerDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import HeatmapLayerDemo from "@demos/HeatmapLayerDemo.vue"
 <HeatmapLayerDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage         |      Explicit Import      |
+|----------------------|:-------------------------:|
+| `<ol-heatmap-layer>` | `<Layers.OlHeatmapLayer>` |
 
 Example below shows how you can use ol-heatmap-layer and ol-source-vector to render a heatmap from a backend source.
 

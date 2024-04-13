@@ -5,7 +5,17 @@
 Please note, that you can't use `ol-style` and related style components here as child components.
 For more information please checkout the [`ol-source-vector` docs](../../sources/vector/) as well.
 
+[[toc]]
+
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |        Explicit Import        |
+|---------------------------|:-----------------------------:|
+| `<ol-webgl-vector-layer>` | `<Layers.OlWebglVectorLayer>` |
 
 ### WebGL Points, Lines, Polygons
 

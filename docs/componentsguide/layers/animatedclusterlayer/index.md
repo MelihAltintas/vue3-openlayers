@@ -6,6 +6,10 @@ On select cluster springs apart to reveal the features.
 The revealed features are themselves selectable.
 Revealed features are themselves a cluster with an attribute 'features' that contain the original feature.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 </script>
@@ -14,7 +18,15 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 <AnimatedClusterDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                 |          Explicit Import          |
+|------------------------------|:---------------------------------:|
+| `<ol-animated-clusterlayer>` | `<Layers.OlAnimatedClusterLayer>` |
 
 ::: code-group
 

@@ -2,6 +2,10 @@
 
 > A Collection of layers that are handled together.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TileJSONDemo from "@demos/TileJSONDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 <TileJSONDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage      |     Explicit Import     |
+|-------------------|:-----------------------:|
+| `ol-layer-group>` | `<Layers.OlLayerGroup>` |
 
 The example below shows how you can apply common styles / behavior on multiple layers.
 

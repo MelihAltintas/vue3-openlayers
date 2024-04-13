@@ -2,6 +2,10 @@
 
 This example uses WebGL to raster tiles on a map.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 <GeoTIFFDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |       Explicit Import       |
+|-------------------------|:---------------------------:|
+| `<ol-webgl-tile-layer>` | `<Layers.OlWebglTileLayer>` |
 
 ::: code-group
 

@@ -4,6 +4,10 @@ ol-vector-image-layer can render vector from various backend services. It should
 
 Vector data is rendered client-side, to an image, which yields much better performance than ol-vector-layer during panning and zooming operations, but point symbols and texts are always rotated with the view and pixels are scaled during zoom animations.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import VectorSourceDemo4 from "@demos/VectorSourceDemo4.vue"
 </script>
@@ -12,7 +16,15 @@ import VectorSourceDemo4 from "@demos/VectorSourceDemo4.vue"
 <VectorSourceDemo4 />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../layers.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |        Explicit Import        |
+|---------------------------|:-----------------------------:|
+| `<ol-vector-image-layer>` | `<Layers.OlVectorImageLayer>` |
 
 Example below shows how you can use ol-vector-layer and ol-source-vector to render some vector features from remote backend.
 
