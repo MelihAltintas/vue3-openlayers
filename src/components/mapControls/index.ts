@@ -20,8 +20,9 @@ import OlZoneControl from "./OlZoneControl.vue";
 import OlZoomControl from "./OlZoomControl.vue";
 import OlZoomSliderControl from "./OlZoomSliderControl.vue";
 import OlZoomToExtentControl from "./OlZoomToExtentControl.vue";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
-function install(app: App) {
+function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("ol-attribution-control", OlAttributionControl);
   app.component("ol-fullscreen-control", OlFullScreenControl);
   app.component("ol-mouseposition-control", OlMousePositionControl);
@@ -43,6 +44,12 @@ function install(app: App) {
   app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
   app.component("ol-layerswitcherimage-control", OlLayerSwitcherImageControl);
   app.component("ol-zone-control", OlZoneControl);
+
+  app.provide("ol-options", options);
+}
+
+declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
 }
 
 export default install;

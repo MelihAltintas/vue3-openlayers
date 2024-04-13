@@ -9,8 +9,9 @@ import OlVectorTileLayer from "./OlVectorTileLayer.vue";
 import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import OlWebglVectorLayer from "./OlWebglVectorLayer.vue";
 import OlWebglTileLayer from "./OlWebglTileLayer.vue";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
-function install(app: App) {
+function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("ol-animated-clusterlayer", OlAnimatedClusterLayer);
   app.component("ol-heatmap-layer", OlHeatmapLayer);
   app.component("ol-image-layer", OlImageLayer);
@@ -21,6 +22,12 @@ function install(app: App) {
   app.component("ol-vector-tile-layer", OlVectorTileLayer);
   app.component("ol-webgl-vector-layer", OlWebglVectorLayer);
   app.component("ol-webgl-tile-layer", OlWebglTileLayer);
+
+  app.provide("ol-options", options);
+}
+
+declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
 }
 
 export default install;

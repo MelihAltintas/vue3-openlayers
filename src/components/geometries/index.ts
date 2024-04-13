@@ -6,8 +6,9 @@ import OlGeomMultiPoint from "./OlGeomMultiPoint.vue";
 import OlGeomMultiPolygon from "./OlGeomMultiPolygon.vue";
 import OlGeomPoint from "./OlGeomPoint.vue";
 import OlGeomPolygon from "./OlGeomPolygon.vue";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
-function install(app: App) {
+function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("ol-geom-circle", OlGeomCircle);
   app.component("ol-geom-line-string", OlGeomLineString);
   app.component("ol-geom-multi-line-string", OlGeomMultiLineString);
@@ -15,6 +16,12 @@ function install(app: App) {
   app.component("ol-geom-multi-polygon", OlGeomMultiPolygon);
   app.component("ol-geom-point", OlGeomPoint);
   app.component("ol-geom-polygon", OlGeomPolygon);
+
+  app.provide("ol-options", options);
+}
+
+declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
 }
 
 export default install;
