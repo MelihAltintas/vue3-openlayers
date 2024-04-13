@@ -2,6 +2,10 @@
 
 > Layer source for the StadiaMaps tile server.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import StadiaMapsDemo from "@demos/StadiaMapsDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import StadiaMapsDemo from "@demos/StadiaMapsDemo.vue"
 <StadiaMapsDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |        Explicit Import         |
+|---------------------------|:------------------------------:|
+| `<ol-source-stadia-maps>` | `<Sources.OlSourceStadiaMaps>` |
 
 ::: code-group
 

@@ -4,6 +4,10 @@ Layer source for tile data from ArcGIS Rest services. Map and Image Services are
 
 For cached ArcGIS services, better performance is available using the XYZ data source.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TileArcGISRestSourceDemo from "@demos/TileArcGISRestSourceDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import TileArcGISRestSourceDemo from "@demos/TileArcGISRestSourceDemo.vue"
 <TileArcGISRestSourceDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                   |          Explicit Import           |
+|--------------------------------|:----------------------------------:|
+| `<ol-source-tile-arcgis-rest>` | `<Sources.OlSourceTileArcGISRest>` |
 
 Example of `ol-source-tile-arcgis-rest` usage. Information about the arcgis service used, available at https://pkk.rosreestr.ru/arcgis/rest/services/PKK6/CadastreObjects/MapServer.
 

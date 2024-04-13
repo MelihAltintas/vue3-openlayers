@@ -2,6 +2,10 @@
 
 Source layer ready to load OpenStreetMaps tiles
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ViewDemo from "@demos/ViewDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import ViewDemo from "@demos/ViewDemo.vue"
 <ViewDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage      |     Explicit Import     |
+|-------------------|:-----------------------:|
+| `<ol-source-osm>` | `<Sources.OlSourceOSM>` |
 
 Loading a simple OSM base layer.
 

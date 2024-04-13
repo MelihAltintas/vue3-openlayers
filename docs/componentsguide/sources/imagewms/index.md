@@ -2,6 +2,10 @@
 
 Source for WMS servers providing single, untiled images.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 <ImageWMSDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |       Explicit Import        |
+|-------------------------|:----------------------------:|
+| `<ol-source-image-wms>` | `<Sources.OlSourceImageWMS>` |
 
 ::: code-group
 

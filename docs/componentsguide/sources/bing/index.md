@@ -5,6 +5,10 @@
 `ol-source-bingmaps` adds ability to display tile data from Bing Maps. To use
 this source you should get **API key** at https://www.bingmapsportal.com.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import BingMapsDemo from "@demos/BingMapsDemo.vue"
 </script>
@@ -13,7 +17,15 @@ import BingMapsDemo from "@demos/BingMapsDemo.vue"
 <BingMapsDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage           |       Explicit Import        |
+|------------------------|:----------------------------:|
+| `<ol-source-bingmaps>` | `<Sources.OlSourceBingMaps>` |
 
 Example of `ol-source-bingmaps` usage
 

@@ -2,6 +2,10 @@
 
 > Layer source for tile data in TileJSON format.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TileJSONDemo from "@demos/TileJSONDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 <TileJSONDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |       Explicit Import        |
+|-------------------------|:----------------------------:|
+| `<ol-source-tile-json>` | `<Sources.OlSourceTileJSON>` |
 
 ::: code-group
 

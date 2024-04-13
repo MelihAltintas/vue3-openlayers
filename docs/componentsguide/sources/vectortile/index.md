@@ -2,6 +2,10 @@
 
 ol-source-vector-tile can be used together with ol-vector-tile-layer to draw any vector tile data on the map.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import VectorTileLayerDemo from "@demos/VectorTileLayerDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import VectorTileLayerDemo from "@demos/VectorTileLayerDemo.vue"
 <VectorTileLayerDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |        Explicit Import         |
+|---------------------------|:------------------------------:|
+| `<ol-source-vector-tile>` | `<Sources.OlSourceVectorTile>` |
 
 Example below shows how you can use ol-vector-tile-layer and ol-source-vector-tile to render some vector-tile features from remote backend.
 

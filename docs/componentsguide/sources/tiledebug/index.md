@@ -3,6 +3,10 @@
 A pseudo tile source, which does not fetch tiles from a server, but renders a grid outline for the tile grid/projection along with the coordinates for each tile.
 See examples/canvas-tiles for an example.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TileDebugDemo from "@demos/TileDebugDemo.vue"
 import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
@@ -14,7 +18,15 @@ import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
 <TileDebugDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage             |        Explicit Import        |
+|--------------------------|:-----------------------------:|
+| `<ol-source-tile-debug>` | `<Sources.OlSourceTileDebug>` |
 
 ::: code-group
 

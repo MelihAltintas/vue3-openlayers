@@ -2,6 +2,10 @@
 
 Source for GeoTIFF tiles.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 <GeoTIFFDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage           |       Explicit Import       |
+|------------------------|:---------------------------:|
+| `<ol-source-geo-tiff>` | `<Sources.OlSourceGeoTIFF>` |
 
 ::: code-group
 

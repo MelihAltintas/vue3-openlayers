@@ -5,6 +5,10 @@
 `ol-source-tianditu` adds ability to display tile data from Tianditu Maps. To use
 this source you should get **API key** at https://console.tianditu.gov.cn/.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TiandituDemo from "@demos/TiandituDemo.vue"
 </script>
@@ -13,7 +17,15 @@ import TiandituDemo from "@demos/TiandituDemo.vue"
 <TiandituDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage           |       Explicit Import        |
+|------------------------|:----------------------------:|
+| `<ol-source-tianditu>` | `<Sources.OlSourceTianditu>` |
 
 Example of `ol-source-tianditu` usage
 

@@ -5,6 +5,10 @@
 Works out of the box with point geometries.
 For other geometry types, or if not all geometries should be considered for clustering, a custom `geometryFunction` can be defined.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ClusterDemo from "@demos/ClusterDemo.vue"
 </script>
@@ -13,7 +17,15 @@ import ClusterDemo from "@demos/ClusterDemo.vue"
 <ClusterDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage          |       Explicit Import       |
+|-----------------------|:---------------------------:|
+| `<ol-source-cluster>` | `<Sources.OlSourceCluster>` |
 
 This example shows how to do clustering on 1000 point features.
 

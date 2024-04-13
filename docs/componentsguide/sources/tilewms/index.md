@@ -2,6 +2,10 @@
 
 Source for WMS servers providing tiled images.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TileWMSDemo from "@demos/TileWMSDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import TileWMSDemo from "@demos/TileWMSDemo.vue"
 <TileWMSDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage           |       Explicit Import       |
+|------------------------|:---------------------------:|
+| `<ol-source-tile-wms>` | `<Sources.OlSourceTileWMS>` |
 
 ::: code-group
 

@@ -19,9 +19,9 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 
 ## Usage
 
-| Plugin Usage      |     Explicit Import     |
-|-------------------|:-----------------------:|
-| `ol-layer-group>` | `<Layers.OlLayerGroup>` |
+| Plugin Usage       |     Explicit Import     |
+|--------------------|:-----------------------:|
+| `<ol-layer-group>` | `<Layers.OlLayerGroup>` |
 
 The example below shows how you can apply common styles / behavior on multiple layers.
 

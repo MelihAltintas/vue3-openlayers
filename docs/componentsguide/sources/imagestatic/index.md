@@ -2,6 +2,10 @@
 
 > Layer source for displaying a single, static image.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
 <ImageLayerDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |         Explicit Import         |
+|----------------------------|:-------------------------------:|
+| `<ol-source-image-static>` | `<Sources.OlSourceImageStatic>` |
 
 Example below shows how to use ol-image-layer component together with ol-source-image-static to render custom image on the map.
 The map view is configured with a custom projection that translates image coordinates directly into map coordinates.

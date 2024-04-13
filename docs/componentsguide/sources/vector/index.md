@@ -2,6 +2,10 @@
 
 ol-source-vector can be used together with ol-vector-layer to draw any vector data on the map.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import GeomPoint from "@demos/GeomPoint.vue"
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
@@ -10,7 +14,15 @@ import VectorSourceDemo3 from "@demos/VectorSourceDemo3.vue"
 import AnimatedClusterDemo2 from "@demos/AnimatedClusterDemo2.vue"
 </script>
 
+## Setup
+
+<!--@include: ../../sources.plugin.md-->
+
 ## Usage
+
+| Plugin Usage         |      Explicit Import       |
+|----------------------|:--------------------------:|
+| `<ol-source-vector>` | `<Sources.OlSourceVector>` |
 
 ### `ol-feature` component (GeoJSON)
 
