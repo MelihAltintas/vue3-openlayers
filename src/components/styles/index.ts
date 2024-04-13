@@ -8,6 +8,7 @@ import OlStyleText from "./OlStyleText.vue";
 import OlStyleFlowline from "./OlStyleFlowline.vue";
 import type { FeatureLike } from "ol/Feature";
 import type { Style } from "ol/style";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 type OverrideStyleFunction = (
   feature: FeatureLike,
@@ -15,7 +16,7 @@ type OverrideStyleFunction = (
   resolution: number,
 ) => Style | Style[] | void;
 
-function install(app: App) {
+function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("ol-style", OlStyle);
   app.component("ol-style-circle", OlStyleCircle);
   app.component("ol-style-stroke", OlStyleStroke);
@@ -23,6 +24,12 @@ function install(app: App) {
   app.component("ol-style-icon", OlStyleIcon);
   app.component("ol-style-text", OlStyleText);
   app.component("ol-style-flowline", OlStyleFlowline);
+
+  app.provide("ol-options", options);
+}
+
+declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
 }
 
 export default install;

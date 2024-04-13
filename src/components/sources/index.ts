@@ -15,8 +15,9 @@ import OlSourceVector from "./OlSourceVector.vue";
 import OlSourceVectorTile from "./OlSourceVectorTile.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
-function install(app: App) {
+function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("ol-source-bingmaps", OlSourceBingMaps);
   app.component("ol-source-cluster", OlSourceCluster);
   app.component("ol-source-image-static", OlSourceImageStatic);
@@ -33,6 +34,12 @@ function install(app: App) {
   app.component("ol-source-vector-tile", OlSourceVectorTile);
   app.component("ol-source-xyz", OlSourceXYZ);
   app.component("ol-source-wmts", OlSourceWMTS);
+
+  app.provide("ol-options", options);
+}
+
+declare module "@vue/runtime-core" {
+  export function inject(key: "ol-options"): Vue3OpenlayersGlobalOptions;
 }
 
 export default install;

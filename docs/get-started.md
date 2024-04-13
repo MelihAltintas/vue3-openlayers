@@ -87,7 +87,7 @@ import { Map, Layers, Sources } from 'vue3-openlayers'
 
 You can activate the `debug` mode, to log events receiving from OpenLayers and props passed to OpenLayers on the console.
 
-> Note: This is currently only possible when setting up vue3-openlayers globally.
+### Plugin Usage
 
 ```ts
 import OpenLayersMap, { type Vue3OpenlayersGlobalOptions } from "vue3-openlayers";
@@ -97,4 +97,28 @@ const options: Vue3OpenlayersGlobalOptions = {
   debug: true,
 };
 app.use(OpenLayersMap, options);
+```
+
+### Provide for components
+
+```vue
+<script setup lang="ts">
+import { provide } from 'vue'
+import { Map, Layers, Sources, type Vue3OpenlayersGlobalOptions } from 'vue3-openlayers'
+
+const options: Vue3OpenlayersGlobalOptions = {
+  debug: true,
+};
+
+provide("ol-options", options);
+</script>
+
+<template>
+  <Map.OlMap style="min-width: 400px; min-height: 400px">
+    <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
+    <Layers.OlTileLayer>
+      <Sources.OlSourceOSM />
+    </Layers.OlTileLayer>
+  </Map.OlMap>
+</template>
 ```
