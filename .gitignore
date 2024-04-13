@@ -34,3 +34,5 @@ components/*.d.ts
 /playwright-report/
 /playwright/.cache/
 tests/downloads
+
+vite.config.ts.timestamp-*
