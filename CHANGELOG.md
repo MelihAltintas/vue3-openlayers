@@ -1,5 +1,46 @@
 
 
+# [7.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0) (2024-04-13)
+
+
+### Bug Fixes
+
+* **ol-*-control:** make sure control is updated on property changes ([507220d](https://github.com/MelihAltintas/vue3-openlayers/commit/507220d553142a3aeaa304de5aa0ec4e9d704bd0))
+* **ol-map:** use correct typings for exposed function `forEachFeatureAtPixel` ([8db77a0](https://github.com/MelihAltintas/vue3-openlayers/commit/8db77a0f516eb3cc06bb9798c58fc8bc5e178eee))
+* **ol-webgl-vector-layer:** pass internal `style` prop to `styles` ([e3baa82](https://github.com/MelihAltintas/vue3-openlayers/commit/e3baa8215b34e4c49dda0bcd15f09e255c896149))
+
+
+### chore
+
+* set minimum peerDependency of OpenLayers to version 9.1.0 ([77e022b](https://github.com/MelihAltintas/vue3-openlayers/commit/77e022b09b6c530167a7b5cb997daab1a24919b5))
+* set minimum peerDependency of vue to version 3.4.15 ([cc35ae8](https://github.com/MelihAltintas/vue3-openlayers/commit/cc35ae874e1ca9d5629fece2413aa6d5744649fe))
+
+
+### Code Refactoring
+
+* **ol-animation-feature:** remove unused exported component `ol-animation-feature` ([4190325](https://github.com/MelihAltintas/vue3-openlayers/commit/4190325e9718ddc843b68a1fd9a99764cf4db861))
+
+
+### Features
+
+* allow to define global options for child plugins and via `provide` ([55f4c1f](https://github.com/MelihAltintas/vue3-openlayers/commit/55f4c1f4d5ad283f0bd6a6ebbe6d7134b0db8454))
+
+
+### Performance Improvements
+
+* prevent watching reactive props continously ([7e13440](https://github.com/MelihAltintas/vue3-openlayers/commit/7e13440cb96c3aa33919e110cf084c2aee1258ca))
+
+
+### BREAKING CHANGES
+
+* **ol-animation-feature:** The component `ol-animation-feature` was simply exposing the map, vectorLayer and it's passed properties. There was no need to use this component at all and therefore it has been removed. However, when the component was used in the past, make sure to remove it from your template and move the `ref`'s for map and the layer to the correct components.
+* The minimum version of Vue is now 3.4.15 (`npm i vue@^3.4.15`)
+* The minimum version of OpenLayers is now 9.1.0 (`npm i ol@^9.1.0`)
+* the composable `usePropsAsObjectProperties` which is used as foundation in all components has been refactored.
+Props were watched always deeply and for lot's of components this was done multiple times since the components implement watchers by themselves.
+However, even if not expected, this may cause some side effects with reactive changes which must be applied for individual components when not implemented and therefore considered as a breaking change.
+Please check your app carefully when updating to the new major version.
+
 # [7.0.0-1](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0-1) (2024-04-12)
 
 
