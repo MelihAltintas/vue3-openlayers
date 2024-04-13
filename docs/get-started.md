@@ -13,17 +13,38 @@ vue3-openlayers works with the following versions which must be installed as pee
 
 ## Installation
 
-```bash
-npm install ol ol-ext ol-contextmenu  # install the peerDependencies
-npm install vue3-openlayers           # install this library
+::: code-group
+
+```bash [npm]
+npm i ol ol-ext ol-contextmenu    # install the peerDependencies
+npm i vue3-openlayers             # install this library
 ```
+
+```bash [yarn]
+yarn add ol ol-ext ol-contextmenu # install the peerDependencies
+yarn add vue3-openlayers          # install this library
+```
+
+```bash [pnpm]
+pnpm add ol ol-ext ol-contextmenu # install the peerDependencies
+pnpm add vue3-openlayers          # install this library
+```
+
+```bash [bun]
+bun add ol ol-ext ol-contextmenu  # install the peerDependencies
+bun add vue3-openlayers           # install this library
+```
+
+:::
 
 ## Usage: As Plugin
 
 To use `vue3-openlayers` in your application as a Plugin for global component availability,
 you can import all components (default export) or only parts of `vue3-openlayers` in your application (named exports).
 
-```ts
+::: code-group
+
+```ts {8,12} [main.ts (Global Plugin)]
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -31,50 +52,62 @@ import App from "./App.vue";
 // However, you can also style them by your own
 import "vue3-openlayers/styles.css";
 
-// provide all components
-import OpenLayersMap from 'vue3-openlayers'
-// OR: just use the parts you need
-import { Map, Layers, Sources } from 'vue3-openlayers'
+import OpenLayersMap from 'vue3-openlayers';
 
 const app = createApp(App);
 
-// provide all components
 app.use(OpenLayersMap /*, options */);
-
-// OR: just use the parts you need
-app.use(Map)
-app.use(Layers)
-app.use(Sources)
 
 app.mount("#app");
 ```
 
-Now you can use the globally provided components like this:
+```ts {8,12-14} [main.ts (Selective Plugins)]
+import { createApp } from "vue";
+import App from "./App.vue";
 
-```vue
+// The style are only needed for some map controls.
+// However, you can also style them by your own
+import "vue3-openlayers/styles.css";
+
+import { Map, Layers, Sources } from 'vue3-openlayers';
+
+const app = createApp(App);
+
+app.use(Map /*, options */);
+app.use(Layers /*, options */);
+app.use(Sources /*, options */);
+
+app.mount("#app");
+```
+
+```vue [AppComponent.vue]
 <script setup lang="ts"></script>
 
 <template>
-  <ol-map style="min-width: 400px; min-height: 400px">
-    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
-    <ol-tile-layer>
-      <ol-source-osm />
-    </ol-tile-layer>
-  </ol-map>
+  <ol-map style="min-width: 400px; min-height: 400px;"> // [!code focus]
+    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" /> // [!code focus]
+    <ol-tile-layer> // [!code focus]
+      <ol-source-osm /> // [!code focus]
+    </ol-tile-layer> // [!code focus]
+  </ol-map> // [!code focus]
 </template>
 ```
+
+:::
 
 ## Usage: Import where needed
 
 You can also import and use components individually by importing them directly in your components.
 
-```vue
+::: code-group
+
+```vue [AppComponent.vue]
 <script setup lang="ts">
-import { Map, Layers, Sources } from 'vue3-openlayers'
+import { Map, Layers, Sources } from 'vue3-openlayers';
 </script>
 
 <template>
-  <Map.OlMap style="min-width: 400px; min-height: 400px">
+  <Map.OlMap style="min-width: 400px; min-height: 400px;">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
       <Sources.OlSourceOSM />
@@ -83,28 +116,72 @@ import { Map, Layers, Sources } from 'vue3-openlayers'
 </template>
 ```
 
+:::
+
 ## Debug Mode
 
 You can activate the `debug` mode, to log events receiving from OpenLayers and props passed to OpenLayers on the console.
 
 ### Plugin Usage
 
-```ts
-import OpenLayersMap, { type Vue3OpenlayersGlobalOptions } from "vue3-openlayers";
-// ...
+::: code-group
+
+```ts {5,10-13} [main.ts (Global Plugin)]
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import OpenLayersMap, {
+  type Vue3OpenlayersGlobalOptions
+} from 'vue3-openlayers';
+
+const app = createApp(App);
 
 const options: Vue3OpenlayersGlobalOptions = {
   debug: true,
 };
 app.use(OpenLayersMap, options);
+
+app.mount("#app");
 ```
+
+```ts {8,13-18} [main.ts (Selective Plugins)]
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import {
+  Map,
+  Layers,
+  Sources
+  type Vue3OpenlayersGlobalOptions
+} from 'vue3-openlayers';
+
+const app = createApp(App);
+
+const options: Vue3OpenlayersGlobalOptions = {
+  debug: true,
+};
+app.use(Map, options);
+app.use(Layers, options);
+app.use(Sources, options);
+
+app.mount("#app");
+```
+
+:::
 
 ### Provide for components
 
-```vue
+::: code-group
+
+```vue {2,10-14} [AppComponent.ts]
 <script setup lang="ts">
-import { provide } from 'vue'
-import { Map, Layers, Sources, type Vue3OpenlayersGlobalOptions } from 'vue3-openlayers'
+import { provide } from 'vue';
+import {
+  Map,
+  Layers,
+  Sources,
+  type Vue3OpenlayersGlobalOptions
+} from 'vue3-openlayers';
 
 const options: Vue3OpenlayersGlobalOptions = {
   debug: true,
@@ -122,3 +199,5 @@ provide("ol-options", options);
   </Map.OlMap>
 </template>
 ```
+
+:::
