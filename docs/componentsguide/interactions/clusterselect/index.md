@@ -4,6 +4,10 @@
 
 The interaction components wraps `SelectCluster` interaction of the [famous `ol-ext` OpenLayers extension](http://viglino.github.io/ol-ext/).
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 <AnimatedClusterDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                     |               Explicit Import               |
+|----------------------------------|:-------------------------------------------:|
+| `<ol-interaction-clusterselect>` | `<Interactions.OlClusterSelectInteraction>` |
 
 ::: code-group
 

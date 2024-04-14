@@ -2,6 +2,10 @@
 
 > Interaction for transform feature geometries.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TransformDemo from "@demos/TransformDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import TransformDemo from "@demos/TransformDemo.vue"
 <TransformDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                 |             Explicit Import             |
+|------------------------------|:---------------------------------------:|
+| `<ol-interaction-transform>` | `<Interactions.OlTransformInteraction>` |
 
 ::: code-group
 

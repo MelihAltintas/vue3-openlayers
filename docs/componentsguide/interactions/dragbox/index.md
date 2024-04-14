@@ -3,6 +3,10 @@
 > Allows the user to draw a vector box by clicking and dragging on the map,
 > normally combined with a _condition_ that limits it to when the `shift` or other key is held down.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 </script>
@@ -11,7 +15,15 @@ import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 <VectorSourceDemo1/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |            Explicit Import            |
+|----------------------------|:-------------------------------------:|
+| `<ol-interaction-dragbox>` | `<Interactions.OlDragBoxInteraction>` |
 
 ::: code-group
 

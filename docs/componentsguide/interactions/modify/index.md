@@ -2,6 +2,10 @@
 
 > Interaction for modifying feature geometries.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 <SnapModifyDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |           Explicit Import            |
+|---------------------------|:------------------------------------:|
+| `<ol-interaction-modify>` | `<Interactions.OlModifyInteraction>` |
 
 ::: code-group
 

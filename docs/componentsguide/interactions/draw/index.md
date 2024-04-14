@@ -4,6 +4,10 @@
 
 ol-interaction-draw handles click events on the map and makes easier to draw geometries.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import DrawDemo from "@demos/DrawDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import DrawDemo from "@demos/DrawDemo.vue"
 <DrawDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |          Explicit Import           |
+|-------------------------|:----------------------------------:|
+| `<ol-interaction-draw>` | `<Interactions.OlDrawInteraction>` |
 
 ::: code-group
 

@@ -2,7 +2,9 @@
 
 > Handles snapping of vector features while modifying or drawing them.
 
-## Usage
+[[toc]]
+
+## Demo
 
 <script setup>
 import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
@@ -11,6 +13,16 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 <ClientOnly>
 <SnapModifyDemo/>
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
+## Usage
+
+| Plugin Usage            |          Explicit Import           |
+|-------------------------|:----------------------------------:|
+| `<ol-interaction-snap>` | `<Interactions.OlSnapInteraction>` |
 
 ::: code-group
 

@@ -2,6 +2,10 @@
 
 > Interaction for selecting vector features
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import SelectDemo from "@demos/SelectDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import SelectDemo from "@demos/SelectDemo.vue"
 <SelectDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |           Explicit Import            |
+|---------------------------|:------------------------------------:|
+| `<ol-interaction-select>` | `<Interactions.OlSelectInteraction>` |
 
 ::: code-group
 

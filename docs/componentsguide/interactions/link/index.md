@@ -5,6 +5,10 @@ By default the view center, zoom level, and rotation will be reflected in the UR
 Layer visibility is also reflected in the URL.
 Reloading the page restores the map view state.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ViewDemo from "@demos/ViewDemo.vue"
 </script>
@@ -13,7 +17,15 @@ import ViewDemo from "@demos/ViewDemo.vue"
 <ViewDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../interactions.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |           Explicit Import           |
+|-------------------------|:-----------------------------------:|
+| `<ol-interaction-link>` | `<Interactions.OlLinktInteraction>` |
 
 ::: code-group
 
