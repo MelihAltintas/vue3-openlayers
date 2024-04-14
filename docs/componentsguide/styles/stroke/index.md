@@ -4,6 +4,10 @@
 
 Use it inside ol-style to style lines and polygons, inside ol-style-circle to style circles,inside ol-style-text to style texts.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import LineString from "@demos/LineString.vue"
 </script>
@@ -11,7 +15,15 @@ import LineString from "@demos/LineString.vue"
 <LineString />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../styles.plugin.md-->
+
 ## Usage
+
+| Plugin Usage        |     Explicit Import      |
+|---------------------|:------------------------:|
+| `<ol-style-stroke>` | `<Styles.OlStyleStroke>` |
 
 ::: code-group
 

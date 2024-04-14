@@ -4,6 +4,10 @@
 
 Use it inside ol-style to style points
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import IconDemo from "@demos/IconDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import IconDemo from "@demos/IconDemo.vue"
 <IconDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../styles.plugin.md-->
+
 ## Usage
+
+| Plugin Usage      |    Explicit Import     |
+|-------------------|:----------------------:|
+| `<ol-style-icon>` | `<Styles.OlStyleIcon>` |
 
 ::: code-group
 

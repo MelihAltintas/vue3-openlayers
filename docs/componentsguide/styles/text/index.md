@@ -2,6 +2,10 @@
 
 > Style the text of a shape
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TextDemo from "@demos/TextDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import TextDemo from "@demos/TextDemo.vue"
 <TextDemo/>
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../styles.plugin.md-->
+
 ## Usage
+
+| Plugin Usage      |    Explicit Import     |
+|-------------------|:----------------------:|
+| `<ol-style-text>` | `<Styles.OlStyleText>` |
 
 Add text to shapes
 

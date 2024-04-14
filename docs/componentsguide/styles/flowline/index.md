@@ -2,6 +2,10 @@
 
 > Style of a flowline in a vector layer
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import FlowLineDemo from "@demos/FlowLineDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import FlowLineDemo from "@demos/FlowLineDemo.vue"
 <FlowLineDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../styles.plugin.md-->
+
 ## Usage
+
+| Plugin Usage          |      Explicit Import       |
+|-----------------------|:--------------------------:|
+| `<ol-style-flowline>` | `<Styles.OlStyleFlowline>` |
 
 ::: code-group
 

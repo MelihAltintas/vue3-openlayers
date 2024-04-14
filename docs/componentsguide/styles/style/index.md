@@ -4,7 +4,17 @@
 
 Use it inside ol-feature, ol-vector-layer, ol-interaction-select, ol-interaction-draw, ol-interaction-modify to give custom styles to vector features.
 
+[[toc]]
+
+## Setup
+
+<!--@include: ../../styles.plugin.md-->
+
 ## Usage
+
+| Plugin Usage |  Explicit Import   |
+|--------------|:------------------:|
+| `<ol-style>` | `<Styles.OlStyle>` |
 
 <script setup>
 import GeomPoint from "@demos/GeomPoint.vue"
