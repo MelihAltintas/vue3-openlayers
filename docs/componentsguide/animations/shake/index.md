@@ -2,6 +2,10 @@
 
 > Shake animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ShakeAnimation from "@demos/ShakeAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import ShakeAnimation from "@demos/ShakeAnimation.vue"
 <ClientOnly>
 <ShakeAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage           |         Explicit Import         |
+|------------------------|:-------------------------------:|
+| `<ol-animation-shake>` | `<Animations.OlAnimationShake>` |
 
 ::: code-group
 

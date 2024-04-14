@@ -2,6 +2,10 @@
 
 > Zoom animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ZoomAnimation from "@demos/ZoomAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import ZoomAnimation from "@demos/ZoomAnimation.vue"
 <ClientOnly>
 <ZoomAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage          |        Explicit Import         |
+|-----------------------|:------------------------------:|
+| `<ol-animation-zoom>` | `<Animations.OlAnimationZoom>` |
 
 ::: code-group
 

@@ -2,6 +2,10 @@
 
 > Slide animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import SlideAnimation from "@demos/SlideAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import SlideAnimation from "@demos/SlideAnimation.vue"
 <ClientOnly>
 <SlideAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage           |         Explicit Import         |
+|------------------------|:-------------------------------:|
+| `<ol-animation-slide>` | `<Animations.OlAnimationSlide>` |
 
 ::: code-group
 

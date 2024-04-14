@@ -2,6 +2,10 @@
 
 > Teleport animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import TeleportAnimation from "@demos/TeleportAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import TeleportAnimation from "@demos/TeleportAnimation.vue"
 <ClientOnly>
 <TeleportAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage              |          Explicit Import           |
+|---------------------------|:----------------------------------:|
+| `<ol-animation-teleport>` | `<Animations.OlAnimationTeleport>` |
 
 ::: code-group
 

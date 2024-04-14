@@ -2,6 +2,10 @@
 
 > Animate along a path
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import FlowLineDemo from "@demos/FlowLineDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import FlowLineDemo from "@demos/FlowLineDemo.vue"
 <FlowLineDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
 ## Usage
+
+| Plugin Usage          |        Explicit Import         |
+|-----------------------|:------------------------------:|
+| `<ol-animation-path>` | `<Animations.OlAnimationPath>` |
 
 ::: code-group
 

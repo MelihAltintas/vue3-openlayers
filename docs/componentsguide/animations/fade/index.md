@@ -2,6 +2,10 @@
 
 > Fade animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import FadeAnimation from "@demos/FadeAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
 <ClientOnly>
 <FadeAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage          |        Explicit Import         |
+|-----------------------|:------------------------------:|
+| `<ol-animation-fade>` | `<Animations.OlAnimationFade>` |
 
 ::: code-group
 

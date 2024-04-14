@@ -2,6 +2,10 @@
 
 > Drop animation for feature
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import DropAnimation from "@demos/DropAnimation.vue"
 </script>
@@ -9,6 +13,16 @@ import DropAnimation from "@demos/DropAnimation.vue"
 <ClientOnly>
 <DropAnimation />
 </ClientOnly>
+
+## Setup
+
+<!--@include: ../../animations.plugin.md-->
+
+## Usage
+
+| Plugin Usage          |        Explicit Import         |
+|-----------------------|:------------------------------:|
+| `<ol-animation-drop>` | `<Animations.OLAnimationDrop>` |
 
 ::: code-group
 
