@@ -2,6 +2,10 @@
 
 > A Attribution control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import AttributionControlDemo from "@demos/AttributionControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import AttributionControlDemo from "@demos/AttributionControlDemo.vue"
 <AttributionControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |           Explicit Import            |
+|----------------------------|:------------------------------------:|
+| `<ol-attribution-control>` | `<MapControls.OlAttributionControl>` |
 
 ::: code-group
 

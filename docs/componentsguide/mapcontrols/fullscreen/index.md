@@ -2,6 +2,10 @@
 
 > A Fullscreen control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import FullscreenControlDemo from "@demos/FullscreenControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import FullscreenControlDemo from "@demos/FullscreenControlDemo.vue"
 <FullscreenControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |           Explicit Import           |
+|---------------------------|:-----------------------------------:|
+| `<ol-fullscreen-control>` | `<MapControls.OlFullScreenControl>` |
 
 ::: code-group
 

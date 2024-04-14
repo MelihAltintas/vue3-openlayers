@@ -5,6 +5,10 @@
 `ol-overlay` component creates a HTML element that would be displayed over
 the map. It has **default** scoped slot to render your custom content.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import OverlayDemo from "@demos/OverlayDemo.vue"
 </script>
@@ -13,7 +17,15 @@ import OverlayDemo from "@demos/OverlayDemo.vue"
 <OverlayDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../map.plugin.md-->
+
 ## Usage
+
+| Plugin Usage   |  Explicit Import  |
+|----------------|:-----------------:|
+| `<ol-overlay>` | `<Map.OlOverlay>` |
 
 Example below shows how to add custom content on to the map.
 

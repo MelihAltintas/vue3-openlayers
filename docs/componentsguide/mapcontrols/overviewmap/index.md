@@ -2,6 +2,10 @@
 
 > A Overview Map control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
 <OverviewmapControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |           Explicit Import            |
+|----------------------------|:------------------------------------:|
+| `<ol-overviewmap-control>` | `<MapControls.OlOverviewMapControl>` |
 
 ::: code-group
 

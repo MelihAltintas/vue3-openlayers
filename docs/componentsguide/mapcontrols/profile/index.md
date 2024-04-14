@@ -2,6 +2,10 @@
 
 > A profile control.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ProfileControlDemo from "@demos/ProfileControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import ProfileControlDemo from "@demos/ProfileControlDemo.vue"
 <ProfileControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage           |         Explicit Import          |
+|------------------------|:--------------------------------:|
+| `<ol-profile-control>` | `<MapControls.OlProfileControl>` |
 
 ::: code-group
 

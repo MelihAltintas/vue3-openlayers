@@ -4,6 +4,10 @@
 
 Right click on the map to open the contextmenu.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 </script>
@@ -11,7 +15,15 @@ import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 <ContextMenuDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                |           Explicit Import            |
+|-----------------------------|:------------------------------------:|
+| `<ol-context-menu-control>` | `<MapControls.OlContextMenuControl>` |
 
 Add context menu to map
 

@@ -2,6 +2,10 @@
 
 > A Swipe control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import SwipeControlDemo from "@demos/SwipeControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import SwipeControlDemo from "@demos/SwipeControlDemo.vue"
 <SwipeControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage         |        Explicit Import         |
+|----------------------|:------------------------------:|
+| `<ol-swipe-control>` | `<MapControls.OlSwipeControl>` |
 
 ::: code-group
 

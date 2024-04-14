@@ -2,6 +2,10 @@
 
 > A Zoom Slider control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ZoomsliderControlDemo from "@demos/ZoomsliderControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import ZoomsliderControlDemo from "@demos/ZoomsliderControlDemo.vue"
 <ZoomsliderControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage              |           Explicit Import           |
+|---------------------------|:-----------------------------------:|
+| `<ol-zoomslider-control>` | `<MapControls.OlZoomSliderControl>` |
 
 ::: code-group
 

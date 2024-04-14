@@ -2,6 +2,10 @@
 
 > A simple toggle control The control can be created with an interaction to control its activation.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import VideorecorderControlDemo from "@demos/VideorecorderControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import VideorecorderControlDemo from "@demos/VideorecorderControlDemo.vue"
 <VideorecorderControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                 |            Explicit Import             |
+|------------------------------|:--------------------------------------:|
+| `<ol-videorecorder-control>` | `<MapControls.OlVideoRecorderControl>` |
 
 ::: code-group
 

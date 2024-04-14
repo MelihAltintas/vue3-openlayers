@@ -2,6 +2,10 @@
 
 > A Scale Line control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
 <ScalelineControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage             |          Explicit Import           |
+|--------------------------|:----------------------------------:|
+| `<ol-scaleline-control>` | `<MapControls.OlScaleLineControl>` |
 
 ::: code-group
 

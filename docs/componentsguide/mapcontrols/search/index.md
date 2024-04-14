@@ -2,6 +2,10 @@
 
 > A Search control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import SearchControlDemo from "@demos/SearchControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import SearchControlDemo from "@demos/SearchControlDemo.vue"
 <SearchControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage          |         Explicit Import         |
+|-----------------------|:-------------------------------:|
+| `<ol-search-control>` | `<MapControls.OlSearchControl>` |
 
 ::: code-group
 

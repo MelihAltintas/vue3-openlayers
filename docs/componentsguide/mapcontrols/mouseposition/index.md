@@ -2,6 +2,10 @@
 
 > A Mouse Position control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import MousepositionControlDemo from "@demos/MousepositionControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import MousepositionControlDemo from "@demos/MousepositionControlDemo.vue"
 <MousepositionControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                 |            Explicit Import             |
+|------------------------------|:--------------------------------------:|
+| `<ol-mouseposition-control>` | `<MapControls.OlMousePositionControl>` |
 
 ::: code-group
 

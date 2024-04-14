@@ -2,6 +2,10 @@
 
 > A control for switching between layers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 <LayerswitcherControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                 |            Explicit Import             |
+|------------------------------|:--------------------------------------:|
+| `<ol-layerswitcher-control>` | `<MapControls.OlLayerSwitcherControl>` |
 
 ::: code-group
 

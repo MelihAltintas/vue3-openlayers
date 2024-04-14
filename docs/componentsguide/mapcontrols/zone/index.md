@@ -2,6 +2,10 @@
 
 > A control to jump from one zone to another.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ZoneControlDemo from "@demos/ZoneControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import ZoneControlDemo from "@demos/ZoneControlDemo.vue"
 <ZoneControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage        |        Explicit Import        |
+|---------------------|:-----------------------------:|
+| `<ol-zone-control>` | `<MapControls.OlZoneControl>` |
 
 Add context menu to map
 

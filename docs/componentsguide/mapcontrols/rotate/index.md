@@ -2,6 +2,10 @@
 
 > A Rotate control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import RotateControlDemo from "@demos/RotateControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import RotateControlDemo from "@demos/RotateControlDemo.vue"
 <RotateControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage          |         Explicit Import         |
+|-----------------------|:-------------------------------:|
+| `<ol-rotate-control>` | `<MapControls.OlRotateControl>` |
 
 ::: code-group
 

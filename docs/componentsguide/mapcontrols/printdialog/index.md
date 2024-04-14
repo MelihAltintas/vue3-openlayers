@@ -2,6 +2,10 @@
 
 > A print dialog to print the current map canvas content.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import PrintdialogControlDemo from "@demos/PrintdialogControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import PrintdialogControlDemo from "@demos/PrintdialogControlDemo.vue"
 <PrintdialogControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage               |           Explicit Import            |
+|----------------------------|:------------------------------------:|
+| `<ol-printdialog-control>` | `<MapControls.OlPrintDialogControl>` |
 
 ::: code-group
 

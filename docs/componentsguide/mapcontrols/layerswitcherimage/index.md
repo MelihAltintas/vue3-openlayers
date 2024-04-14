@@ -4,6 +4,10 @@
 
 To see the correct thumbnail images, you may have to set the property `imagerySet` (e. g. for usage with [BingMaps](../../sources/bing/)).
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import LayerswitcherimageControlDemo from "@demos/LayerswitcherimageControlDemo.vue"
 </script>
@@ -11,7 +15,15 @@ import LayerswitcherimageControlDemo from "@demos/LayerswitcherimageControlDemo.
 <LayerswitcherimageControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage                      |               Explicit Import               |
+|-----------------------------------|:-------------------------------------------:|
+| `<ol-layerswitcherimage-control>` | `<MapControls.OlLayerSwitcherImageControl>` |
 
 ::: code-group
 

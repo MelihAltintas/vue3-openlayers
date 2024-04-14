@@ -2,6 +2,10 @@
 
 > A Zoom control for OpenLayers.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import ZoomControlDemo from "@demos/ZoomControlDemo.vue"
 </script>
@@ -9,7 +13,15 @@ import ZoomControlDemo from "@demos/ZoomControlDemo.vue"
 <ZoomControlDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../mapcontrols.plugin.md-->
+
 ## Usage
+
+| Plugin Usage        |        Explicit Import        |
+|---------------------|:-----------------------------:|
+| `<ol-zoom-control>` | `<MapControls.OlZoomControl>` |
 
 ::: code-group
 
