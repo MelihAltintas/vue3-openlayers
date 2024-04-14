@@ -2,6 +2,10 @@
 
 ol-geom-circle can be used inside a ol-feature to draw a single circle.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import CircleDemo from "@demos/CircleDemo.vue"
 </script>
@@ -10,7 +14,15 @@ import CircleDemo from "@demos/CircleDemo.vue"
 <CircleDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../geometries.plugin.md-->
+
 ## Usage
+
+| Plugin Usage       |       Explicit Import       |
+|--------------------|:---------------------------:|
+| `<ol-geom-circle>` | `<Geometries.OlGeomCircle>` |
 
 ::: code-group
 

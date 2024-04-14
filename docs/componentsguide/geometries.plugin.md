@@ -1,10 +1,10 @@
 
 ### Plugin usage
 
-This component is part of the `MapControls` plugin.
+This component is part of the `Geometries` plugin.
 **If not installed [globally](/get-started#usage-as-plugin)**, you need to import and `use` the plugin in your `main.ts` or use the explicit component import (see section below).
 
-::: details Import and use the `MapControls` plugin
+::: details Import and use the `Geometries` plugin
 ```ts {8,13} [main.ts]
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -13,12 +13,12 @@ import { // [!code focus:6]
   Map,
   Layers,
   Sources,
-  MapControls
+  Geometries
 } from 'vue3-openlayers';
 
 const app = createApp(App);
 // ...
-app.use(MapControls); // [!code focus]
+app.use(Geometries); // [!code focus]
 // ...
 ```
 :::
@@ -26,7 +26,7 @@ app.use(MapControls); // [!code focus]
 ### Explicit import
 
 If you don't want to install a plugin, you can [import the component explicitly](/get-started#usage-explicit-import).
-It's available as a child of the named export `MapControls`.
+It's available as a child of the named export `Geometries`.
 
 > [!NOTE]
 > The following documentation refers to the plugin usage.

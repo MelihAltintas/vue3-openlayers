@@ -2,6 +2,10 @@
 
 ol-geom--multi-point can be used inside a ol-feature to draw multiple points at once.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import MultiPoint from "@demos/MultiPoint.vue"
 </script>
@@ -9,7 +13,15 @@ import MultiPoint from "@demos/MultiPoint.vue"
 <MultiPoint />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../geometries.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |         Explicit Import         |
+|-------------------------|:-------------------------------:|
+| `<ol-geom-multi-point>` | `<Geometries.OlGeomMultiPoint>` |
 
 ::: code-group
 

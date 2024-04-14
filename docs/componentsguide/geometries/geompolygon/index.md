@@ -5,6 +5,10 @@ The polygon may contain holes in it.
 A polygon is defined by exactly one LinearRing as its circumference, and any number of additional LinearRings representing holes that are cut out.
 Check the usage section for more info on this.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import PolygonDemo from "@demos/PolygonDemo.vue"
 </script>
@@ -12,7 +16,15 @@ import PolygonDemo from "@demos/PolygonDemo.vue"
 <PolygonDemo />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../geometries.plugin.md-->
+
 ## Usage
+
+| Plugin Usage        |       Explicit Import        |
+|---------------------|:----------------------------:|
+| `<ol-geom-polygon>` | `<Geometries.OlGeomPolygon>` |
 
 ::: code-group
 

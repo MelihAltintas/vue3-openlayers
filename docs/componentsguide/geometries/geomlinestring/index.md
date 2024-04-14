@@ -2,6 +2,10 @@
 
 ol-geom-line-string can be used inside a ol-feature to draw lines on the map.
 
+[[toc]]
+
+## Demo
+
 <script setup>
 import LineString from "@demos/LineString.vue"
 </script>
@@ -9,7 +13,15 @@ import LineString from "@demos/LineString.vue"
 <LineString />
 </ClientOnly>
 
+## Setup
+
+<!--@include: ../../geometries.plugin.md-->
+
 ## Usage
+
+| Plugin Usage            |         Explicit Import         |
+|-------------------------|:-------------------------------:|
+| `<ol-geom-line-string>` | `<Geometries.OlGeomLineString>` |
 
 ::: code-group
 
