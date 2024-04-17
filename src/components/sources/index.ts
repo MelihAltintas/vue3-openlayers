@@ -18,22 +18,22 @@ import OlSourceWMTS from "./OlSourceWMTS.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-source-bingmaps", OlSourceBingMaps);
-  app.component("ol-source-cluster", OlSourceCluster);
-  app.component("ol-source-image-static", OlSourceImageStatic);
-  app.component("ol-source-image-wms", OlSourceImageWMS);
-  app.component("ol-source-osm", OlSourceOSM);
-  app.component("ol-source-stadia-maps", OlSourceStadiaMaps);
-  app.component("ol-source-tianditu", OlSourceTianditu);
-  app.component("ol-source-tile-arcgis-rest", OlSourceTileArcGISRest);
-  app.component("ol-source-tile-debug", OlSourceTileDebug);
-  app.component("ol-source-geo-tiff", OlSourceGeoTIFF);
-  app.component("ol-source-tile-json", OlSourceTileJSON);
-  app.component("ol-source-tile-wms", OlSourceTileWMS);
-  app.component("ol-source-vector", OlSourceVector);
-  app.component("ol-source-vector-tile", OlSourceVectorTile);
-  app.component("ol-source-xyz", OlSourceXYZ);
-  app.component("ol-source-wmts", OlSourceWMTS);
+  app.component("OlSourceBingmaps", OlSourceBingMaps);
+  app.component("OlSourceCluster", OlSourceCluster);
+  app.component("OlSourceImageStatic", OlSourceImageStatic);
+  app.component("OlSourceImageWms", OlSourceImageWMS);
+  app.component("OlSourceOsm", OlSourceOSM);
+  app.component("OlSourceStadiaMaps", OlSourceStadiaMaps);
+  app.component("OlSourceTianditu", OlSourceTianditu);
+  app.component("OlSourceTileArcgisRest", OlSourceTileArcGISRest);
+  app.component("OlSourceTileDebug", OlSourceTileDebug);
+  app.component("OlSourceGeoTiff", OlSourceGeoTIFF);
+  app.component("OlSourceTileJson", OlSourceTileJSON);
+  app.component("OlSourceTileWms", OlSourceTileWMS);
+  app.component("OlSourceVector", OlSourceVector);
+  app.component("OlSourceVectorTile", OlSourceVectorTile);
+  app.component("OlSourceXyz", OlSourceXYZ);
+  app.component("OlSourceWmts", OlSourceWMTS);
 
   app.provide("ol-options", options);
 }

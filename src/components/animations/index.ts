@@ -9,13 +9,13 @@ import OlAnimationZoom from "./OlAnimationZoom.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-animation-drop", OLAnimationDrop);
-  app.component("ol-animation-fade", OlAnimationFade);
-  app.component("ol-animation-path", OlAnimationPath);
-  app.component("ol-animation-shake", OlAnimationShake);
-  app.component("ol-animation-slide", OlAnimationSlide);
-  app.component("ol-animation-teleport", OlAnimationTeleport);
-  app.component("ol-animation-zoom", OlAnimationZoom);
+  app.component("OlAnimationDrop", OLAnimationDrop);
+  app.component("OlAnimationFade", OlAnimationFade);
+  app.component("OlAnimationPath", OlAnimationPath);
+  app.component("OlAnimationShake", OlAnimationShake);
+  app.component("OlAnimationSlide", OlAnimationSlide);
+  app.component("OlAnimationTeleport", OlAnimationTeleport);
+  app.component("OlAnimationZoom", OlAnimationZoom);
 
   app.provide("ol-options", options);
 }

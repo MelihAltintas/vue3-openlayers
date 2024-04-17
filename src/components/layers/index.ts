@@ -12,16 +12,16 @@ import OlWebglVectorLayer from "./OlWebglVectorLayer.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-animated-clusterlayer", OlAnimatedClusterLayer);
-  app.component("ol-heatmap-layer", OlHeatmapLayer);
-  app.component("ol-image-layer", OlImageLayer);
-  app.component("ol-layer-group", OlLayerGroup);
-  app.component("ol-tile-layer", OlTileLayer);
-  app.component("ol-vector-image-layer", OlVectorImageLayer);
-  app.component("ol-vector-layer", OlVectorLayer);
-  app.component("ol-vector-tile-layer", OlVectorTileLayer);
-  app.component("ol-webgl-tile-layer", OlWebglTileLayer);
-  app.component("ol-webgl-vector-layer", OlWebglVectorLayer);
+  app.component("OlAnimatedClusterlayer", OlAnimatedClusterLayer);
+  app.component("OlHeatmapLayer", OlHeatmapLayer);
+  app.component("OlImageLayer", OlImageLayer);
+  app.component("OlLayerGroup", OlLayerGroup);
+  app.component("OlTileLayer", OlTileLayer);
+  app.component("OlVectorImageLayer", OlVectorImageLayer);
+  app.component("OlVectorLayer", OlVectorLayer);
+  app.component("OlVectorTileLayer", OlVectorTileLayer);
+  app.component("OlWebglTileLayer", OlWebglTileLayer);
+  app.component("OlWebglVectorLayer", OlWebglVectorLayer);
 
   app.provide("ol-options", options);
 }

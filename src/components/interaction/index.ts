@@ -12,16 +12,16 @@ import OlTransformInteraction from "./OlTransformInteraction.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-interaction-clusterselect", OlClusterSelectInteraction);
-  app.component("ol-interaction-dragbox", OlDragBoxInteraction);
-  app.component("ol-interaction-dragrotate", OlDragRotateInteraction);
-  app.component("ol-interaction-dragrotatezoom", OlDragRotateZoomInteraction);
-  app.component("ol-interaction-link", OlLinktInteraction);
-  app.component("ol-interaction-select", OlSelectInteraction);
-  app.component("ol-interaction-draw", OlDrawInteraction);
-  app.component("ol-interaction-modify", OlModifyInteraction);
-  app.component("ol-interaction-snap", OlSnapInteraction);
-  app.component("ol-interaction-transform", OlTransformInteraction);
+  app.component("OlInteractionClusterselect", OlClusterSelectInteraction);
+  app.component("OlInteractionDragbox", OlDragBoxInteraction);
+  app.component("OlInteractionDragrotate", OlDragRotateInteraction);
+  app.component("OlInteractionDragrotatezoom", OlDragRotateZoomInteraction);
+  app.component("OlInteractionLink", OlLinktInteraction);
+  app.component("OlInteractionSelect", OlSelectInteraction);
+  app.component("OlInteractionDraw", OlDrawInteraction);
+  app.component("OlInteractionModify", OlModifyInteraction);
+  app.component("OlInteractionSnap", OlSnapInteraction);
+  app.component("OlInteractionTransform", OlTransformInteraction);
 
   app.provide("ol-options", options);
 }

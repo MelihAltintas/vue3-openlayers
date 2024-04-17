@@ -9,13 +9,13 @@ import OlGeomPolygon from "./OlGeomPolygon.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-geom-circle", OlGeomCircle);
-  app.component("ol-geom-line-string", OlGeomLineString);
-  app.component("ol-geom-multi-line-string", OlGeomMultiLineString);
-  app.component("ol-geom-multi-point", OlGeomMultiPoint);
-  app.component("ol-geom-multi-polygon", OlGeomMultiPolygon);
-  app.component("ol-geom-point", OlGeomPoint);
-  app.component("ol-geom-polygon", OlGeomPolygon);
+  app.component("OlGeomCircle", OlGeomCircle);
+  app.component("OlGeomLineString", OlGeomLineString);
+  app.component("OlGeomMultiLineString", OlGeomMultiLineString);
+  app.component("OlGeomMultiPoint", OlGeomMultiPoint);
+  app.component("OlGeomMultiPolygon", OlGeomMultiPolygon);
+  app.component("OlGeomPoint", OlGeomPoint);
+  app.component("OlGeomPolygon", OlGeomPolygon);
 
   app.provide("ol-options", options);
 }

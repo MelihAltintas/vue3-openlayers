@@ -23,27 +23,27 @@ import OlZoomToExtentControl from "./OlZoomToExtentControl.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-attribution-control", OlAttributionControl);
-  app.component("ol-fullscreen-control", OlFullScreenControl);
-  app.component("ol-mouseposition-control", OlMousePositionControl);
-  app.component("ol-overviewmap-control", OlOverviewMapControl);
-  app.component("ol-scaleline-control", OlScaleLineControl);
-  app.component("ol-zoom-control", OlZoomControl);
-  app.component("ol-zoomslider-control", OlZoomSliderControl);
-  app.component("ol-zoomtoextent-control", OlZoomToExtentControl);
-  app.component("ol-rotate-control", OlRotateControl);
-  app.component("ol-context-menu-control", OlContextMenuControl);
-  app.component("ol-search-control", OlSearchControl);
-  app.component("ol-swipe-control", OlSwipeControl);
-  app.component("ol-control-bar", OlControlBar);
-  app.component("ol-toggle-control", OlToggleControl);
-  app.component("ol-button-control", OlButtonControl);
-  app.component("ol-printdialog-control", OlPrintDialogControl);
-  app.component("ol-profile-control", OlProfileControl);
-  app.component("ol-videorecorder-control", OlVideoRecorderControl);
-  app.component("ol-layerswitcher-control", OlLayerSwitcherControl);
-  app.component("ol-layerswitcherimage-control", OlLayerSwitcherImageControl);
-  app.component("ol-zone-control", OlZoneControl);
+  app.component("OlAttributionControl", OlAttributionControl);
+  app.component("OlFullscreenControl", OlFullScreenControl);
+  app.component("OlMousepositionControl", OlMousePositionControl);
+  app.component("OlOverviewmapControl", OlOverviewMapControl);
+  app.component("OlScalelineControl", OlScaleLineControl);
+  app.component("OlZoomControl", OlZoomControl);
+  app.component("OlZoomsliderControl", OlZoomSliderControl);
+  app.component("OlZoomtoextentControl", OlZoomToExtentControl);
+  app.component("OlRotateControl", OlRotateControl);
+  app.component("OlContextMenuControl", OlContextMenuControl);
+  app.component("OlSearchControl", OlSearchControl);
+  app.component("OlSwipeControl", OlSwipeControl);
+  app.component("OlControlBar", OlControlBar);
+  app.component("OlToggleControl", OlToggleControl);
+  app.component("OlButtonControl", OlButtonControl);
+  app.component("OlPrintdialogControl", OlPrintDialogControl);
+  app.component("OlProfileControl", OlProfileControl);
+  app.component("OlVideorecorderControl", OlVideoRecorderControl);
+  app.component("OlLayerswitcherControl", OlLayerSwitcherControl);
+  app.component("OlLayerswitcherimageControl", OlLayerSwitcherImageControl);
+  app.component("OlZoneControl", OlZoneControl);
 
   app.provide("ol-options", options);
 }

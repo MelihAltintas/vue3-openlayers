@@ -17,13 +17,13 @@ type OverrideStyleFunction = (
 ) => Style | Style[] | void;
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-style", OlStyle);
-  app.component("ol-style-circle", OlStyleCircle);
-  app.component("ol-style-stroke", OlStyleStroke);
-  app.component("ol-style-fill", OlStyleFill);
-  app.component("ol-style-icon", OlStyleIcon);
-  app.component("ol-style-text", OlStyleText);
-  app.component("ol-style-flowline", OlStyleFlowline);
+  app.component("OlStyle", OlStyle);
+  app.component("OlStyleCircle", OlStyleCircle);
+  app.component("OlStyleStroke", OlStyleStroke);
+  app.component("OlStyleFill", OlStyleFill);
+  app.component("OlStyleIcon", OlStyleIcon);
+  app.component("OlStyleText", OlStyleText);
+  app.component("OlStyleFlowline", OlStyleFlowline);
 
   app.provide("ol-options", options);
 }

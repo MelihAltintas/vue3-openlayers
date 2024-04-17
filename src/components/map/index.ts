@@ -8,12 +8,12 @@ import OlView from "./OlView.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("ol-feature", OlFeature);
-  app.component("ol-geolocation", OlGeoLocation);
-  app.component("ol-map", OlMap);
-  app.component("ol-overlay", OlOverlay);
-  app.component("ol-projection-register", OlProjectionRegister);
-  app.component("ol-view", OlView);
+  app.component("OlFeature", OlFeature);
+  app.component("OlGeolocation", OlGeoLocation);
+  app.component("OlMap", OlMap);
+  app.component("OlOverlay", OlOverlay);
+  app.component("OlProjectionRegister", OlProjectionRegister);
+  app.component("OlView", OlView);
 
   app.provide("ol-options", options);
 }
