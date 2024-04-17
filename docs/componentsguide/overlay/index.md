@@ -11,11 +11,8 @@ the map. It has **default** scoped slot to render your custom content.
 
 <script setup>
 import OverlayDemo from "@demos/OverlayDemo.vue"
+import DrawMeasureDemo from "@demos/DrawMeasureDemo.vue"
 </script>
-
-<ClientOnly>
-<OverlayDemo />
-</ClientOnly>
 
 ## Setup
 
@@ -27,11 +24,29 @@ import OverlayDemo from "@demos/OverlayDemo.vue"
 |----------------|:-----------------:|
 | `<ol-overlay>` | `<Map.OlOverlay>` |
 
+### Example 1: Overlay Content
+
 Example below shows how to add custom content on to the map.
+
+<ClientOnly>
+<OverlayDemo />
+</ClientOnly>
 
 ::: code-group
 
 <<< ../../../src/demos/OverlayDemo.vue
+
+:::
+
+### Example 2: Measure Distance
+
+<ClientOnly>
+<DrawMeasureDemo/>
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../src/demos/DrawMeasureDemo.vue
 
 :::
 

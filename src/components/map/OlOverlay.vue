@@ -1,6 +1,6 @@
 <template lang="">
   <div ref="htmlContent">
-    <slot :position="position"> </slot>
+    <slot :position="position" />
   </div>
 </template>
 

@@ -10,11 +10,8 @@ ol-interaction-draw handles click events on the map and makes easier to draw geo
 
 <script setup>
 import DrawDemo from "@demos/DrawDemo.vue"
+import DrawMeasureDemo from "@demos/DrawMeasureDemo.vue"
 </script>
-
-<ClientOnly>
-<DrawDemo/>
-</ClientOnly>
 
 ## Setup
 
@@ -26,9 +23,27 @@ import DrawDemo from "@demos/DrawDemo.vue"
 |-------------------------|:----------------------------------:|
 | `<ol-interaction-draw>` | `<Interactions.OlDrawInteraction>` |
 
+### Example 1: Draw Features
+
+<ClientOnly>
+<DrawDemo/>
+</ClientOnly>
+
 ::: code-group
 
 <<< ../../../../src/demos/DrawDemo.vue
+
+:::
+
+### Example 2: Measure Distance
+
+<ClientOnly>
+<DrawMeasureDemo/>
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../../src/demos/DrawMeasureDemo.vue
 
 :::
 
