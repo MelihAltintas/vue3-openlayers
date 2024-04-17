@@ -1,5 +1,5 @@
 import type { App } from "vue";
-import OlAnimatedClusterLayer from "./OlAnimatedClusterLayer.vue";
+import OlAnimatedClusterlayer from "./OlAnimatedClusterlayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
 import OlImageLayer from "./OlImageLayer.vue";
 import OlLayerGroup from "./OlLayerGroup.vue";
@@ -12,7 +12,7 @@ import OlWebglVectorLayer from "./OlWebglVectorLayer.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlAnimatedClusterlayer", OlAnimatedClusterLayer);
+  app.component("OlAnimatedClusterlayer", OlAnimatedClusterlayer);
   app.component("OlHeatmapLayer", OlHeatmapLayer);
   app.component("OlImageLayer", OlImageLayer);
   app.component("OlLayerGroup", OlLayerGroup);
@@ -34,7 +34,7 @@ export default install;
 
 export {
   install,
-  OlAnimatedClusterLayer,
+  OlAnimatedClusterlayer,
   OlHeatmapLayer,
   OlImageLayer,
   OlLayerGroup,

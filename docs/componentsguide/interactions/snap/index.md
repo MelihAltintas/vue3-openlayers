@@ -22,7 +22,7 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 
 | Plugin Usage            |          Explicit Import           |
 |-------------------------|:----------------------------------:|
-| `<ol-interaction-snap>` | `<Interactions.OlSnapInteraction>` |
+| `<ol-interaction-snap>` | `<Interactions.OlInteractionSnap>` |
 
 ::: code-group
 

@@ -21,7 +21,7 @@ import DrawMeasureDemo from "@demos/DrawMeasureDemo.vue"
 
 | Plugin Usage            |          Explicit Import           |
 |-------------------------|:----------------------------------:|
-| `<ol-interaction-draw>` | `<Interactions.OlDrawInteraction>` |
+| `<ol-interaction-draw>` | `<Interactions.OlInteractionDraw>` |
 
 ### Example 1: Draw Features
 

@@ -21,7 +21,7 @@ import VideorecorderControlDemo from "@demos/VideorecorderControlDemo.vue"
 
 | Plugin Usage                 |            Explicit Import             |
 |------------------------------|:--------------------------------------:|
-| `<ol-videorecorder-control>` | `<MapControls.OlVideoRecorderControl>` |
+| `<ol-videorecorder-control>` | `<MapControls.OlVideorecorderControl>` |
 
 ::: code-group
 

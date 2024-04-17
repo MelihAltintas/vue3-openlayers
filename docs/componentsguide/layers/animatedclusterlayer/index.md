@@ -26,7 +26,7 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 | Plugin Usage                 |          Explicit Import          |
 |------------------------------|:---------------------------------:|
-| `<ol-animated-clusterlayer>` | `<Layers.OlAnimatedClusterLayer>` |
+| `<ol-animated-clusterlayer>` | `<Layers.OlAnimatedClusterlayer>` |
 
 ::: code-group
 

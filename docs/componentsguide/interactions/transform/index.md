@@ -22,7 +22,7 @@ import TransformDemo from "@demos/TransformDemo.vue"
 
 | Plugin Usage                 |             Explicit Import             |
 |------------------------------|:---------------------------------------:|
-| `<ol-interaction-transform>` | `<Interactions.OlTransformInteraction>` |
+| `<ol-interaction-transform>` | `<Interactions.OlInteractionTransform>` |
 
 ::: code-group
 

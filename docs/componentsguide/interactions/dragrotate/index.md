@@ -22,7 +22,7 @@ import DragRotateDemo from "@demos/DragRotateDemo.vue"
 
 | Plugin Usage                  |             Explicit Import              |
 |-------------------------------|:----------------------------------------:|
-| `<ol-interaction-dragrotate>` | `<Interactions.OlDragRotateInteraction>` |
+| `<ol-interaction-dragrotate>` | `<Interactions.OlInteractionDragrotate>` |
 
 ::: code-group
 

@@ -24,7 +24,7 @@ import XYZSourceDemo from "@demos/XYZSourceDemo.vue"
 
 | Plugin Usage      |     Explicit Import     |
 |-------------------|:-----------------------:|
-| `<ol-source-xyz>` | `<Sources.OlSourceXYZ>` |
+| `<ol-source-xyz>` | `<Sources.OlSourceXyz>` |
 
 Example of ol-source-xyz loading OSM tiles (Note that if you need an OSM layer you're better off using ol-source-osm, this is for demonstration purposes only).
 

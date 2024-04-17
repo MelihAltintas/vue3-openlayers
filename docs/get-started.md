@@ -110,7 +110,7 @@ import { Map, Layers, Sources } from 'vue3-openlayers';
   <Map.OlMap style="min-width: 400px; min-height: 400px;">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
-      <Sources.OlSourceOSM />
+      <Sources.OlSourceOsm />
     </Layers.OlTileLayer>
   </Map.OlMap>
 </template>
@@ -194,7 +194,7 @@ provide("ol-options", options);
   <Map.OlMap style="min-width: 400px; min-height: 400px">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
-      <Sources.OlSourceOSM />
+      <Sources.OlSourceOsm />
     </Layers.OlTileLayer>
   </Map.OlMap>
 </template>
