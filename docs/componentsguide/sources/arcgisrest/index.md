@@ -24,7 +24,7 @@ import TileArcGISRestSourceDemo from "@demos/TileArcGISRestSourceDemo.vue"
 
 | Plugin Usage                   |          Explicit Import           |
 |--------------------------------|:----------------------------------:|
-| `<ol-source-tile-arcgis-rest>` | `<Sources.OlSourceTileArcGISRest>` |
+| `<ol-source-tile-arcgis-rest>` | `<Sources.OlSourceTileArcgisRest>` |
 
 Example of `ol-source-tile-arcgis-rest` usage. Information about the arcgis service used, available at https://pkk.rosreestr.ru/arcgis/rest/services/PKK6/CadastreObjects/MapServer.
 

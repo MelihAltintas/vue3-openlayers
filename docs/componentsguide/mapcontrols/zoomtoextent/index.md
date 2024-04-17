@@ -21,7 +21,7 @@ import ZoomtoextentControlDemo from "@demos/ZoomtoextentControlDemo.vue"
 
 | Plugin Usage                |            Explicit Import            |
 |-----------------------------|:-------------------------------------:|
-| `<ol-zoomtoextent-control>` | `<MapControls.OlZoomToExtentControl>` |
+| `<ol-zoomtoextent-control>` | `<MapControls.OlZoomtoextentControl>` |
 
 ::: code-group
 

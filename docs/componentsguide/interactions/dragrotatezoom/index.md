@@ -22,7 +22,7 @@ import DragRotateZoomDemo from "@demos/DragRotateZoomDemo.vue"
 
 | Plugin Usage                      |               Explicit Import                |
 |-----------------------------------|:--------------------------------------------:|
-| `<ol-interaction-dragrotatezoom>` | `<Interactions.OlDragRotateZoomInteraction>` |
+| `<ol-interaction-dragrotatezoom>` | `<Interactions.OlInteractionDragrotatezoom>` |
 
 ::: code-group
 

@@ -1,27 +1,27 @@
 import type { App } from "vue";
-import OlClusterSelectInteraction from "./OlClusterSelectInteraction.vue";
-import OlDragBoxInteraction from "./OlDragBoxInteraction.vue";
-import OlDragRotateInteraction from "./OlDragRotateInteraction.vue";
-import OlDragRotateZoomInteraction from "./OlDragRotateZoomInteraction.vue";
-import OlLinktInteraction from "./OlLinktInteraction.vue";
-import OlSelectInteraction from "./OlSelectInteraction.vue";
-import OlDrawInteraction from "./OlDrawInteraction.vue";
-import OlModifyInteraction from "./OlModifyInteraction.vue";
-import OlSnapInteraction from "./OlSnapInteraction.vue";
-import OlTransformInteraction from "./OlTransformInteraction.vue";
+import OlInteractionClusterselect from "./OlInteractionClusterselect.vue";
+import OlInteractionDragbox from "./OlInteractionDragbox.vue";
+import OlInteractionDragrotate from "./OlInteractionDragrotate.vue";
+import OlInteractionDragrotatezoom from "./OlInteractionDragrotatezoom.vue";
+import OlInteractionLink from "./OlInteractionLink.vue";
+import OlInteractionSelect from "./OlInteractionSelect.vue";
+import OlInteractionDraw from "./OlInteractionDraw.vue";
+import OlInteractionModify from "./OlInteractionModify.vue";
+import OlInteractionSnap from "./OlInteractionSnap.vue";
+import OlInteractionTransform from "./OlInteractionTransform.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlInteractionClusterselect", OlClusterSelectInteraction);
-  app.component("OlInteractionDragbox", OlDragBoxInteraction);
-  app.component("OlInteractionDragrotate", OlDragRotateInteraction);
-  app.component("OlInteractionDragrotatezoom", OlDragRotateZoomInteraction);
-  app.component("OlInteractionLink", OlLinktInteraction);
-  app.component("OlInteractionSelect", OlSelectInteraction);
-  app.component("OlInteractionDraw", OlDrawInteraction);
-  app.component("OlInteractionModify", OlModifyInteraction);
-  app.component("OlInteractionSnap", OlSnapInteraction);
-  app.component("OlInteractionTransform", OlTransformInteraction);
+  app.component("OlInteractionClusterselect", OlInteractionClusterselect);
+  app.component("OlInteractionDragbox", OlInteractionDragbox);
+  app.component("OlInteractionDragrotate", OlInteractionDragrotate);
+  app.component("OlInteractionDragrotatezoom", OlInteractionDragrotatezoom);
+  app.component("OlInteractionLink", OlInteractionLink);
+  app.component("OlInteractionSelect", OlInteractionSelect);
+  app.component("OlInteractionDraw", OlInteractionDraw);
+  app.component("OlInteractionModify", OlInteractionModify);
+  app.component("OlInteractionSnap", OlInteractionSnap);
+  app.component("OlInteractionTransform", OlInteractionTransform);
 
   app.provide("ol-options", options);
 }
@@ -34,14 +34,14 @@ export default install;
 
 export {
   install,
-  OlClusterSelectInteraction,
-  OlDragBoxInteraction,
-  OlDragRotateInteraction,
-  OlDragRotateZoomInteraction,
-  OlLinktInteraction,
-  OlSelectInteraction,
-  OlDrawInteraction,
-  OlModifyInteraction,
-  OlSnapInteraction,
-  OlTransformInteraction,
+  OlInteractionClusterselect,
+  OlInteractionDragbox,
+  OlInteractionDragrotate,
+  OlInteractionDragrotatezoom,
+  OlInteractionLink,
+  OlInteractionSelect,
+  OlInteractionDraw,
+  OlInteractionModify,
+  OlInteractionSnap,
+  OlInteractionTransform,
 };

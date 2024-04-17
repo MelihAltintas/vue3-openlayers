@@ -21,7 +21,7 @@ import MousepositionControlDemo from "@demos/MousepositionControlDemo.vue"
 
 | Plugin Usage                 |            Explicit Import             |
 |------------------------------|:--------------------------------------:|
-| `<ol-mouseposition-control>` | `<MapControls.OlMousePositionControl>` |
+| `<ol-mouseposition-control>` | `<MapControls.OlMousepositionControl>` |
 
 ::: code-group
 

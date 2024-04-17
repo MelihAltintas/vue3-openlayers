@@ -23,7 +23,7 @@ import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 
 | Plugin Usage               |            Explicit Import            |
 |----------------------------|:-------------------------------------:|
-| `<ol-interaction-dragbox>` | `<Interactions.OlDragBoxInteraction>` |
+| `<ol-interaction-dragbox>` | `<Interactions.OlInteractionDragbox>` |
 
 ::: code-group
 

@@ -22,7 +22,7 @@ import TileWMSDemo from "@demos/TileWMSDemo.vue"
 
 | Plugin Usage           |       Explicit Import       |
 |------------------------|:---------------------------:|
-| `<ol-source-tile-wms>` | `<Sources.OlSourceTileWMS>` |
+| `<ol-source-tile-wms>` | `<Sources.OlSourceTileWms>` |
 
 ::: code-group
 

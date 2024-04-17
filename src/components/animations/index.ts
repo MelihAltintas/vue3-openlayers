@@ -1,5 +1,5 @@
 import type { App } from "vue";
-import OLAnimationDrop from "./OlAnimationDrop.vue";
+import OlAnimationDrop from "./OlAnimationDrop.vue";
 import OlAnimationFade from "./OlAnimationFade.vue";
 import OlAnimationPath from "./OlAnimationPath.vue";
 import OlAnimationShake from "./OlAnimationShake.vue";
@@ -9,7 +9,7 @@ import OlAnimationZoom from "./OlAnimationZoom.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlAnimationDrop", OLAnimationDrop);
+  app.component("OlAnimationDrop", OlAnimationDrop);
   app.component("OlAnimationFade", OlAnimationFade);
   app.component("OlAnimationPath", OlAnimationPath);
   app.component("OlAnimationShake", OlAnimationShake);
@@ -28,7 +28,7 @@ export default install;
 
 export {
   install,
-  OLAnimationDrop,
+  OlAnimationDrop,
   OlAnimationFade,
   OlAnimationPath,
   OlAnimationShake,

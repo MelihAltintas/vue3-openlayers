@@ -24,7 +24,7 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 | Plugin Usage                     |               Explicit Import               |
 |----------------------------------|:-------------------------------------------:|
-| `<ol-interaction-clusterselect>` | `<Interactions.OlClusterSelectInteraction>` |
+| `<ol-interaction-clusterselect>` | `<Interactions.OlInteractionClusterselect>` |
 
 ::: code-group
 

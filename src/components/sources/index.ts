@@ -1,39 +1,39 @@
 import type { App } from "vue";
-import OlSourceBingMaps from "./OlSourceBingMaps.vue";
+import OlSourceBingmaps from "./OlSourceBingmaps.vue";
 import OlSourceCluster from "./OlSourceCluster.vue";
 import OlSourceImageStatic from "./OlSourceImageStatic.vue";
-import OlSourceImageWMS from "./OlSourceImageWMS.vue";
-import OlSourceOSM from "./OlSourceOSM.vue";
+import OlSourceImageWms from "./OlSourceImageWms.vue";
+import OlSourceOsm from "./OlSourceOsm.vue";
 import OlSourceStadiaMaps from "./OlSourceStadiaMaps.vue";
 import OlSourceTianditu from "./OlSourceTianditu.vue";
-import OlSourceTileArcGISRest from "@/components/sources/OlSourceTileArcGISRest.vue";
+import OlSourceTileArcgisRest from "@/components/sources/OlSourceTileArcgisRest.vue";
 import OlSourceTileDebug from "./OlSourceTileDebug.vue";
-import OlSourceGeoTIFF from "./OlSourceGeoTIFF.vue";
-import OlSourceTileJSON from "./OlSourceTileJSON.vue";
-import OlSourceTileWMS from "./OlSourceTileWMS.vue";
+import OlSourceGeoTiff from "./OlSourceGeoTiff.vue";
+import OlSourceTileJson from "./OlSourceTileJson.vue";
+import OlSourceTileWms from "./OlSourceTileWms.vue";
 import OlSourceVector from "./OlSourceVector.vue";
 import OlSourceVectorTile from "./OlSourceVectorTile.vue";
-import OlSourceXYZ from "./OlSourceXYZ.vue";
-import OlSourceWMTS from "./OlSourceWMTS.vue";
+import OlSourceXyz from "./OlSourceXyz.vue";
+import OlSourceWmts from "./OlSourceWmts.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlSourceBingmaps", OlSourceBingMaps);
+  app.component("OlSourceBingmaps", OlSourceBingmaps);
   app.component("OlSourceCluster", OlSourceCluster);
   app.component("OlSourceImageStatic", OlSourceImageStatic);
-  app.component("OlSourceImageWms", OlSourceImageWMS);
-  app.component("OlSourceOsm", OlSourceOSM);
+  app.component("OlSourceImageWms", OlSourceImageWms);
+  app.component("OlSourceOsm", OlSourceOsm);
   app.component("OlSourceStadiaMaps", OlSourceStadiaMaps);
   app.component("OlSourceTianditu", OlSourceTianditu);
-  app.component("OlSourceTileArcgisRest", OlSourceTileArcGISRest);
+  app.component("OlSourceTileArcgisRest", OlSourceTileArcgisRest);
   app.component("OlSourceTileDebug", OlSourceTileDebug);
-  app.component("OlSourceGeoTiff", OlSourceGeoTIFF);
-  app.component("OlSourceTileJson", OlSourceTileJSON);
-  app.component("OlSourceTileWms", OlSourceTileWMS);
+  app.component("OlSourceGeoTiff", OlSourceGeoTiff);
+  app.component("OlSourceTileJson", OlSourceTileJson);
+  app.component("OlSourceTileWms", OlSourceTileWms);
   app.component("OlSourceVector", OlSourceVector);
   app.component("OlSourceVectorTile", OlSourceVectorTile);
-  app.component("OlSourceXyz", OlSourceXYZ);
-  app.component("OlSourceWmts", OlSourceWMTS);
+  app.component("OlSourceXyz", OlSourceXyz);
+  app.component("OlSourceWmts", OlSourceWmts);
 
   app.provide("ol-options", options);
 }
@@ -46,20 +46,20 @@ export default install;
 
 export {
   install,
-  OlSourceBingMaps,
+  OlSourceBingmaps,
   OlSourceCluster,
   OlSourceImageStatic,
-  OlSourceImageWMS,
-  OlSourceOSM,
+  OlSourceImageWms,
+  OlSourceOsm,
   OlSourceStadiaMaps,
   OlSourceTianditu,
-  OlSourceTileArcGISRest,
+  OlSourceTileArcgisRest,
   OlSourceTileDebug,
-  OlSourceGeoTIFF,
-  OlSourceTileJSON,
-  OlSourceTileWMS,
+  OlSourceGeoTiff,
+  OlSourceTileJson,
+  OlSourceTileWms,
   OlSourceVector,
   OlSourceVectorTile,
-  OlSourceXYZ,
-  OlSourceWMTS,
+  OlSourceXyz,
+  OlSourceWmts,
 };

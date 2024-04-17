@@ -22,7 +22,7 @@ import ImageWMSDemo from "@demos/ImageWMSDemo.vue"
 
 | Plugin Usage            |       Explicit Import        |
 |-------------------------|:----------------------------:|
-| `<ol-source-image-wms>` | `<Sources.OlSourceImageWMS>` |
+| `<ol-source-image-wms>` | `<Sources.OlSourceImageWms>` |
 
 ::: code-group
 

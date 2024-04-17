@@ -1,6 +1,6 @@
 import type { App } from "vue";
 import OlFeature from "./OlFeature.vue";
-import OlGeoLocation from "./OlGeoLocation.vue";
+import OlGeolocation from "./OlGeolocation.vue";
 import OlMap from "./OlMap.vue";
 import OlOverlay from "./OlOverlay.vue";
 import OlProjectionRegister from "./OlProjectionRegister.vue";
@@ -9,7 +9,7 @@ import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlFeature", OlFeature);
-  app.component("OlGeolocation", OlGeoLocation);
+  app.component("OlGeolocation", OlGeolocation);
   app.component("OlMap", OlMap);
   app.component("OlOverlay", OlOverlay);
   app.component("OlProjectionRegister", OlProjectionRegister);
@@ -27,7 +27,7 @@ export default install;
 export {
   install,
   OlFeature,
-  OlGeoLocation,
+  OlGeolocation,
   OlMap,
   OlOverlay,
   OlProjectionRegister,

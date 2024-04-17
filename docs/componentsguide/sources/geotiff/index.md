@@ -22,7 +22,7 @@ import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 
 | Plugin Usage           |       Explicit Import       |
 |------------------------|:---------------------------:|
-| `<ol-source-geo-tiff>` | `<Sources.OlSourceGeoTIFF>` |
+| `<ol-source-geo-tiff>` | `<Sources.OlSourceGeoTiff>` |
 
 ::: code-group
 
