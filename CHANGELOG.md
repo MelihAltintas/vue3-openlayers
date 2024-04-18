@@ -1,5 +1,54 @@
 
 
+# [8.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v7.0.0...v8.0.0) (2024-04-18)
+
+
+### Code Refactoring
+
+* rename components ([ea85a6e](https://github.com/MelihAltintas/vue3-openlayers/commit/ea85a6e1db64450351244d66bef24a433e3c3070))
+
+
+### Features
+
+* support PascalCase component usage for global plugin installations ([861f3ea](https://github.com/MelihAltintas/vue3-openlayers/commit/861f3ea509776f301a3bd0bae39ab504a7c8a4b7))
+
+
+### BREAKING CHANGES
+
+* Several components have been renamed. Adjustments are **only** necessary when not consuming these components as a plugin but directly. When using a plugin for global component availability, nothing has been changed. This change was necessary to align the names of directly importable and usable components with the global names provided by the plugins.
+- `<Animations.OLAnimationDrop>` was renamed to `<Animations.OlAnimationDrop>`
+- `<Interaction.OlClusterSelectInteraction>` was renamed to `<Interaction.OlInteractionClusterselect>`
+- `<Interaction.OlDragBoxInteraction>` was renamed to `<Interaction.OlInteractionDragbox>`
+- `<Interaction.OlDragRotateInteraction>` was renamed to `<Interaction.OlInteractionDragrotate>`
+- `<Interaction.OlDragRotateZoomInteraction>` was renamed to `<Interaction.OlInteractionDragrotatezoom>`
+- `<Interaction.OlLinktInteraction>` was renamed to `<Interaction.OlInteractionLink>`
+- `<Interaction.OlSelectInteraction>` was renamed to `<Interaction.OlInteractionSelect>`
+- `<Interaction.OlDrawInteraction>` was renamed to `<Interaction.OlInteractionDraw>`
+- `<Interaction.OlModifyInteraction>` was renamed to `<Interaction.OlInteractionModify>`
+- `<Interaction.OlSnapInteraction>` was renamed to `<Interaction.OlInteractionSnap>`
+- `<Interaction.OlTransformInteraction>` was renamed to `<Interaction.OlInteractionTransform>`
+- `<Layers.OlAnimatedClusterLayer>` was renamed to `<Layers.OlAnimatedClusterlayer>`
+- `<Map.OlGeoLocation>` was renamed to `<Map.OlGeolocation>`
+- `<MapControls.OlFullScreenControl>` was renamed to `<MapControls.OlFullscreenControl>`
+- `<MapControls.OlMousePositionControl>` was renamed to `<MapControls.OlMousepositionControl>`
+- `<MapControls.OlOverviewMapControl>` was renamed to `<MapControls.OlOverviewmapControl>`
+- `<MapControls.OlScaleLineControl>` was renamed to `<MapControls.OlScalelineControl>`
+- `<MapControls.OlZoomSliderControl>` was renamed to `<MapControls.OlZoomsliderControl>`
+- `<MapControls.OlZoomToExtentControl>` was renamed to `<MapControls.OlZoomtoextentControl>`
+- `<MapControls.OlPrintDialogControl>` was renamed to `<MapControls.OlPrintdialogControl>`
+- `<MapControls.OlVideoRecorderControl>` was renamed to `<MapControls.OlVideorecorderControl>`
+- `<MapControls.OlLayerSwitcherControl>` was renamed to `<MapControls.OlLayerswitcherControl>`
+- `<MapControls.OlLayerSwitcherImageControl>` was renamed to `<MapControls.OlLayerswitcherimageControl>`
+- `<Sources.OlSourceBingMaps>` was renamed to `<Sources.OlSourceBingmaps>`
+- `<Sources.OlSourceImageWMS>` was renamed to `<Sources.OlSourceImageWms>`
+- `<Sources.OlSourceOSM>` was renamed to `<Sources.OlSourceOsm>`
+- `<Sources.OlSourceTileArcGISRest>` was renamed to `<Sources.OlSourceTileArcgisRest>`
+- `<Sources.OlSourceGeoTIFF>` was renamed to `<Sources.OlSourceGeoTiff>`
+- `<Sources.OlSourceTileJSON>` was renamed to `<Sources.OlSourceTileJson>`
+- `<Sources.OlSourceTileWMS>` was renamed to `<Sources.OlSourceTileWms>`
+- `<Sources.OlSourceXYZ>` was renamed to `<Sources.OlSourceXyz>`
+- `<Sources.OlSourceWMTS>` was renamed to `<Sources.OlSourceWmts>`
+
 # [7.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v6.5.0...v7.0.0) (2024-04-13)
 
 
