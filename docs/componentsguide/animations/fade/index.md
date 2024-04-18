@@ -21,7 +21,7 @@ import FadeAnimation from "@demos/FadeAnimation.vue"
 ## Usage
 
 | Plugin Usage          |        Explicit Import         |
-|-----------------------|:------------------------------:|
+| --------------------- | :----------------------------: |
 | `<ol-animation-fade>` | `<Animations.OlAnimationFade>` |
 
 ::: code-group

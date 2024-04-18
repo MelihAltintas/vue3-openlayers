@@ -21,7 +21,7 @@ import ZoomAnimation from "@demos/ZoomAnimation.vue"
 ## Usage
 
 | Plugin Usage          |        Explicit Import         |
-|-----------------------|:------------------------------:|
+| --------------------- | :----------------------------: |
 | `<ol-animation-zoom>` | `<Animations.OlAnimationZoom>` |
 
 ::: code-group

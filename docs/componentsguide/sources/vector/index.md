@@ -21,7 +21,7 @@ import AnimatedClusterDemo2 from "@demos/AnimatedClusterDemo2.vue"
 ## Usage
 
 | Plugin Usage         |      Explicit Import       |
-|----------------------|:--------------------------:|
+| -------------------- | :------------------------: |
 | `<ol-source-vector>` | `<Sources.OlSourceVector>` |
 
 ### `ol-feature` component (GeoJSON)

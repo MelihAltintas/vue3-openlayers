@@ -21,7 +21,7 @@ import SelectDemo from "@demos/SelectDemo.vue"
 ## Usage
 
 | Plugin Usage              |           Explicit Import            |
-|---------------------------|:------------------------------------:|
+| ------------------------- | :----------------------------------: |
 | `<ol-interaction-select>` | `<Interactions.OlInteractionSelect>` |
 
 ::: code-group

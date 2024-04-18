@@ -20,7 +20,7 @@ import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
 ## Usage
 
 | Plugin Usage               |           Explicit Import            |
-|----------------------------|:------------------------------------:|
+| -------------------------- | :----------------------------------: |
 | `<ol-overviewmap-control>` | `<MapControls.OlOverviewmapControl>` |
 
 ::: code-group

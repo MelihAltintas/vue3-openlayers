@@ -21,7 +21,7 @@ import StadiaMapsDemo from "@demos/StadiaMapsDemo.vue"
 ## Usage
 
 | Plugin Usage              |        Explicit Import         |
-|---------------------------|:------------------------------:|
+| ------------------------- | :----------------------------: |
 | `<ol-source-stadia-maps>` | `<Sources.OlSourceStadiaMaps>` |
 
 ::: code-group

@@ -21,7 +21,7 @@ import SlideAnimation from "@demos/SlideAnimation.vue"
 ## Usage
 
 | Plugin Usage           |         Explicit Import         |
-|------------------------|:-------------------------------:|
+| ---------------------- | :-----------------------------: |
 | `<ol-animation-slide>` | `<Animations.OlAnimationSlide>` |
 
 ::: code-group

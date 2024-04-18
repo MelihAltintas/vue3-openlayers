@@ -21,7 +21,7 @@ import TeleportAnimation from "@demos/TeleportAnimation.vue"
 ## Usage
 
 | Plugin Usage              |          Explicit Import           |
-|---------------------------|:----------------------------------:|
+| ------------------------- | :--------------------------------: |
 | `<ol-animation-teleport>` | `<Animations.OlAnimationTeleport>` |
 
 ::: code-group

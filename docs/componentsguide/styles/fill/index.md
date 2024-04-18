@@ -22,7 +22,7 @@ import MultiPoint from "@demos/MultiPoint.vue"
 ## Usage
 
 | Plugin Usage      |    Explicit Import     |
-|-------------------|:----------------------:|
+| ----------------- | :--------------------: |
 | `<ol-style-fill>` | `<Styles.OlStyleFill>` |
 
 Styling a feature

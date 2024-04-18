@@ -24,7 +24,7 @@ import ClusterDemo from "@demos/ClusterDemo.vue"
 ## Usage
 
 | Plugin Usage          |       Explicit Import       |
-|-----------------------|:---------------------------:|
+| --------------------- | :-------------------------: |
 | `<ol-source-cluster>` | `<Sources.OlSourceCluster>` |
 
 This example shows how to do clustering on 1000 point features.

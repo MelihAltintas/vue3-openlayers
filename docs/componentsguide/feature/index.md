@@ -21,7 +21,7 @@ import GeomPoint from "@demos/GeomPoint.vue"
 ## Usage
 
 | Plugin Usage   |  Explicit Import  |
-|----------------|:-----------------:|
+| -------------- | :---------------: |
 | `<ol-feature>` | `<Map.OlFeature>` |
 
 <ClientOnly>

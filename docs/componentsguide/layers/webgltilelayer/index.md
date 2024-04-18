@@ -20,7 +20,7 @@ import GeoTIFFDemo from "@demos/GeoTIFFDemo.vue"
 ## Usage
 
 | Plugin Usage            |       Explicit Import       |
-|-------------------------|:---------------------------:|
+| ----------------------- | :-------------------------: |
 | `<ol-webgl-tile-layer>` | `<Layers.OlWebglTileLayer>` |
 
 ::: code-group

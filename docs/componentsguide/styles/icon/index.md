@@ -23,7 +23,7 @@ import IconDemo from "@demos/IconDemo.vue"
 ## Usage
 
 | Plugin Usage      |    Explicit Import     |
-|-------------------|:----------------------:|
+| ----------------- | :--------------------: |
 | `<ol-style-icon>` | `<Styles.OlStyleIcon>` |
 
 ::: code-group

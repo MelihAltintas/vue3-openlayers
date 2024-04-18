@@ -23,7 +23,7 @@ import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
 ## Usage
 
 | Plugin Usage               |       Explicit Import        |
-|----------------------------|:----------------------------:|
+| -------------------------- | :--------------------------: |
 | `<ol-projection-register>` | `<Map.OlProjectionRegister>` |
 
 Example below shows how to register and use a custom projection on to the map.

@@ -23,7 +23,7 @@ import PolygonDemo from "@demos/PolygonDemo.vue"
 ## Usage
 
 | Plugin Usage        |       Explicit Import        |
-|---------------------|:----------------------------:|
+| ------------------- | :--------------------------: |
 | `<ol-geom-polygon>` | `<Geometries.OlGeomPolygon>` |
 
 ::: code-group

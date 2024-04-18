@@ -21,7 +21,7 @@ import HeatmapLayerDemo from "@demos/HeatmapLayerDemo.vue"
 ## Usage
 
 | Plugin Usage         |      Explicit Import      |
-|----------------------|:-------------------------:|
+| -------------------- | :-----------------------: |
 | `<ol-heatmap-layer>` | `<Layers.OlHeatmapLayer>` |
 
 Example below shows how you can use ol-heatmap-layer and ol-source-vector to render a heatmap from a backend source.

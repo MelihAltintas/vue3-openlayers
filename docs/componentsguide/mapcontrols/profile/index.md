@@ -20,7 +20,7 @@ import ProfileControlDemo from "@demos/ProfileControlDemo.vue"
 ## Usage
 
 | Plugin Usage           |         Explicit Import          |
-|------------------------|:--------------------------------:|
+| ---------------------- | :------------------------------: |
 | `<ol-profile-control>` | `<MapControls.OlProfileControl>` |
 
 ::: code-group

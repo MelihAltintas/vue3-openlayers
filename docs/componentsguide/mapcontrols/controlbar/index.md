@@ -20,7 +20,7 @@ import ControlBarDemo from "@demos/ControlBarDemo.vue"
 ## Usage
 
 | Plugin Usage       |       Explicit Import        |
-|--------------------|:----------------------------:|
+| ------------------ | :--------------------------: |
 | `<ol-control-bar>` | `<MapControls.OlControlBar>` |
 
 ::: code-group

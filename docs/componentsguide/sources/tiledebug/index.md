@@ -25,7 +25,7 @@ import ProjectionRegisterDemo from "@demos/ProjectionRegisterDemo.vue"
 ## Usage
 
 | Plugin Usage             |        Explicit Import        |
-|--------------------------|:-----------------------------:|
+| ------------------------ | :---------------------------: |
 | `<ol-source-tile-debug>` | `<Sources.OlSourceTileDebug>` |
 
 ::: code-group

@@ -23,7 +23,7 @@ import GeomPoint from "@demos/GeomPoint.vue"
 ## Usage
 
 | Plugin Usage        |     Explicit Import      |
-|---------------------|:------------------------:|
+| ------------------- | :----------------------: |
 | `<ol-style-circle>` | `<Styles.OlStyleCircle>` |
 
 Styling a feature inside a vector layer.

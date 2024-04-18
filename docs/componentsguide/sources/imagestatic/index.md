@@ -21,7 +21,7 @@ import ImageLayerDemo from "@demos/ImageLayerDemo.vue"
 ## Usage
 
 | Plugin Usage               |         Explicit Import         |
-|----------------------------|:-------------------------------:|
+| -------------------------- | :-----------------------------: |
 | `<ol-source-image-static>` | `<Sources.OlSourceImageStatic>` |
 
 Example below shows how to use ol-image-layer component together with ol-source-image-static to render custom image on the map.

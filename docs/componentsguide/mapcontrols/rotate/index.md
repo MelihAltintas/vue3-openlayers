@@ -20,7 +20,7 @@ import RotateControlDemo from "@demos/RotateControlDemo.vue"
 ## Usage
 
 | Plugin Usage          |         Explicit Import         |
-|-----------------------|:-------------------------------:|
+| --------------------- | :-----------------------------: |
 | `<ol-rotate-control>` | `<MapControls.OlRotateControl>` |
 
 ::: code-group

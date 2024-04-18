@@ -14,7 +14,7 @@ For more information please checkout the [`ol-source-vector` docs](../../sources
 ## Usage
 
 | Plugin Usage              |        Explicit Import        |
-|---------------------------|:-----------------------------:|
+| ------------------------- | :---------------------------: |
 | `<ol-webgl-vector-layer>` | `<Layers.OlWebglVectorLayer>` |
 
 ### WebGL Points, Lines, Polygons

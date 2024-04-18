@@ -20,7 +20,7 @@ import FullscreenControlDemo from "@demos/FullscreenControlDemo.vue"
 ## Usage
 
 | Plugin Usage              |           Explicit Import           |
-|---------------------------|:-----------------------------------:|
+| ------------------------- | :---------------------------------: |
 | `<ol-fullscreen-control>` | `<MapControls.OlFullscreenControl>` |
 
 ::: code-group

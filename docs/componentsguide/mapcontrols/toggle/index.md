@@ -20,7 +20,7 @@ import ToggleControlDemo from "@demos/ToggleControlDemo.vue"
 ## Usage
 
 | Plugin Usage          |         Explicit Import         |
-|-----------------------|:-------------------------------:|
+| --------------------- | :-----------------------------: |
 | `<ol-toggle-control>` | `<MapControls.OlToggleControl>` |
 
 ::: code-group

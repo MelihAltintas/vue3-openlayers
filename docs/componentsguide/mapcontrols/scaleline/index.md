@@ -20,7 +20,7 @@ import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
 ## Usage
 
 | Plugin Usage             |          Explicit Import           |
-|--------------------------|:----------------------------------:|
+| ------------------------ | :--------------------------------: |
 | `<ol-scaleline-control>` | `<MapControls.OlScalelineControl>` |
 
 ::: code-group

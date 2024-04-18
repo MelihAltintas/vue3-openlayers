@@ -20,7 +20,7 @@ import SwipeControlDemo from "@demos/SwipeControlDemo.vue"
 ## Usage
 
 | Plugin Usage         |        Explicit Import         |
-|----------------------|:------------------------------:|
+| -------------------- | :----------------------------: |
 | `<ol-swipe-control>` | `<MapControls.OlSwipeControl>` |
 
 ::: code-group

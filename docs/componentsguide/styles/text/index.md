@@ -21,7 +21,7 @@ import TextDemo from "@demos/TextDemo.vue"
 ## Usage
 
 | Plugin Usage      |    Explicit Import     |
-|-------------------|:----------------------:|
+| ----------------- | :--------------------: |
 | `<ol-style-text>` | `<Styles.OlStyleText>` |
 
 Add text to shapes

@@ -19,7 +19,7 @@ import DrawMeasureDemo from "@demos/DrawMeasureDemo.vue"
 ## Usage
 
 | Plugin Usage   |  Explicit Import  |
-|----------------|:-----------------:|
+| -------------- | :---------------: |
 | `<ol-overlay>` | `<Map.OlOverlay>` |
 
 ### Example 1: Overlay Content

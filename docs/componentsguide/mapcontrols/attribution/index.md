@@ -20,7 +20,7 @@ import AttributionControlDemo from "@demos/AttributionControlDemo.vue"
 ## Usage
 
 | Plugin Usage               |           Explicit Import            |
-|----------------------------|:------------------------------------:|
+| -------------------------- | :----------------------------------: |
 | `<ol-attribution-control>` | `<MapControls.OlAttributionControl>` |
 
 ::: code-group

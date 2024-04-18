@@ -20,7 +20,7 @@ import MultiPoint from "@demos/MultiPoint.vue"
 ## Usage
 
 | Plugin Usage            |         Explicit Import         |
-|-------------------------|:-------------------------------:|
+| ----------------------- | :-----------------------------: |
 | `<ol-geom-multi-point>` | `<Geometries.OlGeomMultiPoint>` |
 
 ::: code-group

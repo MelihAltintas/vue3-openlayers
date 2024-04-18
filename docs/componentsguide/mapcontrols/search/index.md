@@ -20,7 +20,7 @@ import SearchControlDemo from "@demos/SearchControlDemo.vue"
 ## Usage
 
 | Plugin Usage          |         Explicit Import         |
-|-----------------------|:-------------------------------:|
+| --------------------- | :-----------------------------: |
 | `<ol-search-control>` | `<MapControls.OlSearchControl>` |
 
 ::: code-group
@@ -54,7 +54,7 @@ Emits when selecting an item from the list of search results.
 <template>
   <ol-map ref="map" style="height: 400px">
     <!-- ... -->
-    <ol-search-control :autocomplete="autocomplete" @select="select"/>
+    <ol-search-control :autocomplete="autocomplete" @select="select" />
   </ol-map>
 </template>
 

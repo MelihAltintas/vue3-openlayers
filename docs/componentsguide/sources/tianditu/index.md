@@ -24,7 +24,7 @@ import TiandituDemo from "@demos/TiandituDemo.vue"
 ## Usage
 
 | Plugin Usage           |       Explicit Import        |
-|------------------------|:----------------------------:|
+| ---------------------- | :--------------------------: |
 | `<ol-source-tianditu>` | `<Sources.OlSourceTianditu>` |
 
 Example of `ol-source-tianditu` usage

@@ -21,7 +21,7 @@ import GeomPoint from "@demos/GeomPoint.vue"
 ## Usage
 
 | Plugin Usage      |      Explicit Import       |
-|-------------------|:--------------------------:|
+| ----------------- | :------------------------: |
 | `<ol-geom-point>` | `<Geometries.OlGeomPoint>` |
 
 ::: code-group

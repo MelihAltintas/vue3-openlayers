@@ -20,7 +20,7 @@ import TileLayerDemo from "@demos/TileLayerDemo.vue"
 ## Usage
 
 | Plugin Usage      |    Explicit Import     |
-|-------------------|:----------------------:|
+| ----------------- | :--------------------: |
 | `<ol-tile-layer>` | `<Layers.OlTileLayer>` |
 
 Example below shows how to use ol-layer-tile component together with ol-source-wmts and with ol-source-osm.

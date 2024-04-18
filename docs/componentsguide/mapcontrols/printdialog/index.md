@@ -20,7 +20,7 @@ import PrintdialogControlDemo from "@demos/PrintdialogControlDemo.vue"
 ## Usage
 
 | Plugin Usage               |           Explicit Import            |
-|----------------------------|:------------------------------------:|
+| -------------------------- | :----------------------------------: |
 | `<ol-printdialog-control>` | `<MapControls.OlPrintdialogControl>` |
 
 ::: code-group

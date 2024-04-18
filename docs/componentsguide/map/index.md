@@ -25,7 +25,7 @@ import ViewDemo from "@demos/ViewDemo.vue"
 ## Usage
 
 | Plugin Usage | Explicit Import |
-|--------------|:---------------:|
+| ------------ | :-------------: |
 | `<ol-map>`   |  `<Map.OlMap>`  |
 
 Example of a simple map.

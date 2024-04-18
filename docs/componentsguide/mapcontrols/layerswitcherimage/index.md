@@ -22,7 +22,7 @@ import LayerswitcherimageControlDemo from "@demos/LayerswitcherimageControlDemo.
 ## Usage
 
 | Plugin Usage                      |               Explicit Import               |
-|-----------------------------------|:-------------------------------------------:|
+| --------------------------------- | :-----------------------------------------: |
 | `<ol-layerswitcherimage-control>` | `<MapControls.OlLayerswitcherimageControl>` |
 
 ::: code-group

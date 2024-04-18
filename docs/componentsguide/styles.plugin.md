@@ -1,26 +1,28 @@
-
 ### Plugin usage
 
 This component is part of the `Styles` plugin.
 **If not installed [globally](/get-started#usage-as-plugin)**, you need to import and `use` the plugin in your `main.ts` or use the explicit component import (see section below).
 
 ::: details Import and use the `Styles` plugin
+
 ```ts {8,13} [main.ts]
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import { // [!code focus:6]
+import {
+  // [!code focus:6]
   Map,
   Layers,
   Sources,
-  Styles
-} from 'vue3-openlayers';
+  Styles,
+} from "vue3-openlayers";
 
 const app = createApp(App);
 // ...
 app.use(Styles); // [!code focus]
 // ...
 ```
+
 :::
 
 ### Explicit import

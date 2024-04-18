@@ -25,7 +25,7 @@ import ViewDemo from "@demos/ViewDemo.vue"
 ## Usage
 
 | Plugin Usage | Explicit Import |
-|--------------|:---------------:|
+| ------------ | :-------------: |
 | `<ol-view>`  | `<Map.OlView>`  |
 
 Example of simple map with view in EPSG:4326 projection.

@@ -22,7 +22,7 @@ import ContextMenuDemo from "@demos/ContextMenuDemo.vue"
 ## Usage
 
 | Plugin Usage                |           Explicit Import            |
-|-----------------------------|:------------------------------------:|
+| --------------------------- | :----------------------------------: |
 | `<ol-context-menu-control>` | `<MapControls.OlContextMenuControl>` |
 
 Add context menu to map

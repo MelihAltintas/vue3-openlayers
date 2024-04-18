@@ -13,7 +13,7 @@ Use it inside ol-feature, ol-vector-layer, ol-interaction-select, ol-interaction
 ## Usage
 
 | Plugin Usage |  Explicit Import   |
-|--------------|:------------------:|
+| ------------ | :----------------: |
 | `<ol-style>` | `<Styles.OlStyle>` |
 
 <script setup>

@@ -18,7 +18,7 @@ import FeatureSelectDemo from "@demos/FeatureSelectDemo.vue"
 ## Usage
 
 | Plugin Usage             |       Explicit Import        |
-|--------------------------|:----------------------------:|
+| ------------------------ | :--------------------------: |
 | `<ol-vector-tile-layer>` | `<Layers.OlVectorTileLayer>` |
 
 ### Example 1

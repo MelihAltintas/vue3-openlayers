@@ -52,7 +52,7 @@ import App from "./App.vue";
 // However, you can also style them by your own
 import "vue3-openlayers/styles.css";
 
-import OpenLayersMap from 'vue3-openlayers';
+import OpenLayersMap from "vue3-openlayers";
 
 const app = createApp(App);
 
@@ -69,7 +69,7 @@ import App from "./App.vue";
 // However, you can also style them by your own
 import "vue3-openlayers/styles.css";
 
-import { Map, Layers, Sources } from 'vue3-openlayers';
+import { Map, Layers, Sources } from "vue3-openlayers";
 
 const app = createApp(App);
 
@@ -84,12 +84,16 @@ app.mount("#app");
 <script setup lang="ts"></script>
 
 <template>
-  <ol-map style="min-width: 400px; min-height: 400px;"> // [!code focus]
-    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" /> // [!code focus]
-    <ol-tile-layer> // [!code focus]
-      <ol-source-osm /> // [!code focus]
-    </ol-tile-layer> // [!code focus]
-  </ol-map> // [!code focus]
+  <ol-map style="min-width: 400px; min-height: 400px;">
+    // [!code focus]
+    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" /> // [!code
+    focus]
+    <ol-tile-layer>
+      // [!code focus] <ol-source-osm /> // [!code focus]
+    </ol-tile-layer>
+    // [!code focus]
+  </ol-map>
+  // [!code focus]
 </template>
 ```
 
@@ -103,7 +107,7 @@ You can also import and use components individually by importing them directly i
 
 ```vue [AppComponent.vue]
 <script setup lang="ts">
-import { Map, Layers, Sources } from 'vue3-openlayers';
+import { Map, Layers, Sources } from "vue3-openlayers";
 </script>
 
 <template>
@@ -131,8 +135,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import OpenLayersMap, {
-  type Vue3OpenlayersGlobalOptions
-} from 'vue3-openlayers';
+  type Vue3OpenlayersGlobalOptions,
+} from "vue3-openlayers";
 
 const app = createApp(App);
 
@@ -175,13 +179,13 @@ app.mount("#app");
 
 ```vue {2,10-14} [AppComponent.ts]
 <script setup lang="ts">
-import { provide } from 'vue';
+import { provide } from "vue";
 import {
   Map,
   Layers,
   Sources,
-  type Vue3OpenlayersGlobalOptions
-} from 'vue3-openlayers';
+  type Vue3OpenlayersGlobalOptions,
+} from "vue3-openlayers";
 
 const options: Vue3OpenlayersGlobalOptions = {
   debug: true,

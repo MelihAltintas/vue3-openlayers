@@ -20,7 +20,7 @@ import ZoomControlDemo from "@demos/ZoomControlDemo.vue"
 ## Usage
 
 | Plugin Usage        |        Explicit Import        |
-|---------------------|:-----------------------------:|
+| ------------------- | :---------------------------: |
 | `<ol-zoom-control>` | `<MapControls.OlZoomControl>` |
 
 ::: code-group

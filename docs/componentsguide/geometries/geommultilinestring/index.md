@@ -20,7 +20,7 @@ import MultiLineString from "@demos/MultiLineString.vue"
 ## Usage
 
 | Plugin Usage                  |           Explicit Import            |
-|-------------------------------|:------------------------------------:|
+| ----------------------------- | :----------------------------------: |
 | `<ol-geom-multi-line-string>` | `<Geometries.OlGeomMultiLineString>` |
 
 ::: code-group

@@ -20,7 +20,7 @@ import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 ## Usage
 
 | Plugin Usage                 |            Explicit Import             |
-|------------------------------|:--------------------------------------:|
+| ---------------------------- | :------------------------------------: |
 | `<ol-layerswitcher-control>` | `<MapControls.OlLayerswitcherControl>` |
 
 ::: code-group

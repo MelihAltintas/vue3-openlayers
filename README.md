@@ -92,6 +92,7 @@ docker compose run screenshot-update
 
 Please note, when recording screenshots locally the may differ from the platform (linux) in CI.
 This results in:
+
 - a: a different file name
 - b: a slightly different screenshot
 

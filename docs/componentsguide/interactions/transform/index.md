@@ -21,7 +21,7 @@ import TransformDemo from "@demos/TransformDemo.vue"
 ## Usage
 
 | Plugin Usage                 |             Explicit Import             |
-|------------------------------|:---------------------------------------:|
+| ---------------------------- | :-------------------------------------: |
 | `<ol-interaction-transform>` | `<Interactions.OlInteractionTransform>` |
 
 ::: code-group

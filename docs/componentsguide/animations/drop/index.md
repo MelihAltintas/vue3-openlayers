@@ -21,7 +21,7 @@ import DropAnimation from "@demos/DropAnimation.vue"
 ## Usage
 
 | Plugin Usage          |        Explicit Import         |
-|-----------------------|:------------------------------:|
+| --------------------- | :----------------------------: |
 | `<ol-animation-drop>` | `<Animations.OlAnimationDrop>` |
 
 ::: code-group

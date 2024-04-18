@@ -22,7 +22,7 @@ import LineString from "@demos/LineString.vue"
 ## Usage
 
 | Plugin Usage        |     Explicit Import      |
-|---------------------|:------------------------:|
+| ------------------- | :----------------------: |
 | `<ol-style-stroke>` | `<Styles.OlStyleStroke>` |
 
 ::: code-group

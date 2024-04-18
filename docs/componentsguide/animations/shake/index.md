@@ -21,7 +21,7 @@ import ShakeAnimation from "@demos/ShakeAnimation.vue"
 ## Usage
 
 | Plugin Usage           |         Explicit Import         |
-|------------------------|:-------------------------------:|
+| ---------------------- | :-----------------------------: |
 | `<ol-animation-shake>` | `<Animations.OlAnimationShake>` |
 
 ::: code-group

@@ -20,7 +20,7 @@ import VectorTileLayerDemo from "@demos/VectorTileLayerDemo.vue"
 ## Usage
 
 | Plugin Usage              |        Explicit Import         |
-|---------------------------|:------------------------------:|
+| ------------------------- | :----------------------------: |
 | `<ol-source-vector-tile>` | `<Sources.OlSourceVectorTile>` |
 
 Example below shows how you can use ol-vector-tile-layer and ol-source-vector-tile to render some vector-tile features from remote backend.

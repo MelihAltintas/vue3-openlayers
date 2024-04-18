@@ -24,7 +24,7 @@ import BingMapsDemo from "@demos/BingMapsDemo.vue"
 ## Usage
 
 | Plugin Usage           |       Explicit Import        |
-|------------------------|:----------------------------:|
+| ---------------------- | :--------------------------: |
 | `<ol-source-bingmaps>` | `<Sources.OlSourceBingmaps>` |
 
 Example of `ol-source-bingmaps` usage

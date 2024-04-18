@@ -24,7 +24,7 @@ import ViewDemo from "@demos/ViewDemo.vue"
 ## Usage
 
 | Plugin Usage            |          Explicit Import           |
-|-------------------------|:----------------------------------:|
+| ----------------------- | :--------------------------------: |
 | `<ol-interaction-link>` | `<Interactions.OlInteractionLink>` |
 
 ::: code-group

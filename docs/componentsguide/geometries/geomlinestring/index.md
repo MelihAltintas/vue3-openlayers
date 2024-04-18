@@ -20,7 +20,7 @@ import LineString from "@demos/LineString.vue"
 ## Usage
 
 | Plugin Usage            |         Explicit Import         |
-|-------------------------|:-------------------------------:|
+| ----------------------- | :-----------------------------: |
 | `<ol-geom-line-string>` | `<Geometries.OlGeomLineString>` |
 
 ::: code-group

@@ -20,7 +20,7 @@ import ZoneControlDemo from "@demos/ZoneControlDemo.vue"
 ## Usage
 
 | Plugin Usage        |        Explicit Import        |
-|---------------------|:-----------------------------:|
+| ------------------- | :---------------------------: |
 | `<ol-zone-control>` | `<MapControls.OlZoneControl>` |
 
 Add context menu to map

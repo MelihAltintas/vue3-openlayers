@@ -21,7 +21,7 @@ import CircleDemo from "@demos/CircleDemo.vue"
 ## Usage
 
 | Plugin Usage       |       Explicit Import       |
-|--------------------|:---------------------------:|
+| ------------------ | :-------------------------: |
 | `<ol-geom-circle>` | `<Geometries.OlGeomCircle>` |
 
 ::: code-group

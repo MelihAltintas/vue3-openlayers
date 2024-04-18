@@ -20,7 +20,7 @@ import MultiPolygon from "@demos/MultiPolygon.vue"
 ## Usage
 
 | Plugin Usage              |          Explicit Import          |
-|---------------------------|:---------------------------------:|
+| ------------------------- | :-------------------------------: |
 | `<ol-geom-multi-polygon>` | `<Geometries.OlGeomMultiPolygon>` |
 
 ::: code-group

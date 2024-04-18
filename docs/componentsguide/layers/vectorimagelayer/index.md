@@ -23,7 +23,7 @@ import VectorSourceDemo4 from "@demos/VectorSourceDemo4.vue"
 ## Usage
 
 | Plugin Usage              |        Explicit Import        |
-|---------------------------|:-----------------------------:|
+| ------------------------- | :---------------------------: |
 | `<ol-vector-image-layer>` | `<Layers.OlVectorImageLayer>` |
 
 Example below shows how you can use ol-vector-layer and ol-source-vector to render some vector features from remote backend.

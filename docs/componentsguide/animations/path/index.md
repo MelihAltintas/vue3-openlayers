@@ -20,7 +20,7 @@ import FlowLineDemo from "@demos/FlowLineDemo.vue"
 ## Usage
 
 | Plugin Usage          |        Explicit Import         |
-|-----------------------|:------------------------------:|
+| --------------------- | :----------------------------: |
 | `<ol-animation-path>` | `<Animations.OlAnimationPath>` |
 
 ::: code-group

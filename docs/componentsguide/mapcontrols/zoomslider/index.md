@@ -20,7 +20,7 @@ import ZoomsliderControlDemo from "@demos/ZoomsliderControlDemo.vue"
 ## Usage
 
 | Plugin Usage              |           Explicit Import           |
-|---------------------------|:-----------------------------------:|
+| ------------------------- | :---------------------------------: |
 | `<ol-zoomslider-control>` | `<MapControls.OlZoomsliderControl>` |
 
 ::: code-group

@@ -1,25 +1,27 @@
-
 ### Plugin usage
 
 This component is part of the `Sources` plugin.
 **If not installed [globally](/get-started#usage-as-plugin)**, you need to import and `use` the plugin in your `main.ts` or use the explicit component import (see section below).
 
 ::: details Import and use the `Sources` plugin
+
 ```ts {7,12} [main.ts]
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import { // [!code focus:6]
+import {
+  // [!code focus:6]
   Map,
   Layers,
-  Sources
-} from 'vue3-openlayers';
+  Sources,
+} from "vue3-openlayers";
 
 const app = createApp(App);
 // ...
 app.use(Sources); // [!code focus]
 // ...
 ```
+
 :::
 
 ### Explicit import
