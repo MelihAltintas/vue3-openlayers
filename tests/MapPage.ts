@@ -8,7 +8,14 @@ export class MapPage {
   readonly pomLink: Locator;
   readonly tocList: Locator;
 
-  constructor(readonly page: Page) {}
+  constructor(
+    readonly page: Page,
+    private mapIndex = 0,
+  ) {}
+
+  mapCanvas() {
+    return this.page.locator(".ol-viewport").nth(this.mapIndex);
+  }
 
   async goto(route: string) {
     await this.page.goto(route);
@@ -32,18 +39,18 @@ export class MapPage {
 
   async zoomIn(count = 1) {
     for (let index = 0; index < count; index++) {
-      await this.page.locator(".ol-zoom-in").click();
+      await this.mapCanvas().locator(".ol-zoom-in").click();
     }
   }
 
-  async checkCanvasScreenshot(n = 0) {
-    await expect(this.page.locator(".ol-viewport").nth(n)).toHaveScreenshot({
+  async checkCanvasScreenshot() {
+    await expect(this.mapCanvas()).toHaveScreenshot({
       timeout: 8000,
     });
   }
 
   async canvasBBox() {
-    return await this.page.locator(".ol-viewport").boundingBox();
+    return await this.mapCanvas().boundingBox();
   }
 
   async dragOnCanvas(
@@ -104,7 +111,7 @@ export class MapPage {
     dblClick = false,
   ) {
     dblClick
-      ? await this.page.locator(".ol-viewport").dblclick({
+      ? await this.mapCanvas().dblclick({
           position: {
             x: point[0],
             y: point[1],
@@ -112,7 +119,7 @@ export class MapPage {
           modifiers,
           force: true,
         })
-      : await this.page.locator(".ol-viewport").click({
+      : await this.mapCanvas().click({
           position: {
             x: point[0],
             y: point[1],

@@ -127,31 +127,31 @@ test.describe("ol-source-vector", () => {
     await map.goto("/componentsguide/sources/vector/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await map.checkCanvasScreenshot(0);
+    await map.checkCanvasScreenshot();
   });
 
   test("should render (using url)", async ({ page }) => {
-    const map = new MapPage(page);
+    const map = new MapPage(page, 1);
     await map.goto("/componentsguide/sources/vector/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await map.checkCanvasScreenshot(1);
+    await map.checkCanvasScreenshot();
   });
 
   test("should render (using features property)", async ({ page }) => {
-    const map = new MapPage(page);
+    const map = new MapPage(page, 2);
     await map.goto("/componentsguide/sources/vector/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await map.checkCanvasScreenshot(2);
+    await map.checkCanvasScreenshot();
   });
 
   test("should render (using TopoJSON format)", async ({ page }) => {
-    const map = new MapPage(page);
+    const map = new MapPage(page, 3);
     await map.goto("/componentsguide/sources/vector/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await map.checkCanvasScreenshot(3);
+    await map.checkCanvasScreenshot();
   });
 });
 
