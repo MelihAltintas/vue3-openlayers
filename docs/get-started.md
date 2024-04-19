@@ -84,16 +84,12 @@ app.mount("#app");
 <script setup lang="ts"></script>
 
 <template>
-  <ol-map style="min-width: 400px; min-height: 400px;">
-    // [!code focus]
-    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" /> // [!code
-    focus]
+  <ol-map style="min-width: 400px; min-height: 400px;">// [!code focus:6]
+    <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <ol-tile-layer>
-      // [!code focus] <ol-source-osm /> // [!code focus]
+      <ol-source-osm />
     </ol-tile-layer>
-    // [!code focus]
   </ol-map>
-  // [!code focus]
 </template>
 ```
 
