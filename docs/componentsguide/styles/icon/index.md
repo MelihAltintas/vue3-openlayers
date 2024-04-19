@@ -6,15 +6,10 @@ Use it inside ol-style to style points
 
 [[toc]]
 
-## Demo
-
 <script setup>
 import IconDemo from "@demos/IconDemo.vue"
+import IconDemoHtmlContent from "@demos/IconDemoHtmlContent.vue"
 </script>
-
-<ClientOnly>
-<IconDemo />
-</ClientOnly>
 
 ## Setup
 
@@ -23,14 +18,38 @@ import IconDemo from "@demos/IconDemo.vue"
 ## Usage
 
 | Plugin Usage      |    Explicit Import     |
-| ----------------- | :--------------------: |
+|-------------------|:----------------------:|
 | `<ol-style-icon>` | `<Styles.OlStyleIcon>` |
+
+### `src` URL
+
+You can pass an icon image by setting the `src` attribute as shown below.
+
+<ClientOnly>
+<IconDemo />
+</ClientOnly>
 
 ::: code-group
 
 <<< ../../../../src/demos/IconDemo.vue
 
 :::
+
+### Slot
+
+If no `src` Attribute is set, the component will render the HTML content within the slot into an image data URL and use the generated image as icon.
+
+<ClientOnly>
+<IconDemoHtmlContent />
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../../src/demos/IconDemoHtmlContent.vue
+
+:::
+
+## Properties
 
 ### Props from OpenLayers
 

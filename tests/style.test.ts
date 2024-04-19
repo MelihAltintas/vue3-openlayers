@@ -43,8 +43,15 @@ test.describe("ol-style-flowline", () => {
 });
 
 test.describe("ol-style-icon", () => {
-  test("should render", async ({ page }) => {
+  test("should render icons defined by src URL", async ({ page }) => {
     const map = new MapPage(page);
+    await map.goto("/componentsguide/styles/icon/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+  test("should render icons from slot conent", async ({ page }) => {
+    const map = new MapPage(page, 1);
     await map.goto("/componentsguide/styles/icon/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
