@@ -76,6 +76,8 @@ defineExpose({
 </script>
 ```
 
+For a live example, please checkout this [demo](https://stackblitz.com/edit/vue3-openlayers-source-xyz-natural-earth-demo).
+
 ## Publish extension as NPM package
 
 When creating and publishing an extension for vue3-openlayers, you should follow this instruction.
