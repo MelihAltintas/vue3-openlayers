@@ -430,6 +430,15 @@ export const config: UserConfig = {
           },
         ],
       },
+      {
+        text: "Build a Plugin",
+        items: [
+          {
+            text: "Extend vue3-openlayers",
+            link: "/pluginsguide/index",
+          },
+        ],
+      },
     ],
     socialLinks: [
       {
