@@ -15,6 +15,7 @@ import {
 import Providers from "./providers";
 import type { App, Plugin } from "vue";
 import type { Vue3OpenlayersGlobalOptions } from "./types";
+export * from "./composables";
 
 const install: Plugin = (app: App, options?: Vue3OpenlayersGlobalOptions) => {
   app.use(Map.install, options);

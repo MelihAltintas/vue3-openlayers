@@ -437,6 +437,10 @@ export const config: UserConfig = {
             text: "Extend vue3-openlayers",
             link: "/pluginsguide/index",
           },
+          {
+            text: "Publish an extension",
+            link: "/pluginsguide/publish",
+          },
         ],
       },
     ],

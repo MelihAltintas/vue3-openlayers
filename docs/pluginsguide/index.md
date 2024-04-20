@@ -78,21 +78,135 @@ defineExpose({
 
 For a live example, please checkout this [demo](https://stackblitz.com/edit/vue3-openlayers-source-xyz-natural-earth-demo).
 
-## Publish extension as NPM package
+## Animation Plugins
 
-When creating and publishing an extension for vue3-openlayers, you should follow this instruction.
-This assures, the lib can be found easily and that it follows a common plugin naming pattern.
+The composable `useAnimation` can and should be used to wrap features animations in a vue component.
+It will inject needed layers and connect the animation with it.
 
-- The package name should be `vue3-openlayers-<plugin>-<feature>`, e. g. `vue3-openlayers-source-foo`
-- Please add the keywords `vue3-openlayers` and `openlayers` to your published package
+```vue
+<template>
+  <slot></slot>
+</template>
 
-```jsonc [package.json]
-{
-  "name": "vue3-openlayers-source-foo",
-  "keywords": [
-    "openlayers",
-    "vue3-openlayers",
-  ],
-  //...
-}
+<script setup lang="ts">
+import MyAnimation from "./my-animation";
+import useAnimation from "@/composables/useAnimation";
+
+const props = withDefaults(
+  defineProps<{
+    speed?: number;
+    // ...
+   }>(),
+  {
+    speed: 0,
+  },
+);
+
+const exposed = useAnimation(MyAnimation, props);
+
+defineExpose(exposed);
+</script>
+```
+
+## MapControl Plugins
+
+The composable `useControl` can and should be used to wrap features map controls in a vue component.
+It handles adding / removing a control to the map or a control bar.
+
+```vue
+<template>
+  <div v-if="false"></div>
+</template>
+<script setup lang="ts">
+import { useAttrs } from "vue";
+import useControl from "@/composables/useControl";
+import MyControl from "./my-control";
+
+const props = withDefaults(
+  defineProps<{
+    className?: string;
+    // ...
+  }>(),
+  {
+    className: "ol-my-control",
+  },
+);
+
+const attrs = useAttrs();
+const { control } = useControl(MyControl, props, attrs);
+
+defineExpose({
+  control,
+});
+</script>
+```
+
+## Geometry Plugins
+
+The composable `useGeometry` can and should be used to wrap geometries in a vue component.
+It injects the parent feature component and applies a geometry.
+It also watches for geometry changes and updates the features.
+
+```vue
+<template>
+  <div v-if="false"></div>
+</template>
+
+<script setup lang="ts">
+import MyGeometry from "./my-geometry";
+import useGeometry from "@/composables/useGeometry";
+
+const props = withDefaults(
+  defineProps<{
+    someProperty: number[];
+  }>(),
+  {},
+);
+
+const geometry = useGeometry(MyGeometry, props);
+
+defineExpose({
+  geometry,
+});
+</script>
+```
+
+## Other Composables
+
+The following composables are exposed to support 3rd-party libs.
+
+### usePropsAsObjectProperties
+
+This composable is used to proxy vue component props and:
+- log them in debug mode
+- make them reactive
+- convert prop `styles` int `style` since `style` cannot be used as HTML attribute since it conflicts wit native `style` attribute.
+
+```ts
+const props = withDefaults(defineProps<{
+  title: string;
+  styles: string[]
+}>(), {
+  styles: []
+});
+
+const properties = usePropsAsObjectProperties(props);
+// properties.styles is undefined
+// properties.style is of type string[]
+```
+
+### useOpenLayersEvents
+
+This composable is used to be able to pass-through all original events to the current component.
+
+```ts
+// ...
+import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+
+// prevent warnings caused by event pass-through via useOpenLayersEvents composable
+defineOptions({
+  inheritAttrs: false,
+});
+
+useOpenLayersEvents(draw, ["drawstart", "drawend"]);
 ```
