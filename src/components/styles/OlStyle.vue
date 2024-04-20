@@ -9,6 +9,7 @@ import type { Ref } from "vue";
 import { provide, inject, watch, onUnmounted, onMounted, computed } from "vue";
 
 import Style, { type StyleLike } from "ol/style/Style";
+import type { FlatStyleLike } from "ol/style/flat";
 import Draw from "ol/interaction/Draw";
 import Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -32,7 +33,7 @@ const properties = usePropsAsObjectProperties(props);
 
 const style = computed(() => new Style(properties));
 
-const setStyle = (val: StyleLike) => {
+const setStyle = (val: StyleLike | FlatStyleLike) => {
   const st = styledObj?.value;
   if (!st) {
     return;

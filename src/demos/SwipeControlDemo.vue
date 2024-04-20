@@ -17,7 +17,7 @@
     <ol-tile-layer ref="bingLayer" title="Bing Maps">
       <ol-source-bingmaps
         apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
-        :imagerySet="'CanvasDark'"
+        imagerySet="CanvasDark"
       />
     </ol-tile-layer>
 

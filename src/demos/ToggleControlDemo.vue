@@ -11,7 +11,7 @@
       <ol-source-osm />
     </ol-tile-layer>
     <ol-toggle-control
-      :html="'log'"
+      html="log"
       :onToggle="($event) => console.log('ol-toggle-control: onToggle', $event)"
     />
   </ol-map>

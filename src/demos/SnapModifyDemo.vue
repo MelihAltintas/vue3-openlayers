@@ -19,7 +19,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-vector-layer :styles="vectorStyle">
+    <ol-vector-layer>
       <ol-source-vector :features="zones">
         <ol-interaction-modify
           v-if="modifyEnabled"
@@ -33,6 +33,10 @@
           @drawend="drawend"
         />
         <ol-interaction-snap v-if="modifyEnabled || drawEnabled" />
+        <ol-style>
+          <ol-style-stroke color="blue" :width="3"></ol-style-stroke>
+          <ol-style-fill color="rgba(0, 0, 255, 0.4)"></ol-style-fill>
+        </ol-style>
       </ol-source-vector>
     </ol-vector-layer>
     <ol-interaction-select
@@ -41,8 +45,8 @@
       :features="selectedFeatures"
     >
       <ol-style>
-        <ol-style-stroke :color="'red'" :width="2"></ol-style-stroke>
-        <ol-style-fill :color="`rgba(255, 0, 0, 0.4)`"></ol-style-fill>
+        <ol-style-stroke color="red" :width="2"></ol-style-stroke>
+        <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
       </ol-style>
     </ol-interaction-select>
   </ol-map>
@@ -51,7 +55,6 @@
 <script setup>
 import { ref, inject } from "vue";
 import { GeoJSON } from "ol/format";
-import { Fill, Stroke, Style } from "ol/style";
 import { Collection } from "ol";
 
 const map = ref("");
@@ -115,20 +118,6 @@ const drawend = (event) => {
 };
 
 zones.value = new GeoJSON().readFeatures(geojsonObject);
-
-function vectorStyle() {
-  const style = new Style({
-    stroke: new Stroke({
-      color: "blue",
-      width: 3,
-    }),
-    fill: new Fill({
-      color: "rgba(0, 0, 255, 0.4)",
-    }),
-  });
-  return style;
-}
-
 const selectConditions = inject("ol-selectconditions");
 const selectCondition = selectConditions.click;
 

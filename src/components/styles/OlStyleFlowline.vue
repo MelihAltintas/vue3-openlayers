@@ -15,6 +15,7 @@ import type Feature from "ol/Feature";
 import Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { StyleLike } from "ol/style/Style";
+import type { FlatStyleLike } from "ol/style/flat";
 import type { OverrideStyleFunction } from ".";
 import type { Layer } from "ol/layer";
 import type { Select } from "ol/interaction";
@@ -42,7 +43,7 @@ const properties = usePropsAsObjectProperties(props);
 
 const style = computed(() => new FlowLine(properties));
 
-const setStyle = (val: StyleLike) => {
+const setStyle = (val: StyleLike | FlatStyleLike) => {
   if (!styledObj?.value) {
     return;
   }
