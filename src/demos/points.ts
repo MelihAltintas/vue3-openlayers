@@ -504,5 +504,3 @@ export const arrayWith500Points = [
 export const arrayWith50000Points = Array(100)
   .fill()
   .reduce((acc) => acc.concat(arrayWith500Points), []);
-
-console.log(arrayWith50000Points);
