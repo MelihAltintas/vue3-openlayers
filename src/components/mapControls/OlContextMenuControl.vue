@@ -8,7 +8,7 @@ import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
-const props = withDefaults(defineProps<Options>(), {
+const props = withDefaults(defineProps<Partial<Options>>(), {
   eventType: "contextmenu",
   defaultItems: true,
   width: 150,
