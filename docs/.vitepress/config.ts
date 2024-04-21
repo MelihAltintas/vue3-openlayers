@@ -42,6 +42,10 @@ export const config: UserConfig = {
         link: "/demo",
       },
       {
+        text: "Playground",
+        link: "/playground",
+      },
+      {
         text: "Releases",
         link: "https://github.com/MelihAltintas/vue3-openlayers/releases",
       },
@@ -431,7 +435,7 @@ export const config: UserConfig = {
         ],
       },
       {
-        text: "Build a Plugin",
+        text: "Extension",
         items: [
           {
             text: "Extend vue3-openlayers",
