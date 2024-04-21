@@ -1,2 +1,2 @@
 npm run docs:update-requirements
-
+npm run docs:update-extension

@@ -445,6 +445,10 @@ export const config: UserConfig = {
             text: "Publish an extension",
             link: "/pluginsguide/publish",
           },
+          {
+            text: "Extensions List",
+            link: "/pluginsguide/list",
+          },
         ],
       },
     ],
