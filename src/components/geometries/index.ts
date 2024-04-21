@@ -17,7 +17,9 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlGeomPoint", OlGeomPoint);
   app.component("OlGeomPolygon", OlGeomPolygon);
 
-  app.provide("ol-options", options);
+  if (options) {
+    app.provide("ol-options", options);
+  }
 }
 
 declare module "@vue/runtime-core" {

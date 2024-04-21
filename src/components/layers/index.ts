@@ -23,7 +23,9 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlWebglTileLayer", OlWebglTileLayer);
   app.component("OlWebglVectorLayer", OlWebglVectorLayer);
 
-  app.provide("ol-options", options);
+  if (options) {
+    app.provide("ol-options", options);
+  }
 }
 
 declare module "@vue/runtime-core" {

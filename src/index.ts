@@ -18,15 +18,17 @@ import type { Vue3OpenlayersGlobalOptions } from "./types";
 export * from "./composables";
 
 const install: Plugin = (app: App, options?: Vue3OpenlayersGlobalOptions) => {
-  app.use(Map.install, options);
-  app.use(Layers.install, options);
-  app.use(Sources.install, options);
-  app.use(MapControls.install, options);
-  app.use(Geometries.install, options);
-  app.use(Styles.install, options);
-  app.use(Interactions.install, options);
-  app.use(Animations.install, options);
-  app.use(Providers.install, options);
+  app.use(Map.install);
+  app.use(Layers.install);
+  app.use(Sources.install);
+  app.use(MapControls.install);
+  app.use(Geometries.install);
+  app.use(Styles.install);
+  app.use(Interactions.install);
+  app.use(Animations.install);
+  app.use(Providers.install);
+
+  app.provide("ol-options", options);
 };
 
 const plugin = { install };

@@ -45,7 +45,9 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlLayerswitcherimageControl", OlLayerswitcherimageControl);
   app.component("OlZoneControl", OlZoneControl);
 
-  app.provide("ol-options", options);
+  if (options) {
+    app.provide("ol-options", options);
+  }
 }
 
 declare module "@vue/runtime-core" {
