@@ -1,18 +1,17 @@
-import { VueWrapper, mount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import OlFeature from "../OlFeature.vue";
-import { beforeAll, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import VectorSource from "ol/source/Vector";
 import { computed, ref } from "vue";
 
 describe("OlMap.vue", () => {
-  let featureComponent: VueWrapper;
   const props = ref({ attributions: "test" });
   const vectorSource = computed(() => {
     return new VectorSource(props.value);
   });
 
-  beforeAll(() => {
-    featureComponent = mount(OlFeature, {
+  function createComponent() {
+    return mount(OlFeature, {
       props: {
         properties: {
           foo: "bar",
@@ -25,14 +24,14 @@ describe("OlMap.vue", () => {
         },
       },
     });
-  });
+  }
+
   it("passes props to the feature constructor", () => {
-    // @ts-ignore
-    expect(featureComponent.vm.feature.getProperties().foo).toBe("bar");
+    expect(createComponent().vm.feature.getProperties().foo).toBe("bar");
   });
   it("updates feature properties on change", async () => {
-    await featureComponent.setProps({ properties: { foo: "baz" } });
-    // @ts-ignore
-    expect(featureComponent.vm.feature.getProperties().foo).toBe("baz");
+    const component = createComponent();
+    await component.setProps({ properties: { foo: "baz" } });
+    expect(component.vm.feature.getProperties().foo).toBe("baz");
   });
 });

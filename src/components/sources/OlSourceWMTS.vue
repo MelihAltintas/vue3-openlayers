@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import WMTS, { type Options } from "ol/source/WMTS";
 import WMTSTileGrid from "ol/tilegrid/WMTS";
-import { get as getProjection } from "ol/proj";
+import { get as getProjection, type ProjectionLike } from "ol/proj";
 import type { Extent } from "ol/extent";
 import { getTopLeft, getWidth } from "ol/extent";
 import type { Ref } from "vue";
@@ -51,7 +51,7 @@ const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 const properties = usePropsAsObjectProperties(props);
 
 const extent = computed((): Extent | undefined => {
-  return getProjection(properties.projection)?.getExtent();
+  return getProjection(properties.projection as ProjectionLike)?.getExtent();
 });
 const origin = computed((): Coordinate | undefined => {
   return extent.value ? getTopLeft(extent.value) : undefined;
@@ -84,7 +84,9 @@ const source = computed(
   () =>
     new WMTS({
       ...properties,
-      projection: projectionFromProperties(properties.projection),
+      projection: projectionFromProperties(
+        properties.projection as ProjectionLike,
+      ),
       tileGrid: getTileGrid.value,
     }),
 );

@@ -47,7 +47,8 @@ export class Tianditu extends WMTSSource {
       .replace("{layer}", options.layerType)
       .replace("{proj}", options.matrixSet);
     const tileGrid =
-      options.tileGrid || Tianditu.getTileGrid(options.projection);
+      options.tileGrid ||
+      Tianditu.getTileGrid(options.projection as ProjectionLike);
     const crossOrigin =
       options.crossOrigin !== undefined ? options.crossOrigin : "anonymous";
     const superOptions: Options = {

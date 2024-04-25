@@ -16,6 +16,7 @@ import type { SimpleGeometry } from "ol/geom";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
 import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import type { ProjectionLike } from "ol/proj";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -31,7 +32,7 @@ const properties = usePropsAsObjectProperties(props);
 
 const createProp = () => ({
   ...properties,
-  projection: projectionFromProperties(properties.projection),
+  projection: projectionFromProperties(properties.projection as ProjectionLike),
 });
 const view = new View(createProp());
 

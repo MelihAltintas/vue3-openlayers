@@ -26,6 +26,7 @@ describe("usePropsAsObjectProperties", () => {
     const properties = usePropsAsObjectProperties(props);
 
     expect(properties.style).toBe("foo");
-    expect(properties.styles).toBeUndefined();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((properties as any).styles).toBeUndefined();
   });
 });

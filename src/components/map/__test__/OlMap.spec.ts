@@ -1,12 +1,11 @@
-import { VueWrapper, mount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import OlMap from "../OlMap.vue";
-import { beforeAll, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { FullScreen, Zoom } from "ol/control";
 
 describe("OlMap.vue", () => {
-  let mapComponent: VueWrapper;
-  beforeAll(() => {
-    mapComponent = mount(OlMap, {
+  function createComponent() {
+    return mount(OlMap, {
       props: {
         controls: [new FullScreen({}), new Zoom({})],
       },
@@ -16,12 +15,12 @@ describe("OlMap.vue", () => {
         },
       },
     });
-  });
+  }
   it("passes props to the map constructor", () => {
-    const olViewportWrapepr = mapComponent.find(".ol-viewport");
+    const olViewportWrapepr = createComponent().find(".ol-viewport");
     expect(olViewportWrapepr.exists());
   });
   it("renders viewport DOM element", () => {
-    mapComponent.find(".ol-viewport").exists();
+    createComponent().find(".ol-viewport").exists();
   });
 });

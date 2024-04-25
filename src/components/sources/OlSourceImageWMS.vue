@@ -11,6 +11,7 @@ import {
   IMAGE_SOURCE_EVENTS,
   useOpenLayersEvents,
 } from "@/composables/useOpenLayersEvents";
+import type { ProjectionLike } from "ol/proj";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -48,7 +49,9 @@ const createSource = () =>
       STYLES: props.styles,
       TIME: props.time,
     },
-    projection: projectionFromProperties(properties.projection),
+    projection: projectionFromProperties(
+      properties.projection as ProjectionLike,
+    ),
   });
 
 let source = createSource();

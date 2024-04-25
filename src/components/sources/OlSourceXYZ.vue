@@ -13,6 +13,8 @@ import {
   TILE_SOURCE_EVENTS,
   useOpenLayersEvents,
 } from "@/composables/useOpenLayersEvents";
+import type { ProjectionLike } from "ol/proj";
+import type { TileGrid } from "ol/tilegrid";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -45,7 +47,10 @@ const source = computed(
   () =>
     new XYZ({
       ...properties,
-      projection: projectionFromProperties(properties.projection),
+      projection: projectionFromProperties(
+        properties.projection as ProjectionLike,
+      ),
+      tileGrid: properties.tileGrid as TileGrid | undefined,
     }),
 );
 
