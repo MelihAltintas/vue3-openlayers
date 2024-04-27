@@ -7,6 +7,7 @@ import OlInteractionLink from "./OlInteractionLink.vue";
 import OlInteractionSelect from "./OlInteractionSelect.vue";
 import OlInteractionDraw from "./OlInteractionDraw.vue";
 import OlInteractionModify from "./OlInteractionModify.vue";
+import OlInteractionPointer from "./OlInteractionPointer.vue";
 import OlInteractionSnap from "./OlInteractionSnap.vue";
 import OlInteractionTransform from "./OlInteractionTransform.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
@@ -20,6 +21,7 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlInteractionSelect", OlInteractionSelect);
   app.component("OlInteractionDraw", OlInteractionDraw);
   app.component("OlInteractionModify", OlInteractionModify);
+  app.component("OlInteractionPointer", OlInteractionPointer);
   app.component("OlInteractionSnap", OlInteractionSnap);
   app.component("OlInteractionTransform", OlInteractionTransform);
 
@@ -44,6 +46,7 @@ export {
   OlInteractionSelect,
   OlInteractionDraw,
   OlInteractionModify,
+  OlInteractionPointer,
   OlInteractionSnap,
   OlInteractionTransform,
 };

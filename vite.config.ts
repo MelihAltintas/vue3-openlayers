@@ -126,6 +126,7 @@ export default defineConfig({
           "ol/interaction/Draw": "Draw",
           "ol/interaction/DragBox": "DragBox",
           "ol/interaction/Modify": "Modify",
+          "ol/interaction/Pointer": "Pointer",
           "ol/style/Circle": "CircleStyle",
           "ol/style/Fill": "Fill",
           "ol/style/Stroke": "Stroke",

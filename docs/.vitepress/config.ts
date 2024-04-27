@@ -385,6 +385,10 @@ export const config: UserConfig = {
                 link: "/componentsguide/interactions/modify/",
               },
               {
+                text: "ol-interaction-pointer",
+                link: "/componentsguide/interactions/pointer/",
+              },
+              {
                 text: "ol-interaction-select",
                 link: "/componentsguide/interactions/select/",
               },
