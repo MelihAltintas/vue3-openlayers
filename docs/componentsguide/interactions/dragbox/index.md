@@ -22,7 +22,7 @@ import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
 ## Usage
 
 | Plugin Usage               |            Explicit Import            |
-| -------------------------- | :-----------------------------------: |
+|----------------------------|:-------------------------------------:|
 | `<ol-interaction-dragbox>` | `<Interactions.OlInteractionDragbox>` |
 
 ::: code-group
@@ -65,9 +65,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-map ref="mapRef" @error="handleEvent">
-    <!-- ... -->
-  </ol-map>
+  <ol-interaction-dragbox ref="dragboxRef" @error="handleEvent" />
   <!-- ... -->
 </template>
 
@@ -75,10 +73,10 @@ To access the source, you can use a `ref()` as shown below:
 import { ref, onMounted } from "vue";
 import type DragBox from "ol/interaction/DragBox";
 
-const drgboxRef = ref<{ dragbox: DragBox } | null>(null);
+const dragboxRef = ref<{ dragbox: DragBox } | null>(null);
 
 onMounted(() => {
-  const dragbox: DragBox = drgboxRef.value?.dragbox;
+  const dragbox: DragBox = dragboxRef.value?.dragbox;
   // call your method on `dragbox`
 });
 </script>
