@@ -1,5 +1,21 @@
 
 
+# [8.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v8.0.0...v8.1.0) (2024-04-27)
+
+
+### Bug Fixes
+
+* add missing types for FlatStyleLike ([e930496](https://github.com/MelihAltintas/vue3-openlayers/commit/e930496d4e3730f66d9f83aeb3f34af05f2beb1f)), closes [#332](https://github.com/MelihAltintas/vue3-openlayers/issues/332)
+* **ol-contextmenu-control:** use partial options ([cbc13da](https://github.com/MelihAltintas/vue3-openlayers/commit/cbc13da03a87506629014a8127c28f8fb8348ff2))
+* prevent providing ol-options multiple times ([0f138d1](https://github.com/MelihAltintas/vue3-openlayers/commit/0f138d14bfe96f952f935475defc6140a4f8be3c)), closes [#338](https://github.com/MelihAltintas/vue3-openlayers/issues/338)
+
+
+### Features
+
+* export composables ([73c442f](https://github.com/MelihAltintas/vue3-openlayers/commit/73c442f193a4638cb2951488803a824e6518e51e))
+* **ol-interaction-pointer:** add new pointer interaction ([ab675b2](https://github.com/MelihAltintas/vue3-openlayers/commit/ab675b2a6b5f7df363b9a088dd7f68db88fee478)), closes [#339](https://github.com/MelihAltintas/vue3-openlayers/issues/339)
+* **ol-style-icon:** allow to place icon content in slot ([65d970a](https://github.com/MelihAltintas/vue3-openlayers/commit/65d970a3c42fc7195f2fde2e7c9f5a94cfad396a)), closes [#295](https://github.com/MelihAltintas/vue3-openlayers/issues/295)
+
 # [8.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v7.0.0...v8.0.0) (2024-04-18)
 
 
