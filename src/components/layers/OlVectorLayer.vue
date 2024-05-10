@@ -43,9 +43,35 @@ const properties = usePropsAsObjectProperties(props);
 
 const vectorLayer = computed(() => new VectorLayer(properties));
 
-watch(properties, () => {
-  vectorLayer.value.setProperties(properties);
-});
+watch(
+  () => properties,
+  (newValue) => {
+    vectorLayer.value.setProperties(newValue);
+    for (const key in newValue) {
+      const keyInObj = key as keyof typeof newValue;
+      if (newValue[keyInObj]) {
+        vectorLayer.value.set(key, newValue[keyInObj]);
+      }
+    }
+  },
+  { deep: true },
+);
+
+watch(
+  () => props.visible,
+  (newVisible: boolean) => {
+    vectorLayer.value.setVisible(newVisible);
+  },
+  { immediate: true },
+);
+
+watch(
+  () => props.opacity,
+  (newOpacity: number) => {
+    vectorLayer.value.setOpacity(newOpacity);
+  },
+  { immediate: true },
+);
 
 onMounted(() => {
   map?.addLayer(vectorLayer.value);
