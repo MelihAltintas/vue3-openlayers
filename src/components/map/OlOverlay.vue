@@ -27,7 +27,13 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<Options>();
+const props = withDefaults(defineProps<Options>(), {
+  positioning: "top-left",
+  stopEvent: true,
+  insertFirst: true,
+  autoPan: false,
+  className: "ol-overlay",
+});
 
 const map = inject<Map>("map");
 
