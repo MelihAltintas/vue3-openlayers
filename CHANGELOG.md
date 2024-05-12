@@ -1,5 +1,27 @@
 
 
+# [9.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v8.1.0...v9.0.0) (2024-05-12)
+
+
+### Bug Fixes
+
+* **ol-overlay:** set correct default values as described in the docs ([2e9e2a6](https://github.com/MelihAltintas/vue3-openlayers/commit/2e9e2a67ecf9a7c11a169ed5d2e8a413db5e728b)), closes [#346](https://github.com/MelihAltintas/vue3-openlayers/issues/346)
+* **ol-source-wmts:** add missing optional `tileGrid` prop ([1237fe1](https://github.com/MelihAltintas/vue3-openlayers/commit/1237fe172a56858ec866e8329b126afe78ad1d78))
+* **ol-vector-layer:** watch opacity / visible changes ([e9ae6fa](https://github.com/MelihAltintas/vue3-openlayers/commit/e9ae6fa22fe88846137a717e83be46039e5c6d52)), closes [#347](https://github.com/MelihAltintas/vue3-openlayers/issues/347)
+
+
+### Code Refactoring
+
+* **ol-layer-*:**  push layer to correct collection based on parent component injection ([ee46969](https://github.com/MelihAltintas/vue3-openlayers/commit/ee469696fba79d7c0be294c2b2bb8192b29487c3)), closes [#344](https://github.com/MelihAltintas/vue3-openlayers/issues/344) [#344](https://github.com/MelihAltintas/vue3-openlayers/issues/344)
+
+
+### BREAKING CHANGES
+
+* **ol-layer-*:** These changes may not affect you directly. Previously, for some layer types, a layer was always added to the map, even if the layer component was used within a LayerGroup. This resulted in layers existing multiple times (in the LayerGroup and at the top level (Reported in #344)). Due to the refactoring, all layers are now treated the same (with onMounted and when changing layer properties).
+1.) If the layer component is within an `ol-layer-group`, it is added to the group.
+2.) If the layer component is inside an `ol-overviewmap-control`, it is added to the OverviewMap
+3.) If 1) and 2) do not apply, the layer component is added directly to the map
+
 # [8.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v8.0.0...v8.1.0) (2024-04-27)
 
 
