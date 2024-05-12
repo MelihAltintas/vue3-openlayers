@@ -5,25 +5,18 @@
 </template>
 
 <script setup lang="ts">
-import {
-  inject,
-  provide,
-  onUnmounted,
-  onMounted,
-  watch,
-  shallowRef,
-} from "vue";
+import { inject, provide, watch, shallowRef } from "vue";
 import { Cluster } from "ol/source";
 import { easeOut } from "ol/easing";
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
-import type LayerGroup from "ol/layer/Group";
 import {
   FEATURE_EVENTS,
   useOpenLayersEvents,
@@ -57,7 +50,6 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
-const layerGroup = inject<LayerGroup | null>("layerGroup", null);
 
 const properties = usePropsAsObjectProperties(props);
 
@@ -84,36 +76,7 @@ const vectorLayer = shallowRef(
   }),
 );
 
-watch(
-  () => properties,
-  (newValue) => {
-    vectorLayer.value.setProperties(properties);
-
-    for (const key in newValue) {
-      const keyInObj = key as keyof typeof newValue;
-      if (newValue[keyInObj]) {
-        vectorLayer.value.set(key, newValue[keyInObj]);
-      }
-    }
-
-    if (layerGroup) {
-      const layerCollection = layerGroup.getLayers();
-      layerCollection.push(vectorLayer.value);
-      layerGroup.setLayers(layerCollection);
-    }
-  },
-  { deep: true },
-);
-
-onMounted(() => {
-  map?.addLayer(vectorLayer.value);
-  vectorLayer.value.changed();
-  map?.changed();
-});
-
-onUnmounted(() => {
-  map?.removeLayer(vectorLayer.value);
-});
+useLayer(vectorLayer, properties);
 
 provide("vectorLayer", clusterSource);
 provide("stylable", vectorLayer);

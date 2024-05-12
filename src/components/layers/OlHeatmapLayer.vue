@@ -5,23 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import {
-  inject,
-  provide,
-  onUnmounted,
-  onMounted,
-  watch,
-  shallowRef,
-} from "vue";
+import { provide, shallowRef } from "vue";
 import HeatmapLayer from "ol/layer/Heatmap";
 import type { Extent } from "ol/extent";
-import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
-import type LayerGroup from "ol/layer/Group";
 
 type WeightFunction = () => number;
 
@@ -44,38 +36,9 @@ const props = withDefaults(
   },
 );
 
-const map = inject<Map>("map");
-const layerGroup = inject<LayerGroup | null>("layerGroup", null);
-
 const properties = usePropsAsObjectProperties(props);
 const heatmapLayer = shallowRef(new HeatmapLayer(properties));
-
-watch(
-  () => properties,
-  (newValue) => {
-    for (const key in newValue) {
-      const keyInObj = key as keyof typeof newValue;
-      if (newValue[keyInObj]) {
-        heatmapLayer.value.set(key, newValue[keyInObj]);
-      }
-    }
-  },
-  { deep: true },
-);
-
-onMounted(() => {
-  map?.addLayer(heatmapLayer.value);
-
-  if (layerGroup) {
-    const layerCollection = layerGroup.getLayers();
-    layerCollection.push(heatmapLayer.value);
-    layerGroup.setLayers(layerCollection);
-  }
-});
-
-onUnmounted(() => {
-  map?.removeLayer(heatmapLayer.value);
-});
+useLayer(heatmapLayer, properties);
 
 provide("heatmapLayer", heatmapLayer);
 provide("stylable", heatmapLayer);

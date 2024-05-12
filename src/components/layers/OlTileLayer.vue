@@ -5,24 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import {
-  inject,
-  provide,
-  onUnmounted,
-  onMounted,
-  watch,
-  ref,
-  type Ref,
-} from "vue";
+import { provide, shallowRef } from "vue";
 import TileLayer from "ol/layer/Tile";
-import type Map from "ol/Map";
-import type { OverviewMap } from "ol/control";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
-import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<
@@ -36,67 +26,10 @@ const props = withDefaults(
   },
 );
 
-const map = inject<Map>("map");
-const layerGroup = inject<LayerGroup | null>("layerGroup", null);
-const overViewMap = inject<Ref<OverviewMap | null> | null>("overviewMap", null);
-
 const properties = usePropsAsObjectProperties(props);
 
-const tileLayer = ref(new TileLayer(properties));
-
-watch(
-  () => props.opacity,
-  (newOpacity: number) => {
-    tileLayer.value.setOpacity(newOpacity);
-  },
-  { immediate: true },
-);
-
-watch(
-  () => props.visible,
-  (newVisible: boolean) => {
-    tileLayer.value.setVisible(newVisible);
-  },
-  { immediate: true },
-);
-
-const applyTileLayer = () => {
-  if (layerGroup) {
-    const layerCollection = layerGroup.getLayers();
-    layerCollection.push(tileLayer.value);
-    layerGroup.setLayers(layerCollection);
-  }
-  if (overViewMap?.value) {
-    overViewMap.value?.getOverviewMap().addLayer(tileLayer.value);
-    overViewMap.value?.changed();
-  } else {
-    map?.addLayer(tileLayer.value);
-  }
-};
-
-const removeTileLayer = () => {
-  if (overViewMap?.value) {
-    overViewMap.value?.getOverviewMap().removeLayer(tileLayer.value);
-    overViewMap.value?.changed();
-  } else {
-    map?.removeLayer(tileLayer.value);
-  }
-};
-
-if (overViewMap?.value) {
-  watch(overViewMap, () => {
-    removeTileLayer();
-    applyTileLayer();
-  });
-}
-
-onMounted(() => {
-  applyTileLayer();
-});
-
-onUnmounted(() => {
-  removeTileLayer();
-});
+const tileLayer = shallowRef(new TileLayer(properties));
+useLayer(tileLayer, properties);
 
 provide("tileLayer", tileLayer);
 

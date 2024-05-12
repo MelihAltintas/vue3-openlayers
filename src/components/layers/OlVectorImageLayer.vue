@@ -5,16 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, onUnmounted, onMounted, watch, computed } from "vue";
+import { provide, shallowRef } from "vue";
 
 import VectorImageLayer from "ol/layer/VectorImage";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
-import type { Map } from "ol";
-import type LayerGroup from "ol/layer/Group";
 
 const props = withDefaults(
   defineProps<
@@ -33,30 +32,10 @@ const props = withDefaults(
   },
 );
 
-const map = inject<Map>("map");
-const layerGroup = inject<LayerGroup | null>("layerGroup", null);
-
 const properties = usePropsAsObjectProperties(props);
 
-const vectorImageLayer = computed(() => new VectorImageLayer(properties));
-
-watch(properties, () => {
-  vectorImageLayer.value.setProperties(properties);
-});
-
-onMounted(() => {
-  map?.addLayer(vectorImageLayer.value);
-
-  if (layerGroup) {
-    const layerCollection = layerGroup.getLayers();
-    layerCollection.push(vectorImageLayer.value);
-    layerGroup.setLayers(layerCollection);
-  }
-});
-
-onUnmounted(() => {
-  map?.removeLayer(vectorImageLayer.value);
-});
+const vectorImageLayer = shallowRef(new VectorImageLayer(properties));
+useLayer(vectorImageLayer, properties);
 
 provide("vectorLayer", vectorImageLayer);
 provide("stylable", vectorImageLayer);
