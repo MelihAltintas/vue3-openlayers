@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, computed, shallowRef } from "vue";
+import { provide, shallowRef } from "vue";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";

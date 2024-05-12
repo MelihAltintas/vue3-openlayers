@@ -1,5 +1,5 @@
 <template>
-  <ol-map ref="map" style="height: 400px" :controls="[]">
+  <ol-map ref="mapRef" style="height: 400px" :controls="[]">
     <ol-view
       ref="view"
       :center="center"
@@ -14,14 +14,16 @@
       />
     </ol-tile-layer>
 
-    <ol-tile-layer ref="bingLayer" title="Bing Maps">
-      <ol-source-bingmaps
-        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
-        imagerySet="CanvasDark"
-      />
-    </ol-tile-layer>
+    <ol-layer-group ref="layerGroup" title="Stadia Maps">
+      <ol-tile-layer title="Stamen Watercolor">
+        <ol-source-stadia-maps layer="stamen_watercolor" />
+      </ol-tile-layer>
+      <ol-tile-layer title="Stamen Terrain Labels">
+        <ol-source-stadia-maps layer="stamen_terrain_labels" />
+      </ol-tile-layer>
+    </ol-layer-group>
 
-    <ol-tile-layer ref="osmLayer" title="OSM">
+    <ol-tile-layer title="OSM">
       <ol-source-osm />
     </ol-tile-layer>
 
@@ -29,19 +31,24 @@
   </ol-map>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
+import type MapRef from "ol/Map";
+
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
 const layerList = ref([]);
 const jawgLayer = ref(null);
-const osmLayer = ref(null);
-const bingLayer = ref(null);
+const layerGroup = ref(null);
+const mapRef = ref<MapRef | null>(null);
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);
-  layerList.value.push(bingLayer.value.tileLayer);
-  layerList.value.push(osmLayer.value.tileLayer);
+  layerList.value.push(layerGroup.value.layerGroup);
+});
+
+onMounted(() => {
+  console.log(mapRef.value);
 });
 </script>
