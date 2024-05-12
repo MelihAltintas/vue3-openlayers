@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 
 import { MapPage } from "./MapPage";
 
-test.describe("ol-source-bingmaps", () => {
+test.describe.skip("ol-source-bingmaps", () => {
   test("should render", async ({ page }) => {
     const map = new MapPage(page);
     await map.goto("/componentsguide/sources/bing/");

@@ -206,7 +206,7 @@ test.describe("ol-zone-control", () => {
     await map.goto("/componentsguide/mapcontrols/zone/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
-    await map.page.locator(".ol-control.ol-mapzone").nth(1).click();
+    await map.page.locator(".ol-control.ol-mapzone").click();
     await map.checkCanvasScreenshot();
   });
 });

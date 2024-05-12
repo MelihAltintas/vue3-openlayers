@@ -14,11 +14,8 @@
       />
     </ol-tile-layer>
 
-    <ol-tile-layer ref="bingLayer" title="Bing Maps">
-      <ol-source-bingmaps
-        apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
-        imagerySet="CanvasDark"
-      />
+    <ol-tile-layer ref="stadiaLayer" title="Stamen Watercolor">
+      <ol-source-stadia-maps layer="stamen_watercolor" />
     </ol-tile-layer>
 
     <ol-tile-layer ref="osmLayer" title="OSM">
@@ -37,11 +34,11 @@ const zoom = ref(8);
 const layerList = ref([]);
 const jawgLayer = ref(null);
 const osmLayer = ref(null);
-const bingLayer = ref(null);
+const stadiaLayer = ref(null);
 
 onMounted(() => {
   layerList.value.push(jawgLayer.value.tileLayer);
-  layerList.value.push(bingLayer.value.tileLayer);
+  layerList.value.push(stadiaLayer.value.tileLayer);
   layerList.value.push(osmLayer.value.tileLayer);
 });
 </script>
