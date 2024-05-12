@@ -20,7 +20,7 @@ import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 ## Usage
 
 | Plugin Usage                 |            Explicit Import             |
-| ---------------------------- | :------------------------------------: |
+|------------------------------|:--------------------------------------:|
 | `<ol-layerswitcher-control>` | `<MapControls.OlLayerswitcherControl>` |
 
 ::: code-group
@@ -30,6 +30,8 @@ import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 :::
 
 ## Properties
+
+Please be sure to also check out the properties from [`ol-layer-group`](../../layers/group/index.md) when you want to show grouped layers.
 
 ### selection
 

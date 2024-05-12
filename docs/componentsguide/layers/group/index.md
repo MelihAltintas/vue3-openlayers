@@ -20,7 +20,7 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 ## Usage
 
 | Plugin Usage       |     Explicit Import     |
-| ------------------ | :---------------------: |
+|--------------------|:-----------------------:|
 | `<ol-layer-group>` | `<Layers.OlLayerGroup>` |
 
 The example below shows how you can apply common styles / behavior on multiple layers.
@@ -42,7 +42,18 @@ This deviating props are described in the section below.
 
 ### Deviating Properties
 
-None.
+#### title
+
+- **Type**: `String`
+
+You can add a title to the group.
+This is relevant if you want the group for example to appear in the [`ol-layerswitcher-control`](../../mapcontrols/layerswitcher/index.md).
+
+#### openInLayerSwitcher
+
+- **Type**: `Boolean`
+
+Setting this property, will result in expanded layers within the group in [`ol-layerswitcher-control`](../../mapcontrols/layerswitcher/index.md).
 
 ## Events
 
