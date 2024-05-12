@@ -3,6 +3,57 @@
 If you like to add a specific component wrapper based on an external
 library deviating from `ol` or `ol-ext`, please follow this guide.
 
+## Layer Plugins
+
+If you like to add a specific map layer, you can create your own component and integrate it.
+Therefore the source component should be placed within a layer component.
+The composable `useLayer` will help you implementing it.
+It will add the layer to the parent layer group, to a parent overview-map component or to the map itself based on usage and your component tree.
+
+The example below demonstrates how a source called `FooLayer` could be implemented:
+
+```vue [FooLayer.vue]
+<template>
+  <div>
+    <slot></slot>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { provide, shallowRef } from "vue";
+import FooLayer from "ol/layer/FooLayer";
+import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import useLayer from "@/composables/useLayer";
+import {
+  layersCommonDefaultProps,
+  type LayersCommonProps,
+} from "@/components/layers/LayersCommonProps";
+
+const props = withDefaults(
+  defineProps<script
+    LayersCommonProps & {
+      myProp?: string;
+    }
+  >(),
+  {
+    ...layersCommonDefaultProps,
+    myProp: "myProp",
+  },
+);
+
+const properties = usePropsAsObjectProperties(props);
+
+const layer = shallowRef(new FooLayer(properties));
+useLayer(layer, props);
+
+provide("layer", layer);
+
+defineExpose({
+  layer,
+});
+</script>
+```
+
 ## Source Plugins
 
 If you like to add a specific map source (e. g. for vector or tile data),
