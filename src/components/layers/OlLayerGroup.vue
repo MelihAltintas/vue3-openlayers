@@ -25,7 +25,13 @@ defineOptions({
 });
 
 const props = withDefaults(
-  defineProps<Options & { className?: string }>(),
+  defineProps<
+    Options & {
+      className?: string;
+      openInLayerSwitcher?: boolean;
+      title?: string;
+    }
+  >(),
   layersCommonDefaultProps,
 );
 
