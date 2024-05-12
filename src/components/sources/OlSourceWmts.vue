@@ -31,6 +31,7 @@ const props = withDefaults(
       styles?: string | unknown[];
       tileZoomLevel?: number;
       tileMatrixPrefix?: string;
+      tileGrid?: WMTSTileGrid;
     }
   >(),
   {
