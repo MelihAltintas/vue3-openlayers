@@ -1,4 +1,4 @@
-# Plugins Guide
+# Extend vue3-openlayers
 
 If you like to add a specific component wrapper based on an external
 library deviating from `ol` or `ol-ext`, please follow this guide.

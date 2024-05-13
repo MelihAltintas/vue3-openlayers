@@ -7,10 +7,15 @@ import { npmKeyword } from "npm-keyword";
 const file = process.argv[2];
 
 npmKeyword("vue3-openlayers-extension").then((results) => {
-  console.log(results);
   const list = results.map((result) => {
     return `- **[${result.name}](https://www.npmjs.com/package/${result.name})**: \`${result.description}\``;
   });
+  if (!list.length) {
+    list.push(
+      "**Sorry, no plugins published until now. [Check out how to publish your extension](./publish.md).**",
+    );
+  }
+  console.log(list);
 
   const contents = readFileSync(file, "utf-8");
   const replaced = contents.replace(
