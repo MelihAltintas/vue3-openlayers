@@ -1,5 +1,12 @@
 
 
+## [9.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.0...v9.0.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* **ol-style:** apply style correctly to ol-interaction-* ([5408ae3](https://github.com/MelihAltintas/vue3-openlayers/commit/5408ae3273437e222f0d5a98bec3fe0e3426eb78)), closes [#351](https://github.com/MelihAltintas/vue3-openlayers/issues/351)
+
 # [9.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v8.1.0...v9.0.0) (2024-05-12)
 
 
