@@ -25,6 +25,12 @@
           v-if="modifyEnabled"
           :features="selectedFeatures"
         >
+          <ol-style>
+            <ol-style-circle :radius="5">
+              <ol-style-fill color="#00dd11" />
+              <ol-style-stroke color="blue" :width="2" />
+            </ol-style-circle>
+          </ol-style>
         </ol-interaction-modify>
         <ol-interaction-draw
           v-if="drawEnabled"

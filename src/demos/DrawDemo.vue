@@ -42,6 +42,10 @@
           <ol-style>
             <ol-style-stroke color="blue" :width="2"></ol-style-stroke>
             <ol-style-fill color="rgba(255, 255, 0, 0.4)"></ol-style-fill>
+            <ol-style-circle :radius="5">
+              <ol-style-fill color="#00dd11" />
+              <ol-style-stroke color="blue" :width="2" />
+            </ol-style-circle>
           </ol-style>
         </ol-interaction-draw>
       </ol-source-vector>

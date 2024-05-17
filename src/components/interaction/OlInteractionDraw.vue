@@ -4,7 +4,15 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { provide, inject, watch, onMounted, onUnmounted, toRefs } from "vue";
+import {
+  provide,
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  toRefs,
+  ref,
+} from "vue";
 import Draw from "ol/interaction/Draw";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
@@ -123,7 +131,7 @@ onUnmounted(() => {
   map?.removeInteraction(draw);
 });
 
-provide("stylable", draw);
+provide("stylable", ref(draw));
 
 defineExpose({
   draw,

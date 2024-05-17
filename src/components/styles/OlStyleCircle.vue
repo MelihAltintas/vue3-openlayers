@@ -10,7 +10,7 @@ import CircleStyle from "ol/style/Circle";
 import Fill from "ol/style/Fill";
 import Stroke from "ol/style/Stroke";
 
-import type { Ref } from "vue";
+import { type Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
 import type Draw from "ol/interaction/Draw";
 import type Modify from "ol/interaction/Modify";
@@ -64,7 +64,7 @@ watch(
 );
 
 onMounted(() => {
-  style?.value?.setImage(circle.value);
+  applyStyle();
 });
 
 onUnmounted(() => {
