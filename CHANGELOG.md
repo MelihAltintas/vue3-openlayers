@@ -1,5 +1,12 @@
 
 
+## [9.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.1...v9.0.2) (2024-05-19)
+
+
+### Bug Fixes
+
+* **ol-overlay:** set correct default classNames `ol-overlay-container ol-selectable` ([e2ea186](https://github.com/MelihAltintas/vue3-openlayers/commit/e2ea186b39e94f60d831bc06978a3d60bf23426d)), closes [#352](https://github.com/MelihAltintas/vue3-openlayers/issues/352)
+
 ## [9.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.0...v9.0.1) (2024-05-17)
 
 
