@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import usePropsAsObjectProperties from "../usePropsAsObjectProperties";
-import { isReactive, isRef, reactive, ref } from "vue";
+import { defineComponent, isReactive, isRef, reactive, ref, watch } from "vue";
+import { flushPromises, mount, shallowMount } from "@vue/test-utils";
 
 describe("usePropsAsObjectProperties", () => {
   it("should return a reactive object", () => {
@@ -28,5 +29,38 @@ describe("usePropsAsObjectProperties", () => {
     expect(properties.style).toBe("foo");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((properties as any).styles).toBeUndefined();
+  });
+
+  it("should update returning properties when input props are changing", () => {
+    const props = reactive({ foo: "bar" });
+    const properties = usePropsAsObjectProperties(props);
+
+    props.foo = "baz";
+
+    expect(properties.foo).toEqual("baz");
+  });
+
+  it("should be possible to watch resulting properties and register changes on the input props", async () => {
+    const WrapperComponent = defineComponent({
+      props: ["foo", "style"],
+      setup(props) {
+        const watchFired = ref(false);
+        const properties = usePropsAsObjectProperties(props);
+
+        watch(properties, () => {
+          watchFired.value = true;
+        });
+        return {
+          watchFired,
+        };
+      },
+    });
+
+    const wrapper = shallowMount(WrapperComponent, {
+      propsData: { foo: "initial" },
+    });
+    await wrapper.setProps({ foo: "updated" });
+
+    expect(wrapper.vm.watchFired).toEqual(true);
   });
 });
