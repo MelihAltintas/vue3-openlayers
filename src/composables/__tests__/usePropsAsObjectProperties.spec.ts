@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import usePropsAsObjectProperties from "../usePropsAsObjectProperties";
 import { defineComponent, isReactive, isRef, reactive, ref, watch } from "vue";
-import { flushPromises, mount, shallowMount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 
 describe("usePropsAsObjectProperties", () => {
   it("should return a reactive object", () => {
