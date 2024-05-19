@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Options>(), {
   stopEvent: true,
   insertFirst: true,
   autoPan: false,
-  className: "ol-overlay",
+  className: "ol-overlay-container ol-selectable",
 });
 
 const map = inject<Map>("map");
