@@ -1,5 +1,12 @@
 
 
+## [9.0.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.2...v9.0.3) (2024-05-19)
+
+
+### Bug Fixes
+
+* ensure modified properties are always reactive ([e221148](https://github.com/MelihAltintas/vue3-openlayers/commit/e22114830d509e8811ad90b995778ca726f2034e)), closes [#349](https://github.com/MelihAltintas/vue3-openlayers/issues/349) [#349](https://github.com/MelihAltintas/vue3-openlayers/issues/349)
+
 ## [9.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.1...v9.0.2) (2024-05-19)
 
 
