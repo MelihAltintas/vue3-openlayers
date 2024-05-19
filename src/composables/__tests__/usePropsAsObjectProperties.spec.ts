@@ -42,7 +42,7 @@ describe("usePropsAsObjectProperties", () => {
 
   it("should be possible to watch resulting properties and register changes on the input props", async () => {
     const WrapperComponent = defineComponent({
-      props: ["foo", "style"],
+      props: ["foo"],
       setup(props) {
         const watchFired = ref(false);
         const properties = usePropsAsObjectProperties(props);
@@ -60,6 +60,30 @@ describe("usePropsAsObjectProperties", () => {
       propsData: { foo: "initial" },
     });
     await wrapper.setProps({ foo: "updated" });
+
+    expect(wrapper.vm.watchFired).toEqual(true);
+  });
+
+  it("should watch modified styles property and register changes on the input props", async () => {
+    const WrapperComponent = defineComponent({
+      props: ["styles"],
+      setup(props) {
+        const watchFired = ref(false);
+        const properties = usePropsAsObjectProperties(props);
+
+        watch(properties, () => {
+          watchFired.value = true;
+        });
+        return {
+          watchFired,
+        };
+      },
+    });
+
+    const wrapper = shallowMount(WrapperComponent, {
+      propsData: { styles: "initial" },
+    });
+    await wrapper.setProps({ styles: "updated" });
 
     expect(wrapper.vm.watchFired).toEqual(true);
   });

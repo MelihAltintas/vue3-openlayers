@@ -1,4 +1,4 @@
-import { inject, reactive, type UnwrapNestedRefs } from "vue";
+import { inject, reactive, type UnwrapNestedRefs, toRefs } from "vue";
 
 type OlClassOptions<T> = T extends { styles: infer S }
   ? { style: S } & Omit<T, "styles">
@@ -12,7 +12,7 @@ function checkAndUpdateStylePropDef<T extends Record<string, unknown>>(
   options: T,
 ) {
   if ("styles" in options) {
-    const { styles, ...rest } = options;
+    const { styles, ...rest } = toRefs(options);
     return { style: styles, ...rest } as OlClassOptions<T>;
   } else {
     return options as OlClassOptions<T>;
