@@ -14,7 +14,7 @@ export default function useLayerInMapOrLayerGroup(
 ) {
   const map = inject<Map>("map");
   const layerGroup = inject<LayerGroup | null>("layerGroup", null);
-  const overViewMap = inject<Ref<OverviewMap | null> | null>(
+  const overviewMap = inject<Ref<OverviewMap | null> | null>(
     "overviewMap",
     null,
   );
@@ -39,8 +39,8 @@ export default function useLayerInMapOrLayerGroup(
         const layerCollection = layerGroup.getLayers();
         layerCollection.push(layer.value);
         layerGroup.setLayers(layerCollection);
-      } else if (overViewMap?.value) {
-        overViewMap.value?.getOverviewMap().addLayer(layer.value);
+      } else if (overviewMap?.value) {
+        overviewMap.value?.getOverviewMap().addLayer(layer.value);
       } else {
         map?.addLayer(layer.value);
       }
@@ -51,9 +51,9 @@ export default function useLayerInMapOrLayerGroup(
   function removeLayer() {
     if (layerGroup) {
       layerGroup.getLayers().remove(layer.value);
-    } else if (overViewMap?.value) {
-      overViewMap.value?.getOverviewMap().removeLayer(layer.value);
-      overViewMap.value?.changed();
+    } else if (overviewMap?.value) {
+      overviewMap.value?.getOverviewMap().removeLayer(layer.value);
+      overviewMap.value?.changed();
     } else {
       map?.removeLayer(layer.value);
     }
@@ -64,8 +64,8 @@ export default function useLayerInMapOrLayerGroup(
 
   watch(() => properties, updateLayers, { deep: true, immediate: true });
 
-  if (overViewMap?.value) {
-    watch(overViewMap, () => {
+  if (overviewMap?.value) {
+    watch(overviewMap, () => {
       removeLayer();
       updateLayers();
     });
