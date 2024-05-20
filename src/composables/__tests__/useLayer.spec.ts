@@ -88,6 +88,7 @@ describe("useLayer", () => {
     it("should should add a layer to the LayerGroup", () => {
       const { map, layerGroup } = createComponent(["layerGroup"]);
       expect(map.addLayer).not.toHaveBeenCalled();
+      expect(layerGroup.getLayers().push).toBeCalledTimes(1);
       expect(layerGroup.setLayers).toBeCalledTimes(1);
     });
 
