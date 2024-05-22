@@ -8,12 +8,9 @@
 import VectorTileSource, { type Options } from "ol/source/VectorTile";
 import type VectorTileLayer from "ol/layer/VectorTile";
 import type { Ref } from "vue";
-import { inject, watch, onMounted, onUnmounted, provide, computed } from "vue";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import {
-  useOpenLayersEvents,
-  TILE_SOURCE_EVENTS,
-} from "@/composables/useOpenLayersEvents";
+import { inject, provide } from "vue";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -31,35 +28,12 @@ const vectorTileLayer = inject<Ref<VectorTileLayer> | null>(
   null,
 );
 
-const properties = usePropsAsObjectProperties(props);
-
-const source = computed(() => new VectorTileSource(properties));
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-const applySource = () => {
-  vectorTileLayer?.value?.setSource(null);
-  vectorTileLayer?.value?.setSource(source.value);
-  vectorTileLayer?.value?.changed();
-};
-watch(properties, () => {
-  applySource();
-});
-
-watch(
-  () => vectorTileLayer?.value,
-  () => {
-    applySource();
-  },
+const { source } = useSource(
+  VectorTileSource,
+  vectorTileLayer,
+  props,
+  TILE_SOURCE_EVENTS,
 );
-
-onMounted(() => {
-  vectorTileLayer?.value?.setSource(source.value);
-});
-
-onUnmounted(() => {
-  vectorTileLayer?.value?.setSource(null);
-});
 
 provide("vectorSource", source);
 

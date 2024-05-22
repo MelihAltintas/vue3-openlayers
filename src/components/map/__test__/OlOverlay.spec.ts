@@ -15,7 +15,7 @@ describe("OlOverlay.vue", () => {
       },
       global: {
         provide: {
-          "ol-options": { debug: true },
+          "ol-options": { debug: false },
           map,
         },
       },

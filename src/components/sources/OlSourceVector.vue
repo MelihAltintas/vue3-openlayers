@@ -10,20 +10,10 @@ import type VectorLayer from "ol/layer/Vector";
 import type HeatmapLayer from "ol/layer/Heatmap";
 import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 import type { Ref } from "vue";
-import {
-  inject,
-  watch,
-  onMounted,
-  onUnmounted,
-  provide,
-  shallowRef,
-} from "vue";
+import { inject, provide, watch } from "vue";
 import type Geometry from "ol/geom/Geometry";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import {
-  useOpenLayersEvents,
-  FEATURE_EVENTS,
-} from "@/composables/useOpenLayersEvents";
+import { FEATURE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -48,28 +38,15 @@ const webglVectorLayer = inject<Ref<WebGLVectorLayer> | null>(
 );
 const layer = heatmapLayer || vectorLayer || webglVectorLayer;
 
-const properties = usePropsAsObjectProperties(props);
-
-const source = shallowRef(new VectorSource(properties));
-
-useOpenLayersEvents(source, FEATURE_EVENTS);
-
-const applySource = () => {
-  const existingSource = layer?.value.getSource();
-  if (existingSource) {
-    for (const key in properties) {
-      const keyInObj = key as keyof typeof properties;
-      if (properties[keyInObj]) {
-        existingSource.set(key, properties[keyInObj]);
-      }
-    }
-  } else {
-    layer?.value.setSource(source.value);
-  }
-};
+const { source, updateSource } = useSource(
+  VectorSource,
+  layer,
+  props,
+  FEATURE_EVENTS,
+);
 
 watch(
-  () => properties.features,
+  () => props.features,
   (updatedFeatures, oldFeatures) => {
     if (updatedFeatures !== oldFeatures) {
       source.value.clear();
@@ -77,13 +54,13 @@ watch(
         source.value.addFeatures(updatedFeatures);
       }
     }
-    applySource();
+    updateSource();
   },
   { deep: true },
 );
 
 watch(
-  () => properties.url,
+  () => props.url,
   (updatedUrl, newUrl) => {
     if (updatedUrl !== newUrl) {
       source.value.clear();
@@ -91,27 +68,9 @@ watch(
         source.value.setUrl(updatedUrl);
       }
     }
-    applySource();
+    updateSource();
   },
 );
-
-watch(
-  () => properties,
-  () => applySource(),
-);
-
-watch(
-  () => layer?.value,
-  () => applySource(),
-);
-
-onMounted(() => {
-  applySource();
-});
-
-onUnmounted(() => {
-  layer?.value.setSource(null);
-});
 
 provide("vectorSource", source);
 

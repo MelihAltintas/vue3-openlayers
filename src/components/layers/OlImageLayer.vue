@@ -24,9 +24,9 @@ const properties = usePropsAsObjectProperties(props);
 const imageLayer = shallowRef(new ImageLayer(properties));
 useLayer(imageLayer, properties);
 
-provide("imageLayer", imageLayer.value);
+provide("imageLayer", imageLayer);
 
 defineExpose({
-  imageLayer: imageLayer.value,
+  imageLayer,
 });
 </script>

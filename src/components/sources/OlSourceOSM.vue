@@ -4,13 +4,10 @@
 <script setup lang="ts">
 import OSM, { type Options } from "ol/source/OSM";
 import type { Ref } from "vue";
-import { inject, watch, onMounted, onUnmounted, computed } from "vue";
+import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import {
-  TILE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -31,30 +28,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const layer = inject<Ref<TileLayer<OSM>> | null>("tileLayer");
 
-const properties = usePropsAsObjectProperties(props);
-
-const source = computed(() => new OSM(properties));
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-watch(source, () => {
-  layer?.value?.setSource(source.value);
-});
-
-watch(
-  () => layer?.value,
-  () => {
-    layer?.value?.setSource(source.value);
-  },
-);
-
-onMounted(() => {
-  layer?.value?.setSource(source.value);
-});
-
-onUnmounted(() => {
-  layer?.value?.setSource(null);
-});
+const { source } = useSource(OSM, layer, props, TILE_SOURCE_EVENTS);
 
 defineExpose({
   layer,

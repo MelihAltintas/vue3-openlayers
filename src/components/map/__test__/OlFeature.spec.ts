@@ -19,7 +19,7 @@ describe("OlMap.vue", () => {
       },
       global: {
         provide: {
-          "ol-options": { debug: true },
+          "ol-options": { debug: false },
           vectorSource,
         },
       },

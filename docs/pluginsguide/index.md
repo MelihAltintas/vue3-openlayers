@@ -72,7 +72,8 @@ The example below demonstrates how a source called `FooSource` could be implemen
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { inject, watch, onMounted, onUnmounted, shallowRef } from "vue";
+import { inject } from "vue";
+import { useSource } from "vue3-openlayers";
 
 // import the source to be wrapped in a component.
 import FooSource, { type Options } from "foo-source";
@@ -96,28 +97,11 @@ const layer = inject<Ref<TileLayer<FooSource>> | null>("tileLayer");
 // const layer = inject<Ref<VectorLayer<FooSource>> | null>("vectorLayer");
 // const layer = inject<Ref<HeatmapLayer> | null>("heatmapLayer");
 
-// Store a shallowRef of the Source, so it can be watched for changes.
-const source = shallowRef(new FooSource(props));
-
-// Watch for source changes and re-apply the source to the layer.
-watch(source, () => {
-  layer?.value?.setSource(source.value);
-});
-
-// Watch for layer changes and re-apply the source to the layer.
-watch(layer, () => {
-  layer?.value?.setSource(source.value);
-});
-
-// Apply the source once the component is mounted.
-onMounted(() => {
-  layer?.value?.setSource(source.value);
-});
-
-// Cleanup when component is destroyed.
-onUnmounted(() => {
-  layer?.value?.setSource(null);
-});
+// Create the source and watch for changes of the source, the props or the parent layer.
+// Changes will be applied and the source will be removed on unmount.
+// The last parameter will receive the event names which should be handled by the target component.
+// Check out the sources of the composable for more details.
+const { source } = useSource(FooSource, layer, props, ["removefeature"]);
 
 // Expose the layer and source, so it can be used as a `ref=""` on the element
 defineExpose({

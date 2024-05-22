@@ -9,16 +9,12 @@ import { get as getProjection, type ProjectionLike } from "ol/proj";
 import type { Extent } from "ol/extent";
 import { getTopLeft, getWidth } from "ol/extent";
 import type { Ref } from "vue";
-import { inject, onMounted, onUnmounted, watch, computed } from "vue";
+import { computed, inject } from "vue";
 import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import type { Coordinate } from "ol/coordinate";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import projectionFromProperties from "@/helpers/projection";
-import {
-  TILE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -27,7 +23,7 @@ defineOptions({
 
 const props = withDefaults(
   defineProps<
-    Options & {
+    Omit<Options, "style"> & {
       styles?: string | unknown[];
       tileZoomLevel?: number;
       tileMatrixPrefix?: string;
@@ -49,10 +45,9 @@ const props = withDefaults(
 );
 
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
-const properties = usePropsAsObjectProperties(props);
 
 const extent = computed((): Extent | undefined => {
-  return getProjection(properties.projection as ProjectionLike)?.getExtent();
+  return getProjection(props.projection as ProjectionLike)?.getExtent();
 });
 const origin = computed((): Coordinate | undefined => {
   return extent.value ? getTopLeft(extent.value) : undefined;
@@ -66,10 +61,10 @@ const getTileGrid = computed(() => {
     return props.tileGrid;
   }
 
-  const resolutions = [properties.tileZoomLevel];
-  const matrixIds = [`${properties.tileZoomLevel}`];
+  const resolutions = [props.tileZoomLevel];
+  const matrixIds = [`${props.tileZoomLevel}`];
 
-  for (let z = 0; z < properties.tileZoomLevel; ++z) {
+  for (let z = 0; z < props.tileZoomLevel; ++z) {
     resolutions[z] = size.value / Math.pow(2, z);
     matrixIds[z] = props.tileMatrixPrefix + z;
   }
@@ -81,37 +76,15 @@ const getTileGrid = computed(() => {
   });
 });
 
-const source = computed(
-  () =>
-    new WMTS({
-      ...properties,
-      projection: projectionFromProperties(
-        properties.projection as ProjectionLike,
-      ),
-      tileGrid: getTileGrid.value,
-    }),
-);
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-watch(source, () => {
-  tileLayer?.value?.setSource(source.value);
-});
-
-watch(
-  () => tileLayer,
-  () => {
-    tileLayer?.value?.setSource(source.value);
+const { source } = useSource(
+  WMTS,
+  tileLayer,
+  {
+    ...props,
+    tileGrid: getTileGrid.value,
   },
+  TILE_SOURCE_EVENTS,
 );
-
-onMounted(() => {
-  tileLayer?.value?.setSource(source.value);
-});
-
-onUnmounted(() => {
-  tileLayer?.value?.setSource(null);
-});
 
 defineExpose({
   tileLayer,

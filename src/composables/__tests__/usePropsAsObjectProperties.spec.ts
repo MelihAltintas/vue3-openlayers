@@ -43,6 +43,7 @@ describe("usePropsAsObjectProperties", () => {
   it("should be possible to watch resulting properties and register changes on the input props", async () => {
     const WrapperComponent = defineComponent({
       props: ["foo"],
+      template: "<slot/>",
       setup(props) {
         const watchFired = ref(false);
         const properties = usePropsAsObjectProperties(props);
@@ -58,6 +59,11 @@ describe("usePropsAsObjectProperties", () => {
 
     const wrapper = shallowMount(WrapperComponent, {
       propsData: { foo: "initial" },
+      global: {
+        provide: {
+          "ol-options": { debug: false },
+        },
+      },
     });
     await wrapper.setProps({ foo: "updated" });
 
@@ -67,6 +73,7 @@ describe("usePropsAsObjectProperties", () => {
   it("should watch modified styles property and register changes on the input props", async () => {
     const WrapperComponent = defineComponent({
       props: ["styles"],
+      template: "<slot/>",
       setup(props) {
         const watchFired = ref(false);
         const properties = usePropsAsObjectProperties(props);
@@ -82,6 +89,11 @@ describe("usePropsAsObjectProperties", () => {
 
     const wrapper = shallowMount(WrapperComponent, {
       propsData: { styles: "initial" },
+      global: {
+        provide: {
+          "ol-options": { debug: false },
+        },
+      },
     });
     await wrapper.setProps({ styles: "updated" });
 

@@ -3,15 +3,10 @@
 </template>
 <script setup lang="ts">
 import Static, { type Options } from "ol/source/ImageStatic";
-import { inject, onMounted, onUnmounted, watch } from "vue";
+import { inject, type Ref } from "vue";
 import type ImageLayer from "ol/layer/Image";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import projectionFromProperties from "@/helpers/projection";
-import {
-  IMAGE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
-import type { ProjectionLike } from "ol/proj";
+import { IMAGE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -22,32 +17,9 @@ const props = withDefaults(defineProps<Options>(), {
   interpolate: true,
 });
 
-const layer = inject<ImageLayer<Static> | null>("imageLayer");
-const properties = usePropsAsObjectProperties(props);
+const layer = inject<Ref<ImageLayer<Static>> | null>("imageLayer");
 
-const createSource = () =>
-  new Static({
-    ...properties,
-    projection: projectionFromProperties(
-      properties.projection as ProjectionLike,
-    ),
-  });
-
-let source = createSource();
-useOpenLayersEvents(source, IMAGE_SOURCE_EVENTS);
-
-watch(properties, () => {
-  layer?.setSource(null);
-  source = createSource();
-  layer?.setSource(source);
-});
-onMounted(() => {
-  layer?.setSource(source);
-});
-
-onUnmounted(() => {
-  layer?.setSource(null);
-});
+const { source } = useSource(Static, layer, props, IMAGE_SOURCE_EVENTS);
 
 defineExpose({
   layer,

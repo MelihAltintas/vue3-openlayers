@@ -4,17 +4,12 @@
 
 <script setup lang="ts">
 import TileWMS, { type Options } from "ol/source/TileWMS";
-import { inject, onMounted, onUnmounted, watch, type Ref } from "vue";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { inject, type Ref } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import type { ImageTile } from "ol";
-import projectionFromProperties from "@/helpers/projection";
-import {
-  TILE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
-import type { ProjectionLike } from "ol/proj";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
 import type { TileGrid } from "ol/tilegrid";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -44,38 +39,21 @@ const props = withDefaults(
 );
 
 const layer = inject<Ref<TileLayer<TileWMS>> | null>("tileLayer");
-const properties = usePropsAsObjectProperties(props);
 
-const createSource = () =>
-  new TileWMS({
-    ...properties,
+const { source } = useSource(
+  TileWMS,
+  layer,
+  {
+    ...props,
     params: {
       ...props.params,
       LAYERS: props.layers,
       STYLES: props.styles,
     },
-    projection: projectionFromProperties(
-      properties.projection as ProjectionLike,
-    ),
-    tileGrid: properties.tileGrid as TileGrid | undefined,
-  });
-
-let source = createSource();
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-watch(properties, () => {
-  layer?.value.setSource(null);
-  source = createSource();
-  layer?.value.setSource(source);
-});
-onMounted(() => {
-  layer?.value.setSource(source);
-});
-
-onUnmounted(() => {
-  layer?.value.setSource(null);
-});
+    tileGrid: props.tileGrid as TileGrid | undefined,
+  },
+  TILE_SOURCE_EVENTS,
+);
 
 defineExpose({
   layer,

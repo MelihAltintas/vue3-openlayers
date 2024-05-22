@@ -4,17 +4,12 @@
 
 <script setup lang="ts">
 import TileArcGISRest, { type Options } from "ol/source/TileArcGISRest";
-import { inject, onMounted, onUnmounted, watch, computed, type Ref } from "vue";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { computed, inject, type Ref } from "vue";
 import { createXYZ } from "ol/tilegrid";
 import type TileLayer from "ol/layer/Tile";
 import type ImageTile from "ol/ImageTile";
-import projectionFromProperties from "@/helpers/projection";
-import {
-  TILE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
-import type { ProjectionLike } from "ol/proj";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -35,7 +30,6 @@ const props = withDefaults(defineProps<Options>(), {
 });
 
 const tileLayer = inject<Ref<TileLayer<TileArcGISRest>> | null>("tileLayer");
-const properties = usePropsAsObjectProperties(props);
 
 const getTileGrid = computed(() => {
   return (
@@ -46,37 +40,15 @@ const getTileGrid = computed(() => {
   );
 });
 
-const source = computed(
-  () =>
-    new TileArcGISRest({
-      ...properties,
-      projection: projectionFromProperties(
-        properties.projection as ProjectionLike,
-      ),
-      tileGrid: getTileGrid.value,
-    }),
-);
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-watch(source, () => {
-  tileLayer?.value?.setSource(source.value);
-});
-
-watch(
-  () => tileLayer,
-  () => {
-    tileLayer?.value?.setSource(source.value);
+const { source } = useSource(
+  TileArcGISRest,
+  tileLayer,
+  {
+    ...props,
+    tileGrid: getTileGrid.value,
   },
+  TILE_SOURCE_EVENTS,
 );
-
-onMounted(() => {
-  tileLayer?.value?.setSource(source.value);
-});
-
-onUnmounted(() => {
-  tileLayer?.value?.setSource(null);
-});
 
 defineExpose({
   tileLayer,

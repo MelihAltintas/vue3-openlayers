@@ -1,10 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 import useLayer from "../useLayer";
 import usePropsAsObjectProperties from "../usePropsAsObjectProperties";
-import { defineComponent, shallowRef, ref, onUnmounted } from "vue";
+import { defineComponent, ref, shallowRef } from "vue";
 import { shallowMount } from "@vue/test-utils";
 import { Layer } from "ol/layer";
-import OverviewMap from "ol/control/OverviewMap";
 import { layersCommonDefaultProps } from "@components/layers/LayersCommonProps";
 
 describe("useLayer", () => {
@@ -13,6 +12,7 @@ describe("useLayer", () => {
   ) {
     // component setup
     const WrapperComponent = defineComponent({
+      template: "<slot/>",
       props: Object.keys(layersCommonDefaultProps),
       setup(props) {
         const properties = usePropsAsObjectProperties(
@@ -47,6 +47,7 @@ describe("useLayer", () => {
     // provide/inject
     const provide: Record<string, unknown> = {
       map,
+      "ol-options": { debug: false },
     };
     if (setupProvide.includes("layerGroup")) {
       provide.layerGroup = layerGroup;

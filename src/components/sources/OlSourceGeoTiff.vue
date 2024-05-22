@@ -4,15 +4,10 @@
 
 <script setup lang="ts">
 import GeoTIFF, { type Options } from "ol/source/GeoTIFF";
-import { inject, onMounted, onUnmounted, watch, type Ref } from "vue";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { inject, type Ref } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import projectionFromProperties from "@/helpers/projection";
-import {
-  TILE_SOURCE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
-import type { ProjectionLike } from "ol/proj";
+import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -22,32 +17,8 @@ defineOptions({
 const props = defineProps<Options>();
 
 const layer = inject<Ref<TileLayer<GeoTIFF>> | null>("tileLayer");
-const properties = usePropsAsObjectProperties(props);
 
-const createSource = () =>
-  new GeoTIFF({
-    ...properties,
-    projection: projectionFromProperties(
-      properties.projection as ProjectionLike,
-    ),
-  });
-
-let source = createSource();
-
-useOpenLayersEvents(source, TILE_SOURCE_EVENTS);
-
-watch(properties, () => {
-  layer?.value.setSource(null);
-  source = createSource();
-  layer?.value.setSource(source);
-});
-onMounted(() => {
-  layer?.value.setSource(source);
-});
-
-onUnmounted(() => {
-  layer?.value.setSource(null);
-});
+const { source } = useSource(GeoTIFF, layer, props, TILE_SOURCE_EVENTS);
 
 defineExpose({
   layer,
