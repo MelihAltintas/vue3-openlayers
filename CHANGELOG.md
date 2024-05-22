@@ -1,5 +1,36 @@
 
 
+# [10.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.3...v10.0.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* update falsy values "0", "false" and "null" ([b39d0c6](https://github.com/MelihAltintas/vue3-openlayers/commit/b39d0c61c835261b5c99d867302bd34d80128360))
+
+
+### Code Refactoring
+
+* **composables:** rename composable `useLayerInMapOrLayerGroup` into `useLayer` ([3a7835c](https://github.com/MelihAltintas/vue3-openlayers/commit/3a7835c47421f87afbd5af15fbd4a1e2126f62d7))
+* **ol-source-*:** move common setup into `useSource` composable ([56b386d](https://github.com/MelihAltintas/vue3-openlayers/commit/56b386d245e6da47402764fe42a7be93dbc55cfe)), closes [#354](https://github.com/MelihAltintas/vue3-openlayers/issues/354)
+
+
+### Features
+
+* **ol-layer-*:** support common events on components ([69b37c9](https://github.com/MelihAltintas/vue3-openlayers/commit/69b37c92079d924dbaab414f86c1658835698434))
+
+
+### BREAKING CHANGES
+
+* **composables:** The composable `useLayerInMapOrLayerGroup` was renamed to `useLayer`
+* **ol-source-*:** The created Source class from the corresponding OpenLayers source isn't wrapped in a computed anymore but in a shallowRef. This will improve the performance and prevent unneeded re-computations.
+  Also, the provided `imageLayer` references is now wrapped in a `Ref` which will make it reactive:
+  In case the layer changes, the source is updated and applied to the changed layers reference.
+  This behavior was already default for all layer types:
+  ```diff
+  -const layer = inject<ImageLayer<Static> | null>("imageLayer");
+  +const layer = inject<Ref<ImageLayer<Static>> | null>("imageLayer");
+  ```
+
 ## [9.0.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.2...v9.0.3) (2024-05-19)
 
 
