@@ -7,11 +7,11 @@
 <script setup lang="ts">
 import {
   inject,
-  provide,
-  onUnmounted,
   onMounted,
-  watch,
+  onUnmounted,
+  provide,
   shallowRef,
+  watch,
 } from "vue";
 import LayerGroup, { type Options } from "ol/layer/Group";
 import type Map from "ol/Map";
@@ -58,7 +58,7 @@ watch(
   (newValue) => {
     for (const key in newValue) {
       const keyInObj = key as keyof typeof newValue;
-      if (newValue[keyInObj]) {
+      if (newValue[keyInObj] !== undefined) {
         layerGroup.value.set(key, newValue[keyInObj]);
       }
     }

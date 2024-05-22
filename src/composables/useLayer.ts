@@ -1,4 +1,4 @@
-import { inject, onUnmounted, ref, watch, type Ref } from "vue";
+import { inject, onUnmounted, ref, type Ref, watch } from "vue";
 
 import type { Map } from "ol";
 import type LayerGroup from "ol/layer/Group";
@@ -26,7 +26,7 @@ export default function useLayerInMapOrLayerGroup(
 
     for (const key in properties) {
       const keyInObj = key as keyof typeof properties;
-      if (properties[keyInObj]) {
+      if (properties[keyInObj] !== undefined) {
         layer.value.set(key, properties[keyInObj]);
       }
     }

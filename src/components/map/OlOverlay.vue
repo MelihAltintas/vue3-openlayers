@@ -9,12 +9,12 @@ import type { PanIntoViewOptions, Positioning } from "ol/Overlay";
 import Overlay, { type Options } from "ol/Overlay";
 import {
   inject,
-  ref,
-  watchEffect,
-  watch,
   onMounted,
   onUnmounted,
+  ref,
   shallowRef,
+  watch,
+  watchEffect,
 } from "vue";
 
 import type Map from "ol/Map";
@@ -82,7 +82,7 @@ watch(
   (newValue) => {
     for (const key in newValue) {
       const keyInObj = key as keyof typeof newValue;
-      if (newValue[keyInObj]) {
+      if (newValue[keyInObj] !== undefined) {
         overlay.value.set(key, newValue[keyInObj]);
       }
     }
