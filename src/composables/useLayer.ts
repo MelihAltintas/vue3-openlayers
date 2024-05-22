@@ -7,7 +7,7 @@ import type usePropsAsObjectProperties from "./usePropsAsObjectProperties";
 import type { OverviewMap } from "ol/control";
 import type { layersCommonDefaultProps } from "@/components/layers/LayersCommonProps";
 
-export default function useLayerInMapOrLayerGroup(
+export default function useLayer(
   layer: Ref<Layer>,
   properties: typeof layersCommonDefaultProps &
     ReturnType<typeof usePropsAsObjectProperties>,
