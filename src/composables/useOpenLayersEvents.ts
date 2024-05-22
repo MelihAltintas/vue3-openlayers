@@ -1,16 +1,31 @@
 import {
-  type Ref,
-  onMounted,
-  getCurrentInstance,
   type ComputedRef,
-  isRef,
+  getCurrentInstance,
   inject,
+  isRef,
+  onMounted,
+  type Ref,
   type ShallowRef,
 } from "vue";
 import type BaseObject from "ol/Object";
 import type { EventTypes } from "ol/Observable";
 
 export const COMMON_EVENTS = ["change", "error", "propertychange"];
+
+export const LAYER_EVENTS = [
+  "change:extent",
+  "change:maxResolution",
+  "change:maxZoom",
+  "change:minResolution",
+  "change:minZoom",
+  "change:opacity",
+  "change:source",
+  "change:visible",
+  "change:zIndex",
+  "postrender",
+  "prerender",
+  "sourceready",
+];
 
 export const TILE_SOURCE_EVENTS = [
   "tileloadend",

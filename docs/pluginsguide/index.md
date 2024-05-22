@@ -44,8 +44,9 @@ const props = withDefaults(
 // Create the layer
 // Changes will be applied and the layer will be removed on unmount.
 // The last parameter will receive the event names which should be handled by the target component.
+// Common Layer events (https://openlayers.org/en/latest/apidoc/module-ol_layer_Layer-Layer.html) are already handled within the composable
 // Check out the sources of the composable for more details.
-const { layer } = useLayer(FooLayer, props, ['change:opacity']);
+const { layer } = useLayer(FooLayer, props, ['foo']);
 
 // source components will rely on the layer (depends on the source type)
 provide("vectorLayer", layer);

@@ -4,7 +4,7 @@ import type { Map } from "ol";
 import type LayerGroup from "ol/layer/Group";
 import type { Layer } from "ol/layer";
 import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "./useOpenLayersEvents";
+import { LAYER_EVENTS, useOpenLayersEvents } from "./useOpenLayersEvents";
 import type { OverviewMap } from "ol/control";
 
 /**
@@ -23,7 +23,7 @@ export default function useLayer<T extends Layer>(
 
   const layer = shallowRef(new LayerClass(properties));
 
-  useOpenLayersEvents(layer, eventsToHandle);
+  useOpenLayersEvents(layer, [...LAYER_EVENTS, ...eventsToHandle]);
 
   const map = inject<Map>("map");
   const layerGroup = inject<LayerGroup | null>("layerGroup", null);
