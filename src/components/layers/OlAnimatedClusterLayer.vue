@@ -5,11 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { inject, provide, watch, shallowRef } from "vue";
+import { provide, shallowRef, watch } from "vue";
 import { Cluster } from "ol/source";
 import { easeOut } from "ol/easing";
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster";
-import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
 import {
@@ -17,10 +16,7 @@ import {
   type LayersCommonProps,
 } from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
-import {
-  FEATURE_EVENTS,
-  useOpenLayersEvents,
-} from "@/composables/useOpenLayersEvents";
+import { FEATURE_EVENTS } from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -49,8 +45,6 @@ const props = withDefaults(
   },
 );
 
-const map = inject<Map>("map");
-
 const properties = usePropsAsObjectProperties(props);
 
 const clusterSource = shallowRef(
@@ -60,29 +54,27 @@ const clusterSource = shallowRef(
   }),
 );
 
-useOpenLayersEvents(clusterSource, FEATURE_EVENTS);
+const { layer, map } = useLayer(
+  AnimatedCluster,
+  {
+    ...props,
+    source: clusterSource.value,
+  },
+  FEATURE_EVENTS,
+);
 
 watch(
-  () => properties.distance,
+  () => props.distance,
   (newValue) => {
     clusterSource.value.setDistance(newValue);
   },
 );
 
-const vectorLayer = shallowRef(
-  new AnimatedCluster({
-    ...properties,
-    source: clusterSource.value,
-  }),
-);
-
-useLayer(vectorLayer, properties);
-
 provide("vectorLayer", clusterSource);
-provide("stylable", vectorLayer);
+provide("stylable", layer);
 
 defineExpose({
-  vectorLayer,
+  vectorLayer: layer,
   map,
 });
 </script>

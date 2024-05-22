@@ -5,9 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, shallowRef } from "vue";
-
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { provide } from "vue";
 import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
@@ -35,19 +33,13 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
+const { layer } = useLayer(WebGLVectorLayer, {
+  ...props,
+});
 
-const webglVectorLayer = shallowRef(
-  new WebGLVectorLayer({
-    ...properties,
-    styles: properties.style,
-  }),
-);
-useLayer(webglVectorLayer, properties);
-
-provide("webglVectorLayer", webglVectorLayer);
+provide("webglVectorLayer", layer);
 
 defineExpose({
-  webglVectorLayer,
+  webglVectorLayer: layer,
 });
 </script>

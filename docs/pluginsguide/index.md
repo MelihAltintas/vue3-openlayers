@@ -41,15 +41,31 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
+// Create the layer
+// Changes will be applied and the layer will be removed on unmount.
+// The last parameter will receive the event names which should be handled by the target component.
+// Check out the sources of the composable for more details.
+const { layer } = useLayer(FooLayer, props, ['change:opacity']);
 
-const layer = shallowRef(new FooLayer(properties));
-useLayer(layer, props);
-
-provide("layer", layer);
+// source components will rely on the layer (depends on the source type)
+provide("vectorLayer", layer);
+// provide("heatmapLayer", layer);
+// provide("imageLayer", layer);
+// provide("tileLayer", layer);
+// provide("vectorImageLayer", layer);
+// provide("vectorTileLayer", layer);
+// provide("webglVectorLayer", layer);
 
 defineExpose({
-  layer,
+  // see above ("provide")
+  vectorLayer: layer
+  // vectorLayer
+  // heatmapLayer
+  // imageLayer
+  // tileLayer
+  // vectorImageLayer
+  // vectorTileLayer
+  // webglVectorLayer
 });
 </script>
 ```

@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { provide, shallowRef } from "vue";
+import { provide } from "vue";
 import VectorLayer from "ol/layer/Vector";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
@@ -35,15 +34,12 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
+const { layer } = useLayer(VectorLayer, props);
 
-const vectorLayer = shallowRef(new VectorLayer(properties));
-useLayer(vectorLayer, props);
-
-provide("vectorLayer", vectorLayer);
-provide("stylable", vectorLayer);
+provide("vectorLayer", layer);
+provide("stylable", layer);
 
 defineExpose({
-  vectorLayer,
+  vectorLayer: layer,
 });
 </script>

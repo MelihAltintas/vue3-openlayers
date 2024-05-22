@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { provide, shallowRef } from "vue";
+import { provide } from "vue";
 import TileLayer from "ol/layer/Tile";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
@@ -26,14 +25,11 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
+const { layer } = useLayer(TileLayer, props);
 
-const tileLayer = shallowRef(new TileLayer(properties));
-useLayer(tileLayer, properties);
-
-provide("tileLayer", tileLayer);
+provide("tileLayer", layer);
 
 defineExpose({
-  tileLayer,
+  tileLayer: layer,
 });
 </script>

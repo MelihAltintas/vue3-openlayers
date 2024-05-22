@@ -1,17 +1,30 @@
-import { inject, onUnmounted, ref, type Ref, watch } from "vue";
+import { inject, onUnmounted, ref, type Ref, shallowRef, watch } from "vue";
 
 import type { Map } from "ol";
 import type LayerGroup from "ol/layer/Group";
 import type { Layer } from "ol/layer";
-import type usePropsAsObjectProperties from "./usePropsAsObjectProperties";
+import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
+import { useOpenLayersEvents } from "./useOpenLayersEvents";
 import type { OverviewMap } from "ol/control";
-import type { layersCommonDefaultProps } from "@/components/layers/LayersCommonProps";
 
-export default function useLayer(
-  layer: Ref<Layer>,
-  properties: typeof layersCommonDefaultProps &
-    ReturnType<typeof usePropsAsObjectProperties>,
+/**
+ * Create a Layer
+ * @param LayerClass The Class of the source which should be created
+ * @param props The properties which should be passed to the LayerClass
+ * @param eventsToHandle The event names list for events that should be passed from the layer through the component
+ */
+export default function useLayer<T extends Layer>(
+  // eslint-disable-next-line
+  LayerClass: new (...args: any[]) => T,
+  props: ConstructorParameters<typeof LayerClass>[0],
+  eventsToHandle: string[] = [],
 ) {
+  const properties = usePropsAsObjectProperties(props);
+
+  const layer = shallowRef(new LayerClass(properties));
+
+  useOpenLayersEvents(layer, eventsToHandle);
+
   const map = inject<Map>("map");
   const layerGroup = inject<LayerGroup | null>("layerGroup", null);
   const overviewMap = inject<Ref<OverviewMap | null> | null>(
@@ -71,5 +84,8 @@ export default function useLayer(
     });
   }
 
-  return {};
+  return {
+    layer,
+    map,
+  };
 }

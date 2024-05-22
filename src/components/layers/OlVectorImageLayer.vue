@@ -5,10 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { provide, shallowRef } from "vue";
+import { provide } from "vue";
 
 import VectorImageLayer from "ol/layer/VectorImage";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
@@ -32,15 +31,12 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
+const { layer } = useLayer(VectorImageLayer, props);
 
-const vectorImageLayer = shallowRef(new VectorImageLayer(properties));
-useLayer(vectorImageLayer, properties);
-
-provide("vectorLayer", vectorImageLayer);
-provide("stylable", vectorImageLayer);
+provide("vectorLayer", layer);
+provide("stylable", layer);
 
 defineExpose({
-  vectorImageLayer,
+  vectorImageLayer: layer,
 });
 </script>

@@ -5,10 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { provide, shallowRef } from "vue";
+import { provide } from "vue";
 import HeatmapLayer from "ol/layer/Heatmap";
 import type { Extent } from "ol/extent";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
 import {
   layersCommonDefaultProps,
@@ -36,14 +35,12 @@ const props = withDefaults(
   },
 );
 
-const properties = usePropsAsObjectProperties(props);
-const heatmapLayer = shallowRef(new HeatmapLayer(properties));
-useLayer(heatmapLayer, properties);
+const { layer } = useLayer(HeatmapLayer, props);
 
-provide("heatmapLayer", heatmapLayer);
-provide("stylable", heatmapLayer);
+provide("heatmapLayer", layer);
+provide("stylable", layer);
 
 defineExpose({
-  heatmapLayer,
+  heatmapLayer: layer,
 });
 </script>

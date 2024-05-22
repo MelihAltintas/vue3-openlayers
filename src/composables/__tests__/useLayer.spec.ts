@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import useLayer from "../useLayer";
-import usePropsAsObjectProperties from "../usePropsAsObjectProperties";
-import { defineComponent, ref, shallowRef } from "vue";
+import { defineComponent, ref } from "vue";
 import { shallowMount } from "@vue/test-utils";
 import { Layer } from "ol/layer";
 import { layersCommonDefaultProps } from "@components/layers/LayersCommonProps";
@@ -15,12 +14,7 @@ describe("useLayer", () => {
       template: "<slot/>",
       props: Object.keys(layersCommonDefaultProps),
       setup(props) {
-        const properties = usePropsAsObjectProperties(
-          props,
-        ) as typeof layersCommonDefaultProps;
-        const layer = shallowRef(new Layer(properties));
-        useLayer(layer, properties);
-        return { layer };
+        return useLayer(Layer, props);
       },
     });
 
