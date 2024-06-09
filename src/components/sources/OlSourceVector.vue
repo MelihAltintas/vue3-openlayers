@@ -66,8 +66,10 @@ watch(
       source.value.clear();
       if (updatedUrl) {
         source.value.setUrl(updatedUrl);
+        source.value.refresh();
       }
     }
+
     updateSource();
   },
 );
