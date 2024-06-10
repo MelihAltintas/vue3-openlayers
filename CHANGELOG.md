@@ -1,5 +1,13 @@
 
 
+## [10.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.0...v10.0.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* **ol-source-vector:** call refresh() after url changes ([479d765](https://github.com/MelihAltintas/vue3-openlayers/commit/479d765faf26a296dc05f704e3003414be961c2b)), closes [#357](https://github.com/MelihAltintas/vue3-openlayers/issues/357)
+* **ol-webgl-vector-layer:** call make properties reactive ([3e77dfe](https://github.com/MelihAltintas/vue3-openlayers/commit/3e77dfe3d64ba5f33aa31e40e3d28359bf3842cf)), closes [#355](https://github.com/MelihAltintas/vue3-openlayers/issues/355)
+
 # [10.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v9.0.3...v10.0.0) (2024-05-22)
 
 
