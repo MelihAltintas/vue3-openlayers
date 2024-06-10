@@ -1,4 +1,19 @@
 <template>
+  <form>
+    <fieldset>
+      <label for="opacity">Layer Opacity</label>
+      <input
+        type="range"
+        id="opacity"
+        min="0"
+        max="1"
+        step="0.1"
+        v-model.number="opacity"
+      />
+      <span class="description">{{ opacity }}</span>
+    </fieldset>
+  </form>
+
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
@@ -45,8 +60,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 
+const opacity = ref(1);
 const center = ref([116.54875, 40.45064]);
 const projection = ref("EPSG:4326");
 const zoom = ref(16);

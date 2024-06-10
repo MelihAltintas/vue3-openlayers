@@ -1,4 +1,24 @@
 <template>
+  <form>
+    <fieldset>
+      <label for="opacity">Layer Opacity</label>
+      <input
+        type="range"
+        id="opacity"
+        min="0"
+        max="1"
+        step="0.1"
+        v-model.number="opacity"
+      />
+      <span class="description">{{ opacity }}</span>
+    </fieldset>
+    <fieldset>
+      <label for="visibility-toggle">Layer Visibility:</label>
+      <input type="checkbox" id="visibility-toggle" v-model="visible" />
+      <span> {{ visible ? "Visible" : "Hidden" }}</span>
+    </fieldset>
+  </form>
+
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
@@ -16,7 +36,11 @@
     </ol-tile-layer>
 
     <!-- webgl points layer -->
-    <ol-webgl-vector-layer :styles="webglPointStyle">
+    <ol-webgl-vector-layer
+      :styles="webglPointStyle"
+      :visible="visible"
+      :opacity="opacity"
+    >
       <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
@@ -25,7 +49,11 @@
     </ol-webgl-vector-layer>
 
     <!-- webgl lines layer -->
-    <ol-webgl-vector-layer :styles="webglLineStyle">
+    <ol-webgl-vector-layer
+      :styles="webglLineStyle"
+      :visible="visible"
+      :opacity="opacity"
+    >
       <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
@@ -34,7 +62,11 @@
     </ol-webgl-vector-layer>
 
     <!-- webgl polygons layer -->
-    <ol-webgl-vector-layer :styles="webglPolyStyle">
+    <ol-webgl-vector-layer
+      :styles="webglPolyStyle"
+      :visible="visible"
+      :opacity="opacity"
+    >
       <ol-source-vector
         :format="geoJson"
         crossOrigin="anonymous"
@@ -45,8 +77,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 
+const opacity = ref(1);
+const visible = ref(true);
 const center = ref([-73.3, 48.0]);
 const projection = ref("EPSG:4326");
 const zoom = ref(7);

@@ -33,9 +33,7 @@ const props = withDefaults(
   },
 );
 
-const { layer } = useLayer(WebGLVectorLayer, {
-  ...props,
-});
+const { layer } = useLayer(WebGLVectorLayer, props);
 
 provide("webglVectorLayer", layer);
 
