@@ -7,7 +7,7 @@ import useGeometry from "@/composables/useGeometry";
 
 const props = withDefaults(
   defineProps<{
-    coordinates: number[];
+    coordinates: number[][][];
     opt_layout?: string;
   }>(),
   {
