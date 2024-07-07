@@ -1,5 +1,14 @@
 
 
+## [10.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.1...v10.0.2) (2024-07-07)
+
+
+### Bug Fixes
+
+* **ol-interaction-draw:** emit events on changed geometry ([0363578](https://github.com/MelihAltintas/vue3-openlayers/commit/03635780e2e90516ebc82768cdf9f2a55063ce5c)), closes [#361](https://github.com/MelihAltintas/vue3-openlayers/issues/361)
+* **ol-source-vector:** handle correct event `addfeature` ([777d4ab](https://github.com/MelihAltintas/vue3-openlayers/commit/777d4abd1df776f3b4fd869b3365cb54446d3c3a)), closes [#362](https://github.com/MelihAltintas/vue3-openlayers/issues/362)
+* **ol-source-xyz:** watch for changed props ([a9a1c99](https://github.com/MelihAltintas/vue3-openlayers/commit/a9a1c994176249f9ab6834791f1b12bdf175aeb3)), closes [#359](https://github.com/MelihAltintas/vue3-openlayers/issues/359)
+
 ## [10.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.0...v10.0.1) (2024-06-10)
 
 
