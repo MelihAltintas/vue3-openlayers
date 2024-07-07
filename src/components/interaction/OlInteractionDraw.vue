@@ -3,21 +3,21 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
 import {
-  provide,
   inject,
-  watch,
   onMounted,
   onUnmounted,
+  provide,
+  type Ref,
+  shallowRef,
   toRefs,
-  ref,
+  watch,
 } from "vue";
+import type { GeometryFunction } from "ol/interaction/Draw";
 import Draw from "ol/interaction/Draw";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
 import type { Type as GeometryType } from "ol/geom/Geometry";
-import type { GeometryFunction } from "ol/interaction/Draw";
 import type { Condition } from "ol/events/condition";
 import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
 
@@ -93,9 +93,12 @@ function createDraw() {
   });
 }
 
-let draw = createDraw();
+const draw = shallowRef(createDraw());
 
-useOpenLayersEvents(draw, ["drawstart", "drawend"]);
+const { updateOpenLayersEventHandlers } = useOpenLayersEvents(draw, [
+  "drawstart",
+  "drawend",
+]);
 
 watch(
   [
@@ -115,25 +118,26 @@ watch(
     wrapX,
   ],
   () => {
-    draw.abortDrawing();
-    map?.removeInteraction(draw);
-    draw = createDraw();
-    map?.addInteraction(draw);
+    draw.value.abortDrawing();
+    map?.removeInteraction(draw.value);
+    draw.value = createDraw();
+    updateOpenLayersEventHandlers();
+    map?.addInteraction(draw.value);
     map?.changed();
   },
 );
 
 onMounted(() => {
-  map?.addInteraction(draw);
+  map?.addInteraction(draw.value);
 });
 
 onUnmounted(() => {
-  map?.removeInteraction(draw);
+  map?.removeInteraction(draw.value);
 });
 
-provide("stylable", ref(draw));
+provide("stylable", draw);
 
 defineExpose({
-  draw,
+  draw: draw.value,
 });
 </script>

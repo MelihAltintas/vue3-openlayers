@@ -59,7 +59,7 @@ export function useOpenLayersEvents(
   const instance = getCurrentInstance();
   const globalOptions = inject("ol-options");
 
-  onMounted(() => {
+  function updateOpenLayersEventHandlers() {
     ([...COMMON_EVENTS, ...eventNames] as EventTypes[]).forEach((eventName) => {
       let unwrappedFeature: Pick<BaseObject, "on">;
 
@@ -81,5 +81,13 @@ export function useOpenLayersEvents(
         instance?.emit(eventName, ...args);
       });
     });
+  }
+
+  onMounted(() => {
+    updateOpenLayersEventHandlers();
   });
+
+  return {
+    updateOpenLayersEventHandlers,
+  };
 }
