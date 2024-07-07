@@ -38,7 +38,7 @@ export const IMAGE_SOURCE_EVENTS = [
   "imageloadstart",
 ];
 export const FEATURE_EVENTS = [
-  "addFeature",
+  "addfeature",
   "changefeature",
   "clear",
   "featuresloadend",
