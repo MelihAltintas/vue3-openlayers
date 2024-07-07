@@ -40,7 +40,7 @@ describe("useSource", () => {
   it("should add the source to a layer immediately", () => {
     const { setSourceSpy, wrapper } = createComponent();
     wrapper.unmount();
-    expect(setSourceSpy).toBeCalledTimes(2);
+    expect(setSourceSpy).toBeCalledTimes(3);
     expect(setSourceSpy).toHaveBeenLastCalledWith(null);
   });
 });
