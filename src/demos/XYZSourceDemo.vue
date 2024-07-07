@@ -9,6 +9,7 @@
       </option>
     </select>
   </form>
+  {{ selected }}
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"

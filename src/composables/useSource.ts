@@ -20,22 +20,32 @@ export default function useSource<T extends Source>(
   props: ConstructorParameters<typeof SourceClass>[0],
   eventsToHandle: string[] = [],
 ) {
-  const properties = usePropsAsObjectProperties({
-    ...props,
-    ...(props.projection
-      ? {
-          projection: projectionFromProperties(
-            props.projection as ProjectionLike,
-          ),
-        }
-      : {}),
-  });
+  function createSource() {
+    const properties = usePropsAsObjectProperties({
+      ...props,
+      ...(props.projection
+        ? {
+            projection: projectionFromProperties(
+              props.projection as ProjectionLike,
+            ),
+          }
+        : {}),
+    });
 
-  const source = shallowRef(new SourceClass(properties));
+    return shallowRef(new SourceClass(properties));
+  }
 
-  useOpenLayersEvents(source, eventsToHandle);
+  let source = createSource();
+
+  const { updateOpenLayersEventHandlers } = useOpenLayersEvents(
+    source,
+    eventsToHandle,
+  );
 
   function updateSource() {
+    source = createSource();
+    updateOpenLayersEventHandlers();
+    layer?.value?.setSource(null);
     layer?.value?.setSource(source.value);
   }
 
@@ -49,7 +59,7 @@ export default function useSource<T extends Source>(
 
   watch(() => layer, updateSource);
 
-  watch(() => properties, updateSource, { deep: true, immediate: true });
+  watch(() => props, updateSource, { deep: true, immediate: true });
 
   return {
     source,

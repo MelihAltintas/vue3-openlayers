@@ -8,7 +8,6 @@ import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import type { ImageTile } from "ol";
 import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
-import type { TileGrid } from "ol/tilegrid";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -37,15 +36,7 @@ const props = withDefaults(defineProps<Options>(), {
 
 const layer = inject<Ref<TileLayer<XYZ>> | null>("tileLayer");
 
-const { source } = useSource(
-  XYZ,
-  layer,
-  {
-    ...props,
-    tileGrid: props.tileGrid as TileGrid | undefined,
-  },
-  TILE_SOURCE_EVENTS,
-);
+const { source } = useSource(XYZ, layer, props, TILE_SOURCE_EVENTS);
 
 defineExpose({
   layer,
