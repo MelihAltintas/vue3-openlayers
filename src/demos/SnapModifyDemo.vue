@@ -21,17 +21,6 @@
 
     <ol-vector-layer>
       <ol-source-vector :features="zones">
-        <ol-interaction-modify
-          v-if="modifyEnabled"
-          :features="selectedFeatures"
-        >
-          <ol-style>
-            <ol-style-circle :radius="5">
-              <ol-style-fill color="#00dd11" />
-              <ol-style-stroke color="blue" :width="2" />
-            </ol-style-circle>
-          </ol-style>
-        </ol-interaction-modify>
         <ol-interaction-draw
           v-if="drawEnabled"
           :stopClick="true"
@@ -40,10 +29,18 @@
         />
         <ol-interaction-snap v-if="modifyEnabled || drawEnabled" />
         <ol-style>
-          <ol-style-stroke color="blue" :width="3"></ol-style-stroke>
-          <ol-style-fill color="rgba(0, 0, 255, 0.4)"></ol-style-fill>
+          <ol-style-stroke color="blue" :width="3" />
+          <ol-style-fill color="rgba(0, 0, 255, 0.4)" />
         </ol-style>
       </ol-source-vector>
+      <ol-interaction-modify v-if="modifyEnabled" :features="selectedFeatures">
+        <ol-style>
+          <ol-style-circle :radius="5">
+            <ol-style-fill color="#00dd11" />
+            <ol-style-stroke color="blue" :width="2" />
+          </ol-style-circle>
+        </ol-style>
+      </ol-interaction-modify>
     </ol-vector-layer>
     <ol-interaction-select
       @select="featureSelected"
@@ -51,15 +48,15 @@
       :features="selectedFeatures"
     >
       <ol-style>
-        <ol-style-stroke color="red" :width="2"></ol-style-stroke>
-        <ol-style-fill color="rgba(255, 0, 0, 0.4)"></ol-style-fill>
+        <ol-style-stroke color="red" :width="2" />
+        <ol-style-fill color="rgba(255, 0, 0, 0.4)" />
       </ol-style>
     </ol-interaction-select>
   </ol-map>
 </template>
 
 <script setup>
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 import { GeoJSON } from "ol/format";
 import { Collection } from "ol";
 

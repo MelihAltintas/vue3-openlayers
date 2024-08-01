@@ -7,12 +7,9 @@
 ## Demo
 
 <script setup>
-import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
+import ModifySourceDemo from "@demos/ModifySourceDemo.vue";
+import SnapModifyDemo from "@demos/SnapModifyDemo.vue";
 </script>
-
-<ClientOnly>
-<SnapModifyDemo/>
-</ClientOnly>
 
 ## Setup
 
@@ -23,6 +20,24 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 | Plugin Usage              |           Explicit Import            |
 | ------------------------- | :----------------------------------: |
 | `<ol-interaction-modify>` | `<Interactions.OlInteractionModify>` |
+
+### Modify the source vector components features
+
+<ClientOnly>
+<ModifySourceDemo/>
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../../src/demos/ModifySourceDemo.vue
+
+:::
+
+### Modify passed `features`
+
+<ClientOnly>
+<SnapModifyDemo/>
+</ClientOnly>
 
 ::: code-group
 
@@ -58,6 +73,10 @@ import SnapModifyDemo from "@demos/SnapModifyDemo.vue"
 
 - **Type**: `Boolean`
 
-  ### features
+### features
 
 - **Type**: `[Collection,Object]`
+
+### source
+
+- **Type**: `VectorSource`

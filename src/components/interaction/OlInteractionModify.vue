@@ -5,13 +5,13 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import {
-  provide,
   inject,
-  watch,
   onMounted,
   onUnmounted,
-  toRefs,
+  provide,
   ref,
+  toRefs,
+  watch,
 } from "vue";
 import type Collection from "ol/Collection";
 import Modify from "ol/interaction/Modify";
@@ -36,6 +36,7 @@ const props = withDefaults(
     wrapX?: boolean;
     hitDetection?: boolean;
     features?: Collection<Feature<Geometry>>;
+    source?: VectorSource;
   }>(),
   {
     pixelTolerance: 10,
@@ -44,9 +45,10 @@ const props = withDefaults(
 );
 
 const map = inject<Map>("map");
-const source = inject<Ref<VectorSource> | null>("vectorSource");
+const vectorSource = inject<Ref<VectorSource> | null>("vectorSource", null);
 
 const {
+  source,
   features,
   condition,
   deleteCondition,
@@ -57,8 +59,14 @@ const {
 } = toRefs(props);
 
 function createModify() {
-  const m = new Modify({
-    source: source?.value,
+  if (!source?.value || !features.value) {
+    console.error(
+      `[Vue3-OpenLayers Error] OlInteractionModify: Modify interactions needs either a either a source or features to work.
+      Please provide either the props 'source' or 'feature' or use the component with an '<OlSourceVector>' component.`,
+    );
+  }
+  return new Modify({
+    source: source?.value || vectorSource?.value,
     features: features?.value,
     condition: condition?.value,
     deleteCondition: deleteCondition?.value,
@@ -67,8 +75,6 @@ function createModify() {
     wrapX: wrapX.value,
     hitDetection: hitDetection.value,
   });
-
-  return m;
 }
 
 let modify = createModify();
