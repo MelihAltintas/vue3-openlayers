@@ -1,5 +1,12 @@
 
 
+## [10.0.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.2...v10.0.3) (2024-08-01)
+
+
+### Bug Fixes
+
+* **ol-source-*:** correctly handle events ([7c4bfe0](https://github.com/MelihAltintas/vue3-openlayers/commit/7c4bfe0024e8adb131c5b9620822230d3e664a45)), closes [#365](https://github.com/MelihAltintas/vue3-openlayers/issues/365)
+
 ## [10.0.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.1...v10.0.2) (2024-07-07)
 
 
