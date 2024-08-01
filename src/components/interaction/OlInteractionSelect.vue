@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
-import Select from "ol/interaction/Select";
+import { computed, inject, onMounted, onUnmounted, provide, watch } from "vue";
+import Select, { type FilterFunction } from "ol/interaction/Select";
 import Style from "ol/style/Style";
 import type Collection from "ol/Collection";
 import type { Condition } from "ol/events/condition";
@@ -23,7 +23,7 @@ const props = withDefaults(
   defineProps<{
     multi?: boolean;
     condition?: Condition;
-    filter?: () => boolean;
+    filter?: FilterFunction;
     features?: Collection<Feature<Geometry>>;
     hitTolerance?: number;
     removeCondition?: Condition;
