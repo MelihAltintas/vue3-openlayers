@@ -1,5 +1,12 @@
 
 
+## [10.0.4](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.3...v10.0.4) (2024-08-01)
+
+
+### Bug Fixes
+
+* **ol-source-*:** re-use existing source on update to bind interactions correctly ([7dfd962](https://github.com/MelihAltintas/vue3-openlayers/commit/7dfd9627bdf7c5abeca50f191dc87f8c99d88bce)), closes [#364](https://github.com/MelihAltintas/vue3-openlayers/issues/364)
+
 ## [10.0.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.2...v10.0.3) (2024-08-01)
 
 
