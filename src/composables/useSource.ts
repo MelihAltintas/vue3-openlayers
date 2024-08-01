@@ -20,10 +20,8 @@ export default function useSource<T extends Source>(
   props: ConstructorParameters<typeof SourceClass>[0],
   eventsToHandle: string[] = [],
 ) {
-  const source = updateSource();
-
-  function updateSource() {
-    const properties = usePropsAsObjectProperties({
+  function getProperties() {
+    return usePropsAsObjectProperties({
       ...props,
       ...(props.projection
         ? {
@@ -33,11 +31,24 @@ export default function useSource<T extends Source>(
           }
         : {}),
     });
-    const s = shallowRef(new SourceClass(properties));
-    useOpenLayersEvents(s, eventsToHandle);
+  }
+
+  const source = shallowRef(new SourceClass(getProperties()));
+  updateSource();
+
+  function updateSource() {
     layer?.value?.setSource(null);
-    layer?.value?.setSource(s.value);
-    return s;
+    const properties = getProperties();
+    source.value.setProperties(properties);
+    for (const key in properties) {
+      const keyInObj = key as keyof typeof properties;
+      if (properties[keyInObj] !== undefined) {
+        source.value.set(key, properties[keyInObj]);
+      }
+    }
+    layer?.value?.setSource(source.value);
+    useOpenLayersEvents(source, eventsToHandle);
+    return source;
   }
 
   function removeSource() {
