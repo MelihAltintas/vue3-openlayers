@@ -4,6 +4,7 @@ import { shallowMount } from "@vue/test-utils";
 import { Layer } from "ol/layer";
 import useSource from "../useSource";
 import { Source } from "ol/source";
+import BaseEvent from "ol/events/Event";
 
 describe("useSource", () => {
   function createComponent() {
@@ -42,5 +43,15 @@ describe("useSource", () => {
     wrapper.unmount();
     expect(setSourceSpy).toBeCalledTimes(3);
     expect(setSourceSpy).toHaveBeenLastCalledWith(null);
+  });
+
+  it("should pass through events", () => {
+    const { wrapper } = createComponent();
+    const listenerMockImpl = vi.fn();
+    wrapper.vm.source.on("change", listenerMockImpl);
+    wrapper.vm.source.changed();
+    expect(listenerMockImpl).toHaveBeenCalledTimes(1);
+    const changeEvents = wrapper.emitted().change[0] as unknown[];
+    expect(changeEvents[0]).toBeInstanceOf(BaseEvent);
   });
 });
