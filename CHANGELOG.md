@@ -1,5 +1,13 @@
 
 
+# [10.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.4...v10.1.0) (2024-08-01)
+
+
+### Features
+
+* **ol-interaction-modify:** make source injection optional ([30fbcf7](https://github.com/MelihAltintas/vue3-openlayers/commit/30fbcf7ebfd53a363e5c6b9d5a9512fc287817e5)), closes [#368](https://github.com/MelihAltintas/vue3-openlayers/issues/368)
+* **ol-interaction-select:** use original FilterFunction type from OpenLayers ([8226b16](https://github.com/MelihAltintas/vue3-openlayers/commit/8226b16676c149b8d1be07c07ffae595c35b83f4)), closes [#363](https://github.com/MelihAltintas/vue3-openlayers/issues/363)
+
 ## [10.0.4](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.3...v10.0.4) (2024-08-01)
 
 
