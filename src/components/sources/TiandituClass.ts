@@ -9,7 +9,6 @@ export type Options = WMTSOptions & {
   tk?: string;
   isLabel?: boolean;
   maxZoom?: number;
-  opaque?: boolean;
 };
 export class Tianditu extends WMTSSource {
   static layerLabelMap: Record<string, string> = {};
@@ -61,7 +60,6 @@ export class Tianditu extends WMTSSource {
       style: options.style || "default",
       cacheSize: options.cacheSize,
       crossOrigin,
-      opaque: options.opaque === undefined ? true : options.opaque,
       maxZoom: Tianditu.layerZoomMap[options.layerType],
       reprojectionErrorThreshold: options.reprojectionErrorThreshold,
       url: options.url,
