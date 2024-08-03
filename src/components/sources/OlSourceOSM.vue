@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<Options>(), {
   crossOrigin: "anonymous",
   interpolate: true,
   maxZoom: 19,
-  opaque: true,
   reprojectionErrorThreshold: 0.5,
   transition: 250,
   url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
