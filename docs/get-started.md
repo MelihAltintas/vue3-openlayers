@@ -4,9 +4,9 @@ vue3-openlayers works with the following versions which must be installed as pee
 
 <!-- auto-generated-peer-dependency-requirements START -->
 
-- **[ol](https://openlayers.org/)**: `^9.1.0`
+- **[ol](https://openlayers.org/)**: `^10.0.0`
 - **[ol-contextmenu](https://github.com/jonataswalker/ol-contextmenu)**: `^5.4.0`
-- **[ol-ext](https://github.com/Viglino/ol-ext#,)**: `^4.0.15`
+- **[ol-ext](https://github.com/Viglino/ol-ext#,)**: `^4.0.21`
 - **[vue](https://github.com/vuejs/core/tree/main/packages/vue#readme)**: `^3.4.0`
 
 <!-- auto-generated-peer-dependency-requirements END -->
