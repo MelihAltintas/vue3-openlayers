@@ -1,5 +1,17 @@
 
 
+# [11.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.3.1...v11.0.0) (2024-08-04)
+
+
+### Features
+
+* support OpenLayers@10 ([c29a966](https://github.com/MelihAltintas/vue3-openlayers/commit/c29a9669391474d228527a232d3673b2733e9e25))
+
+
+### BREAKING CHANGES
+
+* A minimum version of OpenLayers 10 is now required.
+
 ## [10.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.3.0...v10.3.1) (2024-08-04)
 
 
