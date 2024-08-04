@@ -1,5 +1,12 @@
 
 
+# [10.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.1.0...v10.2.0) (2024-08-04)
+
+
+### Features
+
+* support OpenLayers@10 ([3d9201d](https://github.com/MelihAltintas/vue3-openlayers/commit/3d9201dc56b7e0b05bf346bd8c2ca310fa5d545e))
+
 # [10.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.0.4...v10.1.0) (2024-08-01)
 
 
