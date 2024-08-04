@@ -1,5 +1,14 @@
 
 
+## [10.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.3.0...v10.3.1) (2024-08-04)
+
+
+### Reverts
+
+* Revert "docs(ol-source-*): drop `opaque` option since it has been removed with OpenLayers 10" ([9e6dc68](https://github.com/MelihAltintas/vue3-openlayers/commit/9e6dc680aba50d7737acf486ca90afdcf74aecbf))
+* Revert "feat: support OpenLayers@10" ([7726424](https://github.com/MelihAltintas/vue3-openlayers/commit/77264240449926ad0dc247c2b81a5a15dbcebe7b))
+* Revert "chore(deps): update dependencies" ([d6199da](https://github.com/MelihAltintas/vue3-openlayers/commit/d6199da8dbd70d8662de889c2b007d25969a14c9))
+
 # [10.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.1.0...v10.3.0) (2024-08-04)
 
 
