@@ -47,7 +47,12 @@ This deviating props are described in the section below.
 
 ### Deviating Properties
 
-none.
+#### `opaque`
+
+The value for `opaque` is currently set to `true` by default.
+However, this behaviour will be aligned with the OpenLayers default of `false` in the future.
+
+See related issue [XYZ source opacity problem #239](https://github.com/MelihAltintas/vue3-openlayers/issues/239).
 
 ## Events
 

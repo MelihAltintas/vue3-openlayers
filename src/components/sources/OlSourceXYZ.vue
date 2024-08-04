@@ -18,6 +18,7 @@ defineOptions({
 const props = withDefaults(defineProps<Options>(), {
   attributionsCollapsible: true,
   interpolate: true,
+  opaque: true,
   maxZoom: 42,
   minZoom: 0,
   projection: "EPSG:3857",
