@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide, onMounted, onUnmounted, watch } from "vue";
+import { onMounted, onUnmounted, provide, ref, watch } from "vue";
 import type { AtPixelOptions } from "ol/Map";
 import Map, { type MapOptions } from "ol/Map";
 import type { FeatureLike } from "ol/Feature";
@@ -15,8 +15,9 @@ import type { Pixel } from "ol/pixel";
 import type { Source } from "ol/source";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { mergeProperties } from "@/helpers/properties";
 
-const props = defineProps<MapOptions>();
+const props = defineProps<MapOptions & { instance?: Map }>();
 
 const emit = defineEmits([
   "change:layerGroup",
@@ -36,21 +37,37 @@ const emit = defineEmits([
   "rendercomplete",
 ]);
 
-const properties = usePropsAsObjectProperties(props);
-
-const mapRef = ref<string | HTMLElement | undefined>(undefined);
-let map: Map | undefined = new Map(properties);
-
-watch(properties, () => {
-  map?.setProperties(properties);
+const properties = usePropsAsObjectProperties({
+  ...props,
+  instance: undefined,
 });
 
+const mapRef = ref<string | HTMLElement | undefined>(undefined);
+let map: Map =
+  props.instance || new Map({ ...properties, instance: undefined });
+
+watch(
+  properties,
+  () => {
+    const p = props.instance
+      ? mergeProperties(properties, props.instance.getProperties())
+      : properties;
+    map?.setProperties(p);
+  },
+  { immediate: true },
+);
+
 onMounted(() => {
-  map?.setTarget(mapRef.value);
+  // bind the map to the component template if not re-using an existing one passed via prop.
+  if (!props.instance) {
+    map?.setTarget(mapRef.value);
+  }
 });
 
 onUnmounted(() => {
-  map?.setTarget(undefined);
+  if (!props.instance) {
+    map?.setTarget(undefined);
+  }
   map = undefined;
 });
 

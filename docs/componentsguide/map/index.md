@@ -8,21 +8,16 @@ component to setup `zoom`, `center`, `projection` and other view related propert
 
 [[toc]]
 
-## Demo
-
-<script setup>
-import ViewDemo from "@demos/ViewDemo.vue"
-</script>
-
-<ClientOnly>
-<ViewDemo />
-</ClientOnly>
-
 ## Setup
 
 <!--@include: ../map.plugin.md-->
 
 ## Usage
+
+<script setup>
+import ViewDemo from "@demos/ViewDemo.vue";
+import ExistingMapDemo from "@demos/ExistingMapDemo.vue";
+</script>
 
 | Plugin Usage | Explicit Import |
 | ------------ | :-------------: |
@@ -31,9 +26,26 @@ import ViewDemo from "@demos/ViewDemo.vue"
 Example of a simple map.
 See also documentation of `ol-view` component.
 
+<ClientOnly>
+
+<ViewDemo />
+</ClientOnly>
+
 ::: code-group
 
 <<< ../../../src/demos/ViewDemo.vue
+
+:::
+
+### re-use existing map
+
+<ClientOnly>
+<ExistingMapDemo />
+</ClientOnly>
+
+::: code-group
+
+<<< ../../../src/demos/ExistingMapDemo.vue
 
 :::
 
@@ -48,7 +60,11 @@ This deviating props are described in the section below.
 
 ### Deviating Properties
 
-None.
+#### instance
+
+You can re-use an existing [OpenLayers `Map`](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html) instance.
+This is probably useful if your app already includes OpenLayers or some other library which uses OpenLayers and exposes its instance.
+The passed `instance` property must be a valid instance of `ol/Map`.
 
 ## Events
 

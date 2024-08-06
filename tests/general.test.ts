@@ -3,8 +3,16 @@ import { test } from "@playwright/test";
 import { MapPage } from "./MapPage";
 
 test.describe("ol-map", () => {
-  test("should render", async ({ page }) => {
-    const map = new MapPage(page);
+  test("should render a new map", async ({ page }) => {
+    const map = new MapPage(page, 0);
+    await map.goto("/componentsguide/map/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+
+  test("should render a re-used existing map", async ({ page }) => {
+    const map = new MapPage(page, 1);
     await map.goto("/componentsguide/map/");
     await map.waitUntilReady();
     await map.waitUntilCanvasLoaded();
