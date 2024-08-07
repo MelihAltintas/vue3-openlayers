@@ -1,5 +1,12 @@
 
 
+## [11.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.0.0...v11.0.1) (2024-08-07)
+
+
+### Bug Fixes
+
+* **ol-interaction-modify:** correctly check for source/features ([91a07ca](https://github.com/MelihAltintas/vue3-openlayers/commit/91a07cac37d7a579014bc0bcc7deae7e226237c5)), closes [#370](https://github.com/MelihAltintas/vue3-openlayers/issues/370)
+
 # [11.0.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v10.3.1...v11.0.0) (2024-08-04)
 
 
