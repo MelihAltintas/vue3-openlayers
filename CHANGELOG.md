@@ -1,5 +1,12 @@
 
 
+# [11.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.0.1...v11.1.0) (2024-08-09)
+
+
+### Features
+
+* **ol-interaction-mouse-wheel-zoom:** provide new interaction to disable / customize mouse zoom behavior ([8846176](https://github.com/MelihAltintas/vue3-openlayers/commit/88461769a3c216017227d6a494d8219507f6c9bb)), closes [#356](https://github.com/MelihAltintas/vue3-openlayers/issues/356)
+
 ## [11.0.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.0.0...v11.0.1) (2024-08-07)
 
 
