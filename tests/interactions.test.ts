@@ -107,6 +107,19 @@ test.describe("ol-interaction-dragrotatezoom", () => {
   });
 });
 
+test.describe("ol-interaction-mouse-wheel-zoom", () => {
+  test("should zoom the map view when platform modifier key pressed", async ({
+    page,
+  }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/interactions/mousewheelzoom/");
+    await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.zoomWithMouseWheel(100, "ControlOrMeta");
+    await map.checkCanvasScreenshot();
+  });
+});
+
 test.describe("ol-interaction-link", () => {
   test("should update the URL after loading", async ({ page }) => {
     const map = new MapPage(page);

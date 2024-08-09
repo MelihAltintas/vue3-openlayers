@@ -10,10 +10,9 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import {
-  // [!code focus:6]
   Map,
   Layers,
-  Sources,
+  Sources,// [!code focus]
 } from "vue3-openlayers";
 
 const app = createApp(App);

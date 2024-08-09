@@ -10,6 +10,7 @@ import OlInteractionModify from "./OlInteractionModify.vue";
 import OlInteractionPointer from "./OlInteractionPointer.vue";
 import OlInteractionSnap from "./OlInteractionSnap.vue";
 import OlInteractionTransform from "./OlInteractionTransform.vue";
+import OlInteractionMouseWheelZoom from "./OlInteractionMouseWheelZoom.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
@@ -24,6 +25,7 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlInteractionPointer", OlInteractionPointer);
   app.component("OlInteractionSnap", OlInteractionSnap);
   app.component("OlInteractionTransform", OlInteractionTransform);
+  app.component("OlInteractionMouseWheelZoom", OlInteractionMouseWheelZoom);
 
   if (options) {
     app.provide("ol-options", options);
@@ -49,4 +51,5 @@ export {
   OlInteractionPointer,
   OlInteractionSnap,
   OlInteractionTransform,
+  OlInteractionMouseWheelZoom,
 };

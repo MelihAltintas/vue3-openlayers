@@ -2,6 +2,8 @@ import { expect, Locator, Page } from "@playwright/test";
 
 type Point = [x: number, y: number];
 
+type Modifier = "Alt" | "Control" | "Meta" | "ControlOrMeta" | "Shift";
+
 export class MapPage {
   readonly getStartedLink: Locator;
   readonly gettingStartedHeader: Locator;
@@ -43,6 +45,14 @@ export class MapPage {
     }
   }
 
+  async zoomWithMouseWheel(deltaY = 5, modifier?: Modifier) {
+    const boundingBox = await this.canvasBBox();
+    await this.page.mouse.move(boundingBox.x + 100, boundingBox.y + 100);
+    await this.page.keyboard.down(modifier);
+    await this.page.mouse.wheel(0, -deltaY);
+    await this.page.keyboard.up(modifier);
+  }
+
   async checkCanvasScreenshot() {
     await expect(this.mapCanvas()).toHaveScreenshot({
       timeout: 8000,
@@ -53,11 +63,7 @@ export class MapPage {
     return await this.mapCanvas().boundingBox();
   }
 
-  async dragOnCanvas(
-    start: Point,
-    end: Point,
-    modifiers?: ("Alt" | "Control" | "Meta" | "Shift")[],
-  ) {
+  async dragOnCanvas(start: Point, end: Point, modifiers?: Modifier[]) {
     const boundingBox = await this.canvasBBox();
 
     if (boundingBox) {
@@ -105,11 +111,7 @@ export class MapPage {
     }
   }
 
-  async clickOnCanvas(
-    point: Point,
-    modifiers?: ("Alt" | "Control" | "Meta" | "Shift")[],
-    dblClick = false,
-  ) {
+  async clickOnCanvas(point: Point, modifiers?: Modifier[], dblClick = false) {
     dblClick
       ? await this.mapCanvas().dblclick({
           position: {

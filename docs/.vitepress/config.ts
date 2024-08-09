@@ -385,6 +385,10 @@ export const config: UserConfig = {
                 link: "/componentsguide/interactions/modify/",
               },
               {
+                text: "ol-interaction-mouse-wheel-zoom",
+                link: "/componentsguide/interactions/mousewheelzoom/",
+              },
+              {
                 text: "ol-interaction-pointer",
                 link: "/componentsguide/interactions/pointer/",
               },
