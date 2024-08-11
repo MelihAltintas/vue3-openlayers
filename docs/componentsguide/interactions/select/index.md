@@ -34,7 +34,8 @@ import SelectDemo from "@demos/SelectDemo.vue"
 
 ### multi
 
-- **Type**: `String`
+- **Type**: `Boolean`
+- **Default**: `false`
 
 ### features
 
