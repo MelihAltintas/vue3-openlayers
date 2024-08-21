@@ -13,6 +13,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 const props = withDefaults(
   defineProps<{
     color?: string;
+    color2?: string;
   }>(),
   {},
 );
@@ -23,14 +24,50 @@ const styledObj = inject<Ref<Style | null> | null>("styledObj", null);
 
 const properties = usePropsAsObjectProperties(props);
 
+const createGradientFill = (
+  color: string,
+  color2: string,
+  width: number = 256,
+  height: number = 256,
+): Fill => {
+  const gradientCanvas = document.createElement("canvas");
+  const ctx = gradientCanvas.getContext("2d");
+
+  if (!ctx) throw new Error("无法获取画布上下文");
+
+  gradientCanvas.width = width;
+  gradientCanvas.height = height;
+
+  // 创建一个从渐变色
+  const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+  // 添加颜色停止点
+  gradient.addColorStop(0, color2);
+  gradient.addColorStop(1, color || color2);
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, width, height);
+
+  const dataURL = gradientCanvas.toDataURL();
+  console.log("生成的渐变色 DataURL:", dataURL); // 输出 DataURL 进行调试
+
+  // 使用 src 属性来设置填充色
+  return new Fill({ color: { src: dataURL } });
+};
+
 if (style != null && circle == null) {
   // in style object
-  let fill = new Fill(properties);
+  let fill = properties.color2
+    ? createGradientFill(properties.color || "transparent", properties.color2)
+    : new Fill({ color: properties.color });
+
   style?.value?.setFill(fill);
 
   const applyFill = () => {
     style?.value?.setFill(new Fill());
-    fill = new Fill(properties);
+    fill = properties.color2
+      ? createGradientFill(properties.color || "transparent", properties.color2)
+      : new Fill({ color: properties.color || "transparent" });
     style?.value?.setFill(fill);
   };
   watch(properties, () => {
@@ -49,8 +86,8 @@ if (style != null && circle == null) {
     style?.value?.setFill(new Fill());
   });
 } else if (circle != null) {
-  // in circle
   const applyFilltoCircle = (color?: string) => {
+    // @ts-ignore
     circle?.value?.getFill().setColor(color || null);
     circle?.value?.setRadius(circle?.value.getRadius()); // force render
     try {
