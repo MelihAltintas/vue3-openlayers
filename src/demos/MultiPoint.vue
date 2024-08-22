@@ -51,6 +51,62 @@
       </ol-source-vector>
     </ol-vector-layer>
   </ol-map>
+  <ol-map
+    :loadTilesWhileAnimating="true"
+    :loadTilesWhileInteracting="true"
+    style="height: 500px"
+  >
+    <ol-view
+      ref="view"
+      :center="center2"
+      :zoom="zoom2"
+      :projection="projection2"
+    />
+
+    <ol-tile-layer>
+      <ol-source-osm />
+    </ol-tile-layer>
+
+    <ol-vector-layer>
+      <ol-source-vector>
+        <ol-feature>
+          <ol-geom-polygon
+            :coordinates="[
+              [
+                [126.47002404644267, 43.99093328925813],
+                [126.4711768581417, 43.992878669502076],
+                [126.47228243645466, 43.99516210909935],
+                [126.47326121895479, 43.99737943568237],
+                [126.47427789090142, 43.99921969843481],
+                [126.47532929515239, 44.00132369592343],
+                [126.4762939627539, 44.003541854028306],
+                [126.47727258042467, 44.0053002738806],
+                [126.47835156610404, 44.007269624853535],
+                [126.47946967442907, 44.00930314735945],
+                [126.48052150751474, 44.011403661489204],
+                [126.46321063129544, 44.01318358466894],
+                [126.46346516898865, 44.01127347916341],
+                [126.46355757652879, 44.00899723235789],
+                [126.46366872159692, 44.00667901337523],
+                [126.46387719747767, 44.00450595619715],
+                [126.46420396408529, 44.0024736499698],
+                [126.46439723545224, 44.000281973997225],
+                [126.4645750958243, 43.998084867230126],
+                [126.46487149748539, 43.995954127907204],
+                [126.46504464744574, 43.99372228077026],
+                [126.46511844566551, 43.991608178272905],
+                [126.47002404644267, 43.99093328925813],
+              ],
+            ]"
+          ></ol-geom-polygon>
+          <ol-style>
+            <!-- <ol-style-fill color="red" /> -->
+            <ol-style-fill color="red" color2="yellow"></ol-style-fill>
+          </ol-style>
+        </ol-feature>
+      </ol-source-vector>
+    </ol-vector-layer>
+  </ol-map>
 </template>
 
 <script setup>
@@ -63,4 +119,8 @@ const radius = ref(10);
 const strokeWidth = ref(4);
 const strokeColor = ref("red");
 const fillColor = ref("white");
+
+const center2 = ref([126.443156, 43.971377]);
+const projection2 = ref("EPSG:4326");
+const zoom2 = ref(13);
 </script>
