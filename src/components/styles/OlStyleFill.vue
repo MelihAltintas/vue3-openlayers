@@ -33,15 +33,15 @@ const createGradientFill = (
   const gradientCanvas = document.createElement("canvas");
   const ctx = gradientCanvas.getContext("2d");
 
-  if (!ctx) throw new Error("无法获取画布上下文");
+  if (!ctx) throw new Error("Unable to get canvas context");
 
   gradientCanvas.width = width;
   gradientCanvas.height = height;
 
-  // 创建一个从渐变色
+  // Create a gradient
   const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
-  // 添加颜色停止点
+  // Add color stops
   gradient.addColorStop(0, color2);
   gradient.addColorStop(1, color || color2);
 
@@ -49,14 +49,13 @@ const createGradientFill = (
   ctx.fillRect(0, 0, width, height);
 
   const dataURL = gradientCanvas.toDataURL();
-  console.log("生成的渐变色 DataURL:", dataURL); // 输出 DataURL 进行调试
 
-  // 使用 src 属性来设置填充色
+  // Use the src property to set the fill color
   return new Fill({ color: { src: dataURL } });
 };
 
 if (style != null && circle == null) {
-  // in style object
+  // In style object
   let fill = properties.color2
     ? createGradientFill(properties.color || "transparent", properties.color2)
     : new Fill({ color: properties.color });
