@@ -10,10 +10,11 @@ import { inject, watch, onMounted, onUnmounted } from "vue";
 import type Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
+type GradientColorStop = [number, string];
 const props = withDefaults(
   defineProps<{
     color?: string;
-    color2?: string;
+    colorList?: GradientColorStop[];
   }>(),
   {},
 );
@@ -23,10 +24,9 @@ const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
 const styledObj = inject<Ref<Style | null> | null>("styledObj", null);
 
 const properties = usePropsAsObjectProperties(props);
-
 const createGradientFill = (
   color: string,
-  color2: string,
+  colorList: GradientColorStop[] = [],
   width: number = 256,
   height: number = 256,
 ): Fill => {
@@ -38,37 +38,50 @@ const createGradientFill = (
   gradientCanvas.width = width;
   gradientCanvas.height = height;
 
-  // Create a gradient
-  const gradient = ctx.createLinearGradient(0, 0, 0, height);
+  if (colorList.length > 0) {
+    // Create a gradient using the colorList
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
-  // Add color stops
-  gradient.addColorStop(0, color2);
-  gradient.addColorStop(1, color || color2);
+    colorList.forEach(([offset, gradientColor]) => {
+      gradient.addColorStop(offset, gradientColor);
+    });
 
-  ctx.fillStyle = gradient;
+    ctx.fillStyle = gradient;
+  } else {
+    // Fallback to a single color
+    ctx.fillStyle = color;
+  }
   ctx.fillRect(0, 0, width, height);
 
   const dataURL = gradientCanvas.toDataURL();
-
   // Use the src property to set the fill color
   return new Fill({ color: { src: dataURL } });
 };
 
 if (style != null && circle == null) {
   // In style object
-  let fill = properties.color2
-    ? createGradientFill(properties.color || "transparent", properties.color2)
+  let fill = properties.colorList
+    ? createGradientFill(
+        properties.color || "transparent",
+        properties.colorList,
+      )
     : new Fill({ color: properties.color });
+
+  console.log("fill", fill);
 
   style?.value?.setFill(fill);
 
   const applyFill = () => {
     style?.value?.setFill(new Fill());
-    fill = properties.color2
-      ? createGradientFill(properties.color || "transparent", properties.color2)
+    fill = properties.colorList
+      ? createGradientFill(
+          properties.color || "transparent",
+          properties.colorList,
+        )
       : new Fill({ color: properties.color || "transparent" });
     style?.value?.setFill(fill);
   };
+
   watch(properties, () => {
     applyFill();
   });
