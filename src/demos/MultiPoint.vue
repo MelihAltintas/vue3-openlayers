@@ -101,7 +101,14 @@
           ></ol-geom-polygon>
           <ol-style>
             <!-- <ol-style-fill color="red" /> -->
-            <ol-style-fill color="red" color2="yellow"></ol-style-fill>
+            <ol-style-fill
+              color="red"
+              :colorList="[
+                [0.2, 'green'],
+                [0.5, 'red'],
+                [0.9, 'yellow'],
+              ]"
+            />
           </ol-style>
         </ol-feature>
       </ol-source-vector>
