@@ -67,8 +67,6 @@ if (style != null && circle == null) {
       )
     : new Fill({ color: properties.color });
 
-  console.log("fill", fill);
-
   style?.value?.setFill(fill);
 
   const applyFill = () => {
