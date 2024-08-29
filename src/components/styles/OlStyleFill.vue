@@ -1,32 +1,70 @@
 <template>
   <div v-if="false"></div>
 </template>
+
 <script setup lang="ts">
+import { type Ref, inject, watch, onMounted, onUnmounted, ref } from "vue";
 import Fill from "ol/style/Fill";
 import type CircleStyle from "ol/style/Circle";
-
-import type { Ref } from "vue";
-import { inject, watch, onMounted, onUnmounted } from "vue";
 import type Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
+// Define the type for gradient color stops
 type GradientColorStop = [number, string];
-const props = withDefaults(
-  defineProps<{
-    color?: string;
-    colorList?: GradientColorStop[];
-  }>(),
-  {},
-);
 
-const style = inject<Ref<Style | null> | null>("style", null);
-const circle = inject<Ref<CircleStyle | null> | null>("circle", null);
-const styledObj = inject<Ref<Style | null> | null>("styledObj", null);
+// Define the type for linear gradients
+type LinearGradient = {
+  type: "linear";
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+  colorStops: GradientColorStop[];
+};
 
+// Define the type for radial gradients
+type RadialGradient = {
+  type: "radial";
+  x0: number;
+  y0: number;
+  r0: number;
+  x1: number;
+  y1: number;
+  r1: number;
+  colorStops: GradientColorStop[];
+};
+
+// Define the type for conic gradients
+type ConicGradient = {
+  type: "conic";
+  cx: number;
+  cy: number;
+  radius: number;
+  startAngle: number;
+  endAngle: number;
+  colorStops: GradientColorStop[];
+};
+
+// Define a union type for all gradient types
+type Gradient = LinearGradient | RadialGradient | ConicGradient;
+
+// Define the props type for the component
+const props = defineProps<{
+  color?: string;
+  gradient?: Gradient;
+}>();
+
+// Inject possible nullable Ref objects from the parent component
+const style = inject<Ref<Style | null>>("style", ref(null));
+const circle = inject<Ref<CircleStyle | null>>("circle", ref(null));
+const styledObj = inject<Ref<Style | null>>("styledObj", ref(null));
+
+// Use a custom composable to convert props into an object
 const properties = usePropsAsObjectProperties(props);
+
+// Function to create a gradient fill
 const createGradientFill = (
-  color: string,
-  colorList: GradientColorStop[] = [],
+  gradient?: Gradient,
   width: number = 256,
   height: number = 256,
 ): Fill => {
@@ -38,65 +76,67 @@ const createGradientFill = (
   gradientCanvas.width = width;
   gradientCanvas.height = height;
 
-  if (colorList.length > 0) {
-    // Create a gradient using the colorList
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+  let grad: CanvasGradient;
 
-    colorList.forEach(([offset, gradientColor]) => {
-      gradient.addColorStop(offset, gradientColor);
+  // Create the corresponding CanvasGradient object based on the gradient type
+  if (gradient) {
+    switch (gradient.type) {
+      case "linear":
+        grad = ctx.createLinearGradient(
+          gradient.x0,
+          gradient.y0,
+          gradient.x1,
+          gradient.y1,
+        );
+        break;
+      case "radial":
+        grad = ctx.createRadialGradient(
+          gradient.x0,
+          gradient.y0,
+          gradient.r0,
+          gradient.x1,
+          gradient.y1,
+          gradient.r1,
+        );
+        break;
+      case "conic":
+        // Conic gradients are not directly supported by the Canvas API, use a linear gradient as a fallback
+        grad = ctx.createLinearGradient(0, 0, width, height);
+        break;
+      default:
+        throw new Error("Unsupported gradient type");
+    }
+
+    // Add color stops to the gradient
+    gradient.colorStops.forEach(([offset, gradientColor]) => {
+      grad.addColorStop(offset, gradientColor);
     });
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = grad;
   } else {
-    // Fallback to a single color
-    ctx.fillStyle = color;
+    ctx.fillStyle = properties.color ?? "transparent";
   }
+
   ctx.fillRect(0, 0, width, height);
 
   const dataURL = gradientCanvas.toDataURL();
-  // Use the src property to set the fill color
   return new Fill({ color: { src: dataURL } });
 };
 
-if (style != null && circle == null) {
-  // In style object
-  let fill = properties.colorList
-    ? createGradientFill(
-        properties.color || "transparent",
-        properties.colorList,
-      )
-    : new Fill({ color: properties.color });
-
-  style?.value?.setFill(fill);
-
-  const applyFill = () => {
-    style?.value?.setFill(new Fill());
-    fill = properties.colorList
-      ? createGradientFill(
-          properties.color || "transparent",
-          properties.colorList,
-        )
+// Function to apply fill style to a Style object
+const applyFillToStyle = () => {
+  if (style.value) {
+    const fill = properties.gradient
+      ? createGradientFill(properties.gradient)
       : new Fill({ color: properties.color || "transparent" });
-    style?.value?.setFill(fill);
-  };
 
-  watch(properties, () => {
-    applyFill();
-  });
+    style.value.setFill(fill);
+  }
+};
 
-  watch(style, () => {
-    applyFill();
-  });
-
-  onMounted(() => {
-    style?.value?.setFill(fill);
-  });
-
-  onUnmounted(() => {
-    style?.value?.setFill(new Fill());
-  });
-} else if (circle != null) {
-  const applyFilltoCircle = (color?: string) => {
+// Function to apply fill style to a CircleStyle object
+const applyFillToCircle = (color?: string) => {
+  if (circle.value) {
     // @ts-ignore
     circle?.value?.getFill().setColor(color || null);
     circle?.value?.setRadius(circle?.value.getRadius()); // force render
@@ -107,15 +147,47 @@ if (style != null && circle == null) {
       // @ts-ignore
       styledObj?.value.changed();
     }
-  };
+  }
+};
 
-  applyFilltoCircle(properties.color);
+// Conditional style handling
+if (style.value && !circle.value) {
+  // If a Style object exists but not a CircleStyle object, apply style to the Style
+  applyFillToStyle();
 
-  watch(properties, () => {
-    applyFilltoCircle(properties.color);
+  // Watch for changes in properties and reapply style
+  watch(properties, applyFillToStyle, { immediate: true });
+  watch(
+    style,
+    (newStyle) => {
+      if (newStyle) applyFillToStyle();
+    },
+    { immediate: true },
+  );
+
+  onMounted(applyFillToStyle);
+  onUnmounted(() => {
+    style.value?.setFill(new Fill());
   });
-  watch(circle, () => {
-    applyFilltoCircle(properties.color);
-  });
+} else if (circle.value) {
+  // If a CircleStyle object exists, apply style to the CircleStyle
+  applyFillToCircle(properties.color);
+
+  // Watch for changes in properties and the CircleStyle object and reapply style
+  watch(
+    properties,
+    () => {
+      if (circle.value) applyFillToCircle(properties.color);
+    },
+    { immediate: true },
+  );
+
+  watch(
+    circle,
+    (newCircle) => {
+      if (newCircle) applyFillToCircle(properties.color);
+    },
+    { immediate: true },
+  );
 }
 </script>
