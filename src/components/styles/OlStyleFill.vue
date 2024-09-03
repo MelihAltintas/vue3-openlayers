@@ -123,11 +123,15 @@ const createGradientFill = (
   return new Fill({ color: { src: dataURL } });
 };
 
+const gradFill = properties.gradient
+  ? createGradientFill(properties.gradient)
+  : null;
+
 // Function to apply fill style to a Style object
 const applyFillToStyle = () => {
   if (style.value) {
-    const fill = properties.gradient
-      ? createGradientFill(properties.gradient)
+    const fill = gradFill
+      ? gradFill
       : new Fill({ color: properties.color || "transparent" });
 
     style.value.setFill(fill);
