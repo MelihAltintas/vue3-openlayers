@@ -9,6 +9,12 @@ import OlStyleFlowline from "./OlStyleFlowline.vue";
 import type { FeatureLike } from "ol/Feature";
 import type { Style } from "ol/style";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import type {
+  Gradient,
+  ConicGradient,
+  RadialGradient,
+  LinearGradient,
+} from "./OlStyleFill.vue";
 
 type OverrideStyleFunction = (
   feature: FeatureLike,
@@ -46,4 +52,8 @@ export {
   OlStyleFlowline,
   OlStyleCircle,
   type OverrideStyleFunction,
+  type Gradient,
+  type ConicGradient,
+  type RadialGradient,
+  type LinearGradient,
 };

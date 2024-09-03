@@ -28,7 +28,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
-      "@demos/*": ["./src/demos/*"]
+      "@demos/*": ["./src/demos/*"],
+      "vue3-openlayers/*": ["src/*"]
     },
     "checkJs": false
   },

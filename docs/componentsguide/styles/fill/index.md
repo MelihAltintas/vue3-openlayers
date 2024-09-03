@@ -9,10 +9,10 @@ Use it inside ol-style, ol-style-circle, ol-style-text along with ol-style-strok
 ## Demo
 
 <script setup>
-import MultiPoint from "@demos/MultiPoint.vue"
+import PolygonDemo from "@demos/PolygonDemo.vue"
 </script>
 <ClientOnly>
-<MultiPoint />
+<PolygonDemo />
 </ClientOnly>
 
 ## Setup
@@ -29,11 +29,13 @@ Styling a feature
 
 ::: code-group
 
-<<< ../../../../src/demos/MultiPoint.vue
+<<< ../../../../src/demos/PolygonDemo.vue
 
 :::
 
 ## Properties
+
+You need to pass either a `color` or a `gradient`.
 
 ### color
 
@@ -42,10 +44,16 @@ Styling a feature
 The color either in hexadecimal or as RGB array with red, green, and blue values between 0 and 255 and alpha between 0 and 1 inclusive.
 
 ### gradient
-- **Type**: `Object`
-```
+
+- **Type**: `LinearGradient | RadialGradient | ConicGradient`
+
+::: details Details for the gradient configuration
+
+#### `LinearGradient`
+
+```jsonc
 {
-  "type": "linear", // Type of gradient. Here, it's a linear gradient.
+  "type": "linear",
   "x0": 0, // x-coordinate of the starting point. Indicates the horizontal position where the gradient starts.
   "y0": 0, // y-coordinate of the starting point. Indicates the vertical position where the gradient starts.
   "x1": 0, // x-coordinate of the ending point. This is the horizontal position where the gradient ends. It’s the same as x0, meaning the gradient is vertical.
@@ -56,9 +64,13 @@ The color either in hexadecimal or as RGB array with red, green, and blue values
     [1, "green"] // End color at position 1. The color at the end of the gradient (y = 256) is green.
   ]
 }
+```
 
+#### `RadialGradient`
+
+```jsonc
 {
-  "type": "radial", // Type of gradient. Here, it's a radial gradient.
+  "type": "radial",
   "x0": 128, // x-coordinate of the starting circle's center. Specifies the horizontal position of the starting circle.
   "y0": 128, // y-coordinate of the starting circle's center. Specifies the vertical position of the starting circle.
   "r0": 0, // Radius of the starting circle. Here, it's 0, meaning the gradient starts at a single point.
@@ -71,5 +83,22 @@ The color either in hexadecimal or as RGB array with red, green, and blue values
     [1, "white"] // Color at the edge of the gradient (r = 128). The color at the outer edge of the radial gradient is white.
   ]
 }
-
 ```
+
+#### `ConicGradient`
+
+```jsonc
+{
+  "type": "conic",
+  "x": 0, // x-axis coordinate of the center of the gradient.
+  "y": 0, // y-axis coordinate of the center of the gradient.
+  "startAngle": 0, // The angle at which to begin the gradient, in radians. The angle starts from a line going horizontally right from the center, and proceeds clockwise.
+  "colorStops": [
+    [0, "red"], // Start color at position 0. The color at the beginning of the gradient is red.
+    [0.5, "yellow"], // Middle color at position 0.5. The color at the midpoint of the gradient (y = 128) is yellow.
+    [1, "green"] // End color at position 1. The color at the end of the gradient (y = 256) is green.
+  ]
+}
+```
+
+:::

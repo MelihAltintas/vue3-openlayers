@@ -89,19 +89,37 @@
             <ol-style-fill :gradient="radialGradient" />
           </ol-style>
         </ol-feature>
+        <ol-feature>
+          <ol-geom-polygon
+            :coordinates="[
+              [
+                [-98.8435, 19.680586],
+                [-98.838, 19.68098],
+                [-98.835, 19.68522],
+                [-98.843, 19.685667],
+                [-98.835, 19.683586],
+              ],
+            ]"
+          ></ol-geom-polygon>
+          <ol-style>
+            <ol-style-fill :gradient="conicGradient" />
+          </ol-style>
+        </ol-feature>
       </ol-source-vector>
     </ol-vector-layer>
   </ol-map>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from "vue";
+import type { LinearGradient, RadialGradient } from "vue3-openlayers";
+import type { ConicGradient } from "@components/styles";
 
 const center = ref([-98.8449, 19.6869]);
 const projection = ref("EPSG:4326");
 const zoom = ref(15);
 
-const linearGradient = {
+const linearGradient: LinearGradient = {
   type: "linear",
   x0: 0,
   y0: 0,
@@ -114,7 +132,7 @@ const linearGradient = {
   ],
 };
 
-const radialGradient = {
+const radialGradient: RadialGradient = {
   type: "radial",
   x0: 128,
   y0: 128,
@@ -126,6 +144,20 @@ const radialGradient = {
     [0, "blue"], // Center color
     [0.5, "cyan"], // Middle color
     [1, "white"], // Edge color
+  ],
+};
+
+const conicGradient: ConicGradient = {
+  type: "conic",
+  x: 100,
+  y: 100,
+  startAngle: 100,
+  colorStops: [
+    [0, "red"],
+    [0.25, "orange"],
+    [0.5, "yellow"],
+    [0.75, "green"],
+    [1, "blue"],
   ],
 };
 </script>

@@ -13,7 +13,7 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 type GradientColorStop = [number, string];
 
 // Define the type for linear gradients
-type LinearGradient = {
+export type LinearGradient = {
   type: "linear";
   x0: number;
   y0: number;
@@ -23,7 +23,7 @@ type LinearGradient = {
 };
 
 // Define the type for radial gradients
-type RadialGradient = {
+export type RadialGradient = {
   type: "radial";
   x0: number;
   y0: number;
@@ -35,18 +35,16 @@ type RadialGradient = {
 };
 
 // Define the type for conic gradients
-type ConicGradient = {
+export type ConicGradient = {
   type: "conic";
-  cx: number;
-  cy: number;
-  radius: number;
+  x: number;
+  y: number;
   startAngle: number;
-  endAngle: number;
   colorStops: GradientColorStop[];
 };
 
 // Define a union type for all gradient types
-type Gradient = LinearGradient | RadialGradient | ConicGradient;
+export type Gradient = LinearGradient | RadialGradient | ConicGradient;
 
 // Define the props type for the component
 const props = defineProps<{
@@ -100,8 +98,11 @@ const createGradientFill = (
         );
         break;
       case "conic":
-        // Conic gradients are not directly supported by the Canvas API, use a linear gradient as a fallback
-        grad = ctx.createLinearGradient(0, 0, width, height);
+        grad = ctx.createConicGradient(
+          gradient.x,
+          gradient.y,
+          gradient.startAngle,
+        );
         break;
       default:
         throw new Error("Unsupported gradient type");
