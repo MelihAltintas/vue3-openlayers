@@ -41,6 +41,54 @@
             <ol-style-fill color="rgba(255,0,0,0.2)"></ol-style-fill>
           </ol-style>
         </ol-feature>
+        <ol-feature>
+          <ol-geom-polygon
+            :coordinates="[
+              [
+                [-98.848559, 19.680586],
+                [-98.845949, 19.68098],
+                [-98.846947, 19.68522],
+                [-98.848358, 19.685667],
+                [-98.846959, 19.683586],
+              ],
+            ]"
+          ></ol-geom-polygon>
+          <ol-style>
+            <ol-style-fill color="red" />
+          </ol-style>
+        </ol-feature>
+        <ol-feature>
+          <ol-geom-polygon
+            :coordinates="[
+              [
+                [-98.858559, 19.680586],
+                [-98.855949, 19.68098],
+                [-98.85617, 19.68522],
+                [-98.858358, 19.685667],
+                [-98.856959, 19.683586],
+              ],
+            ]"
+          ></ol-geom-polygon>
+          <ol-style>
+            <ol-style-fill :gradient="linearGradient" />
+          </ol-style>
+        </ol-feature>
+        <ol-feature>
+          <ol-geom-polygon
+            :coordinates="[
+              [
+                [-98.856559, 19.680586],
+                [-98.855949, 19.68098],
+                [-98.855917, 19.68522],
+                [-98.848558, 19.685667],
+                [-98.848959, 19.678586],
+              ],
+            ]"
+          ></ol-geom-polygon>
+          <ol-style>
+            <ol-style-fill :gradient="radialGradient" />
+          </ol-style>
+        </ol-feature>
       </ol-source-vector>
     </ol-vector-layer>
   </ol-map>
@@ -52,4 +100,32 @@ import { ref } from "vue";
 const center = ref([-98.8449, 19.6869]);
 const projection = ref("EPSG:4326");
 const zoom = ref(15);
+
+const linearGradient = {
+  type: "linear",
+  x0: 0,
+  y0: 0,
+  x1: 0,
+  y1: 256,
+  colorStops: [
+    [0.1, "red"], // Start color
+    [0.5, "yellow"], // Middle color
+    [1, "green"], // End color
+  ],
+};
+
+const radialGradient = {
+  type: "radial",
+  x0: 128,
+  y0: 128,
+  r0: 0,
+  x1: 128,
+  y1: 128,
+  r1: 128,
+  colorStops: [
+    [0, "blue"], // Center color
+    [0.5, "cyan"], // Middle color
+    [1, "white"], // Edge color
+  ],
+};
 </script>
