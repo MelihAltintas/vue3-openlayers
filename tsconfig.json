@@ -29,7 +29,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@demos/*": ["./src/demos/*"],
-      "vue3-openlayers/*": ["src/*"]
+      "vue3-openlayers": ["./src/index.ts"]
     },
     "checkJs": false
   },

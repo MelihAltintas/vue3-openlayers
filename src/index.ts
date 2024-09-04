@@ -15,6 +15,12 @@ import {
 import Providers from "./providers";
 import type { App, Plugin } from "vue";
 import type { Vue3OpenlayersGlobalOptions } from "./types";
+import type {
+  LinearGradient,
+  RadialGradient,
+  ConicGradient,
+  Gradient,
+} from "@components/styles";
 export * from "./composables";
 
 const install: Plugin = (app: App, options?: Vue3OpenlayersGlobalOptions) => {
@@ -46,4 +52,8 @@ export {
   Animations,
   Providers,
   type Vue3OpenlayersGlobalOptions,
+  type LinearGradient,
+  type RadialGradient,
+  type ConicGradient,
+  type Gradient,
 };

@@ -112,8 +112,11 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import type { LinearGradient, RadialGradient } from "vue3-openlayers";
-import type { ConicGradient } from "@components/styles";
+import type {
+  LinearGradient,
+  RadialGradient,
+  ConicGradient,
+} from "vue3-openlayers";
 
 const center = ref([-98.8449, 19.6869]);
 const projection = ref("EPSG:4326");
