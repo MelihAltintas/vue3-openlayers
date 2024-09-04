@@ -7,13 +7,6 @@
       :projection="projection"
     />
 
-    <ol-tile-layer ref="jawgLayer" title="JAWG">
-      <ol-source-xyz
-        crossOrigin="anonymous"
-        url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ"
-      />
-    </ol-tile-layer>
-
     <ol-tile-layer ref="stadiaLayer" title="Stamen Watercolor">
       <ol-source-stadia-maps layer="stamen_watercolor" />
     </ol-tile-layer>
@@ -22,23 +15,20 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-swipe-control v-if="layerList.length > 0" :layerList="layerList" />
+    <ol-swipe-control
+      v-if="stadiaLayer && osmLayer"
+      :layers="[osmLayer.tileLayer]"
+      :right-layers="[stadiaLayer.tileLayer]"
+    />
   </ol-map>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
+import type TileLayer from "ol/layer/Tile";
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
 const zoom = ref(8);
-const layerList = ref([]);
-const jawgLayer = ref(null);
-const osmLayer = ref(null);
-const stadiaLayer = ref(null);
-
-onMounted(() => {
-  layerList.value.push(jawgLayer.value.tileLayer);
-  layerList.value.push(stadiaLayer.value.tileLayer);
-  layerList.value.push(osmLayer.value.tileLayer);
-});
+const osmLayer = ref<{ tileLayer: TileLayer } | null>(null);
+const stadiaLayer = ref<{ tileLayer: TileLayer } | null>(null);
 </script>

@@ -14,9 +14,9 @@
     />
 
     <ol-swipe-control
-      ref="swipeControl"
       v-if="layerList.length > 0"
-      :layerList="layerList"
+      :layers="[layerList[0]]"
+      :right-layers="[layerList[1]]"
     />
 
     <ol-layerswitcherimage-control />
@@ -377,7 +377,6 @@ const videoStopped = (event) => {
   console.log(event);
 };
 
-const swipeControl = ref(null);
 const jawgLayer = ref(null);
 const osmLayer = ref(null);
 const layerList = ref([]);

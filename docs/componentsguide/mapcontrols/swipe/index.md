@@ -31,9 +31,17 @@ import SwipeControlDemo from "@demos/SwipeControlDemo.vue"
 
 ## Properties
 
-### layerList
+### layers
 
-- **Type**: `Array`
+Layers that should be rendered on the left (or top depending on the `orientation`) of the slider.
+
+- **Type**: `Array<Layer>`
+
+### rightLayers
+
+Layers that should be rendered on the right (or bottom depending on the `orientation`) of the slider.
+
+- **Type**: `Array<Layer>`
 
 ### className
 

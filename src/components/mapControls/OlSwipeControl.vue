@@ -10,7 +10,8 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 
 const props = withDefaults(
   defineProps<{
-    layerList?: Layer[];
+    layers?: Layer[];
+    rightLayers?: Layer[];
     className?: string;
     position?: number;
     orientation?: string;
@@ -27,9 +28,9 @@ const properties = usePropsAsObjectProperties(props);
 
 const { control } = useControl(Swipe, properties, attrs);
 
-props.layerList?.forEach((layer, index) => {
-  control.value.addLayer(layer, index === 1);
-});
+// props.layerList?.forEach((layer, index) => {
+//   control.value.addLayer(layer, index === 1);
+// });
 defineExpose({
   control,
 });
