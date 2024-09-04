@@ -59,9 +59,9 @@ const {
 } = toRefs(props);
 
 function createModify() {
-  if (!(source?.value || !features.value)) {
+  if (!(source?.value || features.value)) {
     console.error(
-      `[Vue3-OpenLayers Error] OlInteractionModify: Modify interactions needs either a either a source or features to work.
+      `[Vue3-OpenLayers Error] OlInteractionModify: Modify interactions needs either a source or features to work.
       Please provide either the props 'source' or 'feature' or use the component with an '<OlSourceVector>' component.`,
     );
   }
