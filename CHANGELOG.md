@@ -1,5 +1,19 @@
 
 
+# [11.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.1.0...v11.2.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* **ol-interaction-modify:** fix if-clause ([58b7006](https://github.com/MelihAltintas/vue3-openlayers/commit/58b7006ef8629fa1f9bf7fb19c36203ac45aa7e4)), closes [#371](https://github.com/MelihAltintas/vue3-openlayers/issues/371)
+
+
+### Features
+
+* **ol-style-fill:** add fill color gradient ([#375](https://github.com/MelihAltintas/vue3-openlayers/issues/375)) ([dd2aebd](https://github.com/MelihAltintas/vue3-openlayers/commit/dd2aebdb49d381adb3bf231102bb61413547caf7))
+* **ol-style-fill:** correctly setup conic gradient ([#375](https://github.com/MelihAltintas/vue3-openlayers/issues/375)) ([580591b](https://github.com/MelihAltintas/vue3-openlayers/commit/580591ba773673d102722ae592e5897cca26b167))
+* **ol-style-fill:** prevent re-calculation of gradient on watched changes ([#375](https://github.com/MelihAltintas/vue3-openlayers/issues/375)) ([f2a740e](https://github.com/MelihAltintas/vue3-openlayers/commit/f2a740e8ef90cbb1c8ded123432811bb771a240c))
+
 # [11.1.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.0.1...v11.1.0) (2024-08-09)
 
 
