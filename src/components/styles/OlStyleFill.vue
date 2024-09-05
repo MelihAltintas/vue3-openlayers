@@ -13,17 +13,19 @@ import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties
 type GradientColorStop = [number, string];
 
 // Define the type for linear gradients
-type LinearGradient = {
+export type LinearGradient = {
   type: "linear";
   x0: number;
   y0: number;
   x1: number;
   y1: number;
   colorStops: GradientColorStop[];
+  width: number;
+  height: number;
 };
 
 // Define the type for radial gradients
-type RadialGradient = {
+export type RadialGradient = {
   type: "radial";
   x0: number;
   y0: number;
@@ -32,21 +34,23 @@ type RadialGradient = {
   y1: number;
   r1: number;
   colorStops: GradientColorStop[];
+  width: number;
+  height: number;
 };
 
 // Define the type for conic gradients
-type ConicGradient = {
+export type ConicGradient = {
   type: "conic";
-  cx: number;
-  cy: number;
-  radius: number;
+  x: number;
+  y: number;
   startAngle: number;
-  endAngle: number;
   colorStops: GradientColorStop[];
+  width: number;
+  height: number;
 };
 
 // Define a union type for all gradient types
-type Gradient = LinearGradient | RadialGradient | ConicGradient;
+export type Gradient = LinearGradient | RadialGradient | ConicGradient;
 
 // Define the props type for the component
 const props = defineProps<{
@@ -65,8 +69,8 @@ const properties = usePropsAsObjectProperties(props);
 // Function to create a gradient fill
 const createGradientFill = (
   gradient?: Gradient,
-  width: number = 256,
-  height: number = 256,
+  width: number = 300,
+  height: number = 300,
 ): Fill => {
   const gradientCanvas = document.createElement("canvas");
   const ctx = gradientCanvas.getContext("2d");
@@ -100,8 +104,11 @@ const createGradientFill = (
         );
         break;
       case "conic":
-        // Conic gradients are not directly supported by the Canvas API, use a linear gradient as a fallback
-        grad = ctx.createLinearGradient(0, 0, width, height);
+        grad = ctx.createConicGradient(
+          gradient.x,
+          gradient.y,
+          gradient.startAngle,
+        );
         break;
       default:
         throw new Error("Unsupported gradient type");
@@ -123,11 +130,19 @@ const createGradientFill = (
   return new Fill({ color: { src: dataURL } });
 };
 
+const gradFill = properties.gradient
+  ? createGradientFill(
+      properties.gradient,
+      properties.gradient.width,
+      properties.gradient.height,
+    )
+  : null;
+
 // Function to apply fill style to a Style object
 const applyFillToStyle = () => {
   if (style.value) {
-    const fill = properties.gradient
-      ? createGradientFill(properties.gradient)
+    const fill = gradFill
+      ? gradFill
       : new Fill({ color: properties.color || "transparent" });
 
     style.value.setFill(fill);
