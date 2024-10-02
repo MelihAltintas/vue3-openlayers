@@ -1,5 +1,13 @@
 
 
+## [11.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.2.0...v11.2.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* apply URL changes on XYZ source ([aba4eb6](https://github.com/MelihAltintas/vue3-openlayers/commit/aba4eb6407e057af3d41f9c989fc46954d02bb64)), closes [#383](https://github.com/MelihAltintas/vue3-openlayers/issues/383)
+* ensure onMounted and inject is only called in setup context ([256dd87](https://github.com/MelihAltintas/vue3-openlayers/commit/256dd879c92f6c88cf1433b03690d4724a651807)), closes [#385](https://github.com/MelihAltintas/vue3-openlayers/issues/385) [#382](https://github.com/MelihAltintas/vue3-openlayers/issues/382)
+
 # [11.2.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.1.0...v11.2.0) (2024-09-04)
 
 
