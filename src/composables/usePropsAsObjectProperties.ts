@@ -1,4 +1,11 @@
-import { inject, reactive, type UnwrapNestedRefs, toRefs } from "vue";
+import {
+  inject,
+  reactive,
+  type UnwrapNestedRefs,
+  toRefs,
+  getCurrentInstance,
+} from "vue";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 type OlClassOptions<T> = T extends { styles: infer S }
   ? { style: S } & Omit<T, "styles">
@@ -22,7 +29,13 @@ function checkAndUpdateStylePropDef<T extends Record<string, unknown>>(
 export default function usePropsAsObjectProperties<
   T extends Record<string, unknown>,
 >(props: T): UnwrapNestedRefs<OlClassOptions<T>> {
-  const globalOptions = inject("ol-options");
+  const instance = getCurrentInstance();
+  let globalOptions: Vue3OpenlayersGlobalOptions = {
+    debug: false,
+  };
+  if (instance) {
+    globalOptions = inject("ol-options");
+  }
 
   const revisedProps = checkAndUpdateStylePropDef<T>(props);
 

@@ -9,6 +9,7 @@ import {
 } from "vue";
 import type BaseObject from "ol/Object";
 import type { EventTypes } from "ol/Observable";
+import type { Vue3OpenlayersGlobalOptions } from "@/types";
 
 export const COMMON_EVENTS = ["change", "error", "propertychange"];
 
@@ -47,7 +48,6 @@ export const FEATURE_EVENTS = [
   "removefeature",
 ];
 
-// Define the composable function
 export function useOpenLayersEvents(
   feature:
     | BaseObject
@@ -57,7 +57,12 @@ export function useOpenLayersEvents(
   eventNames: string[],
 ) {
   const instance = getCurrentInstance();
-  const globalOptions = inject("ol-options");
+  let globalOptions: Vue3OpenlayersGlobalOptions = {
+    debug: false,
+  };
+  if (instance) {
+    globalOptions = inject("ol-options");
+  }
 
   function updateOpenLayersEventHandlers() {
     ([...COMMON_EVENTS, ...eventNames] as EventTypes[]).forEach((eventName) => {
@@ -83,9 +88,11 @@ export function useOpenLayersEvents(
     });
   }
 
-  onMounted(() => {
-    updateOpenLayersEventHandlers();
-  });
+  if (instance) {
+    onMounted(() => {
+      updateOpenLayersEventHandlers();
+    });
+  }
 
   return {
     updateOpenLayersEventHandlers,
