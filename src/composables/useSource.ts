@@ -19,6 +19,8 @@ export default function useSource<T extends Source>(
   layer: Ref<Layer> | Ref<Cluster> | null | undefined,
   props: ConstructorParameters<typeof SourceClass>[0],
   eventsToHandle: string[] = [],
+  // eslint-disable-next-line
+  sourceUpdateActions?: (source: T) => void,
 ) {
   function getProperties() {
     return usePropsAsObjectProperties({
@@ -45,6 +47,9 @@ export default function useSource<T extends Source>(
       if (properties[keyInObj] !== undefined) {
         source.value.set(key, properties[keyInObj]);
       }
+    }
+    if (sourceUpdateActions) {
+      sourceUpdateActions(source.value);
     }
     layer?.value?.setSource(source.value);
     useOpenLayersEvents(source, eventsToHandle);

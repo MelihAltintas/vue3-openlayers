@@ -3,12 +3,14 @@
 </template>
 <script setup lang="ts">
 import XYZ, { type Options } from "ol/source/XYZ";
-import type { Ref } from "vue";
+import { type Ref, watch } from "vue";
 import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
 import type { ImageTile } from "ol";
 import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
+import type { Source } from "ol/source";
+import type { UrlFunction } from "ol/Tile";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -35,7 +37,22 @@ const props = withDefaults(defineProps<Options>(), {
 
 const layer = inject<Ref<TileLayer<XYZ>> | null>("tileLayer");
 
-const { source } = useSource(XYZ, layer, props, TILE_SOURCE_EVENTS);
+const { source, updateSource } = useSource(
+  XYZ,
+  layer,
+  props,
+  TILE_SOURCE_EVENTS,
+  (source) => {
+    if (props.url) {
+      source.setUrl(props.url);
+    }
+  },
+);
+
+watch(
+  () => props.url,
+  () => updateSource(),
+);
 
 defineExpose({
   layer,
