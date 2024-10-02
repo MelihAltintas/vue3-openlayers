@@ -37,6 +37,8 @@ bun add vue3-openlayers           # install this library
 
 :::
 
+Please ensure you are aware of potential issues with [Server-Side-Rendering (SSR)](#server-side-rendering).
+
 ## Usage: As Plugin
 
 To use `vue3-openlayers` in your application as a Plugin for global component availability,
@@ -117,6 +119,43 @@ import { Map, Layers, Sources } from "vue3-openlayers";
 ```
 
 :::
+
+## Server Side Rendering
+
+Be aware that the Vue3Openlayers map cannot be rendered at server side.
+Disabling SSR resolves this issue.
+The following example shows how to disable Vue3Openlayers when running SSR using Nuxt.js.
+
+**Example Nuxt config**
+
+The first approach is to disable the whole affected route where the map is rendered:
+
+```ts
+export default defineNuxtConfig({
+  // ...
+  routeRules: {
+    '/sales': { ssr: false },
+  },
+  // ...
+})
+```
+
+You can also specifically render the map only at client side, by putting inside the `ClientOnly` component:
+
+```vue
+<template>
+  <ClientOnly>
+    <Map.OlMap style="min-width: 400px; min-height: 400px;">
+      <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326"/>
+      <Layers.OlTileLayer>
+        <Sources.OlSourceOsm/>
+      </Layers.OlTileLayer>
+    </Map.OlMap>
+  </ClientOnly>
+</template>
+```
+
+see also: [Issue #358](https://github.com/MelihAltintas/vue3-openlayers/issues/358)
 
 ## Debug Mode
 
