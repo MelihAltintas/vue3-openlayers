@@ -9,8 +9,6 @@ import type TileLayer from "ol/layer/Tile";
 import type { ImageTile } from "ol";
 import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
-import type { Source } from "ol/source";
-import type { UrlFunction } from "ol/Tile";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
