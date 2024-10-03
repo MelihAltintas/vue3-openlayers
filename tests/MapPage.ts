@@ -24,7 +24,7 @@ export class MapPage {
   }
 
   async waitUntilReady(...selectors: string[]) {
-    await this.page.waitForLoadState();
+    await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForSelector("canvas");
     for (let index = 0; index < selectors.length; index++) {
       await this.page.waitForSelector(selectors[index]);
@@ -32,7 +32,7 @@ export class MapPage {
   }
 
   async waitUntilCanvasLoaded() {
-    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForLoadState("networkidle", { timeout: 3000 });
   }
 
   async waitMs(timeout: number) {

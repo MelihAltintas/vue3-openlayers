@@ -170,7 +170,7 @@ test.describe("ol-source-wmts", () => {
     const map = new MapPage(page);
     await map.goto("/componentsguide/sources/wmts/");
     await map.waitUntilReady();
-    await map.waitUntilCanvasLoaded();
+    await map.waitMs(5000);
     await map.checkCanvasScreenshot();
   });
 });

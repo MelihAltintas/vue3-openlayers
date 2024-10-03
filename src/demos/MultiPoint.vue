@@ -19,7 +19,12 @@
       <ol-source-vector>
         <ol-feature>
           <ol-geom-multi-point
-            :coordinates="[[116.547539, 40.450996]]"
+            :coordinates="[
+              [116.547539, 40.450996],
+              [116.544639, 40.451996],
+              [116.546739, 40.451996],
+              [116.546739, 40.448996],
+            ]"
           ></ol-geom-multi-point>
           <ol-style>
             <ol-style-circle :radius="radius">
