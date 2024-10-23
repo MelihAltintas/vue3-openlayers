@@ -11,6 +11,7 @@ const props = withDefaults(
   defineProps<{
     className?: string;
     minWidth?: number;
+    maxWidth?:number;
     render?: (...args: unknown[]) => unknown;
     target?: HTMLElement;
     units?: string;
