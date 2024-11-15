@@ -2,7 +2,9 @@
 
 > A control for switching between layers.
 
-To see the correct thumbnail images, you may have to set the property `imagerySet` (e. g. for usage with [BingMaps](../../sources/bing/)).
+To see the correct thumbnail images,
+you have to set the property `imagerySet` (e. g. for usage with [BingMaps](../../sources/bing/)) on your layer source
+or a `preview` attribute image on the layer component pointing to the thumbnail image.
 
 [[toc]]
 
