@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide } from "vue";
+import { provide, toRefs } from "vue";
 import TileLayer from "ol/layer/Tile";
 import useLayer from "@/composables/useLayer";
 import {
@@ -25,7 +25,7 @@ const props = withDefaults(
   },
 );
 
-const { layer } = useLayer(TileLayer, props);
+const { layer } = useLayer(TileLayer, toRefs(props));
 
 provide("tileLayer", layer);
 

@@ -19,7 +19,7 @@ function checkAndUpdateStylePropDef<T extends Record<string, unknown>>(
   options: T,
 ) {
   if ("styles" in options) {
-    const { styles, ...rest } = toRefs(options);
+    const { styles, ...rest } = toRefs(reactive(options));
     return { style: styles, ...rest } as OlClassOptions<T>;
   } else {
     return options as OlClassOptions<T>;
