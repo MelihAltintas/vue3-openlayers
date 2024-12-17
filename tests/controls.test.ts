@@ -144,10 +144,19 @@ test.describe("ol-search-control", () => {
 });
 
 test.describe("ol-scaleline-control", () => {
-  test("should render", async ({ page }) => {
+  test("should render as ScaleLine", async ({ page }) => {
     const map = new MapPage(page);
     await map.goto("/componentsguide/mapcontrols/scaleline/");
     await map.waitUntilReady();
+    await map.waitUntilCanvasLoaded();
+    await map.checkCanvasScreenshot();
+  });
+
+  test("should render as ScaleBar", async ({ page }) => {
+    const map = new MapPage(page);
+    await map.goto("/componentsguide/mapcontrols/scaleline/");
+    await map.waitUntilReady();
+    await map.page.getByLabel("Show as bar").check();
     await map.waitUntilCanvasLoaded();
     await map.checkCanvasScreenshot();
   });

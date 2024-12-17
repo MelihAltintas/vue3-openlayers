@@ -9,6 +9,7 @@
 <script setup>
 import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
 </script>
+
 <ClientOnly>
 <ScalelineControlDemo />
 </ClientOnly>
@@ -31,45 +32,13 @@ import ScalelineControlDemo from "@demos/ScalelineControlDemo.vue"
 
 ## Properties
 
-### className
+### Props from OpenLayers
 
-- **Type**: `String`
-- **Default**: `ol-scale-line`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_control_ScaleLine-ScaleLine.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### minWidth
+### Deviating Properties
 
-- **Type**: `Number`
-- **Default**: `64`
-
-### render
-
-- **Type**: `Function`
-
-### target
-
-- **Type**: `HTMLElement`
-
-### units
-
-- **Type**: `String`
-- **Default**: `metric`
-
-### bar
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### steps
-
-- **Type**: `Number`
-- **Default**: `4`
-
-### text
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### dpi
-
-- **Type**: `Number`
-- **Default**: `undefined`
+None.
