@@ -1,5 +1,18 @@
 
 
+# [11.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.2.1...v11.3.0) (2024-12-17)
+
+
+### Bug Fixes
+
+* console warnings ([#397](https://github.com/MelihAltintas/vue3-openlayers/issues/397)) ([82aff4c](https://github.com/MelihAltintas/vue3-openlayers/commit/82aff4cf495e29c66aae99b5bd2026c973d48743))
+
+
+### Features
+
+* **OlScalelineControl:** support `maxWidth` option ([#390](https://github.com/MelihAltintas/vue3-openlayers/issues/390)) ([d92a7fd](https://github.com/MelihAltintas/vue3-openlayers/commit/d92a7fde432a36ae192dc37158da054c822c2907))
+* **OlScalelineControl:** support all props with defaults from OpenLayers ([9451194](https://github.com/MelihAltintas/vue3-openlayers/commit/945119414a492ef4c783fdd061db12bdeb37442e))
+
 ## [11.2.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.2.0...v11.2.1) (2024-10-02)
 
 
