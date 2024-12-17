@@ -199,7 +199,7 @@ export const config: UserConfig = {
             ],
           },
           {
-            text: "MapControls",
+            text: "Controls",
             collapsed: true,
             items: [
               {
