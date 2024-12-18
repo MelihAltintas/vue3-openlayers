@@ -4,6 +4,7 @@
 <script setup lang="ts">
 import { useAttrs } from "vue";
 import { FullScreen } from "ol/control";
+import type { Options } from "ol/control/FullScreen";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
@@ -34,7 +35,7 @@ const props = withDefaults(
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);
-const { control } = useControl(FullScreen, properties, attrs);
+const { control } = useControl(FullScreen, properties as Options, attrs);
 
 defineExpose({
   control,

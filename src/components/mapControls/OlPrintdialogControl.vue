@@ -17,8 +17,9 @@ const properties = usePropsAsObjectProperties(props);
 
 const { control } = useControl(PrintDialog, properties, attrs);
 
-// @ts-ignore
-control.value.on(["print", "error"], (e: unknown) => {
+// @ts-expect-error because wrong/incomplete typings on control
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+control.value.on(["print", "error"], (e: any) => {
   // Print success
   if (e.image) {
     if (e.pdf) {

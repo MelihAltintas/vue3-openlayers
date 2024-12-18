@@ -23,7 +23,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<Options>(), {
   animate: true,
-  params: ["x", "y", "z", "r", "l"],
+  params: () => ["x", "y", "z", "r", "l"],
   replace: false,
   prefix: "",
 });

@@ -30,7 +30,7 @@ const props = withDefaults(
 );
 
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
-const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource<Feature>>> | null>(
   "vectorLayer",
   null,
 );
@@ -41,7 +41,9 @@ const animation = inject<Ref<FeatureAnimation | null> | null>(
   null,
 );
 
-const feature = ref<Feature<Geometry>>(new Feature({ ...props.properties }));
+const feature = ref<Feature<Geometry>>(
+  new Feature({ ...props.properties }),
+) as Ref<Feature<Geometry>>;
 
 watch(
   () => props.properties, // Needed as props.properties is optional

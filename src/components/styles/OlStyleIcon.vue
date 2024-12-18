@@ -70,9 +70,10 @@ watch(properties, () => {
   applyStyle();
 });
 
-watch(style, () => {
-  applyStyle();
-});
+watch(
+  () => style,
+  () => applyStyle(),
+);
 
 onMounted(async () => {
   if (slots.default && htmlContent.value) {
