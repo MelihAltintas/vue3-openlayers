@@ -68,11 +68,10 @@ export function useOpenLayersEvents(
     ([...COMMON_EVENTS, ...eventNames] as EventTypes[]).forEach((eventName) => {
       let unwrappedFeature: Pick<BaseObject, "on">;
 
-      if (!isRef(feature)) {
-        unwrappedFeature = feature;
+      if (isRef(feature)) {
+        unwrappedFeature = feature.value;
       } else {
-        unwrappedFeature =
-          typeof feature.value === "function" ? feature.value() : feature.value;
+        unwrappedFeature = feature;
       }
 
       unwrappedFeature.on(eventName, (...args: unknown[]) => {

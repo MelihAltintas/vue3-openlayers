@@ -38,7 +38,7 @@ const props = withDefaults(
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);
 
-const layerGroup = shallowRef(new LayerGroup(properties));
+const layerGroup = shallowRef(new LayerGroup(properties as Options));
 useOpenLayersEvents(layerGroup, [
   "change:extend",
   "change:layers",

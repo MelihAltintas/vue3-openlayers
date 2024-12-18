@@ -34,7 +34,7 @@ export default function usePropsAsObjectProperties<
     debug: false,
   };
   if (instance) {
-    globalOptions = inject("ol-options");
+    globalOptions = inject("ol-options", globalOptions);
   }
 
   const revisedProps = checkAndUpdateStylePropDef<T>(props);

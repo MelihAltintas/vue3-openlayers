@@ -43,8 +43,8 @@ const properties = usePropsAsObjectProperties({
 });
 
 const mapRef = ref<string | HTMLElement | undefined>(undefined);
-let map: Map =
-  props.instance || new Map({ ...properties, instance: undefined });
+let map: Map | undefined =
+  props.instance || new Map({ ...(properties as MapOptions) });
 
 watch(
   properties,

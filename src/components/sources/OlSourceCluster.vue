@@ -19,14 +19,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options>(), {
+const props = withDefaults(defineProps<Options<Feature>>(), {
   distance: 20,
   geometryFunction: (feature: Feature<Geometry>): Point =>
     feature.getGeometry() as Point,
   wrapX: true,
 });
 
-const layer = inject<Ref<Cluster> | null>("vectorLayer");
+const layer = inject<Ref<Cluster<Feature>> | null>("vectorLayer");
 
 const { source } = useSource(Cluster, layer, props, FEATURE_EVENTS);
 

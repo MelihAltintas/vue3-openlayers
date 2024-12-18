@@ -11,23 +11,24 @@ import type HeatmapLayer from "ol/layer/Heatmap";
 import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 import type { Ref } from "vue";
 import { inject, provide, watch } from "vue";
-import type Geometry from "ol/geom/Geometry";
 import { FEATURE_EVENTS } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
+import type Feature from "ol/Feature";
+import { Collection } from "ol";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options<Geometry>>(), {
+const props = withDefaults(defineProps<Options<Feature>>(), {
   overlaps: true,
   projection: "EPSG:3857",
   useSpatialIndex: true,
   wrapX: true,
 });
 
-const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource<Feature>>> | null>(
   "vectorLayer",
   null,
 );
@@ -51,7 +52,11 @@ watch(
     if (updatedFeatures !== oldFeatures) {
       source.value.clear();
       if (updatedFeatures) {
-        source.value.addFeatures(updatedFeatures);
+        const featureArray =
+          updatedFeatures instanceof Collection
+            ? updatedFeatures.getArray()
+            : updatedFeatures;
+        source.value.addFeatures(featureArray);
       }
     }
     updateSource();
