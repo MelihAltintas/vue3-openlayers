@@ -16,7 +16,11 @@ import Geolocation, { type Options } from "ol/Geolocation";
 import type { Coordinate } from "ol/coordinate";
 import type Polygon from "ol/geom/Polygon";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
+import type { ObjectEvent } from "ol/Object";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -30,6 +34,19 @@ const props = withDefaults(defineProps<Options>(), {
     enableHighAccuracy: true,
   }),
 });
+type Emits = CommonEvents & {
+  (e: "change:accuracy", event: ObjectEvent): void;
+  (e: "change:accuracyGeometry", event: ObjectEvent): void;
+  (e: "change:altitude", event: ObjectEvent): void;
+  (e: "change:altitudeAccuracy", event: ObjectEvent): void;
+  (e: "change:heading", event: ObjectEvent): void;
+  (e: "change:position", event: ObjectEvent): void;
+  (e: "change:projection", event: ObjectEvent): void;
+  (e: "change:speed", event: ObjectEvent): void;
+  (e: "change:tracking", event: ObjectEvent): void;
+  (e: "change:trackingOptions", event: ObjectEvent): void;
+};
+defineEmits<Emits>();
 
 const properties = usePropsAsObjectProperties(props);
 

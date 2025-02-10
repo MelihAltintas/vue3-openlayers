@@ -4,16 +4,21 @@
 <script setup lang="ts">
 import MultiPolygon from "ol/geom/MultiPolygon";
 import useGeometry from "@/composables/useGeometry";
+import type { TypedClassArgs } from "@/types";
 
-const props = withDefaults(
-  defineProps<{
-    coordinates: number[][][][];
-    opt_layout?: string;
-  }>(),
-  {
-    opt_layout: "XY",
-  },
-);
+type Args = TypedClassArgs<
+  typeof MultiPolygon,
+  ["coordinates", "layout", "endss"]
+>;
+type Props = {
+  coordinates: Args["coordinates"];
+  layout?: Args["layout"];
+  endss?: Args["endss"];
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  layout: "XY",
+});
 
 const geometry = useGeometry(MultiPolygon, props);
 

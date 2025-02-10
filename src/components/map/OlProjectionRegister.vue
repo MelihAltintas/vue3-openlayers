@@ -10,16 +10,11 @@ import { register } from "ol/proj/proj4";
 import Projection from "ol/proj/Projection";
 import type { Extent } from "ol/extent";
 
-const props = withDefaults(
-  defineProps<{
-    projectionName: string;
-    projectionDef: string | ProjectionDefinition;
-    projectionExtent?: Extent;
-  }>(),
-  {
-    projectionExtent: undefined,
-  },
-);
+const props = defineProps<{
+  projectionName: string;
+  projectionDef: string | ProjectionDefinition;
+  projectionExtent?: Extent;
+}>();
 
 const { projectionName, projectionDef, projectionExtent } = toRefs(props);
 

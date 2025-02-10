@@ -6,9 +6,8 @@ import XYZ, { type Options } from "ol/source/XYZ";
 import { type Ref, watch } from "vue";
 import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import type { ImageTile } from "ol";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
+import type { TileSourceEvents } from "@/composables";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -18,34 +17,17 @@ defineOptions({
 const props = withDefaults(defineProps<Options>(), {
   attributionsCollapsible: true,
   interpolate: true,
-  maxZoom: 42,
-  minZoom: 0,
-  projection: "EPSG:3857",
-  reprojectionErrorThreshold: 0.5,
-  tileSize: () => [256, 256],
-  tilePixelRatio: 1,
-  gutter: 0,
-  tileLoadFunction: (imageTile, src) => {
-    ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
-  },
   wrapX: true,
-  transition: 250,
-  zDirection: 0,
 });
+defineEmits<TileSourceEvents>();
 
 const layer = inject<Ref<TileLayer<XYZ>> | null>("tileLayer");
 
-const { source, updateSource } = useSource(
-  XYZ,
-  layer,
-  props,
-  TILE_SOURCE_EVENTS,
-  (source) => {
-    if (props.url) {
-      source.setUrl(props.url);
-    }
-  },
-);
+const { source, updateSource } = useSource(XYZ, layer, props, [], (source) => {
+  if (props.url) {
+    source.setUrl(props.url);
+  }
+});
 
 watch(
   () => props.url,

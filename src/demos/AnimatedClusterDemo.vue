@@ -103,6 +103,7 @@ const overrideStyleFunction = (feature, style) => {
   const radius = Math.max(8, Math.min(size, 20));
   const dash = (2 * Math.PI * radius) / 6;
   const calculatedDash = [0, dash, dash, dash, dash, dash, dash];
+  console.log("changed", size, color, radius, dash, calculatedDash);
 
   style.getImage().getStroke().setLineDash(dash);
   style

@@ -2,36 +2,19 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import type { Options } from "ol/style/Stroke";
-import Stroke from "ol/style/Stroke";
+import Stroke, { type Options } from "ol/style/Stroke";
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted } from "vue";
 import type Style from "ol/style/Style";
 import type CircleStyle from "ol/style/Circle";
 import type Draw from "ol/interaction/Draw";
 import type Modify from "ol/interaction/Modify";
-import type { ColorLike } from "ol/colorlike";
-import type { Color } from "ol/color";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import { Interaction } from "ol/interaction";
 
-const props = withDefaults(
-  defineProps<{
-    color?: Color | ColorLike;
-    lineCap?: CanvasLineCap;
-    lineJoin?: CanvasLineJoin;
-    lineDash?: number[];
-    lineDashOffset?: number;
-    miterLimit?: number;
-    width?: number;
-  }>(),
-  {
-    lineCap: "round",
-    lineJoin: "round",
-    lineDashOffset: 0,
-    miterLimit: 10,
-    width: 1,
-  },
-);
+const props = withDefaults(defineProps<Options>(), {
+  width: 1,
+});
 
 const style = inject<Ref<Style | null> | null>("style", null);
 const styledObj = inject<Ref<Draw | Modify | Style | null> | null>(
@@ -81,12 +64,8 @@ if (style != null && circle == null) {
     circle?.value?.getStroke()?.setWidth(innerProperties.width);
 
     circle?.value?.setRadius(circle?.value?.getRadius());
-    try {
-      // @ts-ignore
-      styledObj?.value?.changed();
-    } catch (error) {
-      // @ts-ignore
-      styledObj?.value?.changed();
+    if (styledObj?.value instanceof Interaction) {
+      styledObj.value.changed();
     }
   };
 

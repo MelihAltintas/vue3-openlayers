@@ -18,6 +18,7 @@
         :format="format"
         :layer="layerName"
         :styles="styleName"
+        projection="EPSG:3857"
       ></ol-source-wmts>
     </ol-tile-layer>
   </ol-map>

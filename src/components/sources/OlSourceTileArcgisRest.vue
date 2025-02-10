@@ -7,8 +7,7 @@ import TileArcGISRest, { type Options } from "ol/source/TileArcGISRest";
 import { computed, inject, type Ref } from "vue";
 import { createXYZ } from "ol/tilegrid";
 import type TileLayer from "ol/layer/Tile";
-import type ImageTile from "ol/ImageTile";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { TileSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -16,22 +15,18 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options>(), {
+type Props = Options & { tileSize: number[] };
+const props = withDefaults(defineProps<Props>(), {
   interpolate: true,
-  hidpi: false,
-  projection: "EPSG:3857",
-  reprojectionErrorThreshold: 0.5,
-  tileLoadFunction: (imageTile, src) => {
-    ((imageTile as ImageTile).getImage() as HTMLImageElement).src = src;
-  },
-  wrapX: false,
+  hidpi: true,
+  wrapX: true,
   tileSize: () => [256, 256],
-  zDirection: 0,
 });
+defineEmits<TileSourceEvents>();
 
 const tileLayer = inject<Ref<TileLayer<TileArcGISRest>> | null>("tileLayer");
 
-const getTileGrid = computed(() => {
+const tileGrid = computed(() => {
   return (
     props.tileGrid ||
     createXYZ({
@@ -40,15 +35,10 @@ const getTileGrid = computed(() => {
   );
 });
 
-const { source } = useSource(
-  TileArcGISRest,
-  tileLayer,
-  {
-    ...props,
-    tileGrid: getTileGrid.value,
-  },
-  TILE_SOURCE_EVENTS,
-);
+const { source } = useSource(TileArcGISRest, tileLayer, {
+  ...props,
+  tileGrid: tileGrid.value,
+});
 
 defineExpose({
   tileLayer,

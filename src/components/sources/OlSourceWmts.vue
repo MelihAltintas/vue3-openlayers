@@ -13,7 +13,7 @@ import { computed, inject } from "vue";
 import type TileSource from "ol/source/Tile";
 import type TileLayer from "ol/layer/Tile";
 import type { Coordinate } from "ol/coordinate";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { TileSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -21,28 +21,19 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<
-    Omit<Options, "style"> & {
-      styles?: string | unknown[];
-      tileZoomLevel?: number;
-      tileMatrixPrefix?: string;
-      tileGrid?: WMTSTileGrid;
-    }
-  >(),
-  {
-    attributionsCollapsible: true,
-    tileZoomLevel: 30,
-    projection: "EPSG:3857",
-    reprojectionErrorThreshold: 0.5,
-    tilePixelRatio: 1,
-    format: "image/jpeg",
-    version: "1.0.0",
-    requestEncoding: "KVP",
-    wrapX: false,
-    tileMatrixPrefix: "",
-  },
-);
+type Props = Omit<Options, "style" | "tileGrid"> & {
+  tileGrid?: WMTSTileGrid;
+  styles?: string | unknown[];
+  tileZoomLevel?: number;
+  tileMatrixPrefix?: string;
+};
+const props = withDefaults(defineProps<Props>(), {
+  attributionsCollapsible: true,
+  interpolate: true,
+  tileZoomLevel: 30,
+  tileMatrixPrefix: "",
+});
+defineEmits<TileSourceEvents>();
 
 const tileLayer = inject<Ref<TileLayer<TileSource>> | null>("tileLayer");
 
@@ -56,7 +47,7 @@ const size = computed(() => {
   return extent.value ? getWidth(extent.value) / 256 : 0;
 });
 
-const getTileGrid = computed(() => {
+const tileGrid = computed(() => {
   if (props.tileGrid) {
     return props.tileGrid;
   }
@@ -76,15 +67,11 @@ const getTileGrid = computed(() => {
   });
 });
 
-const { source } = useSource(
-  WMTS,
-  tileLayer,
-  {
-    ...props,
-    tileGrid: getTileGrid.value,
-  },
-  TILE_SOURCE_EVENTS,
-);
+const { source } = useSource(WMTS, tileLayer, {
+  ...props,
+  style: props.styles,
+  tileGrid: tileGrid.value,
+});
 
 defineExpose({
   tileLayer,

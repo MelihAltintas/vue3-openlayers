@@ -5,9 +5,9 @@
 import type { Ref } from "vue";
 import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import { type Options, Tianditu } from "@/components/sources/TiandituClass";
+import Tianditu, { type Options } from "@/components/sources/TiandituClass";
 import type { ImageTile } from "ol";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { TileSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -19,10 +19,8 @@ const props = withDefaults(defineProps<Options>(), {
   layerType: "img",
   isLabel: false,
   projection: "EPSG:3857",
-  hidpi: false,
   requestEncoding: "KVP",
   version: "1.0.0",
-  culture: "en-us",
   dimensions: () => ({}),
   maxZoom: 21,
   tileLoadFunction: (imageTile, src) => {
@@ -30,10 +28,11 @@ const props = withDefaults(defineProps<Options>(), {
   },
   wrapX: true,
 });
+defineEmits<TileSourceEvents>();
 
 const layer = inject<Ref<TileLayer<Tianditu>> | null>("tileLayer");
 
-const { source } = useSource(Tianditu, layer, props, TILE_SOURCE_EVENTS);
+const { source } = useSource(Tianditu, layer, props);
 
 defineExpose({
   layer,

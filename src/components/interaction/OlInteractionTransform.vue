@@ -4,37 +4,43 @@
 
 <script setup lang="ts">
 import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
-import Transform from "ol-ext/interaction/Transform";
-import type { Condition } from "ol/events/condition";
+import Transform, {
+  type RotateEvent,
+  type ScaleEvent,
+  type SelectEvent,
+  type TranslateEvent,
+  type Options,
+} from "ol-ext/interaction/Transform";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
+import { always } from "ol/events/condition";
 
-const props = withDefaults(
-  defineProps<{
-    enableRotatedTransform?: boolean;
-    condition?: Condition;
-    addCondition?: Condition;
-    filter?: () => boolean;
-    hitTolerance?: number;
-    translateFeature?: boolean;
-    scale?: boolean;
-    rotate?: boolean;
-    keepAspectRatio?: Condition;
-    translate?: boolean;
-    stretch?: boolean;
-  }>(),
-  {
-    enableRotatedTransform: false,
-    hitTolerance: 2,
-    translateFeature: true,
-    scale: true,
-    rotate: true,
-    keepAspectRatio: () => false,
-    translate: true,
-    stretch: true,
-  },
-);
+const props = withDefaults(defineProps<Options>(), {
+  translateFeature: true,
+  scale: true,
+  rotate: true,
+  keepAspectRatio: always,
+  translate: true,
+  stretch: true,
+});
+
+type Emits = CommonEvents & {
+  (e: "select", event: SelectEvent): void;
+  (e: "rotatestart", event: RotateEvent): void;
+  (e: "rotating", event: RotateEvent): void;
+  (e: "rotateend", event: RotateEvent): void;
+  (e: "translatestart", event: TranslateEvent): void;
+  (e: "translating", event: TranslateEvent): void;
+  (e: "translateend", event: TranslateEvent): void;
+  (e: "scalestart", event: ScaleEvent): void;
+  (e: "scaling", event: ScaleEvent): void;
+  (e: "scaleend", event: ScaleEvent): void;
+};
+defineEmits<Emits>();
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -45,7 +51,7 @@ const map = inject<Map>("map");
 
 const properties = usePropsAsObjectProperties(props);
 
-const transform = computed(() => new Transform(properties));
+const transform = computed(() => new Transform(properties as Options));
 
 useOpenLayersEvents(transform, [
   "select",

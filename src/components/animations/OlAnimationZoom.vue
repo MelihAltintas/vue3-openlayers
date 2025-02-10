@@ -3,24 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import Zoom from "ol-ext/featureanimation/Zoom";
+import Zoom, { type Options } from "ol-ext/featureanimation/Zoom";
 import useAnimation from "@/composables/useAnimation";
-import {
-  type AnimationCommonProps,
-  animationCommonDefaultProps,
-} from "@/components/animations/AnimationCommonProps";
+import { useDefaults } from "@/components/animations/AnimationCommonProps";
 
-const props = withDefaults(
-  defineProps<
-    AnimationCommonProps & {
-      zoomOut?: boolean;
-    }
-  >(),
-  {
-    ...animationCommonDefaultProps,
-    zoomOut: false,
-  },
-);
+const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
 
 const exposed = useAnimation(Zoom, props);
 

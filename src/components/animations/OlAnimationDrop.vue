@@ -3,20 +3,16 @@
 </template>
 
 <script setup lang="ts">
-import Drop from "ol-ext/featureanimation/Drop";
+import Drop, { type Options } from "ol-ext/featureanimation/Drop";
 import useAnimation from "@/composables/useAnimation";
-import {
-  animationCommonDefaultProps,
-  type AnimationCommonProps,
-} from "@/components/animations/AnimationCommonProps";
+import { useDefaults } from "@/components/animations/AnimationCommonProps";
 
 const props = withDefaults(
-  defineProps<AnimationCommonProps & { speed?: number; side?: number }>(),
-  {
-    ...animationCommonDefaultProps,
-    side: 0,
+  defineProps<Options>(),
+  useDefaults<Options>({
+    side: "top",
     speed: 0,
-  },
+  }),
 );
 
 const exposed = useAnimation(Drop, props);

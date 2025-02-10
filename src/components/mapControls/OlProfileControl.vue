@@ -6,14 +6,30 @@ import Profile, { type Options } from "ol-ext/control/Profile";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(defineProps<Options>(), {});
+const props = defineProps<Options>();
+// Missing typings for events, use any
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type Emits = CommonEvents & {
+  (e: "over", ...args: any[]): void;
+  (e: "out", ...args: any[]): void;
+  (e: "show", ...args: any[]): void;
+  (e: "dragstart", ...args: any[]): void;
+  (e: "dragging", ...args: any[]): void;
+  (e: "dragend", ...args: any[]): void;
+  (e: "dragcancel", ...args: any[]): void;
+};
+/* eslint-enable @typescript-eslint/no-explicit-any */
+defineEmits<Emits>();
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);

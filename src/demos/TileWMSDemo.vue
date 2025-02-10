@@ -37,6 +37,7 @@
       <ol-source-tile-wms
         url="https://ahocevar.com/geoserver/wms"
         :extent="[-13884991, 2870341, -7455066, 6338219]"
+        projection="EPSG:3857"
         layers="topp:states"
         serverType="geoserver"
         :transition="0"

@@ -7,29 +7,13 @@
 <script setup lang="ts">
 import { provide } from "vue";
 
-import VectorImageLayer from "ol/layer/VectorImage";
+import VectorImageLayer, { type Options } from "ol/layer/VectorImage";
 import useLayer from "@/composables/useLayer";
-import {
-  layersCommonDefaultProps,
-  type LayersCommonProps,
-} from "@/components/layers/LayersCommonProps";
+import { useDefaults } from "@/components/layers/LayersCommonProps";
+import type { LayerEvents } from "@/composables";
 
-const props = withDefaults(
-  defineProps<
-    LayersCommonProps & {
-      renderBuffer?: number;
-      updateWhileAnimating?: boolean;
-      styles?: () => unknown;
-      updateWhileInteracting?: boolean;
-    }
-  >(),
-  {
-    ...layersCommonDefaultProps,
-    renderBuffer: 100,
-    updateWhileAnimating: false,
-    updateWhileInteracting: false,
-  },
-);
+const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
+defineEmits<LayerEvents>();
 
 const { layer } = useLayer(VectorImageLayer, props);
 

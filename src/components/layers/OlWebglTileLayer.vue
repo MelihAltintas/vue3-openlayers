@@ -8,11 +8,24 @@
 import { provide } from "vue";
 import TileLayer, { type Options } from "ol/layer/WebGLTile";
 import useLayer from "@/composables/useLayer";
-import { layersCommonDefaultProps } from "./LayersCommonProps";
+import { useDefaults } from "./LayersCommonProps";
+import type { LayerEvents } from "@/composables";
+import type { ObjectEvent } from "ol/Object";
+import type { Tile } from "ol/source";
 
-const props = withDefaults(defineProps<Options>(), layersCommonDefaultProps);
+type Props = Options;
+const props = withDefaults(defineProps<Props>(), useDefaults<Props, Tile>());
 
-const { layer } = useLayer(TileLayer, props);
+type Emits = LayerEvents & {
+  (e: "change:useInterimTilesOnError", event: ObjectEvent): void;
+  (e: "change:preload", event: ObjectEvent): void;
+};
+defineEmits<Emits>();
+
+const { layer } = useLayer(TileLayer, props, [
+  "change:useInterimTilesOnError",
+  "change:preload",
+]);
 
 provide("tileLayer", layer);
 

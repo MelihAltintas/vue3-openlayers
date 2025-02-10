@@ -1,11 +1,6 @@
 import { easeOut } from "ol/easing";
-
-export type AnimationCommonProps = {
-  duration?: number;
-  revers?: boolean;
-  repeat?: number;
-  easing?: (t: number) => number;
-};
+import { type Options } from "ol-ext/featureanimation/FeatureAnimation";
+import type { KeysMatching } from "@/types";
 
 export const animationCommonDefaultProps = {
   duration: 1000,
@@ -13,3 +8,9 @@ export const animationCommonDefaultProps = {
   repeat: 0,
   easing: easeOut,
 };
+
+export function useDefaults<T extends Options>(
+  overrides?: T,
+): Omit<T, KeysMatching<T, object>> {
+  return { ...animationCommonDefaultProps, ...overrides } as T;
+}

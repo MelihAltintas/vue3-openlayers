@@ -15,8 +15,12 @@ import type BaseEvent from "ol/events/Event";
 import type { SimpleGeometry } from "ol/geom";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import projectionFromProperties from "@/helpers/projection";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
 import type { ProjectionLike } from "ol/proj";
+import type { ObjectEvent } from "ol/Object";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -25,6 +29,8 @@ defineOptions({
 
 const props = withDefaults(defineProps<ViewOptions>(), {
   enableRotation: true,
+  smoothExtentConstraint: true,
+  smoothResolutionConstraint: true,
 });
 
 const map = inject<Map>("map");
@@ -36,6 +42,12 @@ const createProp = () => ({
 });
 const view = new View(createProp());
 
+type Emits = CommonEvents & {
+  (e: "change:center", event: ObjectEvent): void;
+  (e: "change:resolution", event: ObjectEvent): void;
+  (e: "change:rotation", event: ObjectEvent): void;
+};
+defineEmits<Emits>();
 useOpenLayersEvents(view, [
   "change:center",
   "change:resolution",

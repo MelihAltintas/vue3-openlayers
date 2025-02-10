@@ -5,20 +5,12 @@
 <script setup lang="ts">
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
 
-import DragRotate from "ol/interaction/DragRotate";
+import DragRotate, { type Options } from "ol/interaction/DragRotate";
 
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { Map } from "ol";
 
-const props = withDefaults(
-  defineProps<{
-    condition?: () => boolean;
-    duration?: number;
-  }>(),
-  {
-    duration: 250,
-  },
-);
+const props = defineProps<Options>();
 
 const map = inject<Map>("map");
 

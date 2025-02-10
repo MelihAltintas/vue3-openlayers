@@ -2,10 +2,19 @@ import { onUnmounted, type Ref, shallowRef, watch } from "vue";
 import { type Cluster, Source } from "ol/source";
 import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
 import type { Layer } from "ol/layer";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  COMMON_EVENTS,
+  IMAGE_SOURCE_EVENTS,
+  TILE_SOURCE_EVENTS,
+  useOpenLayersEvents,
+  VECTOR_SOURCE_EVENTS,
+} from "@/composables/useOpenLayersEvents";
 import projectionFromProperties from "@/helpers/projection";
 import type { ProjectionLike } from "ol/proj";
 import type { Feature } from "ol";
+import TileSource from "ol/source/Tile";
+import VectorSource from "ol/source/Vector";
+import ImageSource from "ol/source/Image";
 
 /**
  * Create a Source and watch for source, prop and layer changes
@@ -53,8 +62,25 @@ export default function useSource<T extends Source>(
       sourceUpdateActions(source.value);
     }
     layer?.value?.setSource(source.value);
-    useOpenLayersEvents(source, eventsToHandle);
+    useOpenLayersEvents(source, [
+      ...COMMON_EVENTS,
+      ...getSourceEvents(),
+      ...eventsToHandle,
+    ]);
     return source;
+  }
+
+  function getSourceEvents() {
+    const src = source.value;
+    if (src instanceof VectorSource) {
+      return VECTOR_SOURCE_EVENTS;
+    } else if (src instanceof TileSource) {
+      return TILE_SOURCE_EVENTS;
+    } else if (src instanceof ImageSource) {
+      return IMAGE_SOURCE_EVENTS;
+    }
+
+    return [];
   }
 
   function removeSource() {

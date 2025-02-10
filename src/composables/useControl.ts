@@ -41,6 +41,7 @@ import type ZoomSlider from "ol/control/ZoomSlider";
 import type { Options as ZoomSliderOptions } from "ol/control/ZoomSlider";
 import type ZoomToExtent from "ol/control/ZoomToExtent";
 import type { Options as ZoomToExtentOptions } from "ol/control/ZoomToExtent";
+import { useOpenLayersEvents } from "./useOpenLayersEvents";
 
 type ExtentedMap = Map & {
   controls_?: Control[];
@@ -92,6 +93,7 @@ export default function useControl<T extends InnerControlType>(
   ControlType: new (options?: Record<string, unknown>) => T,
   properties: InnerControlProperties,
   attrs: Record<string, unknown>,
+  eventsToHandle: string[] = [],
 ) {
   const map = inject<ExtentedMap>("map");
   const controlBar = inject<Ref<InnerControlType | null> | null>(
@@ -104,6 +106,8 @@ export default function useControl<T extends InnerControlType>(
   const control = computed<T>(
     () => new ControlType({ ...(properties as Record<string, unknown>) }),
   );
+
+  useOpenLayersEvents(control, eventsToHandle);
 
   control.value.set("order", attrs.order === undefined ? 0 : attrs.order);
 

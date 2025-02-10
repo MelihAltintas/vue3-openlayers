@@ -4,19 +4,13 @@
 
 <script setup lang="ts">
 import { inject, watch, onMounted, onUnmounted, computed } from "vue";
-import DragRotateAndZoom from "ol/interaction/DragRotateAndZoom";
+import DragRotateAndZoom, {
+  type Options,
+} from "ol/interaction/DragRotateAndZoom";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(
-  defineProps<{
-    condition?: () => boolean;
-    duration?: number;
-  }>(),
-  {
-    duration: 400,
-  },
-);
+const props = defineProps<Options>();
 
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);

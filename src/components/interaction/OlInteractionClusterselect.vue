@@ -8,7 +8,11 @@ import SelectCluster, { type Options } from "ol-ext/interaction/SelectCluster";
 import Style from "ol/style/Style";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  type CommonEvents,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
+import type { SelectEvent } from "ol/interaction/Select";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -24,6 +28,11 @@ const props = withDefaults(defineProps<Options>(), {
   selectCluster: true,
   autoClose: true,
 });
+defineEmits<
+  CommonEvents & {
+    (e: "select", event: SelectEvent): void;
+  }
+>();
 
 const map = inject<Map>("map");
 

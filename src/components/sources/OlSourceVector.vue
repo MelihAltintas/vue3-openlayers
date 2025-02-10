@@ -11,7 +11,7 @@ import type HeatmapLayer from "ol/layer/Heatmap";
 import type { WebGLVectorLayer } from "../layers/WebGLVectorLayerClass";
 import type { Ref } from "vue";
 import { inject, provide, watch } from "vue";
-import { FEATURE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { VectorSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 import type Feature from "ol/Feature";
 import { Collection } from "ol";
@@ -23,10 +23,10 @@ defineOptions({
 
 const props = withDefaults(defineProps<Options<Feature>>(), {
   overlaps: true,
-  projection: "EPSG:3857",
   useSpatialIndex: true,
   wrapX: true,
 });
+defineEmits<VectorSourceEvents>();
 
 const vectorLayer = inject<Ref<VectorLayer<VectorSource<Feature>>> | null>(
   "vectorLayer",
@@ -39,12 +39,7 @@ const webglVectorLayer = inject<Ref<WebGLVectorLayer> | null>(
 );
 const layer = heatmapLayer || vectorLayer || webglVectorLayer;
 
-const { source, updateSource } = useSource(
-  VectorSource,
-  layer,
-  props,
-  FEATURE_EVENTS,
-);
+const { source, updateSource } = useSource(VectorSource, layer, props);
 
 watch(
   () => props.features,

@@ -2,22 +2,14 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import ZoomSlider from "ol/control/ZoomSlider";
+import ZoomSlider, { type Options } from "ol/control/ZoomSlider";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { CommonEvents } from "@/composables";
 
-const props = withDefaults(
-  defineProps<{
-    duration?: number;
-    className?: string;
-    render?: (...args: unknown[]) => unknown;
-  }>(),
-  {
-    duration: 200,
-    className: "ol-zoomslider",
-  },
-);
+const props = defineProps<Options>();
+defineEmits<CommonEvents>();
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);
