@@ -16,7 +16,6 @@ import {
 import LayerGroup, { type Options } from "ol/layer/Group";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useDefaults } from "@/components/layers/LayersCommonProps";
 import {
   useOpenLayersEvents,
   type CommonEvents,
@@ -34,7 +33,11 @@ type Props = Options & {
   openInLayerSwitcher?: boolean;
   title?: string;
 };
-const props = withDefaults(defineProps<Props>(), useDefaults<Props>());
+const props = withDefaults(defineProps<Props>(), {
+  opacity: 1,
+  visible: true,
+  properties: () => ({}),
+});
 
 type Emits = CommonEvents &
   LayerChangeEvents &

@@ -20,10 +20,10 @@ import type { OverrideStyleFunction } from ".";
 import type { Layer } from "ol/layer";
 import { type Select } from "ol/interaction";
 
-type Props = Options & {
+type Props = Partial<Options> & {
   overrideStyleFunction?: OverrideStyleFunction;
 };
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), { lineCap: "butt" });
 
 const styledObj = inject<Ref<Draw | Modify | Select | Feature | Layer> | null>(
   "stylable",

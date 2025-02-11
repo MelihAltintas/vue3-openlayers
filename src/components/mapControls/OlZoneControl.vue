@@ -10,7 +10,7 @@ import type { CommonEvents } from "@/composables";
 
 const props = withDefaults(
   defineProps<
-    Omit<Options, "zone"> & {
+    Omit<Partial<Options>, "zone"> & {
       zones: Zone[];
     }
   >(),
