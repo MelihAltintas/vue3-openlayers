@@ -1,5 +1,12 @@
 
 
+## [11.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.0...v11.3.1) (2025-02-11)
+
+
+### Bug Fixes
+
+* TS typing issues ([#400](https://github.com/MelihAltintas/vue3-openlayers/issues/400)) ([198effc](https://github.com/MelihAltintas/vue3-openlayers/commit/198effc3279c26fa5eb7eb82a3b5403146f12969)), closes [#399](https://github.com/MelihAltintas/vue3-openlayers/issues/399)
+
 # [11.3.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.2.1...v11.3.0) (2024-12-17)
 
 
