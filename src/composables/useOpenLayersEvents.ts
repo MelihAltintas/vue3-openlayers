@@ -114,7 +114,7 @@ export function useOpenLayersEvents(
     debug: false,
   };
   if (instance) {
-    globalOptions = inject("ol-options");
+    globalOptions = inject("ol-options", globalOptions);
   }
 
   function updateOpenLayersEventHandlers() {
