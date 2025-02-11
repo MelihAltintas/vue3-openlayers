@@ -100,15 +100,3 @@ The maximum view zoom level (inclusive) at which this layer will be visible.
 - **Type**: `number`
 - **Default**: `100`
   The buffer in pixels around the viewport extent used by the renderer when getting features from the vector source for the rendering or hit-detection. Recommended value: the size of the largest symbol, line width or label.
-
-### updateWhileAnimating
-
-- **Type**: `Boolean`
-- **Default**: `false`
-  When set to true, feature batches will be recreated during animations. This means that no vectors will be shown clipped, but the setting will have a performance impact for large amounts of vector data. When set to false, batches will be recreated when no animation is active.
-
-### updateWhileInteracting
-
-- **Type**: `Boolean`
-- **Default**: `false`
-  When set to true, feature batches will be recreated during interactions. See also updateWhileAnimating.
