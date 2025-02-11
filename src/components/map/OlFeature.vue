@@ -13,24 +13,20 @@ import {
   ref,
   nextTick,
 } from "vue";
-import Feature from "ol/Feature";
-import type Geometry from "ol/geom/Geometry";
+import Feature, { type ObjectWithGeometry } from "ol/Feature";
+import Geometry from "ol/geom/Geometry";
 import type VectorSource from "ol/source/Vector";
 import type VectorLayer from "ol/layer/Vector";
 import type HeatmapLayer from "ol/layer/Heatmap";
 import type { FeatureAnimation } from "@/components/animations/AnimationTypes";
 
-const props = withDefaults(
-  defineProps<{
-    properties?: Geometry | Record<string, unknown> | unknown[];
-  }>(),
-  {
-    properties: () => [] as unknown[],
-  },
-);
+type Props = {
+  properties?: Geometry | ObjectWithGeometry<Geometry>;
+};
+const props = defineProps<Props>();
 
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
-const vectorLayer = inject<Ref<VectorLayer<VectorSource<Geometry>>> | null>(
+const vectorLayer = inject<Ref<VectorLayer<VectorSource<Feature>>> | null>(
   "vectorLayer",
   null,
 );
@@ -41,13 +37,24 @@ const animation = inject<Ref<FeatureAnimation | null> | null>(
   null,
 );
 
-const feature = ref<Feature<Geometry>>(new Feature({ ...props.properties }));
+const feature = ref<Feature<Geometry>>(
+  new Feature({ ...props.properties }),
+) as Ref<Feature<Geometry>>;
 
 watch(
   () => props.properties, // Needed as props.properties is optional
-  () => {
+  (properties) => {
     // Ensure the feature's properties are updated on change
-    feature.value.setProperties(props.properties);
+    if (properties instanceof Geometry) {
+      feature.value.setGeometry(properties);
+      feature.value.setProperties({});
+    } else if (typeof properties !== "undefined") {
+      feature.value.setGeometry(undefined);
+      feature.value.setProperties(properties);
+    } else {
+      feature.value.setGeometry(undefined);
+      feature.value.setProperties({});
+    }
   },
 );
 
@@ -62,7 +69,7 @@ watch(
 
 onMounted(() => {
   if (animation?.value) {
-    // @ts-ignore
+    // @ts-expect-error because of extra prototype function
     layer?.value?.animateFeature(feature.value, animation.value);
   }
   nextTick(() => {

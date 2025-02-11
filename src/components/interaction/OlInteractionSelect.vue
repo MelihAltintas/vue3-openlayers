@@ -4,35 +4,26 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, provide, watch } from "vue";
-import Select, { type FilterFunction } from "ol/interaction/Select";
+import Select, { SelectEvent, type Options } from "ol/interaction/Select";
 import Style from "ol/style/Style";
-import type Collection from "ol/Collection";
-import type { Condition } from "ol/events/condition";
-import type Feature from "ol/Feature";
-import type Geometry from "ol/geom/Geometry";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  type CommonEvents,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<{
-    multi?: boolean;
-    condition?: Condition;
-    filter?: FilterFunction;
-    features?: Collection<Feature<Geometry>>;
-    hitTolerance?: number;
-    removeCondition?: Condition;
-  }>(),
-  {
-    multi: false,
-    hitTolerance: 0,
-  },
-);
+const props = defineProps<Options>();
+
+type Emits = CommonEvents & {
+  (e: "select", event: SelectEvent): void;
+};
+defineEmits<Emits>();
 
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);
@@ -40,7 +31,7 @@ const properties = usePropsAsObjectProperties(props);
 const select = computed(
   () =>
     new Select({
-      ...properties,
+      ...(properties as Options),
       style: new Style(),
     }),
 );

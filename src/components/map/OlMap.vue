@@ -16,26 +16,34 @@ import type { Source } from "ol/source";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import { mergeProperties } from "@/helpers/properties";
+import type { CommonEvents } from "@/composables";
+import type { MapBrowserEvent, MapEvent } from "ol";
+import type { ObjectEvent } from "ol/Object";
+import type RenderEvent from "ol/render/Event";
 
-const props = defineProps<MapOptions & { instance?: Map }>();
+type Props = MapOptions & { instance?: Map };
+const props = defineProps<Props>();
 
-const emit = defineEmits([
-  "change:layerGroup",
-  "change:size",
-  "change:target",
-  "change:view",
-  "click",
-  "dblclick",
-  "singleclick",
-  "pointerdrag",
-  "pointermove",
-  "movestart",
-  "moveend",
-  "postrender",
-  "precompose",
-  "postcompose",
-  "rendercomplete",
-]);
+type Emits = CommonEvents & {
+  (e: "change:layerGroup", event: ObjectEvent): void;
+  (e: "change:size", event: ObjectEvent): void;
+  (e: "change:target", event: ObjectEvent): void;
+  (e: "change:view", event: ObjectEvent): void;
+  (e: "click", event: MapBrowserEvent<UIEvent>): void;
+  (e: "dblclick", event: MapBrowserEvent<UIEvent>): void;
+  (e: "singleclick", event: MapBrowserEvent<UIEvent>): void;
+  (e: "loadstart", event: MapEvent): void;
+  (e: "loadend", event: MapEvent): void;
+  (e: "pointerdrag", event: MapBrowserEvent<UIEvent>): void;
+  (e: "pointermove", event: MapBrowserEvent<UIEvent>): void;
+  (e: "movestart", event: MapEvent): void;
+  (e: "moveend", event: MapEvent): void;
+  (e: "postrender", event: MapEvent): void;
+  (e: "precompose", event: RenderEvent): void;
+  (e: "postcompose", event: RenderEvent): void;
+  (e: "rendercomplete", event: RenderEvent): void;
+};
+const emit = defineEmits<Emits>();
 
 const properties = usePropsAsObjectProperties({
   ...props,
@@ -43,8 +51,8 @@ const properties = usePropsAsObjectProperties({
 });
 
 const mapRef = ref<string | HTMLElement | undefined>(undefined);
-let map: Map =
-  props.instance || new Map({ ...properties, instance: undefined });
+let map: Map | undefined =
+  props.instance || new Map({ ...(properties as MapOptions) });
 
 watch(
   properties,
@@ -87,6 +95,9 @@ const getCoordinateFromPixel = (pixel: Coordinate) =>
 const render = () => map?.render();
 const updateSize = () => map?.updateSize();
 
+map.on("change", (event) => emit("change", event));
+map.on("error", (event) => emit("error", event));
+map.on("propertychange", (event) => emit("propertychange", event));
 map.on("click", (event) => emit("click", event));
 map.on("change:size", (event) => emit("change:size", event));
 map.on("change:target", (event) => emit("change:target", event));
@@ -101,14 +112,16 @@ map.on("postrender", (event) => emit("postrender", event));
 map.on("precompose", (event) => emit("precompose", event));
 map.on("postcompose", (event) => emit("postcompose", event));
 map.on("rendercomplete", (event) => emit("rendercomplete", event));
-map.on("loadstart", () => {
+map.on("loadstart", (event) => {
   map?.getTargetElement().classList.add("ol-map");
   map?.getTargetElement().classList.add("ol-map-loading");
   map?.getTargetElement().classList.remove("ol-map-fully-loaded");
+  emit("loadstart", event);
 });
-map.on("loadend", () => {
+map.on("loadend", (event) => {
   map?.getTargetElement().classList.add("ol-map-fully-loaded");
   map?.getTargetElement().classList.remove("ol-map-loading");
+  emit("loadend", event);
 });
 
 defineExpose({

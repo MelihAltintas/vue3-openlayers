@@ -2,30 +2,30 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import Swipe from "ol-ext/control/Swipe";
+import Swipe, { type Options } from "ol-ext/control/Swipe";
 import { useAttrs } from "vue";
 import type { Layer } from "ol/layer";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { CommonEvents } from "@/composables";
 
-const props = withDefaults(
-  defineProps<{
-    layerList?: Layer[];
-    className?: string;
-    position?: number;
-    orientation?: string;
-  }>(),
-  {
-    className: "ol-swipe",
-    position: 0.5,
-    orientation: "vertical",
-  },
-);
+// TODO: what's the point of layerList?
+type Props = Options & {
+  layerList?: Layer[];
+};
+const props = withDefaults(defineProps<Props>(), {
+  className: "ol-swipe",
+});
+type Emits = CommonEvents & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (e: "moving", ...args: any[]): void;
+};
+defineEmits<Emits>();
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);
 
-const { control } = useControl(Swipe, properties, attrs);
+const { control } = useControl(Swipe, properties, attrs, ["moving"]);
 
 props.layerList?.forEach((layer, index) => {
   control.value.addLayer(layer, index === 1);

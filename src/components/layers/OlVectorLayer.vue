@@ -6,33 +6,13 @@
 
 <script setup lang="ts">
 import { provide } from "vue";
-import VectorLayer from "ol/layer/Vector";
+import VectorLayer, { type Options } from "ol/layer/Vector";
 import useLayer from "@/composables/useLayer";
-import {
-  layersCommonDefaultProps,
-  type LayersCommonProps,
-} from "@/components/layers/LayersCommonProps";
-import type { StyleLike } from "ol/style/Style";
-import type { FlatStyleLike } from "ol/style/flat";
-import type { BackgroundColor } from "ol/layer/Base";
+import { useDefaults } from "@/components/layers/LayersCommonProps";
+import type { LayerEvents } from "@/composables";
 
-const props = withDefaults(
-  defineProps<
-    LayersCommonProps & {
-      background?: BackgroundColor;
-      renderBuffer?: number;
-      updateWhileAnimating?: boolean;
-      styles?: StyleLike | FlatStyleLike | null;
-      updateWhileInteracting?: boolean;
-    }
-  >(),
-  {
-    ...layersCommonDefaultProps,
-    renderBuffer: 100,
-    updateWhileAnimating: false,
-    updateWhileInteracting: false,
-  },
-);
+const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
+defineEmits<LayerEvents>();
 
 const { layer } = useLayer(VectorLayer, props);
 

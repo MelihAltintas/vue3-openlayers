@@ -11,28 +11,19 @@ import { inject, watch, onUnmounted, onMounted, computed } from "vue";
 import FlowLine, { type Options } from "ol-ext/style/FlowLine";
 import Draw from "ol/interaction/Draw";
 import Modify from "ol/interaction/Modify";
-import type Feature from "ol/Feature";
+import Feature from "ol/Feature";
 import Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import type { StyleLike } from "ol/style/Style";
 import type { FlatStyleLike } from "ol/style/flat";
 import type { OverrideStyleFunction } from ".";
 import type { Layer } from "ol/layer";
-import type { Select } from "ol/interaction";
+import { type Select } from "ol/interaction";
 
-const props = withDefaults(
-  defineProps<
-    Options & {
-      lineCap?: CanvasLineCap;
-      overrideStyleFunction?: OverrideStyleFunction;
-    }
-  >(),
-  {
-    visible: true,
-    lineCap: "butt",
-    arrowSize: 16,
-  },
-);
+type Props = Partial<Options> & {
+  overrideStyleFunction?: OverrideStyleFunction;
+};
+const props = withDefaults(defineProps<Props>(), { lineCap: "butt" });
 
 const styledObj = inject<Ref<Draw | Modify | Select | Feature | Layer> | null>(
   "stylable",
@@ -53,18 +44,19 @@ const setStyle = (val: StyleLike | FlatStyleLike) => {
     return;
   }
   try {
-    // @ts-ignore
-    styledObj.value.setStyle(val);
+    if (styledObj.value instanceof Feature) {
+      styledObj.value.setStyle(val as StyleLike);
+    }
     styledObj.value.changed();
-    styledObj?.value?.dispatchEvent("styleChanged");
+    styledObj.value.dispatchEvent("styleChanged");
   } catch (error) {
     if (styledObj?.value) {
-      // @ts-ignore
+      // @ts-expect-error - we're forcing stuff here
       styledObj.value.style_ = val;
-      // @ts-ignore
+      // @ts-expect-error - we're forcing stuff here
       styledObj.value.values_.style = val;
-      styledObj.value?.changed();
-      styledObj.value?.dispatchEvent("styleChanged");
+      styledObj.value.changed();
+      styledObj.value.dispatchEvent("styleChanged");
     }
   }
 };
@@ -78,17 +70,15 @@ const styleFunc = computed<StyleLike>(() => {
   };
 });
 
-watch(properties, () => {
-  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value);
-});
+watch(properties, () =>
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value),
+);
 
-onMounted(() => {
-  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value);
-});
+onMounted(() =>
+  setStyle(properties.overrideStyleFunction ? styleFunc.value : style.value),
+);
 
-onUnmounted(() => {
-  setStyle(new Style());
-});
+onUnmounted(() => setStyle(new Style()));
 
 defineExpose({
   style,

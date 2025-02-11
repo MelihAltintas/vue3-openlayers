@@ -7,35 +7,32 @@ import { inject, watch, onMounted, onUnmounted, shallowRef } from "vue";
 import Pointer, { type Options } from "ol/interaction/Pointer";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  type CommonEvents,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
 import type { MapBrowserEvent } from "ol";
+import type { ObjectEvent } from "ol/Object";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const emit = defineEmits<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (e: "down", data: MapBrowserEvent<any>): void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (e: "move", data: MapBrowserEvent<any>): void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (e: "up", data: MapBrowserEvent<any>): void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (e: "drag", data: MapBrowserEvent<any>): void;
-}>();
+type Props = Omit<
+  Options,
+  "handleDownEvent" | "handleDragEvent" | "handleMoveEvent" | "handleUpEvent"
+>;
+const props = defineProps<Props>();
 
-const props =
-  defineProps<
-    Omit<
-      Options,
-      | "handleDownEvent"
-      | "handleDragEvent"
-      | "handleMoveEvent"
-      | "handleUpEvent"
-    >
-  >();
+type Emits = CommonEvents & {
+  (e: "down", data: MapBrowserEvent<UIEvent>): void;
+  (e: "move", data: MapBrowserEvent<UIEvent>): void;
+  (e: "up", data: MapBrowserEvent<UIEvent>): void;
+  (e: "drag", data: MapBrowserEvent<UIEvent>): void;
+  (e: "change:active", event: ObjectEvent): void;
+};
+const emit = defineEmits<Emits>();
 
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);

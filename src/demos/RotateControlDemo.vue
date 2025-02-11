@@ -8,7 +8,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-rotate-control />
+    <ol-rotate-control :autoHide="false" />
   </ol-map>
 </template>
 

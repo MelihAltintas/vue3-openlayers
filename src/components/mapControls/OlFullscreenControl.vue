@@ -3,38 +3,24 @@
 </template>
 <script setup lang="ts">
 import { useAttrs } from "vue";
-import { FullScreen } from "ol/control";
+import FullScreen, { type Options } from "ol/control/FullScreen";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { CommonEvents } from "@/composables";
 
-const props = withDefaults(
-  defineProps<{
-    className?: string;
-    label?: string;
-    labelActive?: string;
-    activeClassName?: string;
-    inactiveClassName?: string;
-    tipLabel?: string;
-    keys?: boolean;
-    target?: Record<string, unknown>;
-    source?: Record<string, unknown>;
-  }>(),
-  {
-    className: "ol-full-screen",
-    label: "\u2922",
-    labelActive: "\u00d7",
-    activeClassName: "ol-full-screen-true",
-    inactiveClassName: "ol-full-screen-false",
-    tipLabel: "Toggle full-screen",
-    keys: false,
-    target: undefined,
-    source: undefined,
-  },
-);
+const props = defineProps<Options>();
+type Emits = CommonEvents & {
+  (e: "enterfullscreen"): void;
+  (e: "leavefullscreen"): void;
+};
+defineEmits<Emits>();
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);
-const { control } = useControl(FullScreen, properties, attrs);
+const { control } = useControl(FullScreen, properties as Options, attrs, [
+  "enterfullscreen",
+  "leavefullscreen",
+]);
 
 defineExpose({
   control,

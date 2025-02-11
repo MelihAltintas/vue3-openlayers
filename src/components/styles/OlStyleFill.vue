@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { type Ref, inject, watch, onMounted, onUnmounted, ref } from "vue";
-import Fill from "ol/style/Fill";
+import Fill, { type Options } from "ol/style/Fill";
 import type CircleStyle from "ol/style/Circle";
 import type Style from "ol/style/Style";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
@@ -47,15 +47,12 @@ export type ConicGradient = {
 export type Gradient = LinearGradient | RadialGradient | ConicGradient;
 
 // Define the props type for the component
-const props = defineProps<{
-  color?: string;
-  gradient?: Gradient;
-}>();
+const props = defineProps<Options & { gradient?: Gradient }>();
+type ColorProp = typeof props.color;
 
 // Inject possible nullable Ref objects from the parent component
 const style = inject<Ref<Style | null>>("style", ref(null));
 const circle = inject<Ref<CircleStyle | null>>("circle", ref(null));
-const styledObj = inject<Ref<Style | null>>("styledObj", ref(null));
 
 // Use a custom composable to convert props into an object
 const properties = usePropsAsObjectProperties(props);
@@ -115,7 +112,12 @@ const createGradientFill = (
 
     ctx.fillStyle = grad;
   } else {
-    ctx.fillStyle = properties.color ?? "transparent";
+    if (typeof properties.color === "string") {
+      ctx.fillStyle = properties.color ?? "transparent";
+    } else {
+      // TODO: other types?
+      ctx.fillStyle = "transparent";
+    }
   }
 
   ctx.fillRect(0, 0, width, height);
@@ -140,18 +142,10 @@ const applyFillToStyle = () => {
 };
 
 // Function to apply fill style to a CircleStyle object
-const applyFillToCircle = (color?: string) => {
+const applyFillToCircle = (color?: ColorProp) => {
   if (circle.value) {
-    // @ts-ignore
-    circle?.value?.getFill().setColor(color || null);
+    circle?.value?.getFill()?.setColor(color || null);
     circle?.value?.setRadius(circle?.value.getRadius()); // force render
-    try {
-      // @ts-ignore
-      styledObj?.value?.changed();
-    } catch (error) {
-      // @ts-ignore
-      styledObj?.value.changed();
-    }
   }
 };
 

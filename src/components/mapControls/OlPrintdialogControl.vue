@@ -2,23 +2,30 @@
   <div v-if="false"></div>
 </template>
 <script setup lang="ts">
-import PrintDialog, { type Options } from "ol-ext/control/PrintDialog";
-
+import PrintDialog, {
+  type PrintingEvent,
+  type Options,
+} from "ol-ext/control/PrintDialog";
 import { saveAs } from "file-saver";
 import { jsPDF as jsPDFClass } from "jspdf";
 import { useAttrs } from "vue";
 import useControl from "@/composables/useControl";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
+import type { CommonEvents } from "@/composables";
 
-const props = withDefaults(defineProps<Options>(), {});
+const props = defineProps<Options>();
+type Emits = CommonEvents & {
+  (e: "printing", event: PrintingEvent): void;
+};
+defineEmits<Emits>();
 
 const attrs = useAttrs();
 const properties = usePropsAsObjectProperties(props);
+const { control } = useControl(PrintDialog, properties, attrs, ["printing"]);
 
-const { control } = useControl(PrintDialog, properties, attrs);
-
-// @ts-ignore
-control.value.on(["print", "error"], (e: unknown) => {
+// @ts-expect-error because wrong/incomplete typings on control
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+control.value.on(["print", "error"], (e: any) => {
   // Print success
   if (e.image) {
     if (e.pdf) {

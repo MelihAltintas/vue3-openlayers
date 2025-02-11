@@ -8,14 +8,7 @@ import MouseWheelZoom, { type Options } from "ol/interaction/MouseWheelZoom";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(defineProps<Options>(), {
-  onFocusOnly: false,
-  maxDelta: 1,
-  duration: 250,
-  timeout: 80,
-  useAnchor: true,
-  constrainResolution: false,
-});
+const props = withDefaults(defineProps<Options>(), { useAnchor: true });
 
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);

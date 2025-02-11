@@ -13,36 +13,26 @@ import {
   toRefs,
   watch,
 } from "vue";
-import type Collection from "ol/Collection";
-import Modify from "ol/interaction/Modify";
+import Modify, { ModifyEvent, type Options } from "ol/interaction/Modify";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
-import type Geometry from "ol/geom/Geometry";
-import type Feature from "ol/Feature";
-import type { Condition } from "ol/events/condition";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<{
-    condition?: Condition;
-    deleteCondition?: Condition;
-    insertVertexCondition?: Condition;
-    pixelTolerance?: number;
-    wrapX?: boolean;
-    hitDetection?: boolean;
-    features?: Collection<Feature<Geometry>>;
-    source?: VectorSource;
-  }>(),
-  {
-    pixelTolerance: 10,
-    wrapX: false,
-  },
-);
+const props = defineProps<Options>();
+defineEmits<
+  CommonEvents & {
+    (e: "modifystart", event: ModifyEvent): void;
+    (e: "modifyend", event: ModifyEvent): void;
+  }
+>();
 
 const map = inject<Map>("map");
 const vectorSource = inject<Ref<VectorSource> | null>("vectorSource", null);
@@ -56,6 +46,7 @@ const {
   pixelTolerance,
   wrapX,
   hitDetection,
+  snapToPointer,
 } = toRefs(props);
 
 function createModify() {
@@ -66,14 +57,15 @@ function createModify() {
     );
   }
   return new Modify({
-    source: source?.value || vectorSource?.value,
-    features: features?.value,
-    condition: condition?.value,
-    deleteCondition: deleteCondition?.value,
-    insertVertexCondition: insertVertexCondition?.value,
+    source: source.value || vectorSource?.value,
+    features: features.value,
+    condition: condition.value,
+    deleteCondition: deleteCondition.value,
+    insertVertexCondition: insertVertexCondition.value,
     pixelTolerance: pixelTolerance.value,
     wrapX: wrapX.value,
     hitDetection: hitDetection.value,
+    snapToPointer: snapToPointer.value,
   });
 }
 
@@ -89,6 +81,7 @@ watch(
     pixelTolerance,
     wrapX,
     hitDetection,
+    snapToPointer,
   ],
   () => {
     modify.dispose();

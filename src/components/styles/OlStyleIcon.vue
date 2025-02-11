@@ -4,7 +4,7 @@
     v-if="!srcImageUrl"
     style="display: flex; position: absolute; z-index: -1000"
   >
-    <slot />
+    <slot></slot>
   </div>
 </template>
 <script setup lang="ts">
@@ -24,17 +24,9 @@ import type Draw from "ol/interaction/Draw";
 import type Modify from "ol/interaction/Modify";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import domtoimage from "dom-to-image-more";
+import { Interaction } from "ol/interaction";
 
-const props = withDefaults(defineProps<Options>(), {
-  anchorOrigin: "top-left",
-  anchorXUnits: "fraction",
-  offset: () => [0, 0],
-  displacement: () => [0, 0],
-  offsetOrigin: "top-left",
-  opacity: 1,
-  rotateWithView: false,
-  rotation: 0,
-});
+const props = defineProps<Options>();
 
 const slots = useSlots();
 
@@ -59,20 +51,17 @@ const icon = computed(() => {
 });
 
 const applyStyle = () => {
-  // @ts-ignore
-  style?.value?.setImage(null);
   style?.value?.setImage(icon.value);
-  // @ts-ignore
-  styledObj?.value?.changed();
+  if (styledObj?.value instanceof Interaction) {
+    styledObj?.value?.changed();
+  }
 };
 
-watch(properties, () => {
-  applyStyle();
-});
-
-watch(style, () => {
-  applyStyle();
-});
+watch(properties, () => applyStyle());
+watch(
+  () => style,
+  () => applyStyle(),
+);
 
 onMounted(async () => {
   if (slots.default && htmlContent.value) {
@@ -86,7 +75,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  // @ts-ignore
+  // @ts-expect-error force it
   style?.value?.setImage(null);
 });
 </script>

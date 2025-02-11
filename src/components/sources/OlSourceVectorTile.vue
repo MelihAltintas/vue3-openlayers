@@ -9,7 +9,7 @@ import VectorTileSource, { type Options } from "ol/source/VectorTile";
 import type VectorTileLayer from "ol/layer/VectorTile";
 import type { Ref } from "vue";
 import { inject, provide } from "vue";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { TileSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -18,22 +18,18 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<Options>(), {
+  attributionsCollapsible: true,
   overlaps: true,
-  projection: "EPSG:3857",
   wrapX: true,
 });
+defineEmits<TileSourceEvents>();
 
 const vectorTileLayer = inject<Ref<VectorTileLayer> | null>(
   "vectorTileLayer",
   null,
 );
 
-const { source } = useSource(
-  VectorTileSource,
-  vectorTileLayer,
-  props,
-  TILE_SOURCE_EVENTS,
-);
+const { source } = useSource(VectorTileSource, vectorTileLayer, props);
 
 provide("vectorSource", source);
 

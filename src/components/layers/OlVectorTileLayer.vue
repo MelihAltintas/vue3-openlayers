@@ -6,35 +6,18 @@
 
 <script setup lang="ts">
 import { provide } from "vue";
-import VectorTileLayer, {
-  type VectorTileRenderType,
-} from "ol/layer/VectorTile";
+import VectorTileLayer, { type Options } from "ol/layer/VectorTile";
 import useLayer from "@/composables/useLayer";
-import {
-  layersCommonDefaultProps,
-  type LayersCommonProps,
-} from "@/components/layers/LayersCommonProps";
-import type { StyleLike } from "ol/style/Style";
-import type { FlatStyleLike } from "ol/style/flat";
+import { useDefaults } from "@/components/layers/LayersCommonProps";
+import type { LayerEvents } from "@/composables";
+import type { VectorTile } from "ol/source";
 
+type Props = Options;
 const props = withDefaults(
-  defineProps<
-    LayersCommonProps & {
-      renderBuffer?: number;
-      updateWhileAnimating?: boolean;
-      styles?: StyleLike | FlatStyleLike | null;
-      updateWhileInteracting?: boolean;
-      renderMode?: VectorTileRenderType;
-    }
-  >(),
-  {
-    ...layersCommonDefaultProps,
-    renderBuffer: 100,
-    updateWhileAnimating: false,
-    updateWhileInteracting: false,
-    renderMode: "hybrid",
-  },
+  defineProps<Props>(),
+  useDefaults<Props, VectorTile>(),
 );
+defineEmits<LayerEvents>();
 
 const { layer } = useLayer(VectorTileLayer, props);
 

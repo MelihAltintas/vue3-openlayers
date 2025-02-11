@@ -20,7 +20,11 @@ import {
 import type Map from "ol/Map";
 import type { Coordinate } from "ol/coordinate";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+} from "@/composables/useOpenLayersEvents";
+import type { ObjectEvent } from "ol/Object";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -28,12 +32,18 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<Options>(), {
-  positioning: "top-left",
   stopEvent: true,
   insertFirst: true,
-  autoPan: false,
-  className: "ol-overlay-container ol-selectable",
 });
+
+type Emits = CommonEvents & {
+  (e: "change:element", event: ObjectEvent): void;
+  (e: "change:map", event: ObjectEvent): void;
+  (e: "change:offset", event: ObjectEvent): void;
+  (e: "change:position", event: ObjectEvent): void;
+  (e: "change:positioning", event: ObjectEvent): void;
+};
+defineEmits<Emits>();
 
 const map = inject<Map>("map");
 

@@ -7,49 +7,39 @@
 <script setup lang="ts">
 import { provide, shallowRef, watch } from "vue";
 import { Cluster } from "ol/source";
-import { easeOut } from "ol/easing";
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster";
-import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 import useLayer from "@/composables/useLayer";
-import {
-  layersCommonDefaultProps,
-  type LayersCommonProps,
-} from "@/components/layers/LayersCommonProps";
 import type { Point } from "ol/geom";
-import { FEATURE_EVENTS } from "@/composables/useOpenLayersEvents";
+import {
+  VECTOR_SOURCE_EVENTS,
+  type LayerEvents,
+  type VectorSourceEvents,
+} from "@/composables/useOpenLayersEvents";
+import type { Options } from "ol/layer/Vector";
+import { useDefaults } from "./LayersCommonProps";
+import type VectorSource from "ol/source/Vector";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<
-    LayersCommonProps & {
-      animationDuration?: number;
-      distance?: number;
-      animationMethod?: (t: number) => number;
-      updateWhileAnimating?: boolean;
-      updateWhileInteracting?: boolean;
-    }
-  >(),
-  {
-    ...layersCommonDefaultProps,
-    opacity: 1,
-    visible: true,
-    animationDuration: 700,
-    distance: 20,
-    animationMethod: easeOut,
-    updateWhileAnimating: false,
-    updateWhileInteracting: false,
-  },
-);
+// Copied from ol-ext; vue compiler chokes if we try to use the one in the library
+interface ClusterOptions extends Options<VectorSource> {
+  animationDuration?: number;
+  easingFunction?: (t: number) => number;
+  animationMethod?: (t: number) => number;
+}
 
-const properties = usePropsAsObjectProperties(props);
+type Props = {
+  distance?: number;
+} & ClusterOptions;
+const props = withDefaults(defineProps<Props>(), useDefaults<Props>());
+defineEmits<LayerEvents & VectorSourceEvents>();
 
 const clusterSource = shallowRef(
   new Cluster({
-    distance: properties.distance,
+    distance: props.distance,
     geometryFunction: (feature) => feature.getGeometry() as Point,
   }),
 );
@@ -60,13 +50,13 @@ const { layer, map } = useLayer(
     ...props,
     source: clusterSource.value,
   },
-  FEATURE_EVENTS,
+  VECTOR_SOURCE_EVENTS,
 );
 
 watch(
   () => props.distance,
   (newValue) => {
-    clusterSource.value.setDistance(newValue);
+    clusterSource.value.setDistance(newValue!);
   },
 );
 

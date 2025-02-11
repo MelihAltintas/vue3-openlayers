@@ -3,14 +3,14 @@ import type { ProjectionLike } from "ol/proj";
 import WMTSSource, { type Options as WMTSOptions } from "ol/source/WMTS";
 import TileGridWMTS from "ol/tilegrid/WMTS";
 
-export type Options = WMTSOptions & {
+export type Options = Partial<WMTSOptions> & {
   tileProxy?: string;
   layerType?: string;
   tk?: string;
   isLabel?: boolean;
   maxZoom?: number;
 };
-export class Tianditu extends WMTSSource {
+export default class Tianditu extends WMTSSource {
   static layerLabelMap: Record<string, string> = {};
   static layerZoomMap: Record<string, number> = {};
   static tileProxy: string | undefined;
@@ -26,7 +26,7 @@ export class Tianditu extends WMTSSource {
       ter: 14,
       img: 18,
     };
-    const options = { ...opts } || {};
+    const options = { ...opts };
 
     options.layerType = options.layerType || "vec";
     options.layerType = options.isLabel
@@ -75,7 +75,7 @@ export class Tianditu extends WMTSSource {
           Tianditu.tileProxy + encodeURIComponent(src);
       };
     }
-    super(superOptions);
+    super(superOptions as Required<Options>);
   }
 
   static getTileGrid(projection: ProjectionLike) {

@@ -3,20 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import Slide from "ol-ext/featureanimation/Slide";
+import Slide, { type Options } from "ol-ext/featureanimation/Slide";
 import useAnimation from "@/composables/useAnimation";
-import {
-  animationCommonDefaultProps,
-  type AnimationCommonProps,
-} from "@/components/animations/AnimationCommonProps";
+import { useDefaults } from "@/components/animations/AnimationCommonProps";
 
-const props = withDefaults(
-  defineProps<AnimationCommonProps & { speed?: number }>(),
-  {
-    ...animationCommonDefaultProps,
-    speed: 0,
-  },
-);
+const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
 
 const exposed = useAnimation(Slide, props);
 

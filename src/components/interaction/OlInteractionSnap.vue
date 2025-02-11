@@ -5,33 +5,25 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { inject, watch, onMounted, onUnmounted } from "vue";
-import Snap from "ol/interaction/Snap";
+import Snap, { type Options } from "ol/interaction/Snap";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
 
-const props = withDefaults(
-  defineProps<{
-    vertex?: boolean;
-    edge?: boolean;
-    pixelTolerance?: number;
-  }>(),
-  {
-    vertex: true,
-    edge: true,
-    pixelTolerance: 10,
-  },
-);
+const props = withDefaults(defineProps<Options>(), {
+  vertex: true,
+  edge: true,
+});
 
 const map = inject<Map>("map");
-const source = inject<Ref<VectorSource> | null>("vectorSource");
+const vectorSource = inject<Ref<VectorSource> | null>("vectorSource");
 
 const properties = usePropsAsObjectProperties(props);
 
 const createSnap = () =>
   new Snap({
-    ...properties,
-    source: source?.value,
+    ...(properties as Options),
+    source: props.source || vectorSource?.value,
   });
 let snap = createSnap();
 

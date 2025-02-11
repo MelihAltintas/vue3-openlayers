@@ -16,31 +16,42 @@ import {
 import LayerGroup, { type Options } from "ol/layer/Group";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { layersCommonDefaultProps } from "@/components/layers/LayersCommonProps";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  useOpenLayersEvents,
+  type CommonEvents,
+  type LayerChangeEvents,
+  type LayerRenderEvents,
+} from "@/composables/useOpenLayersEvents";
+import type { ObjectEvent } from "ol/Object";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<
-    Options & {
-      className?: string;
-      openInLayerSwitcher?: boolean;
-      title?: string;
-    }
-  >(),
-  layersCommonDefaultProps,
-);
+type Props = Options & {
+  openInLayerSwitcher?: boolean;
+  title?: string;
+};
+const props = withDefaults(defineProps<Props>(), {
+  opacity: 1,
+  visible: true,
+  properties: () => ({}),
+});
+
+type Emits = CommonEvents &
+  LayerChangeEvents &
+  LayerRenderEvents & {
+    (e: "change:layers", event: ObjectEvent): void;
+  };
+defineEmits<Emits>();
 
 const map = inject<Map>("map");
 const properties = usePropsAsObjectProperties(props);
 
-const layerGroup = shallowRef(new LayerGroup(properties));
+const layerGroup = shallowRef(new LayerGroup(properties as Options));
 useOpenLayersEvents(layerGroup, [
-  "change:extend",
+  "change:extent",
   "change:layers",
   "change:maxResolution",
   "change:maxZoom",

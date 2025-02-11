@@ -6,7 +6,7 @@ import OSM, { type Options } from "ol/source/OSM";
 import type { Ref } from "vue";
 import { inject } from "vue";
 import type TileLayer from "ol/layer/Tile";
-import { TILE_SOURCE_EVENTS } from "@/composables/useOpenLayersEvents";
+import type { TileSourceEvents } from "@/composables/useOpenLayersEvents";
 import useSource from "@/composables/useSource";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
@@ -15,19 +15,14 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<Options>(), {
-  crossOrigin: "anonymous",
   interpolate: true,
-  maxZoom: 19,
-  reprojectionErrorThreshold: 0.5,
-  transition: 250,
-  url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
   wrapX: true,
-  zDirection: 0,
 });
+defineEmits<TileSourceEvents>();
 
 const layer = inject<Ref<TileLayer<OSM>> | null>("tileLayer");
 
-const { source } = useSource(OSM, layer, props, TILE_SOURCE_EVENTS);
+const { source } = useSource(OSM, layer, props);
 
 defineExpose({
   layer,

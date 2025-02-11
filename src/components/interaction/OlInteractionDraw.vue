@@ -13,50 +13,32 @@ import {
   toRefs,
   watch,
 } from "vue";
-import type { GeometryFunction } from "ol/interaction/Draw";
-import Draw from "ol/interaction/Draw";
+import Draw, { type DrawEvent, type Options } from "ol/interaction/Draw";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
-import type { Type as GeometryType } from "ol/geom/Geometry";
-import type { Condition } from "ol/events/condition";
-import { useOpenLayersEvents } from "@/composables/useOpenLayersEvents";
+import {
+  type CommonEvents,
+  useOpenLayersEvents,
+} from "@/composables/useOpenLayersEvents";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = withDefaults(
-  defineProps<{
-    type: GeometryType;
-    clickTolerance?: number;
-    dragVertexDelay?: number;
-    snapTolerance?: number;
-    stopClick?: boolean;
-    maxPoints?: number;
-    minPoints?: number;
-    finishCondition?: () => boolean;
-    geometryFunction?: GeometryFunction;
-    geometryName?: string;
-    condition?: () => boolean;
-    freehand?: boolean;
-    freehandCondition?: Condition;
-    wrapX?: boolean;
-  }>(),
-  {
-    clickTolerance: 6,
-    dragVertexDelay: 500,
-    snapTolerance: 12,
-    stopClick: false,
-    freehand: false,
-    wrapX: false,
-  },
-);
+const props = defineProps<Options>();
+defineEmits<
+  CommonEvents & {
+    (e: "drawstart", event: DrawEvent): void;
+    (e: "drawend", event: DrawEvent): void;
+  }
+>();
 
 const map = inject<Map>("map");
-const source = inject<Ref<VectorSource> | null>("vectorSource");
+const vectorSource = inject<Ref<VectorSource> | null>("vectorSource", null);
 
 const {
+  source,
   type,
   clickTolerance,
   dragVertexDelay,
@@ -71,25 +53,33 @@ const {
   freehand,
   freehandCondition,
   wrapX,
+  features,
+  geometryLayout,
+  trace,
+  traceSource,
 } = toRefs(props);
 
 function createDraw() {
   return new Draw({
-    source: source?.value,
+    source: source.value || vectorSource?.value,
     type: type.value,
     clickTolerance: clickTolerance.value,
     dragVertexDelay: dragVertexDelay.value,
     snapTolerance: snapTolerance.value,
     stopClick: stopClick.value,
-    maxPoints: maxPoints?.value,
-    minPoints: minPoints?.value,
-    finishCondition: finishCondition?.value,
-    geometryFunction: geometryFunction?.value,
-    geometryName: geometryName?.value,
-    condition: condition?.value,
+    maxPoints: maxPoints.value,
+    minPoints: minPoints.value,
+    finishCondition: finishCondition.value,
+    geometryFunction: geometryFunction.value,
+    geometryName: geometryName.value,
+    condition: condition.value,
     freehand: freehand.value,
-    freehandCondition: freehandCondition?.value,
+    freehandCondition: freehandCondition.value,
     wrapX: wrapX.value,
+    features: features.value,
+    geometryLayout: geometryLayout.value,
+    trace: trace.value,
+    traceSource: traceSource.value,
   });
 }
 
@@ -102,6 +92,7 @@ const { updateOpenLayersEventHandlers } = useOpenLayersEvents(draw, [
 
 watch(
   [
+    source,
     type,
     clickTolerance,
     dragVertexDelay,
@@ -116,6 +107,10 @@ watch(
     freehand,
     freehandCondition,
     wrapX,
+    features,
+    geometryLayout,
+    trace,
+    traceSource,
   ],
   () => {
     draw.value.abortDrawing();

@@ -3,28 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import Path from "ol-ext/featureanimation/Path";
+import Path, { type Options } from "ol-ext/featureanimation/Path";
 import useAnimation from "@/composables/useAnimation";
-import {
-  animationCommonDefaultProps,
-  type AnimationCommonProps,
-} from "@/components/animations/AnimationCommonProps";
-import type { LineString } from "ol/geom";
+import { useDefaults } from "@/components/animations/AnimationCommonProps";
 
-const props = withDefaults(
-  defineProps<
-    AnimationCommonProps & {
-      rotate?: boolean;
-      speed?: number;
-      path: LineString;
-    }
-  >(),
-  {
-    ...animationCommonDefaultProps,
-    rotate: false,
-    speed: 0,
-  },
-);
+const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
 
 const exposed = useAnimation(Path, props);
 

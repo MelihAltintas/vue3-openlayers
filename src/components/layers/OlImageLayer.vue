@@ -8,15 +8,17 @@
 import { provide } from "vue";
 import ImageLayer from "ol/layer/Image";
 import useLayer from "@/composables/useLayer";
-import {
-  layersCommonDefaultProps,
-  type LayersCommonProps,
-} from "@/components/layers/LayersCommonProps";
+import { useDefaults } from "@/components/layers/LayersCommonProps";
+import type { Options } from "ol/layer/BaseImage";
+import type ImageSource from "ol/source/Image";
+import type { LayerEvents } from "@/composables";
 
+type Props = Options<ImageSource>;
 const props = withDefaults(
-  defineProps<LayersCommonProps>(),
-  layersCommonDefaultProps,
+  defineProps<Props>(),
+  useDefaults<Props, ImageSource>(),
 );
+defineEmits<LayerEvents>();
 
 const { layer } = useLayer(ImageLayer, props);
 

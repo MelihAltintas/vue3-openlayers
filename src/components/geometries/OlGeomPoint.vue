@@ -4,16 +4,17 @@
 <script setup lang="ts">
 import Point from "ol/geom/Point";
 import useGeometry from "@/composables/useGeometry";
+import type { TypedClassArgs } from "@/types";
 
-const props = withDefaults(
-  defineProps<{
-    coordinates: number[];
-    opt_layout?: string;
-  }>(),
-  {
-    opt_layout: "XY",
-  },
-);
+type Args = TypedClassArgs<typeof Point, ["coordinates", "layout"]>;
+type Props = {
+  coordinates: Args["coordinates"];
+  layout?: Args["layout"];
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  layout: "XY",
+});
 
 const geometry = useGeometry(Point, props);
 

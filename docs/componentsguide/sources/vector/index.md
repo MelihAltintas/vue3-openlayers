@@ -4,8 +4,6 @@ ol-source-vector can be used together with ol-vector-layer to draw any vector da
 
 [[toc]]
 
-## Demo
-
 <script setup>
 import GeomPoint from "@demos/GeomPoint.vue"
 import VectorSourceDemo1 from "@demos/VectorSourceDemo1.vue"
