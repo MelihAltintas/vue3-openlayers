@@ -11,8 +11,9 @@ import useLayer from "@/composables/useLayer";
 import { useDefaults } from "@/components/layers/LayersCommonProps";
 import type { LayerEvents } from "@/composables";
 import type { VectorTile } from "ol/source";
+import type { LayerSwitcherOptions } from "@/types";
 
-type Props = Options;
+type Props = Options & LayerSwitcherOptions;
 const props = withDefaults(
   defineProps<Props>(),
   useDefaults<Props, VectorTile>(),

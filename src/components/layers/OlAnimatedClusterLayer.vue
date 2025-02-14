@@ -18,6 +18,7 @@ import {
 import type { Options } from "ol/layer/Vector";
 import { useDefaults } from "./LayersCommonProps";
 import type VectorSource from "ol/source/Vector";
+import type { LayerSwitcherOptions } from "@/types";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
@@ -33,7 +34,9 @@ interface ClusterOptions extends Options<VectorSource> {
 
 type Props = {
   distance?: number;
-} & ClusterOptions;
+} & ClusterOptions &
+  LayerSwitcherOptions;
+
 const props = withDefaults(defineProps<Props>(), useDefaults<Props>());
 defineEmits<LayerEvents & VectorSourceEvents>();
 

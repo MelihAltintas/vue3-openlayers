@@ -24,3 +24,11 @@ export type KeysMatching<T extends object, V> = {
 export type ObjectToFactory<T> = {
   [Key in keyof T]: T[Key] extends object | undefined ? () => T[Key] : T[Key];
 };
+
+export type LayerSwitcherOptions = {
+  openInLayerSwitcher?: boolean;
+  title?: string;
+  name?: string;
+  allwaysOnTop?: boolean; // typo in original code, see https://github.com/Viglino/ol-ext/issues/1128
+  baseLayer?: boolean;
+};

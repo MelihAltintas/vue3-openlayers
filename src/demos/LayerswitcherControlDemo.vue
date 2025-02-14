@@ -49,6 +49,6 @@ onMounted(() => {
 });
 
 onMounted(() => {
-  console.log(mapRef.value);
+  console.log(mapRef.value.map.getLayers().getArray());
 });
 </script>

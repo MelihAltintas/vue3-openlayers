@@ -10,8 +10,10 @@ import VectorLayer, { type Options } from "ol/layer/Vector";
 import useLayer from "@/composables/useLayer";
 import { useDefaults } from "@/components/layers/LayersCommonProps";
 import type { LayerEvents } from "@/composables";
+import type { LayerSwitcherOptions } from "@/types";
 
-const props = withDefaults(defineProps<Options>(), useDefaults<Options>());
+type Props = Options & LayerSwitcherOptions;
+const props = withDefaults(defineProps<Props>(), useDefaults<Props>());
 defineEmits<LayerEvents>();
 
 const { layer } = useLayer(VectorLayer, props);

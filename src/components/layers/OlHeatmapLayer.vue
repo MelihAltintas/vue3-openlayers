@@ -14,8 +14,9 @@ import {
 } from "@/components/layers/LayersCommonProps";
 import type { LayerEvents } from "@/composables";
 import type { ObjectEvent } from "ol/Object";
+import type { LayerSwitcherOptions } from "@/types";
 
-type Props = LayersCommonProps & Options;
+type Props = LayersCommonProps & Options & LayerSwitcherOptions;
 const props = withDefaults(defineProps<Props>(), useDefaults<Props>());
 
 type Emits = LayerEvents & {

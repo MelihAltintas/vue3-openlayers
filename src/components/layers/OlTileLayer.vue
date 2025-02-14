@@ -13,8 +13,9 @@ import { useDefaults } from "@/components/layers/LayersCommonProps";
 import TileSource from "ol/source/Tile";
 import type { LayerEvents } from "@/composables";
 import type { ObjectEvent } from "ol/Object";
+import type { LayerSwitcherOptions } from "@/types";
 
-type Props = Options<TileSource>;
+type Props = Options<TileSource> & LayerSwitcherOptions;
 type Emits = LayerEvents & {
   (e: "change:useInterimTilesOnError", event: ObjectEvent): void;
   (e: "change:preload", event: ObjectEvent): void;
@@ -27,7 +28,7 @@ const props = withDefaults(
 );
 defineEmits<Emits>();
 
-const { layer } = useLayer(TileLayer, toRefs(props), [
+const { layer } = useLayer(TileLayer, toRefs({ ...props }), [
   "change:useInterimTilesOnError",
   "change:preload",
 ]);

@@ -23,16 +23,14 @@ import {
   type LayerRenderEvents,
 } from "@/composables/useOpenLayersEvents";
 import type { ObjectEvent } from "ol/Object";
+import type { LayerSwitcherOptions } from "@/types";
 
 // prevent warnings caused by event pass-through via useOpenLayersEvents composable
 defineOptions({
   inheritAttrs: false,
 });
 
-type Props = Options & {
-  openInLayerSwitcher?: boolean;
-  title?: string;
-};
+type Props = Options & LayerSwitcherOptions;
 const props = withDefaults(defineProps<Props>(), {
   opacity: 1,
   visible: true,

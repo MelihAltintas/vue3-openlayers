@@ -12,8 +12,9 @@ import { useDefaults } from "@/components/layers/LayersCommonProps";
 import type { Options } from "ol/layer/BaseImage";
 import type ImageSource from "ol/source/Image";
 import type { LayerEvents } from "@/composables";
+import type { LayerSwitcherOptions } from "@/types";
 
-type Props = Options<ImageSource>;
+type Props = Options<ImageSource> & LayerSwitcherOptions;
 const props = withDefaults(
   defineProps<Props>(),
   useDefaults<Props, ImageSource>(),
