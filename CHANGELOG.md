@@ -1,5 +1,12 @@
 
 
+## [11.3.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.1...v11.3.2) (2025-02-14)
+
+
+### Bug Fixes
+
+* **ol-layerswitcher-control:** support layer properties needed by ol-ext/control/LayerSwitcher ([9e4da28](https://github.com/MelihAltintas/vue3-openlayers/commit/9e4da2825813fb5bd40dad2a7caab8cc5b2a3777)), closes [#405](https://github.com/MelihAltintas/vue3-openlayers/issues/405)
+
 ## [11.3.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.0...v11.3.1) (2025-02-11)
 
 
