@@ -1,5 +1,7 @@
 
 
+## [11.3.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.2...v11.3.3) (2025-02-18)
+
 ## [11.3.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.1...v11.3.2) (2025-02-14)
 
 
