@@ -21,7 +21,6 @@ const props = withDefaults(defineProps<Options<Feature>>(), {
   wrapX: true,
 });
 defineEmits<VectorSourceEvents>();
-console.log("cluster props", props);
 
 const layer = inject<Ref<Cluster<Feature>> | null>("vectorLayer");
 
