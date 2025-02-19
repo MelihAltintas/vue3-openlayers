@@ -53,7 +53,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "serve": "vite preview",
+    "serve": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",
     "docs:build": "vitepress build docs",

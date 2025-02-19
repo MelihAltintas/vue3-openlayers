@@ -1,79 +1,124 @@
-# Contributing to this repository <!-- omit in toc -->
+# 🚀 Contribution Workflow
 
-## Getting started <!-- omit in toc -->
+Thank you for your interest in contributing to this project! 🎉 Follow the steps below to set up your development environment and submit contributions.
 
-Before you begin:
+## 🏁 Getting Started
 
-- This site is powered by Node.js. Check to see if you're on the [version of node we support](contributing/development.md).
-- Have you read the [code of conduct](CODE_OF_CONDUCT.md)?
-- Check out the [existing issues](https://github.com/MelihAltintas/vue3-openlayers/issues).
+1. **🔗 Fork the Repository**: Click the "Fork" button on the GitHub repository page to create your own copy. You can fork the repository using:
 
-## Don't see your issue? Open one
+   - [GitHub Desktop](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/getting-started-with-github-desktop)
+   - [Command Line](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository)
+   - [GitHub Codespaces](https://github.com/features/codespaces)
 
-If you spot something new, open an issue using a [template](https://github.com/MelihAltintas/vue3-openlayers/issues/new/choose).
-We'll use the issue to have a conversation about the problem you want to fix.
+1. **📂 Clone Your Fork**: Clone your forked repository to your local machine:
+   ```sh
+   git clone https://github.com/YOUR_USERNAME/vue3-openlayers.git
+   cd vue3-openlayers
+   ```
+1. **📦 Install Dependencies**: Run the following command to install required dependencies:
+   ```sh
+   npm install
+   ```
+1. **💻 Start Local Development**: Use the following command to start the development environment:
+   ```sh
+   npm run serve
+   ```
+1. **📜 Read Guidelines**: Have you read the [code of conduct](CODE_OF_CONDUCT.md)?
 
-## Ready to make a change? Fork the repo
+## 🔄 Keeping Your Fork Updated
 
-Fork using GitHub Desktop:
+To sync your fork with the latest changes from the main repository:
 
-- [Getting started with GitHub Desktop](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/getting-started-with-github-desktop) will guide you through setting up Desktop.
-- Once Desktop is set up, you can use it to [fork the repo](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/cloning-and-forking-repositories-from-github-desktop)!
+1. **🌍 Add the Main Repository as a Remote** (if not already added):
 
-Fork using the command line:
+   ```sh
+   git remote add upstream https://github.com/MelihAltintas/vue3-openlayers.git
+   ```
 
-- [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository) so that you can make your changes without affecting the original project until you're ready to merge them.
+2. **📥 Fetch the Latest Changes**:
 
-Fork with [GitHub Codespaces](https://github.com/features/codespaces):
+   ```sh
+   git fetch upstream
+   ```
 
-- [Fork, edit, and preview](https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/creating-a-codespace) using [GitHub Codespaces](https://github.com/features/codespaces) without having to install and run the project locally.
+3. **🔀 Merge the Changes into Your Local Branch**:
 
-## Make your update
+   ```sh
+   git checkout main
+   git merge upstream/main
+   ```
 
-Make your changes to the file(s) you'd like to update.
-Please be sure to update the documentation as well, when adding new features or changing the API.
+4. **📤 Push the Updated Branch to Your Fork**:
 
-## Open a pull request
+   ```sh
+   git push origin main
+   ```
 
-When you're done making changes and you'd like to propose them for review, open your PR (pull request).
+## 🛠️ Making Changes
 
-## Submit your PR & get it reviewed
+Ensure your changes include documentation updates where applicable. Follow the steps above to create a new branch and make your updates.
 
-- Once you submit your PR, others from the community will review it with you.
-- After that, we may have questions, check back on your PR to keep up with the conversation.
-- Did you have an issue, like a merge conflict? Check out our [git tutorial](https://lab.github.com/githubtraining/managing-merge-conflicts) on how to resolve merge conflicts and other issues.
+Before submitting, review your pull request:
 
-## Self review
+- Confirm user experience matches the design.
+- Ensure content and code accuracy.
+- Check for grammar and style guide adherence.
+- Troubleshoot any failing checks.
 
-You should always review your own PR first.
+1. **🌿 Create a Branch**: Before making changes, create a new branch:
 
-For content changes, make sure that you:
+   ```sh
+   git checkout -b feature/your-feature-name
+   ```
 
-- [ ] Confirm that the changes meet the user experience and goals outlined in the content design plan (if there is one).
-- [ ] Compare your pull request's source changes to staging to confirm that the output matches the source and that everything is rendering as expected.
-- [ ] This helps spot issues like typos, content that doesn't follow the style guide, or content that isn't rendering due to versioning problems.
-- [ ] Remember that lists and tables can be tricky.
-- [ ] Review the content for technical accuracy.
-- [ ] Copy-edit the changes for grammar, spelling, and adherence.
-- [ ] If there are any failing checks in your PR, troubleshoot them until they're all passing.
+2. **✏️ Make Your Changes**: Edit files and implement your changes.
 
-## Reviewing
+3. **🎨 Verify Style**: Follow Code Guidelines by checking for lint errors and format code correctly:
 
-We review every single PR. The purpose of reviews is to create the best content we can for people who use this library.
+   ```sh
+   npm run lint # check for linting issues
+   npm run lint-fix # check for linting issues and auto-fix if possible
+   npm run format # format the code using prettier
+   ```
 
-:yellow_heart: Reviews are always respectful, acknowledging that everyone did the best possible job with the knowledge they had at the time.
-:yellow_heart: Reviews discuss content, not the person who created it.
-:yellow_heart: Reviews are constructive and start conversation around feedback.
+4. **✅ Commit Your Changes**: Follow conventional commit messages:
 
-## Suggested changes
+   ```sh
+   git add .
+   git commit -m "feat: add new feature description"
+   ```
 
-We may ask for changes to be made before a PR can be merged, either using [suggested changes](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/incorporating-feedback-in-your-pull-request) or pull request comments.
-You can apply suggested changes directly through the UI. You can make any other changes in your fork, then commit them to your branch.
+5. **🚀 Push Your Branch**: Push your changes to your fork:
 
-As you update your PR and apply changes, mark each conversation as [resolved](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request#resolving-conversations).
+   ```sh
+   git push origin feature/your-feature-name
+   ```
 
-## Your PR is merged!
+## 🔃 Submitting a Pull Request
 
-Congratulations! The whole community thanks you. :sparkles:
+1. Go to the original repository on GitHub.
+2. Click on "New Pull Request".
+3. Select your branch and provide a clear description of your changes.
+4. Submit the pull request. 🎯
 
-Once your PR is merged, you will be proudly listed as a contributor in the [contributor chart](https://github.com/MelihAltintas/vue3-openlayers/graphs/contributors).
+## 🔍 Code Review & Merging
+
+We review every PR to ensure high content quality.
+
+- ✅ Your pull request will be reviewed by maintainers.
+- ✏️ You may be asked to make modifications.
+- Reviews are respectful and constructive.
+- Follow-up on review comments and mark as resolved when done.
+- 🎉 Once approved, your changes will be merged into the main branch.
+
+## 📌 Additional Notes
+
+- 🔍 Ensure that all changes adhere to the project's coding guidelines.
+- 🧪 Run tests before submitting changes (if applicable).
+- 🔄 Keep your branch up to date with the latest changes from `main`.
+
+### ⛙ Merging
+
+Upon merging, you'll be recognized in the [contributor chart](https://github.com/MelihAltintas/vue3-openlayers/graphs/contributors).
+
+Thank you for contributing! 🙌
