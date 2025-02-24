@@ -28,7 +28,7 @@ const props = withDefaults(
 );
 defineEmits<Emits>();
 
-const { layer } = useLayer(TileLayer, toRefs({ ...props }), [
+const { layer } = useLayer(TileLayer, toRefs(props), [
   "change:useInterimTilesOnError",
   "change:preload",
 ]);
