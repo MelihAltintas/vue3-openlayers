@@ -30,11 +30,15 @@ defineOptions({
   inheritAttrs: false,
 });
 
-type Props = Options & LayerSwitcherOptions;
+type Props = Options &
+  LayerSwitcherOptions & {
+    openInLayerSwitcher?: boolean;
+  };
 const props = withDefaults(defineProps<Props>(), {
   opacity: 1,
   visible: true,
   properties: () => ({}),
+  displayInLayerSwitcher: true,
 });
 
 type Emits = CommonEvents &
