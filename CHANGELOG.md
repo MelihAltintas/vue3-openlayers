@@ -1,5 +1,13 @@
 
 
+## [11.3.4](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.3...v11.3.4) (2025-02-24)
+
+
+### Bug Fixes
+
+* **ol-*-layer:** add missing prop `displayInLayerSwitcher` ([ff83346](https://github.com/MelihAltintas/vue3-openlayers/commit/ff8334674c44486b115491ad4b37a8cc72f413f0)), closes [#412](https://github.com/MelihAltintas/vue3-openlayers/issues/412)
+* **ol-tile-layer:** do not spread props into `toRefs` ([5dae1c3](https://github.com/MelihAltintas/vue3-openlayers/commit/5dae1c3ec8a4dc89200f7b3100c2d5daf3ad077b)), closes [#410](https://github.com/MelihAltintas/vue3-openlayers/issues/410)
+
 ## [11.3.3](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.2...v11.3.3) (2025-02-18)
 
 ## [11.3.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.1...v11.3.2) (2025-02-14)
