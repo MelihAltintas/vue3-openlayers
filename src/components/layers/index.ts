@@ -1,6 +1,6 @@
 import {
   layersCommonDefaultProps,
-  useDefaults,
+  useDefaults as useLayerDefaults,
 } from "@components/layers/LayersCommonProps";
 
 import type { App } from "vue";
@@ -54,5 +54,5 @@ export {
   OlWebglVectorLayer,
   type LayersCommonProps,
   layersCommonDefaultProps,
-  useDefaults as useLayerDefaults,
+  useLayerDefaults,
 };
