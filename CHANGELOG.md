@@ -1,5 +1,12 @@
 
 
+# [11.5.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.4.0...v11.5.0) (2025-02-26)
+
+
+### Features
+
+* export all types ([8a9819c](https://github.com/MelihAltintas/vue3-openlayers/commit/8a9819c963149ce369295ee7b86998889aedebbd))
+
 # [11.4.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.5...v11.4.0) (2025-02-26)
 
 
