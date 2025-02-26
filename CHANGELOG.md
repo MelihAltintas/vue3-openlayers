@@ -1,5 +1,12 @@
 
 
+## [11.3.5](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.4...v11.3.5) (2025-02-26)
+
+
+### Bug Fixes
+
+* **ol-*-layer:** make `displayInLayerSwitcher` prop optional ([#415](https://github.com/MelihAltintas/vue3-openlayers/issues/415)) ([2298ed8](https://github.com/MelihAltintas/vue3-openlayers/commit/2298ed83a00417753e27f1ca277c6a461019ce04))
+
 ## [11.3.4](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.3...v11.3.4) (2025-02-24)
 
 
