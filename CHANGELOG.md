@@ -1,5 +1,12 @@
 
 
+# [11.4.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.5...v11.4.0) (2025-02-26)
+
+
+### Features
+
+* export utility functions and types `LayersCommonProps`, `layersCommonDefaultProps` and `useLayerDefaults` for layers ([ae1f2f1](https://github.com/MelihAltintas/vue3-openlayers/commit/ae1f2f1bf8c0ccc96eca1d765f032baab5ac53ab))
+
 ## [11.3.5](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.4...v11.3.5) (2025-02-26)
 
 
