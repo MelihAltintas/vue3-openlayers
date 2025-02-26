@@ -1,3 +1,8 @@
+import {
+  layersCommonDefaultProps,
+  useDefaults,
+} from "@components/layers/LayersCommonProps";
+
 import type { App } from "vue";
 import OlAnimatedClusterlayer from "./OlAnimatedClusterlayer.vue";
 import OlHeatmapLayer from "./OlHeatmapLayer.vue";
@@ -10,6 +15,7 @@ import OlVectorImageLayer from "./OlVectorImageLayer.vue";
 import OlWebglTileLayer from "./OlWebglTileLayer.vue";
 import OlWebglVectorLayer from "./OlWebglVectorLayer.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import type { LayersCommonProps } from "./LayersCommonProps";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlAnimatedClusterlayer", OlAnimatedClusterlayer);
@@ -46,4 +52,7 @@ export {
   OlVectorTileLayer,
   OlWebglTileLayer,
   OlWebglVectorLayer,
+  type LayersCommonProps,
+  layersCommonDefaultProps,
+  useDefaults as useLayerDefaults,
 };
