@@ -4,7 +4,7 @@
   "description": "OpenLayers Wrapper for Vue3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MelihAltintas/vue3-openlayers"
+    "url": "git+https://github.com/MelihAltintas/vue3-openlayers.git"
   },
   "homepage": "https://github.com/MelihAltintas/vue3-openlayers",
   "bugs": {
@@ -27,14 +27,14 @@
   "license": "MIT",
   "private": false,
   "type": "module",
-  "main": "./dist/vue3-openlayers.umd.js",
-  "module": "./dist/vue3-openlayers.es.js",
   "types": "./dist/index.d.ts",
+  "main": "./dist/vue3-openlayers.umd.cjs",
+  "module": "./dist/vue3-openlayers.js",
   "exports": {
     ".": {
-      "import": "./dist/vue3-openlayers.es.js",
-      "require": "./dist/vue3-openlayers.umd.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vue3-openlayers.js",
+      "require": "./dist/vue3-openlayers.umd.cjs"
     },
     "./dist/vue3-openlayers.css": {
       "import": "./dist/styles.css",

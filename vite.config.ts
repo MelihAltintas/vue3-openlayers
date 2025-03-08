@@ -36,7 +36,6 @@ export default defineConfig({
       entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       name: "vue3-openlayers",
       formats: ["es", "cjs", "umd"],
-      fileName: (format) => `vue3-openlayers.${format}.js`,
     },
     minify: false,
     rollupOptions: {
