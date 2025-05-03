@@ -1,7 +1,7 @@
 import {
   layersCommonDefaultProps,
   useDefaults as useLayerDefaults,
-} from "@components/layers/LayersCommonProps";
+} from "./LayersCommonProps";
 
 import type { App } from "vue";
 import OlAnimatedClusterlayer from "./OlAnimatedClusterlayer.vue";
