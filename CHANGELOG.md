@@ -1,5 +1,18 @@
 
 
+# [11.6.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.5.0...v11.6.0) (2025-05-03)
+
+
+### Bug Fixes
+
+* import correctly ([9c6fa3d](https://github.com/MelihAltintas/vue3-openlayers/commit/9c6fa3d867e4a28a958ae85ff94afedd1787cf21))
+* **ol-layer-*:** handle undefined layer opacity correctly ([#425](https://github.com/MelihAltintas/vue3-openlayers/issues/425)) ([84943c8](https://github.com/MelihAltintas/vue3-openlayers/commit/84943c80cd689929396b985620e6867f777f0c7c))
+
+
+### Features
+
+* **ol-style-text:** support all ol props ([c1d050f](https://github.com/MelihAltintas/vue3-openlayers/commit/c1d050f3dd077e9e13d08e2161f2029456313eec)), closes [#411](https://github.com/MelihAltintas/vue3-openlayers/issues/411)
+
 # [11.5.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.4.0...v11.5.0) (2025-02-26)
 
 
