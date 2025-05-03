@@ -34,87 +34,13 @@ Add text to shapes
 
 ## Properties
 
-### font
+### Props from OpenLayers
 
-- **Type**: `String`
+Properties are passed-trough from OpenLayers directly.
+Their types and default values can be checked-out [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_style_Text-Text.html).
+Only some properties deviate caused by reserved keywords from Vue / HTML.
+This deviating props are described in the section below.
 
-### maxAngle
+### Deviating Properties
 
-- **Type**: `Number`
-- **Default**: `Math.PI / 4`
-
-### offsetX
-
-- **Type**: `Number`
-- **Default**: `0`
-
-### offsetY
-
-- **Type**: `Number`
-- **Default**: `0`
-
-### overflow
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### placement
-
-- **Type**: `String`
-- **Default**: `point`
-
-### scale
-
-- **Type**: `Number`
-
-### rotateWithView
-
-- **Type**: `Boolean`
-- **Default**: `false`
-
-### rotation
-
-- **Type**: `Number`
-- **Default**: `0`
-
-### text
-
-- **Type**: `String`
-
-### textAlign
-
-- **Type**: `String`
-
-### textBaseline
-
-- **Type**: `String`
-- **Default**: `middle`
-
-### padding
-
-- **Type**: `Array`
-- **Default**: `() => [0, 0, 0, 0]`
-
-### backgroundFill
-
-- **Type**: `array`, `string`
-
-Fill color for the text background when `placement` is 'point'. Default is no fill. Either in hexadecimal or as RGBA array with red, green, and blue values betweeen 0 and 255 and alpha value between 0 and 1 inclusive.
-
-### backgroundStroke
-
-- **Type**: `Object`
-
-Stroke style for the text background when `placement` is 'point'. Default is no stroke. Please see [ol-style-stroke](/componentsguide/styles/stroke/#properties) for available options.
-
-### fill
-
-- **Type**: `array`, `string`
-
-Fill color for the text. Default is '#333'. Either in hexadecimal or as RGBA array with red, green, and blue values betweeen 0 and 255 and alpha value between 0 and 1 inclusive.
-
-### stroke
-
-- **Type**: `Object`
-
-Stroke style for the text. Default is no stroke. Please see [ol-style-stroke](/componentsguide/styles/stroke/#properties) for available options.
+None.
