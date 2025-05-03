@@ -86,7 +86,7 @@ app.mount("#app");
 <script setup lang="ts"></script>
 
 <template>
-  <ol-map style="min-width: 400px; min-height: 400px;">// [!code focus:6]
+  <ol-map style="min-width: 400px; height: 400px;">// [!code focus:6]
     <ol-view :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <ol-tile-layer>
       <ol-source-osm />
@@ -109,7 +109,7 @@ import { Map, Layers, Sources } from "vue3-openlayers";
 </script>
 
 <template>
-  <Map.OlMap style="min-width: 400px; min-height: 400px;">
+  <Map.OlMap style="min-width: 400px; height: 400px;">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
       <Sources.OlSourceOsm />
@@ -145,7 +145,7 @@ You can also specifically render the map only at client side, by putting inside 
 ```vue
 <template>
   <ClientOnly>
-    <Map.OlMap style="min-width: 400px; min-height: 400px;">
+    <Map.OlMap style="min-width: 400px; height: 400px;">
       <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326"/>
       <Layers.OlTileLayer>
         <Sources.OlSourceOsm/>
@@ -230,7 +230,7 @@ provide("ol-options", options);
 </script>
 
 <template>
-  <Map.OlMap style="min-width: 400px; min-height: 400px">
+  <Map.OlMap style="min-width: 400px; height: 400px">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
       <Sources.OlSourceOsm />
