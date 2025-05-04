@@ -32,4 +32,5 @@ export type LayerSwitcherOptions = {
   allwaysOnTop?: boolean; // typo in original code, see https://github.com/Viglino/ol-ext/issues/1128
   baseLayer?: boolean;
   displayInLayerSwitcher?: boolean;
+  preview?: string;
 };
