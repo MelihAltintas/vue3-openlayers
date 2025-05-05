@@ -3,7 +3,14 @@
 </template>
 
 <script setup lang="ts">
-import { provide, inject, watch, onMounted, onUnmounted, computed } from "vue";
+import {
+  provide,
+  inject,
+  watch,
+  onMounted,
+  onUnmounted,
+  shallowRef,
+} from "vue";
 import Transform, {
   type RotateEvent,
   type ScaleEvent,
@@ -18,6 +25,7 @@ import {
   type CommonEvents,
 } from "@/composables/useOpenLayersEvents";
 import { always } from "ol/events/condition";
+import { TRUE } from "ol/functions";
 
 const props = withDefaults(defineProps<Options>(), {
   translateFeature: true,
@@ -26,6 +34,7 @@ const props = withDefaults(defineProps<Options>(), {
   keepAspectRatio: always,
   translate: true,
   stretch: true,
+  selection: TRUE,
 });
 
 type Emits = CommonEvents & {
@@ -51,9 +60,13 @@ const map = inject<Map>("map");
 
 const properties = usePropsAsObjectProperties(props);
 
-const transform = computed(() => new Transform(properties as Options));
+function createTransform() {
+  return new Transform(properties as Options);
+}
 
-useOpenLayersEvents(transform, [
+const transform = shallowRef(createTransform());
+
+const { updateOpenLayersEventHandlers } = useOpenLayersEvents(transform, [
   "select",
   "rotatestart",
   "rotating",
@@ -68,8 +81,9 @@ useOpenLayersEvents(transform, [
 
 watch(transform, (newVal, oldVal) => {
   map?.removeInteraction(oldVal);
+  transform.value = createTransform();
+  updateOpenLayersEventHandlers();
   map?.addInteraction(newVal);
-
   map?.changed();
 });
 
@@ -84,6 +98,6 @@ onUnmounted(() => {
 provide("stylable", transform);
 
 defineExpose({
-  transform,
+  transform: transform.value,
 });
 </script>
