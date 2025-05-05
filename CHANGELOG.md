@@ -1,5 +1,13 @@
 
 
+## [11.6.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.6.0...v11.6.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **ol-*-layer:** support missing `preview` option ([1c3e85c](https://github.com/MelihAltintas/vue3-openlayers/commit/1c3e85c7f5009b13013d87b4493e07ea8a51a862)), closes [#423](https://github.com/MelihAltintas/vue3-openlayers/issues/423)
+* **ol-interaction-transform:** ol-interaction-transform not working ([f027dca](https://github.com/MelihAltintas/vue3-openlayers/commit/f027dca352305d131fedbd69b4f2545e778d6e27))
+
 # [11.6.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.5.0...v11.6.0) (2025-05-03)
 
 
