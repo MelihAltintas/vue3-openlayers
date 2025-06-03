@@ -31,8 +31,8 @@ const properties = usePropsAsObjectProperties(props);
 const select = computed(
   () =>
     new Select({
-      ...(properties as Options),
       style: new Style(),
+      ...(properties as Options),
     }),
 );
 
