@@ -1,5 +1,12 @@
 
 
+## [11.6.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.6.1...v11.6.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* **ol-interaction-select:** the `style` property was always overruled with a default style ([6871d48](https://github.com/MelihAltintas/vue3-openlayers/commit/6871d48d8c63460e1a200a67d649ea7ce2f931d1)), closes [#428](https://github.com/MelihAltintas/vue3-openlayers/issues/428) [#431](https://github.com/MelihAltintas/vue3-openlayers/issues/431)
+
 ## [11.6.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.6.0...v11.6.1) (2025-05-05)
 
 
