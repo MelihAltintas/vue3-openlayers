@@ -5,7 +5,7 @@ import OlStyleStroke from "./OlStyleStroke.vue";
 import OlStyleFill from "./OlStyleFill.vue";
 import OlStyleIcon from "./OlStyleIcon.vue";
 import OlStyleText from "./OlStyleText.vue";
-import OlStyleFlowline from "./OlStyleFlowline.vue";
+import OlStyleFlowLine from "./OlStyleFlowLine.vue";
 import type { FeatureLike } from "ol/Feature";
 import type { Style } from "ol/style";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
@@ -29,7 +29,7 @@ function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
   app.component("OlStyleFill", OlStyleFill);
   app.component("OlStyleIcon", OlStyleIcon);
   app.component("OlStyleText", OlStyleText);
-  app.component("OlStyleFlowline", OlStyleFlowline);
+  app.component("OlStyleFlowLine", OlStyleFlowLine);
 
   if (options) {
     app.provide("ol-options", options);
@@ -49,7 +49,7 @@ export {
   OlStyleFill,
   OlStyleIcon,
   OlStyleText,
-  OlStyleFlowline,
+  OlStyleFlowLine,
   OlStyleCircle,
   type OverrideStyleFunction,
   type Gradient,
