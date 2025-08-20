@@ -99,6 +99,436 @@
     "./styles.css": {
       "import": "./dist/styles.css",
       "require": "./dist/styles.css"
+    },
+    "./OlFeature": {
+      "import": "./dist/OlFeature.js",
+      "require": "./dist/OlFeature.cjs",
+      "types": "./dist/OlFeature.d.ts"
+    },
+    "./OlGeolocation": {
+      "import": "./dist/OlGeolocation.js",
+      "require": "./dist/OlGeolocation.cjs",
+      "types": "./dist/OlGeolocation.d.ts"
+    },
+    "./OlMap": {
+      "import": "./dist/OlMap.js",
+      "require": "./dist/OlMap.cjs",
+      "types": "./dist/OlMap.d.ts"
+    },
+    "./OlOverlay": {
+      "import": "./dist/OlOverlay.js",
+      "require": "./dist/OlOverlay.cjs",
+      "types": "./dist/OlOverlay.d.ts"
+    },
+    "./OlProjectionRegister": {
+      "import": "./dist/OlProjectionRegister.js",
+      "require": "./dist/OlProjectionRegister.cjs",
+      "types": "./dist/OlProjectionRegister.d.ts"
+    },
+    "./OlView": {
+      "import": "./dist/OlView.js",
+      "require": "./dist/OlView.cjs",
+      "types": "./dist/OlView.d.ts"
+    },
+    "./OlAnimatedClusterlayer": {
+      "import": "./dist/OlAnimatedClusterlayer.js",
+      "require": "./dist/OlAnimatedClusterlayer.cjs",
+      "types": "./dist/OlAnimatedClusterlayer.d.ts"
+    },
+    "./OlHeatmapLayer": {
+      "import": "./dist/OlHeatmapLayer.js",
+      "require": "./dist/OlHeatmapLayer.cjs",
+      "types": "./dist/OlHeatmapLayer.d.ts"
+    },
+    "./OlImageLayer": {
+      "import": "./dist/OlImageLayer.js",
+      "require": "./dist/OlImageLayer.cjs",
+      "types": "./dist/OlImageLayer.d.ts"
+    },
+    "./OlLayerGroup": {
+      "import": "./dist/OlLayerGroup.js",
+      "require": "./dist/OlLayerGroup.cjs",
+      "types": "./dist/OlLayerGroup.d.ts"
+    },
+    "./OlTileLayer": {
+      "import": "./dist/OlTileLayer.js",
+      "require": "./dist/OlTileLayer.cjs",
+      "types": "./dist/OlTileLayer.d.ts"
+    },
+    "./OlVectorImageLayer": {
+      "import": "./dist/OlVectorImageLayer.js",
+      "require": "./dist/OlVectorImageLayer.cjs",
+      "types": "./dist/OlVectorImageLayer.d.ts"
+    },
+    "./OlVectorLayer": {
+      "import": "./dist/OlVectorLayer.js",
+      "require": "./dist/OlVectorLayer.cjs",
+      "types": "./dist/OlVectorLayer.d.ts"
+    },
+    "./OlVectorTileLayer": {
+      "import": "./dist/OlVectorTileLayer.js",
+      "require": "./dist/OlVectorTileLayer.cjs",
+      "types": "./dist/OlVectorTileLayer.d.ts"
+    },
+    "./OlWebglTileLayer": {
+      "import": "./dist/OlWebglTileLayer.js",
+      "require": "./dist/OlWebglTileLayer.cjs",
+      "types": "./dist/OlWebglTileLayer.d.ts"
+    },
+    "./OlWebglVectorLayer": {
+      "import": "./dist/OlWebglVectorLayer.js",
+      "require": "./dist/OlWebglVectorLayer.cjs",
+      "types": "./dist/OlWebglVectorLayer.d.ts"
+    },
+    "./OlSourceBingmaps": {
+      "import": "./dist/OlSourceBingmaps.js",
+      "require": "./dist/OlSourceBingmaps.cjs",
+      "types": "./dist/OlSourceBingmaps.d.ts"
+    },
+    "./OlSourceCluster": {
+      "import": "./dist/OlSourceCluster.js",
+      "require": "./dist/OlSourceCluster.cjs",
+      "types": "./dist/OlSourceCluster.d.ts"
+    },
+    "./OlSourceImageStatic": {
+      "import": "./dist/OlSourceImageStatic.js",
+      "require": "./dist/OlSourceImageStatic.cjs",
+      "types": "./dist/OlSourceImageStatic.d.ts"
+    },
+    "./OlSourceImageWms": {
+      "import": "./dist/OlSourceImageWms.js",
+      "require": "./dist/OlSourceImageWms.cjs",
+      "types": "./dist/OlSourceImageWms.d.ts"
+    },
+    "./OlSourceOsm": {
+      "import": "./dist/OlSourceOsm.js",
+      "require": "./dist/OlSourceOsm.cjs",
+      "types": "./dist/OlSourceOsm.d.ts"
+    },
+    "./OlSourceStadiaMaps": {
+      "import": "./dist/OlSourceStadiaMaps.js",
+      "require": "./dist/OlSourceStadiaMaps.cjs",
+      "types": "./dist/OlSourceStadiaMaps.d.ts"
+    },
+    "./OlSourceTianditu": {
+      "import": "./dist/OlSourceTianditu.js",
+      "require": "./dist/OlSourceTianditu.cjs",
+      "types": "./dist/OlSourceTianditu.d.ts"
+    },
+    "./OlSourceTileArcgisRest": {
+      "import": "./dist/OlSourceTileArcgisRest.js",
+      "require": "./dist/OlSourceTileArcgisRest.cjs",
+      "types": "./dist/OlSourceTileArcgisRest.d.ts"
+    },
+    "./OlSourceTileDebug": {
+      "import": "./dist/OlSourceTileDebug.js",
+      "require": "./dist/OlSourceTileDebug.cjs",
+      "types": "./dist/OlSourceTileDebug.d.ts"
+    },
+    "./OlSourceGeoTiff": {
+      "import": "./dist/OlSourceGeoTiff.js",
+      "require": "./dist/OlSourceGeoTiff.cjs",
+      "types": "./dist/OlSourceGeoTiff.d.ts"
+    },
+    "./OlSourceTileJson": {
+      "import": "./dist/OlSourceTileJson.js",
+      "require": "./dist/OlSourceTileJson.cjs",
+      "types": "./dist/OlSourceTileJson.d.ts"
+    },
+    "./OlSourceTileWms": {
+      "import": "./dist/OlSourceTileWms.js",
+      "require": "./dist/OlSourceTileWms.cjs",
+      "types": "./dist/OlSourceTileWms.d.ts"
+    },
+    "./OlSourceVector": {
+      "import": "./dist/OlSourceVector.js",
+      "require": "./dist/OlSourceVector.cjs",
+      "types": "./dist/OlSourceVector.d.ts"
+    },
+    "./OlSourceVectorTile": {
+      "import": "./dist/OlSourceVectorTile.js",
+      "require": "./dist/OlSourceVectorTile.cjs",
+      "types": "./dist/OlSourceVectorTile.d.ts"
+    },
+    "./OlSourceXyz": {
+      "import": "./dist/OlSourceXyz.js",
+      "require": "./dist/OlSourceXyz.cjs",
+      "types": "./dist/OlSourceXyz.d.ts"
+    },
+    "./OlSourceWmts": {
+      "import": "./dist/OlSourceWmts.js",
+      "require": "./dist/OlSourceWmts.cjs",
+      "types": "./dist/OlSourceWmts.d.ts"
+    },
+    "./OlAttributionControl": {
+      "import": "./dist/OlAttributionControl.js",
+      "require": "./dist/OlAttributionControl.cjs",
+      "types": "./dist/OlAttributionControl.d.ts"
+    },
+    "./OlButtonControl": {
+      "import": "./dist/OlButtonControl.js",
+      "require": "./dist/OlButtonControl.cjs",
+      "types": "./dist/OlButtonControl.d.ts"
+    },
+    "./OlContextMenuControl": {
+      "import": "./dist/OlContextMenuControl.js",
+      "require": "./dist/OlContextMenuControl.cjs",
+      "types": "./dist/OlContextMenuControl.d.ts"
+    },
+    "./OlControlBar": {
+      "import": "./dist/OlControlBar.js",
+      "require": "./dist/OlControlBar.cjs",
+      "types": "./dist/OlControlBar.d.ts"
+    },
+    "./OlFullscreenControl": {
+      "import": "./dist/OlFullscreenControl.js",
+      "require": "./dist/OlFullscreenControl.cjs",
+      "types": "./dist/OlFullscreenControl.d.ts"
+    },
+    "./OlLayerswitcherControl": {
+      "import": "./dist/OlLayerswitcherControl.js",
+      "require": "./dist/OlLayerswitcherControl.cjs",
+      "types": "./dist/OlLayerswitcherControl.d.ts"
+    },
+    "./OlLayerswitcherimageControl": {
+      "import": "./dist/OlLayerswitcherimageControl.js",
+      "require": "./dist/OlLayerswitcherimageControl.cjs",
+      "types": "./dist/OlLayerswitcherimageControl.d.ts"
+    },
+    "./OlMousepositionControl": {
+      "import": "./dist/OlMousepositionControl.js",
+      "require": "./dist/OlMousepositionControl.cjs",
+      "types": "./dist/OlMousepositionControl.d.ts"
+    },
+    "./OlOverviewmapControl": {
+      "import": "./dist/OlOverviewmapControl.js",
+      "require": "./dist/OlOverviewmapControl.cjs",
+      "types": "./dist/OlOverviewmapControl.d.ts"
+    },
+    "./OlPrintdialogControl": {
+      "import": "./dist/OlPrintdialogControl.js",
+      "require": "./dist/OlPrintdialogControl.cjs",
+      "types": "./dist/OlPrintdialogControl.d.ts"
+    },
+    "./OlProfileControl": {
+      "import": "./dist/OlProfileControl.js",
+      "require": "./dist/OlProfileControl.cjs",
+      "types": "./dist/OlProfileControl.d.ts"
+    },
+    "./OlRotateControl": {
+      "import": "./dist/OlRotateControl.js",
+      "require": "./dist/OlRotateControl.cjs",
+      "types": "./dist/OlRotateControl.d.ts"
+    },
+    "./OlScalelineControl": {
+      "import": "./dist/OlScalelineControl.js",
+      "require": "./dist/OlScalelineControl.cjs",
+      "types": "./dist/OlScalelineControl.d.ts"
+    },
+    "./OlSearchControl": {
+      "import": "./dist/OlSearchControl.js",
+      "require": "./dist/OlSearchControl.cjs",
+      "types": "./dist/OlSearchControl.d.ts"
+    },
+    "./OlSwipeControl": {
+      "import": "./dist/OlSwipeControl.js",
+      "require": "./dist/OlSwipeControl.cjs",
+      "types": "./dist/OlSwipeControl.d.ts"
+    },
+    "./OlToggleControl": {
+      "import": "./dist/OlToggleControl.js",
+      "require": "./dist/OlToggleControl.cjs",
+      "types": "./dist/OlToggleControl.d.ts"
+    },
+    "./OlVideorecorderControl": {
+      "import": "./dist/OlVideorecorderControl.js",
+      "require": "./dist/OlVideorecorderControl.cjs",
+      "types": "./dist/OlVideorecorderControl.d.ts"
+    },
+    "./OlZoneControl": {
+      "import": "./dist/OlZoneControl.js",
+      "require": "./dist/OlZoneControl.cjs",
+      "types": "./dist/OlZoneControl.d.ts"
+    },
+    "./OlZoomControl": {
+      "import": "./dist/OlZoomControl.js",
+      "require": "./dist/OlZoomControl.cjs",
+      "types": "./dist/OlZoomControl.d.ts"
+    },
+    "./OlZoomsliderControl": {
+      "import": "./dist/OlZoomsliderControl.js",
+      "require": "./dist/OlZoomsliderControl.cjs",
+      "types": "./dist/OlZoomsliderControl.d.ts"
+    },
+    "./OlZoomtoextentControl": {
+      "import": "./dist/OlZoomtoextentControl.js",
+      "require": "./dist/OlZoomtoextentControl.cjs",
+      "types": "./dist/OlZoomtoextentControl.d.ts"
+    },
+    "./OlGeomCircle": {
+      "import": "./dist/OlGeomCircle.js",
+      "require": "./dist/OlGeomCircle.cjs",
+      "types": "./dist/OlGeomCircle.d.ts"
+    },
+    "./OlGeomLineString": {
+      "import": "./dist/OlGeomLineString.js",
+      "require": "./dist/OlGeomLineString.cjs",
+      "types": "./dist/OlGeomLineString.d.ts"
+    },
+    "./OlGeomMultiLineString": {
+      "import": "./dist/OlGeomMultiLineString.js",
+      "require": "./dist/OlGeomMultiLineString.cjs",
+      "types": "./dist/OlGeomMultiLineString.d.ts"
+    },
+    "./OlGeomMultiPoint": {
+      "import": "./dist/OlGeomMultiPoint.js",
+      "require": "./dist/OlGeomMultiPoint.cjs",
+      "types": "./dist/OlGeomMultiPoint.d.ts"
+    },
+    "./OlGeomMultiPolygon": {
+      "import": "./dist/OlGeomMultiPolygon.js",
+      "require": "./dist/OlGeomMultiPolygon.cjs",
+      "types": "./dist/OlGeomMultiPolygon.d.ts"
+    },
+    "./OlGeomPoint": {
+      "import": "./dist/OlGeomPoint.js",
+      "require": "./dist/OlGeomPoint.cjs",
+      "types": "./dist/OlGeomPoint.d.ts"
+    },
+    "./OlGeomPolygon": {
+      "import": "./dist/OlGeomPolygon.js",
+      "require": "./dist/OlGeomPolygon.cjs",
+      "types": "./dist/OlGeomPolygon.d.ts"
+    },
+    "./OlStyle": {
+      "import": "./dist/OlStyle.js",
+      "require": "./dist/OlStyle.cjs",
+      "types": "./dist/OlStyle.d.ts"
+    },
+    "./OlStyleStroke": {
+      "import": "./dist/OlStyleStroke.js",
+      "require": "./dist/OlStyleStroke.cjs",
+      "types": "./dist/OlStyleStroke.d.ts"
+    },
+    "./OlStyleFill": {
+      "import": "./dist/OlStyleFill.js",
+      "require": "./dist/OlStyleFill.cjs",
+      "types": "./dist/OlStyleFill.d.ts"
+    },
+    "./OlStyleIcon": {
+      "import": "./dist/OlStyleIcon.js",
+      "require": "./dist/OlStyleIcon.cjs",
+      "types": "./dist/OlStyleIcon.d.ts"
+    },
+    "./OlStyleText": {
+      "import": "./dist/OlStyleText.js",
+      "require": "./dist/OlStyleText.cjs",
+      "types": "./dist/OlStyleText.d.ts"
+    },
+    "./OlStyleFlowline": {
+      "import": "./dist/OlStyleFlowline.js",
+      "require": "./dist/OlStyleFlowline.cjs",
+      "types": "./dist/OlStyleFlowline.d.ts"
+    },
+    "./OlStyleCircle": {
+      "import": "./dist/OlStyleCircle.js",
+      "require": "./dist/OlStyleCircle.cjs",
+      "types": "./dist/OlStyleCircle.d.ts"
+    },
+    "./OlInteractionClusterselect": {
+      "import": "./dist/OlInteractionClusterselect.js",
+      "require": "./dist/OlInteractionClusterselect.cjs",
+      "types": "./dist/OlInteractionClusterselect.d.ts"
+    },
+    "./OlInteractionDragbox": {
+      "import": "./dist/OlInteractionDragbox.js",
+      "require": "./dist/OlInteractionDragbox.cjs",
+      "types": "./dist/OlInteractionDragbox.d.ts"
+    },
+    "./OlInteractionDragrotate": {
+      "import": "./dist/OlInteractionDragrotate.js",
+      "require": "./dist/OlInteractionDragrotate.cjs",
+      "types": "./dist/OlInteractionDragrotate.d.ts"
+    },
+    "./OlInteractionDragrotatezoom": {
+      "import": "./dist/OlInteractionDragrotatezoom.js",
+      "require": "./dist/OlInteractionDragrotatezoom.cjs",
+      "types": "./dist/OlInteractionDragrotatezoom.d.ts"
+    },
+    "./OlInteractionLink": {
+      "import": "./dist/OlInteractionLink.js",
+      "require": "./dist/OlInteractionLink.cjs",
+      "types": "./dist/OlInteractionLink.d.ts"
+    },
+    "./OlInteractionSelect": {
+      "import": "./dist/OlInteractionSelect.js",
+      "require": "./dist/OlInteractionSelect.cjs",
+      "types": "./dist/OlInteractionSelect.d.ts"
+    },
+    "./OlInteractionDraw": {
+      "import": "./dist/OlInteractionDraw.js",
+      "require": "./dist/OlInteractionDraw.cjs",
+      "types": "./dist/OlInteractionDraw.d.ts"
+    },
+    "./OlInteractionModify": {
+      "import": "./dist/OlInteractionModify.js",
+      "require": "./dist/OlInteractionModify.cjs",
+      "types": "./dist/OlInteractionModify.d.ts"
+    },
+    "./OlInteractionPointer": {
+      "import": "./dist/OlInteractionPointer.js",
+      "require": "./dist/OlInteractionPointer.cjs",
+      "types": "./dist/OlInteractionPointer.d.ts"
+    },
+    "./OlInteractionSnap": {
+      "import": "./dist/OlInteractionSnap.js",
+      "require": "./dist/OlInteractionSnap.cjs",
+      "types": "./dist/OlInteractionSnap.d.ts"
+    },
+    "./OlInteractionTransform": {
+      "import": "./dist/OlInteractionTransform.js",
+      "require": "./dist/OlInteractionTransform.cjs",
+      "types": "./dist/OlInteractionTransform.d.ts"
+    },
+    "./OlInteractionMouseWheelZoom": {
+      "import": "./dist/OlInteractionMouseWheelZoom.js",
+      "require": "./dist/OlInteractionMouseWheelZoom.cjs",
+      "types": "./dist/OlInteractionMouseWheelZoom.d.ts"
+    },
+    "./OlAnimationDrop": {
+      "import": "./dist/OlAnimationDrop.js",
+      "require": "./dist/OlAnimationDrop.cjs",
+      "types": "./dist/OlAnimationDrop.d.ts"
+    },
+    "./OlAnimationFade": {
+      "import": "./dist/OlAnimationFade.js",
+      "require": "./dist/OlAnimationFade.cjs",
+      "types": "./dist/OlAnimationFade.d.ts"
+    },
+    "./OlAnimationPath": {
+      "import": "./dist/OlAnimationPath.js",
+      "require": "./dist/OlAnimationPath.cjs",
+      "types": "./dist/OlAnimationPath.d.ts"
+    },
+    "./OlAnimationShake": {
+      "import": "./dist/OlAnimationShake.js",
+      "require": "./dist/OlAnimationShake.cjs",
+      "types": "./dist/OlAnimationShake.d.ts"
+    },
+    "./OlAnimationSlide": {
+      "import": "./dist/OlAnimationSlide.js",
+      "require": "./dist/OlAnimationSlide.cjs",
+      "types": "./dist/OlAnimationSlide.d.ts"
+    },
+    "./OlAnimationTeleport": {
+      "import": "./dist/OlAnimationTeleport.js",
+      "require": "./dist/OlAnimationTeleport.cjs",
+      "types": "./dist/OlAnimationTeleport.d.ts"
+    },
+    "./OlAnimationZoom": {
+      "import": "./dist/OlAnimationZoom.js",
+      "require": "./dist/OlAnimationZoom.cjs",
+      "types": "./dist/OlAnimationZoom.d.ts"
     }
   },
   "files": [
@@ -111,10 +541,12 @@
     "build": "vite build",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:treeshaking": "vite build --config vite.treeshaking.config.ts",
-    "build:all": "rm -rf dist && npm run build && npm run build:umd && npm run build:treeshaking",
+    "build:individual": "vite build --config vite.individual.config.ts",
+    "build:all": "rm -rf dist && npm run build && npm run build:umd && npm run build:treeshaking && npm run build:individual",
     "build:analyze": "VITE_ANALYZE=true npm run build",
     "build:analyze:treeshaking": "VITE_ANALYZE=true npm run build:treeshaking",
-    "build:analyze:all": "rm -rf dist && VITE_ANALYZE=true npm run build && VITE_ANALYZE=true npm run build:treeshaking",
+    "build:analyze:individual": "VITE_ANALYZE=true npm run build:individual",
+    "build:analyze:all": "rm -rf dist && VITE_ANALYZE=true npm run build && VITE_ANALYZE=true npm run build:treeshaking && VITE_ANALYZE=true npm run build:individual",
     "serve": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",
