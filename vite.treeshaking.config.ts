@@ -51,6 +51,12 @@ export default defineConfig({
         helpers: fileURLToPath(
           new URL("./src/helpers-entry.ts", import.meta.url),
         ),
+        providers: fileURLToPath(
+          new URL("./src/providers-entry.ts", import.meta.url),
+        ),
+        composables: fileURLToPath(
+          new URL("./src/composables-entry.ts", import.meta.url),
+        ),
       },
       name: "vue3-openlayers",
       formats: ["es", "cjs"],

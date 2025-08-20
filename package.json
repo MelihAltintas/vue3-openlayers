@@ -82,6 +82,16 @@
       "require": "./dist/helpers.cjs",
       "types": "./dist/helpers.d.ts"
     },
+    "./providers": {
+      "import": "./dist/providers.js",
+      "require": "./dist/providers.cjs",
+      "types": "./dist/providers.d.ts"
+    },
+    "./composables": {
+      "import": "./dist/composables.js",
+      "require": "./dist/composables.cjs",
+      "types": "./dist/composables.d.ts"
+    },
     "./dist/vue3-openlayers.css": {
       "import": "./dist/styles.css",
       "require": "./dist/styles.css"
