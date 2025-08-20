@@ -18,6 +18,7 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
+    emptyOutDir: false, // Don't clean dist, allow multiple builds
     lib: {
       entry: {
         map: fileURLToPath(new URL("./src/map.ts", import.meta.url)),
@@ -34,7 +35,9 @@ export default defineConfig({
           new URL("./src/interactions.ts", import.meta.url),
         ),
         styles: fileURLToPath(new URL("./src/styles.ts", import.meta.url)),
-        helpers: fileURLToPath(new URL("./src/helpers-entry.ts", import.meta.url)),
+        helpers: fileURLToPath(
+          new URL("./src/helpers-entry.ts", import.meta.url),
+        ),
       },
       name: "vue3-openlayers",
       formats: ["es", "cjs"],

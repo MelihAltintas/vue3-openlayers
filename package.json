@@ -99,8 +99,9 @@
   },
   "scripts": {
     "build": "vite build",
+    "build:umd": "vite build --config vite.umd.config.ts",
     "build:treeshaking": "vite build --config vite.treeshaking.config.ts",
-    "build:all": "npm run build && npm run build:treeshaking",
+    "build:all": "rm -rf dist && npm run build && npm run build:umd && npm run build:treeshaking",
     "serve": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",

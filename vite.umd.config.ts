@@ -1,23 +1,9 @@
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [
-    dts({
-      // logLevel: 'warn',
-      // copyDtsFiles: false,
-      outDir: ["dist"],
-      // include: ['src/index.ts'],
-      exclude: ["src/main.ts"],
-      aliasesExclude: [/^@demos/],
-      staticImport: true,
-      // rollupTypes: true,
-      insertTypesEntry: true,
-    }),
-    vue(),
-  ],
+  plugins: [vue()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -31,12 +17,12 @@ export default defineConfig({
     extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
   },
   build: {
-    cssCodeSplit: true,
+    cssCodeSplit: false, // UMD should have single CSS file
     emptyOutDir: false, // Don't clean dist, allow multiple builds
     lib: {
       entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       name: "vue3-openlayers",
-      formats: ["es", "cjs"],
+      formats: ["umd"],
       fileName: (format) => `vue3-openlayers.${format}.js`,
     },
     minify: false,
