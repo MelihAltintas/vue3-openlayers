@@ -42,12 +42,8 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that should not be bundled
       // into your library
-      input: {
-        main: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
-      },
       external: ["vue", /^ol.*/, /^@turf.*/], // Avoid bundling ol imports into the final build
       output: {
-        inlineDynamicImports: true,
         exports: "named",
         globals: {
           vue: "Vue",
