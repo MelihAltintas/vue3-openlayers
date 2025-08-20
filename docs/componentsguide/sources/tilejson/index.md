@@ -22,7 +22,7 @@ import TileJSONDemo from "@demos/TileJSONDemo.vue"
 
 | Plugin Usage            |       Explicit Import        |
 | ----------------------- | :--------------------------: |
-| `<ol-source-tile-json>` | `<Sources.OlSourceTileJson>` |
+| `<ol-source-tile-json>` | `<Sources.OlSourceTileJSON>` |
 
 ::: code-group
 

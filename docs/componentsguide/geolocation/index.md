@@ -26,7 +26,7 @@ import GeoLocationDemo from "@demos/GeoLocationDemo.vue"
 
 | Plugin Usage       |    Explicit Import    |
 | ------------------ | :-------------------: |
-| `<ol-geolocation>` | `<Map.OlGeolocation>` |
+| `<ol-geolocation>` | `<Map.OlGeoLocation>` |
 
 ::: code-group
 

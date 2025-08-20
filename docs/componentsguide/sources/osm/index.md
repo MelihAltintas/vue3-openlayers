@@ -22,7 +22,7 @@ import ViewDemo from "@demos/ViewDemo.vue"
 
 | Plugin Usage      |     Explicit Import     |
 | ----------------- | :---------------------: |
-| `<ol-source-osm>` | `<Sources.OlSourceOsm>` |
+| `<ol-source-osm>` | `<Sources.OlSourceOSM>` |
 
 Loading a simple OSM base layer.
 

@@ -112,7 +112,7 @@ import { Map, Layers, Sources } from "vue3-openlayers";
   <Map.OlMap style="min-width: 400px; min-height: 400px;">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
-      <Sources.OlSourceOsm />
+      <Sources.OlSourceOSM />
     </Layers.OlTileLayer>
   </Map.OlMap>
 </template>
@@ -148,7 +148,7 @@ You can also specifically render the map only at client side, by putting inside 
     <Map.OlMap style="min-width: 400px; min-height: 400px;">
       <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326"/>
       <Layers.OlTileLayer>
-        <Sources.OlSourceOsm/>
+        <Sources.OlSourceOSM/>
       </Layers.OlTileLayer>
     </Map.OlMap>
   </ClientOnly>
@@ -233,7 +233,7 @@ provide("ol-options", options);
   <Map.OlMap style="min-width: 400px; min-height: 400px">
     <Map.OlView :center="[40, 40]" :zoom="5" projection="EPSG:4326" />
     <Layers.OlTileLayer>
-      <Sources.OlSourceOsm />
+      <Sources.OlSourceOSM />
     </Layers.OlTileLayer>
   </Map.OlMap>
 </template>
