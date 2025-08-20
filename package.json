@@ -37,6 +37,51 @@
       "require": "./dist/vue3-openlayers.umd.js",
       "types": "./dist/index.d.ts"
     },
+    "./map": {
+      "import": "./dist/map.js",
+      "require": "./dist/map.cjs",
+      "types": "./dist/map.d.ts"
+    },
+    "./layers": {
+      "import": "./dist/layers.js",
+      "require": "./dist/layers.cjs",
+      "types": "./dist/layers.d.ts"
+    },
+    "./sources": {
+      "import": "./dist/sources.js",
+      "require": "./dist/sources.cjs",
+      "types": "./dist/sources.d.ts"
+    },
+    "./controls": {
+      "import": "./dist/controls.js",
+      "require": "./dist/controls.cjs",
+      "types": "./dist/controls.d.ts"
+    },
+    "./animations": {
+      "import": "./dist/animations.js",
+      "require": "./dist/animations.cjs",
+      "types": "./dist/animations.d.ts"
+    },
+    "./geometries": {
+      "import": "./dist/geometries.js",
+      "require": "./dist/geometries.cjs",
+      "types": "./dist/geometries.d.ts"
+    },
+    "./interactions": {
+      "import": "./dist/interactions.js",
+      "require": "./dist/interactions.cjs",
+      "types": "./dist/interactions.d.ts"
+    },
+    "./styles": {
+      "import": "./dist/styles.js",
+      "require": "./dist/styles.cjs",
+      "types": "./dist/styles.d.ts"
+    },
+    "./helpers": {
+      "import": "./dist/helpers.js",
+      "require": "./dist/helpers.cjs",
+      "types": "./dist/helpers.d.ts"
+    },
     "./dist/vue3-openlayers.css": {
       "import": "./dist/styles.css",
       "require": "./dist/styles.css"
@@ -54,6 +99,8 @@
   },
   "scripts": {
     "build": "vite build",
+    "build:treeshaking": "vite build --config vite.treeshaking.config.ts",
+    "build:all": "npm run build && npm run build:treeshaking",
     "serve": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",
