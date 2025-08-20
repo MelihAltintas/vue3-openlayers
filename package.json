@@ -102,6 +102,9 @@
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:treeshaking": "vite build --config vite.treeshaking.config.ts",
     "build:all": "rm -rf dist && npm run build && npm run build:umd && npm run build:treeshaking",
+    "build:analyze": "VITE_ANALYZE=true npm run build",
+    "build:analyze:treeshaking": "VITE_ANALYZE=true npm run build:treeshaking",
+    "build:analyze:all": "rm -rf dist && VITE_ANALYZE=true npm run build && VITE_ANALYZE=true npm run build:treeshaking",
     "serve": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:dev:debug": "VITE_DEBUG=true npm run docs:dev",
@@ -135,7 +138,7 @@
     "ol-contextmenu": "^5.4.0",
     "ol-ext": "^4.0.21",
     "proj4": "^2.11.0",
-    "vue": "^3.4.35"
+    "vue": "^3.4.0"
   },
   "peerDependencies": {
     "ol": "^10.0.0",
@@ -176,6 +179,7 @@
     "npm-keyword": "^8.0.0",
     "prettier": "^3.3.3",
     "release-it": "^17.6.0",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "~5.5.4",
     "vite": "^5.3.5",
     "vite-plugin-dts": "^3.9.1",

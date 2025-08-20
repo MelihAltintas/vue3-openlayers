@@ -2,6 +2,7 @@ import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
@@ -17,6 +18,16 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
     vue(),
+    ...(process.env.VITE_ANALYZE
+      ? [
+          visualizer({
+            filename: "dist/stats.html",
+            open: true,
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        ]
+      : []),
   ],
   resolve: {
     alias: {

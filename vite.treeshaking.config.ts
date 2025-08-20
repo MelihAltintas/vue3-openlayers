@@ -1,9 +1,22 @@
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    ...(process.env.VITE_ANALYZE
+      ? [
+          visualizer({
+            filename: "dist/stats-treeshaking.html",
+            open: true,
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        ]
+      : []),
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
