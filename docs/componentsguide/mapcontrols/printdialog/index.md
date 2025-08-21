@@ -1,4 +1,4 @@
-# ol-printdialog-control
+# ol-print-dialog-control
 
 > A print dialog to print the current map canvas content.
 
@@ -19,9 +19,9 @@ import PrintdialogControlDemo from "@demos/PrintdialogControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage               |           Explicit Import            |
-| -------------------------- | :----------------------------------: |
-| `<ol-printdialog-control>` | `<MapControls.OlPrintDialogControl>` |
+| Plugin Usage                |           Explicit Import            |
+| --------------------------- | :----------------------------------: |
+| `<ol-print-dialog-control>` | `<MapControls.OlPrintDialogControl>` |
 
 ::: code-group
 

@@ -17,7 +17,7 @@
     />
 
     <ol-tile-layer>
-      <ol-source-bingmaps
+      <ol-source-bing-maps
         apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
         :imagerySet="selected"
       />

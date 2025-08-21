@@ -1,7 +1,7 @@
-# ol-animated-clusterlayer
+# ol-animated-cluster-layer
 
-`ol-animated-clusterlayer` is a layer that animates clusters on zoom change.
-`ol-interaction-clusterselect`. is a select interaction.
+`ol-animated-cluster-layer` is a layer that animates clusters on zoom change.
+`ol-interaction-cluster-select`. is a select interaction.
 On select cluster springs apart to reveal the features.
 The revealed features are themselves selectable.
 Revealed features are themselves a cluster with an attribute 'features' that contain the original feature.
@@ -24,9 +24,9 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 ## Usage
 
-| Plugin Usage                 |          Explicit Import          |
-| ---------------------------- | :-------------------------------: |
-| `<ol-animated-clusterlayer>` | `<Layers.OlAnimatedClusterLayer>` |
+| Plugin Usage                  |          Explicit Import          |
+| ----------------------------- | :-------------------------------: |
+| `<ol-animated-cluster-layer>` | `<Layers.OlAnimatedClusterLayer>` |
 
 ::: code-group
 
@@ -49,7 +49,7 @@ You can find more information in the [performance section for `ol-source-vector`
   >
     <!-- ... -->
 
-    <ol-animated-clusterlayer :animationDuration="500" :distance="40">
+  <ol-animated-cluster-layer :animationDuration="500" :distance="40">
       <ol-source-vector :url="url" :format="geoJson" />
     </ol-animated-clusterlayer>
   </ol-map>
@@ -154,5 +154,5 @@ You have access to all Events from the underlying `Cluster` source.
 Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_Cluster-Cluster.html) to see the available events tht will be fired.
 
 ```html
-<ol-animated-clusterlayer @error="handleEvent" />
+<ol-animated-cluster-layer @error="handleEvent" />
 ```

@@ -1,4 +1,4 @@
-# ol-interaction-clusterselect
+# ol-interaction-cluster-select
 
 > Interaction for selecting vector cluster features
 
@@ -22,9 +22,9 @@ import AnimatedClusterDemo from "@demos/AnimatedClusterDemo.vue"
 
 ## Usage
 
-| Plugin Usage                     |               Explicit Import               |
-| -------------------------------- | :-----------------------------------------: |
-| `<ol-interaction-clusterselect>` | `<Interactions.OlInteractionClusterselect>` |
+| Plugin Usage                      |               Explicit Import               |
+| --------------------------------- | :-----------------------------------------: |
+| `<ol-interaction-cluster-select>` | `<Interactions.OlInteractionClusterSelect>` |
 
 ::: code-group
 

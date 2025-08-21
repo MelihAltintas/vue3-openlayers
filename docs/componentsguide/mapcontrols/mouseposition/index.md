@@ -1,4 +1,4 @@
-# ol-mouseposition-control
+# ol-mouse-position-control
 
 > A Mouse Position control for OpenLayers.
 
@@ -19,9 +19,9 @@ import MousepositionControlDemo from "@demos/MousepositionControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage                 |            Explicit Import             |
-| ---------------------------- | :------------------------------------: |
-| `<ol-mouseposition-control>` | `<MapControls.OlMousePositionControl>` |
+| Plugin Usage                  |            Explicit Import             |
+| ----------------------------- | :------------------------------------: |
+| `<ol-mouse-position-control>` | `<MapControls.OlMousePositionControl>` |
 
 ::: code-group
 

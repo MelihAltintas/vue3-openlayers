@@ -1,4 +1,4 @@
-# ol-zoomtoextent-control
+# ol-zoom-to-extent-control
 
 > A Zoom to extent control for OpenLayers.
 
@@ -19,9 +19,9 @@ import ZoomtoextentControlDemo from "@demos/ZoomtoextentControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage                |            Explicit Import            |
-| --------------------------- | :-----------------------------------: |
-| `<ol-zoomtoextent-control>` | `<MapControls.OlZoomToExtentControl>` |
+| Plugin Usage                  |            Explicit Import            |
+| ----------------------------- | :-----------------------------------: |
+| `<ol-zoom-to-extent-control>` | `<MapControls.OlZoomToExtentControl>` |
 
 ::: code-group
 

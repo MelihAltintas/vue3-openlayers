@@ -1,4 +1,4 @@
-# ol-layerswitcher-control
+# ol-layer-switcher-control
 
 > A control for switching between layers.
 
@@ -19,9 +19,9 @@ import LayerswitcherControlDemo from "@demos/LayerswitcherControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage                 |            Explicit Import             |
-|------------------------------|:--------------------------------------:|
-| `<ol-layerswitcher-control>` | `<MapControls.OlLayerSwitcherControl>` |
+| Plugin Usage                  |            Explicit Import             |
+| ----------------------------- | :------------------------------------: |
+| `<ol-layer-switcher-control>` | `<MapControls.OlLayerSwitcherControl>` |
 
 ::: code-group
 

@@ -1,8 +1,8 @@
-# ol-source-bingmaps
+# ol-source-bing-maps
 
 > Layer source for [Bing Maps API](https://www.bing.com/maps)
 
-`ol-source-bingmaps` adds ability to display tile data from Bing Maps. To use
+`ol-source-bing-maps` adds ability to display tile data from Bing Maps. To use
 this source you should get **API key** at https://www.bingmapsportal.com.
 
 [[toc]]
@@ -23,11 +23,11 @@ import BingMapsDemo from "@demos/BingMapsDemo.vue"
 
 ## Usage
 
-| Plugin Usage           |       Explicit Import        |
-| ---------------------- | :--------------------------: |
-| `<ol-source-bingmaps>` | `<Sources.OlSourceBingMaps>` |
+| Plugin Usage            |       Explicit Import        |
+| ----------------------- | :--------------------------: |
+| `<ol-source-bing-maps>` | `<Sources.OlSourceBingMaps>` |
 
-Example of `ol-source-bingmaps` usage
+Example of `ol-source-bing-maps` usage
 
 ::: code-group
 
@@ -52,7 +52,7 @@ The property `key` from OpenLayers BingMaps is exposed as `apiKey` as the `key` 
 Please refer to the `key` property [in the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) but pass it as `apiKey`.
 
 ```html
-<ol-source-bingmaps apiKey="YOUR_API_KEY" />
+<ol-source-bing-maps apiKey="YOUR_API_KEY" />
 ```
 
 ## Events
@@ -61,7 +61,7 @@ You have access to all Events from the underlying source.
 Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_source_BingMaps-BingMaps.html) to see the available events tht will be fired.
 
 ```html
-<ol-source-bingmaps apiKey="YOUR_API_KEY" @error="handleEvent" />
+<ol-source-bing-maps apiKey="YOUR_API_KEY" @error="handleEvent" />
 ```
 
 ## Methods
@@ -74,7 +74,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-source-bingmaps apiKey="YOUR_API_KEY" ref="sourceRef" />
+  <ol-source-bing-maps apiKey="YOUR_API_KEY" ref="sourceRef" />
   <!-- ... -->
 </template>
 

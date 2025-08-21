@@ -6,14 +6,15 @@ import OlOverlay from "./OlOverlay.vue";
 import OlProjectionRegister from "./OlProjectionRegister.vue";
 import OlView from "./OlView.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import { registerWithAliases } from "../registerWithAliases";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlFeature", OlFeature);
-  app.component("OlGeoLocation", OlGeoLocation);
-  app.component("OlMap", OlMap);
-  app.component("OlOverlay", OlOverlay);
-  app.component("OlProjectionRegister", OlProjectionRegister);
-  app.component("OlView", OlView);
+  registerWithAliases(app, "OlFeature", OlFeature);
+  registerWithAliases(app, "OlGeoLocation", OlGeoLocation);
+  registerWithAliases(app, "OlMap", OlMap);
+  registerWithAliases(app, "OlOverlay", OlOverlay);
+  registerWithAliases(app, "OlProjectionRegister", OlProjectionRegister);
+  registerWithAliases(app, "OlView", OlView);
 
   if (options) {
     app.provide("ol-options", options);

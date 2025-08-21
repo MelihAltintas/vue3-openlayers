@@ -19,7 +19,7 @@
       :layerList="layerList"
     />
 
-    <ol-layerswitcherimage-control />
+    <ol-layer-switcher-image-control />
 
     <ol-zone-control
       :zones="zones"
@@ -65,36 +65,36 @@
         title="LineString"
         :onToggle="(active) => changeDrawType(active, 'LineString')"
       />
-      <ol-videorecorder-control @stop="videoStopped" />
-      <ol-printdialog-control />
+      <ol-video-recorder-control @stop="videoStopped" />
+      <ol-print-dialog-control />
     </ol-control-bar>
 
-    <ol-mouseposition-control />
+    <ol-mouse-position-control />
     <ol-fullscreen-control />
-    <ol-overviewmap-control>
+    <ol-overview-map-control>
       <ol-tile-layer>
         <ol-source-osm />
       </ol-tile-layer>
-    </ol-overviewmap-control>
+    </ol-overview-map-control>
 
     <ol-scaleline-control />
     <ol-rotate-control />
     <ol-zoom-control />
-    <ol-zoomslider-control />
-    <ol-zoomtoextent-control
+    <ol-zoom-slider-control />
+    <ol-zoom-to-extent-control
       :extent="[23.906, 42.812, 46.934, 34.597]"
       tipLabel="Fit to Turkey"
     />
 
     <ol-context-menu-control :items="contextMenuItems" />
 
-    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
+    <ol-interaction-cluster-select @select="featureSelected" :pointRadius="20">
       <ol-style>
         <ol-style-stroke color="green" :width="5"></ol-style-stroke>
         <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
         <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
       </ol-style>
-    </ol-interaction-clusterselect>
+    </ol-interaction-cluster-select>
 
     <ol-interaction-select
       @select="featureSelected"
@@ -174,7 +174,7 @@
       </ol-source-vector>
     </ol-vector-layer>
 
-    <ol-animated-clusterlayer
+    <ol-animated-cluster-layer
       :animationDuration="500"
       :distance="40"
       title="CLUSTER"
@@ -206,7 +206,7 @@
           <ol-style-fill color="white"></ol-style-fill>
         </ol-style-text>
       </ol-style>
-    </ol-animated-clusterlayer>
+    </ol-animated-cluster-layer>
 
     <ol-overlay
       :position="selectedCityPosition"

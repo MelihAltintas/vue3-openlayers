@@ -5,7 +5,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-videorecorder-control @stop="videoStopped" />
+    <ol-video-recorder-control @stop="videoStopped" />
   </ol-map>
 </template>
 

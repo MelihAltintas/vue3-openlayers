@@ -15,7 +15,7 @@
     </ol-tile-layer>
 
     <ol-tile-layer ref="bingLayer" title="Bing Maps">
-      <ol-source-bingmaps
+      <ol-source-bing-maps
         apiKey="AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI"
         imagerySet="RoadOnDemand"
       />
@@ -42,7 +42,7 @@
       </ol-source-vector>
     </ol-vector-layer>
 
-    <ol-layerswitcherimage-control v-if="layerList.length > 0" />
+    <ol-layer-switcher-image-control v-if="layerList.length > 0" />
   </ol-map>
 </template>
 

@@ -7,15 +7,16 @@ import OlAnimationSlide from "./OlAnimationSlide.vue";
 import OlAnimationTeleport from "./OlAnimationTeleport.vue";
 import OlAnimationZoom from "./OlAnimationZoom.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import { registerWithAliases } from "../registerWithAliases";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlAnimationDrop", OlAnimationDrop);
-  app.component("OlAnimationFade", OlAnimationFade);
-  app.component("OlAnimationPath", OlAnimationPath);
-  app.component("OlAnimationShake", OlAnimationShake);
-  app.component("OlAnimationSlide", OlAnimationSlide);
-  app.component("OlAnimationTeleport", OlAnimationTeleport);
-  app.component("OlAnimationZoom", OlAnimationZoom);
+  registerWithAliases(app, "OlAnimationDrop", OlAnimationDrop);
+  registerWithAliases(app, "OlAnimationFade", OlAnimationFade);
+  registerWithAliases(app, "OlAnimationPath", OlAnimationPath);
+  registerWithAliases(app, "OlAnimationShake", OlAnimationShake);
+  registerWithAliases(app, "OlAnimationSlide", OlAnimationSlide);
+  registerWithAliases(app, "OlAnimationTeleport", OlAnimationTeleport);
+  registerWithAliases(app, "OlAnimationZoom", OlAnimationZoom);
 
   if (options) {
     app.provide("ol-options", options);

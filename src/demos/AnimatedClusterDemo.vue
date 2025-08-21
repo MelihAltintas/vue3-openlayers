@@ -16,7 +16,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-interaction-clusterselect
+    <ol-interaction-cluster-select
       @select="featureSelected"
       :pointRadius="20"
       :featureStyle="featureStyle"
@@ -25,9 +25,9 @@
       <ol-style>
         <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
       </ol-style>
-    </ol-interaction-clusterselect>
+    </ol-interaction-cluster-select>
 
-    <ol-animated-clusterlayer :animationDuration="500" :distance="40">
+    <ol-animated-cluster-layer :animationDuration="500" :distance="40">
       <ol-source-vector ref="vectorsource">
         <ol-feature v-for="index in 500" :key="index">
           <ol-geom-point
@@ -54,7 +54,7 @@
           <ol-style-fill color="white"></ol-style-fill>
         </ol-style-text>
       </ol-style>
-    </ol-animated-clusterlayer>
+    </ol-animated-cluster-layer>
   </ol-map>
 </template>
 

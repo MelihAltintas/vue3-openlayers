@@ -1,4 +1,4 @@
-# ol-videorecorder-control
+# ol-video-recorder-control
 
 > A simple toggle control The control can be created with an interaction to control its activation.
 
@@ -19,9 +19,9 @@ import VideorecorderControlDemo from "@demos/VideorecorderControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage                 |            Explicit Import             |
-| ---------------------------- | :------------------------------------: |
-| `<ol-videorecorder-control>` | `<MapControls.OlVideoRecorderControl>` |
+| Plugin Usage                  |            Explicit Import             |
+| ----------------------------- | :------------------------------------: |
+| `<ol-video-recorder-control>` | `<MapControls.OlVideoRecorderControl>` |
 
 ::: code-group
 
@@ -52,7 +52,7 @@ You have access to all Events from the underlying control.
 Check out [the official docs](https://viglino.github.io/ol-ext/doc/doc-pages/ol.control.VideoRecorder.html) to see the available events tht will be fired.
 
 ```html
-<ol-videorecorder-control @error="handleEvent" />
+<ol-video-recorder-control @error="handleEvent" />
 ```
 
 ## Methods
@@ -65,7 +65,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-videorecorder-control ref="vRef" @error="handleEvent" />
+  <ol-video-recorder-control ref="vRef" @error="handleEvent" />
   <!-- ... -->
 </template>
 

@@ -10,7 +10,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-mouseposition-control />
+    <ol-mouse-position-control />
   </ol-map>
 </template>
 

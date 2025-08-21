@@ -16,24 +16,25 @@ import OlSourceVectorTile from "./OlSourceVectorTile.vue";
 import OlSourceXYZ from "./OlSourceXYZ.vue";
 import OlSourceWMTS from "./OlSourceWMTS.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import { registerWithAliases } from "../registerWithAliases";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlSourceBingMaps", OlSourceBingMaps);
-  app.component("OlSourceCluster", OlSourceCluster);
-  app.component("OlSourceImageStatic", OlSourceImageStatic);
-  app.component("OlSourceImageWMS", OlSourceImageWMS);
-  app.component("OlSourceOSM", OlSourceOSM);
-  app.component("OlSourceStadiaMaps", OlSourceStadiaMaps);
-  app.component("OlSourceTianditu", OlSourceTianditu);
-  app.component("OlSourceTileArcGISRest", OlSourceTileArcGISRest);
-  app.component("OlSourceTileDebug", OlSourceTileDebug);
-  app.component("OlSourceGeoTIFF", OlSourceGeoTIFF);
-  app.component("OlSourceTileJSON", OlSourceTileJSON);
-  app.component("OlSourceTileWMS", OlSourceTileWMS);
-  app.component("OlSourceVector", OlSourceVector);
-  app.component("OlSourceVectorTile", OlSourceVectorTile);
-  app.component("OlSourceXYZ", OlSourceXYZ);
-  app.component("OlSourceWMTS", OlSourceWMTS);
+  registerWithAliases(app, "OlSourceBingMaps", OlSourceBingMaps);
+  registerWithAliases(app, "OlSourceCluster", OlSourceCluster);
+  registerWithAliases(app, "OlSourceImageStatic", OlSourceImageStatic);
+  registerWithAliases(app, "OlSourceImageWMS", OlSourceImageWMS);
+  registerWithAliases(app, "OlSourceOSM", OlSourceOSM);
+  registerWithAliases(app, "OlSourceStadiaMaps", OlSourceStadiaMaps);
+  registerWithAliases(app, "OlSourceTianditu", OlSourceTianditu);
+  registerWithAliases(app, "OlSourceTileArcGISRest", OlSourceTileArcGISRest);
+  registerWithAliases(app, "OlSourceTileDebug", OlSourceTileDebug);
+  registerWithAliases(app, "OlSourceGeoTIFF", OlSourceGeoTIFF);
+  registerWithAliases(app, "OlSourceTileJSON", OlSourceTileJSON);
+  registerWithAliases(app, "OlSourceTileWMS", OlSourceTileWMS);
+  registerWithAliases(app, "OlSourceVector", OlSourceVector);
+  registerWithAliases(app, "OlSourceVectorTile", OlSourceVectorTile);
+  registerWithAliases(app, "OlSourceXYZ", OlSourceXYZ);
+  registerWithAliases(app, "OlSourceWMTS", OlSourceWMTS);
 
   if (options) {
     app.provide("ol-options", options);

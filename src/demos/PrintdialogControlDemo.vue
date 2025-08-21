@@ -10,7 +10,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-printdialog-control />
+    <ol-print-dialog-control />
   </ol-map>
 </template>
 

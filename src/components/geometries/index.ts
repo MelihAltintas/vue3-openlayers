@@ -7,15 +7,16 @@ import OlGeomMultiPolygon from "./OlGeomMultiPolygon.vue";
 import OlGeomPoint from "./OlGeomPoint.vue";
 import OlGeomPolygon from "./OlGeomPolygon.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import { registerWithAliases } from "../registerWithAliases";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlGeomCircle", OlGeomCircle);
-  app.component("OlGeomLineString", OlGeomLineString);
-  app.component("OlGeomMultiLineString", OlGeomMultiLineString);
-  app.component("OlGeomMultiPoint", OlGeomMultiPoint);
-  app.component("OlGeomMultiPolygon", OlGeomMultiPolygon);
-  app.component("OlGeomPoint", OlGeomPoint);
-  app.component("OlGeomPolygon", OlGeomPolygon);
+  registerWithAliases(app, "OlGeomCircle", OlGeomCircle);
+  registerWithAliases(app, "OlGeomLineString", OlGeomLineString);
+  registerWithAliases(app, "OlGeomMultiLineString", OlGeomMultiLineString);
+  registerWithAliases(app, "OlGeomMultiPoint", OlGeomMultiPoint);
+  registerWithAliases(app, "OlGeomMultiPolygon", OlGeomMultiPolygon);
+  registerWithAliases(app, "OlGeomPoint", OlGeomPoint);
+  registerWithAliases(app, "OlGeomPolygon", OlGeomPolygon);
 
   if (options) {
     app.provide("ol-options", options);

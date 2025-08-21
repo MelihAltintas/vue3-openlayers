@@ -27,7 +27,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-layerswitcher-control v-if="layerList.length > 0" />
+    <ol-layer-switcher-control v-if="layerList.length > 0" />
   </ol-map>
 </template>
 

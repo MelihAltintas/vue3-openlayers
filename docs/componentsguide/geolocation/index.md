@@ -1,4 +1,4 @@
-# ol-geolocation
+# ol-geo-location
 
 > HTML5 Geolocation wrapper
 
@@ -24,9 +24,9 @@ import GeoLocationDemo from "@demos/GeoLocationDemo.vue"
 
 ## Usage
 
-| Plugin Usage       |    Explicit Import    |
-| ------------------ | :-------------------: |
-| `<ol-geolocation>` | `<Map.OlGeoLocation>` |
+| Plugin Usage        |    Explicit Import    |
+| ------------------- | :-------------------: |
+| `<ol-geo-location>` | `<Map.OlGeoLocation>` |
 
 ::: code-group
 
@@ -53,7 +53,7 @@ You have access to all Events from the underlying OpenLayers Geolocation API.
 Check out [the official OpenLayers docs](https://openlayers.org/en/latest/apidoc/module-ol_Geolocation-Geolocation.html) to see the available events tht will be fired.
 
 ```html
-<ol-geolocation :projection="projection" @change:position="geoLocChange" />
+<ol-geo-location :projection="projection" @change:position="geoLocChange" />
 ```
 
 ## Methods
@@ -66,7 +66,7 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-geolocation :projection="projection" ref="geoLocRef" />
+  <ol-geo-location :projection="projection" ref="geoLocRef" />
   <!-- ... -->
 </template>
 

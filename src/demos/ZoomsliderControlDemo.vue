@@ -5,7 +5,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-zoomslider-control />
+    <ol-zoom-slider-control />
   </ol-map>
 </template>
 

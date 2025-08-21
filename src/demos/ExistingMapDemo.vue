@@ -1,7 +1,7 @@
 <template>
   <div id="map" class="map" tabindex="0" style="height: 400px; width: 100%" />
   <ol-map v-if="mapInstance" :instance="mapInstance">
-    <ol-zoomslider-control />
+    <ol-zoom-slider-control />
   </ol-map>
 </template>
 

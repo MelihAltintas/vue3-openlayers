@@ -1,4 +1,4 @@
-# ol-zoomslider-control
+# ol-zoom-slider-control
 
 > A Zoom Slider control for OpenLayers.
 
@@ -19,9 +19,9 @@ import ZoomsliderControlDemo from "@demos/ZoomsliderControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage              |           Explicit Import           |
-| ------------------------- | :---------------------------------: |
-| `<ol-zoomslider-control>` | `<MapControls.OlZoomSliderControl>` |
+| Plugin Usage               |           Explicit Import           |
+| -------------------------- | :---------------------------------: |
+| `<ol-zoom-slider-control>` | `<MapControls.OlZoomSliderControl>` |
 
 ::: code-group
 

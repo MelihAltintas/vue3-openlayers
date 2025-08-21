@@ -19,15 +19,15 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-interaction-clusterselect @select="featureSelected" :pointRadius="20">
+    <ol-interaction-cluster-select @select="featureSelected" :pointRadius="20">
       <ol-style>
         <ol-style-stroke color="green" :width="5"></ol-style-stroke>
         <ol-style-fill color="rgba(255,255,255,0.5)"></ol-style-fill>
         <ol-style-icon :src="markerIcon" :scale="0.05"></ol-style-icon>
       </ol-style>
-    </ol-interaction-clusterselect>
+    </ol-interaction-cluster-select>
 
-    <ol-animated-clusterlayer :animationDuration="500" :distance="40">
+    <ol-animated-cluster-layer :animationDuration="500" :distance="40">
       <ol-source-vector
         :features="geoJsonFeatures"
         :format="geoJson"
@@ -54,7 +54,7 @@
           <ol-style-fill color="white"></ol-style-fill>
         </ol-style-text>
       </ol-style>
-    </ol-animated-clusterlayer>
+    </ol-animated-cluster-layer>
   </ol-map>
 </template>
 
@@ -65,6 +65,7 @@ import { arrayWith50000Points } from "./points";
 import { GeoJSON } from "ol/format";
 import type { FeatureLike } from "ol/Feature";
 import type { SelectEvent } from "ol/interaction/Select";
+import type { Style } from "ol/style";
 
 const center = ref([40, 40]);
 const projection = ref("EPSG:4326");
@@ -94,7 +95,7 @@ const geoJsonFeatures = computed(() => {
   return geoJson.readFeatures(providerFeatureCollection);
 });
 
-const overrideStyleFunction = (feature: FeatureLike, style) => {
+const overrideStyleFunction = (feature: FeatureLike, style: Style) => {
   const clusteredFeatures = feature.get("features");
   const size = clusteredFeatures.length;
 

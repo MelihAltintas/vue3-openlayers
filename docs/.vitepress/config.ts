@@ -69,7 +69,7 @@ export const config: UserConfig = {
                 link: "/componentsguide/overlay/",
               },
               {
-                text: "ol-geolocation",
+                text: "ol-geo-location",
                 link: "/componentsguide/geolocation/",
               },
               {
@@ -91,7 +91,7 @@ export const config: UserConfig = {
                 link: "/componentsguide/layers/group/",
               },
               {
-                text: "ol-animated-clusterlayer",
+                text: "ol-animated-cluster-layer",
                 link: "/componentsguide/layers/animatedclusterlayer/",
               },
               {
@@ -133,7 +133,7 @@ export const config: UserConfig = {
             collapsed: true,
             items: [
               {
-                text: "ol-source-bingmaps",
+                text: "ol-source-bing-maps",
                 link: "/componentsguide/sources/bing/",
               },
               {
@@ -219,23 +219,23 @@ export const config: UserConfig = {
                 link: "/componentsguide/mapcontrols/fullscreen/",
               },
               {
-                text: "ol-layerswitcher-control",
+                text: "ol-layer-switcher-control",
                 link: "/componentsguide/mapcontrols/layerswitcher/",
               },
               {
-                text: "ol-layerswitcherimage-control",
+                text: "ol-layer-switcher-image-control",
                 link: "/componentsguide/mapcontrols/layerswitcherimage/",
               },
               {
-                text: "ol-mouseposition-control",
+                text: "ol-mouse-position-control",
                 link: "/componentsguide/mapcontrols/mouseposition/",
               },
               {
-                text: "ol-overviewmap-control",
+                text: "ol-overview-map-control",
                 link: "/componentsguide/mapcontrols/overviewmap/",
               },
               {
-                text: "ol-printdialog-control",
+                text: "ol-print-dialog-control",
                 link: "/componentsguide/mapcontrols/printdialog/",
               },
               {
@@ -263,7 +263,7 @@ export const config: UserConfig = {
                 link: "/componentsguide/mapcontrols/toggle/",
               },
               {
-                text: "ol-videorecorder-control",
+                text: "ol-video-recorder-control",
                 link: "/componentsguide/mapcontrols/videorecorder/",
               },
               {
@@ -275,11 +275,11 @@ export const config: UserConfig = {
                 link: "/componentsguide/mapcontrols/zoom/",
               },
               {
-                text: "ol-zoomslider-control",
+                text: "ol-zoom-slider-control",
                 link: "/componentsguide/mapcontrols/zoomslider/",
               },
               {
-                text: "ol-zoomtoextent-control",
+                text: "ol-zoom-to-extent-control",
                 link: "/componentsguide/mapcontrols/zoomtoextent/",
               },
             ],
@@ -357,7 +357,7 @@ export const config: UserConfig = {
             collapsed: true,
             items: [
               {
-                text: "ol-interaction-clusterselect",
+                text: "ol-interaction-cluster-select",
                 link: "/componentsguide/interactions/clusterselect/",
               },
               {

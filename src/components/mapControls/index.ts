@@ -21,29 +21,34 @@ import OlZoomControl from "./OlZoomControl.vue";
 import OlZoomSliderControl from "./OlZoomSliderControl.vue";
 import OlZoomToExtentControl from "./OlZoomToExtentControl.vue";
 import type { Vue3OpenlayersGlobalOptions } from "@/types";
+import { registerWithAliases } from "../registerWithAliases";
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlAttributionControl", OlAttributionControl);
-  app.component("OlFullScreenControl", OlFullScreenControl);
-  app.component("OlMousePositionControl", OlMousePositionControl);
-  app.component("OlOverviewMapControl", OlOverviewMapControl);
-  app.component("OlScaleLineControl", OlScaleLineControl);
-  app.component("OlZoomControl", OlZoomControl);
-  app.component("OlZoomSliderControl", OlZoomSliderControl);
-  app.component("OlZoomToExtentControl", OlZoomToExtentControl);
-  app.component("OlRotateControl", OlRotateControl);
-  app.component("OlContextMenuControl", OlContextMenuControl);
-  app.component("OlSearchControl", OlSearchControl);
-  app.component("OlSwipeControl", OlSwipeControl);
-  app.component("OlControlBar", OlControlBar);
-  app.component("OlToggleControl", OlToggleControl);
-  app.component("OlButtonControl", OlButtonControl);
-  app.component("OlPrintDialogControl", OlPrintDialogControl);
-  app.component("OlProfileControl", OlProfileControl);
-  app.component("OlVideoRecorderControl", OlVideoRecorderControl);
-  app.component("OlLayerSwitcherControl", OlLayerSwitcherControl);
-  app.component("OlLayerSwitcherImageControl", OlLayerSwitcherImageControl);
-  app.component("OlZoneControl", OlZoneControl);
+  registerWithAliases(app, "OlAttributionControl", OlAttributionControl);
+  registerWithAliases(app, "OlFullScreenControl", OlFullScreenControl);
+  registerWithAliases(app, "OlMousePositionControl", OlMousePositionControl);
+  registerWithAliases(app, "OlOverviewMapControl", OlOverviewMapControl);
+  registerWithAliases(app, "OlScaleLineControl", OlScaleLineControl);
+  registerWithAliases(app, "OlZoomControl", OlZoomControl);
+  registerWithAliases(app, "OlZoomSliderControl", OlZoomSliderControl);
+  registerWithAliases(app, "OlZoomToExtentControl", OlZoomToExtentControl);
+  registerWithAliases(app, "OlRotateControl", OlRotateControl);
+  registerWithAliases(app, "OlContextMenuControl", OlContextMenuControl);
+  registerWithAliases(app, "OlSearchControl", OlSearchControl);
+  registerWithAliases(app, "OlSwipeControl", OlSwipeControl);
+  registerWithAliases(app, "OlControlBar", OlControlBar);
+  registerWithAliases(app, "OlToggleControl", OlToggleControl);
+  registerWithAliases(app, "OlButtonControl", OlButtonControl);
+  registerWithAliases(app, "OlPrintDialogControl", OlPrintDialogControl);
+  registerWithAliases(app, "OlProfileControl", OlProfileControl);
+  registerWithAliases(app, "OlVideoRecorderControl", OlVideoRecorderControl);
+  registerWithAliases(app, "OlLayerSwitcherControl", OlLayerSwitcherControl);
+  registerWithAliases(
+    app,
+    "OlLayerSwitcherImageControl",
+    OlLayerSwitcherImageControl,
+  );
+  registerWithAliases(app, "OlZoneControl", OlZoneControl);
 
   if (options) {
     app.provide("ol-options", options);

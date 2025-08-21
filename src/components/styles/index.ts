@@ -15,6 +15,7 @@ import type {
   RadialGradient,
   LinearGradient,
 } from "./OlStyleFill.vue";
+import { registerWithAliases } from "../registerWithAliases";
 
 type OverrideStyleFunction = (
   feature: FeatureLike,
@@ -23,13 +24,13 @@ type OverrideStyleFunction = (
 ) => Style | Style[] | void;
 
 function install(app: App, options?: Vue3OpenlayersGlobalOptions) {
-  app.component("OlStyle", OlStyle);
-  app.component("OlStyleCircle", OlStyleCircle);
-  app.component("OlStyleStroke", OlStyleStroke);
-  app.component("OlStyleFill", OlStyleFill);
-  app.component("OlStyleIcon", OlStyleIcon);
-  app.component("OlStyleText", OlStyleText);
-  app.component("OlStyleFlowLine", OlStyleFlowLine);
+  registerWithAliases(app, "OlStyle", OlStyle);
+  registerWithAliases(app, "OlStyleCircle", OlStyleCircle);
+  registerWithAliases(app, "OlStyleStroke", OlStyleStroke);
+  registerWithAliases(app, "OlStyleFill", OlStyleFill);
+  registerWithAliases(app, "OlStyleIcon", OlStyleIcon);
+  registerWithAliases(app, "OlStyleText", OlStyleText);
+  registerWithAliases(app, "OlStyleFlowLine", OlStyleFlowLine);
 
   if (options) {
     app.provide("ol-options", options);

@@ -16,7 +16,7 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-geolocation :projection="projection" @change:position="geoLocChange">
+    <ol-geo-location :projection="projection" @change:position="geoLocChange">
       <template>
         <ol-vector-layer :zIndex="2">
           <ol-source-vector>
@@ -29,7 +29,7 @@
           </ol-source-vector>
         </ol-vector-layer>
       </template>
-    </ol-geolocation>
+    </ol-geo-location>
   </ol-map>
 </template>
 

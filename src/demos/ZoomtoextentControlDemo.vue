@@ -5,7 +5,7 @@
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-    <ol-zoomtoextent-control tipLabel="Fit to Turkey" />
+    <ol-zoom-to-extent-control tipLabel="Fit to Turkey" />
   </ol-map>
 </template>
 

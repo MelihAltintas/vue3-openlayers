@@ -1,4 +1,4 @@
-# ol-layerswitcherimage-control
+# ol-layer-switcher-image-control
 
 > A control for switching between layers.
 
@@ -23,9 +23,9 @@ import LayerswitcherimageControlDemo from "@demos/LayerswitcherimageControlDemo.
 
 ## Usage
 
-| Plugin Usage                      |               Explicit Import               |
-| --------------------------------- | :-----------------------------------------: |
-| `<ol-layerswitcherimage-control>` | `<MapControls.OlLayerSwitcherImageControl>` |
+| Plugin Usage                        |               Explicit Import               |
+| ----------------------------------- | :-----------------------------------------: |
+| `<ol-layer-switcher-image-control>` | `<MapControls.OlLayerSwitcherImageControl>` |
 
 ::: code-group
 

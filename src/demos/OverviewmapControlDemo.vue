@@ -11,11 +11,11 @@
       <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overviewmap-control :collapsed="false">
+    <ol-overview-map-control :collapsed="false">
       <ol-tile-layer>
         <ol-source-stadia-maps layer="stamen_watercolor" />
       </ol-tile-layer>
-    </ol-overviewmap-control>
+    </ol-overview-map-control>
   </ol-map>
 </template>
 

@@ -1,4 +1,4 @@
-# ol-overviewmap-control
+# ol-overview-map-control
 
 > A Overview Map control for OpenLayers.
 
@@ -19,9 +19,9 @@ import OverviewmapControlDemo from "@demos/OverviewmapControlDemo.vue"
 
 ## Usage
 
-| Plugin Usage               |           Explicit Import            |
-| -------------------------- | :----------------------------------: |
-| `<ol-overviewmap-control>` | `<MapControls.OlOverviewMapControl>` |
+| Plugin Usage                |           Explicit Import            |
+| --------------------------- | :----------------------------------: |
+| `<ol-overview-map-control>` | `<MapControls.OlOverviewMapControl>` |
 
 ::: code-group
 
@@ -52,9 +52,9 @@ To access the source, you can use a `ref()` as shown below:
 ```vue
 <template>
   <!-- ... -->
-  <ol-overviewmap-control :ref="controlRef">
+  <ol-overview-map-control :ref="controlRef">
     <!-- ... -->
-  </ol-overviewmap-control>
+  </ol-overview-map-control>
   <!-- ... -->
 </template>
 
