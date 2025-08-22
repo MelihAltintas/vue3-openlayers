@@ -1,11 +1,11 @@
 {
   "name": "vue3-openlayers",
-  "version": "11.3.4",
+  "version": "11.6.2",
   "description": "OpenLayers Wrapper for Vue3",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/MelihAltintas/vue3-openlayers"
+    "url": "git+https://github.com/MelihAltintas/vue3-openlayers.git"
   },
   "homepage": "https://github.com/MelihAltintas/vue3-openlayers",
   "bugs": {
@@ -127,7 +127,7 @@
     "@turf/helpers": "^7.0.0",
     "dom-to-image-more": "^3.3.1",
     "file-saver": "^2.0.5",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.1",
     "ol": "^10.0.0",
     "ol-contextmenu": "^5.4.0",
     "ol-ext": "^4.0.21",
@@ -156,7 +156,7 @@
     "@release-it/conventional-changelog": "^8.0.1",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^22.1.0",
-    "@types/ol-ext": "npm:@siedlerchr/types-ol-ext@^3.4.0",
+    "@types/ol-ext": "npm:@siedlerchr/types-ol-ext@^3.6.2",
     "@types/proj4": "^2.5.5",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vitest/coverage-v8": "^2.0.5",

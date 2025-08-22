@@ -1,5 +1,54 @@
 
 
+## [11.6.2](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.6.1...v11.6.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* **ol-interaction-select:** the `style` property was always overruled with a default style ([6871d48](https://github.com/MelihAltintas/vue3-openlayers/commit/6871d48d8c63460e1a200a67d649ea7ce2f931d1)), closes [#428](https://github.com/MelihAltintas/vue3-openlayers/issues/428) [#431](https://github.com/MelihAltintas/vue3-openlayers/issues/431)
+
+## [11.6.1](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.6.0...v11.6.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **ol-*-layer:** support missing `preview` option ([1c3e85c](https://github.com/MelihAltintas/vue3-openlayers/commit/1c3e85c7f5009b13013d87b4493e07ea8a51a862)), closes [#423](https://github.com/MelihAltintas/vue3-openlayers/issues/423)
+* **ol-interaction-transform:** ol-interaction-transform not working ([f027dca](https://github.com/MelihAltintas/vue3-openlayers/commit/f027dca352305d131fedbd69b4f2545e778d6e27))
+
+# [11.6.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.5.0...v11.6.0) (2025-05-03)
+
+
+### Bug Fixes
+
+* import correctly ([9c6fa3d](https://github.com/MelihAltintas/vue3-openlayers/commit/9c6fa3d867e4a28a958ae85ff94afedd1787cf21))
+* **ol-layer-*:** handle undefined layer opacity correctly ([#425](https://github.com/MelihAltintas/vue3-openlayers/issues/425)) ([84943c8](https://github.com/MelihAltintas/vue3-openlayers/commit/84943c80cd689929396b985620e6867f777f0c7c))
+
+
+### Features
+
+* **ol-style-text:** support all ol props ([c1d050f](https://github.com/MelihAltintas/vue3-openlayers/commit/c1d050f3dd077e9e13d08e2161f2029456313eec)), closes [#411](https://github.com/MelihAltintas/vue3-openlayers/issues/411)
+
+# [11.5.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.4.0...v11.5.0) (2025-02-26)
+
+
+### Features
+
+* export all types ([8a9819c](https://github.com/MelihAltintas/vue3-openlayers/commit/8a9819c963149ce369295ee7b86998889aedebbd))
+
+# [11.4.0](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.5...v11.4.0) (2025-02-26)
+
+
+### Features
+
+* export utility functions and types `LayersCommonProps`, `layersCommonDefaultProps` and `useLayerDefaults` for layers ([ae1f2f1](https://github.com/MelihAltintas/vue3-openlayers/commit/ae1f2f1bf8c0ccc96eca1d765f032baab5ac53ab))
+
+## [11.3.5](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.4...v11.3.5) (2025-02-26)
+
+
+### Bug Fixes
+
+* **ol-*-layer:** make `displayInLayerSwitcher` prop optional ([#415](https://github.com/MelihAltintas/vue3-openlayers/issues/415)) ([2298ed8](https://github.com/MelihAltintas/vue3-openlayers/commit/2298ed83a00417753e27f1ca277c6a461019ce04))
+
 ## [11.3.4](https://github.com/MelihAltintas/vue3-openlayers/compare/v11.3.3...v11.3.4) (2025-02-24)
 
 

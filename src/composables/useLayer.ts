@@ -44,8 +44,8 @@ export default function useLayer<T extends Layer>(
       }
     }
 
-    layer.value.setOpacity(properties.opacity);
-    layer.value.setVisible(properties.visible);
+    layer.value.setOpacity(properties.opacity ?? 1);
+    layer.value.setVisible(properties.visible ?? true);
 
     if (!layerAdded.value) {
       if (layerGroup) {

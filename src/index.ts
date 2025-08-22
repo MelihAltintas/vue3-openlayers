@@ -1,18 +1,20 @@
-import "ol/ol.css";
-import "ol-ext/dist/ol-ext.css";
-import "ol-contextmenu/ol-contextmenu.css";
-import "./assets/style.css";
 import {
-  Map,
-  Layers,
-  Sources,
-  MapControls,
-  Geometries,
-  Styles,
-  Interactions,
   Animations,
+  Geometries,
+  Interactions,
+  Layers,
+  Map,
+  MapControls,
+  Sources,
+  Styles,
 } from "./components";
 import Providers from "./providers";
+
+import "./assets/style.css";
+import "ol-contextmenu/ol-contextmenu.css";
+import "ol-ext/dist/ol-ext.css";
+import "ol/ol.css";
+
 import type { App, Plugin } from "vue";
 import type { Vue3OpenlayersGlobalOptions } from "./types";
 import type {
@@ -22,6 +24,7 @@ import type {
   Gradient,
 } from "@components/styles";
 export * from "./composables";
+export * from "./types";
 
 const install: Plugin = (app: App, options?: Vue3OpenlayersGlobalOptions) => {
   app.use(Map.install);
