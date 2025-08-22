@@ -11,7 +11,7 @@ export default defineConfig({
       // copyDtsFiles: false,
       outDir: ["dist"],
       // include: ['src/index.ts'],
-      exclude: ["src/main.ts"],
+      exclude: ["src/main.ts", "**/__tests__/**"],
       aliasesExclude: [/^@demos/],
       staticImport: true,
       // rollupTypes: true,
