@@ -16,6 +16,7 @@ export default defineConfig({
       staticImport: true,
       // rollupTypes: true,
       insertTypesEntry: true,
+      cleanVueFileName: true,
     }),
     vue(),
     ...(process.env.VITE_ANALYZE

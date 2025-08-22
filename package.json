@@ -28,27 +28,63 @@
   "license": "MIT",
   "private": false,
   "type": "module",
-  "main": "./dist/vue3-openlayers.umd.js",
+  "main": "./dist/vue3-openlayers.cjs.js",
   "module": "./dist/vue3-openlayers.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs",
+      "import": "./dist/vue3-openlayers.es.js",
+      "require": "./dist/vue3-openlayers.cjs.js",
       "types": "./dist/index.d.ts"
+    },
+    "./animations/*": {
+      "import": "./dist/esm/animations/*.js",
+      "require": "./dist/cjs/animations/*.js",
+      "types": "./dist/components/animations/*.d.ts"
+    },
+    "./controls/*": {
+      "import": "./dist/esm/controls/*.js",
+      "require": "./dist/cjs/controls/*.js",
+      "types": "./dist/components/controls/*.d.ts"
+    },
+    "./geometries/*": {
+      "import": "./dist/esm/geometries/*.js",
+      "require": "./dist/cjs/geometries/*.js",
+      "types": "./dist/components/geometries/*.d.ts"
+    },
+    "./interactions/*": {
+      "import": "./dist/esm/interactions/*.js",
+      "require": "./dist/cjs/interactions/*.js",
+      "types": "./dist/components/interactions/*.d.ts"
+    },
+    "./layers/*": {
+      "import": "./dist/esm/layers/*.js",
+      "require": "./dist/cjs/layers/*.js",
+      "types": "./dist/components/layers/*.d.ts"
+    },
+    "./map/*": {
+      "import": "./dist/esm/map/*.js",
+      "require": "./dist/cjs/map/*.js",
+      "types": "./dist/components/map/*.d.ts"
+    },
+    "./styles/*": {
+      "import": "./dist/esm/styles/*.js",
+      "require": "./dist/cjs/styles/*.js",
+      "types": "./dist/components/styles/*.d.ts"
+    },
+    "./sources/*": {
+      "import": "./dist/esm/sources/*.js",
+      "require": "./dist/cjs/sources/*.js",
+      "types": "./dist/components/sources/*.d.ts"
     },
     "./*": {
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js",
       "types": "./dist/esm/*.d.ts"
     },
-    "./dist/vue3-openlayers.css": {
-      "import": "./dist/styles.css",
-      "require": "./dist/styles.css"
-    },
-    "./styles.css": {
-      "import": "./dist/styles.css",
-      "require": "./dist/styles.css"
+    "./vue3-openlayers.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "files": [
