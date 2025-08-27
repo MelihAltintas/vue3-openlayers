@@ -13,7 +13,7 @@ import {
   toRefs,
   watch,
 } from "vue";
-import Modify, { ModifyEvent, type Options } from "ol/interaction/Modify";
+import Modify, { type ModifyEvent, type Options } from "ol/interaction/Modify";
 import type Map from "ol/Map";
 import type VectorSource from "ol/source/Vector";
 import {

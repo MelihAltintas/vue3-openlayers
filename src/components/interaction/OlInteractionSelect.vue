@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, provide, watch } from "vue";
-import Select, { SelectEvent, type Options } from "ol/interaction/Select";
+import Select, { type SelectEvent, type Options } from "ol/interaction/Select";
 import Style from "ol/style/Style";
 import type Map from "ol/Map";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";

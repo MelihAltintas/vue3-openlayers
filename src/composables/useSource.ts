@@ -1,5 +1,5 @@
 import { onUnmounted, type Ref, shallowRef, watch } from "vue";
-import { type Cluster, Source } from "ol/source";
+import type { Cluster, Source } from "ol/source";
 import usePropsAsObjectProperties from "./usePropsAsObjectProperties";
 import type { Layer } from "ol/layer";
 import {

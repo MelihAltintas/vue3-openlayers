@@ -2,7 +2,7 @@ import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, watch, computed } from "vue";
 import type featureType from "ol/Feature";
 import usePropsAsObjectProperties from "@/composables/usePropsAsObjectProperties";
-import { Geometry } from "ol/geom";
+import type { Geometry } from "ol/geom";
 
 export default function useGeometry<T extends Geometry>(
   GeometryType: { new (...args: never[]): T },
