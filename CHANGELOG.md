@@ -26,11 +26,16 @@
     - `OlInteractionDragBox` (not `OlInteractionDragbox`)
     - `OlInteractionDragRotate` (not `OlInteractionDragrotate`)
     - `OlInteractionDragRotateAndZoom` (not `OlInteractionDragrotatezoom`)
-    - And more, please see the release diff using the link above.
-  - Please update your imports and component usage to match the new names.
+    - And more, please see the release diff using the GitHub release diff.
+  - Styles are no longer automatically imported.
   - How to migrate:
     - Update all imports to use the new subpath and PascalCase names.
     - Review your code for any case mismatches in component names.
+    - Import styles from both openlayers and vue3-openlayers packages where appropriate:
+    ```js
+    import 'ol/ol.css';
+    import 'vue3-openlayers/vue3-openlayers.css';
+    ```
 
 ### Other Changes
   - Internal refactoring for better modularity and future maintenance.
