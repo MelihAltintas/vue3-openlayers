@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, provide, ref, watch } from "vue";
+import { onBeforeUnmount, onMounted, onUnmounted, provide, ref, watch } from "vue";
 import type { AtPixelOptions } from "ol/Map";
 import Map, { type MapOptions } from "ol/Map";
 import type { FeatureLike } from "ol/Feature";
@@ -72,10 +72,13 @@ onMounted(() => {
   }
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   if (!props.instance) {
     map?.setTarget(undefined);
   }
+});
+
+onUnmounted(() => {
   map = undefined;
 });
 
