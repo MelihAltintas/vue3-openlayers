@@ -52,7 +52,8 @@ import App from "./App.vue";
 
 // The style are only needed for some map controls.
 // However, you can also style them by your own
-import "vue3-openlayers/styles.css";
+import "ol/ol.css";
+import "vue3-openlayers/vue3-openlayers.css";
 
 import OpenLayersMap from "vue3-openlayers";
 
@@ -69,7 +70,8 @@ import App from "./App.vue";
 
 // The style are only needed for some map controls.
 // However, you can also style them by your own
-import "vue3-openlayers/styles.css";
+import "ol/ol.css";
+import "vue3-openlayers/vue3-openlayers.css";
 
 import { Map, Layers, Sources } from "vue3-openlayers";
 
